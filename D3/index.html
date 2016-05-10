@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "UTF-8">
+	<title>InformED Chronic Absenteeism D3 Chart Examples</title>
+</head>
+
+<!-- JS scripts -->
+
+<script src = "https://d3js.org/d3.v3.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
+<script src = "colChart.js"></script>
+<script src = "barChart.js"></script>
+
+<!-- CSS styling -->
+
+<style>
+
+	.header {
+		font: 24px sans-serif;
+		font-weight: bold;
+	}
+
+	.c1_1_arc {
+		stroke: #fff;
+	}
+	
+	.c1_1_label {
+		font: 12px sans-serif;
+	}
+	
+	.c1_1_cLabel {
+		font: 60px sans-serif;
+		font-weight: bold;
+	}
+	
+	.c1_1_cLabelText {
+		font: 12px sans-serif;
+	}
+	
+	.axis path, 
+	.axis line {
+		fill: none;
+		stroke: #ccc;
+		shape-rendering: crispEdges;
+	}
+	
+	.col-chart .axis,
+	.bar-chart .axis {
+		font: 12px sans-serif;
+	}
+	
+	.col-chart .x.axis line,
+	.bar-chart .y.axis line {
+		display: none; 
+	}
+
+	.bar,
+	.column {
+		fill: #98abc5;
+	}
+	
+	.d3-tip-bar, 
+	.d3-tip-col {
+		font: 12px sans-serif;
+		padding: 12px;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		border-radius: 2px;
+	}
+
+	/* Creates a small triangle extender for the tooltip */
+
+	.d3-tip-col:after {
+		box-sizing: border-box;
+		display: inline;
+		font-size: 10px;
+		width: 100%;
+		line-height: 1;
+		color: rgba(0, 0, 0, 0.8);
+		content: "\25BC";
+		position: absolute;
+		text-align: center;
+	}
+	
+	.d3-tip-bar:before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		position: absolute;
+		right: 100%;
+		top: 50%;
+		margin-top: -6px;
+		border: 6px solid transparent;
+		border-right-color: #2E3141;
+	}		
+	
+	/* Style northward tooltips differently */
+
+	.d3-tip-col.n:after {
+		margin: -1px 0 0 0;
+		top: 100%;
+		left: 0;
+	}
+	
+</style>
+
+<body align = "center">
+
+<!-- containers for each chart -->
+
+<div id = "ch1_1">
+	<span class = "header">Chapter 1 - 1: Chronic absenteeism among all students</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch1_2">
+	<p>&nbsp;</p>
+	<span class = "header">Chapter 1 - 2: Chronic absenteeism by race/ethnicity</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch1_3">
+	<p>&nbsp;</p>
+	<span class = "header">Chapter 1 - 3: Chronic absenteeism by gender</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch1_4">
+	<p>&nbsp;</p>
+	<span class = "header">Chapter 1 - 4: Chronic absenteeism by IDEA status</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch1_5">
+	<p>&nbsp;</p>
+	<span class = "header">Chapter 1 - 5: Chronic absenteeism by English Language Learner status</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch2_1"></div>
+<div id = "ch2_2"></div>
+
+<!-- Script for charts -->
+
+<script>
+
+// Number formats
+
+var	formatComma = d3.format(",f"),
+	formatPercent = d3.format(",.1%"),
+	formatPercentNoDec = d3.format(",%");
+
+// Chapter 1, Chart 1
+
+var c1_1_data; // store the c1_1 data here
+
+var c1_1_width = 750,
+	c1_1_height = 400,
+	c1_1_radius = Math.min(c1_1_width, c1_1_height) / 2;
+
+// Set colors for each slice
+	
+var c1_1_color = d3.scale.ordinal()
+	.domain(function(d) { return d.group;})
+	.range(["#98abc5", "#8a89a6"]);
+
+var c1_1_arc = d3.svg.arc()
+	.outerRadius(c1_1_radius)
+	.innerRadius(c1_1_radius * 0.75)
+	.startAngle(function(d) { return d.startAngle + Math.PI/3; })
+	.endAngle(function(d) { return d.endAngle + Math.PI/3; });
+	
+var c1_1_pie = d3.layout.pie()
+	.sort(null)
+	.value(function(d) { return d.number; });
+	
+var	c1_1 = d3.select("#ch1_1").append("svg")
+	.attr("width", c1_1_width)
+	.attr("height", c1_1_height)
+	.append("g")
+		.attr("transform", "translate(" + c1_1_width / 2 + "," + c1_1_height / 2 + ")");
+
+// filter the data when loading
+		
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.chart = +d.chart;
+			d.number = +d.number;
+			d.pct = formatPercent(d.pct);
+		});
+		
+		c1_1_data = data.filter(function(d) { return d.chart == 1; });
+		
+	};
+	
+	// draw the arcs
+	
+	var c1_1_gArc = c1_1.selectAll(".c1_1_arc")
+		.data(c1_1_pie(c1_1_data))
+		.enter().append("g");
+			
+	c1_1_gArc.append("path")
+		.attr("class", "c1_1_arc")
+		.style("fill", function(d) { return c1_1_color(d.data.group); })
+		.transition()
+			.delay(function(d, i) { return i * 2000; })
+			.duration(2000)
+			.ease("linear")
+			.attrTween("d", function(d) { 
+			
+				var i = d3.interpolate(d.startAngle, d.endAngle);
+				
+				return function(t) { d.endAngle = i(t); return c1_1_arc(d); }
+				
+			});
+	
+	// add data labels
+
+	c1_1_gArc.append("text")
+		.attr("transform", function(d) { 
+			
+			var c = c1_1_arc.centroid(d),
+				x = c[0],
+				y = c[1],
+				
+				h = Math.sqrt(x * x + y * y);
+		
+			return "translate(" + (x/h * c1_1_radius * 1.1) + "," + (y/h * c1_1_radius * 1.1) + ")"; })
+		.attr("text-anchor", function(d) { return (d.endAngle + d.startAngle)/2 > Math.PI ? "start" : "end"; })
+		.attr("class", "c1_1_label")
+		.attr("dy", ".35em")
+		.attr("fill-opacity", 0)
+		.text(function(d) { return d.data.group + " (" + d.data.pct + ")"; })
+		.transition()
+			.delay(function(d, i) { return i * 2000; })
+			.duration(2000)
+			.attr("fill-opacity", 1);
+	
+	// add n-size in the center
+		
+	var c1_1_cLabel = c1_1.selectAll(".c1_1_cLabel")
+		.data(c1_1_data)
+		.enter().append("g")
+			.filter(function(d) { return d.group == "Chronically absent"; });		
+	
+	c1_1_cLabel.append("text")
+		.attr("class", "c1_1_cLabel")
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.transition()
+			.delay(2000)
+			.duration(2000)
+			.attr("fill-opacity", 1)
+			.tween("text", function(d) {
+				
+				var i = d3.interpolate(0, d.number);
+				
+				return function(t) { this.textContent = formatComma(Math.round(i(t))); };
+				
+			});
+			
+	c1_1_cLabel.append("text")
+		.attr("class", "c1_1_cLabelText")
+		.attr("text-anchor", "middle")
+		.attr("dy", "25px")
+		.attr("fill-opacity", 0)
+		.text("students were chronically absent in 2013-14")
+		.transition()
+			.delay(2000)
+			.duration(2000)
+			.attr("fill-opacity", 1);
+				
+});
+
+// Chapter 1 - 2
+
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.chart = +d.chart;
+			d.number = +d.number;
+			d.pct = d.pct;
+		});
+		
+		data = data.filter(function(d) { return d.chart == 2; })
+			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
+		
+		var chart = colChart().width(750).marginBottom(60).data(data);
+		var chart2 = barChart().marginLeft(235).data(data);
+		
+		d3.select("#ch1_2").call(chart);
+		d3.select("#ch1_2").call(chart2);
+		
+	};
+});	
+
+// Chapter 1 - 3
+
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.chart = +d.chart;
+			d.number = +d.number;
+			d.pct = d.pct;
+		});
+		
+		data = data.filter(function(d) { return d.chart == 3; })
+			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
+		
+		var chart = colChart().height(300).data(data);
+		
+		d3.select("#ch1_3").call(chart);
+		
+	};
+});	
+
+// Chapter 1 - 4
+
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.chart = +d.chart;
+			d.number = +d.number;
+			d.pct = d.pct;
+		});
+		
+		data = data.filter(function(d) { return d.chart == 4; })
+			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
+		
+		var chart = barChart().data(data);
+		
+		d3.select("#ch1_4").call(chart);
+		
+	};
+});	
+
+// Chapter 1 - 5
+
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.chart = +d.chart;
+			d.number = +d.number;
+			d.pct = d.pct;
+		});
+		
+		data = data.filter(function(d) { return d.chart == 5; })
+			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
+		
+		var chart = colChart().data(data);
+		
+		d3.select("#ch1_5").call(chart);
+		
+	};
+});	
+	
+</script>
+
+</body>
+
+</html>
