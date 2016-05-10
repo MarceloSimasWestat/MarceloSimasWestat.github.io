@@ -34,20 +34,43 @@ export_widget <- function (graph_widget, filename) {
   saveWidget(graph_widget, paste0(filename, ".html"), selfcontained = FALSE, libdir = NULL, background = NULL)
 }
 
-allschools <- as.vector(matrix(sapply(100*dataset_race$percent[dataset_race$school=="All Schools"],rep,times=5),ncol=1))
 
-
+#Chronic Absenteeism by Race/Ethnicity
 graph_widget <- ggplot(dataset_race, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
   geom_bar_interactive(stat='identity', position = "dodge") +
-  #geom_errorbar(aes(y=allschools, ymax=allschools, ymin=allschools), linetype="dashed",color="lightgrey") +
   coord_flip() + 
   xlab("Race") + 
   ylab("Percentage") +
   theme(panel.background = element_rect(fill = "white")) +
   theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
-  theme(legend.title="School")
+  theme(text = element_text(size=15),axis.text.y = element_text(size=12)) +
+  ggtitle("Chronic Absenteeism by Race/Ethnicity") +
+  guides(fill=guide_legend(title="School")) +
   scale_fill_manual(values=brewer.pal(5,"Set2")) +
   scale_y_continuous(breaks=seq(0,100,5),labels=seq(0,100,5))
 
 
 export_widget(graph_widget, 'race')
+
+
+#Chronic Absenteeism by Gender
+graph_widget <- ggplot(dataset_gender, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
+  geom_bar_interactive(stat='identity', position = "dodge") +
+  coord_flip() + 
+  xlab("Race") + 
+  ylab("Percentage") +
+  theme(panel.background = element_rect(fill = "white")) +
+  theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
+  theme(text = element_text(size=15),axis.text.y = element_text(size=12)) +
+  ggtitle("Chronic Absenteeism by Gender") +
+  guides(fill=guide_legend(title="School")) +
+  scale_fill_manual(values=brewer.pal(5,"Set2")) +
+  scale_y_continuous(breaks=seq(0,100,5),labels=seq(0,100,5))
+
+export_widget(graph_widget, 'gender')
+
+
+
+
+
+
