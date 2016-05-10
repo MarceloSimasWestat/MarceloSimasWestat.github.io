@@ -1,0 +1,16 @@
+chart	group	number	pct
+1	Not chronically absent	190000	0.95
+1	Chronically absent	10000	0.05
+2	American Indian or Alaska Native	1188	0.002582042
+2	Asian	7720	0.03393012
+2	Black or African American	1479	0.02195658
+2	Hispanic	4665	0.011990161
+2	Native Hawaiian or Other Pacific Islander	4630	0.012376602
+2	White	7665	0.026306487
+2	Two or More Races	3500	0.013053175
+3	Female	12314	0.024547
+3	Male	16978	0.057756
+4	IDEA	16978	0.057756
+4	Non-IDEA	12314	0.024547
+5	English Language Learner	1188	0.002582042
+5	Non-English Language Learner	7665	0.026306487
