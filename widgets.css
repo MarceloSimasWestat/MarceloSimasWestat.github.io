@@ -1,0 +1,14 @@
+.widget_graphics_container {
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		background-color : transparent;
+}
+.widget_graphics {
+		position: relative;
+		width: 100%;
+}
+.widget_graphics:before {
+		content: "";
+		display: block;
+		padding-top: 100%;
+}
