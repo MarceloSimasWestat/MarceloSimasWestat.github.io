@@ -4,27 +4,22 @@ library(ggiraph)
 library(htmlwidgets)
 
 dataset <- read.csv(file.path("data", "data.csv"), stringsAsFactors = FALSE, check.names = FALSE)
-dataset$tooltip <- paste("N =", dataset$freq)
+dataset$tooltip <- paste("N =",paste(formatC(dataset$freq, format="d", big.mark=',')," (",round(dataset$percent*100,1),"%)",sep=""))
 dataset$variable <- factor(dataset$variable)
 dataset$group <- factor(dataset$group)
 dataset$school <- factor(dataset$school)
-
+dataset$school <- factor(dataset$school, levels = levels(dataset$school)[c(5,3,2,4,1)])
 
 dataset_gender <- subset(dataset, variable =="gender")
 dataset_race <- subset(dataset, variable =="race")
 
 
-# geom_point_interactive example
-graph_widget <- ggplot(dataset) + geom_bar_interactive(
-  mapping = aes(x = variable, tooltip = tooltip))
-graph_widget <- graph_widget + graph_widget_theme
-#graph_widget <- graph_widget + facet_wrap(~carb, nrow=2)
-
 export_widget <- function (graph_widget, filename) {
   
   tooltip_css <- "
+    font-family: 'Calibri';
     background-color: white;
-    font-weight: bold;
+
     padding: 10px;
     border-radius: 10px 20px 10px 20px;"
   
@@ -32,11 +27,27 @@ export_widget <- function (graph_widget, filename) {
   graph_widget <- ggiraph(
     code = {print(graph_widget)},
     tooltip_extra_css = tooltip_css,
-    tooltip_opacity = .75)
+    tooltip_opacity = .75,
+    width_svg = 14, height_svg = 7)
   
   
   saveWidget(graph_widget, paste0(filename, ".html"), selfcontained = FALSE, libdir = NULL, background = NULL)
 }
 
-graph_widget <- ggplot(dataset_race, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + geom_bar_interactive(stat='identity' ) + coord_flip() + xlab("Race") + ylab("Percentage")
+allschools <- as.vector(matrix(sapply(100*dataset_race$percent[dataset_race$school=="All Schools"],rep,times=5),ncol=1))
+
+
+graph_widget <- ggplot(dataset_race, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
+  geom_bar_interactive(stat='identity', position = "dodge") +
+  #geom_errorbar(aes(y=allschools, ymax=allschools, ymin=allschools), linetype="dashed",color="lightgrey") +
+  coord_flip() + 
+  xlab("Race") + 
+  ylab("Percentage") +
+  theme(panel.background = element_rect(fill = "white")) +
+  theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
+  theme(legend.title="School")
+  scale_fill_manual(values=brewer.pal(5,"Set2")) +
+  scale_y_continuous(breaks=seq(0,100,5),labels=seq(0,100,5))
+
+
 export_widget(graph_widget, 'race')
