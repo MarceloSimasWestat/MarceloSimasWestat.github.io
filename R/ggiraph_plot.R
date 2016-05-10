@@ -13,20 +13,10 @@ dataset$school <- factor(dataset$school)
 dataset_gender <- subset(dataset, variable =="gender")
 dataset_race <- subset(dataset, variable =="race")
 
-graph_widget_theme <- theme(
-  #panel.background = element_blank(),
-  plot.background = element_blank(),
-  legend.background = element_blank()
-  #panel.grid=element_blank(),
-  #axis.title=element_blank(),
-  #axis.text=element_blank(),
-  #axis.ticks=element_blank(),
-)
-
 
 # geom_point_interactive example
-graph_widget <- ggplot(dataset) + geom_bar(x = "race")
-  #mapping = aes()
+graph_widget <- ggplot(dataset) + geom_bar_interactive(
+  mapping = aes(x = variable, tooltip = tooltip))
 graph_widget <- graph_widget + graph_widget_theme
 #graph_widget <- graph_widget + facet_wrap(~carb, nrow=2)
 
@@ -45,9 +35,8 @@ export_widget <- function (graph_widget, filename) {
     tooltip_opacity = .75)
   
   
-  saveWidget(graph_widget, paste0(filename, '.html'), selfcontained = FALSE, libdir = NULL, background = NULL)
+  saveWidget(graph_widget, paste0(filename, ".html"), selfcontained = FALSE, libdir = NULL, background = NULL)
 }
 
-graph_widget <- ggplot(dataset_race, aes(x = group, y = percent * 100), tooltip = tooltip) + geom_bar(stat='identity' ) + coord_flip() + xlab("Race") + ylab("Percentage")
+graph_widget <- ggplot(dataset_race, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + geom_bar_interactive(stat='identity' ) + coord_flip() + xlab("Race") + ylab("Percentage")
 export_widget(graph_widget, 'race')
-
