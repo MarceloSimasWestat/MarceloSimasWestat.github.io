@@ -12,6 +12,8 @@ dataset$school <- factor(dataset$school, levels = levels(dataset$school)[c(5,3,2
 
 dataset_gender <- subset(dataset, variable =="gender")
 dataset_race <- subset(dataset, variable =="race")
+dataset_IDEA <- subset(dataset, variable =="idea")
+dataset_lep <- subset(dataset, variable =="lep")
 
 
 export_widget <- function (graph_widget, filename) {
@@ -57,7 +59,7 @@ export_widget(graph_widget, 'race')
 graph_widget <- ggplot(dataset_gender, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
   geom_bar_interactive(stat='identity', position = "dodge") +
   coord_flip() + 
-  xlab("Race") + 
+  xlab("Gender") + 
   ylab("Percentage") +
   theme(panel.background = element_rect(fill = "white")) +
   theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
@@ -70,6 +72,36 @@ graph_widget <- ggplot(dataset_gender, aes(x = group, y = percent * 100, fill = 
 export_widget(graph_widget, 'gender')
 
 
+graph_widget <- ggplot(dataset_IDEA, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
+  geom_bar_interactive(stat='identity', position = "dodge") +
+  coord_flip() + 
+  xlab("IDEA Status") + 
+  ylab("Percentage") +
+  theme(panel.background = element_rect(fill = "white")) +
+  theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
+  theme(text = element_text(size=15),axis.text.y = element_text(size=12)) +
+  ggtitle("Chronic Absenteeism by IDEA") +
+  guides(fill=guide_legend(title="School")) +
+  scale_fill_manual(values=brewer.pal(5,"Set2")) +
+  scale_y_continuous(breaks=seq(0,100,5),labels=seq(0,100,5))
+
+export_widget(graph_widget, 'IDEA')
+
+
+graph_widget <- ggplot(dataset_lep, aes(x = group, y = percent * 100, fill = school, tooltip = tooltip)) + 
+  geom_bar_interactive(stat='identity', position = "dodge") +
+  coord_flip() + 
+  xlab("English Language Learner Status") + 
+  ylab("Percentage") +
+  theme(panel.background = element_rect(fill = "white")) +
+  theme(panel.grid.major.x= element_line(color ="lightgrey",size=.1)) +
+  theme(text = element_text(size=15),axis.text.y = element_text(size=12)) +
+  ggtitle("Chronic Absenteeism by English Language Learner Status") +
+  guides(fill=guide_legend(title="School")) +
+  scale_fill_manual(values=brewer.pal(5,"Set2")) +
+  scale_y_continuous(breaks=seq(0,100,5),labels=seq(0,100,5))
+
+export_widget(graph_widget, 'lep')
 
 
 
