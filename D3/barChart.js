@@ -8,12 +8,14 @@ function barChart() {
 	var	width = 960,
 		height = 500,
 		marginLeft = 100,
+		marginBottom = 20,
 		animateTime = 500,
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
 		updateMarginLeft,
+		updateMarginBottom,
 		updateAnimateTime,
 		updateData;
 		
@@ -28,9 +30,9 @@ function barChart() {
 		
 		// margins; adjust width and height to account for margins
 		
-		var margin = {top: 20, right: 20, bottom: 60},
+		var margin = {top: 20, right: 20},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - margin.top - margin.bottom;
+			heightAdj = height - margin.top - marginBottom;
 
 		// selections
 		
@@ -137,7 +139,13 @@ function barChart() {
 			widthAdj = width - marginLeft - margin.right;
 			
 		};
-
+		
+		updateMarginBottom = function() {
+			
+			heightAdj = width - margin.top - marginBottom;
+			
+		};
+		
 		updateAnimateTime = function() {
 			
 			bars.transition().duration(animateTime);
@@ -199,6 +207,15 @@ function barChart() {
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		if (typeof updateMarginLeft === 'function') updateMarginLeft();
+		return chart;
+		
+	};
+	
+	chart.marginBottom = function(value) {
+		
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		if (typeof updateMarginBottom === 'function') updateMarginBottom();
 		return chart;
 		
 	};

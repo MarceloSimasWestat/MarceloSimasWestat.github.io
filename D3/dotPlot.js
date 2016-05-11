@@ -8,6 +8,7 @@ function dotPlot() {
 	var	width = 960,
 		height = 500,
 		marginLeft = 100,
+		marginBottom = 20,
 		dotSize = 25,
 		animateTime = 1000,
 		data = [];
@@ -15,6 +16,7 @@ function dotPlot() {
 	var updateWidth,
 		updateHeight,
 		updateMarginLeft,
+		updateMarginBottom,
 		updateDotSize,
 		updateAnimateTime,
 		updateData;
@@ -32,7 +34,7 @@ function dotPlot() {
 		
 		var margin = {top: 20, right: 20, bottom: 60},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - margin.top - margin.bottom;
+			heightAdj = height - margin.top - marginBottom;
 
 		// selections
 		
@@ -81,8 +83,7 @@ function dotPlot() {
 				.attr("transform", "translate(0,0)");
 				
 		lines.append("line")
-			.style("stroke", "lightgray")
-			.style("opacity", 1)
+			.attr("class", "dotLine")
 			.attr("x1", 0)
 			.attr("x2", 0)
 			.attr("y1", function(d) { return yScale (d.var1) + (yScale.rangeBand() / 2); })
@@ -180,6 +181,12 @@ function dotPlot() {
 			widthAdj = width - marginLeft - margin.right;
 			
 		};
+
+		updateMarginBottom = function() {
+			
+			heightAdj = width - margin.top - marginBottom;
+			
+		};
 		
 		updateDotSize = function() {
 			
@@ -246,6 +253,15 @@ function dotPlot() {
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		if (typeof updateMarginLeft === 'function') updateMarginLeft();
+		return chart;
+		
+	};
+
+	chart.marginBottom = function(value) {
+		
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		if (typeof updateMarginBottom === 'function') updateMarginBottom();
 		return chart;
 		
 	};
