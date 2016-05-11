@@ -7,12 +7,14 @@ function colChart() {
 	
 	var	width = 960,
 		height = 500,
+		marginLeft = 40,
 		marginBottom = 20,
-		animateTime = 500;
+		animateTime = 500,		
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
+		updateMarginLeft,
 		updateMarginBottom,
 		updateAnimateTime,
 		updateData;
@@ -28,8 +30,8 @@ function colChart() {
 		
 		// margins; adjust width and height to account for margins
 		
-		var margin = {top: 20, right: 20, left: 40},
-			widthAdj = width - margin.left - margin.right,
+		var margin = {top: 20, right: 20},
+			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - margin.top - marginBottom;		
 		
 		// selections
@@ -42,7 +44,7 @@ function colChart() {
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style("max-width", width)
 			.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
 		
 		// tooltips using d3-tip
 		
@@ -131,6 +133,12 @@ function colChart() {
 			cols.attr("height", function(d) { return heightAdj - yScale(d.var3); });
 			
 		};
+
+		updateMarginLeft = function() {
+			
+			widthAdj = width - marginLeft - margin.right;
+			
+		};
 		
 		updateMarginBottom = function() {
 			
@@ -194,6 +202,15 @@ function colChart() {
 		
     };
 
+	chart.marginLeft = function(value) {
+		
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		if (typeof updateMarginLeft === 'function') updateMarginLeft();
+		return chart;
+		
+	};	
+	
 	chart.marginBottom = function(value) {
 		
 		if (!arguments.length) return marginBottom;
