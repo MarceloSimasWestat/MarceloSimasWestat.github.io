@@ -1,4 +1,4 @@
-// Reusable column chart function
+// Reusable bar chart function for chronic absenteeism storymap
 
 function colChart() {
 	
@@ -7,12 +7,14 @@ function colChart() {
 	
 	var	width = 960,
 		height = 500,
-		marginBottom = 20;
+		marginBottom = 20,
+		animateTime = 500;
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
 		updateMarginBottom,
+		updateAnimateTime,
 		updateData;
 		
 	function chart(selection) {
@@ -36,8 +38,9 @@ function colChart() {
 		
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			.attr("width", width)
-			.attr("height", height)
+			.attr("viewBox", "0 0 " + width + " " + height)
+			.attr("preserveAspectRatio", "xMinYMin meet")
+			.style("max-width", width)
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
@@ -48,7 +51,7 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 	
-			return formatComma(d.number) + " (" + formatPercent(d.pct) + ")";
+			return formatComma(d.var2) + " (" + formatPercent(d.var3) + ")";
 	
 		});
 		
@@ -63,8 +66,8 @@ function colChart() {
 		
 		// domains
 		
-		xScale.domain(data.map(function(d, i) { return d.group; }));
-		yScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice();
+		xScale.domain(data.map(function(d, i) { return d.var1; }));
+		yScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
 	
 		// draw columns
 		
@@ -74,28 +77,28 @@ function colChart() {
 			.append("g")
 				.attr("transform", "translate(0,0)");
 		
-		var max = d3.max(data, function(d) { return d.pct; });
+		var max = d3.max(data, function(d) { return d.var3; });
 		
 		cols.append("rect")
 			.attr("class","column")
-			.attr("x", function(d, i) { return xScale(d.group); })
+			.attr("x", function(d, i) { return xScale(d.var1); })
 			.attr("width", xScale.rangeBand())
 			.attr("y", heightAdj)
 			.attr("height", 0)
 			.on("mouseover", tipCol.show)
 			.on("mouseout", tipCol.hide)
 			.transition()
-				.duration(500)
-				.attr("height", function(d) { return heightAdj - yScale(d.pct); })
-				.attr("y", function(d) { return yScale(d.pct); })
+				.duration(animateTime)
+				.attr("height", function(d) { return heightAdj - yScale(d.var3); })
+				.attr("y", function(d) { return yScale(d.var3); })
 				
 				// highlight if max
 			
-				.each("end", function(d) { if (d.pct == max) {
-					svg.select(".column")
+				.each("end", function(d) { if (d.var3 == max) {
+					d3.select(this)
 						.transition()
-							.duration(500)
-							.style("fill", "#8a89a6");
+							.duration(animateTime)
+							.attr("class", "bar max");
 				}});
 		
 		// draw axes
@@ -116,7 +119,7 @@ function colChart() {
 		updateWidth = function() {
 			
 			svg.attr("width", widthAdj);
-			cols.attr("x", function(d, i) { return xScale(d.group); })
+			cols.attr("x", function(d, i) { return xScale(d.var1); })
 			cols.attr("width", xScale.rangeBand());
 			
 		};
@@ -124,8 +127,8 @@ function colChart() {
 		updateHeight = function() {
 			
 			svg.attr("height", heightAdj);
-			cols.attr("y", function(d) { return yScale(d.pct); })
-			cols.attr("height", function(d) { return heightAdj - yScale(d.pct); });
+			cols.attr("y", function(d) { return yScale(d.var3); })
+			cols.attr("height", function(d) { return heightAdj - yScale(d.var3); });
 			
 		};
 		
@@ -133,6 +136,12 @@ function colChart() {
 			
 			heightAdj = height - margin.top - marginBottom;
 			
+		};
+		
+		updateAnimateTime = function() {
+			
+			cols.transition().duration(animateTime);
+		
 		};
 		
 		updateData = function() {
@@ -145,18 +154,18 @@ function colChart() {
 			var update = svg.selectAll("rect.column")
 				.data(data);
 				
-			update.attr("x", function(d, i) { return xScale(d.group); })
+			update.attr("x", function(d, i) { return xScale(d.var1); })
 				.attr("width", xScale.rangeBand())
-				.attr("y", function(d) { return yScale(d.pct); })
-				.attr("height", function(d) { return heightAdj - yScale(d.pct); })
+				.attr("y", function(d) { return yScale(d.var3); })
+				.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 		
 			update.enter()
 				.append("rect")
 				.attr("class","column")
-				.attr("x", function(d, i) { return xScale(d.group); })
+				.attr("x", function(d, i) { return xScale(d.var1); })
 				.attr("width", xScale.rangeBand())
-				.attr("y", function(d) { return yScale(d.pct); })
-				.attr("height", function(d) { return heightAdj - yScale(d.pct); });
+				.attr("y", function(d) { return yScale(d.var3); })
+				.attr("height", function(d) { return heightAdj - yScale(d.var3); });
 		
 			update.exit()
 				.remove();
@@ -190,6 +199,15 @@ function colChart() {
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		if (typeof updateMarginBottom === 'function') updateMarginBottom();
+		return chart;
+		
+	};
+	
+	chart.animateTime = function(value) {
+		
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		if (typeof updateAnimateTime === 'function') updateAnimateTime();
 		return chart;
 		
 	};
