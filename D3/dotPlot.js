@@ -1,6 +1,6 @@
-// Reusable bar chart function for chronic absenteeism storymap
+// Reusable dot plot function for chronic absenteeism story map
 
-function barChart() {
+function dotPlot() {
 	
 	// Options accessible to the caller
 	// These are the default values
@@ -8,12 +8,14 @@ function barChart() {
 	var	width = 960,
 		height = 500,
 		marginLeft = 100,
-		animateTime = 500,
+		dotSize = 25,
+		animateTime = 1000,
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
 		updateMarginLeft,
+		updateDotSize,
 		updateAnimateTime,
 		updateData;
 		
@@ -37,7 +39,7 @@ function barChart() {
 		var dom = d3.select(this);
 		
 		var svg = dom.append("svg")
-			.attr("class", "bar-chart")
+			.attr("class", "dotPlot")
 			.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style("max-width", width)
@@ -46,8 +48,8 @@ function barChart() {
 		
 		// tooltips using d3-tip
 		
-		var tipBar = d3.tip()
-			.attr("class", "d3-tip-bar")
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip-dot")
 			.direction("e")	
 			.offset([0, 10])
 			.html(function(d) {
@@ -56,12 +58,12 @@ function barChart() {
 	
 		});
 		
-		svg.call(tipBar);
+		svg.call(tipDot);
 		
 		// axis scales and axes
 		
 		var xScale = d3.scale.linear().range([0, widthAdj]),	
-			yScale = d3.scale.ordinal().range([heightAdj, 0]).rangeRoundBands([0, heightAdj], .1),
+			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1),
 			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatPercent),
 			yAxis = d3.svg.axis().scale(yScale).orient("left");
 		
@@ -70,36 +72,77 @@ function barChart() {
 		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
 		yScale.domain(data.map(function(d, i) { return d.var1; }));
 	
-		// draw bars
+		// draw dots and lines
 		
-		var bars = svg.selectAll("rect.bar")
+		var lines = svg.selectAll("line.dotLine")
+			.data(data)
+			.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)");
+				
+		lines.append("line")
+			.style("stroke", "lightgray")
+			.style("opacity", 1)
+			.attr("x1", 0)
+			.attr("x2", 0)
+			.attr("y1", function(d) { return yScale (d.var1) + (yScale.rangeBand() / 2); })
+			.attr("y2", function(d) { return yScale (d.var1) + (yScale.rangeBand() / 2); })
+			.transition()
+				.duration(animateTime)
+				.attr("x2", function(d) { return xScale(d.var3); });
+				
+		var dots = svg.selectAll("circle.dot")
 			.data(data)
 			.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)");
 		
 		var max = d3.max(data, function(d) { return d.var3; });
-				
-		bars.append("rect")
-			.attr("class","bar")
-			.attr("x", 0)
-			.attr("width", 0)
-			.attr("y", function(d) { return yScale(d.var1); })
-			.attr("height", yScale.rangeBand())
-			.on("mouseover", tipBar.show)
-			.on("mouseout", tipBar.hide)
+		
+		dots.append("circle")
+			.attr("class","dot")
+			.attr("clip-path", "url(#clip)")
+			.attr("cx", 0)
+			.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+			.attr("r", 5)
+			.on("mouseover", tipDot.show)
+			.on("mouseout", tipDot.hide)
 			.transition()
 				.duration(animateTime)
-				.attr("width", function(d) { return xScale(d.var3); })
-								
-				// highlight if max
-			
-				.each("end", function(d) { if (d.var3 == max) {
+				.attr("cx", function(d) { return xScale(d.var3); })
+				.each("end", function(d) { 
 					d3.select(this)
 						.transition()
 							.duration(animateTime)
-							.attr("class", "bar max");
-				}});
+							.attr("r", dotSize)
+								
+							// highlight if max
+							
+							.each("end", function(d) { if (d.var3 == max) {
+								d3.select(this)
+									.transition()
+										.duration(animateTime)
+										.attr("class", "dot max")
+							}});
+				});
+											
+				// highlight if max
+			
+				//.each("end", function(d) { if (d.var3 == maxValue) {
+				//	d3.select(this)
+				//		.transition()
+				//			.duration(500)
+				//			.attr("class", "bar max");
+				//}});
+		
+		// add clip path
+		
+		svg.append("defs")
+			.append("clipPath")
+				.attr("id", "clip")
+					.append("rect")
+						.attr("width", widthAdj)
+						.attr("height", heightAdj);
 		
 		// draw axes
 	
@@ -118,17 +161,17 @@ function barChart() {
 		
 		updateWidth = function() {
 			
-			widthScale = width / maxValue;
-			
 			svg.attr("width", widthAdj);
-			bars.attr("width", function(d) { return xScale(d.var3); });
+			dots.attr("cx", function(d) { return xScale(d.var3); });
+			d3.select("#clip.rect").attr("width", widthAdj);
 			
 		};
 			
 		updateHeight = function() {
 			
 			svg.attr("height", heightAdj);
-			bars.attr("y", function(d) { return yScale(d.var1); })
+			dots.attr("cy", function(d) { return yScale.rangeBand(); });
+			d3.select("#clip.rect").attr("height", heightAdj);
 						
 		};
 		
@@ -137,35 +180,39 @@ function barChart() {
 			widthAdj = width - marginLeft - margin.right;
 			
 		};
-
+		
+		updateDotSize = function() {
+			
+			dots.attr("r", dotSize);
+			
+		};
+		
 		updateAnimateTime = function() {
 			
-			bars.transition().duration(animateTime);
+			lines.transition().duration(animateTime);
+			dots.transition().duration(animateTime);
 		
 		};
 		
 		updateData = function() {
 		
 		var xScale = d3.scale.linear().range([0, widthAdj]),	
-			yScale = d3.scale.ordinal().range([heightAdj, 0]),
+			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1),
 			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatPercent),
 			yAxis = d3.svg.axis().scale(yScale).orient("left");
 		
-			var update = svg.selectAll("rect.bar")
+			var update = svg.selectAll("circle.dot")
 				.data(data);
 				
-			update.attr("x", marginLeft)
-				.attr("width", function(d) { return xScale(d.var3); })
-				.attr("y", function(d) { return yScale(d.var1); })
-				.attr("height", yScale.rangeBand())
+			update.attr("cx", function(d) { return xScale(d.var3); })
+				.attr("cy", 0)
+				.attr("r", dotSize)
 		
-			update.enter()
-				.append("rect")
-				.attr("class","bar")
-				.attr("x", marginLeft)
-				.attr("width", function(d) { return xScale(d.var3); })
-				.attr("y", function(d) { return yScale(d.var1); })
-				.attr("height", yScale.rangeBand());
+			update.append("circle")
+				.attr("class","dot")
+				.attr("cx", function(d) { return xScale(d.var3); })
+				.attr("cy", 0)
+				.attr("r", dotSize)
 		
 			update.exit()
 				.remove();
@@ -202,7 +249,16 @@ function barChart() {
 		return chart;
 		
 	};
-
+	
+	chart.dotSize = function(value) {
+		
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		if (typeof updateDotSize === 'function') updateDotSize();
+		return chart;
+		
+	};
+	
 	chart.animateTime = function(value) {
 		
 		if (!arguments.length) return animateTime;
@@ -226,7 +282,7 @@ function barChart() {
 };
 
 // this is for wrapping long axis labels
-// need to examine this for bar charts because it's causing some unintended side effects...
+// need to examine this for horizontal charts because it's causing some unintended side effects...
 
 function wrap(text, width) {
   text.each(function() {
