@@ -36,13 +36,34 @@ function colChart() {
 		
 		// selections
 		
-		var dom = d3.select(this);
-		
+		var dom = d3.select(this)
+			.append("div")
+				.style({
+					"max-width": width + "px",
+					"margin": "0 auto"
+				})
+				.append("div")
+					.style({
+						"width": "100%",
+						"max-width": width + "px",
+						"height": 0,
+						"padding-top": (100*(height/width)) + "%",
+						"position": "relative",
+						"margin": "0 auto"
+					});				
+			
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
 			.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style("max-width", width)
+			.style({
+				"max-width": width,
+				"position": "absolute",
+				"top": 0,
+				"left": 0,
+				"width": "100%",
+				"height": "100%"
+			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
 		

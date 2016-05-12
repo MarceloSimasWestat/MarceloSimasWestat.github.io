@@ -29,23 +29,48 @@ function barChart() {
 			formatPercentNoDec = d3.format(",%");
 		
 		// margins; adjust width and height to account for margins
-		
+	
+		var aspect = width/height;
+	
 		var margin = {top: 20, right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - margin.top - marginBottom;
 
 		// selections
-		
-		var dom = d3.select(this);
-		
+				
+		var dom = d3.select(this)
+			.append("div")
+				.style({
+					"max-width": width + "px",
+					"margin": "0 auto"
+				})
+				.append("div")
+					.style({
+						"width": "100%",
+						"max-width": width + "px",
+						"height": 0,
+						"max-height": height + "px",
+						"padding-top": (100*(height/width)) + "%",
+						"position": "relative",
+						"margin": "0 auto"
+					});				
+						
 		var svg = dom.append("svg")
 			.attr("class", "bar-chart")
 			.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style("max-width", width)
+			.style({
+				"max-width": width,
+				"max-height": height,
+				"position": "absolute",
+				"top": 0,
+				"left": 0,
+				"width": "100%",
+				"height": "100%"
+			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
-		
+					
 		// tooltips using d3-tip
 		
 		var tipBar = d3.tip()
@@ -120,8 +145,6 @@ function barChart() {
 		
 		updateWidth = function() {
 			
-			widthScale = width / maxValue;
-			
 			svg.attr("width", widthAdj);
 			bars.attr("width", function(d) { return xScale(d.var3); });
 			
@@ -179,7 +202,7 @@ function barChart() {
 				.remove();
 		
 		};
-		
+				
 	});
 	
 };
