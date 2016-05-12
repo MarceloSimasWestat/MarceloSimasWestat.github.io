@@ -77,6 +77,14 @@
 		opacity: 1;
 	}
 	
+	.smallMultiple {
+		float: left;
+		padding-right: 5px;
+		padding-bottom: 5px;
+		padding-top:0;
+		padding-left:0;
+	}
+	
 	.d3-tip-bar, 
 	.d3-tip-col,
 	.d3-tip-dot {
@@ -198,12 +206,34 @@ var c1_1_pie = d3.layout.pie()
 	.sort(null)
 	.value(function(d) { return d.number; });
 	
-var	c1_1 = d3.select("#ch1_1").append("svg")
-	.attr("viewBox", "0 0 " + c1_1_width + " " + c1_1_height)
-	.attr("preserveAspectRatio", "xMinYMin meet")
-	.style("max-width", c1_1_width)
-	.append("g")
-		.attr("transform", "translate(" + c1_1_width / 2 + "," + c1_1_height / 2 + ")");
+var	c1_1 = d3.select("#ch1_1")
+	.append("div")
+		.style({
+			"max-width": c1_1_width + "px",
+			"margin": "0 auto"
+		})
+		.append("div")
+			.style({
+				"width": "100%",
+				"max-width": c1_1_width + "px",
+				"height": 0,
+				"padding-top": (100*(c1_1_height/c1_1_width)) + "%",
+				"position": "relative",
+				"margin": "0 auto"
+			})
+			.append("svg")
+				.attr("viewBox", "0 0 " + c1_1_width + " " + c1_1_height)
+				.attr("preserveAspectRatio", "xMinYMin meet")
+				.style({
+					"max-width": c1_1_width,
+					"position": "absolute",
+					"top": 0,
+					"left": 0,
+					"width": "100%",
+					"height": "100%"
+				})
+				.append("g")
+					.attr("transform", "translate(" + c1_1_width / 2 + "," + c1_1_height / 2 + ")");
 
 // filter the data when loading
 		
@@ -360,7 +390,10 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		
 	};
 });	
-	
+
+// Chapter 2 - 2
+
+
 </script>
 
 </body>
