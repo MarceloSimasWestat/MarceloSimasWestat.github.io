@@ -101,55 +101,55 @@ function dotPlot() {
 		// draw dots and lines
 		
 		var lines = svg.selectAll("line.dotLine")
-			.data(data)
-			.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)");
+			.data(data);
 				
-		lines.append("line")
-			.attr("class", "dotLine")
-			.attr("x1", 0)
-			.attr("x2", 0)
-			.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.transition()
-				.duration(animateTime)
-				.attr("x2", function(d) { return xScale(d.var3); });
+		lines.enter()
+			.append("g")
+			.attr("transform", "translate(0,0)")
+			.append("line")
+				.attr("class", "dotLine")
+				.attr("x1", 0)
+				.attr("x2", 0)
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.transition()
+					.duration(animateTime)
+					.attr("x2", function(d) { return xScale(d.var3); });
 				
 		var dots = svg.selectAll("circle.dot")
-			.data(data)
-			.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)");
+			.data(data);
 		
 		var max = d3.max(data, function(d) { return d.var3; });
 		
-		dots.append("circle")
-			.attr("class", "dot")
-			.attr("clip-path", function() { return "url(#clip)" + clipName + ")"; })
-			.attr("cx", 0)
-			.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.attr("r", 5)
-			.on("mouseover", tipDot.show)
-			.on("mouseout", tipDot.hide)
-			.transition()
-				.duration(animateTime)
-				.attr("cx", function(d) { return xScale(d.var3); })
-				.each("end", function(d) { 
-					d3.select(this)
-						.transition()
-							.duration(animateTime)
-							.attr("r", dotSize)
-								
-							// highlight if max
-							
-							.each("end", function(d) { if (d.var3 == max) {
-								d3.select(this)
-									.transition()
-										.duration(animateTime)
-										.attr("class", "dot max")
-							}});
-				});
+		dots.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("circle")
+					.attr("class", "dot")
+					.attr("clip-path", function() { return "url(#clip)" + clipName + ")"; })
+					.attr("cx", 0)
+					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+					.attr("r", 5)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("cx", function(d) { return xScale(d.var3); })
+						.each("end", function(d) { 
+							d3.select(this)
+								.transition()
+									.duration(animateTime)
+									.attr("r", dotSize)
+										
+									// highlight if max
+									
+									.each("end", function(d) { if (d.var3 == max) {
+										d3.select(this)
+											.transition()
+												.duration(animateTime)
+												.attr("class", "dot max")
+									}});
+						});
 											
 		// add clip path
 		
@@ -238,18 +238,35 @@ function dotPlot() {
 				.data(data);
 				
 			update.attr("cx", function(d) { return xScale(d.var3); })
-				.attr("cy", 0)
+				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 				.attr("r", dotSize)
 		
 			update.append("circle")
 				.attr("class","dot")
 				.attr("cx", function(d) { return xScale(d.var3); })
-				.attr("cy", 0)
+				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 				.attr("r", dotSize)
 		
 			update.exit()
 				.remove();
-		
+				
+			var updateLines = svg.selectAll("line.dotLine")
+				.data(function(d) { return d.values; });
+				
+			updateLines.attr("x2", function(d) { return xScale(d.var3); })
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
+				
+			updateLines.append("line")
+				.attr("class", "dotLineSM")
+				.attr("x1", 0)
+				.attr("x2", function(d) { return xScale(d.var4); })
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
+				
+			updateLines.exit()
+				.remove();	
+				
 		};
 		
 	});

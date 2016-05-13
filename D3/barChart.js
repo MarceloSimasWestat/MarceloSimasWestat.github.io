@@ -100,34 +100,34 @@ function barChart() {
 		// draw bars
 		
 		var bars = svg.selectAll("rect.bar")
-			.data(data)
-			.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)");
+			.data(data);
 		
 		var max = d3.max(data, function(d) { return d.var3; });
 				
-		bars.append("rect")
-			.attr("class","bar")
-			.attr("x", 0)
-			.attr("width", 0)
-			.attr("y", function(d) { return yScale(d.var1); })
-			.attr("height", yScale.rangeBand())
-			.on("mouseover", tipBar.show)
-			.on("mouseout", tipBar.hide)
-			.transition()
-				.duration(animateTime)
-				.attr("width", function(d) { return xScale(d.var3); })
-								
-				// highlight if max
-			
-				.each("end", function(d) { if (d.var3 == max) {
-					d3.select(this)
-						.transition()
-							.duration(animateTime)
-							.attr("class", "bar max");
-				}});
-		
+		bars.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("rect")
+					.attr("class","bar")
+					.attr("x", 0)
+					.attr("width", 0)
+					.attr("y", function(d) { return yScale(d.var1); })
+					.attr("height", yScale.rangeBand())
+					.on("mouseover", tipBar.show)
+					.on("mouseout", tipBar.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.var3); })
+										
+						// highlight if max
+					
+						.each("end", function(d) { if (d.var3 == max) {
+							d3.select(this)
+								.transition()
+									.duration(animateTime)
+									.attr("class", "bar max");
+						}});
+				
 		// draw axes
 	
 		svg.append("g")

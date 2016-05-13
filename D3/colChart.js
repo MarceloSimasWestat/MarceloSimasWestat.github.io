@@ -95,34 +95,34 @@ function colChart() {
 		// draw columns
 		
 		var cols = svg.selectAll("rect.column")
-			.data(data)
-			.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)");
-		
+			.data(data);
+					
 		var max = d3.max(data, function(d) { return d.var3; });
 		
-		cols.append("rect")
-			.attr("class","column")
-			.attr("x", function(d, i) { return xScale(d.var1); })
-			.attr("width", xScale.rangeBand())
-			.attr("y", heightAdj)
-			.attr("height", 0)
-			.on("mouseover", tipCol.show)
-			.on("mouseout", tipCol.hide)
-			.transition()
-				.duration(animateTime)
-				.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-				.attr("y", function(d) { return yScale(d.var3); })
-				
-				// highlight if max
-			
-				.each("end", function(d) { if (d.var3 == max) {
-					d3.select(this)
-						.transition()
-							.duration(animateTime)
-							.attr("class", "bar max");
-				}});
+		cols.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("rect")
+					.attr("class","column")
+					.attr("x", function(d, i) { return xScale(d.var1); })
+					.attr("width", xScale.rangeBand())
+					.attr("y", heightAdj)
+					.attr("height", 0)
+					.on("mouseover", tipCol.show)
+					.on("mouseout", tipCol.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("height", function(d) { return heightAdj - yScale(d.var3); })
+						.attr("y", function(d) { return yScale(d.var3); })
+						
+						// highlight if max
+					
+						.each("end", function(d) { if (d.var3 == max) {
+							d3.select(this)
+								.transition()
+									.duration(animateTime)
+									.attr("class", "bar max");
+						}});
 		
 		// draw axes
 	
