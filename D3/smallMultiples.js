@@ -120,53 +120,56 @@ function smallMultiples() {
 		
 		var linesSM = svg.selectAll("line.dotLineSM")
 			.data(function(d) { return d.values; })
-			.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)");
 				
-		linesSM.append("line")
-			.attr("class", "dotLineSM")
-			.attr("x1", 0)
-			.attr("x2", 0)
-			.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.transition()
-				.duration(animateTime)
-				.attr("x2", function(d) { return xScale(d.var4); });
+		linesSM.enter()
+			.append("g")
+			.attr("transform", "translate(0,0)")
+			.append("line")
+				.attr("class", "dotLineSM")
+				.attr("x1", 0)
+				.attr("x2", 0)
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.transition()
+					.duration(animateTime)
+					.attr("x2", function(d) { return xScale(d.var4); });
 				
 		var dotsSM = svg.selectAll("circle.dotSM")
-			.data(function(d) { return d.values; })
-			.enter()
+			.data(function(d) { return d.values; });
+			
+		dotsSM.enter()
 			.append("g")
-				.attr("transform", "translate(0,0)");
+				.attr("transform", "translate(0,0)")
+				.append("circle")
+					.attr("class", "dotSM")
+					.attr("clip-path", function() { return "url(#clip" + clipName + ")"; })
+					.attr("cx", 0)
+					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+					.attr("r", 3)
+					.on("mouseover", tipDotSM.show)
+					.on("mouseout", tipDotSM.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("cx", function(d) { return xScale(d.var4); })
+						.each("end", function(d) { 
+							d3.select(this)
+								.transition()
+									.duration(animateTime)
+									.attr("r", dotSize)
+										
+									/* highlight if max
+									
+									.each("end", function(d) { if (d.var4 == max) {
+										d3.select(this)
+											.transition()
+												.duration(animateTime)
+												.attr("class", "dotSM max")
+									}}); */
+						});
 		
-		dotsSM.append("circle")
-			.attr("class", "dotSM")
-			.attr("clip-path", function() { return "url(#clip" + clipName + ")"; })
-			.attr("cx", 0)
-			.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-			.attr("r", 3)
-			.on("mouseover", tipDotSM.show)
-			.on("mouseout", tipDotSM.hide)
-			.transition()
-				.duration(animateTime)
-				.attr("cx", function(d) { return xScale(d.var4); })
-				.each("end", function(d) { 
-					d3.select(this)
-						.transition()
-							.duration(animateTime)
-							.attr("r", dotSize)
-								
-							/* highlight if max
-							
-							.each("end", function(d) { if (d.var4 == d.var4) {
-								d3.select(this)
-									.transition()
-										.duration(animateTime)
-										.attr("class", "dotSM max")
-							}}); */
-				});
-											
+		dotsSM.filter(function(d) { return d.var4 == d3.max(d.var4) ; })
+			.classed("max", true)
+		
 		// add clip path
 		
 		svg.append("defs")
@@ -265,22 +268,39 @@ function smallMultiples() {
 			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatPercent),
 			yAxis = d3.svg.axis().scale(yScale).orient("left");
 		
-			var update = svg.selectAll("circle.dotSM")
+			var updateDots = svg.selectAll("circle.dotSM")
 				.data(function(d) { return d.values; });
 				
-			update.attr("cx", function(d) { return xScale(d.var4); })
-				.attr("cy", 0)
+			updateDots.attr("cx", function(d) { return xScale(d.var4); })
+				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 				.attr("r", dotSize)
 		
-			update.append("circle")
-				.attr("class","dotSM")
+			updateDots.append("circle")
+				.attr("class", "dotSM")
 				.attr("cx", function(d) { return xScale(d.var4); })
-				.attr("cy", 0)
+				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 				.attr("r", dotSize)
 		
-			update.exit()
+			updateDots.exit()
 				.remove();
 		
+			var updateLines = svg.selectAll("line.dotLineSM")
+				.data(function(d) { return d.values; });
+				
+			updateLines.attr("x2", function(d) { return xScale(d.var4); })
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
+				
+			updateLines.append("line")
+				.attr("class", "dotLineSM")
+				.attr("x1", 0)
+				.attr("x2", function(d) { return xScale(d.var4); })
+				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
+				
+			updateLines.exit()
+				.remove();
+				
 		};
 		
 	});
