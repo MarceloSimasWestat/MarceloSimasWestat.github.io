@@ -490,9 +490,6 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 
 // Chapter 2 - 2
 
-var nest;
-var nest2;
-
 d3.tsv("Data/c1.tsv", function(error, data) {
 	if (error) { console.log(error); }
 	else {
@@ -504,10 +501,6 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		});
 		
 		data = data.filter(function(d) { return d.chart == 7; });
-		nest = d3.nest()
-			.key(function(d) { return d.var2; })
-			.entries(data);
-		nest2 = d3.values(nest, function(d) { return d.var4; });
 		
 		var chart2_2a = smallMultiples().data(data).clipName("2_2a").rowCount(5);
 				
