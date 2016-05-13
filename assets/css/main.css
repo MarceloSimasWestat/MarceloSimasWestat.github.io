@@ -3588,7 +3588,7 @@
 
 	#intro {
 		background-attachment: fixed;
-		background: url("images/intro.svg"), linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)), url("images/walking2schooljpg");
+		background: url("images/intro.svg"), linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)), url("images/walking2school.jpg");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: 100% 100%, auto 100%;
