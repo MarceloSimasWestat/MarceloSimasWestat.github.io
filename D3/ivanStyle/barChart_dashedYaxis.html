@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
+
+
+body {
+  font: 10px Lato, Helvetica, sans-serif;
+}
+
+.bar {
+  fill: #AD4A61;
+}
+
+.bar:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.title {
+  font: bold 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+.axis path {
+  display: none;
+}
+
+.axis line {
+  shape-rendering: crispEdges;
+  stroke: #000;
+}
+
+.axis .minor line {
+  stroke: #777;
+  stroke-dasharray: 2,2;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 0, bottom: 20, left: 0},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var formatNumber = d3.format(".1f");
+
+var y = d3.scale.linear()
+    .domain([0, 2e6])
+    .range([height, 0]);
+
+var x = d3.time.scale()
+    .domain([new Date(2010, 7, 1), new Date(2012, 7, 1)])
+    .range([0, width]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .ticks(d3.time.years)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .tickSize(width)
+    .tickFormat(formatPct)
+    .orient("right");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+var gy = svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+gy.selectAll("g").filter(function(d) { return d; })
+    .classed("minor", true);
+
+gy.selectAll("text")
+    .attr("x", 4)
+    .attr("dy", -4);
+
+function formatPct(d) {
+  var s = formatNumber(d / 1e6);
+  return d === y.domain()[1]
+      ? "" + s + "%"
+      : s;
+}
+
+</script>

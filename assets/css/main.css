@@ -1494,7 +1494,7 @@
 			padding-bottom: 0.35em;
 			border-bottom: solid 2px rgba(255, 255, 255, 0.125);
 		}
-		
+
 		h2.chart {
  			color: #171A1D;
  			padding-bottom: 0.35em;
@@ -3070,7 +3070,7 @@
 		.wrapper.style5 {
 			background-color: #2C4A7E;
 		}
-		
+
 		.wrapper.chart {
   			background-color: #ffffff;
 			color: rgba(23, 26, 29, 0.80);
@@ -3588,7 +3588,7 @@
 
 	#intro {
 		background-attachment: fixed;
-		background: url("images/intro.svg"), linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)), url("images/emptychairs.jpg");
+		background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(40, 62, 98, 0.85), rgba(23, 26, 29, 0.85)), url("images/emptychairs.jpg");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: 100% 100%, auto 100%;
