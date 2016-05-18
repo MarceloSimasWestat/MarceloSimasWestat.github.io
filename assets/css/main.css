@@ -1,6 +1,8 @@
 @import url(font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Lato:300,700");
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400");
+
+@import url("https://fonts.googleapis.com/css?family=Old+Standard+TT:400");
 
 /* Reset */
 
@@ -1421,16 +1423,16 @@
 
 	body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.80);
-		font-family: Lato, Helvetica, sans-serif;
-		font-size: 16.5pt;
-		font-weight: normal;
+		font-family: Muli, Helvetica, sans-serif;
+		font-size: 15pt;
+		font-weight: 300;
 		line-height: 1.75;
 	}
 
 	p {
-		font-family: Lato, Helvetica, sans-serif;
-		font-size: 16px;
-		font-weight: normal;
+		font-family: Muli, Helvetica, sans-serif;
+		font-size: 15px;
+		font-weight: 300;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -1479,7 +1481,7 @@
 
 	h1, h2, h3, h4, h5 {
 		color: #ffffff;
-		font-family: Playfair Display, Helvetica, sans-serif;
+		font-family: Karla, Helvetica, sans-serif;
 		font-weight: normal;
 		line-height: 1.5;
 		margin: 0 0 0.5em 0;
@@ -1496,7 +1498,7 @@
 		}
 
 		h2.chart {
- 			color: #171A1D;
+ 			color: #1C1E21;
  			padding-bottom: 0.35em;
  			border-bottom: solid 2px rgba(23, 26, 29, 0.125);
  		}
@@ -3300,7 +3302,9 @@
 
 	#sidebar {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
-		background: #171A1D;
+		font-family: Muli;
+		font-weight: 400;
+		background: #1C1E21;
 		cursor: default;
 		height: 100vh;
 		left: 0;
