@@ -10,18 +10,17 @@
 
 <script src = "https://d3js.org/d3.v3.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
-<script src = "colChart.js"></script>
-<script src = "barChart.js"></script>
-<script src = "dotPlot.js"></script>
-<script src = "smallMultiples.js"></script>
+<script src = "chart-functions.js"></script>
 
 <!-- CSS styling -->
 
 <style>
 
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
-
+	/* Import fonts */
+	
+	@import url("https://fonts.googleapis.com/css?family=Inconsolata:100,400,500,700");
+	@import url("https://fonts.googleapis.com/css?family=Muli:300,400");
+	@import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 
 	.header {
 		font: 24px sans-serif;
@@ -29,162 +28,159 @@
 	}
 
 	/* Donut chart styling */
-
+	
 	.c1_1_arc {
 		stroke: #fff;
 	}
-
+	
 	.c1_1_label {
-		font-family: Lato, Helvetica, sans-serif;
-		font-size: 8px;
-		font-weight: 300;
+		font: 12px sans-serif;
 	}
-
+	
 	.c1_1_cLabel {
-		font-family: Lato, Helvetica, sans-serif;
-		font-size: 40pt;
-		font-weight: 700;
+		font: 60px sans-serif;
+		font-weight: bold;
 	}
-
+	
 	.c1_1_cLabelText {
-		font-family: Lato, Helvetica, sans-serif;
-		font-size: 8pt;
-		font-weight: 300;
-		text-transform: uppercase
+		font: 12px sans-serif;
 	}
-
+	
 	/* Bar chart styling */
 
-	.bar-chart .axis {
-		font: 10px Lato;
-		font-weight: bold;
-		text-transorm: uppercase;
-	}
-
-	.bar-chart .axis path {
-		display: none;
-	}
+	.bar-chart .axis path,
 	.bar-chart .axis line {
-		shape-rendering: crispEdges;
+		fill: none;
 		stroke: #000;
+		shape-rendering: crispEdges;
 	}
-
-	.bar-chart .minor line {
-		stroke: #777;
-		stroke-dasharray: 2,2;
+	
+	.bar-chart .x.axis {
+		font: 400 12px Inconsolata;
+		color: #46484B;
 	}
-
-	.bar-chart .y.axis line {
+	
+	.bar-chart .x.axis path {
 		display: none;
 	}
-
-	.bar {
-		fill: #98abc5;
+	
+	.bar-chart .x.axis line {
+		stroke: rgba(23, 26, 29, 0.15);
+		stroke-dasharray: 1,1;
 	}
 
-	.bar.max {
-		fill: #3e526e;
-		transition: 0.5s;
+	.bar-chart .y.axis {
+		font: normal 12px Karla;
+		color: #1C1E21;
+	}
+	
+	.bar-chart .y.axis path {
+		stroke: #1C1E21;
+		stroke-width: 1.5px;
+	}
+	
+	.bar {
+		fill: rgb(242, 167, 115);
+	}
+	
+	.bar:hover {
+		fill: rgba(242, 167, 115, 0.75);
 	}
 
 	/* Column chart styling */
-
-	.col-chart .axis {
-		font: 12px sans-serif;
-	}
-
+	
 	.col-chart .axis path,
 	.col-chart .axis line {
 		fill: none;
-		stroke: #ccc;
+		stroke: #000;
 		shape-rendering: crispEdges;
 	}
+	
+	.col-chart .x.axis {
+		font: normal 12px Karla;
+		color: #1C1E21;
+	}
+	
+	.col-chart .x.axis path {
+		stroke: #1C1E21;
+		stroke-width: 1.5px;
+	}
 
-	.col-chart .y.axis line {
+	.col-chart .y.axis {
+		font: 400 12px Inconsolata;
+		color: #46484B;
+	}
+	
+	.col-chart .y.axis path {
 		display: none;
 	}
-
+	
+	.col-chart .y.axis line {
+		stroke: rgba(23, 26, 29, 0.15);
+		stroke-dasharray: 1,1;
+	}
+	
 	.column {
-		fill: #98abc5;
+		fill: rgb(242, 167, 115);
 	}
-
-	.column.max {
-		fill: #3e526e;
-		transition: 0.5s;
+	
+	.column:hover {
+		fill: rgba(242, 167, 115, 0.75);
 	}
-
+	
 	/* Dot plot styling */
-
-	.dotPlot .axis {
-		font: 12px sans-serif;
-	}
-
+	
 	.dotPlot .axis path,
 	.dotPlot .axis line {
 		fill: none;
-		stroke: #ccc;
+		stroke: #000;
 		shape-rendering: crispEdges;
 	}
-
-	.dotPlot .y.axis line {
+	
+	.dotPlot .x.axis {
+		font: 400 12px Inconsolata;
+		color: #46484B;
+	}
+	
+	.dotPlot .x.axis path {
 		display: none;
 	}
+	
+	.dotPlot .x.axis line {
+		stroke: rgba(23, 26, 29, 0.15);
+		stroke-dasharray: 1,1;
+	}
 
+	.dotPlot .y.axis {
+		font: normal 12px Karla;
+		color: #1C1E21;
+	}
+	
+	.dotPlot .y.axis path {
+		stroke: #1C1E21;
+		stroke-width: 1.5px;
+	}
+	
 	.dot {
-		fill: #98abc5;
+		fill: rgb(242, 167, 115);
 	}
-
-	.dot.max {
-		fill: #3e526e;
-		transition: 0.5s;
-	}
-
+	
+	.dot:hover {
+		fill: rgba(242, 167, 115, 0.75);
+	}	
+	
 	.dotLine {
 		stroke: lightgray;
-	}
-
-	/* Small multiples styling */
-
-	.dotPlotSM .axis {
-		font: 12px sans-serif;
-	}
-
-	.dotPlotSM .axis path,
-	.dotPlotSM .axis line {
-		fill: none;
-		stroke: #ccc;
+		stroke-width: 1.5px;
 		shape-rendering: crispEdges;
 	}
-
-	.dotPlotSM .y.axis line {
-		display: none;
-	}
-
-	.dotSM {
-		fill: #98abc5;
-	}
-
-	.dotSM.max {
-		fill: #8489a6;
-		transition: 0.5s;
-	}
-
-	.dotLineSM {
-		stroke: lightgray;
-	}
-
-	.labelSM {
-		font: 12px sans-serif;
-		font-weight: bold;
-	}
-
+		
 	/* Styling tooltips for individual graph types */
-
+	
 	.d3-tip-donut,
-	.d3-tip-bar,
+	.d3-tip-bar, 
 	.d3-tip-col,
-	.d3-tip-dot,
-	.d3-tip-dotSM {
+	.d3-tip-dot {
 		font: 12px sans-serif;
 		padding: 12px;
 		background: rgba(0, 0, 0, 0.8);
@@ -205,11 +201,10 @@
 		position: absolute;
 		text-align: center;
 	}
-
+	
 	.d3-tip-donut:before,
 	.d3-tip-bar:before,
-	.d3-tip-dot:before,
-	.d3-tip-dotSM:before	{
+	.d3-tip-dot:before	{
 		content: '';
 		display: block;
 		width: 0;
@@ -220,8 +215,8 @@
 		margin-top: -6px;
 		border: 6px solid transparent;
 		border-right-color: #2E3141;
-	}
-
+	}		
+	
 	/* Style northward tooltips differently */
 
 	.d3-tip-col.n:after {
@@ -229,7 +224,7 @@
 		top: 100%;
 		left: 0;
 	}
-
+	
 </style>
 
 <body align = "center">
@@ -290,7 +285,7 @@ var c1_1_width = 750,
 	c1_1_radius = Math.min(c1_1_width, c1_1_height) / 2;
 
 // Set colors for each slice
-
+	
 var c1_1_color = d3.scale.ordinal()
 	.domain(function(d) { return d.group;})
 	.range(["#3e526e", "#98abc5"]);
@@ -300,11 +295,11 @@ var c1_1_arc = d3.svg.arc()
 	.innerRadius(c1_1_radius * 0.75)
 	.startAngle(function(d) { return d.startAngle + Math.PI/3; })
 	.endAngle(function(d) { return d.endAngle + Math.PI/3; });
-
+	
 var c1_1_pie = d3.layout.pie()
 	.sort(null)
 	.value(function(d) { return d.number; });
-
+	
 var	c1_1 = d3.select("#ch1_1")
 	.append("div")
 		.style({
@@ -335,40 +330,39 @@ var	c1_1 = d3.select("#ch1_1")
 					.attr("transform", "translate(" + c1_1_width / 2 + "," + c1_1_height / 2 + ")");
 
 // filter the data when loading
-
+		
 d3.tsv("Data/c1.tsv", function(error, data) {
 	if (error) { console.log(error); }
 	else {
 		data.forEach(function(d) {
-			d.chart = +d.chart;
 			d.number = +d.number;
 			d.pct = +d.pct;
 		});
-
-		c1_1_data = data.filter(function(d) { return d.chart == 1; });
-
+		
+		c1_1_data = data.filter(function(d) { return d.chart == "1-1"; });
+		
 	};
-
+	
 	// tooltips with d3-tip
-
+			
 	var tipDonut = d3.tip()
 		.attr("class", "d3-tip-donut")
-		.direction("e")
+		.direction("e")	
 		.offset([0, 0])
 		.html(function(d) {
 
 		return d.data.group + "</br>" + formatComma(d.data.number) + " (" + formatPercent(d.data.pct) + ")";
 
 	});
-
+	
 	c1_1.call(tipDonut);
-
+	
 	// draw the arcs
-
+	
 	var c1_1_gArc = c1_1.selectAll(".c1_1_arc")
 		.data(c1_1_pie(c1_1_data))
 		.enter().append("g");
-
+			
 	c1_1_gArc.append("path")
 		.attr("class", "c1_1_arc")
 		.style("fill", function(d) { return c1_1_color(d.data.group); })
@@ -378,25 +372,25 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			.delay(function(d, i) { return i * 2000; })
 			.duration(2000)
 			.ease("linear")
-			.attrTween("d", function(d) {
-
+			.attrTween("d", function(d) { 
+			
 				var i = d3.interpolate(d.startAngle, d.endAngle);
-
+				
 				return function(t) { d.endAngle = i(t); return c1_1_arc(d); }
-
+				
 			});
-
+	
 	// add data labels
 
 	/* c1_1_gArc.append("text")
-		.attr("transform", function(d) {
-
+		.attr("transform", function(d) { 
+			
 			var c = c1_1_arc.centroid(d),
 				x = c[0],
 				y = c[1],
-
+				
 				h = Math.sqrt(x * x + y * y);
-
+		
 			return "translate(" + (x/h * c1_1_radius * 1.1) + "," + (y/h * c1_1_radius * 1.1) + ")"; })
 		.attr("text-anchor", function(d) { return (d.endAngle + d.startAngle)/2 > Math.PI ? "start" : "end"; })
 		.attr("class", "c1_1_label")
@@ -407,14 +401,14 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			.delay(function(d, i) { return i * 2000; })
 			.duration(2000)
 			.attr("fill-opacity", 1); */
-
+	
 	// add n-size in the center
-
+		
 	var c1_1_cLabel = c1_1.selectAll(".c1_1_cLabel")
 		.data(c1_1_data)
 		.enter().append("g")
-			.filter(function(d) { return d.group == "Chronically absent"; });
-
+			.filter(function(d) { return d.group == "Chronically absent"; });		
+	
 	c1_1_cLabel.append("text")
 		.attr("class", "c1_1_cLabel")
 		.attr("text-anchor", "middle")
@@ -424,13 +418,13 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			.duration(2000)
 			.attr("fill-opacity", 1)
 			.tween("text", function(d) {
-
+				
 				var i = d3.interpolate(0, d.number);
-
+				
 				return function(t) { this.textContent = formatComma(Math.round(i(t))); };
-
+				
 			});
-
+			
 	c1_1_cLabel.append("text")
 		.attr("class", "c1_1_cLabelText")
 		.attr("text-anchor", "middle")
@@ -441,7 +435,7 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			.delay(2000)
 			.duration(2000)
 			.attr("fill-opacity", 1);
-
+				
 });
 
 // draw bar/column charts
@@ -454,59 +448,30 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			d.var2 = +d.number; // This is the raw number
 			d.var3 = +d.pct; // This is the percentage
 		});
-
-		data1_2 = data.filter(function(d) { return d.chart == 2; }) // This filters our data to the right chart
-			.sort(function(a, b) { return d3.descending(a.pct, b.pct); }); // This sorts our data
-
-		data1_3 = data.filter(function(d) { return d.chart == 3; })
+		
+		data1_2 = data.filter(function(d) { return d.chart == "1-2"; }) // This filters our data to the right chart
+			
+		data1_3 = data.filter(function(d) { return d.chart == "1-3"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
-
-		data1_4 = data.filter(function(d) { return d.chart == 4; })
+			
+		data1_4 = data.filter(function(d) { return d.chart == "1-4"; })
+			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });	
+			
+		data1_5 = data.filter(function(d) { return d.chart == "1-5"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
-
-		data1_5 = data.filter(function(d) { return d.chart == 5; })
-			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
-
-		var chart1_2a = colChart()
-		.width(750)
-		.marginLeft(50)
-		.marginBottom(60)
-		.animateTime(2000).data(data1_2);
-
-		// Chapter 1 - 2
-		var chart1_2b = barChart()
-		.marginLeft(235)
-		.animateTime(4000)
-		.data(data1_2);
-
-		var chart1_2c = dotPlot()
-		.marginLeft(235)
-		.data(data1_2)
-		.clipName("dot1_2");
-
-		var chart1_3 = colChart()
-		.height(300)
-		.marginLeft(50)
-		.data(data1_3);
-
-		// Chapter 1 - 3
-		var chart1_4 = barChart()
-		.marginLeft(200)
-		.data(data1_4);
-
-		// Chapter 1 - 4
-		var chart1_5 = colChart()
-		.data(data1_5); // Chapter 1 - 5
-
-		d3.select("#ch1_2").call(chart1_2a);
-		d3.select("#ch1_2").call(chart1_2b);
-		d3.select("#ch1_2").call(chart1_2c);
+		
+		var chart1_2 = barChart().marginLeft(235).data(data1_2); // Chapter 1 - 2
+		var chart1_3 = colChart().data(data1_3); // Chapter 1 - 3
+		var chart1_4 = barChart().marginLeft(200).data(data1_4); // Chapter 1 - 4
+		var chart1_5 = colChart().data(data1_5); // Chapter 1 - 5
+		
+		d3.select("#ch1_2").call(chart1_2);
 		d3.select("#ch1_3").call(chart1_3);
 		d3.select("#ch1_4").call(chart1_4);
 		d3.select("#ch1_5").call(chart1_5);
-
+		
 	};
-});
+});	
 
 // Chapter 2 - 1
 
@@ -518,57 +483,17 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			d.var2 = +d.number;
 			d.var3 = +d.pct;
 		});
-
-		data = data.filter(function(d) { return d.chart == 6; });
-
-		// var chart2_1a = barChart().data(data);
-		var chart2_1b = dotPlot().data(data).animateTime(2000).clipName("dot2_1");
-
-		// d3.select("#ch2_1").call(chart2_1a);
-		d3.select("#ch2_1").call(chart2_1b);
-
+		
+		data = data.filter(function(d) { return d.chart == "2-1"; });
+		
+		var chart2_1 = dotPlot().data(data).animateTime(2000).clipName("dot2_1");
+		
+		d3.select("#ch2_1").call(chart2_1);
+		
 	};
-});
+});	
 
 // Chapter 2 - 2
-
-d3.tsv("Data/c1.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.var1 = d.level;
-			d.var2 = d.group; // this is the nesting variable
-			d.var3 = +d.number;
-			d.var4 = +d.pct;
-		});
-
-		data = data.filter(function(d) { return d.chart == 7; });
-
-		var chart2_2a = smallMultiples().data(data).clipName("2_2a").rowCount(5);
-
-		d3.select("#ch2_2").call(chart2_2a);
-
-	};
-});
-
-d3.tsv("Data/c1.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.var1 = d.group;
-			d.var2 = d.level; // this is the nesting variable
-			d.var3 = +d.number;
-			d.var4 = +d.pct;
-		});
-
-		data = data.filter(function(d) { return d.chart == 7; });
-
-		var chart2_2b = smallMultiples().data(data).width(400).height(400).marginLeft(235).clipName("2_2b").rowCount(3);
-
-		d3.select("#ch2_2").call(chart2_2b);
-
-	};
-});
 
 </script>
 
