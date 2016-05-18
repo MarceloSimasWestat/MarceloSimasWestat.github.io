@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Quattrocento:400");
+
+
+body {
+  font: normal 10px Quattrocento;
+  color: #171A1D;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: lightgrey;
+  shape-rendering: crispEdges;
+}
+
+.bar, .total_bar {
+  shape-rendering: crispEdges;
+}
+
+.bar:hover {
+	opacity: 0.7;
+}
+
+.x.axis path {
+  display: none;
+}
+
+
+.total_bar {
+  fill: #DDD;
+  fill-opacity: 0.6;
+}
