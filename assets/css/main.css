@@ -1,6 +1,7 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
 
 /* Reset */
 
@@ -1685,6 +1686,7 @@
 		color: #ffffff !important;
 		cursor: pointer;
 		display: inline-block;
+		font-family: Karla;
 		font-size: 0.6em;
 		font-weight: bold;
 		height: calc(4.75em + 2px);
