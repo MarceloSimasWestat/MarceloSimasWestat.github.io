@@ -12,6 +12,7 @@
 <script src = "https://d3js.org/d3.v3.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
 <script src = "chart-functions.js"></script>
+<script src = "grouped-bar.js"></script>
 
 <body align = "center">
 
@@ -224,7 +225,7 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 				
 });
 
-// draw bar/column charts
+// chapter 1 charts
 
 d3.tsv("Data/c1.tsv", function(error, data) {
 	if (error) { console.log(error); }
@@ -259,7 +260,7 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 	};
 });	
 
-// Chapter 2 - 1
+// chapter 2-1
 
 d3.tsv("Data/c1.tsv", function(error, data) {
 	if (error) { console.log(error); }
@@ -272,14 +273,31 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		
 		data = data.filter(function(d) { return d.chart == "2-1"; });
 		
-		var chart2_1 = dotPlot().data(data).animateTime(2000).clipName("dot2_1");
+		var chart2_1 = dotPlot().data(data).clipName("dot2_1");
 		
 		d3.select("#ch2_1").call(chart2_1);
 		
 	};
 });	
 
-// Chapter 2 - 2
+// chapter 2-2
+
+d3.tsv("Data/c1.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.number = +d.number;
+			d.pct = +d.pct;
+		});
+		
+		data = data.filter(function(d) { return d.chart == "2-2"; });
+		
+		var chart2_2 = groupedBar().data(data).marginLeft(235);
+		
+		d3.select("#ch2_2").call(chart2_2);
+		
+	};
+});	
 
 </script>
 
