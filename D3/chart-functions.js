@@ -7,16 +7,20 @@ function barChart() {
 	
 	var	width = 960,
 		height = 500,
+		marginTop = 40,
 		marginLeft = 100,
 		marginBottom = 20,
 		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
+		updateMarginTop,
 		updateMarginLeft,
 		updateMarginBottom,
 		updateAnimateTime,
+		updateTitle,
 		updateData;
 		
 	function chart(selection) {
@@ -31,9 +35,9 @@ function barChart() {
 	
 		var aspect = width/height;
 	
-		var margin = {top: 20, right: 20},
+		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - margin.top - marginBottom;
+			heightAdj = height - marginTop - marginBottom;
 
 		// selections
 				
@@ -68,7 +72,7 @@ function barChart() {
 				"height": "100%"
 			})
 			.append("g")
-				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 					
 		// tooltips using d3-tip
 		
@@ -152,6 +156,16 @@ function barChart() {
 			.attr("class", "y axis")
 			.call(yAxis)
 		
+		// chart title
+		
+		svg.append("text")
+			.attr("class", "title")
+			.attr("x", 0 - marginLeft)
+			.attr("y", 0 - marginTop)
+			.attr("dy", "1em")
+			.attr("text-anchor", "start")
+			.text(title);
+		
 		// update functions
 		
 		updateWidth = function() {
@@ -167,6 +181,13 @@ function barChart() {
 			bars.attr("y", function(d) { return yScale(d.var1); })
 						
 		};
+
+		
+		updateMarginTop = function() {
+			
+			heightAdj = width - marginTop - marginBottom;
+		
+		};
 		
 		updateMarginLeft = function() {
 			
@@ -176,13 +197,20 @@ function barChart() {
 		
 		updateMarginBottom = function() {
 			
-			heightAdj = width - margin.top - marginBottom;
+			heightAdj = width - marginTop - marginBottom;
 			
 		};
 		
 		updateAnimateTime = function() {
 			
 			bars.transition().duration(animateTime);
+		
+		};
+
+		updateTitle = function() {
+			
+			d3.select(".bar-chart title")
+				.text(title);
 		
 		};
 		
@@ -236,6 +264,15 @@ function barChart() {
 		
     };
 
+	chart.marginTop = function(value) {
+		
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		if (typeof updateMarginTop === 'function') updateMarginTop();
+		return chart;
+		
+	};
+	
 	chart.marginLeft = function(value) {
 		
 		if (!arguments.length) return marginLeft;
@@ -262,6 +299,15 @@ function barChart() {
 		return chart;
 		
 	};
+
+	chart.title = function(value) {
+		
+		if (!arguments.length) return title;
+		title = value;
+		if (typeof updateTitle === 'function') updateTitle();
+		return chart;
+		
+	};
 	
     chart.data = function(value) {
 	
@@ -285,16 +331,20 @@ function colChart() {
 	
 	var	width = 960,
 		height = 500,
-		marginLeft = 40,
+		marginTop = 60,
+		marginLeft = 20,
 		marginBottom = 20,
-		animateTime = 1000,		
+		animateTime = 1000,	
+		title = "Generic chart title. Update me using .title()!",
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
+		updateMarginTop,
 		updateMarginLeft,
 		updateMarginBottom,
 		updateAnimateTime,
+		updateTitle,
 		updateData;
 		
 	function chart(selection) {
@@ -307,9 +357,9 @@ function colChart() {
 		
 		// margins; adjust width and height to account for margins
 		
-		var margin = {top: 20, right: 20},
+		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - margin.top - marginBottom;		
+			heightAdj = height - marginTop - marginBottom;		
 		
 		// selections
 		
@@ -342,7 +392,7 @@ function colChart() {
 				"height": "100%"
 			})
 			.append("g")
-				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 		
 		// tooltips using d3-tip
 		
@@ -427,7 +477,17 @@ function colChart() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
+
+		// chart title
 		
+		svg.append("text")
+			.attr("class", "title")
+			.attr("x", 0 - marginLeft)
+			.attr("y", 0 - marginTop)
+			.attr("dy", "1em")
+			.attr("text-anchor", "start")
+			.text(title);
+				
 		// update functions
 		
 		updateWidth = function() {
@@ -446,6 +506,12 @@ function colChart() {
 			
 		};
 
+		updateMarginTop = function() {
+			
+			heightAdj = height - marginTop - marginBottom;
+			
+		};		
+		
 		updateMarginLeft = function() {
 			
 			widthAdj = width - marginLeft - margin.right;
@@ -454,13 +520,20 @@ function colChart() {
 		
 		updateMarginBottom = function() {
 			
-			heightAdj = height - margin.top - marginBottom;
+			heightAdj = height - marginTop - marginBottom;
 			
 		};
 		
 		updateAnimateTime = function() {
 			
 			cols.transition().duration(animateTime);
+		
+		};
+
+		updateTitle = function() {
+			
+			d3.select(".col-chart title")
+				.text(title);
 		
 		};
 		
@@ -514,6 +587,15 @@ function colChart() {
 		
     };
 
+	chart.marginTop = function(value) {
+		
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		if (typeof updateMarginTop === 'function') updateMarginTop();
+		return chart;
+		
+	};
+	
 	chart.marginLeft = function(value) {
 		
 		if (!arguments.length) return marginLeft;
@@ -521,7 +603,7 @@ function colChart() {
 		if (typeof updateMarginLeft === 'function') updateMarginLeft();
 		return chart;
 		
-	};	
+	};
 	
 	chart.marginBottom = function(value) {
 		
@@ -531,12 +613,21 @@ function colChart() {
 		return chart;
 		
 	};
-	
+
 	chart.animateTime = function(value) {
 		
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		if (typeof updateAnimateTime === 'function') updateAnimateTime();
+		return chart;
+		
+	};
+
+	chart.title = function(value) {
+		
+		if (!arguments.length) return title;
+		title = value;
+		if (typeof updateTitle === 'function') updateTitle();
 		return chart;
 		
 	};
@@ -563,19 +654,23 @@ function dotPlot() {
 	
 	var	width = 960,
 		height = 500,
+		marginTop = 40,
 		marginLeft = 100,
 		marginBottom = 20,
 		dotSize = 25,
 		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
 		clipName = [],
 		data = [];
 		
 	var updateWidth,
 		updateHeight,
+		updateMarginTop,
 		updateMarginLeft,
 		updateMarginBottom,
 		updateDotSize,
 		updateAnimateTime,
+		updateTitle,
 		updateClipName,
 		updateData;
 		
@@ -589,9 +684,9 @@ function dotPlot() {
 					
 		// margins; adjust width and height to account for margins
 		
-		var margin = {top: 20, right: 20},
+		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - margin.top - marginBottom;
+			heightAdj = height - marginTop - marginBottom;
 
 		// selections
 		
@@ -625,7 +720,7 @@ function dotPlot() {
 				
 			})
 			.append("g")
-				.attr("transform", "translate(" + marginLeft + "," + margin.top + ")");
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 		
 		// tooltips using d3-tip
 		
@@ -740,15 +835,21 @@ function dotPlot() {
 						.attr("width", widthAdj + margin.right)
 						.attr("height", heightAdj);
 		
-		// draw axes
-	
-
+		// draw y-axis above
 	
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
-			//.selectAll(".tick text") 
-			//	.call(wrap, marginLeft - 10);
+
+		// chart title
+		
+		svg.append("text")
+			.attr("class", "title")
+			.attr("x", 0 - marginLeft)
+			.attr("y", 0 - marginTop)
+			.attr("dy", "1em")
+			.attr("text-anchor", "start")
+			.text(title);			
 		
 		// update functions
 		
@@ -766,7 +867,14 @@ function dotPlot() {
 			dots.attr("cy", function(d) { return yScale.rangeBand(); });
 			d3.select("#clip.rect").attr("height", heightAdj);
 						
+
 		};
+		
+		updateMarginTop = function() {
+			
+			heightAdj = width - marginTop - marginBottom;
+		
+		};		
 		
 		updateMarginLeft = function() {
 			
@@ -790,6 +898,13 @@ function dotPlot() {
 			
 			lines.transition().duration(animateTime);
 			dots.transition().duration(animateTime);
+		
+		};
+
+		updateTitle = function() {
+			
+			d3.select(".dotPlot title")
+				.text(title);
 		
 		};
 		
@@ -868,6 +983,15 @@ function dotPlot() {
 		
     };
 
+	chart.marginTop = function(value) {
+		
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		if (typeof updateMarginTop === 'function') updateMarginTop();
+		return chart;
+		
+	};	
+	
 	chart.marginLeft = function(value) {
 		
 		if (!arguments.length) return marginLeft;
@@ -904,6 +1028,15 @@ function dotPlot() {
 		
 	};
 
+	chart.title = function(value) {
+		
+		if (!arguments.length) return title;
+		title = value;
+		if (typeof updateTitle === 'function') updateTitle();
+		return chart;
+		
+	};	
+	
 	chart.clipName = function(value) {
 		
 		if (!arguments.length) return clipName;

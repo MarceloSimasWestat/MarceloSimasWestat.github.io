@@ -1,0 +1,223 @@
+/* Import fonts */
+
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:100,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400");
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700");
+
+.header {
+	font: 24px sans-serif;
+	font-weight: bold;
+}
+
+/* Donut chart styling */
+
+.c1_1_arc {
+	stroke: #fff;
+}
+
+.c1_1_label {
+	font: 12px sans-serif;
+}
+
+.c1_1_cLabel {
+	font: 60px sans-serif;
+	font-weight: bold;
+}
+
+.c1_1_cLabelText {
+	font: 12px sans-serif;
+}
+
+/* Bar chart styling */
+
+.bar-chart .axis path,
+.bar-chart .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.bar-chart .x.axis {
+	font: 400 12px Inconsolata;
+	color: #46484B;
+}
+
+.bar-chart .x.axis path {
+	display: none;
+}
+
+.bar-chart .x.axis line {
+	stroke: rgba(23, 26, 29, 0.15);
+	stroke-dasharray: 1,1;
+}
+
+.bar-chart .y.axis {
+	font: normal 12px Karla;
+	color: #1C1E21;
+}
+
+.bar-chart .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.bar-chart .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+}
+
+.bar {
+	fill: rgb(242, 167, 115);
+}
+
+.bar:hover {
+	fill: rgba(242, 167, 115, 0.75);
+}
+
+/* Column chart styling */
+
+.col-chart .axis path,
+.col-chart .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.col-chart .x.axis {
+	font: normal 12px Karla;
+	color: #1C1E21;
+}
+
+.col-chart .x.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.col-chart .y.axis {
+	font: 400 12px Inconsolata;
+	color: #46484B;
+}
+
+.col-chart .y.axis path {
+	display: none;
+}
+
+.col-chart .y.axis line {
+	stroke: rgba(23, 26, 29, 0.15);
+	stroke-dasharray: 1,1;
+}
+
+.col-chart .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+}
+
+.column {
+	fill: rgb(242, 167, 115);
+}
+
+.column:hover {
+	fill: rgba(242, 167, 115, 0.75);
+}
+
+/* Dot plot styling */
+
+.dotPlot .axis path,
+.dotPlot .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.dotPlot .x.axis {
+	font: 400 12px Inconsolata;
+	color: #46484B;
+}
+
+.dotPlot .x.axis path {
+	display: none;
+}
+
+.dotPlot .x.axis line {
+	stroke: rgba(23, 26, 29, 0.15);
+	stroke-dasharray: 1,1;
+}
+
+.dotPlot .y.axis {
+	font: normal 12px Karla;
+	color: #1C1E21;
+}
+
+.dotPlot .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.dotPlot .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+}
+
+.dot {
+	fill: rgb(242, 167, 115);
+}
+
+.dot:hover {
+	fill: rgba(242, 167, 115, 0.75);
+}	
+
+.dotLine {
+	stroke: lightgray;
+	stroke-width: 1.5px;
+	shape-rendering: crispEdges;
+}
+	
+/* Styling tooltips for individual graph types */
+
+.d3-tip-donut,
+.d3-tip-bar, 
+.d3-tip-col,
+.d3-tip-dot {
+	font: 12px sans-serif;
+	padding: 12px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+
+.d3-tip-col:after {
+	box-sizing: border-box;
+	display: inline;
+	font-size: 12px;
+	width: 100%;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.8);
+	content: "\25BC";
+	position: absolute;
+	text-align: center;
+}
+
+.d3-tip-donut:before,
+.d3-tip-bar:before,
+.d3-tip-dot:before	{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 100%;
+	top: 50%;
+	margin-top: -6px;
+	border: 6px solid transparent;
+	border-right-color: #2E3141;
+}		
+
+/* Style northward tooltips differently */
+
+.d3-tip-col.n:after {
+	margin: -1px 0 0 0;
+	top: 100%;
+	left: 0;
+}
