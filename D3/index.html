@@ -246,10 +246,10 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		data1_5 = data.filter(function(d) { return d.chart == "1-5"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
 		
-		var chart1_2 = barChart().marginLeft(235).data(data1_2).title("Non-white students are far more likely to be chronically absent."); // Chapter 1 - 2
-		var chart1_3 = colChart().data(data1_3).title("Overall, female and male students have approximately the same rate of chronic absenteeism."); // Chapter 1 - 3
-		var chart1_4 = barChart().marginLeft(200).data(data1_4).title("Students with disabilities are more likely to be chronically absent."); // Chapter 1 - 4
-		var chart1_5 = colChart().data(data1_5).title("Non-LEP students are more likely to be chronically absent."); // Chapter 1 - 5
+		var chart1_2 = barChart().marginLeft(235).data(data1_2); // Chapter 1 - 2
+		var chart1_3 = colChart().data(data1_3); // Chapter 1 - 3
+		var chart1_4 = barChart().marginLeft(200).data(data1_4); // Chapter 1 - 4
+		var chart1_5 = colChart().data(data1_5); // Chapter 1 - 5
 		
 		d3.select("#ch1_2").call(chart1_2);
 		d3.select("#ch1_3").call(chart1_3);
@@ -272,7 +272,7 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		
 		data = data.filter(function(d) { return d.chart == "2-1"; });
 		
-		var chart2_1 = dotPlot().data(data).animateTime(2000).title("Chronic absenteeism is more prevalent in high schools.").clipName("dot2_1");
+		var chart2_1 = dotPlot().data(data).animateTime(2000).clipName("dot2_1");
 		
 		d3.select("#ch2_1").call(chart2_1);
 		
