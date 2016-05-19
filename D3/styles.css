@@ -171,6 +171,58 @@
 	stroke-width: 1.5px;
 	shape-rendering: crispEdges;
 }
+
+/* Grouped bar chart styling */
+
+.groupedBar .axis path,
+.groupedBar .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.groupedBar .x.axis {
+	font: 400 12px Inconsolata;
+	color: #46484B;
+}
+
+.groupedBar .x.axis path {
+	display: none;
+}
+
+.groupedBar .x.axis line {
+	stroke: rgba(23, 26, 29, 0.15);
+	stroke-dasharray: 1,1;
+}
+
+.groupedBar .y.axis,
+.groupedBar .legend {
+	font: normal 12px Karla;
+	color: #1C1E21;
+}
+
+.groupedBar .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.groupedBar .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+}
+
+.groupedBar .national-bar {
+	fill: #DDD;
+	fill-opacity: 0.6;
+}
+
+/* .groupedBar .bar {
+	fill: rgb(242, 167, 115);
+}
+
+.groupedBar .bar:hover {
+	fill: rgba(242, 167, 115, 0.75);
+} */
 	
 /* Styling tooltips for individual graph types */
 
