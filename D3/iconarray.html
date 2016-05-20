@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "UTF-8">
+	<title>InformED Chronic Absenteeism D3 Icon Array Example</title>
+	<link rel = "stylesheet" href = "styles.css">
+</head>
+
+<!-- JS scripts -->
+
+<script src = "https://d3js.org/d3.v3.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
+
+<style>
+
+	.nca {
+		stroke: white;
+	}
+
+	.nca-SB {
+		fill: white;
+	}
+	
+	.ca {
+		stroke: white;
+	}
+	
+	.ca-SB {
+		fill: none;
+	}
+
+	.txt-medium {
+		font: 24px sans-serif;
+		font-weight: bold;
+		fill: white;
+	}
+	
+	.txt-large {
+		font: 80px sans-serif;
+		font-weight: bold;
+		fill: white;
+	}
+	
+	.txt {
+		font: 20px sans-serif;
+		fill: white;
+	}
+	
+</style>
+
+<body bgcolor = "#000">
+<div id = "viz"></div>
+
+<script>
+
+// margins and dimensions
+
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+	width = 960 - margin.left - margin.right,
+	height = 500 - margin.top - margin.bottom;
+	
+// formats
+	
+var	formatNumber = d3.format(",f"),
+	formatPercent = d3.format(",.1%");
+	
+// read in data and build array
+
+d3.tsv("Data/iconarray.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.icon_count = +d.icon_count; // This is the subgroup
+			d.number = +d.number; // This is the percentage
+		});
+	};
+
+	var rowCount = 25;
+	var iconWidth = 35;
+	var iconHeight = 35;
+	
+	var dom = d3.select("#viz")
+		.append("div")
+			.attr("id", "container")
+			.style({
+				"max-width": width + "px",
+				"margin": "20px auto 20px auto",
+				"text-align": "center"
+			});
+			
+	var ia = dom.append("div")
+		.attr("id", "iconArray")
+		.style({
+			"max-width": (rowCount * iconWidth) + "px",
+			"margin": "0 auto",
+			"display": "block"
+		});
+	
+	// build icon array
+	
+	d3.xml("Images/chair.svg", "image/svg+xml", function(xml) {  
+	
+		var importedNode = document.importNode(xml.documentElement, true);
+		
+		data_ia = data.filter(function(d) { return d.area == "ia"; });
+		
+		ia.selectAll("div")
+			.data(data_ia)
+			.enter()
+			.append("div")
+				.style({
+					"display": "inline-block",
+				})
+				.append("g")
+					.each(function() { this.appendChild(importedNode.cloneNode(true)); });
+		
+		ia.selectAll("svg")
+			.attr("width", iconWidth + "px")
+			.attr("height", iconHeight + "px");
+		
+		// apply different styling based on chronic absentee or not
+		
+		ia.selectAll("#Woodchair")
+			.data(data_ia)
+			.attr("opacity", 0)
+			.attr("class", function(d) {
+				if (d.group == "Not chronically absent") { return "nca"; }
+				if (d.group == "Chronically absent") { return "ca"; }
+			})
+			.transition()
+				.delay(function(d, i) { return i * (2500/data_ia.length); })
+				.duration(2500)
+				.attr("opacity", 1);
+			
+		ia.selectAll("use#Rectangle-30")
+			.data(data_ia)
+			.attr("class", function(d) {
+				if (d.group == "Not chronically absent") { return "nca-SB"; }
+				if (d.group == "Chronically absent") { return "ca-SB"; }
+			})
+		
+	});
+	
+	// add explanatory text section
+	
+	data_txt = data.filter(function(d) { return d.area == "txt"; });
+	
+	var txt = dom.append("div")
+		.data(data_txt)
+		.attr("id", "textSection")
+		.style({
+			"width": "100%",
+			"max-width": (rowCount * iconWidth) + "px",
+			"margin": "0 auto",
+			"display": "block"
+		})
+		.append("svg")
+			.attr("viewBox", "0 0 " + width + " " + height)
+			.attr("preserveAspectRatio", "xMinYMin meet")
+			.style({
+				"position": "relative",
+				"top": 0,
+				"left": 0,
+				"width": "100%",
+				"height": "100%"
+			})
+			.append("g")
+				.attr("transform", "translate(0,0)");
+	
+	// count of chronically absent students
+	
+	txt.append("text")
+		.attr("class", "txt-large")
+		.attr("x", (width / 2))
+		.attr("dy", 100)
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.transition()
+			.delay(2500)
+			.duration(2500)
+			.attr("fill-opacity", 1)
+			.tween("text", function(d) {
+				
+				var i = d3.interpolate(0, d.number);
+				var j = d3.interpolate(0, d.pct);
+				
+				return function(t) { this.textContent = formatNumber(i(t)) + " students"; };
+				
+			});
+	
+	txt.append("text")
+		.attr("class", "txt")
+		.attr("x", (width / 2))
+		.attr("dy", 145)
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.transition()
+			.delay(2500)
+			.duration(2500)
+			.attr("fill-opacity", 1)
+			.tween("text", function(d) {
+				
+				var i = d3.interpolate(0, d.number);
+				var j = d3.interpolate(0, d.pct);
+				
+				return function(t) { this.textContent = "(" + formatPercent(j(t)) + " of all students) were chronically absent in 2013-14."; };
+				
+			});
+	
+	// school day equivalency
+	
+	txt.append("text")
+		.attr("class", "txt")
+		.attr("x", (width / 2))
+		.attr("dy", 235)
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.text("Cumulatively, across those students, at minimum:")
+		.transition()
+			.delay(5000)
+			.duration(2500)
+			.attr("fill-opacity", 1);
+
+	txt.append("text")
+		.attr("class", "txt-large")
+		.attr("x", (width / 2))
+		.attr("dy", 322)
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.transition()
+			.delay(5000)
+			.duration(2500)
+			.attr("fill-opacity", 1)
+			.tween("text", function(d) {
+				
+				var i = d3.interpolate(0, d.number);
+				var j = d3.interpolate(0, d.pct);
+				
+				return function(t) { this.textContent = formatNumber(i(15 * t)) + " school days"; };
+				
+			});
+
+	txt.append("text")
+		.attr("class", "txt")
+		.attr("x", (width / 2))
+		.attr("dy", 367)
+		.attr("text-anchor", "middle")
+		.attr("fill-opacity", 0)
+		.text("were missed.")
+		.transition()
+			.delay(5000)
+			.duration(2500)
+			.attr("fill-opacity", 1);
+			
+});
+			
+</script>
+
+</body>
+
+</html>
