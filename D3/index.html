@@ -291,7 +291,11 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		
 		data0 = data.filter(function(d) { return d.chart == "2-2"; });
 		
-		var chart2_2 = groupedBar().data(data0).marginLeft(235);
+		var chart2_2 = groupedBar().data(data0).marginLeft(235)
+			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+			.title2("Sed maximus tellus fringilla commodo varius.")
+			.title3("Nam eget blandit turpis.")
+			.title4("Integer sed diam et justo fermentum scelerisque in sed tortor.");
 		
 		d3.select("#ch2_2").call(chart2_2);
 		
