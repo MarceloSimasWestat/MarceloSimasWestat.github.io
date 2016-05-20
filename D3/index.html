@@ -12,7 +12,6 @@
 <script src = "https://d3js.org/d3.v3.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
 <script src = "chart-functions.js"></script>
-<script src = "grouped-bar.js"></script>
 
 <body align = "center">
 
@@ -290,9 +289,9 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			d.pct = +d.pct;
 		});
 		
-		data = data.filter(function(d) { return d.chart == "2-2"; });
+		data0 = data.filter(function(d) { return d.chart == "2-2"; });
 		
-		var chart2_2 = groupedBar().data(data).marginLeft(235);
+		var chart2_2 = groupedBar().data(data0).marginLeft(235);
 		
 		d3.select("#ch2_2").call(chart2_2);
 		
