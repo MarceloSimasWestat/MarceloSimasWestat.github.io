@@ -11,20 +11,20 @@
 
 /* Donut chart styling */
 
-.c1_1_arc {
+.arc {
 	stroke: #fff;
 }
 
-.c1_1_label {
+.label {
 	font: 12px sans-serif;
 }
 
-.c1_1_cLabel {
+.cLabel {
 	font: 60px sans-serif;
 	font-weight: bold;
 }
 
-.c1_1_cLabelText {
+.cLabelText {
 	font: 12px sans-serif;
 }
 

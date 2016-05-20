@@ -56,174 +56,6 @@
 
 <script>
 
-// Number formats
-
-var	formatComma = d3.format(",f"),
-	formatPercent = d3.format(",.1%"),
-	formatPercentNoDec = d3.format(",%");
-
-// Chapter 1, Chart 1
-
-var c1_1_data; // store the c1_1 data here
-
-var c1_1_width = 750,
-	c1_1_height = 400,
-	c1_1_radius = Math.min(c1_1_width, c1_1_height) / 2;
-
-// Set colors for each slice
-	
-var c1_1_color = d3.scale.ordinal()
-	.domain(function(d) { return d.group;})
-	.range(["#3e526e", "#98abc5"]);
-
-var c1_1_arc = d3.svg.arc()
-	.outerRadius(c1_1_radius)
-	.innerRadius(c1_1_radius * 0.75)
-	.startAngle(function(d) { return d.startAngle + Math.PI/3; })
-	.endAngle(function(d) { return d.endAngle + Math.PI/3; });
-	
-var c1_1_pie = d3.layout.pie()
-	.sort(null)
-	.value(function(d) { return d.number; });
-	
-var	c1_1 = d3.select("#ch1_1")
-	.append("div")
-		.style({
-			"max-width": c1_1_width + "px",
-			"margin": "0 auto"
-		})
-		.append("div")
-			.style({
-				"width": "100%",
-				"max-width": c1_1_width + "px",
-				"height": 0,
-				"padding-top": (100*(c1_1_height/c1_1_width)) + "%",
-				"position": "relative",
-				"margin": "0 auto"
-			})
-			.append("svg")
-				.attr("viewBox", "0 0 " + c1_1_width + " " + c1_1_height)
-				.attr("preserveAspectRatio", "xMinYMin meet")
-				.style({
-					"max-width": c1_1_width,
-					"position": "absolute",
-					"top": 0,
-					"left": 0,
-					"width": "100%",
-					"height": "100%"
-				})
-				.append("g")
-					.attr("transform", "translate(" + c1_1_width / 2 + "," + c1_1_height / 2 + ")");
-
-// filter the data when loading
-		
-d3.tsv("Data/c1.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.number = +d.number;
-			d.pct = +d.pct;
-		});
-		
-		c1_1_data = data.filter(function(d) { return d.chart == "1-1"; });
-		
-	};
-	
-	// tooltips with d3-tip
-			
-	var tipDonut = d3.tip()
-		.attr("class", "d3-tip-donut")
-		.direction("e")	
-		.offset([0, 0])
-		.html(function(d) {
-
-		return d.data.group + "</br>" + formatComma(d.data.number) + " (" + formatPercent(d.data.pct) + ")";
-
-	});
-	
-	c1_1.call(tipDonut);
-	
-	// draw the arcs
-	
-	var c1_1_gArc = c1_1.selectAll(".c1_1_arc")
-		.data(c1_1_pie(c1_1_data))
-		.enter().append("g");
-			
-	c1_1_gArc.append("path")
-		.attr("class", "c1_1_arc")
-		.style("fill", function(d) { return c1_1_color(d.data.group); })
-		.on("mouseover", tipDonut.show)
-		.on("mouseout", tipDonut.hide)
-		.transition()
-			.delay(function(d, i) { return i * 2000; })
-			.duration(2000)
-			.ease("linear")
-			.attrTween("d", function(d) { 
-			
-				var i = d3.interpolate(d.startAngle, d.endAngle);
-				
-				return function(t) { d.endAngle = i(t); return c1_1_arc(d); }
-				
-			});
-	
-	// add data labels
-
-	/* c1_1_gArc.append("text")
-		.attr("transform", function(d) { 
-			
-			var c = c1_1_arc.centroid(d),
-				x = c[0],
-				y = c[1],
-				
-				h = Math.sqrt(x * x + y * y);
-		
-			return "translate(" + (x/h * c1_1_radius * 1.1) + "," + (y/h * c1_1_radius * 1.1) + ")"; })
-		.attr("text-anchor", function(d) { return (d.endAngle + d.startAngle)/2 > Math.PI ? "start" : "end"; })
-		.attr("class", "c1_1_label")
-		.attr("dy", ".35em")
-		.attr("fill-opacity", 0)
-		.text(function(d) { return d.data.group + " (" + d.data.pct + ")"; })
-		.transition()
-			.delay(function(d, i) { return i * 2000; })
-			.duration(2000)
-			.attr("fill-opacity", 1); */
-	
-	// add n-size in the center
-		
-	var c1_1_cLabel = c1_1.selectAll(".c1_1_cLabel")
-		.data(c1_1_data)
-		.enter().append("g")
-			.filter(function(d) { return d.group == "Chronically absent"; });		
-	
-	c1_1_cLabel.append("text")
-		.attr("class", "c1_1_cLabel")
-		.attr("text-anchor", "middle")
-		.attr("fill-opacity", 0)
-		.transition()
-			.delay(2000)
-			.duration(2000)
-			.attr("fill-opacity", 1)
-			.tween("text", function(d) {
-				
-				var i = d3.interpolate(0, d.number);
-				
-				return function(t) { this.textContent = formatComma(Math.round(i(t))); };
-				
-			});
-			
-	c1_1_cLabel.append("text")
-		.attr("class", "c1_1_cLabelText")
-		.attr("text-anchor", "middle")
-		.attr("dy", "25px")
-		.attr("fill-opacity", 0)
-		.text("students were chronically absent in 2013-14")
-		.transition()
-			.delay(2000)
-			.duration(2000)
-			.attr("fill-opacity", 1);
-				
-});
-
 // chapter 1 charts
 
 d3.tsv("Data/c1.tsv", function(error, data) {
@@ -235,7 +67,9 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 			d.var3 = +d.pct; // This is the percentage
 		});
 		
-		data1_2 = data.filter(function(d) { return d.chart == "1-2"; }) // This filters our data to the right chart
+		data1_1 = data.filter(function(d) { return d.chart == "1-1"; })
+		
+		data1_2 = data.filter(function(d) { return d.chart == "1-2"; })
 			
 		data1_3 = data.filter(function(d) { return d.chart == "1-3"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
@@ -246,11 +80,13 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		data1_5 = data.filter(function(d) { return d.chart == "1-5"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
 		
+		var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14"); // Chapter 1-1
 		var chart1_2 = barChart().marginLeft(235).data(data1_2); // Chapter 1 - 2
 		var chart1_3 = colChart().data(data1_3); // Chapter 1 - 3
 		var chart1_4 = barChart().marginLeft(200).data(data1_4); // Chapter 1 - 4
 		var chart1_5 = colChart().data(data1_5); // Chapter 1 - 5
 		
+		d3.select("#ch1_1").call(chart1_1);
 		d3.select("#ch1_2").call(chart1_2);
 		d3.select("#ch1_3").call(chart1_3);
 		d3.select("#ch1_4").call(chart1_4);
@@ -291,7 +127,7 @@ d3.tsv("Data/c1.tsv", function(error, data) {
 		
 		data0 = data.filter(function(d) { return d.chart == "2-2"; });
 		
-		var chart2_2 = groupedBar().data(data0).marginLeft(235)
+		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750)
 			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 			.title2("Sed maximus tellus fringilla commodo varius.")
 			.title3("Nam eget blandit turpis.")

@@ -1,3 +1,257 @@
+// Donut chart function for chronic absenteeism map (ch 1-1)
+
+function donutChart() {
+	
+	// Options accessible to the caller
+	// These are the default values
+	
+	var	width = 500,
+		height = 500,
+		marginTop = 20,
+		marginLeft = 20,
+		marginBottom = 20,
+		animateTime = 2000,
+		title = "Generic chart title. Update me using .title()!",
+		data = [];
+		
+	var updateWidth,
+		updateHeight,
+		updateMarginTop,
+		updateMarginLeft,
+		updateMarginBottom,
+		updateAnimateTime,
+		updateTitle,
+		updateData;
+		
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+		
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+					
+		// margins; adjust width and height to account for margins
+	
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		var radius = Math.min(widthAdj, heightAdj) / 2;
+			
+		// Set colors for each slice
+	
+		var color = d3.scale.ordinal()
+			.domain(function(d) { return d.var1;})
+			.range(["#3e526e", "#98abc5"]);
+
+		var arc = d3.svg.arc()
+			.outerRadius(radius)
+			.innerRadius(radius * 0.75)
+			.startAngle(function(d) { return d.startAngle + Math.PI/3; })
+			.endAngle(function(d) { return d.endAngle + Math.PI/3; });
+	
+		var pie = d3.layout.pie()
+			.sort(null)
+			.value(function(d) { return d.var2; });
+
+		// selections
+			
+		var dom = d3.select(this)
+			.append("div")
+				.style({
+					"max-width": width + "px",
+					"margin": "0 auto"
+				})
+				.append("div")
+					.style({
+						"width": "100%",
+						"max-width": width + "px",
+						"height": 0,
+						"max-height": height + "px",
+						"padding-top": (100*(height/width)) + "%",
+						"position": "relative",
+						"margin": "0 auto"
+					});				
+						
+		var svg = dom.append("svg")
+			.attr("class", "bar-chart")
+			.attr("viewBox", "0 0 " + width + " " + height)
+			.attr("preserveAspectRatio", "xMinYMin meet")
+			.style({
+				"max-width": width,
+				"max-height": height,
+				"position": "absolute",
+				"top": 0,
+				"left": 0,
+				"width": "100%",
+				"height": "100%"
+			})
+			.append("g")
+				.attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
+
+		// tooltips with d3-tip
+			
+		var tipDonut = d3.tip()
+			.attr("class", "d3-tip-donut")
+			.direction("e")	
+			.offset([0, 0])
+			.html(function(d) {
+
+			return d.data.var1 + "</br>" + formatNumber(d.data.var2) + " (" + formatPercent(d.data.var3) + ")";
+
+		});
+	
+		svg.call(tipDonut);
+	
+		// draw the arcs
+		
+		var gArc = svg.selectAll(".arc")
+			.data(pie(data))
+			.enter().append("g");
+				
+		gArc.append("path")
+			.attr("class", "arc")
+			.style("fill", function(d) { return color(d.data.var1); })
+			.on("mouseover", tipDonut.show)
+			.on("mouseout", tipDonut.hide)
+			.transition()
+				.delay(function(d, i) { return i * animateTime; })
+				.duration(animateTime)
+				.ease("linear")
+				.attrTween("d", function(d) { 
+				
+					var i = d3.interpolate(d.startAngle, d.endAngle);
+					
+					return function(t) { d.endAngle = i(t); return arc(d); }
+					
+				});
+	
+		// add n-size in the center
+		
+		var cLabel = svg.selectAll(".cLabel")
+			.data(data)
+			.enter().append("g")
+				.filter(function(d) { return d.var1 == "Chronically absent"; });		
+		
+		cLabel.append("text")
+			.attr("class", "cLabel")
+			.attr("text-anchor", "middle")
+			.attr("fill-opacity", 0)
+			.transition()
+				.delay(animateTime)
+				.duration(animateTime)
+				.attr("fill-opacity", 1)
+				.tween("text", function(d) {
+					
+					var i = d3.interpolate(0, d.var2);
+					
+					return function(t) { this.textContent = formatNumber(Math.round(i(t))); };
+					
+				});
+				
+		cLabel.append("text")
+			.attr("class", "cLabelText")
+			.attr("text-anchor", "middle")
+			.attr("dy", "25px")
+			.attr("fill-opacity", 0)
+			.text(title)
+			.transition()
+				.delay(animateTime)
+				.duration(animateTime)
+				.attr("fill-opacity", 1);
+					
+		// update functions - these aren't really needed because there's no within chart updating
+		
+		updateWidth = function() {};			
+		updateHeight = function() {};		
+		updateMarginTop = function() {};		
+		updateMarginLeft = function() {};		
+		updateMarginBottom = function() {};		
+		updateAnimateTime = function() {};
+		updateTitle = function() {};		
+		updateData = function() {};
+				
+	});
+	
+};
+	
+    chart.width = function(value) {
+	
+        if (!arguments.length) return width;
+        width = value;
+        if (typeof updateWidth === 'function') updateWidth();
+        return chart;
+		
+    };
+
+    chart.height = function(value) {
+	
+        if (!arguments.length) return height;
+        height = value;
+        if (typeof updateHeight === 'function') updateHeight();
+        return chart;
+		
+    };
+
+	chart.marginTop = function(value) {
+		
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		if (typeof updateMarginTop === 'function') updateMarginTop();
+		return chart;
+		
+	};
+	
+	chart.marginLeft = function(value) {
+		
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		if (typeof updateMarginLeft === 'function') updateMarginLeft();
+		return chart;
+		
+	};
+	
+	chart.marginBottom = function(value) {
+		
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		if (typeof updateMarginBottom === 'function') updateMarginBottom();
+		return chart;
+		
+	};
+
+	chart.animateTime = function(value) {
+		
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		if (typeof updateAnimateTime === 'function') updateAnimateTime();
+		return chart;
+		
+	};
+
+	chart.title = function(value) {
+		
+		if (!arguments.length) return title;
+		title = value;
+		if (typeof updateTitle === 'function') updateTitle();
+		return chart;
+		
+	};
+	
+    chart.data = function(value) {
+	
+        if (!arguments.length) return data;
+        data = value;
+        if (typeof updateData === 'function') updateData();
+        return chart;
+		
+    };
+	
+	return chart;
+	
+};
+
 // Reusable bar chart function for chronic absenteeism storymap
 
 function barChart() {
@@ -32,8 +286,6 @@ function barChart() {
 			formatPercent = d3.format(",.1%");
 					
 		// margins; adjust width and height to account for margins
-	
-		var aspect = width/height;
 	
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
@@ -82,7 +334,7 @@ function barChart() {
 			.offset([0, 10])
 			.html(function(d) {
 	
-			return formatComma(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
 	
 		});
 		
@@ -166,81 +418,16 @@ function barChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 		
-		// update functions
+		// update functions - these aren't really needed because there's no within chart updating
 		
-		updateWidth = function() {
-			
-			svg.attr("width", widthAdj);
-			bars.attr("width", function(d) { return xScale(d.var3); });
-			
-		};
-			
-		updateHeight = function() {
-			
-			svg.attr("height", heightAdj);
-			bars.attr("y", function(d) { return yScale(d.var1); })
-						
-		};
-
-		
-		updateMarginTop = function() {
-			
-			heightAdj = width - marginTop - marginBottom;
-		
-		};
-		
-		updateMarginLeft = function() {
-			
-			widthAdj = width - marginLeft - margin.right;
-			
-		};
-		
-		updateMarginBottom = function() {
-			
-			heightAdj = width - marginTop - marginBottom;
-			
-		};
-		
-		updateAnimateTime = function() {
-			
-			bars.transition().duration(animateTime);
-		
-		};
-
-		updateTitle = function() {
-			
-			d3.select(".bar-chart title")
-				.text(title);
-		
-		};
-		
-		updateData = function() {
-		
-		var xScale = d3.scale.linear().range([0, widthAdj]),	
-			yScale = d3.scale.ordinal().range([heightAdj, 0]),
-			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatPercent),
-			yAxis = d3.svg.axis().scale(yScale).orient("left");
-		
-			var update = svg.selectAll("rect.bar")
-				.data(data);
-				
-			update.attr("x", marginLeft)
-				.attr("width", function(d) { return xScale(d.var3); })
-				.attr("y", function(d) { return yScale(d.var1); })
-				.attr("height", yScale.rangeBand())
-		
-			update.enter()
-				.append("rect")
-				.attr("class","bar")
-				.attr("x", marginLeft)
-				.attr("width", function(d) { return xScale(d.var3); })
-				.attr("y", function(d) { return yScale(d.var1); })
-				.attr("height", yScale.rangeBand());
-		
-			update.exit()
-				.remove();
-		
-		};
+		updateWidth = function() {};			
+		updateHeight = function() {};
+		updateMarginTop = function() {};		
+		updateMarginLeft = function() {};		
+		updateMarginBottom = function() {};		
+		updateAnimateTime = function() {};
+		updateTitle = function() {};		
+		updateData = function() {};
 				
 	});
 	
@@ -401,7 +588,7 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 	
-			return formatComma(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
 	
 		});
 		
@@ -488,82 +675,16 @@ function colChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 				
-		// update functions
+		// update functions - these aren't really needed because there's no within chart updating
 		
-		updateWidth = function() {
-			
-			svg.attr("width", widthAdj);
-			cols.attr("x", function(d, i) { return xScale(d.var1); })
-			cols.attr("width", xScale.rangeBand());
-			
-		};
-			
-		updateHeight = function() {
-			
-			svg.attr("height", heightAdj);
-			cols.attr("y", function(d) { return yScale(d.var3); })
-			cols.attr("height", function(d) { return heightAdj - yScale(d.var3); });
-			
-		};
-
-		updateMarginTop = function() {
-			
-			heightAdj = height - marginTop - marginBottom;
-			
-		};		
-		
-		updateMarginLeft = function() {
-			
-			widthAdj = width - marginLeft - margin.right;
-			
-		};
-		
-		updateMarginBottom = function() {
-			
-			heightAdj = height - marginTop - marginBottom;
-			
-		};
-		
-		updateAnimateTime = function() {
-			
-			cols.transition().duration(animateTime);
-		
-		};
-
-		updateTitle = function() {
-			
-			d3.select(".col-chart title")
-				.text(title);
-		
-		};
-		
-		updateData = function() {
-		
-			xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .1);
-			yScale = d3.scale.linear().range([heightAdj, 0]);
-			xAxis = d3.svg.axis().scale(xScale).orient("bottom");
-			yAxis = d3.svg.axis().scale(yScale).orient("left");
-		
-			var update = svg.selectAll("rect.column")
-				.data(data);
-				
-			update.attr("x", function(d, i) { return xScale(d.var1); })
-				.attr("width", xScale.rangeBand())
-				.attr("y", function(d) { return yScale(d.var3); })
-				.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-		
-			update.enter()
-				.append("rect")
-				.attr("class","column")
-				.attr("x", function(d, i) { return xScale(d.var1); })
-				.attr("width", xScale.rangeBand())
-				.attr("y", function(d) { return yScale(d.var3); })
-				.attr("height", function(d) { return heightAdj - yScale(d.var3); });
-		
-			update.exit()
-				.remove();
-		
-		};
+		updateWidth = function() {};		
+		updateHeight = function() {};
+		updateMarginTop = function() {};				
+		updateMarginLeft = function() {};		
+		updateMarginBottom = function() {};		
+		updateAnimateTime = function() {};
+		updateTitle = function() {};		
+		updateData = function() {};
 		
 	});
 	
@@ -730,7 +851,7 @@ function dotPlot() {
 			.offset([0, 10])
 			.html(function(d) {
 	
-			return formatComma(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
 	
 		});
 		
@@ -851,115 +972,18 @@ function dotPlot() {
 			.attr("text-anchor", "start")
 			.text(title);			
 		
-		// update functions
+		// update functions - these aren't really needed because there's no within chart updating
 		
-		updateWidth = function() {
-			
-			svg.attr("width", widthAdj);
-			dots.attr("cx", function(d) { return xScale(d.var3); });
-			d3.select("#clip.rect").attr("width", widthAdj);
-			
-		};
-			
-		updateHeight = function() {
-			
-			svg.attr("height", heightAdj);
-			dots.attr("cy", function(d) { return yScale.rangeBand(); });
-			d3.select("#clip.rect").attr("height", heightAdj);
-						
-
-		};
-		
-		updateMarginTop = function() {
-			
-			heightAdj = width - marginTop - marginBottom;
-		
-		};		
-		
-		updateMarginLeft = function() {
-			
-			widthAdj = width - marginLeft - margin.right;
-			
-		};
-
-		updateMarginBottom = function() {
-			
-			heightAdj = width - margin.top - marginBottom;
-			
-		};
-		
-		updateDotSize = function() {
-			
-			dots.attr("r", dotSize);
-			
-		};
-		
-		updateAnimateTime = function() {
-			
-			lines.transition().duration(animateTime);
-			dots.transition().duration(animateTime);
-		
-		};
-
-		updateTitle = function() {
-			
-			d3.select(".dotPlot title")
-				.text(title);
-		
-		};
-		
-		updateClipName = function() {
-			
-			svg.append("defs")
-				.append("clipPath")
-					.attr("id", function() { return "clip" + clipName; })
-						.append("rect")
-							.attr("width", widthAdj + margin.right)
-							.attr("height", heightAdj);
-		
-		};
-		
-		updateData = function() {
-		
-		var xScale = d3.scale.linear().range([0, widthAdj]),	
-			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1),
-			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatPercent),
-			yAxis = d3.svg.axis().scale(yScale).orient("left");
-		
-			var update = svg.selectAll("circle.dot")
-				.data(data);
-				
-			update.attr("cx", function(d) { return xScale(d.var3); })
-				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-				.attr("r", dotSize)
-		
-			update.append("circle")
-				.attr("class","dot")
-				.attr("cx", function(d) { return xScale(d.var3); })
-				.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-				.attr("r", dotSize)
-		
-			update.exit()
-				.remove();
-				
-			var updateLines = svg.selectAll("line.dotLine")
-				.data(function(d) { return d.values; });
-				
-			updateLines.attr("x2", function(d) { return xScale(d.var3); })
-				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
-				
-			updateLines.append("line")
-				.attr("class", "dotLineSM")
-				.attr("x1", 0)
-				.attr("x2", function(d) { return xScale(d.var4); })
-				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
-				
-			updateLines.exit()
-				.remove();	
-				
-		};
+		updateWidth = function() {};			
+		updateHeight = function() {};		
+		updateMarginTop = function() {};	
+		updateMarginLeft = function() {};
+		updateMarginBottom = function() {};		
+		updateDotSize = function() {};		
+		updateAnimateTime = function() {};
+		updateTitle = function() {};		
+		updateClipName = function() {};		
+		updateData = function() {};
 		
 	});
 	
@@ -1106,8 +1130,6 @@ function groupedBar() {
 					
 		// margins; adjust width and height to account for margins
 	
-		var aspect = width/height;
-	
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1215,7 +1237,7 @@ function groupedBar() {
 			.offset([0, 10])
 			.html(function(d) {
 	
-			return d.level + "</br>" + formatComma(d.number) + " (" + formatPercent(d.pct) + ")";
+			return d.level + "</br>" + formatNumber(d.number) + " (" + formatPercent(d.pct) + ")";
 	
 		});
 		
