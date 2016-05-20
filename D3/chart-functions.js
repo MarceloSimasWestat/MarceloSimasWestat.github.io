@@ -1348,7 +1348,11 @@ function groupedBar() {
 			.attr("y", 0 - marginTop)
 			.attr("dy", "1em")
 			.attr("text-anchor", "start")
+			.attr("fill-opacity", 0)
 			.text(title1)
+			.transition()	
+				.duration(animateTime)
+				.attr("fill-opacity", 1);
 		
 		// legend
 		
@@ -1389,7 +1393,10 @@ function groupedBar() {
 		function updateTitle1() {
 			
 			svg.select(".title")
-				.remove();
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 0)
+					.remove();
 			
 			svg.append("text")
 				.attr("class", "title")
@@ -1408,7 +1415,10 @@ function groupedBar() {
 		function updateTitle2() {
 			
 			svg.select(".title")
-				.remove();
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 0)
+					.remove();
 			
 			svg.append("text")
 				.attr("class", "title")
@@ -1427,7 +1437,10 @@ function groupedBar() {
 		function updateTitle3() {
 			
 			svg.select(".title")
-				.remove();
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 0)
+					.remove();
 			
 			svg.append("text")
 				.attr("class", "title")
@@ -1446,7 +1459,10 @@ function groupedBar() {
 		function updateTitle4() {
 			
 			svg.select(".title")
-				.remove();
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 0)
+					.remove();
 			
 			svg.append("text")
 				.attr("class", "title")
