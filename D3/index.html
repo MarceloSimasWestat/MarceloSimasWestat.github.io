@@ -18,37 +18,37 @@
 <!-- containers for each chart -->
 
 <div id = "ch1_1">
-	<span class = "header">Chapter 1 - 1: Chronic absenteeism among all students</span>
+	<span class = "header">Chapter 1 - 1: Chronic absenteeism among all students</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch1_2">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 1 - 2: Chronic absenteeism by race/ethnicity</span>
+	<span class = "header">Chapter 1 - 2: Chronic absenteeism by race/ethnicity</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch1_3">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 1 - 3: Chronic absenteeism by gender</span>
+	<span class = "header">Chapter 1 - 3: Chronic absenteeism by gender</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch1_4">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 1 - 4: Chronic absenteeism by IDEA status</span>
+	<span class = "header">Chapter 1 - 4: Chronic absenteeism by IDEA status</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch1_5">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 1 - 5: Chronic absenteeism by English Language Learner status</span>
+	<span class = "header">Chapter 1 - 5: Chronic absenteeism by English Language Learner status</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch2_1">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 2 - 1: Chronic absenteeism by grade level</span>
+	<span class = "header">Chapter 2 - 1: Chronic absenteeism by grade level</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch2_2">
 	<p>&nbsp;</p>
-	<span class = "header">Chapter 2 - 2: Chronic absenteeism by grade level and demographic characteristics</span>
+	<span class = "header">Chapter 2 - 2: Chronic absenteeism by grade level and demographic characteristics</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 
@@ -80,11 +80,11 @@ d3.tsv("Data/data.tsv", function(error, data) {
 		data1_5 = data.filter(function(d) { return d.chart == "1-5"; })
 			.sort(function(a, b) { return d3.descending(a.pct, b.pct); });
 		
-		var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14 (DUMMY DATA)"); // Chapter 1-1
-		var chart1_2 = barChart().marginLeft(235).data(data1_2).title("DUMMY DATA"); // Chapter 1 - 2
-		var chart1_3 = colChart().data(data1_3).title("DUMMY DATA"); // Chapter 1 - 3
-		var chart1_4 = barChart().marginLeft(200).data(data1_4).title("DUMMY DATA"); // Chapter 1 - 4
-		var chart1_5 = colChart().data(data1_5).title("DUMMY DATA"); // Chapter 1 - 5
+		var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14"); // Chapter 1-1
+		var chart1_2 = barChart().marginLeft(235).data(data1_2); // Chapter 1 - 2
+		var chart1_3 = colChart().data(data1_3); // Chapter 1 - 3
+		var chart1_4 = barChart().marginLeft(200).data(data1_4); // Chapter 1 - 4
+		var chart1_5 = colChart().data(data1_5); // Chapter 1 - 5
 		
 		d3.select("#ch1_1").call(chart1_1);
 		d3.select("#ch1_2").call(chart1_2);
@@ -108,7 +108,7 @@ d3.tsv("Data/data.tsv", function(error, data) {
 		
 		data = data.filter(function(d) { return d.chart == "2-1"; });
 		
-		var chart2_1 = dotPlot().data(data).clipName("dot2_1").title("DUMMY DATA");
+		var chart2_1 = dotPlot().data(data).clipName("dot2_1");
 		
 		d3.select("#ch2_1").call(chart2_1);
 		
@@ -128,10 +128,10 @@ d3.tsv("Data/data.tsv", function(error, data) {
 		data0 = data.filter(function(d) { return d.chart == "2-2"; });
 		
 		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750)
-			.title1("DUMMY DATA: Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-			.title2("DUMMY DATA: Sed maximus tellus fringilla commodo varius.")
-			.title3("DUMMY DATA: Nam eget blandit turpis.")
-			.title4("DUMMY DATA: Integer sed diam et justo fermentum scelerisque in sed tortor.");
+			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+			.title2("Sed maximus tellus fringilla commodo varius.")
+			.title3("Nam eget blandit turpis.")
+			.title4("Integer sed diam et justo fermentum scelerisque in sed tortor.");
 		
 		d3.select("#ch2_2").call(chart2_2);
 		
