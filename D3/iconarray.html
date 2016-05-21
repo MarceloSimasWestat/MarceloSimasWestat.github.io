@@ -50,6 +50,8 @@
 </style>
 
 <body bgcolor = "#000">
+<p class = "txt-medium" align = "center"><font color = "white">DUMMY DATA</font><br/><hr></p>
+<p>&nbsp;</p>
 <div id = "viz"></div>
 
 <script>
@@ -67,7 +69,7 @@ var	formatNumber = d3.format(",f"),
 	
 // read in data and build array
 
-d3.tsv("Data/iconarray.tsv", function(error, data) {
+d3.tsv("Data/data_iconarray.tsv", function(error, data) {
 	if (error) { console.log(error); }
 	else {
 		data.forEach(function(d) {
