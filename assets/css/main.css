@@ -3526,7 +3526,7 @@
 			-ms-transition: color 0.2s ease;
 			transition: color 0.2s ease;
 			border: 0;
-			color: rgba(151, 152, 154, 0.55);
+			color: rgba(255, 255, 255, 0.35);
 			display: block;
 			font-size: 0.6em;
 			font-weight: bold;
@@ -3550,7 +3550,7 @@
 			}
 
 			#sidebar nav a:before {
-				background: rgba(151, 152, 154, 0.08);
+				background: rgba(255, 255, 255, 0.05);
 			}
 
 			#sidebar nav a:after {
@@ -3566,7 +3566,7 @@
 			}
 
 			#sidebar nav a:hover {
-				color: rgba(255, 255, 255, 0.55);
+				color: rgba(255, 255, 255, 0.70);
 			}
 
 			#sidebar nav a.active {
