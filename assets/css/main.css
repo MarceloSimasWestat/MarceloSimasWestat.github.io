@@ -2479,8 +2479,18 @@
 
 			ul.icons li {
 				display: inline-block;
-				color: rgba(255, 255, 255, 0.55);
+				color: rgb(255, 255, 255);
 				padding: 0 0.75em 0 0;
+			}
+
+			ul.icons li a:hover {
+				background: -moz-linear-gradient(to right, #42A667, #4E75B7);
+				background: -webkit-linear-gradient(to right, #42A667, #4E75B7);
+				background: -ms-linear-gradient(to right, #42A667, #4E75B7);
+				background: linear-gradient(to right, #42A667, #4E75B7);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+
 			}
 
 				ul.icons li:last-child {
