@@ -2490,7 +2490,6 @@
 				background: linear-gradient(to right, #42A667, #4E75B7);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
-
 			}
 
 				ul.icons li:last-child {
@@ -3682,7 +3681,7 @@
     height: 150px;
     margin: -75px 0 0 -75px;
     border-radius: 50%;
-    border: 1px solid transparent;
+    border: 1.2px solid transparent;
     border-top-color: #fff;
 
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
@@ -3699,7 +3698,7 @@
         right: 5px;
         bottom: 5px;
         border-radius: 50%;
-        border: 1px solid transparent;
+        border: 1.2px solid transparent;
         border-top-color: #42A667;
 
         -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
@@ -3714,7 +3713,7 @@
         right: 15px;
         bottom: 15px;
         border-radius: 50%;
-        border: 1px solid transparent;
+        border: 1.2px solid transparent;
         border-top-color: #4E75B7;
 
         -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
