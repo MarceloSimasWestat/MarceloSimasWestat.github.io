@@ -1,3 +1,363 @@
+// Icon array for chronic absenteeism map (ch 1-1)
+
+function iconArray() {
+	
+	// Options accessible to the caller
+	// These are the default values
+	
+	var	width = 960,
+		height = 500,
+		animateTime = 2000,
+		rowCount = 10,
+		iconWidth = 50,
+		iconHeight = 50,
+		legendWidth = 25,
+		legendHeight = 25,
+		data = [];
+		
+	var updateWidth,
+		updateHeight,
+		updateAnimateTime,
+		updateRowCount,
+		updateIconWidth,
+		updateIconHeight,
+		updateLegendWidth,
+		updateLegendHeight,
+		updateData;
+
+	function chart(selection) {
+		selection.each(function() {		
+	
+			// formats
+			
+			var	formatNumber = d3.format(",f"),
+				formatPercent = d3.format(",.1%");
+		
+			// margins and dimensions
+
+			var margin = {top: 20, right: 20, bottom: 20, left: 20},
+				width = 960 - margin.left - margin.right,
+				height = 500 - margin.top - margin.bottom;
+		
+			var dom = d3.select(this)
+				.append("div")
+					.attr("id", "iconArray")
+					.style({
+						"max-width": width + "px",
+						"margin": "20px auto 20px auto",
+						"text-align": "center"
+					});
+		
+			// first, put in legend
+			
+			var legendIcon = dom.append("div")
+				.attr("id", "legendIcon")
+				.attr("class", "legend")
+				.style({
+					"display": "inline-block",
+					"vertical-align": "middle",
+					"height": legendHeight + "px"
+				});	
+		
+			d3.xml("Images/chair.svg", "image/svg+xml", function(error, xml) {  
+			
+				if (error) throw error;
+				
+				legendIcon.node().appendChild(xml.documentElement);
+				
+				legendIcon.selectAll("svg")
+					.attr("height", legendWidth + "px")
+					.attr("width", legendHeight + "px");
+				
+				legendIcon.selectAll("#Woodchair")
+					.attr("class", "icon");
+				
+			});
+		
+			var legendText = dom.append("div")
+				.attr("id", "legendText")
+				.attr("class", "legend")
+				.style({
+					"display": "inline-block",
+					"vertical-align": "middle"
+				})
+				.html("<span>= 100,000 students</span>");
+			
+			dom.append("p");
+
+			// next, put in count of chronically absent students
+			
+			data_txt = data.filter(function(d) { return d.area == "txt"; });
+			
+			var count = dom.append("div")
+				.data(data_txt)
+				.attr("id", "countSection")
+				.style({
+					"width": "100%",
+					"max-width": width + "px",
+					"margin": "0 auto",
+					"display": "block"
+				})
+				.append("svg")
+					.attr("viewBox", "0 0 " + width + " " + 135)
+					.attr("preserveAspectRatio", "xMinYMin meet")
+					.style({
+						"position": "relative",
+						"top": 0,
+						"left": 0,
+						"width": "100%",
+						"height": "135px"
+					})
+					.append("g")
+						.attr("transform", "translate(0,0)");
+			
+			// count of chronically absent students
+			
+			count.append("text")
+				.attr("class", "count")
+				.attr("x", (width / 2))
+				.attr("dy", 60)
+				.attr("text-anchor", "middle")
+				.attr("fill-opacity", 0)
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 1)
+					.tween("text", function(d) {
+						
+						var i = d3.interpolate(0, d.number);
+						var j = d3.interpolate(0, d.pct);
+						
+						return function(t) { this.textContent = formatNumber(i(t)); };
+						
+					});
+			
+			count.append("text")
+				.attr("class", "countText")
+				.attr("x", (width / 2))
+				.attr("dy", 100)
+				.attr("text-anchor", "middle")
+				.attr("fill-opacity", 0)
+				.transition()
+					.duration(animateTime)
+					.attr("fill-opacity", 1)
+					.tween("text", function(d) {
+						
+						var i = d3.interpolate(0, d.number);
+						var j = d3.interpolate(0, d.pct);
+						
+						return function(t) { this.textContent = "students were chronically absent in 2013-14 (" + formatPercent(j(t)) + ")"; };
+						
+					});	
+			
+			// build icon array
+			
+			var ia = dom.append("div")
+				.attr("id", "iaContainer")
+				.style({
+					"max-width": (rowCount * iconWidth) + "px",
+					"margin": "0 auto",
+					"display": "block",
+					"text-align": "left"
+				});
+			
+			d3.xml("Images/chair.svg", "image/svg+xml", function(xml) {  
+			
+				var importedNode = document.importNode(xml.documentElement, true);
+				
+				data_ia = data.filter(function(d) { return d.area == "ia"; });
+				
+				ia.selectAll("div")
+					.data(data_ia)
+					.enter()
+					.append("div")
+						.style({
+							"display": "inline-block",
+						})
+						.append("g")
+							.each(function() { this.appendChild(importedNode.cloneNode(true)); });
+				
+				ia.selectAll("svg")
+					.attr("width", iconWidth + "px")
+					.attr("height", iconHeight + "px");
+				
+				ia.selectAll("#Woodchair")
+					.attr("opacity", 0)
+					.attr("class", "icon")
+					.transition()
+						.delay(function(d, i) { return i * (animateTime/data_ia.length); })
+						.duration(animateTime)
+						.attr("opacity", 1);
+				
+			});
+			
+			// add equivalency section
+			
+			var txt = dom.append("div")
+				.data(data_txt)
+				.attr("id", "equiSection")
+				.style({
+					"width": "100%",
+					"max-width": width + "px",
+					"margin": "0 auto",
+					"display": "block"
+				})
+				.append("svg")
+					.attr("viewBox", "0 0 " + width + " " + 175)
+					.attr("preserveAspectRatio", "xMinYMin meet")
+					.style({
+						"position": "relative",
+						"top": 0,
+						"left": 0,
+						"width": "100%",
+						"height": "175px"
+					})
+					.append("g")
+						.attr("transform", "translate(0,0)");
+			
+			txt.append("text")
+				.attr("class", "equivText")
+				.attr("x", (width / 2))
+				.attr("dy", 45)
+				.attr("text-anchor", "middle")
+				.attr("fill-opacity", 0)
+				.text("Cumulatively, across those students, at least")
+				.transition()
+					.delay(animateTime)
+					.duration(animateTime)
+					.attr("fill-opacity", 1);
+
+			txt.append("text")
+				.attr("class", "equiv")
+				.attr("x", (width / 2))
+				.attr("dy", 115)
+				.attr("text-anchor", "middle")
+				.attr("fill-opacity", 0)
+				.transition()
+					.delay(animateTime)
+					.duration(animateTime)
+					.attr("fill-opacity", 1)
+					.tween("text", function(d) {
+						
+						var i = d3.interpolate(0, d.number);
+						var j = d3.interpolate(0, d.pct);
+						
+						return function(t) { this.textContent = formatNumber(i(15 * t)); };
+						
+					});
+
+			txt.append("text")
+				.attr("class", "equivText")
+				.attr("x", (width / 2))
+				.attr("dy", 155)
+				.attr("text-anchor", "middle")
+				.attr("fill-opacity", 0)
+				.text("school days were missed")
+				.transition()
+					.delay(animateTime)
+					.duration(animateTime)
+					.attr("fill-opacity", 1);
+					
+		// update functions - these aren't really needed because there's no within chart updating
+		
+		updateWidth = function() {};			
+		updateHeight = function() {};		
+		updateAnimateTime = function() {};
+		updateRowCount = function() {};
+		updateIconWidth = function() {};
+		updateIconHeight = function() {};
+		updateLegendWidth = function() {};
+		updateLegendHeight = function() {};
+		updateData = function() {};
+				
+		});
+		
+	};
+	
+    chart.width = function(value) {
+	
+        if (!arguments.length) return width;
+        width = value;
+        if (typeof updateWidth === 'function') updateWidth();
+        return chart;
+		
+    };
+
+    chart.height = function(value) {
+	
+        if (!arguments.length) return height;
+        height = value;
+        if (typeof updateHeight === 'function') updateHeight();
+        return chart;
+		
+    };
+
+	chart.animateTime = function(value) {
+		
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		if (typeof updateAnimateTime === 'function') updateAnimateTime();
+		return chart;
+		
+	};
+
+	chart.rowCount = function(value) {
+		
+		if (!arguments.length) return rowCount;
+		rowCount = value;
+		if (typeof updateRowCount === 'function') updateRowCount();
+		return chart;
+		
+	};
+
+	chart.iconWidth = function(value) {
+		
+		if (!arguments.length) return iconWidth;
+		iconWidth = value;
+		if (typeof updateIconWidth === 'function') updateIconWidth();
+		return chart;
+		
+	};
+
+	chart.iconHeight = function(value) {
+		
+		if (!arguments.length) return iconHeight;
+		iconHeight = value;
+		if (typeof updateIconHeight === 'function') updateIconHeight();
+		return chart;
+		
+	};
+	
+	chart.legendWidth = function(value) {
+		
+		if (!arguments.length) return legendWidth;
+		legendWidth = value;
+		if (typeof updateLegendWidth === 'function') updateLegendWidth();
+		return chart;
+		
+	};
+
+	chart.legendHeight = function(value) {
+		
+		if (!arguments.length) return legendHeight;
+		legendHeight = value;
+		if (typeof updateLegendHeight === 'function') updateLegendHeight();
+		return chart;
+		
+	};
+	
+    chart.data = function(value) {
+	
+        if (!arguments.length) return data;
+        data = value;
+        if (typeof updateData === 'function') updateData();
+        return chart;
+		
+    };
+	
+	return chart;
+	
+};
+
 // Donut chart function for chronic absenteeism map (ch 1-1)
 
 function donutChart() {
@@ -172,9 +532,9 @@ function donutChart() {
 		updateTitle = function() {};		
 		updateData = function() {};
 				
-	});
+		});
 	
-};
+	};
 	
     chart.width = function(value) {
 	
@@ -426,9 +786,9 @@ function barChart() {
 		updateTitle = function() {};		
 		updateData = function() {};
 				
-	});
-	
-};
+		});
+		
+	};
 	
     chart.width = function(value) {
 	
@@ -679,9 +1039,9 @@ function colChart() {
 		updateTitle = function() {};		
 		updateData = function() {};
 		
-	});
-	
-};
+		});
+		
+	};
 	
     chart.width = function(value) {
 	
@@ -975,9 +1335,9 @@ function dotPlot() {
 		updateClipName = function() {};		
 		updateData = function() {};
 		
-	});
-	
-};
+		});
+		
+	};
 	
     chart.width = function(value) {
 	
@@ -1621,11 +1981,11 @@ function groupedBar() {
 					.duration(animateTime)
 					.style("opacity", 1);
 						
-		};
+			};
+			
+		});
 		
-	});
-	
-};
+	};
 	
     chart.width = function(value) {
 	
