@@ -4,6 +4,19 @@
 	License: pixelarity.com/license
 */
 
+$(document).ready(function() {
+
+	setTimeout(function(){
+		$('body').addClass('loaded');
+	}, 3000);
+
+	window.setTimeout(function() {
+		$('div').removeClass('preloading');
+	}, 3100);
+
+
+});
+
 (function($) {
 
 	skel.breakpoints({
@@ -18,7 +31,8 @@
 
 		var	$window = $(window),
 			$body = $('body'),
-			$sidebar = $('#sidebar');
+			$sidebar = $('#sidebar')
+			$preloading = $('#preloading');
 
 		// Hack: Enable IE flexbox workarounds.
 			if (skel.vars.IEVersion < 12)
