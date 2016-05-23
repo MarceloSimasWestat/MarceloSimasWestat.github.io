@@ -172,6 +172,51 @@
 	shape-rendering: crispEdges;
 }
 
+/* Scatter plot styling */
+
+.scatterPlot .axis path,
+.scatterPlot .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.scatterPlot .x.axis,
+.scatterPlot .y.axis {
+	font: 400 12px Inconsolata;
+	color: #46484B;
+}
+
+.scatterPlot .x.axis path,
+.scatterPlot .y.axis path {
+	display: none;
+}
+
+.scatterPlot .x.axis line,
+.scatterPlot .y.axis line {
+	stroke: rgba(23, 26, 29, 0.15);
+	stroke-dasharray: 1,1;
+}
+
+/* .scatterPlot .y.axis {
+	font: normal 12px Karla;
+	color: #1C1E21;
+}
+
+.scatterPlot .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+} */
+
+.scatterPlot .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+}
+
+.mark {
+	fill: rgb(242, 167, 115);
+}
+
 /* Grouped bar chart styling */
 
 .filters {

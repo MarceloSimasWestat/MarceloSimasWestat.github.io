@@ -263,7 +263,7 @@ function barChart() {
 		height = 500,
 		marginTop = 40,
 		marginLeft = 100,
-		marginBottom = 20,
+		marginBottom = 40,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		data = [];
@@ -361,7 +361,7 @@ function barChart() {
 		};
 		
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickSize(0);
+			yAxis = d3.svg.axis().scale(yScale).orient("left");
 					
 		// draw x-axis below bars
 	
@@ -369,16 +369,13 @@ function barChart() {
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-			.selectAll(".tick text")
-				.attr("dx", "1em")
-				.attr("dy", "-0.5em");
 	
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj)
-			.attr("dx", "1.5em")
+			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "1.5em")
+			.attr("dy", "2em")
 			.attr("text-anchor", "end")
 			.text("(% CHRONICALLY ABSENT IN 2013-14)")
 	
@@ -614,8 +611,8 @@ function colChart() {
 			
 		};
 		
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(0),
-			yAxis = d3.svg.axis().scale(yScale).orient("right").tickFormat(formatValueAxis).tickSize(widthAdj);
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
+			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj);
 		
 		// draw y-axis under columns
 		
@@ -623,15 +620,11 @@ function colChart() {
 			.attr("class", "y axis")
 			.call(yAxis)
 			.selectAll("text")
-				.attr("x", 5)
-				.attr("dy", "-0.5em");
 					
 		svg.append("text")
 			.attr("class", "y axis")
-			.attr("x", 0)
-			.attr("dx", "2em")
-			.attr("y", 0)
-			.attr("dy", "-0.5em")
+			.attr("x", -15)
+			.attr("y", "-1em")
 			.attr("text-anchor", "start")
 			.text("(% CHRONICALLY ABSENT IN 2013-14)");
 		
@@ -777,7 +770,7 @@ function dotPlot() {
 		height = 500,
 		marginTop = 40,
 		marginLeft = 100,
-		marginBottom = 20,
+		marginBottom = 40,
 		dotSize = 25,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
@@ -878,24 +871,21 @@ function dotPlot() {
 		};
 		
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickSize(0);
+			yAxis = d3.svg.axis().scale(yScale).orient("left");
 	
-		// draw x-axis first
-		
+		// draw x-axis below bars
+	
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-			.selectAll(".tick text")
-				.attr("dx", "1em")
-				.attr("dy", "-0.5em");
 	
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj)
-			.attr("dx", "1.5em")
+			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "1.5em")
+			.attr("dy", "2em")
 			.attr("text-anchor", "end")
 			.text("(% CHRONICALLY ABSENT IN 2013-14)");
 			
@@ -1094,7 +1084,7 @@ function groupedBar() {
 		height = 650,
 		marginTop = 40,
 		marginLeft = 100,
-		marginBottom = 20,
+		marginBottom = 40,
 		animateTime = 1000,
 		title1 = "Generic chart title #1. Update me using .title1()!",
 		title2 = "Generic chart title #2. Update me using .title2()!",
@@ -1274,7 +1264,7 @@ function groupedBar() {
 		};
 		
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
-			yAxis = d3.svg.axis().scale(yScale0).orient("left").tickSize(0);
+			yAxis = d3.svg.axis().scale(yScale0).orient("left");
 					
 		// draw x-axis below bars
 	
@@ -1282,18 +1272,15 @@ function groupedBar() {
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-			.selectAll(".tick text")
-				.attr("dx", "1em")
-				.attr("dy", "-0.5em");
 	
 		svg.append("text")
 			.attr("class", "x axis")
-			.attr("x", widthAdj)
-			.attr("dx", "1.5em")
+			.attr("x", widthAdj - 100)
+			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "1.5em")
+			.attr("dy", "2em")
 			.attr("text-anchor", "end")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)")
+			.text("(% CHRONICALLY ABSENT IN 2013-14)");
 
 		// draw national bars
 

@@ -12,6 +12,7 @@
 <script src = "https://d3js.org/d3.v3.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
 <script src = "chart-functions.js"></script>
+<!-- <script src = "scatterplot.js"></script> -->
 
 <body align = "center">
 
@@ -39,6 +40,11 @@
 <div id = "ch1_5">
 	<p>&nbsp;</p>
 	<span class = "header">Chapter 1 - 5: Chronic absenteeism by English Language Learner status</br>DUMMY DATA</span>
+	<p>&nbsp;</p>
+</div>
+<div id = "ch1_8">
+	<p>&nbsp;</p>
+	<span class = "header">Chapter 1 - 8: Chronic absenteeism by teacher absenteeism</br>DUMMY DATA</span>
 	<p>&nbsp;</p>
 </div>
 <div id = "ch2_1">
@@ -94,6 +100,26 @@ d3.tsv("Data/data.tsv", function(error, data) {
 		
 	};
 });	
+
+// Chapter 1-8
+
+/* d3.tsv("Data/data2.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.var1 = +d.size_cat; 
+			d.var2 = +d.student_abs; 
+			d.var3 = +d.teach_abs; 
+		});
+		
+		data1_8 = data.filter(function(d) { return d.var2 > 0.05; });
+		
+		var chart1_8 = scatterPlot().data(data1_8).clipName("scatter1_8"); // Chapter 1-8
+		
+		d3.select("#ch1_8").call(chart1_8);
+		
+	};
+}); */
 
 // chapter 2-1
 
