@@ -9,6 +9,43 @@
 	font-weight: bold;
 }
 
+/* Icon array styling */
+
+.legend {
+	font: 400 12px Inconsolata;
+	color: white;
+}
+
+/* Styling for the count section */
+
+.count {
+	font: 400 60px Inconsolata;
+	fill: white;
+}
+
+.countText {
+	font: normal 16px Muli;
+	fill: white;	
+}
+
+/* Icon array styling */
+
+.icon {
+	stroke: white;
+}
+
+/* Equivalencies styling */
+
+.equiv {
+	font: 400 60px Inconsolata;
+	fill: white;
+}
+
+.equivText {
+	font: normal 16px Muli;
+	fill: white;	
+}
+
 /* Donut chart styling */
 
 .arc {
