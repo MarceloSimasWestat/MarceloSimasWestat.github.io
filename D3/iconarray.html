@@ -211,7 +211,8 @@ d3.tsv("Data/data_iconarray.tsv", function(error, data) {
 		.style({
 			"max-width": (rowCount * iconWidth) + "px",
 			"margin": "0 auto",
-			"display": "block"
+			"display": "block",
+			"text-align": "left"
 		});
 	
 	d3.xml("Images/chair.svg", "image/svg+xml", function(xml) {  
