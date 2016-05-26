@@ -53,7 +53,7 @@ function iconArray() {
 					"height": legendHeight + "px"
 				});	
 		
-			d3.xml("Images/chair.svg", "image/svg+xml", function(error, xml) {  
+			d3.xml("images/chair.svg", "image/svg+xml", function(error, xml) {  
 			
 				if (error) throw error;
 				
