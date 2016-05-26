@@ -35,7 +35,7 @@ function iconArray() {
 		
 			var dom = d3.select(this)
 				.append("div")
-					.attr("id", "iconArray")
+					.attr("id", chartID)
 					.style({
 						"max-width": width + "px",
 						"margin": "20px auto 20px auto",
@@ -50,7 +50,8 @@ function iconArray() {
 				.style({
 					"display": "inline-block",
 					"vertical-align": "middle",
-					"height": legendHeight + "px"
+					"height": legendHeight + "px",
+					"opacity": 0
 				});	
 		
 			d3.xml("images/chair.svg", "image/svg+xml", function(error, xml) {  
@@ -73,7 +74,8 @@ function iconArray() {
 				.attr("class", "legend")
 				.style({
 					"display": "inline-block",
-					"vertical-align": "middle"
+					"vertical-align": "middle",
+					"opacity": 0
 				})
 				.html("<span>= 100,000 students</span>");
 			
@@ -113,17 +115,7 @@ function iconArray() {
 				.attr("dy", 60)
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
-				.transition()
-					.duration(animateTime)
-					.attr("fill-opacity", 1)
-					.tween("text", function(d) {
-						
-						var i = d3.interpolate(0, d.number);
-						var j = d3.interpolate(0, d.pct);
-						
-						return function(t) { this.textContent = formatNumber(i(t)); };
-						
-					});
+				.text(function(d) { return formatNumber(d.number); });
 			
 			count.append("text")
 				.attr("class", "countText")
@@ -131,17 +123,7 @@ function iconArray() {
 				.attr("dy", 100)
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
-				.transition()
-					.duration(animateTime)
-					.attr("fill-opacity", 1)
-					.tween("text", function(d) {
-						
-						var i = d3.interpolate(0, d.number);
-						var j = d3.interpolate(0, d.pct);
-						
-						return function(t) { this.textContent = "students were chronically absent in 2013-14 (" + formatPercent(j(t)) + ")"; };
-						
-					});	
+				.text(function(d) { return "students were chronically absent in 2013-14 (" + formatPercent(d.pct) + ")"; });
 			
 			// build icon array
 			
@@ -151,7 +133,6 @@ function iconArray() {
 					"max-width": (rowCount * iconWidth) + "px",
 					"margin": "0 auto",
 					"display": "block",
-					"text-align": "left"
 				});
 			
 			d3.xml("images/chair.svg", "image/svg+xml", function(xml) {  
@@ -176,14 +157,10 @@ function iconArray() {
 				
 				ia.selectAll("#Woodchair")
 					.attr("opacity", 0)
-					.attr("class", "icon")
-					.transition()
-						.delay(function(d, i) { return i * (animateTime/data_ia.length); })
-						.duration(animateTime)
-						.attr("opacity", 1);
+					.attr("class", "icon");
 				
 			});
-			
+
 			// add equivalency section
 			
 			var txt = dom.append("div")
@@ -214,11 +191,7 @@ function iconArray() {
 				.attr("dy", 45)
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
-				.text("Cumulatively, across those students, at least")
-				.transition()
-					.delay(animateTime)
-					.duration(animateTime)
-					.attr("fill-opacity", 1);
+				.text("Cumulatively, across those students, at least");
 
 			txt.append("text")
 				.attr("class", "equiv")
@@ -226,18 +199,7 @@ function iconArray() {
 				.attr("dy", 115)
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
-				.transition()
-					.delay(animateTime)
-					.duration(animateTime)
-					.attr("fill-opacity", 1)
-					.tween("text", function(d) {
-						
-						var i = d3.interpolate(0, d.number);
-						var j = d3.interpolate(0, d.pct);
-						
-						return function(t) { this.textContent = formatNumber(i(15 * t)); };
-						
-					});
+				.text(function(d) { return formatNumber(15 * d.number); });
 
 			txt.append("text")
 				.attr("class", "equivText")
@@ -245,12 +207,55 @@ function iconArray() {
 				.attr("dy", 155)
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
-				.text("school days were missed")
-				.transition()
-					.delay(animateTime)
-					.duration(animateTime)
-					.attr("fill-opacity", 1);
+				.text("school days were missed");
 
+			var gs = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() { 
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+			
+						d3.select("#legendIcon")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+			
+						d3.select("#legendText")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+						
+						count.selectAll(".count")
+							.transition()
+								.duration(animateTime)
+								.attr("fill-opacity", 1);
+								
+						count.selectAll(".countText")
+							.transition()
+								.duration(animateTime)
+								.attr("fill-opacity", 1);
+						
+						ia.selectAll("#Woodchair")
+							.transition()
+								.delay(function(d, i) { return i * (animateTime/data_ia.length); })
+								.duration(animateTime)
+								.attr("opacity", 1);
+						
+						txt.selectAll(".equivText")
+							.transition()
+								.delay(animateTime)
+								.duration(animateTime)
+								.attr("fill-opacity", 1);
+						
+						txt.selectAll(".equiv")
+							.transition()
+								.delay(animateTime)
+								.duration(animateTime)
+								.attr("fill-opacity", 1);
+					
+				}}); 				
+					
 		});
 		
 	};
