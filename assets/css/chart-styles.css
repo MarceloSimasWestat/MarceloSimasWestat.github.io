@@ -9,6 +9,23 @@
 	font-weight: bold;
 }
 
+.filters {
+	font: normal 12px Karla;
+	color: #1C1E21;
+	text-align: right;
+}
+
+button.filterButton {
+	font: normal 12px Karla;
+	color: #1C1E21;
+	margin-right: 5px;
+	margin-left: 5px;
+	background-color: #888888;
+	border-radius: 0;
+	height: 2.5em;
+	padding: 0px 10px;
+}
+
 /* Icon array styling */
 
 .legend {
@@ -255,19 +272,6 @@
 }
 
 /* Grouped bar chart styling */
-
-.filters {
-	font: normal 12px Karla;
-	color: #1C1E21;
-	text-align: right;
-}
-
-.button .filterButton {
-	font: normal 12px Karla;
-	color: #1C1E21;
-	margin-right: 5px;
-	margin-left: 5px;
-}
 
 .groupedBar .axis path,
 .groupedBar .axis line {

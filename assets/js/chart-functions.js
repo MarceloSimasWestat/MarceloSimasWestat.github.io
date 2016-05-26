@@ -91,6 +91,7 @@ function iconArray() {
 				.style({
 					"width": "100%",
 					"max-width": width + "px",
+					"max-height": "135px",
 					"margin": "0 auto",
 					"display": "block"
 				})
@@ -102,7 +103,7 @@ function iconArray() {
 						"top": 0,
 						"left": 0,
 						"width": "100%",
-						"height": "135px"
+						"height": "100%"
 					})
 					.append("g")
 						.attr("transform", "translate(0,0)");
@@ -169,6 +170,7 @@ function iconArray() {
 				.style({
 					"width": "100%",
 					"max-width": width + "px",
+					"max-height": "175px",
 					"margin": "0 auto",
 					"display": "block"
 				})
@@ -180,7 +182,7 @@ function iconArray() {
 						"top": 0,
 						"left": 0,
 						"width": "100%",
-						"height": "175px"
+						"height": "100%"
 					})
 					.append("g")
 						.attr("transform", "translate(0,0)");
@@ -1780,6 +1782,7 @@ function groupedBar() {
 		title2 = "Generic chart title #2. Update me using .title2()!",
 		title3 = "Generic chart title #3. Update me using .title3()!",
 		title4 = "Generic chart title #4. Update me using .title4()!",
+		buttonsID = [],
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1817,11 +1820,11 @@ function groupedBar() {
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
-				.attr("id", "buttons")
+				.attr("id", buttonsID)
 				.attr("class", "filters")
 				.html("Show data by: ");
 		
-		d3.select("#buttons")
+		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Race/Ethnicity")
@@ -1832,7 +1835,7 @@ function groupedBar() {
 				
 			});
 	
-		d3.select("#buttons")
+		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Gender")
@@ -1843,7 +1846,7 @@ function groupedBar() {
 				
 			});
 			
-		d3.select("#buttons")
+		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("IDEA Status")
@@ -1854,7 +1857,7 @@ function groupedBar() {
 				
 			});
 
-		d3.select("#buttons")
+		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("LEP Status")
@@ -1865,7 +1868,7 @@ function groupedBar() {
 				
 			});
 
-		d3.select("#buttons")
+		d3.select("#" + buttonsID)
 			.append("p");
 			
 		// selections
@@ -2335,6 +2338,14 @@ function groupedBar() {
 		return chart;
 		
 	};
+
+	chart.buttonsID = function(value) {
+		
+		if (!arguments.length) return buttonsID;
+		buttonsID = value;
+		return chart;
+		
+	};	
 
 	chart.containerID = function(value) {
 		

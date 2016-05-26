@@ -281,7 +281,7 @@ d3.tsv("assets/data/data.tsv", function(error, data) {
 		
 		data0 = data.filter(function(d) { return d.chart == "2-2"; });
 		
-		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
+		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750).buttonsID("buttons2_2").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
 			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 			.title2("Sed maximus tellus fringilla commodo varius.")
 			.title3("Nam eget blandit turpis.")
