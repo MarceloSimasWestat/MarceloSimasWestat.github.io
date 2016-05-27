@@ -523,7 +523,269 @@
 			margin-left: 8.33333%;
 		}
 
+        #sidebar .socialmedia {
+            display: block; 
+        }
+
+        footer .socialmedia {
+            display: none;
+        }
+
+        footer .footer-image {
+            display: none;
+        }
+
+      
 	}
+
+ 	/* Copied over from template */
+    /* Up to this size, the navbar (sidebar) goes along the top */
+    /* Wider than this size, the sidbar appears on the left side */
+	@media screen and (max-width: 1280px) {
+
+		.row > * {
+			padding: 0 0 0 1.5em;
+		}
+
+		.row {
+			margin: 0 0 -1px -1.5em;
+		}
+
+		.row.uniform > * {
+			padding: 1.5em 0 0 1.5em;
+		}
+
+		.row.uniform {
+			margin: -1.5em 0 -1px -1.5em;
+		}
+
+		.row.\32 00\25 > * {
+			padding: 0 0 0 3em;
+		}
+
+		.row.\32 00\25 {
+			margin: 0 0 -1px -3em;
+		}
+
+		.row.uniform.\32 00\25 > * {
+			padding: 3em 0 0 3em;
+		}
+
+		.row.uniform.\32 00\25 {
+			margin: -3em 0 -1px -3em;
+		}
+
+		.row.\31 50\25 > * {
+			padding: 0 0 0 2.25em;
+		}
+
+		.row.\31 50\25 {
+			margin: 0 0 -1px -2.25em;
+		}
+
+		.row.uniform.\31 50\25 > * {
+			padding: 2.25em 0 0 2.25em;
+		}
+
+		.row.uniform.\31 50\25 {
+			margin: -2.25em 0 -1px -2.25em;
+		}
+
+		.row.\35 0\25 > * {
+			padding: 0 0 0 0.75em;
+		}
+
+		.row.\35 0\25 {
+			margin: 0 0 -1px -0.75em;
+		}
+
+		.row.uniform.\35 0\25 > * {
+			padding: 0.75em 0 0 0.75em;
+		}
+
+		.row.uniform.\35 0\25 {
+			margin: -0.75em 0 -1px -0.75em;
+		}
+
+		.row.\32 5\25 > * {
+			padding: 0 0 0 0.375em;
+		}
+
+		.row.\32 5\25 {
+			margin: 0 0 -1px -0.375em;
+		}
+
+		.row.uniform.\32 5\25 > * {
+			padding: 0.375em 0 0 0.375em;
+		}
+
+		.row.uniform.\32 5\25 {
+			margin: -0.375em 0 -1px -0.375em;
+		}
+
+		.\31 2u\28large\29, .\31 2u\24\28large\29 {
+			width: 100%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\31 1u\28large\29, .\31 1u\24\28large\29 {
+			width: 91.6666666667%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\31 0u\28large\29, .\31 0u\24\28large\29 {
+			width: 83.3333333333%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\39 u\28large\29, .\39 u\24\28large\29 {
+			width: 75%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\38 u\28large\29, .\38 u\24\28large\29 {
+			width: 66.6666666667%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\37 u\28large\29, .\37 u\24\28large\29 {
+			width: 58.3333333333%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\36 u\28large\29, .\36 u\24\28large\29 {
+			width: 50%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\35 u\28large\29, .\35 u\24\28large\29 {
+			width: 41.6666666667%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\34 u\28large\29, .\34 u\24\28large\29 {
+			width: 33.3333333333%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\33 u\28large\29, .\33 u\24\28large\29 {
+			width: 25%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\32 u\28large\29, .\32 u\24\28large\29 {
+			width: 16.6666666667%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\31 u\28large\29, .\31 u\24\28large\29 {
+			width: 8.3333333333%;
+			clear: none;
+			margin-left: 0;
+		}
+
+		.\31 2u\24\28large\29 + *,
+		.\31 1u\24\28large\29 + *,
+		.\31 0u\24\28large\29 + *,
+		.\39 u\24\28large\29 + *,
+		.\38 u\24\28large\29 + *,
+		.\37 u\24\28large\29 + *,
+		.\36 u\24\28large\29 + *,
+		.\35 u\24\28large\29 + *,
+		.\34 u\24\28large\29 + *,
+		.\33 u\24\28large\29 + *,
+		.\32 u\24\28large\29 + *,
+		.\31 u\24\28large\29 + * {
+			clear: left;
+		}
+
+		.\-11u\28large\29 {
+			margin-left: 91.66667%;
+		}
+
+		.\-10u\28large\29 {
+			margin-left: 83.33333%;
+		}
+
+		.\-9u\28large\29 {
+			margin-left: 75%;
+		}
+
+		.\-8u\28large\29 {
+			margin-left: 66.66667%;
+		}
+
+		.\-7u\28large\29 {
+			margin-left: 58.33333%;
+		}
+
+		.\-6u\28large\29 {
+			margin-left: 50%;
+		}
+
+		.\-5u\28large\29 {
+			margin-left: 41.66667%;
+		}
+
+		.\-4u\28large\29 {
+			margin-left: 33.33333%;
+		}
+
+		.\-3u\28large\29 {
+			margin-left: 25%;
+		}
+
+		.\-2u\28large\29 {
+			margin-left: 16.66667%;
+		}
+
+		.\-1u\28large\29 {
+			margin-left: 8.33333%;
+		}
+
+       #sidebar .socialmedia {
+            display: none;
+        }
+
+       #sidebar .nav-image {
+           /* height: 4em;
+           padding-top: .5em;
+           margin-right: 1em; */
+           display: none;
+       }
+
+       #footer .socialmedia {
+           display: block;
+       }
+
+       #footer .footer-image {
+           width: 30%;
+           display: block;
+           padding-top: 0;
+           padding-bottom: 0;
+       }
+
+       #footer .footer-image img {
+           width: 140px;
+           /* width: 100% !important;
+           height: 100% !important; */
+       }
+
+
+	}
+	/* end copy over */
+
 
 	@media screen and (max-width: 980px) {
 
@@ -1428,6 +1690,7 @@
 		line-height: 1.75;
 	}
 
+	/* DeptEd only */
 	p {
 		font-family: Muli, Helvetica, sans-serif;
 		font-size: 15px;
@@ -1440,7 +1703,15 @@
 				font-size: 13pt;
 			}
 
+		/* Coppied over from templte  */
+		@media screen and (max-width: 1280px) {
+
+			body, input, select, textarea {
+				font-size: 12pt;
+			}
+
 		}
+		/* End copy over */
 
 		@media screen and (max-width: 360px) {
 
@@ -1491,6 +1762,7 @@
 			text-decoration: none;
 		}
 
+		/* Dept Ed only */
 		h1.line, h2.line, h3.line, h4.line, h5.line, h6.line {
 			padding-bottom: 0.35em;
 			border-bottom: solid 2px rgba(255, 255, 255, 0.125);
@@ -1501,6 +1773,7 @@
  			padding-bottom: 0.35em;
  			border-bottom: solid 2px rgba(23, 26, 29, 0.125);
  		}
+		/* End unique to Dept Ed */
 
 	h1 {
 		font-size: 2.75em;
@@ -1550,6 +1823,7 @@
 		font-size: 0.6em;
 	}
 
+    /* At this width and less, no header bar across the top */
 	@media screen and (max-width: 736px) {
 
 		h1 {
@@ -2483,6 +2757,7 @@
 				padding: 0 0.75em 0 0;
 			}
 
+			/* Dept of Ed only */
 			ul.icons li a:hover {
 				background: -moz-linear-gradient(to right, #42A667, #4E75B7);
 				background: -webkit-linear-gradient(to right, #42A667, #4E75B7);
@@ -2491,6 +2766,7 @@
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
+			/* End unique to Dept Ed */
 
 				ul.icons li:last-child {
 					padding-right: 0;
@@ -3036,6 +3312,16 @@
 				}
 
 			}
+			
+			/* Copied over from template */
+			@media screen and (max-width: 1280px) {
+
+				.wrapper > .inner {
+					width: 100%;
+				}
+
+			}
+			/* end of copied block */
 
 			@media screen and (max-width: 736px) {
 
@@ -3106,6 +3392,21 @@
 			body.is-ie .wrapper.fullscreen {
 				height: 100vh;
 			}
+
+			/* Copied over from template */
+			@media screen and (max-width: 1280px) {
+
+				.wrapper.fullscreen {
+					min-height: calc(100vh - 2.5em);
+				}
+
+					body.is-ie .wrapper.fullscreen {
+						height: calc(100vh - 2.5em);
+					}
+
+			}
+			/* End of copied over */
+
 
 			@media screen and (max-width: 736px) {
 
@@ -3276,9 +3577,24 @@
 	#sidebar + #wrapper {
 		margin-left: 18em;
 	}
+		/* Copied over from template */
+		@media screen and (max-width: 1280px) {
 
+			#sidebar + #wrapper {
+				margin-left: 0;
+				padding-top: 3.5em;
+			}
 
 		}
+
+		@media screen and (max-width: 736px) {
+
+			#sidebar + #wrapper {
+				padding-top: 0;
+			}
+
+		}
+		/* End of copy over */
 
 	#header + #wrapper > .wrapper > .inner {
 		margin: 0 auto;
@@ -3289,6 +3605,16 @@
 	#sidebar + #wrapper + #footer {
 		margin-left: 18em;
 	}
+		
+		/* Copied over from template */
+		@media screen and (max-width: 1280px) {
+
+			#sidebar + #wrapper + #footer {
+				margin-left: 0;
+			}
+
+		}
+		/* End of copy over */
 
 	#footer > .inner a {
 		border-bottom-color: rgba(255, 255, 255, 0.15);
@@ -3576,10 +3902,12 @@
 					max-width: 100%;
 				}
 
+		/* In template, was body.is-loading #s...  */
 		div.preloading #sidebar > .inner {
 			opacity: 0;
 		}
 
+		/* In template, was body.is-loading #s..  */
 		div.preloading #sidebar nav ul li {
 			-moz-transform: translateY(2em);
 			-webkit-transform: translateY(2em);
@@ -3587,6 +3915,70 @@
 			transform: translateY(2em);
 			opacity: 0;
 		}
+
+		/* Copied ove from template */
+		@media screen and (max-width: 1280px) {
+
+			#sidebar {
+				height: 3.5em;
+				left: 0;
+				line-height: 3.5em;
+				overflow: hidden;
+				padding: 0;
+				text-align: center;
+				top: 0;
+				width: 100%;
+			}
+
+				#sidebar > .inner {
+					-moz-flex-direction: row;
+					-webkit-flex-direction: row;
+					-ms-flex-direction: row;
+					flex-direction: row;
+					-moz-align-items: stretch;
+					-webkit-align-items: stretch;
+					-ms-align-items: stretch;
+					align-items: stretch;
+					height: inherit;
+					line-height: inherit;
+				}
+
+				#sidebar nav {
+					height: inherit;
+					line-height: inherit;
+				}
+
+					#sidebar nav ul {
+						display: -moz-flex;
+						display: -webkit-flex;
+						display: -ms-flex;
+						display: flex;
+						height: inherit;
+						line-height: inherit;
+						margin: 0;
+					}
+
+						#sidebar nav ul li {
+							display: block;
+							height: inherit;
+							line-height: inherit;
+							margin: 0 0 0 2em;
+							padding: 0;
+						}
+
+					#sidebar nav a {
+						height: inherit;
+						line-height: inherit;
+						padding: 0;
+					}
+
+						#sidebar nav a:after {
+							background-image: none;
+							background-color: #b74e91;
+						}
+
+		}
+		/* End of copied over */
 
 		@media screen and (max-width: 736px) {
 
@@ -3600,6 +3992,7 @@
 
 	#intro {
 		background-attachment: fixed;
+		/* differences from template... */
 		background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
@@ -3628,6 +4021,8 @@
 				}
 
 			}
+
+/* UNIQUE FOR DEPT ED */
 
 	/* Image1 */
 
