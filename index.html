@@ -15,6 +15,7 @@
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
     <link rel="stylesheet" href="widgets.css" />
+		<link rel="stylesheet" href="assets/css/chart-styles.css" />
 
     <!-- Scripts -->
 
@@ -26,19 +27,27 @@
     <script src="assets/js/util.js"></script>
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="assets/js/main.js"></script>
+			<script src="assets/js/d3.v3.min.js"></script>
+			<script src="assets/js/d3-tip.js"></script>
+			<script src="assets/js/chart-functions.js"></script>
+			<script src="assets/js/graph-scroll.js"></script>
+
 </head>
 <body>
 
     <!-- Preloader !-->
 
-    <div id="loader-wrapper">
-        <div id="loader"></div>
 
-        <div class="loader-section"></div>
+ <div id="loader-wrapper">
+		<div id="loader"></div>
 
-    </div>
+		<div class="loader-section"></div>
 
-    <div class="preloading">
+	</div>
+
+<div class="preloading"></div>
+
+
 
         <!-- Sidebar -->
         <section id="sidebar">
@@ -92,16 +101,45 @@
                     </p>
                 </div>
 
+					<section id="image1" class="wrapper style1 fullscreen">
+						<div id = "image1_sections">
+							<div></div>
+							<div id = "ch1_1"></div>
+						</div>
+					</section>
 
                 <section id="image1" class="wrapper style1 fullscreen"></section>
 
-
-                <section id="one-chart" class="wrapper chart">
-                    <div class="inner">
+					<section id="one_chart" class="wrapper chart">
+						<div id = "one_sections" class="inner">
                         <h3 class="chart">Chart Area</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-
+							<div></div>
+							<div id = "ch1_2">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+							<div id = "ch1_3">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+							<div id = "ch1_4">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+							<div id = "ch1_5">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+							<div id = "ch1_8">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+						</div>
                 </section>
 
             </section>
@@ -113,12 +151,21 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
 
-
-                <section id="two-chart" class="wrapper chart">
-                    <div class="inner">
+					<section id="two_chart" class="wrapper chart">
+						<div id = "two_sections" class="inner">
                         <h3 class="chart">Chart Area</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+							<div></div>
+							<div id = "ch2_1">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+							<div id = "ch2_2">
+								<p></p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<p></p>
+							</div>
+						</div>
                 </section>
 
             </section>
@@ -152,6 +199,7 @@
                 </ul>
             </div>
 
+
             <!-- Logo and Social Media links will only appear in footer on narrower screens where the sidebar is hidden -->
             <div class="inner footer-image">
                 <img src="images/doelogo_sm.png" alt="Department of Learning" />
@@ -165,9 +213,108 @@
                     <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
                 </ul>
             </div>
+	</footer>
 
-        </footer>
-    </div>
+<!-- D3 charts -->
+
+<script>
+
+// chapter 1 icon array
+
+d3.tsv("assets/data/data_iconarray.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.icon_count = +d.icon_count; // This is the subgroup
+			d.number = +d.number; // This is the percentage
+		});
+
+		var chart1_1 = iconArray().data(data).containerID("image1").subcontainerID("image1_sections").sectionID("ch1_1").chartID("chart1_1");
+
+		d3.select("#ch1_1").call(chart1_1);
+
+	};
+});
+
+// chapter 1 charts
+
+d3.tsv("assets/data/data.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.var1 = d.group; // This is the subgroup
+			d.var2 = +d.number; // This is the raw number
+			d.var3 = +d.pct; // This is the percentage
+			d.subchart = +d.subchart;
+			d.var4 = d.level;
+		});
+
+		data1_2 = data.filter(function(d) { return d.chart == "1-2"; })
+		data1_3 = data.filter(function(d) { return d.chart == "1-3"; });
+		data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
+		data1_5 = data.filter(function(d) { return d.chart == "1-5"; });
+		data1_8 = data.filter(function(d) { return d.chart == "1-8"; });
+
+		/* var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14"); */ // Chapter 1-1
+		var chart1_2 = barChart().marginLeft(235).data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2"); // Chapter 1 - 2
+		var chart1_3 = colChart().data(data1_3).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3"); // Chapter 1 - 3
+		var chart1_4 = barChart().marginLeft(215).data(data1_4).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4"); // Chapter 1 - 4
+		var chart1_5 = colChart().data(data1_5).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5"); // Chapter 1 - 5
+		var chart1_8 = dotPlotFilter().data(data1_8).clipName("dot1_8").buttonsID("dot1_8b").containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_8").chartID("chart1_8"); // Chapter 1-8
+
+		d3.select("#ch1_2").call(chart1_2);
+		d3.select("#ch1_3").call(chart1_3);
+		d3.select("#ch1_4").call(chart1_4);
+		d3.select("#ch1_5").call(chart1_5);
+		d3.select("#ch1_8").call(chart1_8);
+
+	};
+});
+
+// chapter 2-1
+
+d3.tsv("assets/data/data.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.var1 = d.level;
+			d.var2 = +d.number;
+			d.var3 = +d.pct;
+		});
+
+		data = data.filter(function(d) { return d.chart == "2-1"; });
+
+		var chart2_1 = dotPlot().data(data).clipName("dot2_1").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
+
+		d3.select("#ch2_1").call(chart2_1);
+
+	};
+});
+
+// chapter 2-2
+
+d3.tsv("assets/data/data.tsv", function(error, data) {
+	if (error) { console.log(error); }
+	else {
+		data.forEach(function(d) {
+			d.number = +d.number;
+			d.pct = +d.pct;
+		});
+
+		data0 = data.filter(function(d) { return d.chart == "2-2"; });
+
+		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750).buttonsID("buttons2_2").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
+			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+			.title2("Sed maximus tellus fringilla commodo varius.")
+			.title3("Nam eget blandit turpis.")
+			.title4("Integer sed diam et justo fermentum scelerisque in sed tortor.");
+
+		d3.select("#ch2_2").call(chart2_2);
+
+	};
+});
+</script>
+
 
 </body>
 </html>
