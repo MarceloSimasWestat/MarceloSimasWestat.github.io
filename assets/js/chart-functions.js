@@ -1950,7 +1950,7 @@ function groupedBar() {
 		};
 
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
-			yAxis = d3.svg.axis().scale(yScale0).orient("left");
+			yAxis = d3.svg.axis().scale(yScale0).orient("left").outerTickSize(0);
 
 		// draw x-axis below bars
 
@@ -1982,8 +1982,8 @@ function groupedBar() {
 					.attr("class","national-bar")
 					.attr("x", 0)
 					.attr("width", 0)
-					.attr("y", function(d) { return yScale0(d.group); })
-					.attr("height", yScale0.rangeBand())
+					.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
+					.attr("height", ((1.25 * levels.length) * barWidth))
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide);
 
@@ -2011,7 +2011,7 @@ function groupedBar() {
 				.attr("class", "bar")
 				.attr("x", 0)
 				.attr("width", 0)
-				.attr("y", function(d) { return yScale1(d.level); })
+				.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 				.attr("height", 0)
 				.style("fill", function(d) { return color(d.level); })
 				.on("mouseover", tipBar.show)
@@ -2034,7 +2034,7 @@ function groupedBar() {
 							.delay(animateTime / 2)
 							.duration(animateTime)
 							.attr("width", function(d) { return xScale(d.pct); })
-							.attr("height", yScale1.rangeBand());
+							.attr("height", barWidth);
 
 			}});
 
@@ -2136,8 +2136,8 @@ function groupedBar() {
 				.duration(animateTime)
 				.attr("x", 0)
 				.attr("width", function(d) { return xScale(d.pct); })
-				.attr("y", function(d) { return yScale0(d.group); })
-				.attr("height", yScale0.rangeBand());
+				.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
+				.attr("height", ((1.25 * levels.length) * barWidth));
 
 			updateNational.enter()
 				.append("g")
@@ -2146,8 +2146,8 @@ function groupedBar() {
 						.attr("class","national-bar")
 						.attr("x", 0)
 						.attr("width", 0)
-						.attr("y", function(d) { return yScale0(d.group); })
-						.attr("height", yScale0.rangeBand())
+						.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
+						.attr("height", ((1.25 * levels.length) * barWidth))
 						.on("mouseover", tipBar.show)
 						.on("mouseout", tipBar.hide)
 						.transition()
@@ -2204,15 +2204,15 @@ function groupedBar() {
 				.duration(animateTime / 2)
 				.attr("x", 0)
 				.attr("width", function(d) { return xScale(d.pct); })
-				.attr("y", function(d) { return yScale1(d.level); })
-				.attr("height", yScale1.rangeBand());
+				.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
+				.attr("height", barWidth);
 
 			updateBars.enter()
 				.append("rect")
 					.attr("class", "bar")
 					.attr("x", 0)
 					.attr("width", 0)
-					.attr("y", function(d) { return yScale1(d.level); })
+					.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 					.attr("height", 0)
 					.style("fill", function(d) { return color(d.level); })
 					.on("mouseover", tipBar.show)
@@ -2221,7 +2221,7 @@ function groupedBar() {
 						.delay(animateTime / 2)
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.pct); })
-						.attr("height", yScale1.rangeBand());
+						.attr("height", barWidth);
 
 			updateBars.exit()
 				.transition()
