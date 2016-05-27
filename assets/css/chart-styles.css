@@ -9,21 +9,37 @@
 	font-weight: bold;
 }
 
-.filters {
-	font: normal 12px Karla;
-	color: #1C1E21;
-	text-align: right;
-}
-
 button.filterButton {
-	font: normal 12px Karla;
-	color: #1C1E21;
-	margin-right: 5px;
-	margin-left: 5px;
-	background-color: #888888;
-	border-radius: 0;
-	height: 2.5em;
-	padding: 0px 10px;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: border-color 0.2s ease;
+	-webkit-transition: border-color 0.2s ease;
+	-ms-transition: border-color 0.2s ease;
+	transition: border-color 0.2s ease;
+	background-color: transparent;
+	border: solid 1px !important;
+	border-color: rgba(0, 0, 0, 0.15) !important;
+	border-radius: 3em;
+	color: #000000 !important;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Karla;
+	font-size: 0.4em;
+	font-weight: bold;
+	height: calc(4.75em + 2px);
+	letter-spacing: 0.25em;
+	line-height: 4.75em;
+	outline: 0;
+	padding: 0 3.75em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	margin-left: 4px;
+	margin-right: 4px;
 }
 
 /* Icon array styling */
@@ -42,7 +58,7 @@ button.filterButton {
 
 .countText {
 	font: normal 16px Muli;
-	fill: white;	
+	fill: white;
 }
 
 /* Icon array styling */
@@ -60,7 +76,7 @@ button.filterButton {
 
 .equivText {
 	font: normal 16px Muli;
-	fill: white;	
+	fill: white;
 }
 
 /* Donut chart styling */
@@ -87,13 +103,13 @@ button.filterButton {
 .bar-chart .axis path,
 .bar-chart .axis line {
 	fill: none;
-	stroke: #000;
+	stroke: #1A1C20;
 	shape-rendering: crispEdges;
 }
 
 .bar-chart .x.axis {
 	font: 400 12px Inconsolata;
-	color: #46484B;
+	fill: rgba(26, 28, 32, 0.6);
 }
 
 .bar-chart .x.axis path {
@@ -101,31 +117,31 @@ button.filterButton {
 }
 
 .bar-chart .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
+	stroke: rgba(26, 28, 32, 0.25);
 	stroke-dasharray: 1,1;
 }
 
 .bar-chart .y.axis {
 	font: normal 12px Karla;
-	color: #1C1E21;
+	color: #1A1C20;
 }
 
 .bar-chart .y.axis path {
-	stroke: #1C1E21;
+	stroke: #1A1C20;
 	stroke-width: 1.5px;
 }
 
 .bar-chart .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: #1A1C20;
 }
 
 .bar {
-	fill: rgb(242, 167, 115);
+	fill: #5D42A6;
 }
 
 .bar:hover {
-	fill: rgba(242, 167, 115, 0.75);
+	fill-opacity:0.65;
 }
 
 /* Column chart styling */
@@ -139,17 +155,17 @@ button.filterButton {
 
 .col-chart .x.axis {
 	font: normal 12px Karla;
-	color: #1C1E21;
+	color: #1A1C20;
 }
 
 .col-chart .x.axis path {
-	stroke: #1C1E21;
+	stroke: #1A1C20;
 	stroke-width: 1.5px;
 }
 
 .col-chart .y.axis {
 	font: 400 12px Inconsolata;
-	color: #46484B;
+	fill: rgba(26, 28, 32, 0.6);
 }
 
 .col-chart .y.axis path {
@@ -157,7 +173,7 @@ button.filterButton {
 }
 
 .col-chart .y.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
+	stroke: rgba(26, 28, 32, 0.25);
 	stroke-dasharray: 1,1;
 }
 
@@ -167,11 +183,11 @@ button.filterButton {
 }
 
 .column {
-	fill: rgb(242, 167, 115);
+	fill: #A6426C;
 }
 
 .column:hover {
-	fill: rgba(242, 167, 115, 0.75);
+	fill-opacity: .85;
 }
 
 /* Dot plot styling */
@@ -218,7 +234,7 @@ button.filterButton {
 
 .dot:hover {
 	fill: rgba(242, 167, 115, 0.75);
-}	
+}
 
 .dotLine {
 	stroke: lightgray;
@@ -322,20 +338,45 @@ button.filterButton {
 .groupedBar .bar:hover {
 	fill-opacity: 0.75;
 }
-	
+
 /* Styling tooltips for individual graph types */
 
 .d3-tip-donut,
-.d3-tip-bar, 
+.d3-tip-bar,
 .d3-tip-col,
 .d3-tip-dot {
-	font: 12px sans-serif;
+	font: 12px Inconsolata;
+	font-style: uppercase;
 	padding: 12px;
-	background: rgba(0, 0, 0, 0.8);
+	background: #1A1C20;
 	color: #fff;
-	border-radius: 2px;
+	border-radius: 0.15em;
 }
 
+/*
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 170px;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    background: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+}
+div.tooltip h3 {
+  font-size: 12px; margin: 0 0 7px 0;
+  line-height: 1.2em;
+}
+div.tooltip .line { clear: both; margin-top: 3px; font-size: 11px; }
+div.tooltip .symbol { float: left; width: 6px; height: 6px; margin: 3px 4px 0 0; }
+div.tooltip .val { float: right; width: 25px; text-align: right; margin-right: 4px; }
+div.tooltip .moe { float: right; color: #aaa; width: 30px; text-align: right; }
+
+
+*/
 /* Creates a small triangle extender for the tooltip */
 
 .d3-tip-col:after {
@@ -363,7 +404,7 @@ button.filterButton {
 	margin-top: -6px;
 	border: 6px solid transparent;
 	border-right-color: #2E3141;
-}		
+}
 
 /* Style northward tooltips differently */
 

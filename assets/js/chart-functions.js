@@ -1,10 +1,10 @@
 // Icon array for chronic absenteeism map (ch 1-1)
 
 function iconArray() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 500,
 		animateTime = 2000,
@@ -20,19 +20,19 @@ function iconArray() {
 		data = [];
 
 	function chart(selection) {
-		selection.each(function() {		
-	
+		selection.each(function() {
+
 			// formats
-			
+
 			var	formatNumber = d3.format(",f"),
 				formatPercent = d3.format(",.1%");
-		
+
 			// margins and dimensions
 
 			var margin = {top: 20, right: 20, bottom: 20, left: 20},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
-		
+
 			var dom = d3.select(this)
 				.append("div")
 					.attr("id", chartID)
@@ -41,9 +41,9 @@ function iconArray() {
 						"margin": "20px auto 20px auto",
 						"text-align": "center"
 					});
-		
+
 			// first, put in legend
-			
+
 			var legendIcon = dom.append("div")
 				.attr("id", "legendIcon")
 				.attr("class", "legend")
@@ -52,23 +52,23 @@ function iconArray() {
 					"vertical-align": "middle",
 					"height": legendHeight + "px",
 					"opacity": 0
-				});	
-		
-			d3.xml("images/chair.svg", "image/svg+xml", function(error, xml) {  
-			
+				});
+
+			d3.xml("images/chair.svg", "image/svg+xml", function(error, xml) {
+
 				if (error) throw error;
-				
+
 				legendIcon.node().appendChild(xml.documentElement);
-				
+
 				legendIcon.selectAll("svg")
 					.attr("height", legendWidth + "px")
 					.attr("width", legendHeight + "px");
-				
+
 				legendIcon.selectAll("#Woodchair")
 					.attr("class", "icon");
-				
+
 			});
-		
+
 			var legendText = dom.append("div")
 				.attr("id", "legendText")
 				.attr("class", "legend")
@@ -78,13 +78,13 @@ function iconArray() {
 					"opacity": 0
 				})
 				.html("<span>= 100,000 students</span>");
-			
+
 			dom.append("p");
 
 			// next, put in count of chronically absent students
-			
+
 			data_txt = data.filter(function(d) { return d.area == "txt"; });
-			
+
 			var count = dom.append("div")
 				.data(data_txt)
 				.attr("id", "countSection")
@@ -107,9 +107,9 @@ function iconArray() {
 					})
 					.append("g")
 						.attr("transform", "translate(0,0)");
-			
+
 			// count of chronically absent students
-			
+
 			count.append("text")
 				.attr("class", "count")
 				.attr("x", (width / 2))
@@ -117,7 +117,7 @@ function iconArray() {
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
 				.text(function(d) { return formatNumber(d.number); });
-			
+
 			count.append("text")
 				.attr("class", "countText")
 				.attr("x", (width / 2))
@@ -125,9 +125,9 @@ function iconArray() {
 				.attr("text-anchor", "middle")
 				.attr("fill-opacity", 0)
 				.text(function(d) { return "students were chronically absent in 2013-14 (" + formatPercent(d.pct) + ")"; });
-			
+
 			// build icon array
-			
+
 			var ia = dom.append("div")
 				.attr("id", "iaContainer")
 				.style({
@@ -135,13 +135,13 @@ function iconArray() {
 					"margin": "0 auto",
 					"display": "block",
 				});
-			
-			d3.xml("images/chair.svg", "image/svg+xml", function(xml) {  
-			
+
+			d3.xml("images/chair.svg", "image/svg+xml", function(xml) {
+
 				var importedNode = document.importNode(xml.documentElement, true);
-				
+
 				data_ia = data.filter(function(d) { return d.area == "ia"; });
-				
+
 				ia.selectAll("div")
 					.data(data_ia)
 					.enter()
@@ -151,19 +151,19 @@ function iconArray() {
 						})
 						.append("g")
 							.each(function() { this.appendChild(importedNode.cloneNode(true)); });
-				
+
 				ia.selectAll("svg")
 					.attr("width", iconWidth + "px")
 					.attr("height", iconHeight + "px");
-				
+
 				ia.selectAll("#Woodchair")
 					.attr("opacity", 0)
 					.attr("class", "icon");
-				
+
 			});
 
 			// add equivalency section
-			
+
 			var txt = dom.append("div")
 				.data(data_txt)
 				.attr("id", "equiSection")
@@ -186,7 +186,7 @@ function iconArray() {
 					})
 					.append("g")
 						.attr("transform", "translate(0,0)");
-			
+
 			txt.append("text")
 				.attr("class", "equivText")
 				.attr("x", (width / 2))
@@ -215,168 +215,168 @@ function iconArray() {
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
-				.on("active", function() { 
+				.on("active", function() {
 					if (document.getElementById(sectionID).className == "graph-scroll-active") {
-			
+
 						d3.select("#legendIcon")
 							.transition()
 								.duration(animateTime)
 								.style("opacity", 1);
-			
+
 						d3.select("#legendText")
 							.transition()
 								.duration(animateTime)
 								.style("opacity", 1);
-						
+
 						count.selectAll(".count")
 							.transition()
 								.duration(animateTime)
 								.attr("fill-opacity", 1);
-								
+
 						count.selectAll(".countText")
 							.transition()
 								.duration(animateTime)
 								.attr("fill-opacity", 1);
-						
+
 						ia.selectAll("#Woodchair")
 							.transition()
 								.delay(function(d, i) { return i * (animateTime/data_ia.length); })
 								.duration(animateTime)
 								.attr("opacity", 1);
-						
+
 						txt.selectAll(".equivText")
 							.transition()
 								.delay(animateTime)
 								.duration(animateTime)
 								.attr("fill-opacity", 1);
-						
+
 						txt.selectAll(".equiv")
 							.transition()
 								.delay(animateTime)
 								.duration(animateTime)
 								.attr("fill-opacity", 1);
-					
-				}}); 				
-					
+
+				}});
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.rowCount = function(value) {
-		
+
 		if (!arguments.length) return rowCount;
 		rowCount = value;
 		return chart;
-		
+
 	};
 
 	chart.iconWidth = function(value) {
-		
+
 		if (!arguments.length) return iconWidth;
 		iconWidth = value;
 		return chart;
-		
+
 	};
 
 	chart.iconHeight = function(value) {
-		
+
 		if (!arguments.length) return iconHeight;
 		iconHeight = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.legendWidth = function(value) {
-		
+
 		if (!arguments.length) return legendWidth;
 		legendWidth = value;
 		return chart;
-		
+
 	};
 
 	chart.legendHeight = function(value) {
-		
+
 		if (!arguments.length) return legendHeight;
 		legendHeight = value;
 		return chart;
-		
+
 	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // Reusable bar chart function for chronic absenteeism storymap
 
 function barChart() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 500,
 		marginTop = 40,
@@ -390,23 +390,23 @@ function barChart() {
 		chartID = [],
 		sectionID = [],
 		data = [];
-		
+
 	function chart(selection) {
 		selection.each(function() {
-		
+
 		// formats
-		
+
 		var	formatNumber = d3.format(",f"),
 			formatPercent = d3.format(",.1%");
-					
+
 		// margins; adjust width and height to account for margins
-	
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
 		// selections
-				
+
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
@@ -423,8 +423,8 @@ function barChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});				
-						
+					});
+
 		var svg = dom.append("svg")
 			.attr("class", "bar-chart")
 			.attr("viewBox", "0 0 " + width + " " + height)
@@ -440,65 +440,65 @@ function barChart() {
 			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-					
+
 		// tooltips using d3-tip
-		
+
 		var tipBar = d3.tip()
 			.attr("class", "d3-tip-bar")
-			.direction("e")	
+			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-	
+
 			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
-	
+
 		});
-		
+
 		svg.call(tipBar);
-		
+
 		// axis scales
-		
-		var xScale = d3.scale.linear().range([0, widthAdj]),	
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
 			yScale = d3.scale.ordinal().range([heightAdj, 0]).rangeRoundBands([0, heightAdj], 0.5);
-			
+
 		// domains
-		
+
 		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
 		yScale.domain(data.map(function(d, i) { return d.var1; }));
-		
+
 		// axes
-		
+
 		function formatValueAxis(d) {
-			
+
 			var TickValue = formatNumber(d * 100);
-			
+
 			return TickValue;
-			
+
 		};
-		
+
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
-					
+
 		// draw x-axis below bars
-	
+
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-	
+
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj)
 			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "2em")
+			.attr("dy", "4em")
 			.attr("text-anchor", "end")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)")
-	
+			.text("% CHRONICALLY ABSENT IN 2013-14")
+
 		// draw bars
-		
+
 		var bars = svg.selectAll("rect.bar")
 			.data(data);
-						
+
 		bars.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
@@ -510,29 +510,29 @@ function barChart() {
 					.attr("height", barWidth)
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide);
-		
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() { 
+			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-					
+
 					svg.selectAll("rect.bar")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
-					
+
 			}});
-				
+
 		// draw y-axis above bars
-	
+
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
-		
+
 		// chart title
-		
+
 		svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
@@ -540,132 +540,132 @@ function barChart() {
 			.attr("dy", "1em")
 			.attr("text-anchor", "start")
 			.text(title);
-		
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.marginTop = function(value) {
-		
+
 		if (!arguments.length) return marginTop;
 		marginTop = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginLeft = function(value) {
-		
+
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginBottom = function(value) {
-		
+
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		return chart;
-		
+
 	};
 
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.barWidth = function(value) {
-		
+
 		if (!arguments.length) return barWidth;
 		barWidth = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.title = function(value) {
-		
+
 		if (!arguments.length) return title;
 		title = value;
 		return chart;
-		
+
 	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
+
 	};
-	
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // Reusable bar chart function for chronic absenteeism storymap
 
 function colChart() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
 		marginBottom = 20,
-		animateTime = 1000,	
+		animateTime = 1000,
 		colWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
 		containerID = [],
@@ -673,23 +673,23 @@ function colChart() {
 		chartID = [],
 		sectionID = [],
 		data = [];
-	
+
 	function chart(selection) {
 		selection.each(function() {
-		
+
 		// formats
-		
+
 		var	formatNumber = d3.format(",f"),
 			formatPercent = d3.format(",.1%");
-		
+
 		// margins; adjust width and height to account for margins
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - marginTop - marginBottom;		
-		
+			heightAdj = height - marginTop - marginBottom;
+
 		// selections
-		
+
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
@@ -705,8 +705,8 @@ function colChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});				
-			
+					});
+
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
 			.attr("viewBox", "0 0 " + width + " " + height)
@@ -721,62 +721,62 @@ function colChart() {
 			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-		
+
 		// tooltips using d3-tip
-		
+
 		var tipCol = d3.tip()
 			.attr("class", "d3-tip-col")
 			.offset([-10, 0])
 			.html(function(d) {
-	
+
 			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
-	
+
 		});
-		
+
 		svg.call(tipCol);
-		
+
 		// axis scales
-		
-		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5),	
+
+		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5),
 			yScale = d3.scale.linear().range([heightAdj, 0]);
-			
+
 		// domains
-		
+
 		xScale.domain(data.map(function(d, i) { return d.var1; }));
 		yScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
-		
+
 		// axes
-				
+
 		function formatValueAxis(d) {
-			
+
 			var TickValue = formatNumber(d * 100);
-			
+
 			return TickValue;
-			
+
 		};
-		
+
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj);
-		
+
 		// draw y-axis under columns
-		
+
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
 			.selectAll("text")
-					
+
 		svg.append("text")
 			.attr("class", "y axis")
 			.attr("x", -15)
 			.attr("y", "-1em")
 			.attr("text-anchor", "start")
 			.text("(% CHRONICALLY ABSENT IN 2013-14)");
-		
+
 		// draw columns
-		
+
 		var cols = svg.selectAll("rect.column")
 			.data(data);
-		
+
 		cols.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
@@ -794,19 +794,19 @@ function colChart() {
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() { 
+			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-					
+
 					svg.selectAll("rect.column")
 						.transition()
 							.duration(animateTime)
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 							.attr("y", function(d) { return yScale(d.var3); });
-					
+
 			}});
-						
+
 		// draw x-axis above columns
-	
+
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
@@ -815,7 +815,7 @@ function colChart() {
 				.call(wrap, xScale.rangeBand());
 
 		// chart title
-		
+
 		svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
@@ -823,125 +823,125 @@ function colChart() {
 			.attr("dy", "1em")
 			.attr("text-anchor", "start")
 			.text(title);
-		
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.marginTop = function(value) {
-		
+
 		if (!arguments.length) return marginTop;
 		marginTop = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginLeft = function(value) {
-		
+
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginBottom = function(value) {
-		
+
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		return chart;
-		
+
 	};
 
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.colWidth = function(value) {
-		
+
 		if (!arguments.length) return colWidth;
 		colWidth = value;
 		return chart;
-		
+
 	};
 	chart.title = function(value) {
-		
+
 		if (!arguments.length) return title;
 		title = value;
 		return chart;
-		
+
 	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
+
 	};
-	
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // Reusable dot plot function for chronic absenteeism story map
 
 function dotPlot() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 500,
 		marginTop = 40,
@@ -956,23 +956,23 @@ function dotPlot() {
 		chartID = [],
 		sectionID = [],
 		data = [];
-		
+
 	function chart(selection) {
 		selection.each(function() {
-		
+
 		// formats
-		
+
 		var	formatNumber = d3.format(",f"),
 			formatPercent = d3.format(",.1%");
-					
+
 		// margins; adjust width and height to account for margins
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
 		// selections
-		
+
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
@@ -988,8 +988,8 @@ function dotPlot() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});		
-			
+					});
+
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
 			.attr("viewBox", "0 0 " + width + " " + height)
@@ -1001,55 +1001,55 @@ function dotPlot() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-				
+
 			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-		
+
 		// tooltips using d3-tip
-		
+
 		var tipDot = d3.tip()
 			.attr("class", "d3-tip-dot")
-			.direction("e")	
+			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-	
+
 			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
-	
+
 		});
-		
+
 		svg.call(tipDot);
-		
+
 		// axis scales and axes
-		
-		var xScale = d3.scale.linear().range([0, widthAdj]),	
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
 			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1);
-		
+
 		// domains
-		
+
 		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
-		yScale.domain(data.map(function(d, i) { return d.var1; }));	
+		yScale.domain(data.map(function(d, i) { return d.var1; }));
 
 		// axes
-		
+
 		function formatValueAxis(d) {
-			
+
 			var TickValue = formatNumber(d * 100);
-			
+
 			return TickValue;
-			
+
 		};
-		
+
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
-	
+
 		// draw x-axis below bars
-	
+
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-	
+
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj)
@@ -1058,12 +1058,12 @@ function dotPlot() {
 			.attr("dy", "2em")
 			.attr("text-anchor", "end")
 			.text("(% CHRONICALLY ABSENT IN 2013-14)");
-			
+
 		// draw dots and lines
-		
+
 		var lines = svg.selectAll("line.dotLine")
 			.data(data);
-				
+
 		lines.enter()
 			.append("g")
 			.attr("transform", "translate(0,0)")
@@ -1072,11 +1072,11 @@ function dotPlot() {
 				.attr("x1", 0)
 				.attr("x2", 0)
 				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });					
-				
+				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
+
 		var dots = svg.selectAll("circle.dot")
 			.data(data);
-						
+
 		dots.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
@@ -1093,14 +1093,14 @@ function dotPlot() {
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() { 
+			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-					
+
 					svg.selectAll("line.dotLine")
 						.transition()
 							.duration(animateTime)
 							.attr("x2", function(d) { return xScale(d.var3); })
-							.each("end", function(d) { 
+							.each("end", function(d) {
 								d3.select(this)
 									.transition()
 										.duration(animateTime)
@@ -1111,167 +1111,167 @@ function dotPlot() {
 						.transition()
 							.duration(animateTime)
 							.attr("cx", function(d) { return xScale(d.var3); })
-							.each("end", function(d) { 
+							.each("end", function(d) {
 								d3.select(this)
 									.transition()
 										.duration(animateTime)
 										.attr("r", dotSize);
 							});
-							
+
 			}});
-						
+
 		// add clip path
-		
+
 		svg.append("defs")
 			.append("clipPath")
 				.attr("id", function() { return "clip" + clipName; })
 					.append("rect")
 						.attr("width", widthAdj + margin.right)
 						.attr("height", heightAdj);
-		
+
 		// draw y-axis above
-	
+
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
 
 		// chart title
-		
+
 		svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
 			.attr("y", 0 - marginTop)
 			.attr("dy", "1em")
 			.attr("text-anchor", "start")
-			.text(title);			
-		
+			.text(title);
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.marginTop = function(value) {
-		
+
 		if (!arguments.length) return marginTop;
 		marginTop = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.marginLeft = function(value) {
-		
+
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		return chart;
-		
+
 	};
 
 	chart.marginBottom = function(value) {
-		
+
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.dotSize = function(value) {
-		
+
 		if (!arguments.length) return dotSize;
 		dotSize = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.title = function(value) {
-		
+
 		if (!arguments.length) return title;
 		title = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.clipName = function(value) {
-		
+
 		if (!arguments.length) return clipName;
 		clipName = value;
 		return chart;
-		
+
 	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
+
+	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-		
+
+	};
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
 
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
+
 	};
-	
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // Dot plot with filters for chronic absenteeism story map
 
 function dotPlotFilter() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 650,
 		marginTop = 40,
@@ -1290,26 +1290,26 @@ function dotPlotFilter() {
 		sectionID = [],
 		chartID = [],
 		data = [];
-		
+
 	var updateTitle,
 		updateData;
-		
+
 	function chart(selection) {
 		selection.each(function() {
-		
+
 		// filter data for default to show r/e categories
-		
+
 		var subChartID = 1;
-		
+
 		dataFiltered = data.filter(function(d) { return d.subchart == subChartID; });
-				
+
 		// formats
-		
+
 		var	formatNumber = d3.format(",f"),
 			formatPercent = d3.format(",.1%");
-					
+
 		// margins; adjust width and height to account for margins
-	
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1324,58 +1324,57 @@ function dotPlotFilter() {
 					"margin": "0 auto"
 				})
 				.attr("id", buttonsID)
-				.attr("class", "filters")
-				.html("Select school size: ");
-		
+				.attr("class", "filters");
+
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Small")
-			.on("click", function() { 
-			
-				updateData(1); 
+			.on("click", function() {
+
+				updateData(1);
 				updateTitle(1);
-				
+
 			});
-	
+
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Medium-small")
-			.on("click", function() { 
-			
-				updateData(2); 
+			.on("click", function() {
+
+				updateData(2);
 				updateTitle(2);
-				
+
 			});
-			
+
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Medium-large")
-			.on("click", function() { 
-			
-				updateData(3); 
+			.on("click", function() {
+
+				updateData(3);
 				updateTitle(3);
-				
+
 			});
 
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Large")
-			.on("click", function() { 
-			
-				updateData(4); 
+			.on("click", function() {
+
+				updateData(4);
 				updateTitle(4);
-				
+
 			});
 
 		d3.select("#" + buttonsID)
 			.append("p");
-			
+
 		// selections
-			
+
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
@@ -1392,8 +1391,8 @@ function dotPlotFilter() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});				
-		
+					});
+
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
 			.attr("viewBox", "0 0 " + width + " " + height)
@@ -1409,51 +1408,51 @@ function dotPlotFilter() {
 			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-					
+
 		// tooltips using d3-tip
-		
+
 		var tipDot = d3.tip()
 			.attr("class", "d3-tip-dot")
-			.direction("e")	
+			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-	
+
 			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
-	
+
 		});
-		
+
 		svg.call(tipDot);
-		
+
 		// axis scales
-		
-		var xScale = d3.scale.linear().range([0, widthAdj]),	
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
 			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.1);
-		
+
 		// domains
-		
+
 		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
 		yScale.domain(dataFiltered.map(function(d) { return d.var1; }));
-		
+
 		// axes
-		
+
 		function formatValueAxis(d) {
-			
+
 			var TickValue = formatNumber(d * 100);
-			
+
 			return TickValue;
-			
+
 		};
-		
+
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
 			yAxis = d3.svg.axis().scale(yScale).orient("left");
-					
+
 		// draw x-axis below bars
-	
+
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-	
+
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj)
@@ -1464,10 +1463,10 @@ function dotPlotFilter() {
 			.text("(% CHRONICALLY ABSENT IN 2013-14)");
 
 		// draw dots and lines
-		
+
 		var lines = svg.selectAll("line.dotLine")
 			.data(dataFiltered);
-				
+
 		lines.enter()
 			.append("g")
 			.attr("transform", "translate(0,0)")
@@ -1477,10 +1476,10 @@ function dotPlotFilter() {
 				.attr("x2", 0)
 				.attr("y1", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 				.attr("y2", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); });
-				
+
 		var dots = svg.selectAll("circle.dot")
 			.data(dataFiltered);
-						
+
 		dots.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
@@ -1497,14 +1496,14 @@ function dotPlotFilter() {
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() { 
+			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-					
+
 					svg.selectAll("line.dotLine")
 						.transition()
 							.duration(animateTime)
 							.attr("x2", function(d) { return xScale(d.var3); })
-							.each("end", function(d) { 
+							.each("end", function(d) {
 								d3.select(this)
 									.transition()
 										.duration(animateTime)
@@ -1515,26 +1514,26 @@ function dotPlotFilter() {
 						.transition()
 							.duration(animateTime)
 							.attr("cx", function(d) { return xScale(d.var3); })
-							.each("end", function(d) { 
+							.each("end", function(d) {
 								d3.select(this)
 									.transition()
 										.duration(animateTime)
 										.attr("r", dotSize);
 							});
-							
+
 			}});
-						
+
 		// add clip path
-		
+
 		svg.append("defs")
 			.append("clipPath")
 				.attr("id", function() { return "clip" + clipName; })
 					.append("rect")
 						.attr("width", widthAdj + margin.right)
 						.attr("height", heightAdj);
-			
+
 		// draw y-axis above bars
-		
+
 		svg.append("g")
 			.attr("class", "y axis")
 			.style("opacity", 0)
@@ -1542,9 +1541,9 @@ function dotPlotFilter() {
 			.transition()
 				.duration(animateTime)
 				.style("opacity", 1);
-		
+
 		// chart title (default to title1)
-		
+
 		svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
@@ -1553,16 +1552,16 @@ function dotPlotFilter() {
 			.attr("text-anchor", "start")
 			.attr("fill-opacity", 0)
 			.text(title1)
-			.transition()	
+			.transition()
 				.duration(animateTime)
 				.attr("fill-opacity", 1);
-				
+
 		// update functions
 
 		function updateTitle(titleID) {
-			
+
 			svg.select(".title").remove();
-			
+
 			svg.append("text")
 				.attr("class", "title")
 				.attr("x", 0 - marginLeft)
@@ -1579,198 +1578,198 @@ function dotPlotFilter() {
 				.transition()
 					.duration(animateTime)
 					.attr("fill-opacity", 1);
-					
+
 		};
-		
-		function updateData(subChartID) { 
-		
+
+		function updateData(subChartID) {
+
 			// re-filter data
-			
+
 			dataFiltered = data.filter(function(d) { return d.subchart == subChartID; });
-		
+
 			// update scales
-			
+
 			xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
 			yScale.domain(dataFiltered.map(function(d) { return d.var1; }));
-		
+
 			// update dots and lines
-			
+
 			var updateLines = svg.selectAll("line.dotLine")
 				.data(dataFiltered);
 
 			updateLines.transition()
 				.duration(animateTime)
 				.attr("x2", function(d) { return xScale(d.var3) - dotSize; });
-				
+
 			var updateDots = svg.selectAll("circle.dot")
 				.data(dataFiltered);
-				
+
 			updateDots.transition()
 				.duration(animateTime)
 				.attr("cx", function(d) { return xScale(d.var3); });
-											
+
 			};
-			
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.marginTop = function(value) {
-		
+
 		if (!arguments.length) return marginTop;
 		marginTop = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginLeft = function(value) {
-		
+
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginBottom = function(value) {
-		
+
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		return chart;
-		
+
 	};
 
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.dotSize = function(value) {
-		
+
 		if (!arguments.length) return dotSize;
 		dotSize = value;
 		return chart;
-		
-	};	
+
+	};
 
 	chart.buttonsID = function(value) {
-		
+
 		if (!arguments.length) return buttonsID;
 		buttonsID = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.clipName = function(value) {
-		
+
 		if (!arguments.length) return clipName;
 		clipName = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title1 = function(value) {
-		
+
 		if (!arguments.length) return title1;
 		title1 = value;
 		return chart;
-		
+
 	};
 
 	chart.title2 = function(value) {
-		
+
 		if (!arguments.length) return title2;
 		title2 = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title3 = function(value) {
-		
+
 		if (!arguments.length) return title3;
 		title3 = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title4 = function(value) {
-		
+
 		if (!arguments.length) return title4;
 		title4 = value;
 		return chart;
-		
+
 	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
+
+	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-	
+
+	};
+
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
-	
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         if (typeof updateData === 'function') updateData();
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // Grouped bar chart function for chronic absenteeism storymap
 
 function groupedBar() {
-	
+
 	// Options accessible to the caller
 	// These are the default values
-	
+
 	var	width = 960,
 		height = 650,
 		marginTop = 40,
@@ -1788,26 +1787,26 @@ function groupedBar() {
 		chartID = [],
 		sectionID = [],
 		data = [];
-		
+
 	var updateTitle,
 		updateData;
-		
+
 	function chart(selection) {
 		selection.each(function() {
-		
+
 		// filter data for default to show r/e categories
-		
+
 		var subChartID = 1;
-		
+
 		dataFiltered = data.filter(function(d) { return d.subchart == subChartID; });
-		
+
 		// formats
-		
+
 		var	formatNumber = d3.format(",f"),
 			formatPercent = d3.format(",.1%");
-					
+
 		// margins; adjust width and height to account for margins
-	
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1822,57 +1821,56 @@ function groupedBar() {
 				})
 				.attr("id", buttonsID)
 				.attr("class", "filters")
-				.html("Show data by: ");
-		
+
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("Race/Ethnicity")
-			.on("click", function() { 
-			
-				updateData(1); 
+			.text("Race & Ethnicity")
+			.on("click", function() {
+
+				updateData(1);
 				updateTitle(1);
-				
+
 			});
-	
+
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
 			.text("Gender")
-			.on("click", function() { 
-			
-				updateData(2); 
+			.on("click", function() {
+
+				updateData(2);
 				updateTitle(2);
-				
-			});
-			
-		d3.select("#" + buttonsID)
-			.append("button")
-			.attr("class", "filterButton")
-			.text("IDEA Status")
-			.on("click", function() { 
-			
-				updateData(3); 
-				updateTitle(3);
-				
+
 			});
 
 		d3.select("#" + buttonsID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("LEP Status")
-			.on("click", function() { 
-			
-				updateData(4); 
+			.text("With Disability")
+			.on("click", function() {
+
+				updateData(3);
+				updateTitle(3);
+
+			});
+
+		d3.select("#" + buttonsID)
+			.append("button")
+			.attr("class", "filterButton")
+			.text("English Language Learner")
+			.on("click", function() {
+
+				updateData(4);
 				updateTitle(4);
-				
+
 			});
 
 		d3.select("#" + buttonsID)
 			.append("p");
-			
+
 		// selections
-			
+
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
@@ -1889,8 +1887,8 @@ function groupedBar() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});				
-		
+					});
+
 		var svg = dom.append("svg")
 			.attr("class", "groupedBar")
 			.attr("viewBox", "0 0 " + width + " " + height)
@@ -1906,61 +1904,61 @@ function groupedBar() {
 			})
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-					
+
 		// tooltips using d3-tip
-		
+
 		var tipBar = d3.tip()
 			.attr("class", "d3-tip-bar")
-			.direction("e")	
+			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-	
+
 			return d.level + "</br>" + formatNumber(d.number) + " (" + formatPercent(d.pct) + ")";
-	
+
 		});
-		
+
 		svg.call(tipBar);
-		
+
 		// axis scales
-		
-		var xScale = d3.scale.linear().range([0, widthAdj - 100]),	
+
+		var xScale = d3.scale.linear().range([0, widthAdj - 100]),
 			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
 			yScale1 = d3.scale.ordinal();
-		
+
 		var color = d3.scale.ordinal().range(["rgb(239, 142, 173)", "rgb(213, 161, 102)", "rgb(122, 186, 127)", "rgb(0, 189, 213)", "#DDD"]);
-		
+
 		// domains
-		
+
 		data_nest = d3.nest()
 			.key(function(d) { return d.group; })
 			.entries(dataFiltered);
-					
+
 		var levels = ["Elementary","Middle","High","Other"];
-			
+
 		xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice();
-		yScale0.domain(data_nest.map(function(d) { return d.key; }));		
+		yScale0.domain(data_nest.map(function(d) { return d.key; }));
 		yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
-		
+
 		// axes
-		
+
 		function formatValueAxis(d) {
-			
+
 			var TickValue = formatNumber(d * 100);
-			
+
 			return TickValue;
-			
+
 		};
-		
+
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj),
 			yAxis = d3.svg.axis().scale(yScale0).orient("left");
-					
+
 		// draw x-axis below bars
-	
+
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.call(xAxis)
-	
+
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj - 100)
@@ -1973,10 +1971,10 @@ function groupedBar() {
 		// draw national bars
 
 		data_national = dataFiltered.filter(function(d) { return d.level == "Overall"; });
-		
+
 		var nationalBar = svg.selectAll(".national-bar")
 			.data(data_national);
-		
+
 		nationalBar.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
@@ -1992,22 +1990,22 @@ function groupedBar() {
 		// draw level bars
 
 		data_noavg = dataFiltered.filter(function(d) { return d.level != "Overall"; });
-		
+
 		data_nest_noavg = d3.nest()
 			.key(function(d) { return d.group; })
 			.entries(data_noavg);
-		
+
 		var group = svg.selectAll(".group")
 			.data(data_nest_noavg, function(d) { return d.key; });
 
 		group.enter()
 			.append("g")
 				.attr("class", "group")
-				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });	
-				
+				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
+
 		var levelBars = group.selectAll(".bar")
 			.data(function(d) { return d.values; });
-				
+
 		levelBars.enter()
 			.append("rect")
 				.attr("class", "bar")
@@ -2018,14 +2016,14 @@ function groupedBar() {
 				.style("fill", function(d) { return color(d.level); })
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide);
-			
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() { 
+			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-					
+
 					svg.selectAll(".national-bar")
 						.transition()
 							.duration(animateTime)
@@ -2037,11 +2035,11 @@ function groupedBar() {
 							.duration(animateTime)
 							.attr("width", function(d) { return xScale(d.pct); })
 							.attr("height", yScale1.rangeBand());
-							
+
 			}});
 
 		// draw y-axis above bars
-		
+
 		svg.append("g")
 			.attr("class", "y axis")
 			.style("opacity", 0)
@@ -2049,9 +2047,9 @@ function groupedBar() {
 			.transition()
 				.duration(animateTime)
 				.style("opacity", 1);
-		
+
 		// chart title (default to title1)
-		
+
 		svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
@@ -2060,38 +2058,38 @@ function groupedBar() {
 			.attr("text-anchor", "start")
 			.attr("fill-opacity", 0)
 			.text(title1)
-			.transition()	
+			.transition()
 				.duration(animateTime)
 				.attr("fill-opacity", 1);
-		
+
 		// legend
-		
+
 		var legend = svg.selectAll(".legend")
 			.data(levels.concat(["Overall"]))
 			.enter()
 			.append("g")
 				.attr("class", "legend")
 				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-				
+
 		legend.append("rect")
 			.attr("x", widthAdj - 95)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", color);
-			
+
 		legend.append("text")
 			.attr("x", widthAdj - 70)
 			.attr("y", 9)
 			.attr("dy", ".35em")
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
-		
+
 		// update functions
-		
+
 		function updateTitle(titleID) {
-			
+
 			svg.select(".title").remove();
-			
+
 			svg.append("text")
 				.attr("class", "title")
 				.attr("x", 0 - marginLeft)
@@ -2108,39 +2106,39 @@ function groupedBar() {
 				.transition()
 					.duration(animateTime)
 					.attr("fill-opacity", 1);
-					
+
 		};
-		
+
 		function updateData(subChartID) {
-			
+
 			// re-filter data
-			
+
 			dataFiltered = data.filter(function(d) { return d.subchart == subChartID; });
-		
+
 			var data_nest = d3.nest()
 				.key(function(d) { return d.group; })
 				.entries(dataFiltered);
-			
+
 			// update scales
-			
+
 			xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice();
 			yScale0.domain(data_nest.map(function(d) { return d.key; }));
 			yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
-		
+
 			// update national bars
 
 			data_national = dataFiltered.filter(function(d) { return d.level == "Overall"; });
-			
+
 			var updateNational = svg.selectAll(".national-bar")
 				.data(data_national);
-			
+
 			updateNational.transition()
 				.duration(animateTime)
 				.attr("x", 0)
 				.attr("width", function(d) { return xScale(d.pct); })
 				.attr("y", function(d) { return yScale0(d.group); })
 				.attr("height", yScale0.rangeBand());
-			
+
 			updateNational.enter()
 				.append("g")
 					.attr("transform", "translate(0,0)")
@@ -2155,7 +2153,7 @@ function groupedBar() {
 						.transition()
 							.duration(animateTime)
 							.attr("width", function(d) { return xScale(d.pct); })
-	
+
 			updateNational.exit()
 				.transition()
 					.duration(animateTime)
@@ -2164,26 +2162,26 @@ function groupedBar() {
 					.attr("width", 0)
 					.attr("height", 0)
 					.remove();
-	
+
 			// update level bars
 
 			data_noavg = dataFiltered.filter(function(d) { return d.level != "Overall"; });
-			
+
 			data_nest_noavg = d3.nest()
 				.key(function(d) { return d.group; })
 				.entries(data_noavg);
-			
+
 			var updateGroups = svg.selectAll(".group")
 				.data(data_nest_noavg, function(d) { return d.key; });
 
 			updateGroups.transition()
 				.duration(animateTime)
-				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });					
+				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
 
 			updateGroups.enter()
 				.append("g")
 					.attr("class", "group")
-					.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });	
+					.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
 
 			updateGroups.exit()
 				.transition()
@@ -2197,11 +2195,11 @@ function groupedBar() {
 					.style("opacity", 0)
 					.attr("x", 0)
 					.attr("width", 0)
-					.attr("height", 0);				
-					
+					.attr("height", 0);
+
 			var updateBars = updateGroups.selectAll(".bar")
 				.data(function(d) { return d.values; });
-					
+
 			updateBars.transition()
 				.duration(animateTime / 2)
 				.attr("x", 0)
@@ -2227,16 +2225,16 @@ function groupedBar() {
 
 			updateBars.exit()
 				.transition()
-					.remove();					
-					
+					.remove();
+
 			// update y axis
-			
+
 			svg.selectAll(".y.axis")
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 0)
 					.remove();
-				
+
 			svg.append("g")
 				.attr("class", "y axis")
 				.style("opacity", 0)
@@ -2244,152 +2242,152 @@ function groupedBar() {
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 1);
-						
+
 			};
-			
+
 		});
-		
+
 	};
-	
+
     chart.width = function(value) {
-	
+
         if (!arguments.length) return width;
         width = value;
         return chart;
-		
+
     };
 
     chart.height = function(value) {
-	
+
         if (!arguments.length) return height;
         height = value;
         return chart;
-		
+
     };
 
 	chart.marginTop = function(value) {
-		
+
 		if (!arguments.length) return marginTop;
 		marginTop = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginLeft = function(value) {
-		
+
 		if (!arguments.length) return marginLeft;
 		marginLeft = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.marginBottom = function(value) {
-		
+
 		if (!arguments.length) return marginBottom;
 		marginBottom = value;
 		return chart;
-		
+
 	};
 
 	chart.animateTime = function(value) {
-		
+
 		if (!arguments.length) return animateTime;
 		animateTime = value;
 		return chart;
-		
+
 	};
 
 	chart.barWidth = function(value) {
-		
+
 		if (!arguments.length) return barWidth;
 		barWidth = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title1 = function(value) {
-		
+
 		if (!arguments.length) return title1;
 		title1 = value;
 		return chart;
-		
+
 	};
 
 	chart.title2 = function(value) {
-		
+
 		if (!arguments.length) return title2;
 		title2 = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title3 = function(value) {
-		
+
 		if (!arguments.length) return title3;
 		title3 = value;
 		return chart;
-		
+
 	};
-	
+
 	chart.title4 = function(value) {
-		
+
 		if (!arguments.length) return title4;
 		title4 = value;
 		return chart;
-		
+
 	};
 
 	chart.buttonsID = function(value) {
-		
+
 		if (!arguments.length) return buttonsID;
 		buttonsID = value;
 		return chart;
-		
-	};	
+
+	};
 
 	chart.containerID = function(value) {
-		
+
 		if (!arguments.length) return containerID;
 		containerID = value;
 		return chart;
-		
-	};	
+
+	};
 
 	chart.subcontainerID = function(value) {
-		
+
 		if (!arguments.length) return subcontainerID;
 		subcontainerID = value;
 		return chart;
-		
-	};	
-		
+
+	};
+
 	chart.chartID = function(value) {
-		
+
 		if (!arguments.length) return chartID;
 		chartID = value;
 		return chart;
-		
+
 	};
 
 	chart.sectionID = function(value) {
-		
+
 		if (!arguments.length) return sectionID;
 		sectionID = value;
 		return chart;
-		
+
 	};
-	
+
     chart.data = function(value) {
-	
+
         if (!arguments.length) return data;
         data = value;
         if (typeof updateData === 'function') updateData();
         return chart;
-		
+
     };
-	
+
 	return chart;
-	
+
 };
 
 // this is for wrapping long axis labels
