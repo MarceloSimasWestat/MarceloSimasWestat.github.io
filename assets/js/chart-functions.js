@@ -1925,7 +1925,7 @@ function groupedBar() {
 			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
 			yScale1 = d3.scale.ordinal();
 
-		var color = d3.scale.ordinal().range(["#9BB0D4", "#4E75B7", "#2C4A7E", "42A667", "#E1E3E6"]);
+		var color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
 
 		// domains
 
