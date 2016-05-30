@@ -4,6 +4,18 @@
 	License: pixelarity.com/license
 */
 
+// State dropdown
+
+$(document).ready(function(){
+   $("#stateDropdown").change(function(){
+     $("img[name=image-swap]").attr("src",$(this).val());
+
+   });
+
+});
+
+// Preloader
+
 $(document).ready(function() {
 
 	setTimeout(function(){
@@ -16,6 +28,8 @@ $(document).ready(function() {
 
 
 });
+
+//
 
 (function($) {
 
