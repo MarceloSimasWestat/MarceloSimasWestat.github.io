@@ -30,7 +30,7 @@ button.filterButton {
 	cursor: pointer;
 	display: inline-block;
 	font-family: Karla;
-	font-size: 0.4em;
+	font-size: 0.5em;
 	font-weight: bold;
 	height: calc(4.75em + 2px);
 	letter-spacing: 0.25em;
@@ -138,6 +138,8 @@ button.filterButton {
 .bar-chart .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
 	color: #1A1C20;
+	font-weight: bold;
+	text-align: right;
 }
 
 .bar {
@@ -146,6 +148,10 @@ button.filterButton {
 
 .bar:hover {
 	fill-opacity:0.65;
+}
+
+#animation1 {
+
 }
 
 /* Column chart styling */
@@ -184,6 +190,7 @@ button.filterButton {
 .col-chart .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
 	color: #1C1E21;
+	font-weight: bold;
 }
 
 .column {
@@ -230,6 +237,7 @@ button.filterButton {
 .dotPlot .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
 	color: #1C1E21;
+	font-weight: bold;
 }
 
 .dot {
@@ -285,6 +293,7 @@ button.filterButton {
 .scatterPlot .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
 	color: #1C1E21;
+	font-weight: bold;
 }
 
 .mark {
@@ -302,7 +311,7 @@ button.filterButton {
 
 .groupedBar .x.axis {
 	font: 400 12px Inconsolata;
-	color: #46484B;
+	fill: rgba(26, 28, 32, 0.6);
 }
 
 .groupedBar .x.axis path {
@@ -310,7 +319,7 @@ button.filterButton {
 }
 
 .groupedBar .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
+	stroke: rgba(26, 28, 32, 0.25);
 	stroke-dasharray: 1,1;
 }
 
@@ -328,10 +337,11 @@ button.filterButton {
 .groupedBar .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
 	color: #1C1E21;
+	font-weight: bold;
 }
 
 .groupedBar .national-bar {
-	fill: #DDD;
+	fill: #E1E3E6;
 	fill-opacity: 0.85;
 }
 
@@ -354,7 +364,9 @@ button.filterButton {
 	padding: 12px;
 	background: #1A1C20;
 	color: #fff;
-	border-radius: 0.15em;
+	border-radius: 0.25em;
+	width: 120px;
+	padding: 10px;
 }
 
 /*
@@ -383,6 +395,7 @@ div.tooltip .moe { float: right; color: #aaa; width: 30px; text-align: right; }
 */
 /* Creates a small triangle extender for the tooltip */
 
+/*
 .d3-tip-col:after {
 	box-sizing: border-box;
 	display: inline;
@@ -411,6 +424,8 @@ div.tooltip .moe { float: right; color: #aaa; width: 30px; text-align: right; }
 }
 
 /* Style northward tooltips differently */
+
+/*
 
 .d3-tip-col.n:after {
 	margin: -1px 0 0 0;

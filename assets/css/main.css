@@ -524,7 +524,7 @@
 		}
 
         #sidebar .socialmedia {
-            display: block; 
+            display: block;
         }
 
         footer .socialmedia {
@@ -535,7 +535,7 @@
             display: none;
         }
 
-      
+
 	}
 
  	/* Copied over from template */
@@ -3312,7 +3312,7 @@
 				}
 
 			}
-			
+
 			/* Copied over from template */
 			@media screen and (max-width: 1280px) {
 
@@ -3371,6 +3371,7 @@
 		.wrapper.chart {
   			background-color: #ffffff;
 			color: rgba(23, 26, 29, 0.80);
+			font-size: 15px;
   		}
 
 		.wrapper.fullscreen {
@@ -3605,7 +3606,7 @@
 	#sidebar + #wrapper + #footer {
 		margin-left: 18em;
 	}
-		
+
 		/* Copied over from template */
 		@media screen and (max-width: 1280px) {
 
@@ -4001,26 +4002,6 @@
 		background-position: top right;
 	}
 
-		#intro p {
-			font-size: 1.25em;
-			line-height: 1.05em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#intro p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#intro p {
-					font-size: 1em;
-				}
-
-			}
 
 /* UNIQUE FOR DEPT ED */
 
@@ -4028,7 +4009,7 @@
 
 	#image1 {
 		background-attachment: fixed;
-		background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/girlwbackpack.jpg") no-repeat center center fixed;
+		background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus.jpg") no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -4056,6 +4037,59 @@
 				}
 
 			}
+
+/* Chair + Counter */
+
+.chair {
+		width: 90%;
+		height: 90%;
+		margin:0px 50px 0px 50px;
+}
+
+
+#counter {
+
+}
+
+
+#counter h2 {
+	margin-top: 250px;
+	font-family: KARLA;
+	font-weight: normal;
+	font-size: 3.75em;
+	margin-bottom: 0;
+}
+
+	@media screen and (max-width: 980px) {
+
+		.chair {
+				width: 65%;
+				height: 65%;
+				margin:auto;
+		}
+
+		#counter h2 {
+			margin-top: 0px;
+		}
+
+	}
+
+			@media screen and (max-width: 736px) {
+
+				.chair {
+						width: 65%;
+						height: 65%;
+						margin:auto;
+				}
+
+				#counter h2 {
+					margin-top: 0px;
+				}
+
+				}
+
+		
+
 
 /* Preloader */
 
