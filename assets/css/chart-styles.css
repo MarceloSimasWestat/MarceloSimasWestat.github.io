@@ -24,9 +24,9 @@ button.filterButton {
 	transition: border-color 0.2s ease;
 	background-color: transparent;
 	border: solid 1px !important;
-	border-color: rgba(0, 0, 0, 0.15) !important;
+	border-color: rgba(26, 28, 32, 0.15) !important;
 	border-radius: 3em;
-	color: #000000 !important;
+	color: #1A1C20 !important;
 	cursor: pointer;
 	display: inline-block;
 	font-family: Karla;
@@ -44,6 +44,11 @@ button.filterButton {
 	white-space: nowrap;
 	margin-left: 4px;
 	margin-right: 4px;
+}
+
+button:hover,
+.filterButton:hover {
+	border-color: #4E75B7 !important;
 }
 
 /* Icon array styling */
@@ -360,12 +365,11 @@ button.filterButton {
 .d3-tip-col,
 .d3-tip-dot {
 	font: 12px Inconsolata;
-	font-style: uppercase;
 	padding: 12px;
-	background: #1A1C20;
+	background: rgba(26, 28, 32, 0.85);
 	color: #fff;
 	border-radius: 0.25em;
-	width: 120px;
+	width: auto;
 	padding: 10px;
 }
 

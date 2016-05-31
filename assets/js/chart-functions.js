@@ -449,7 +449,8 @@ function barChart() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -490,7 +491,7 @@ function barChart() {
 			.attr("x", widthAdj)
 			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "3em")
+			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.text("% CHRONICALLY ABSENT IN 2013-14")
 
@@ -729,7 +730,8 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -768,7 +770,7 @@ function colChart() {
 		svg.append("text")
 			.attr("class", "y axis")
 			.attr("x", -15)
-			.attr("y", "-2em")
+			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
@@ -1014,7 +1016,8 @@ function dotPlot() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -1417,7 +1420,7 @@ function dotPlotFilter() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
 
 		});
 
@@ -1912,8 +1915,8 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
+		return d.level + "</br>" + formatPercent(d.pct) + " (" + formatNumber(d.number) + " students)";
 
-			return d.level + "</br>" + formatNumber(d.number) + " (" + formatPercent(d.pct) + ")";
 
 		});
 
@@ -1964,7 +1967,7 @@ function groupedBar() {
 			.attr("x", widthAdj - 100)
 			.attr("dx", ".5em")
 			.attr("y", heightAdj)
-			.attr("dy", "3em")
+			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
