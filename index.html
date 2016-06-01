@@ -1,375 +1,394 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <!--
-	Hyperspace by Pixelarity
-	pixelarity.com @pixelarity
-	License: pixelarity.com/license
+    Hyperspace by Pixelarity
+    pixelarity.com @pixelarity
+    License: pixelarity.com/license
 -->
 <html>
-	<head>
-		<title>Untitled</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<head>
+    <title>Chronic Absenteeism in America</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
-		<link rel="stylesheet" href="widgets.css" />
-		<link rel="stylesheet" href="assets/css/chart-styles.css" />
+    <link rel="stylesheet" href="widgets.css" />
+    <link rel="stylesheet" href="assets/css/chart-styles.css" />
 
-		<!-- Scripts -->
+    <!-- Scripts -->
 
-			<script src="widgets.js"></script>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/d3.v3.min.js"></script>
-			<script src="assets/js/d3-tip.js"></script>
-			<script src="assets/js/chart-functions.js"></script>
-			<script src="assets/js/graph-scroll.js"></script>
+    <script src="widgets.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/d3.v3.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script src="assets/js/chart-functions.js"></script>
+    <script src="assets/js/graph-scroll.js"></script>
 
-	</head>
-	<body>
+</head>
+<body>
 
-	<!-- Preloader !-->
+    <!-- Preloader !-->
 
- <div id="loader-wrapper">
-		<div id="loader"></div>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
 
-		<div class="loader-section"></div>
+        <div class="loader-section"></div>
 
-	</div>
+    </div>
 
-<div class="preloading"</div>
+    <div class="preloading"></div>
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<center><img src="images/edsealbw.svg" alt="Department of Learning" style="width: 75%; height: 75%;"></center>
-					<p></P>
-					<nav>
-						<ul>
-							<li><a href="#intro">Introduction</a></li>
-							<li><a href="#one">Who's Missing</a></li>
-							<li><a href="#two">A Pipeline Problem</a></li>
-							<li><a href="#three">Absenteeism Mapped</a></li>
-						</ul>
-					</nav>
-					<ul class="icons">
-						<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-			</section>
+    <!-- Sidebar -->
+    <section id="sidebar">
+        <div class="inner">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+            <div class="nav-image">
+                <img src="images/edsealbw.svg" alt="Department of Learning" />
+            </div>
 
-				<!-- Intro 1 -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>CHRONIC ABSENTEEISM IN AMERICA</h1>
-							<p style="font-size:15pt">An interactive data story by the <a href="">U.S. Department of Education</a>.</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">Continue</a></li>
-							</ul>
-						</div>
-					</section>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#one">Who's Missing</a></li>
+                    <li><a href="#two">A Pipeline Problem</a></li>
+                    <li><a href="#three">Absenteeism Mapped</a></li>
+                </ul>
+            </nav>
+            <ul class="icons socialmedia">
+                <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+        </div>
+    </section>
 
-				<!-- One -->
-					<section id="one" class="wrapper style3">
-						<div class="inner">
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-							<h2 class="line">A Portrait of the Chronically Absent</h2>
-							<p>Chronic absenteeism—or missing at least 10 percent of school days in a school year for any reason,
-								 excused or unexcused—is a primary cause of low academic achievement and a powerful predictor of
-								 those students who may eventually drop out of school. An estimated five to seven and a
-								 half million students miss 18 or more days of school each year, or nearly an entire month
-								 or more of school, which puts them at significant risk of falling behind academically and
-								 failing to graduate from high school. Because they miss so much school, millions of young
-								 people miss out on opportunities in post-secondary education and good careers.</p>
-						</div>
-					</section>
+        <!-- Intro 1 -->
+        <section id="intro" class="wrapper style1 fullscreen fade-up">
+            <div class="inner">
+                <h1>CHRONIC ABSENTEEISM IN AMERICA</h1>
+                <p style="font-size:15pt">An interactive data story by the <a href="">U.S. Department of Education</a>.</p>
+                <ul class="actions">
+                    <li><a href="#one" class="button scrolly">Continue</a></li>
+                </ul>
+            </div>
+        </section>
 
-					<section id="image1" class="wrapper style1 fullscreen">
-						<div class="inner">
-							<div class="row">
-								<div class="6u 12u$(medium)">
-									<img src="images/chairMask.svg" class="chair">
-								</div>
-								<div id="counter" class="6u$ 12u$(medium)">
-									<h2>2,000,000</h2>
-										<p>students missed 15 or more days of school in 2013-14.</p>
-										<p>That's 78% of all students—<b>more than 1 in 10.</b></p>
-								</div>
-							</div>
-						</div>
-					</section>
+        <!-- One -->
+        <section id="one" class="wrapper style3">
+            <div class="inner">
 
+                <h2 class="line">A Portrait of the Chronically Absent</h2>
+                <p>
+                    Chronic absenteeism—or missing at least 10 percent of school days in a school year for any reason,
+                    excused or unexcused—is a primary cause of low academic achievement and a powerful predictor of
+                    those students who may eventually drop out of school. An estimated five to seven and a
+                    half million students miss 18 or more days of school each year, or nearly an entire month
+                    or more of school, which puts them at significant risk of falling behind academically and
+                    failing to graduate from high school. Because they miss so much school, millions of young
+                    people miss out on opportunities in post-secondary education and good careers.
+                </p>
+            </div>
+        </section>
 
-					<section id="one_chart" class="wrapper chart">
-						<div id = "one_sections" class="inner">
-							<h2 class="chart">Chart Area</h2>
-							<div></div>
-							<div id = "ch1_2">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-							<div id = "ch1_3">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-							<div id = "ch1_4">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-							<div id = "ch1_5">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-							<div id = "ch1_8">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-						</div>
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper style1">
-						<div class="inner">
-							<h2 class="line">Chronic Absenteeism in the Pipeline</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						</div>
-					</section>
-
-					<section id="two_chart" class="wrapper chart">
-						<div id = "two_sections" class="inner">
-							<h2 class="chart">Chart Area</h2>
-							<div></div>
-							<div id = "ch2_1">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-							<div id = "ch2_2">
-								<p></p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								<p></p>
-							</div>
-						</div>
-					</section>
-
-					<!-- Three -->
-						<section id="three" class="wrapper style3">
-							<div class="inner">
-
-								<h2 class="line">The Geography of Chronic Absenteeism</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-							</div>
-						</section>
-
-						<section id="three" class="wrapper chart">
-							<div class="inner">
-								<h2 class="chart">Chart Area</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-	</section>
-
-						<section class="wrapper style3">
-							<div class="inner">
-
-								<div class="row uniform">
-									<div class="12u$">
-										<div class="select-wrapper">
-											<select id="stateDropdown">
-												<option value="/images/maps/initial.jpg">- Detailed State View -</option>
-												<option value="/images/maps/alabama.jpg">Alabama</option>
-												<option value="">Alaska</option>
-												<option value="">Arizona</option>
-												<option value="">Arkansas</option>
-												<option value="">California</option>
-												<option value="">Colorado</option>
-												<option value="">Connecticut</option>
-												<option value="">Delaware</option>
-												<option value="">Florida</option>
-												<option value="">Georgia</option>
-												<option value="">Hawaii</option>
-												<option value="">Idaho</option>
-												<option value="">Illinois</option>
-												<option value="">Indiana</option>
-												<option value="">Iowa</option>
-												<option value="">Kansas</option>
-												<option value="">Kentucky</option>
-												<option value="">Louisiana</option>
-												<option value="">Maine</option>
-												<option value="">Maryland</option>
-												<option value="">Massachusetts</option>
-												<option value="">Michigan</option>
-												<option value="">Minnesota</option>
-												<option value="">Mississippi</option>
-												<option value="">Missouri</option>
-												<option value="">Montana</option>
-												<option value="">Nebraska</option>
-												<option value="">Nevada</option>
-												<option value="">New Hampshire</option>
-												<option value="">New Jersey</option>
-												<option value="">New Mexico</option>
-												<option value="">New York</option>
-												<option value="">North Carolina</option>
-												<option value="">North Dakota</option>
-												<option value="">Ohio</option>
-												<option value="">Oklahoma</option>
-												<option value="">Oregon</option>
-												<option value="">Pennsylvania</option>
-												<option value="">Rhode Island</option>
-												<option value="">South Carolina</option>
-												<option value="">South Dakota</option>
-												<option value="">Tennessee</option>
-												<option value="">Texas</option>
-												<option value="">Utah</option>
-												<option value="">Vermont</option>
-												<option value="">Virginia</option>
-												<option value="">Washington</option>
-												<option value="">West Virginia</option>
-												<option value="">Wisconsin</option>
-												<option value="">Wyoming</option>
-											</select>
-											<br></br>
-											<center><img class="circleImage" src="/images/maps/initial.jpg" name="image-swap"></center>
-											<center><p class="mapboxAttribution">© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a></p></center>
-
-										</div>
-
-								</div>
-						</div>
-						</section>
-
-			</div>
-
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li>
-					</ul>
-				</div>
-			</footer>
-</div>
-
-</div>
-
-<!-- D3 charts -->
-
-<script>
-
-// chapter 1 icon array
-
-d3.tsv("assets/data/data_iconarray.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.icon_count = +d.icon_count; // This is the subgroup
-			d.number = +d.number; // This is the percentage
-		});
-
-		var chart1_1 = iconArray().data(data).containerID("image1").subcontainerID("image1_sections").sectionID("ch1_1").chartID("chart1_1");
-
-		d3.select("#ch1_1").call(chart1_1);
-
-	};
-});
-
-// chapter 1 charts
-
-d3.tsv("assets/data/data.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.var1 = d.group; // This is the subgroup
-			d.var2 = +d.number; // This is the raw number
-			d.var3 = +d.pct; // This is the percentage
-			d.subchart = +d.subchart;
-			d.var4 = d.level;
-		});
-
-		data1_2 = data.filter(function(d) { return d.chart == "1-2"; })
-		data1_3 = data.filter(function(d) { return d.chart == "1-3"; });
-		data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
-		data1_5 = data.filter(function(d) { return d.chart == "1-5"; });
-		data1_8 = data.filter(function(d) { return d.chart == "1-8"; });
-
-		/* var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14"); */ // Chapter 1-1
-		var chart1_2 = barChart().marginLeft(235).data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2"); // Chapter 1 - 2
-		var chart1_3 = colChart().data(data1_3).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3"); // Chapter 1 - 3
-		var chart1_4 = barChart().marginLeft(215).data(data1_4).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4"); // Chapter 1 - 4
-		var chart1_5 = colChart().data(data1_5).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5"); // Chapter 1 - 5
-		var chart1_8 = dotPlotFilter().data(data1_8).clipName("dot1_8").buttonsID("dot1_8b").containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_8").chartID("chart1_8"); // Chapter 1-8
-
-		d3.select("#ch1_2").call(chart1_2);
-		d3.select("#ch1_3").call(chart1_3);
-		d3.select("#ch1_4").call(chart1_4);
-		d3.select("#ch1_5").call(chart1_5);
-		d3.select("#ch1_8").call(chart1_8);
-
-	};
-});
-
-// chapter 2-1
-
-d3.tsv("assets/data/data.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.var1 = d.level;
-			d.var2 = +d.number;
-			d.var3 = +d.pct;
-		});
-
-		data = data.filter(function(d) { return d.chart == "2-1"; });
-
-		var chart2_1 = dotPlot().data(data).clipName("dot2_1").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
-
-		d3.select("#ch2_1").call(chart2_1);
-
-	};
-});
-
-// chapter 2-2
-
-d3.tsv("assets/data/data.tsv", function(error, data) {
-	if (error) { console.log(error); }
-	else {
-		data.forEach(function(d) {
-			d.number = +d.number;
-			d.pct = +d.pct;
-		});
-
-		data0 = data.filter(function(d) { return d.chart == "2-2"; });
-
-		var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750).buttonsID("buttons2_2").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
-			.title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-			.title2("Sed maximus tellus fringilla commodo varius.")
-			.title3("Nam eget blandit turpis.")
-			.title4("Integer sed diam et justo fermentum scelerisque in sed tortor.");
-
-		d3.select("#ch2_2").call(chart2_2);
-
-	};
-});
-</script>
+        <section id="image1" class="wrapper style1 fullscreen">
+            <div class="inner">
+                <div class="row">
+                    <div class="6u 12u$(medium)">
+                        <img src="images/chairMask.svg" class="chair">
+                    </div>
+                    <div id="counter" class="6u$ 12u$(medium)">
+                        <h2>2,000,000</h2>
+                        <p>students missed 15 or more days of school in 2013-14.</p>
+                        <p>That's 78% of all students—<b>more than 1 in 10.</b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-	</body>
+        <section id="one_chart" class="wrapper chart">
+            <div id="one_sections" class="inner">
+                <h2 class="chart">Chart Area</h2>
+                <div></div>
+                <div id="ch1_2">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+                <div id="ch1_3">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+                <div id="ch1_4">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+                <div id="ch1_5">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+                <div id="ch1_8">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two -->
+        <section id="two" class="wrapper style1">
+            <div class="inner">
+                <h2 class="line">Chronic Absenteeism in the Pipeline</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </section>
+
+        <section id="two_chart" class="wrapper chart">
+            <div id="two_sections" class="inner">
+                <h2 class="chart">Chart Area</h2>
+                <div></div>
+                <div id="ch2_1">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+                <div id="ch2_2">
+                    <p></p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Three -->
+        <section id="three" class="wrapper style3">
+            <div class="inner">
+
+                <h2 class="line">The Geography of Chronic Absenteeism</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            </div>
+        </section>
+
+        <section id="three" class="wrapper chart">
+            <div class="inner">
+                <h2 class="chart">Chart Area</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </section>
+
+        <section class="wrapper style3">
+            <div class="inner">
+
+                <div class="row uniform">
+                    <div class="12u$">
+                        <div class="select-wrapper">
+                            <select id="stateDropdown">
+                                <option value="/images/maps/initial.jpg">- Detailed State View -</option>
+                                <option value="/images/maps/alabama.jpg">Alabama</option>
+                                <option value="">Alaska</option>
+                                <option value="">Arizona</option>
+                                <option value="">Arkansas</option>
+                                <option value="">California</option>
+                                <option value="">Colorado</option>
+                                <option value="">Connecticut</option>
+                                <option value="">Delaware</option>
+                                <option value="">Florida</option>
+                                <option value="">Georgia</option>
+                                <option value="">Hawaii</option>
+                                <option value="">Idaho</option>
+                                <option value="">Illinois</option>
+                                <option value="">Indiana</option>
+                                <option value="">Iowa</option>
+                                <option value="">Kansas</option>
+                                <option value="">Kentucky</option>
+                                <option value="">Louisiana</option>
+                                <option value="">Maine</option>
+                                <option value="">Maryland</option>
+                                <option value="">Massachusetts</option>
+                                <option value="">Michigan</option>
+                                <option value="">Minnesota</option>
+                                <option value="">Mississippi</option>
+                                <option value="">Missouri</option>
+                                <option value="">Montana</option>
+                                <option value="">Nebraska</option>
+                                <option value="">Nevada</option>
+                                <option value="">New Hampshire</option>
+                                <option value="">New Jersey</option>
+                                <option value="">New Mexico</option>
+                                <option value="">New York</option>
+                                <option value="">North Carolina</option>
+                                <option value="">North Dakota</option>
+                                <option value="">Ohio</option>
+                                <option value="">Oklahoma</option>
+                                <option value="">Oregon</option>
+                                <option value="">Pennsylvania</option>
+                                <option value="">Rhode Island</option>
+                                <option value="">South Carolina</option>
+                                <option value="">South Dakota</option>
+                                <option value="">Tennessee</option>
+                                <option value="">Texas</option>
+                                <option value="">Utah</option>
+                                <option value="">Vermont</option>
+                                <option value="">Virginia</option>
+                                <option value="">Washington</option>
+                                <option value="">West Virginia</option>
+                                <option value="">Wisconsin</option>
+                                <option value="">Wyoming</option>
+                            </select>
+                            <br />
+                            <center><img class="circleImage" src="/images/maps/initial.jpg" name="image-swap"></center>
+                            <center><p class="mapboxAttribution">© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a></p></center>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>&copy; Untitled. All rights reserved.</li>
+            </ul>
+        </div>
+
+        <!-- Logo and Social Media links will only appear in footer on narrower screens where the sidebar is hidden -->
+        <div class="inner footer-image">
+            <img src="images/doelogo_sm.png" alt="Department of Learning" />
+        </div>
+
+        <div class="inner socialmedia">
+            <ul class="icons">
+                <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+        </div>
+
+    </footer>
+
+
+    <!-- D3 charts -->
+
+    <script>
+
+        // chapter 1 icon array
+
+        d3.tsv("assets/data/data_iconarray.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.icon_count = +d.icon_count; // This is the subgroup
+                    d.number = +d.number; // This is the percentage
+                });
+
+                var chart1_1 = iconArray().data(data).containerID("image1").subcontainerID("image1_sections").sectionID("ch1_1").chartID("chart1_1");
+
+                d3.select("#ch1_1").call(chart1_1);
+
+            };
+        });
+
+        // chapter 1 charts
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.var1 = d.group; // This is the subgroup
+                    d.var2 = +d.number; // This is the raw number
+                    d.var3 = +d.pct; // This is the percentage
+                    d.subchart = +d.subchart;
+                    d.var4 = d.level;
+                });
+
+                data1_2 = data.filter(function (d) { return d.chart == "1-2"; })
+                data1_3 = data.filter(function (d) { return d.chart == "1-3"; });
+                data1_4 = data.filter(function (d) { return d.chart == "1-4"; });
+                data1_5 = data.filter(function (d) { return d.chart == "1-5"; });
+                data1_8 = data.filter(function (d) { return d.chart == "1-8"; });
+
+                /* var chart1_1 = donutChart().data(data1_1).title("students were chronically absent in 2013-14"); */ // Chapter 1-1
+                var chart1_2 = barChart().marginLeft(235).data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2"); // Chapter 1 - 2
+                var chart1_3 = colChart().data(data1_3).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3"); // Chapter 1 - 3
+                var chart1_4 = barChart().marginLeft(215).data(data1_4).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4"); // Chapter 1 - 4
+                var chart1_5 = colChart().data(data1_5).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5"); // Chapter 1 - 5
+                var chart1_8 = dotPlotFilter().data(data1_8).clipName("dot1_8").buttonsID("dot1_8b").containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_8").chartID("chart1_8"); // Chapter 1-8
+
+                d3.select("#ch1_2").call(chart1_2);
+                d3.select("#ch1_3").call(chart1_3);
+                d3.select("#ch1_4").call(chart1_4);
+                d3.select("#ch1_5").call(chart1_5);
+                d3.select("#ch1_8").call(chart1_8);
+
+            };
+        });
+
+        // chapter 2-1
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.var1 = d.level;
+                    d.var2 = +d.number;
+                    d.var3 = +d.pct;
+                });
+
+                data = data.filter(function (d) { return d.chart == "2-1"; });
+
+                var chart2_1 = dotPlot().data(data).clipName("dot2_1").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
+
+                d3.select("#ch2_1").call(chart2_1);
+
+            };
+        });
+
+        // chapter 2-2
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.number = +d.number;
+                    d.pct = +d.pct;
+                });
+
+                data0 = data.filter(function (d) { return d.chart == "2-2"; });
+
+                var chart2_2 = groupedBar().data(data0).marginLeft(235).animateTime(750).buttonsID("buttons2_2").containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
+                    .title1("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+                    .title2("Sed maximus tellus fringilla commodo varius.")
+                    .title3("Nam eget blandit turpis.")
+                    .title4("Integer sed diam et justo fermentum scelerisque in sed tortor.");
+
+                d3.select("#ch2_2").call(chart2_2);
+
+            };
+        });
+    </script>
+
+
+</body>
 </html>
