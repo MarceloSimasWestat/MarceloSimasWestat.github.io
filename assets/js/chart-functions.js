@@ -449,7 +449,8 @@ function barChart() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -490,7 +491,7 @@ function barChart() {
 			.attr("x", widthAdj)
 			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "4em")
+			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.text("% CHRONICALLY ABSENT IN 2013-14")
 
@@ -729,7 +730,8 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -768,9 +770,9 @@ function colChart() {
 		svg.append("text")
 			.attr("class", "y axis")
 			.attr("x", -15)
-			.attr("y", "-1em")
+			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)");
+			.text("% CHRONICALLY ABSENT IN 2013-14");
 
 		// draw columns
 
@@ -1014,7 +1016,8 @@ function dotPlot() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
+
 
 		});
 
@@ -1057,7 +1060,7 @@ function dotPlot() {
 			.attr("y", heightAdj)
 			.attr("dy", "2em")
 			.attr("text-anchor", "end")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)");
+			.text("Test 1");
 
 		// draw dots and lines
 
@@ -1417,7 +1420,7 @@ function dotPlotFilter() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return formatNumber(d.var2) + " (" + formatPercent(d.var3) + ")";
+			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
 
 		});
 
@@ -1460,7 +1463,7 @@ function dotPlotFilter() {
 			.attr("y", heightAdj)
 			.attr("dy", "2em")
 			.attr("text-anchor", "end")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)");
+			.text("Test 2");
 
 		// draw dots and lines
 
@@ -1912,8 +1915,8 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
+		return d.level + "</br>" + formatPercent(d.pct) + " (" + formatNumber(d.number) + " students)";
 
-			return d.level + "</br>" + formatNumber(d.number) + " (" + formatPercent(d.pct) + ")";
 
 		});
 
@@ -1925,7 +1928,7 @@ function groupedBar() {
 			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
 			yScale1 = d3.scale.ordinal();
 
-		var color = d3.scale.ordinal().range(["rgb(239, 142, 173)", "rgb(213, 161, 102)", "rgb(122, 186, 127)", "rgb(0, 189, 213)", "#DDD"]);
+		var color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
 
 		// domains
 
@@ -1962,11 +1965,11 @@ function groupedBar() {
 		svg.append("text")
 			.attr("class", "x axis")
 			.attr("x", widthAdj - 100)
-			.attr("dx", "0.5em")
+			.attr("dx", ".5em")
 			.attr("y", heightAdj)
-			.attr("dy", "2em")
+			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
-			.text("(% CHRONICALLY ABSENT IN 2013-14)");
+			.text("% CHRONICALLY ABSENT IN 2013-14");
 
 		// draw national bars
 
@@ -2071,14 +2074,15 @@ function groupedBar() {
 				.attr("class", "legend")
 				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-		legend.append("rect")
-			.attr("x", widthAdj - 95)
-			.attr("width", 18)
-			.attr("height", 18)
-			.style("fill", color);
+		legend.append("circle")
+		.attr("cx", widthAdj - 77)
+    .attr("cy", 9)
+    .attr("r", 6.5)
+		.style("fill", color);
+
 
 		legend.append("text")
-			.attr("x", widthAdj - 70)
+			.attr("x", widthAdj - 65)
 			.attr("y", 9)
 			.attr("dy", ".35em")
 			.style("text-anchor", "start")

@@ -25,7 +25,7 @@
 
 .countText {
 	font: normal 16px Muli;
-	fill: white;	
+	fill: white;
 }
 
 /* Icon array styling */
@@ -43,7 +43,7 @@
 
 .equivText {
 	font: normal 16px Muli;
-	fill: white;	
+	fill: white;
 }
 
 /* Donut chart styling */
@@ -201,7 +201,7 @@
 
 .dot:hover {
 	fill: rgba(242, 167, 115, 0.75);
-}	
+}
 
 .dotLine {
 	stroke: lightgray;
@@ -318,11 +318,11 @@
 .groupedBar .bar:hover {
 	fill-opacity: 0.75;
 }
-	
+
 /* Styling tooltips for individual graph types */
 
 .d3-tip-donut,
-.d3-tip-bar, 
+.d3-tip-bar,
 .d3-tip-col,
 .d3-tip-dot {
 	font: 12px sans-serif;
@@ -359,7 +359,7 @@
 	margin-top: -6px;
 	border: 6px solid transparent;
 	border-right-color: #2E3141;
-}		
+}
 
 /* Style northward tooltips differently */
 
