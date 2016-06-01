@@ -536,10 +536,10 @@ body {
     }
 }
 
-/* Copied over from template */
 /* Up to this size, the navbar (sidebar) goes along the top */
 /* Wider than this size, the sidbar appears on the left side */
-@media screen and (max-width: 1280px) {
+/* FYI, original value was 1280 */
+@media screen and (max-width: 1024px) {
 
     .row > * {
         padding: 0 0 0 1.5em;
@@ -1692,7 +1692,7 @@ p {
     }
 
     /* Coppied over from templte  */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         body, input, select, textarea {
             font-size: 12pt;
@@ -3286,7 +3286,7 @@ p {
     }
 
     /* Copied over from template */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         .wrapper > .inner {
             width: 100%;
@@ -3365,7 +3365,7 @@ p {
     }
 
     /* Copied over from template */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         .wrapper.fullscreen {
             min-height: calc(100vh - 2.5em);
@@ -3545,7 +3545,7 @@ p {
         margin-left: 18em;
     }
     /* Copied over from template */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         #sidebar + #wrapper {
             margin-left: 0;
@@ -3572,7 +3572,7 @@ p {
     }
 
     /* Copied over from template */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         #sidebar + #wrapper + #footer {
             margin-left: 0;
@@ -3893,8 +3893,7 @@ p {
         opacity: 0;
     }
 
-    /* Copied ove from template */
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1024px) {
 
         #sidebar {
             height: 3.5em;
