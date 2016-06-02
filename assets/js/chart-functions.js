@@ -2058,8 +2058,9 @@ function groupedBar() {
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 
 		var margin = {right: 20},
-			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
+			
+		var widthAdj = ((width - marginLeft - margin.right) <= 100) ? (width - marginLeft - margin.right + 100) : (width - marginLeft - margin.right);
 
 		// buttons for filtering
 
@@ -2504,7 +2505,8 @@ function groupedBar() {
 			// update width
 			
 			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-			widthAdj = width - marginLeft - margin.right;
+			
+			var widthAdj = ((width - marginLeft - margin.right) <= 100) ? (width - marginLeft - margin.right + 100) : (width - marginLeft - margin.right);
 
 			// resize chart
 						
