@@ -582,7 +582,7 @@ function barChart() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(chartID).className == "graph-scroll-fixed" || document.getElementById(chartID).className == "graph-scroll-below") {
+				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 					svg.selectAll("rect.bar")
 						.transition()
@@ -914,7 +914,7 @@ function colChart() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(chartID).className == "graph-scroll-fixed" || document.getElementById(chartID).className == "graph-scroll-below") {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 						svg.selectAll("rect.column")
 							.transition()
@@ -1191,7 +1191,7 @@ function dotPlot() {
 					.attr("clip-path", function() { return "url(#clip)" + clipName + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-					.attr("r", 5)
+					.attr("r", 0)
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide);
 
@@ -1216,6 +1216,7 @@ function dotPlot() {
 					svg.selectAll("circle.dot")
 						.transition()
 							.duration(animateTime)
+							.attr("r", 5)
 							.attr("cx", function(d) { return xScale(d.var3); })
 							.each("end", function(d) {
 								d3.select(this)
@@ -1290,7 +1291,7 @@ function dotPlot() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(chartID).className == "graph-scroll-fixed" || document.getElementById(chartID).className == "graph-scroll-below") {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 						svg.selectAll("line.dotLine")
 							.transition()
@@ -1664,7 +1665,7 @@ function dotPlotFilter() {
 					.attr("clip-path", function() { return "url(#clip)" + clipName + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-					.attr("r", 5)
+					.attr("r", 0)
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide);
 
@@ -1689,6 +1690,7 @@ function dotPlotFilter() {
 					svg.selectAll("circle.dot")
 						.transition()
 							.duration(animateTime)
+							.attr("r", 5)
 							.attr("cx", function(d) { return xScale(d.var3); })
 							.each("end", function(d) {
 								d3.select(this)
@@ -1825,7 +1827,7 @@ function dotPlotFilter() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(chartID).className == "graph-scroll-fixed" || document.getElementById(chartID).className == "graph-scroll-below") {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 						svg.selectAll("line.dotLine")
 							.transition()
@@ -2533,7 +2535,7 @@ function groupedBar() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(chartID).className == "graph-scroll-fixed" || document.getElementById(chartID).className == "graph-scroll-below") {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 						svg.selectAll(".national-bar")
 							.transition()
