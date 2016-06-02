@@ -377,7 +377,7 @@ function barChart() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 500,
 		marginTop = 40,
 		marginLeft = 100,
@@ -401,6 +401,8 @@ function barChart() {
 
 		// margins; adjust width and height to account for margins
 
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -410,7 +412,8 @@ function barChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-				.style({
+			.attr("width", width);
+				/*.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -423,11 +426,11 @@ function barChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "bar-chart")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -437,7 +440,9 @@ function barChart() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -542,17 +547,48 @@ function barChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 
+		// resize	
+			
+		window.addEventListener("resize", function() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+						
+			xScale.range([0, widthAdj]);
+			
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+			
+			dom.selectAll(".bar-chart")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+			
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+				
+			dom.selectAll("rect.bar")
+				.attr("width", function(d) { return xScale(d.var3); });
+
+		});
+		
 		});
 
 	};
 
-    chart.width = function(value) {
+    /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -638,6 +674,7 @@ function barChart() {
 
 		if (!arguments.length) return sectionID;
 		sectionID = value;
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 		return chart;
 
 	};
@@ -651,7 +688,7 @@ function barChart() {
     };
 
 	return chart;
-
+		
 };
 
 // Reusable bar chart function for chronic absenteeism storymap
@@ -661,7 +698,7 @@ function colChart() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
@@ -685,6 +722,8 @@ function colChart() {
 
 		// margins; adjust width and height to account for margins
 
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -694,7 +733,7 @@ function colChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-				.style({
+				/*.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -706,11 +745,11 @@ function colChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -719,7 +758,9 @@ function colChart() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -826,17 +867,45 @@ function colChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 
+		// resize	
+			
+		window.addEventListener("resize", function() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+						
+			xScale.rangeRoundBands([0, widthAdj], .5);
+			yAxis.tickSize(-1 * widthAdj);
+			
+			dom.selectAll(".col-chart")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+				
+			dom.select(".y.axis")
+				.call(yAxis);
+							
+			dom.selectAll("rect.column")
+				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); });
+
+		});			
+			
 		});
 
 	};
 
-    chart.width = function(value) {
+    /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -944,7 +1013,7 @@ function dotPlot() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 500,
 		marginTop = 40,
 		marginLeft = 100,
@@ -969,6 +1038,8 @@ function dotPlot() {
 
 		// margins; adjust width and height to account for margins
 
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -977,8 +1048,8 @@ function dotPlot() {
 
 		var dom = d3.select(this)
 			.append("div")
-			.attr("id", chartID)
-				.style({
+			.attr("id", chartID);
+			/*	.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -990,11 +1061,11 @@ function dotPlot() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -1003,8 +1074,9 @@ function dotPlot() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -1148,17 +1220,51 @@ function dotPlot() {
 			.attr("text-anchor", "start")
 			.text(title);
 
+		// resize	
+			
+		window.addEventListener("resize", function() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+						
+			xScale.range([0, widthAdj]);
+			
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+			
+			dom.selectAll(".dotPlot")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+			
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+				
+			dom.selectAll(".dotLine")
+				.attr("x2", function(d) { return xScale(d.var3) - dotSize; });
+				
+			dom.selectAll(".dot")
+				.attr("cx", function(d) { return xScale(d.var3); });
+
+		});			
+			
 		});
 
 	};
 
-    chart.width = function(value) {
+   /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -1275,7 +1381,7 @@ function dotPlotFilter() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 650,
 		marginTop = 40,
 		marginLeft = 100,
@@ -1313,6 +1419,8 @@ function dotPlotFilter() {
 
 		// margins; adjust width and height to account for margins
 
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1380,8 +1488,8 @@ function dotPlotFilter() {
 
 		var dom = d3.select(this)
 			.append("div")
-			.attr("id", chartID)
-				.style({
+			.attr("id", chartID);
+			/*	.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -1394,11 +1502,11 @@ function dotPlotFilter() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -1408,7 +1516,9 @@ function dotPlotFilter() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -1613,17 +1723,51 @@ function dotPlotFilter() {
 
 			};
 
+				// resize	
+			
+		window.addEventListener("resize", function() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+						
+			xScale.range([0, widthAdj]);
+			
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+			
+			dom.selectAll(".dotPlot")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+			
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+				
+			dom.selectAll(".dotLine")
+				.attr("x2", function(d) { return xScale(d.var3) - dotSize; });
+				
+			dom.selectAll(".dot")
+				.attr("cx", function(d) { return xScale(d.var3); });
+
+		});			
+			
 		});
 
 	};
 
-    chart.width = function(value) {
+   /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -1773,7 +1917,7 @@ function groupedBar() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 650,
 		marginTop = 40,
 		marginLeft = 100,
@@ -1809,7 +1953,9 @@ function groupedBar() {
 			formatPercent = d3.format(",.1%");
 
 		// margins; adjust width and height to account for margins
-
+		
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1876,8 +2022,8 @@ function groupedBar() {
 
 		var dom = d3.select(this)
 			.append("div")
-			.attr("id", chartID)
-				.style({
+			.attr("id", chartID);
+			/*	.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -1890,11 +2036,11 @@ function groupedBar() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "groupedBar")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -1904,7 +2050,9 @@ function groupedBar() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -2075,11 +2223,10 @@ function groupedBar() {
 				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend.append("circle")
-		.attr("cx", widthAdj - 77)
-    .attr("cy", 9)
-    .attr("r", 6.5)
-		.style("fill", color);
-
+			.attr("cx", widthAdj - 77)
+			.attr("cy", 9)
+			.attr("r", 6.5)
+			.style("fill", color);
 
 		legend.append("text")
 			.attr("x", widthAdj - 65)
@@ -2249,17 +2396,57 @@ function groupedBar() {
 
 			};
 
-		});
+		// resize	
+			
+		window.addEventListener("resize", function() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+						
+			xScale.range([0, widthAdj - 100]);
+			
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+			
+			dom.selectAll(".groupedBar")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+			
+			dom.select("text.x.axis")
+				.attr("x", widthAdj - 100)
+				.attr("dx", "0.5em");
+				
+			dom.selectAll(".national-bar")
+				.attr("width", function(d) { return xScale(d.pct); });
 
+			dom.selectAll(".bar")
+				.attr("width", function(d) { return xScale(d.pct); });				
+				
+			legend.selectAll("circle")
+				.attr("cx", widthAdj - 77);
+
+			legend.selectAll("text")
+				.attr("x", widthAdj - 65);		
+				
+		});			
+			
+		});
+		
 	};
 
-    chart.width = function(value) {
+ /*   chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -2420,3 +2607,4 @@ function wrap(text, width) {
     }
   });
 };
+
