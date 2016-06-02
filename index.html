@@ -44,12 +44,14 @@
 			var loader_wrapper = document.getElementById("loader-wrapper");
 					
 			loader.style.transition = "all 0.3s ease-out";
+			loader.style.webkitTransition = "all 0.3s ease-out";
 			loader.style.opacity = 0;
 			
 			loader_wrapper.style.transition = "all 0.5s ease-out";
+			loader_wrapper.style.webkitTransition = "all 0.5s ease-out";
 			loader_wrapper.style.opacity = 0;
 			
-			document.body.removeChild(loader_wrapper);
+			setTimeout(function() { document.body.removeChild(loader_wrapper)} , 500);
 									
 		});
 	</script>
