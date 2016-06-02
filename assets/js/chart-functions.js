@@ -1495,7 +1495,6 @@ function dotPlotFilter() {
 			.append("div")
 			.attr("id", chartID)
 				.style({
-					"max-width": width + "px",
 					"margin": "0 auto"
 				})
 				.attr("id", buttonsID)
@@ -2055,19 +2054,17 @@ function groupedBar() {
 
 		// margins; adjust width and height to account for margins
 		
-		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
 
 		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 			
-		var widthAdj = ((width - marginLeft - margin.right) <= 100) ? (width - marginLeft - margin.right + 100) : (width - marginLeft - margin.right);
-
 		// buttons for filtering
 
 		var buttons = d3.select(this)
 			.append("div")
 			.style({
-					"max-width": width + "px",
 					"margin": "0 auto"
 				})
 				.attr("id", buttonsID)
@@ -2504,14 +2501,13 @@ function groupedBar() {
 			
 			// update width
 			
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-			
-			var widthAdj = ((width - marginLeft - margin.right) <= 100) ? (width - marginLeft - margin.right + 100) : (width - marginLeft - margin.right);
+			width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
 
 			// resize chart
 						
 			xScale.range([0, widthAdj - 100]);
-			xAxis.ticks(Math.max((widthAdj - 100)/50, 2));
+			xAxis.ticks(Math.max((widthAdj - 100)/50, 2))
 			
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
