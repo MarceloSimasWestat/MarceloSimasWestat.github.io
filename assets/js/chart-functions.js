@@ -1214,7 +1214,7 @@ function dotPlot() {
 					svg.selectAll("circle.dot")
 						.transition()
 							.duration(animateTime)
-							.attr("r", 5)
+							//.attr("r", 5)
 							.attr("cx", function(d) { return xScale(d.var3); })
 							.each("end", function(d) {
 								d3.select(this)
@@ -1267,7 +1267,7 @@ function dotPlot() {
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
 				
-			dom.selectAll(".dotLine")
+			dom.selectAll("line.dotLine")
 				.attr("x2", 0);
 				
 			dom.selectAll(".dot")
@@ -1295,7 +1295,7 @@ function dotPlot() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
-								.attr("r", 5)
+								//.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
@@ -1799,7 +1799,7 @@ function dotPlotFilter() {
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
 				
-			dom.selectAll(".dotLine")
+			dom.selectAll("line.dotLine")
 				.attr("x2", 0);
 				
 			dom.selectAll(".dot")
@@ -1827,7 +1827,7 @@ function dotPlotFilter() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
-								.attr("r", 5)
+								//.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
