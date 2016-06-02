@@ -379,7 +379,7 @@ function barChart() {
 
 	var	width = [],
 		height = 500,
-		marginTop = 40,
+		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 40,
 		barWidth = 15,
@@ -407,6 +407,12 @@ function barChart() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);
+			
 		// selections
 
 		var dom = d3.select(this)
@@ -536,16 +542,6 @@ function barChart() {
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
-
-		// chart title
-
-		svg.append("text")
-			.attr("class", "title")
-			.attr("x", 0 - marginLeft)
-			.attr("y", 0 - marginTop)
-			.attr("dy", "1em")
-			.attr("text-anchor", "start")
-			.text(title);
 
 		// resize	
 			
@@ -743,6 +739,12 @@ function colChart() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);			
+			
 		// selections
 
 		var dom = d3.select(this)
@@ -870,16 +872,6 @@ function colChart() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
-
-		// chart title
-
-		svg.append("text")
-			.attr("class", "title")
-			.attr("x", 0 - marginLeft)
-			.attr("y", 0 - marginTop)
-			.attr("dy", "1em")
-			.attr("text-anchor", "start")
-			.text(title);
 
 		// resize	
 			
@@ -1046,7 +1038,7 @@ function dotPlot() {
 
 	var	width = [],
 		height = 500,
-		marginTop = 40,
+		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 40,
 		dotSize = 25,
@@ -1075,6 +1067,12 @@ function dotPlot() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);			
+			
 		// selections
 
 		var dom = d3.select(this)
@@ -1241,16 +1239,6 @@ function dotPlot() {
 		svg.append("g")
 			.attr("class", "y axis")
 			.call(yAxis)
-
-		// chart title
-
-		svg.append("text")
-			.attr("class", "title")
-			.attr("x", 0 - marginLeft)
-			.attr("y", 0 - marginTop)
-			.attr("dy", "1em")
-			.attr("text-anchor", "start")
-			.text(title);
 
 		// resize	
 			
@@ -1448,7 +1436,7 @@ function dotPlotFilter() {
 
 	var	width = [],
 		height = 650,
-		marginTop = 40,
+		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 80,
 		animateTime = 1000,
@@ -1548,6 +1536,12 @@ function dotPlotFilter() {
 		d3.select("#" + buttonsID)
 			.append("p");
 
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("id", "title" + chartID)
+			.html("<span class = 'title'>" + title1 + "</span>");			
+			
 		// selections
 
 		var dom = d3.select(this)
@@ -1722,7 +1716,7 @@ function dotPlotFilter() {
 
 		// chart title (default to title1)
 
-		svg.append("text")
+		/*svg.append("text")
 			.attr("class", "title")
 			.attr("x", 0 - marginLeft)
 			.attr("y", 0 - marginTop)
@@ -1732,30 +1726,19 @@ function dotPlotFilter() {
 			.text(title1)
 			.transition()
 				.duration(animateTime)
-				.attr("fill-opacity", 1);
+				.attr("fill-opacity", 1);*/
 
 		// update functions
 
 		function updateTitle(titleID) {
 
-			svg.select(".title").remove();
-
-			svg.append("text")
-				.attr("class", "title")
-				.attr("x", 0 - marginLeft)
-				.attr("y", 0 - marginTop)
-				.attr("dy", "1em")
-				.attr("text-anchor", "start")
-				.attr("fill-opacity", 0)
-				.text(function() {
-					if (titleID == 1) { return title1; }
-					if (titleID == 2) { return title2; }
-					if (titleID == 3) { return title3; }
-					if (titleID == 4) { return title4; }
+			d3.select("#title" + chartID)
+				.html(function() {
+					if (titleID == 1) { return "<span class = 'title'>" + title1 + "</span>"; }
+					if (titleID == 2) { return "<span class = 'title'>" + title2 + "</span>"; }
+					if (titleID == 3) { return "<span class = 'title'>" + title3 + "</span>"; }
+					if (titleID == 4) { return "<span class = 'title'>" + title4 + "</span>"; }
 				})
-				.transition()
-					.duration(animateTime)
-					.attr("fill-opacity", 1);
 
 		};
 
@@ -2021,7 +2004,7 @@ function groupedBar() {
 
 	var	width = [],
 		height = 650,
-		marginTop = 40,
+		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 40,
 		animateTime = 1000,
@@ -2119,6 +2102,12 @@ function groupedBar() {
 		d3.select("#" + buttonsID)
 			.append("p");
 
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("id", "title" + chartID)
+			.html("<span class = 'title'>" + title1 + "</span>");	
+			
 		// selections
 
 		var dom = d3.select(this)
@@ -2300,20 +2289,6 @@ function groupedBar() {
 				.duration(animateTime)
 				.style("opacity", 1);
 
-		// chart title (default to title1)
-
-		svg.append("text")
-			.attr("class", "title")
-			.attr("x", 0 - marginLeft)
-			.attr("y", 0 - marginTop)
-			.attr("dy", "1em")
-			.attr("text-anchor", "start")
-			.attr("fill-opacity", 0)
-			.text(title1)
-			.transition()
-				.duration(animateTime)
-				.attr("fill-opacity", 1);
-
 		// legend
 
 		var legend = svg.selectAll(".legend")
@@ -2340,24 +2315,13 @@ function groupedBar() {
 
 		function updateTitle(titleID) {
 
-			svg.select(".title").remove();
-
-			svg.append("text")
-				.attr("class", "title")
-				.attr("x", 0 - marginLeft)
-				.attr("y", 0 - marginTop)
-				.attr("dy", "1em")
-				.attr("text-anchor", "start")
-				.attr("fill-opacity", 0)
-				.text(function() {
-					if (titleID == 1) { return title1; }
-					if (titleID == 2) { return title2; }
-					if (titleID == 3) { return title3; }
-					if (titleID == 4) { return title4; }
+			d3.select("#title" + chartID)
+				.html(function() {
+					if (titleID == 1) { return "<span class = 'title'>" + title1 + "</span>"; }
+					if (titleID == 2) { return "<span class = 'title'>" + title2 + "</span>"; }
+					if (titleID == 3) { return "<span class = 'title'>" + title3 + "</span>"; }
+					if (titleID == 4) { return "<span class = 'title'>" + title4 + "</span>"; }
 				})
-				.transition()
-					.duration(animateTime)
-					.attr("fill-opacity", 1);
 
 		};
 

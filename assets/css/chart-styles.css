@@ -4,8 +4,9 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400");
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 
-.header {
-	font: 24px sans-serif;
+.title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1A1C20;
 	font-weight: bold;
 }
 
