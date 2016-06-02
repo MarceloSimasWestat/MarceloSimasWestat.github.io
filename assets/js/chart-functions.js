@@ -1272,7 +1272,7 @@ function dotPlot() {
 				
 			dom.selectAll(".dot")
 				.attr("cx", 0)
-				.attr("r", 5);
+				.attr("r", 0);
 								
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
@@ -1295,6 +1295,7 @@ function dotPlot() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
+								.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
@@ -1803,7 +1804,7 @@ function dotPlotFilter() {
 				
 			dom.selectAll(".dot")
 				.attr("cx", 0)
-				.attr("r", 5);
+				.attr("r", 0);
 
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
@@ -1826,6 +1827,7 @@ function dotPlotFilter() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
+								.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
