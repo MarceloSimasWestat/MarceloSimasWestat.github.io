@@ -1,375 +1,3 @@
-// Icon array for chronic absenteeism map (ch 1-1)
-
-function iconArray() {
-
-	// Options accessible to the caller
-	// These are the default values
-
-	var	width = 960,
-		height = 500,
-		animateTime = 2000,
-		rowCount = 10,
-		iconWidth = 50,
-		iconHeight = 50,
-		legendWidth = 25,
-		legendHeight = 25,
-		containerID = [],
-		subcontainerID = [],
-		chartID = [],
-		sectionID = [],
-		data = [];
-
-	function chart(selection) {
-		selection.each(function() {
-
-			// formats
-
-			var	formatNumber = d3.format(",f"),
-				formatPercent = d3.format(",.1%");
-
-			// margins and dimensions
-
-			var margin = {top: 20, right: 20, bottom: 20, left: 20},
-				width = 960 - margin.left - margin.right,
-				height = 500 - margin.top - margin.bottom;
-
-			var dom = d3.select(this)
-				.append("div")
-					.attr("id", chartID)
-					.style({
-						"max-width": width + "px",
-						"margin": "20px auto 20px auto",
-						"text-align": "center"
-					});
-
-			// first, put in legend
-
-			var legendIcon = dom.append("div")
-				.attr("id", "legendIcon")
-				.attr("class", "legend")
-				.style({
-					"display": "inline-block",
-					"vertical-align": "middle",
-					"height": legendHeight + "px",
-					"opacity": 0
-				});
-
-			d3.xml("images/chair.svg", "image/svg+xml", function(error, xml) {
-
-				if (error) throw error;
-
-				legendIcon.node().appendChild(xml.documentElement);
-
-				legendIcon.selectAll("svg")
-					.attr("height", legendWidth + "px")
-					.attr("width", legendHeight + "px");
-
-				legendIcon.selectAll("#Woodchair")
-					.attr("class", "icon");
-
-			});
-
-			var legendText = dom.append("div")
-				.attr("id", "legendText")
-				.attr("class", "legend")
-				.style({
-					"display": "inline-block",
-					"vertical-align": "middle",
-					"opacity": 0
-				})
-				.html("<span>= 100,000 students</span>");
-
-			dom.append("p");
-
-			// next, put in count of chronically absent students
-
-			data_txt = data.filter(function(d) { return d.area == "txt"; });
-
-			var count = dom.append("div")
-				.data(data_txt)
-				.attr("id", "countSection")
-				.style({
-					"width": "100%",
-					"max-width": width + "px",
-					"max-height": "135px",
-					"margin": "0 auto",
-					"display": "block"
-				})
-				.append("svg")
-					.attr("viewBox", "0 0 " + width + " " + 135)
-					.attr("preserveAspectRatio", "xMinYMin meet")
-					.style({
-						"position": "relative",
-						"top": 0,
-						"left": 0,
-						"width": "100%",
-						"height": "100%"
-					})
-					.append("g")
-						.attr("transform", "translate(0,0)");
-
-			// count of chronically absent students
-
-			count.append("text")
-				.attr("class", "count")
-				.attr("x", (width / 2))
-				.attr("dy", 60)
-				.attr("text-anchor", "middle")
-				.attr("fill-opacity", 0)
-				.text(function(d) { return formatNumber(d.number); });
-
-			count.append("text")
-				.attr("class", "countText")
-				.attr("x", (width / 2))
-				.attr("dy", 100)
-				.attr("text-anchor", "middle")
-				.attr("fill-opacity", 0)
-				.text(function(d) { return "students were chronically absent in 2013-14 (" + formatPercent(d.pct) + ")"; });
-
-			// build icon array
-
-			var ia = dom.append("div")
-				.attr("id", "iaContainer")
-				.style({
-					"max-width": (rowCount * iconWidth) + "px",
-					"margin": "0 auto",
-					"display": "block",
-				});
-
-			d3.xml("images/chair.svg", "image/svg+xml", function(xml) {
-
-				var importedNode = document.importNode(xml.documentElement, true);
-
-				data_ia = data.filter(function(d) { return d.area == "ia"; });
-
-				ia.selectAll("div")
-					.data(data_ia)
-					.enter()
-					.append("div")
-						.style({
-							"display": "inline-block",
-						})
-						.append("g")
-							.each(function() { this.appendChild(importedNode.cloneNode(true)); });
-
-				ia.selectAll("svg")
-					.attr("width", iconWidth + "px")
-					.attr("height", iconHeight + "px");
-
-				ia.selectAll("#Woodchair")
-					.attr("opacity", 0)
-					.attr("class", "icon");
-
-			});
-
-			// add equivalency section
-
-			var txt = dom.append("div")
-				.data(data_txt)
-				.attr("id", "equiSection")
-				.style({
-					"width": "100%",
-					"max-width": width + "px",
-					"max-height": "175px",
-					"margin": "0 auto",
-					"display": "block"
-				})
-				.append("svg")
-					.attr("viewBox", "0 0 " + width + " " + 175)
-					.attr("preserveAspectRatio", "xMinYMin meet")
-					.style({
-						"position": "relative",
-						"top": 0,
-						"left": 0,
-						"width": "100%",
-						"height": "100%"
-					})
-					.append("g")
-						.attr("transform", "translate(0,0)");
-
-			txt.append("text")
-				.attr("class", "equivText")
-				.attr("x", (width / 2))
-				.attr("dy", 45)
-				.attr("text-anchor", "middle")
-				.attr("fill-opacity", 0)
-				.text("Cumulatively, across those students, at least");
-
-			txt.append("text")
-				.attr("class", "equiv")
-				.attr("x", (width / 2))
-				.attr("dy", 115)
-				.attr("text-anchor", "middle")
-				.attr("fill-opacity", 0)
-				.text(function(d) { return formatNumber(15 * d.number); });
-
-			txt.append("text")
-				.attr("class", "equivText")
-				.attr("x", (width / 2))
-				.attr("dy", 155)
-				.attr("text-anchor", "middle")
-				.attr("fill-opacity", 0)
-				.text("school days were missed");
-
-			var gs = graphScroll()
-				.container(d3.select("#" + containerID))
-				.graph(d3.selectAll("#" + chartID))
-				.sections(d3.selectAll("#" + subcontainerID + " > div"))
-				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
-
-						d3.select("#legendIcon")
-							.transition()
-								.duration(animateTime)
-								.style("opacity", 1);
-
-						d3.select("#legendText")
-							.transition()
-								.duration(animateTime)
-								.style("opacity", 1);
-
-						count.selectAll(".count")
-							.transition()
-								.duration(animateTime)
-								.attr("fill-opacity", 1);
-
-						count.selectAll(".countText")
-							.transition()
-								.duration(animateTime)
-								.attr("fill-opacity", 1);
-
-						ia.selectAll("#Woodchair")
-							.transition()
-								.delay(function(d, i) { return i * (animateTime/data_ia.length); })
-								.duration(animateTime)
-								.attr("opacity", 1);
-
-						txt.selectAll(".equivText")
-							.transition()
-								.delay(animateTime)
-								.duration(animateTime)
-								.attr("fill-opacity", 1);
-
-						txt.selectAll(".equiv")
-							.transition()
-								.delay(animateTime)
-								.duration(animateTime)
-								.attr("fill-opacity", 1);
-
-				}});
-
-		});
-
-	};
-
-    chart.width = function(value) {
-
-        if (!arguments.length) return width;
-        width = value;
-        return chart;
-
-    };
-
-    chart.height = function(value) {
-
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
-
-    };
-
-	chart.animateTime = function(value) {
-
-		if (!arguments.length) return animateTime;
-		animateTime = value;
-		return chart;
-
-	};
-
-	chart.rowCount = function(value) {
-
-		if (!arguments.length) return rowCount;
-		rowCount = value;
-		return chart;
-
-	};
-
-	chart.iconWidth = function(value) {
-
-		if (!arguments.length) return iconWidth;
-		iconWidth = value;
-		return chart;
-
-	};
-
-	chart.iconHeight = function(value) {
-
-		if (!arguments.length) return iconHeight;
-		iconHeight = value;
-		return chart;
-
-	};
-
-	chart.legendWidth = function(value) {
-
-		if (!arguments.length) return legendWidth;
-		legendWidth = value;
-		return chart;
-
-	};
-
-	chart.legendHeight = function(value) {
-
-		if (!arguments.length) return legendHeight;
-		legendHeight = value;
-		return chart;
-
-	};
-
-	chart.containerID = function(value) {
-
-		if (!arguments.length) return containerID;
-		containerID = value;
-		return chart;
-
-	};
-
-	chart.chartID = function(value) {
-
-		if (!arguments.length) return chartID;
-		chartID = value;
-		return chart;
-
-	};
-
-	chart.subcontainerID = function(value) {
-
-		if (!arguments.length) return subcontainerID;
-		subcontainerID = value;
-		return chart;
-
-	};
-
-	chart.sectionID = function(value) {
-
-		if (!arguments.length) return sectionID;
-		sectionID = value;
-		return chart;
-
-	};
-
-    chart.data = function(value) {
-
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
-
-    };
-
-	return chart;
-
-};
-
 // Reusable bar chart function for chronic absenteeism storymap
 
 function barChart() {
@@ -474,7 +102,7 @@ function barChart() {
 
 		// domains
 
-		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
+		xScale.domain([0, 0.5]);
 		yScale.domain(data.map(function(d, i) { return d.var1; }));
 
 		// axes
@@ -487,7 +115,7 @@ function barChart() {
 
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/50, 2)),
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
 
 		// draw x-axis below bars
@@ -555,7 +183,7 @@ function barChart() {
 			// resize chart
 						
 			xScale.range([0, widthAdj]);
-			xAxis.ticks(Math.max(widthAdj/50, 2));
+			xAxis.ticks(Math.max(widthAdj/100, 2));
 			
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
@@ -803,7 +431,7 @@ function colChart() {
 		// domains
 
 		xScale.domain(data.map(function(d, i) { return d.var1; }));
-		yScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
+		yScale.domain([0, 0.5]);
 
 		// axes
 
@@ -816,7 +444,7 @@ function colChart() {
 		};
 
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj);
+			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
 
 		// draw y-axis under columns
 
@@ -1131,7 +759,7 @@ function dotPlot() {
 
 		// domains
 
-		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
+		xScale.domain([0, 0.5]);
 		yScale.domain(data.map(function(d, i) { return d.var1; }));
 
 		// axes
@@ -1144,7 +772,7 @@ function dotPlot() {
 
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/50, 2)),
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
 
 		// draw x-axis below bars
@@ -1214,7 +842,6 @@ function dotPlot() {
 					svg.selectAll("circle.dot")
 						.transition()
 							.duration(animateTime)
-							//.attr("r", 5)
 							.attr("cx", function(d) { return xScale(d.var3); })
 							.each("end", function(d) {
 								d3.select(this)
@@ -1252,7 +879,7 @@ function dotPlot() {
 			// resize chart
 						
 			xScale.range([0, widthAdj]);
-			xAxis.ticks(Math.max(widthAdj/50, 2));
+			xAxis.ticks(Math.max(widthAdj/100, 2));
 			
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
@@ -1295,7 +922,6 @@ function dotPlot() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
-								//.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
@@ -1602,7 +1228,7 @@ function dotPlotFilter() {
 
 		// domains
 
-		xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice();
+		xScale.domain([0, 0.5]);
 		yScale.domain(dataFiltered.map(function(d) { return d.var1; }));
 
 		// axes
@@ -1615,7 +1241,7 @@ function dotPlotFilter() {
 
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/50, 2)),
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
 			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
 
 		// draw x-axis below bars
@@ -1685,7 +1311,6 @@ function dotPlotFilter() {
 					svg.selectAll("circle.dot")
 						.transition()
 							.duration(animateTime)
-							.attr("r", 5)
 							.attr("cx", function(d) { return xScale(d.var3); })
 							.each("end", function(d) {
 								d3.select(this)
@@ -1784,7 +1409,7 @@ function dotPlotFilter() {
 			// resize chart
 						
 			xScale.range([0, widthAdj])
-			xAxis.ticks(Math.max(widthAdj/50, 2));
+			xAxis.ticks(Math.max(widthAdj/100, 2));
 			
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
@@ -1827,7 +1452,6 @@ function dotPlotFilter() {
 						svg.selectAll("circle.dot")
 							.transition()
 								.duration(animateTime)
-								//.attr("r", 5)
 								.attr("cx", function(d) { return xScale(d.var3); })
 								.each("end", function(d) {
 									d3.select(this)
@@ -2178,7 +1802,7 @@ function groupedBar() {
 
 		var levels = ["Elementary","Middle","High","Other"];
 
-		xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice();
+		xScale.domain([0, 0.5]);
 		yScale0.domain(data_nest.map(function(d) { return d.key; }));
 		yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
 
