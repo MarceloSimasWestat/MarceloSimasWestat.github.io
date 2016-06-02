@@ -377,7 +377,7 @@ function barChart() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 500,
 		marginTop = 40,
 		marginLeft = 100,
@@ -410,7 +410,7 @@ function barChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-				.style({
+				/*.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -423,11 +423,11 @@ function barChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "bar-chart")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -437,7 +437,9 @@ function barChart() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -542,6 +544,40 @@ function barChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 
+		// resize function
+		
+		function resize() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+			
+			xScale.range([0, widthAdj]);
+			
+			d3.select("#" + chartID)
+				.selectAll(".bar-chart")
+				.attr("width", width);
+			
+			d3.select("#" + chartID)
+				.select(".x.axis")
+				.call(xAxis);
+			
+			d3.select("#" + chartID)
+				.select("text.x.axis")
+					.attr("x", widthAdj)
+					.attr("dx", "0.5em");
+				
+			d3.select("#" + chartID)
+				.selectAll("rect.bar")
+					.attr("width", function(d) { return xScale(d.var3); });
+							
+		};
+	
+		d3.select(window).on("resize", resize);
+	
 		});
 
 	};
@@ -638,6 +674,7 @@ function barChart() {
 
 		if (!arguments.length) return sectionID;
 		sectionID = value;
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 		return chart;
 
 	};
@@ -651,7 +688,7 @@ function barChart() {
     };
 
 	return chart;
-
+		
 };
 
 // Reusable bar chart function for chronic absenteeism storymap
@@ -2076,10 +2113,9 @@ function groupedBar() {
 
 		legend.append("circle")
 		.attr("cx", widthAdj - 77)
-    .attr("cy", 9)
-    .attr("r", 6.5)
+		.attr("cy", 9)
+		.attr("r", 6.5)
 		.style("fill", color);
-
 
 		legend.append("text")
 			.attr("x", widthAdj - 65)

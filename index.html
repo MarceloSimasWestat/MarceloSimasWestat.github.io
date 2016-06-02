@@ -293,23 +293,6 @@
 
     <script>
 
-        // chapter 1 icon array
-
-        d3.tsv("assets/data/data_iconarray.tsv", function (error, data) {
-            if (error) { console.log(error); }
-            else {
-                data.forEach(function (d) {
-                    d.icon_count = +d.icon_count; // This is the subgroup
-                    d.number = +d.number; // This is the percentage
-                });
-
-                var chart1_1 = iconArray().data(data).containerID("image1").subcontainerID("image1_sections").sectionID("ch1_1").chartID("chart1_1");
-
-                d3.select("#ch1_1").call(chart1_1);
-
-            };
-        });
-
         // chapter 1 charts
 
         d3.tsv("assets/data/data.tsv", function (error, data) {
@@ -387,7 +370,8 @@
 
             };
         });
-    </script>
+ 
+ </script>
 
 
 </body>
