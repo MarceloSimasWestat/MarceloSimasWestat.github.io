@@ -1,6 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700");
-@import url("https://fonts.googleapis.com/css?family=Muli:300,400");
+@import url("https://fonts.googleapis.com/css?family=Muli:400");
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
 
 /* Reset */
@@ -1674,7 +1674,7 @@ body, input, select, textarea {
     color: rgba(255, 255, 255, 0.80);
     font-family: Muli, Helvetica, sans-serif;
     font-size: 15pt;
-    font-weight: 300;
+    font-weight: normal;
     line-height: 1.75;
 }
 
@@ -1682,7 +1682,7 @@ body, input, select, textarea {
 p {
     font-family: Muli, Helvetica, sans-serif;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: normal;
 }
 
 @media screen and (max-width: 1680px) {
@@ -4015,7 +4015,7 @@ div.preloading #sidebar nav ul li {
 .chair {
     width: 90%;
     height: 90%;
-    margin: 0px 50px 0px 50px;
+    margin: 0px 25px 0px 25px;
 }
 
 
@@ -4028,7 +4028,12 @@ div.preloading #sidebar nav ul li {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.75em;
-        margin-bottom: 0;
+        margin-bottom: 9px;
+        line-height: 95%;
+    }
+
+    #counter p {
+        line-height: normal;
     }
 
 @media screen and (max-width: 980px) {
