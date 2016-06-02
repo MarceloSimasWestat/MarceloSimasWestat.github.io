@@ -557,22 +557,18 @@ function barChart() {
 			
 			xScale.range([0, widthAdj]);
 			
-			d3.select("#" + chartID)
-				.selectAll(".bar-chart")
+			dom.selectAll(".bar-chart")
 				.attr("width", width);
 			
-			d3.select("#" + chartID)
-				.select(".x.axis")
+			dom.select(".x.axis")
 				.call(xAxis);
 			
-			d3.select("#" + chartID)
-				.select("text.x.axis")
-					.attr("x", widthAdj)
-					.attr("dx", "0.5em");
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
 				
-			d3.select("#" + chartID)
-				.selectAll("rect.bar")
-					.attr("width", function(d) { return xScale(d.var3); });
+			dom.selectAll("rect.bar")
+				.attr("width", function(d) { return xScale(d.var3); });
 							
 		};
 	
@@ -582,13 +578,13 @@ function barChart() {
 
 	};
 
-    chart.width = function(value) {
+    /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -698,7 +694,7 @@ function colChart() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = 960,
+	var	width = [],
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
@@ -731,7 +727,7 @@ function colChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-				.style({
+				/*.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
 				})
@@ -743,11 +739,11 @@ function colChart() {
 						"padding-top": (100*(height/width)) + "%",
 						"position": "relative",
 						"margin": "0 auto"
-					});
+					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			.attr("viewBox", "0 0 " + width + " " + height)
+			/*.attr("viewBox", "0 0 " + width + " " + height)
 			.attr("preserveAspectRatio", "xMinYMin meet")
 			.style({
 				"max-width": width,
@@ -756,7 +752,9 @@ function colChart() {
 				"left": 0,
 				"width": "100%",
 				"height": "100%"
-			})
+			})*/
+			.attr("width", width)
+			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
@@ -863,17 +861,43 @@ function colChart() {
 			.attr("text-anchor", "start")
 			.text(title);
 
+		// resize function
+		
+		function resize() {
+			
+			// update width
+			
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+			
+			// resize chart
+			
+			xScale.rangeRoundBands([0, widthAdj], .5);
+			
+			dom.selectAll(".col-chart")
+				.attr("width", width);
+			
+			dom.select(".x.axis")
+				.call(xAxis);
+				
+			dom.selectAll("rect.column")
+				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); });
+							
+		};
+	
+		d3.select(window).on("resize", resize);			
+			
 		});
 
 	};
 
-    chart.width = function(value) {
+    /* chart.width = function(value) {
 
         if (!arguments.length) return width;
         width = value;
         return chart;
 
-    };
+    }; */
 
     chart.height = function(value) {
 
@@ -958,6 +982,7 @@ function colChart() {
 
 		if (!arguments.length) return sectionID;
 		sectionID = value;
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 		return chart;
 
 	};
