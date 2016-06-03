@@ -39,23 +39,23 @@
 
 	<script>
 		window.addEventListener("load", function(){
-			
+
 			var loader = document.getElementById("loader");
 			var loader_wrapper = document.getElementById("loader-wrapper");
-					
+
 			loader.style.transition = "all 0.3s ease-out";
 			loader.style.webkitTransition = "all 0.3s ease-out";
 			loader.style.opacity = 0;
-			
+
 			loader_wrapper.style.transition = "all 1s ease-out";
 			loader_wrapper.style.webkitTransition = "all 1s ease-out";
 			loader_wrapper.style.opacity = 0;
-			
+
 			setTimeout(function() { document.body.removeChild(loader_wrapper)} , 1000);
-									
+
 		});
 	</script>
-	
+
     <div id="loader-wrapper">
         <div id="loader"></div>
 
@@ -266,9 +266,25 @@
                                 <option value="">Wisconsin</option>
                                 <option value="">Wyoming</option>
                             </select>
+
                             <br />
-                            <center><img class="circleImage" src="/images/maps/initial.jpg" name="image-swap"></center>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <center>
+                              <div class="circleImage">
+                              <img src="/images/maps/initial.jpg" name="image-swap"></center>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
                             <center><p class="mapboxAttribution">© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a></p></center>
+
+
 
                         </div>
 
@@ -331,7 +347,7 @@
                 var chart1_2 = barChart().marginLeft(235).data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("Test title goes here!"); // Chapter 1 - 2
                 var chart1_3 = colChart().data(data1_3).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3"); // Chapter 1 - 3
                 var chart1_4 = barChart().marginLeft(215).data(data1_4).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4"); // Chapter 1 - 4
-                var chart1_5 = colChart().data(data1_5).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5"); // Chapter 1 - 5 
+                var chart1_5 = colChart().data(data1_5).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5"); // Chapter 1 - 5
 
                 d3.select("#ch1_2").call(chart1_2);
                 d3.select("#ch1_3").call(chart1_3);

@@ -4062,6 +4062,32 @@ div.preloading #sidebar nav ul li {
     }
 }
 
+/*
+ * ==== Losange
+ */
+
+.select-wrapper .losange {
+   -ms-transform: rotate(-45deg);
+-webkit-transform: rotate(-45deg);
+transform: rotate(-45deg);
+     border-radius: 4px;
+     margin: auto;
+     width: 58%;
+     overflow: hidden;
+     -ms-flex: 1;
+ }
+
+     .select-wrapper .losange img {
+         border-radius: 4px;
+         width: 100%;
+
+
+     }
+
+     .select-wrapper .mapboxAttribution {
+         margin-top: 15px;
+     }
+
 /* Preloader */
 
 #loader-wrapper {
@@ -4188,32 +4214,3 @@ div.preloading #sidebar nav ul li {
 }
 
 /* State dropdown styling */
-
-.select-wrapper .circleImage {
-    border-radius: 100%;
-    margin: auto;
-    width: 50%;
-    overflow: hidden;
-    -ms-flex: 1;
-}
-
-    .select-wrapper .circleImage img {
-        border-radius: 100%;
-        width: 100%;
-    }
-
-.circleImage {
-    border-radius: 5px;
-    border: 0;
-    display: inline-block;
-    position: relative;
-}
-
-    .circleImage img {
-        border-radius: 5px;
-        display: block;
-    }
-
-.select-wrapper .mapboxAttribution {
-    margin-top: 15px;
-}
