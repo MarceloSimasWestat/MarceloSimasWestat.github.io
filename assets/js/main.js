@@ -7,8 +7,16 @@
 // State dropdown
 
 $(document).ready(function(){
-   $("#stateDropdown").change(function(){
-     $("img[name=image-swap]").attr("src",$(this).val());
+   $("#1st-stateDropdown").change(function(){
+     $("img[name=1st-image-swap]").attr("src",$(this).val());
+
+   });
+
+});
+
+$(document).ready(function(){
+   $("#2nd-stateDropdown").change(function(){
+     $("img[name=2nd-image-swap]").attr("src",$(this).val());
 
    });
 
