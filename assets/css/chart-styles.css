@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 
 .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	font: 400 18px "Karla", Helvetica, Arial, sans-serif;
 	color: #1A1C20;
 	font-weight: bold;
 }
@@ -55,7 +55,7 @@ button:hover,
 /* Icon array styling */
 
 .legend {
-	font: 400 12px Inconsolata;
+	font: 400 13px Inconsolata;
 	color: white;
 }
 
@@ -96,7 +96,7 @@ button:hover,
 }
 
 .label {
-	font: 12px sans-serif;
+	font: 13px sans-serif;
 }
 
 .cLabel {
@@ -105,7 +105,7 @@ button:hover,
 }
 
 .cLabelText {
-	font: 12px sans-serif;
+	font: 13px sans-serif;
 }
 
 /* Bar chart styling */
@@ -118,8 +118,8 @@ button:hover,
 }
 
 .bar-chart .x.axis {
-	font: 400 12px Inconsolata;
-	fill: rgba(26, 28, 32, 0.6);
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
 }
 
 .bar-chart .x.axis path {
@@ -132,7 +132,7 @@ button:hover,
 }
 
 .bar-chart .y.axis {
-	font: normal 12px Karla;
+	font: normal 13px Karla;
 	color: #1A1C20;
 }
 
@@ -153,7 +153,7 @@ button:hover,
 }
 
 .bar:hover {
-	fill-opacity:0.65;
+	fill-opacity:.65;
 }
 
 #animation1 {
@@ -170,7 +170,7 @@ button:hover,
 }
 
 .col-chart .x.axis {
-	font: normal 12px Karla;
+	font: normal 13px Karla;
 	color: #1A1C20;
 }
 
@@ -180,8 +180,8 @@ button:hover,
 }
 
 .col-chart .y.axis {
-	font: 400 12px Inconsolata;
-	fill: rgba(26, 28, 32, 0.6);
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
 }
 
 .col-chart .y.axis path {
@@ -217,8 +217,8 @@ button:hover,
 }
 
 .dotPlot .x.axis {
-	font: 400 12px Inconsolata;
-	color: #46484B;
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, 0.65);
 }
 
 .dotPlot .x.axis path {
@@ -231,7 +231,7 @@ button:hover,
 }
 
 .dotPlot .y.axis {
-	font: normal 12px Karla;
+	font: normal 13px Karla;
 	color: #1C1E21;
 }
 
@@ -247,16 +247,16 @@ button:hover,
 }
 
 .dot {
-	fill: rgb(242, 167, 115);
+	fill: #A6426C;
 }
 
 .dot:hover {
-	fill: rgba(242, 167, 115, 0.75);
+	opacity: .65;
 }
 
 .dotLine {
-	stroke: lightgray;
-	stroke-width: 1.5px;
+	stroke: #5D42A6;
+	stroke-width: 1px;
 	shape-rendering: crispEdges;
 }
 
@@ -271,7 +271,7 @@ button:hover,
 
 .scatterPlot .x.axis,
 .scatterPlot .y.axis {
-	font: 400 12px Inconsolata;
+	font: 400 13px Inconsolata;
 	color: #46484B;
 }
 
@@ -287,7 +287,7 @@ button:hover,
 }
 
 /* .scatterPlot .y.axis {
-	font: normal 12px Karla;
+	font: normal 13px Karla;
 	color: #1C1E21;
 }
 
@@ -316,8 +316,8 @@ button:hover,
 }
 
 .groupedBar .x.axis {
-	font: 400 12px Inconsolata;
-	fill: rgba(26, 28, 32, 0.6);
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
 }
 
 .groupedBar .x.axis path {
@@ -331,7 +331,7 @@ button:hover,
 
 .groupedBar .y.axis,
 .groupedBar .legend {
-	font: normal 12px Karla;
+	font: normal 13px Karla;
 	color: #1C1E21;
 }
 
@@ -365,8 +365,8 @@ button:hover,
 .d3-tip-bar,
 .d3-tip-col,
 .d3-tip-dot {
-	font: 12px Inconsolata;
-	padding: 12px;
+	font: 13px Inconsolata;
+	padding: 13px;
 	background: rgba(26, 28, 32, 0.85);
 	color: #fff;
 	border-radius: 0.25em;
@@ -388,7 +388,7 @@ div.tooltip {
     opacity: 0;
 }
 div.tooltip h3 {
-  font-size: 12px; margin: 0 0 7px 0;
+  font-size: 13px; margin: 0 0 7px 0;
   line-height: 1.2em;
 }
 div.tooltip .line { clear: both; margin-top: 3px; font-size: 11px; }
@@ -404,7 +404,7 @@ div.tooltip .moe { float: right; color: #aaa; width: 30px; text-align: right; }
 .d3-tip-col:after {
 	box-sizing: border-box;
 	display: inline;
-	font-size: 12px;
+	font-size: 13px;
 	width: 100%;
 	line-height: 1;
 	color: rgba(0, 0, 0, 0.8);

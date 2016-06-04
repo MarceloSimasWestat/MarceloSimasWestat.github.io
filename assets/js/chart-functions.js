@@ -30,7 +30,7 @@ function barChart() {
 		// margins; adjust width and height to account for margins
 
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -40,7 +40,7 @@ function barChart() {
 		d3.select(this).append("div")
 			.attr("class", "title")
 			.text(title);
-			
+
 		// selections
 
 		var dom = d3.select(this)
@@ -171,33 +171,33 @@ function barChart() {
 			.attr("class", "y axis")
 			.call(yAxis)
 
-		// resize	
-			
+		// resize
+
 		window.addEventListener("resize", function() {
-			
+
 			// update width
-			
+
 			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 			widthAdj = width - marginLeft - margin.right;
-			
+
 			// resize chart
-						
+
 			xScale.range([0, widthAdj]);
 			xAxis.ticks(Math.max(widthAdj/100, 2));
-			
+
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
-			
+
 			dom.selectAll(".bar-chart")
 				.attr("width", width);
-			
+
 			dom.select(".x.axis")
 				.call(xAxis);
-			
+
 			dom.select("text.x.axis")
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
-				
+
 			dom.selectAll("rect.bar")
 				.attr("width", 0);
 
@@ -213,10 +213,10 @@ function barChart() {
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
 
-			}});			
-				
+			}});
+
 		});
-		
+
 		});
 
 	};
@@ -327,7 +327,7 @@ function barChart() {
     };
 
 	return chart;
-		
+
 };
 
 // Reusable bar chart function for chronic absenteeism storymap
@@ -362,7 +362,7 @@ function colChart() {
 		// margins; adjust width and height to account for margins
 
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -371,8 +371,8 @@ function colChart() {
 
 		d3.select(this).append("div")
 			.attr("class", "title")
-			.text(title);			
-			
+			.text(title);
+
 		// selections
 
 		var dom = d3.select(this)
@@ -501,29 +501,29 @@ function colChart() {
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
 
-		// resize	
-			
+		// resize
+
 		window.addEventListener("resize", function() {
-			
+
 			// update width
-			
+
 			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 			widthAdj = width - marginLeft - margin.right;
-			
+
 			// resize chart
-						
+
 			xScale.rangeRoundBands([0, widthAdj], .5);
 			yAxis.tickSize(-1 * widthAdj);
-			
+
 			dom.selectAll(".col-chart")
 				.attr("width", width);
-			
+
 			dom.select(".x.axis")
 				.call(xAxis);
-				
+
 			dom.select(".y.axis")
 				.call(yAxis);
-							
+
 			dom.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("height", 0)
@@ -542,10 +542,10 @@ function colChart() {
 								.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 								.attr("y", function(d) { return yScale(d.var3); });
 
-				}});				
-				
-		});			
-			
+				}});
+
+		});
+
 		});
 
 	};
@@ -669,7 +669,7 @@ function dotPlot() {
 		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 40,
-		dotSize = 25,
+		dotSize = 5,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		clipName = [],
@@ -690,7 +690,7 @@ function dotPlot() {
 		// margins; adjust width and height to account for margins
 
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -699,8 +699,8 @@ function dotPlot() {
 
 		d3.select(this).append("div")
 			.attr("class", "title")
-			.text(title);			
-			
+			.text(title);
+
 		// selections
 
 		var dom = d3.select(this)
@@ -787,9 +787,9 @@ function dotPlot() {
 			.attr("x", widthAdj)
 			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
-			.attr("dy", "2em")
+			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
-			.text("Test 1");
+			.text("% CHRONICALLY ABSENT IN 2013-14");
 
 		// draw dots and lines
 
@@ -867,40 +867,40 @@ function dotPlot() {
 			.attr("class", "y axis")
 			.call(yAxis)
 
-		// resize	
-			
+		// resize
+
 		window.addEventListener("resize", function() {
-			
+
 			// update width
-			
+
 			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 			widthAdj = width - marginLeft - margin.right;
-			
+
 			// resize chart
-						
+
 			xScale.range([0, widthAdj]);
 			xAxis.ticks(Math.max(widthAdj/100, 2));
-			
+
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
-			
+
 			dom.selectAll(".dotPlot")
 				.attr("width", width);
-			
+
 			dom.select(".x.axis")
 				.call(xAxis);
-			
+
 			dom.select("text.x.axis")
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
-				
+
 			dom.selectAll("line.dotLine")
 				.attr("x2", 0);
-				
+
 			dom.selectAll(".dot")
 				.attr("cx", 0)
 				.attr("r", 0);
-								
+
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
@@ -932,8 +932,8 @@ function dotPlot() {
 
 				}});
 
-		});			
-			
+		});
+
 		});
 
 	};
@@ -1100,7 +1100,7 @@ function dotPlotFilter() {
 		// margins; adjust width and height to account for margins
 
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1167,8 +1167,8 @@ function dotPlotFilter() {
 
 		d3.select(this).append("div")
 			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title1 + "</span>");			
-			
+			.html("<span class = 'title'>" + title1 + "</span>");
+
 		// selections
 
 		var dom = d3.select(this)
@@ -1397,36 +1397,36 @@ function dotPlotFilter() {
 
 			};
 
-				// resize	
-			
+				// resize
+
 		window.addEventListener("resize", function() {
-			
+
 			// update width
-			
+
 			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 			widthAdj = width - marginLeft - margin.right;
-			
+
 			// resize chart
-						
+
 			xScale.range([0, widthAdj])
 			xAxis.ticks(Math.max(widthAdj/100, 2));
-			
+
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
-			
+
 			dom.selectAll(".dotPlot")
 				.attr("width", width);
-			
+
 			dom.select(".x.axis")
 				.call(xAxis);
-			
+
 			dom.select("text.x.axis")
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
-				
+
 			dom.selectAll("line.dotLine")
 				.attr("x2", 0);
-				
+
 			dom.selectAll(".dot")
 				.attr("cx", 0)
 				.attr("r", 0);
@@ -1461,13 +1461,13 @@ function dotPlotFilter() {
 								});
 
 				}});
-				
+
 			dom.select("clipPath")
 				.select("rect")
 				.attr("width", widthAdj);
-			
-		});			
-			
+
+		});
+
 		});
 
 	};
@@ -1664,13 +1664,13 @@ function groupedBar() {
 			formatPercent = d3.format(",.1%");
 
 		// margins; adjust width and height to account for margins
-		
+
 		width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
 
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
-			
+
 		// buttons for filtering
 
 		var buttons = d3.select(this)
@@ -1732,8 +1732,8 @@ function groupedBar() {
 
 		d3.select(this).append("div")
 			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title1 + "</span>");	
-			
+			.html("<span class = 'title'>" + title1 + "</span>");
+
 		// selections
 
 		var dom = d3.select(this)
@@ -2087,38 +2087,38 @@ function groupedBar() {
 
 			};
 
-		// resize	
-			
+		// resize
+
 		window.addEventListener("resize", function() {
-			
+
 			// update width
-			
+
 			width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
 			widthAdj = width - marginLeft - margin.right;
 
 			// resize chart
-						
+
 			xScale.range([0, widthAdj - 100]);
 			xAxis.ticks(Math.max((widthAdj - 100)/50, 2))
-			
+
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
-			
+
 			dom.selectAll(".groupedBar")
 				.attr("width", width);
-			
+
 			dom.select(".x.axis")
 				.call(xAxis);
-			
+
 			dom.select("text.x.axis")
 				.attr("x", widthAdj - 100)
 				.attr("dx", "0.5em");
-				
+
 			dom.selectAll(".national-bar")
 				.attr("width", 0);
 
 			dom.selectAll(".bar")
-				.attr("width", 0);				
+				.attr("width", 0);
 
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
@@ -2140,17 +2140,17 @@ function groupedBar() {
 								.attr("height", barWidth);
 
 				}});
-				
+
 			legend.selectAll("circle")
 				.attr("cx", widthAdj - 77);
 
 			legend.selectAll("text")
-				.attr("x", widthAdj - 65);		
-				
-		});			
-			
+				.attr("x", widthAdj - 65);
+
 		});
-		
+
+		});
+
 	};
 
  /*   chart.width = function(value) {
@@ -2320,4 +2320,3 @@ function wrap(text, width) {
     }
   });
 };
-

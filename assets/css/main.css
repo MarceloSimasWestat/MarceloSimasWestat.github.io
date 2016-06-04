@@ -3656,7 +3656,7 @@ body.is-ie #sidebar > .inner {
 }
 
     #sidebar .nav-image img {
-        width: 70%;
+        width: 75%;
     }
 
 #sidebar nav > ul {
@@ -4027,9 +4027,9 @@ div.preloading #sidebar nav ul li {
         margin-top: 250px;
         font-family: KARLA;
         font-weight: normal;
-        font-size: 3.75em;
+        font-size: 3.5em;
         margin-bottom: 9px;
-        line-height: 95%;
+        line-height: normal;
     }
 
     #counter p {
@@ -4063,8 +4063,40 @@ div.preloading #sidebar nav ul li {
 }
 
 /*
- * ==== Losange
+ * ==== Clip paths
  */
+
+.parallelgram {
+	width: 49.5%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.swapleft{
+
+  float:left;
+  padding: 0;
+  display: inline-block;
+
+}
+
+
+.teardrop {
+
+  width: 65%;
+  border-top-right-radius: 40px;
+  -moz-border-radius-topright: 40px;
+  -webkit-border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  -moz-border-radius-bottomleft: 40px;
+  -webkit-border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  -moz-border-radius-bottomright: 40px;
+  -webkit-border-bottom-right-radius: 40px;
+
+
+}
+
 
 .select-wrapper .losange {
    -ms-transform: rotate(-45deg);
