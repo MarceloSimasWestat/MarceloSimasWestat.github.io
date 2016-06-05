@@ -1761,11 +1761,11 @@ h1, h2, h3, h4, h5 {
         border-bottom: solid 2px rgba(26, 28, 32, 0.125);
     }
 
-    .chart .barChart-icon {
+   .barChart-icon {
         height: 2.75em;
         opacity: .15;
     }
-    
+
 /* End unique to Dept Ed */
 
 h1 {
