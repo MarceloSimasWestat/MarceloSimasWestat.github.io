@@ -1758,8 +1758,14 @@ h1, h2, h3, h4, h5 {
     h2.chart {
         color: #1A1C20;
         padding-bottom: 0.35em;
-        border-bottom: solid 2px rgba(23, 26, 29, 0.125);
+        border-bottom: solid 2px rgba(26, 28, 32, 0.125);
     }
+
+    .chart .barChart-icon {
+        height: 2.75em;
+        opacity: .15;
+    }
+    
 /* End unique to Dept Ed */
 
 h1 {
@@ -3951,7 +3957,7 @@ div.preloading #sidebar nav ul li {
 
                 #sidebar nav a:after {
                     background-image: none;
-                    background-color: #b74e91;
+                    background-color: #A6426C;
                 }
 }
 /* End of copied over */
@@ -4015,7 +4021,7 @@ div.preloading #sidebar nav ul li {
 .chair {
     width: 90%;
     height: 90%;
-    margin: 0px 25px 0px 25px;
+    margin: 0px 5% 0px 5%;
 }
 
 
@@ -4024,7 +4030,7 @@ div.preloading #sidebar nav ul li {
 
 
     #counter h2 {
-        margin-top: 250px;
+        margin-top: 56%;
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
@@ -4067,16 +4073,18 @@ div.preloading #sidebar nav ul li {
  */
 
 .parallelgram {
-	width: 49.5%;
+	width: 49%;
   height: auto;
   border-radius: 4px;
+
 }
 
 .swapleft{
 
-  float:left;
-  padding: 0;
   display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  text-align: center;
 
 }
 

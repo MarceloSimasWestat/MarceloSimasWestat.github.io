@@ -3,7 +3,7 @@ chart	subchart	level	group	number	pct
 1-1		Overall	Chronically absent	22	0.32949128
 1-2		Overall	White	29	0.3172
 1-2		Overall	Black	24	0.3352
-1-2		Overall	Hispanic & Latino	15	0.17327
+1-2		Overall	Hispanic	15	0.17327
 1-2		Overall	Asian	12	0.32932
 1-2		Overall	American Indian	24	0.32192
 1-2		Overall	Pacific Islander	44	0.31094
@@ -28,11 +28,11 @@ chart	subchart	level	group	number	pct
 2-2	1	High	Black	48	0.32273
 2-2	1	Other	Black	24	0.1771
 2-2	1	Overall	Black	24	0.3352
-2-2	1	Elementary	Hispanic & Latino	23	0.21957
-2-2	1	Middle	Hispanic & Latino	25	0.1948
-2-2	1	High	Hispanic & Latino	25	0.30871
-2-2	1	Other	Hispanic & Latino	57	0.17797
-2-2	1	Overall	Hispanic & Latino	15	0.17327
+2-2	1	Elementary	Hispanic	23	0.21957
+2-2	1	Middle	Hispanic	25	0.1948
+2-2	1	High	Hispanic	25	0.30871
+2-2	1	Other	Hispanic	57	0.17797
+2-2	1	Overall	Hispanic	15	0.17327
 2-2	1	Elementary	Asian	70	0.32379
 2-2	1	Middle	Asian	21	0.3422
 2-2	1	High	Asian	24	0.21222
