@@ -1986,9 +1986,7 @@ function groupedDot() {
 					.duration(animateTime)
 					.style("opacity", 0)
 					.attr("x1", 0)
-					.attr("x2", 0)
-					.attr("y1", 0)
-					.attr("y2", 0);
+					.attr("x2", 0);
 					
 			updateGroups.exit()
 				.selectAll(".dot")
