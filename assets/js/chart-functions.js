@@ -1053,6 +1053,7 @@ function groupedCol() {
 	// These are the default values
 
 	var	width = [],
+		maxWidth = 500,
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
@@ -1087,8 +1088,9 @@ function groupedCol() {
 
 		// margins; adjust width and height to account for margins
 
-		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-
+		if (maxWidth < parseInt(d3.select("#" + sectionID).style("width"), 10)) { width = maxWidth; }
+		else { width = parseInt(d3.select("#" + sectionID).style("width"), 10); }
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -1097,7 +1099,7 @@ function groupedCol() {
 
 		var buttons = d3.select(this)
 			.append("div")
-			.style({
+				.style({
 					"margin": "0 auto"
 				})
 				.attr("id", "buttons" + chartID)
@@ -1143,6 +1145,12 @@ function groupedCol() {
 
 		d3.select(this).append("div")
 			.attr("id", "title" + chartID)
+			.style("width", function() { 
+				if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
+				else { return maxWidth; }
+			})
+			.style("margin", "0 auto")
+			.style("max-width", maxWidth + "px")
 			.html("<span class = 'title'>" + title1 + "</span>");
 
 		// selections
@@ -1150,6 +1158,12 @@ function groupedCol() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
+			.style("width", function() { 
+				if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
+				else { return maxWidth; }
+			})
+			.style("margin", "0 auto")
+			.style("max-width", maxWidth + "px")
 				/*.style({
 					"max-width": width + "px",
 					"margin": "0 auto"
@@ -1363,9 +1377,27 @@ function groupedCol() {
 
 			// update width
 
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			if (maxWidth < parseInt(d3.select("#" + sectionID).style("width"), 10)) { width = maxWidth; }
+			else { width = parseInt(d3.select("#" + sectionID).style("width"), 10); }
 			widthAdj = width - marginLeft - margin.right;
 
+			d3.select("#title" + chartID)
+				.style("width", function() { 
+					if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
+					else { return maxWidth; }
+				})
+				.style("margin", "0 auto")
+				.style("max-width", maxWidth + "px")
+
+				
+			d3.select("#" + chartID)
+				.style("width", function() { 
+					if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
+					else { return maxWidth; }
+				})
+				.style("margin", "0 auto")
+				.style("max-width", maxWidth + "px")
+			
 			// resize chart
 
 			xScale.rangeRoundBands([0, widthAdj], .5);
@@ -1416,6 +1448,14 @@ function groupedCol() {
 
     }; */
 
+    chart.maxWidth = function(value) {
+
+        if (!arguments.length) return maxWidth;
+        maxWidth = value;
+        return chart;
+
+    };	
+	
     chart.height = function(value) {
 
         if (!arguments.length) return height;
