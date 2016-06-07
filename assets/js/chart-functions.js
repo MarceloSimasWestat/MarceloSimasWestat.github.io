@@ -2003,7 +2003,7 @@ function groupedDot() {
 				.attr("transform", "translate(0,0)")
 				.append("circle")
 					.attr("class", "dot")
-					.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
+					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d, i) { return (yScale0.rangeBand() / 2) - ((.65 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 					.attr("r", dotSize/2)
@@ -2256,7 +2256,7 @@ function groupedDot() {
 					.attr("transform", "translate(0,0)")
 					.append("circle")
 						.attr("class", "dot")
-						.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
+						.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 						.attr("cx", 0)
 						.attr("cy", function(d, i) { return (yScale0.rangeBand() / 2) - ((.65 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 						.attr("r", dotSize/2)
@@ -2626,7 +2626,7 @@ function groupedBar() {
 				updateData(1);
 				updateTitle(1);
 				updateAltText(1);
-
+				
 			});
 
 		d3.select("#buttons" + chartID)
