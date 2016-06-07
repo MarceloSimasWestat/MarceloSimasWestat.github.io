@@ -1157,7 +1157,7 @@ function groupedCol() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Learner")
+			.text("English Learners")
 			.on("click", function() {
 
 				updateData("1-5");
@@ -1769,7 +1769,7 @@ function groupedDot() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Learner")
+			.text("English Learners")
 			.on("click", function() {
 
 				updateData(4);

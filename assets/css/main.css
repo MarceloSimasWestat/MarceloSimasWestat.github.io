@@ -3604,7 +3604,7 @@ body.is-ie .wrapper.fullscreen {
 
 #footer > .inner .menu {
     font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 #header + #wrapper + #footer > .inner {
