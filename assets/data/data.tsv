@@ -1,6 +1,7 @@
 chart	subchart	level	group	number	pct
 1-1		Overall	Not chronically absent	41388379	0.869050832
 1-1		Overall	Chronically absent	6236429	0.130949168
+1-2		Overall	Overall	6236429	0.130949168
 1-2		Overall	White	2942283	0.12176
 1-2		Overall	Black	1188077	0.16352
 1-2		Overall	Hispanic	1554991	0.13327
@@ -8,10 +9,13 @@ chart	subchart	level	group	number	pct
 1-2		Overall	American Indian	118275	0.22192
 1-2		Overall	Pacific Islander	44700	0.21094
 1-2		Overall	Two or more races	226381	0.15607
+1-3		Overall	Overall	6236429	0.130949168
 1-3		Overall	Male	3174720	0.12709
 1-3		Overall	Female	3061709	0.12937
+1-4		Overall	Overall	6236429	0.130949168
 1-4		Overall	With Disabilities	979668	0.17459
 1-4		Overall	Without Disabilities	4996724	0.1236
+1-5		Overall	Overall	6236429	0.130949168
 1-5		Overall	English Learners	495398	0.10666
 1-5		Overall	Non-English Learners	5728473	0.13345
 2-1		Elementary	All Students	2237469	0.10104

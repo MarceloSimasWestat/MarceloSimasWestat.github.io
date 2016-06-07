@@ -6,7 +6,7 @@ function barChart() {
 	// These are the default values
 
 	var	width = [],
-		height = 500,
+		height = 650,
 		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 45,
@@ -149,7 +149,10 @@ function barChart() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class","bar")
+					.attr("class", function(d) { 
+						if (d.var1 == "Overall") { return "overallBar"; }
+						else { return "bar"; }
+					})
 					.attr("x", 0)
 					.attr("width", 0)
 					.attr("y", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2) - (barWidth/2); })
@@ -158,7 +161,7 @@ function barChart() {
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-
+						
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -171,6 +174,11 @@ function barChart() {
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
 
+					svg.selectAll("rect.overallBar")	
+						.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.var3); });
+					
 			}});
 
 		// draw y-axis above bars
@@ -209,6 +217,9 @@ function barChart() {
 
 			dom.selectAll("rect.bar")
 				.attr("width", 0);
+				
+			dom.selectAll("rect.overallBar")
+				.attr("width", 0);
 
 			var gs2 = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -218,6 +229,11 @@ function barChart() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 					svg.selectAll("rect.bar")
+						.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.var3); });
+
+					svg.selectAll("rect.overallBar")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
@@ -856,7 +872,7 @@ function dotPlot() {
 					.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
-					.attr("r", 0)
+					.attr("r", dotSize/2)
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide)
 					.append("aria-label")
@@ -941,7 +957,7 @@ function dotPlot() {
 
 			dom.selectAll(".dot")
 				.attr("cx", 0)
-				.attr("r", 0);
+				.attr("r", dotSize/2);
 
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
@@ -1317,7 +1333,10 @@ function groupedCol() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class","column")
+					.attr("class", function(d) { 
+						if (d.var1 == "Overall") { return "overallColumn"; }
+						else { return "column"; }
+					})
 					.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 					.attr("width", colWidth)
 					.attr("y", heightAdj)
@@ -1340,6 +1359,12 @@ function groupedCol() {
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 							.attr("y", function(d) { return yScale(d.var3); });
 
+					svg.selectAll("rect.overallColumn")
+						.transition()
+							.duration(animateTime)
+							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
+							.attr("y", function(d) { return yScale(d.var3); });							
+							
 			}});
 
 		// draw x-axis above columns
@@ -1389,7 +1414,7 @@ function groupedCol() {
 
 			// update columns
 
-			var updateCols = svg.selectAll("rect.column")
+			var updateCols = svg.selectAll("rect")
 				.data(dataFiltered);
 
 			updateCols.transition()
@@ -1406,7 +1431,10 @@ function groupedCol() {
 				.append("g")
 					.attr("transform", "translate(0,0)")
 					.append("rect")
-						.attr("class","column")
+						.attr("class", function(d) {
+							if (d.var1 == "Overall") { return "overallColumn"; }
+							else { return "column"; }
+						})
 						.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 						.attr("width", colWidth)
 						.attr("y", heightAdj)
@@ -1418,7 +1446,7 @@ function groupedCol() {
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 							.attr("y", function(d) { return yScale(d.var3); });
 							
-			updateCols.select("rect.column")
+			updateCols.select("rect")
 				.append("aria-label")
 					.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
@@ -1503,6 +1531,11 @@ function groupedCol() {
 				.attr("height", 0)
 				.attr("y", heightAdj);
 
+			dom.selectAll("rect.overallColumn")
+				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
+				.attr("height", 0)
+				.attr("y", heightAdj);
+				
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
@@ -1516,6 +1549,12 @@ function groupedCol() {
 								.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 								.attr("y", function(d) { return yScale(d.var3); });
 
+					svg.selectAll("rect.overallColumn")
+						.transition()
+							.duration(animateTime)
+							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
+							.attr("y", function(d) { return yScale(d.var3); });										
+								
 				}});
 
 		});
@@ -1967,7 +2006,7 @@ function groupedDot() {
 					.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d, i) { return (yScale0.rangeBand() / 2) - ((.65 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
-					.attr("r", 0)
+					.attr("r", dotSize/2)
 					.style("fill", function(d) { return color(d.level); })
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide);
@@ -2220,7 +2259,7 @@ function groupedDot() {
 						.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
 						.attr("cx", 0)
 						.attr("cy", function(d, i) { return (yScale0.rangeBand() / 2) - ((.65 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
-						.attr("r", 0)
+						.attr("r", dotSize/2)
 						.style("fill", function(d) { return color(d.level); })
 						.on("mouseover", tipDot.show)
 						.on("mouseout", tipDot.hide)
@@ -2291,7 +2330,7 @@ function groupedDot() {
 
 			dom.selectAll(".dot")
 				.attr("cx", 0)
-				.attr("r", 0);
+				.attr("r", dotSize/2);
 
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))

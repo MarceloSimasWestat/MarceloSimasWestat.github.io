@@ -156,6 +156,14 @@ button:hover,
 	fill-opacity:.65;
 }
 
+.overallBar {
+	fill: #A6426C;
+}
+
+.overallBar:hover {
+	fill-opacity: .65;
+}
+
 #animation1 {
 
 }
@@ -205,6 +213,14 @@ button:hover,
 
 .column:hover {
 	fill-opacity: .85;
+}
+
+.overallColumn {
+	fill: #5D3EA8;
+}
+
+.overallColumn:hover {
+	fill-opacity: .65;
 }
 
 /* Dot plot styling */
