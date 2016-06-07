@@ -869,7 +869,7 @@ function dotPlot() {
 				.attr("transform", "translate(0,0)")
 				.append("circle")
 					.attr("class", "dot")
-					.attr("clip-path", function() { return "url(#clip)" + chartID + ")"; })
+					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.var1) + (yScale.rangeBand() / 2); })
 					.attr("r", dotSize/2)
