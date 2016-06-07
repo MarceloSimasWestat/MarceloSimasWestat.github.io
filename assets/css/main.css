@@ -1736,11 +1736,9 @@ p {
     margin: 0 0 1.5em 0;
 }
 
-p .linebreak {
-
-  margin-bottom: 3.5em;
-
-}
+    p .linebreak {
+        margin-bottom: 3.5em;
+    }
 
 h1, h2, h3, h4, h5 {
     color: #ffffff;
@@ -1767,11 +1765,10 @@ h1, h2, h3, h4, h5 {
         border-bottom: solid 2px rgba(26, 28, 32, 0.125);
     }
 
-
-   .barChart-icon {
-        height: 2.75em;
-        opacity: .15;
-    }
+.barChart-icon {
+    height: 2.75em;
+    opacity: .15;
+}
 
 /* End unique to Dept Ed */
 
@@ -2625,7 +2622,7 @@ input[type="radio"] {
         }
 
 .wrapper.style1 .icon.major:before {
-    color: #42A667;
+    color: #358151;
 }
 
 .wrapper.style1-alt .icon.major:before {
@@ -3320,7 +3317,7 @@ table {
 }
 
 .wrapper.style1 {
-    background-color: #42A667;
+    background-color: #358151;
 }
 
 .wrapper.style1-alt {
@@ -3847,7 +3844,7 @@ body.is-ie #sidebar > .inner {
     display: block;
     font-size: 0.6em;
     font-weight: bold;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     line-height: 1.75;
     outline: 0;
     padding: 1.35em 0;
@@ -4049,7 +4046,15 @@ div.preloading #sidebar nav ul li {
         line-height: normal;
     }
 
+        #counter h2 span {
+            font-size: 22px;
+            font-family: Muli, Helvetica, sans-serif;
+            color: rgba(255, 255, 255, 0.80);
+            display: inline-block;
+        }
+
     #counter p {
+        font-size: 22px;
         line-height: normal;
     }
 
@@ -4294,9 +4299,9 @@ transform: rotate(-45deg);
               border-color: #ffffff;
             }
 
-            .wrapper.style4 ul.callout li h3:before {
-              color: #ffffff;
-            }
+    .wrapper.style4 ul.callout li h3:before {
+        color: #ffffff;
+    }
 
 /* Preloader */
 
