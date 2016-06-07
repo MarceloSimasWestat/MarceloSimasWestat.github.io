@@ -4005,7 +4005,7 @@ div.preloading #sidebar nav ul li {
     background-position: top right;
     padding: 5em 5em 3em 5em;
     max-width: 100%;
-    width: 75em;
+    /*width: 75em;*/
 }
 
     .image1 p {
