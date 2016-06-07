@@ -1388,8 +1388,8 @@ function groupedCol() {
 				.duration(animateTime)
 				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("width", colWidth)
-				.attr("y", function(d) { return heightAdj - yScale(d.var3); })
-				.attr("height", function(d) { return yScale(d.var3); });
+				.attr("height", function(d) { return heightAdj - yScale(d.var3); })
+				.attr("y", function(d) { return yScale(d.var3); });
 
 			updateCols.enter()
 				.append("g")
