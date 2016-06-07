@@ -13,6 +13,7 @@ function barChart() {
 		barWidth = 15,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -79,6 +80,9 @@ function barChart() {
 			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+				
+		svg.append("title")
+			.text(altText);
 
 		// tooltips using d3-tip
 
@@ -123,6 +127,7 @@ function barChart() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis)
 
 		svg.append("text")
@@ -132,6 +137,7 @@ function barChart() {
 			.attr("y", heightAdj)
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
 			.text("% CHRONICALLY ABSENT IN 2013-14")
 
 		// draw bars
@@ -169,6 +175,7 @@ function barChart() {
 
 		svg.append("g")
 			.attr("class", "y axis")
+			.attr("aria-hidden", "true")			
 			.call(yAxis)
 
 		// resize
@@ -285,6 +292,14 @@ function barChart() {
 
 	};
 
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};	
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -345,6 +360,7 @@ function colChart() {
 		animateTime = 1000,
 		colWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -409,6 +425,9 @@ function colChart() {
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
+		svg.append("title")
+			.text(altText);
+				
 		// tooltips using d3-tip
 
 		var tipCol = d3.tip()
@@ -450,6 +469,7 @@ function colChart() {
 
 		svg.append("g")
 			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
 			.call(yAxis)
 			.selectAll("text")
 
@@ -457,6 +477,7 @@ function colChart() {
 			.attr("class", "y axis")
 			.attr("x", -15)
 			.attr("y", "-2.1em")
+			.attr("aria-hidden", "true")
 			.attr("text-anchor", "start")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
@@ -497,6 +518,7 @@ function colChart() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
@@ -605,6 +627,7 @@ function colChart() {
 		return chart;
 
 	};
+	
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -613,6 +636,14 @@ function colChart() {
 
 	};
 
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -672,6 +703,7 @@ function dotPlot() {
 		dotSize = 5,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -736,6 +768,9 @@ function dotPlot() {
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
+		svg.append("title")
+			.text(altText);
+				
 		// tooltips using d3-tip
 
 		var tipDot = d3.tip()
@@ -745,7 +780,6 @@ function dotPlot() {
 			.html(function(d) {
 
 			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
-
 
 		});
 
@@ -779,6 +813,7 @@ function dotPlot() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis)
 
 		svg.append("text")
@@ -787,6 +822,7 @@ function dotPlot() {
 			.attr("dx", "0.5em")
 			.attr("y", heightAdj)
 			.attr("dy", "3.1em")
+			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
@@ -864,6 +900,7 @@ function dotPlot() {
 
 		svg.append("g")
 			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
 			.call(yAxis)
 
 		// resize
@@ -1001,6 +1038,14 @@ function dotPlot() {
 
 	};
 
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -1063,6 +1108,9 @@ function groupedCol() {
 		title1 = "Generic chart title. Update me using .title1()!",
 		title2 = "Generic chart title. Update me using .title2()!",
 		title3 = "Generic chart title. Update me using .title3()!",	
+		altText1 = "Fill in alt text for screen readers! Use .altText1().",
+		altText2 = "Fill in alt text for screen readers! Use .altText2().",
+		altText3 = "Fill in alt text for screen readers! Use .altText3().",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1070,6 +1118,7 @@ function groupedCol() {
 		data = [];
 
 	var updateTitle,
+		updateAltText,
 		updateData;
 		
 	function chart(selection) {
@@ -1113,6 +1162,7 @@ function groupedCol() {
 
 				updateData("1-5");
 				updateTitle(1);
+				updateAltText(1);
 
 			});
 
@@ -1124,6 +1174,7 @@ function groupedCol() {
 
 				updateData("1-4");
 				updateTitle(2);
+				updateAltText(2);
 
 			});
 
@@ -1135,6 +1186,7 @@ function groupedCol() {
 
 				updateData("1-3");
 				updateTitle(3);
+				updateAltText(3);
 
 			});
 
@@ -1195,6 +1247,9 @@ function groupedCol() {
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
+		svg.append("title")
+			.text(altText1);
+				
 		// tooltips using d3-tip
 
 		var tipCol = d3.tip()
@@ -1236,14 +1291,15 @@ function groupedCol() {
 
 		svg.append("g")
 			.attr("class", "y axis")
-			.call(yAxis)
-			.selectAll("text")
+			.attr("aria-hidden", "true")
+			.call(yAxis);
 
 		svg.append("text")
 			.attr("class", "y axis")
 			.attr("x", -15)
 			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
+			.attr("aria-hidden", "true")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
 		// draw columns
@@ -1283,6 +1339,7 @@ function groupedCol() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis);
 			/*.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());*/
@@ -1300,6 +1357,17 @@ function groupedCol() {
 
 		};				
 
+		function updateAltText(altTextID) {
+
+			svg.select("title")
+				.text(function() {
+					if (altTextID == 1) { return altText1; }
+					if (altTextID == 2) { return altText2; }
+					if (altTextID == 3) { return altText3; }
+				})
+
+		};				
+		
 		function updateData(subchartID) {
 
 			// re-filter data
@@ -1360,6 +1428,7 @@ function groupedCol() {
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + heightAdj + ")")
 				.style("opacity", 1)
+				.attr("aria-hidden", "true")
 				.call(xAxis);
 				/*.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());*/
@@ -1528,6 +1597,30 @@ function groupedCol() {
 
 	};
 
+	chart.altText1 = function(value) {
+
+		if (!arguments.length) return altText1;
+		altText1 = value;
+		return chart;
+
+	};
+
+	chart.altText2 = function(value) {
+
+		if (!arguments.length) return altText2;
+		altText2 = value;
+		return chart;
+
+	};
+
+	chart.altText3 = function(value) {
+
+		if (!arguments.length) return altText3;
+		altText3 = value;
+		return chart;
+
+	};	
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -1591,6 +1684,10 @@ function groupedDot() {
 		title2 = "Generic chart title #2. Update me using .title2()!",
 		title3 = "Generic chart title #3. Update me using .title3()!",
 		title4 = "Generic chart title #4. Update me using .title4()!",
+		altText1 = "Fill in alt text for screen readers! Use .altText1().",
+		altText2 = "Fill in alt text for screen readers! Use .altText2().",
+		altText3 = "Fill in alt text for screen readers! Use .altText3().",
+		altText4 = "Fill in alt text for screen readers! Use .altText4().",		
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1598,6 +1695,7 @@ function groupedDot() {
 		data = [];
 
 	var updateTitle,
+		updateAltText,
 		updateData;
 
 	function chart(selection) {
@@ -1640,6 +1738,7 @@ function groupedDot() {
 
 				updateData(1);
 				updateTitle(1);
+				updateAltText(1);
 
 			});
 
@@ -1651,7 +1750,8 @@ function groupedDot() {
 
 				updateData(2);
 				updateTitle(2);
-
+				updateAltText(2);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1662,7 +1762,8 @@ function groupedDot() {
 
 				updateData(3);
 				updateTitle(3);
-
+				updateAltText(3);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1673,7 +1774,8 @@ function groupedDot() {
 
 				updateData(4);
 				updateTitle(4);
-
+				updateAltText(4);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1723,6 +1825,9 @@ function groupedDot() {
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
+		svg.append("title")
+			.text(altText1);
+				
 		// tooltips using d3-tip
 
 		var tipDot = d3.tip()
@@ -1775,6 +1880,7 @@ function groupedDot() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis)
 
 		svg.append("text")
@@ -1783,6 +1889,7 @@ function groupedDot() {
 			.attr("dx", ".5em")
 			.attr("y", heightAdj)
 			.attr("dy", "3.1em")
+			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
@@ -1900,6 +2007,7 @@ function groupedDot() {
 		svg.append("g")
 			.attr("class", "y axis")
 			.style("opacity", 0)
+			.attr("aria-hidden", "true")
 			.call(yAxis)
 			.transition()
 				.duration(animateTime)
@@ -1941,6 +2049,18 @@ function groupedDot() {
 
 		};
 
+		function updateAltText(altTextID) {
+
+			svg.select("title")
+				.text(function() {
+					if (altTextID == 1) { return altText1; }
+					if (altTextID == 2) { return altText2; }
+					if (altTextID == 3) { return altText3; }
+					if (altTextID == 4) { return altText4; }
+				})
+
+		};
+			
 		function updateData(subChartID) {
 
 			// re-filter data
@@ -2302,6 +2422,38 @@ function groupedDot() {
 
 	};
 
+	chart.altText1 = function(value) {
+
+		if (!arguments.length) return altText1;
+		altText1 = value;
+		return chart;
+
+	};
+
+	chart.altText2 = function(value) {
+
+		if (!arguments.length) return altText2;
+		altText2 = value;
+		return chart;
+
+	};
+
+	chart.altText3 = function(value) {
+
+		if (!arguments.length) return altText3;
+		altText3 = value;
+		return chart;
+
+	};
+
+	chart.altText4 = function(value) {
+
+		if (!arguments.length) return altText4;
+		altText4 = value;
+		return chart;
+
+	};
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -2365,6 +2517,10 @@ function groupedBar() {
 		title2 = "Generic chart title #2. Update me using .title2()!",
 		title3 = "Generic chart title #3. Update me using .title3()!",
 		title4 = "Generic chart title #4. Update me using .title4()!",
+		altText1 = "Fill in alt text for screen readers! Use .altText1().",
+		altText2 = "Fill in alt text for screen readers! Use .altText2().",
+		altText3 = "Fill in alt text for screen readers! Use .altText3().",
+		altText4 = "Fill in alt text for screen readers! Use .altText4().",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -2372,6 +2528,7 @@ function groupedBar() {
 		data = [];
 
 	var updateTitle,
+		updateAltText,
 		updateData;
 
 	function chart(selection) {
@@ -2414,6 +2571,7 @@ function groupedBar() {
 
 				updateData(1);
 				updateTitle(1);
+				updateAltText(1);
 
 			});
 
@@ -2425,6 +2583,7 @@ function groupedBar() {
 
 				updateData(2);
 				updateTitle(2);
+				updateAltText(2);
 
 			});
 
@@ -2436,6 +2595,7 @@ function groupedBar() {
 
 				updateData(3);
 				updateTitle(3);
+				updateAltText(3);
 
 			});
 
@@ -2447,6 +2607,7 @@ function groupedBar() {
 
 				updateData(4);
 				updateTitle(4);
+				updateAltText(4);
 
 			});
 
@@ -2497,6 +2658,9 @@ function groupedBar() {
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
+		svg.append("title")
+			.text(altText1);
+				
 		// tooltips using d3-tip
 
 		var tipBar = d3.tip()
@@ -2549,6 +2713,7 @@ function groupedBar() {
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
 			.call(xAxis)
 
 		svg.append("text")
@@ -2558,6 +2723,7 @@ function groupedBar() {
 			.attr("y", heightAdj)
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
 			.text("% CHRONICALLY ABSENT IN 2013-14");
 
 		// draw national bars
@@ -2635,6 +2801,7 @@ function groupedBar() {
 		svg.append("g")
 			.attr("class", "y axis")
 			.style("opacity", 0)
+			.attr("aria-hidden", "true")
 			.call(yAxis)
 			.transition()
 				.duration(animateTime)
@@ -2659,6 +2826,7 @@ function groupedBar() {
 			.attr("x", widthAdj - 65)
 			.attr("y", 9)
 			.attr("dy", ".35em")
+			.attr("aria-hidden", "true")
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
@@ -2676,6 +2844,18 @@ function groupedBar() {
 
 		};
 
+		function updateAltText(altTextID) {
+
+			svg.select("title")
+				.text(function() {
+					if (altTextID == 1) { return altText1; }
+					if (altTextID == 2) { return altText2; }
+					if (altTextID == 3) { return altText3; }
+					if (altTextID == 4) { return altText4; }
+				})
+
+		};
+		
 		function updateData(subChartID) {
 
 			// re-filter data
@@ -2966,6 +3146,38 @@ function groupedBar() {
 
 	};
 
+	chart.altText1 = function(value) {
+
+		if (!arguments.length) return altText1;
+		altText1 = value;
+		return chart;
+
+	};
+
+	chart.altText2 = function(value) {
+
+		if (!arguments.length) return altText2;
+		altText2 = value;
+		return chart;
+
+	};
+
+	chart.altText3 = function(value) {
+
+		if (!arguments.length) return altText3;
+		altText3 = value;
+		return chart;
+
+	};
+
+	chart.altText4 = function(value) {
+
+		if (!arguments.length) return altText4;
+		altText4 = value;
+		return chart;
+
+	};
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
