@@ -21,7 +21,6 @@
     <link rel="icon" href="images/doelogo_rev.png" />
 
     <!-- Scripts -->
-
     <!--<script src="widgets.js"></script>-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
@@ -40,24 +39,24 @@
 
     <!-- Preloader !-->
 
-	<script>
-		window.addEventListener("load", function(){
+    <script>
+        window.addEventListener("load", function () {
 
-			var loader = document.getElementById("loader");
-			var loader_wrapper = document.getElementById("loader-wrapper");
+            var loader = document.getElementById("loader");
+            var loader_wrapper = document.getElementById("loader-wrapper");
 
-			loader.style.transition = "all 0.3s ease-out";
-			loader.style.webkitTransition = "all 0.3s ease-out";
-			loader.style.opacity = 0;
+            loader.style.transition = "all 0.3s ease-out";
+            loader.style.webkitTransition = "all 0.3s ease-out";
+            loader.style.opacity = 0;
 
-			loader_wrapper.style.transition = "all 1s ease-out";
-			loader_wrapper.style.webkitTransition = "all 1s ease-out";
-			loader_wrapper.style.opacity = 0;
+            loader_wrapper.style.transition = "all 1s ease-out";
+            loader_wrapper.style.webkitTransition = "all 1s ease-out";
+            loader_wrapper.style.opacity = 0;
 
-			setTimeout(function() { document.body.removeChild(loader_wrapper)} , 1000);
+            setTimeout(function () { document.body.removeChild(loader_wrapper) }, 1000);
 
-		});
-	</script>
+        });
+    </script>
 
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -107,11 +106,14 @@
         <!-- Intro 1 -->
         <section id="intro" class="wrapper style1 fullscreen fade-up">
             <div class="inner">
-                <h1>CHRONIC ABSENTEEISM<br/>IN THE NATION'S SCHOOLS</h1>
+                <h1>CHRONIC ABSENTEEISM<br />IN THE NATION'S SCHOOLS</h1>
                 <p style="font-size:15pt">An unprecedented look at a hidden educational crisis.</p>
                 <ul class="actions">
                     <li><a href="#one" class="button scrolly">Continue</a></li>
                 </ul>
+                <div id="poweredBy">
+                     Powered by InformED and the Civil Rights Data Collection
+                </div>
             </div>
         </section>
 
@@ -122,39 +124,40 @@
                 <h2 class="line">New Data Illuminates the Extent of Chronic Absence</h2>
                 <p>
 
-Young minds belong in schools. The transfer of knowledge and the development of critical skills depend on regular exposure to teachers, peers, and rigorous and rewarding coursework. </p>
-<p>
+                    Young minds belong in schools. The transfer of knowledge and the development of critical skills depend on regular exposure to teachers, peers, and rigorous and rewarding coursework.
+                </p>
+                <p>
 
-Missing school frequently has negative consequences on students. For example:
+                    Missing school frequently has negative consequences on students. For example:
                 </p>
 
-                  <ul style="font-size: 15px;">
+                <ul style="font-size: 15px;">
                     <li>Students who are chronically absent in early grades are much less likely to read at grade level by the third grade.</li>
                     <li>Irregular attendance can be a better predictor of high school dropout than test scores.</li>
                     <li>Chronic absenteeism has been linked to worse outcomes later in life, including poverty, poorer physical and mental health, and involvement in the criminal justice system.</li>
-                  </ul>
+                </ul>
 
-<p>
-For too long, the crisis of chronic absenteeism has been hidden from view.  This blindspot shrunk considerably with the 2013-14 Civil Rights Data Collection (CRDC), which for the first time, collects information on the number and characteristics of students who missed 15 or more days of school in the 2013-14 school year. The CRDC includes data from 99.5% of all public schools and this collection offers the most comprehensive national portrait of chronic absence to date.
+                <p>
+                    For too long, the crisis of chronic absenteeism has been hidden from view.  This blindspot shrunk considerably with the 2013-14 Civil Rights Data Collection (CRDC), which for the first time, collects information on the number and characteristics of students who missed 15 or more days of school in the 2013-14 school year. The CRDC includes data from 99.5% of all public schools and this collection offers the most comprehensive national portrait of chronic absence to date.
                 </p>
 
-<ul class="menu">
-<h3 class="line">Data Note</h3>
-<p>Schools with incomplete or implausible values for the data needed for the Chronic Student Absenteeism (CSA) analyses were excluded. A total of 4,455 schools were excluded for the following reasons:</p>
-<ol style="font-size: 15px;">
-  <li>The CSA question was not applicable to the school (the school must have students enrolled in grades K–12).</li>
-  <li>The school reported incomplete data for enrollment and/or CSA count for at least one race/ethnicity subgroup.</li>
-  <li>The CSA count was larger than the K–12 enrollment for at least one race/ethnicity subgroup. Schools with partial or missing data for students with disabilities or English learners were included in all analyses except those that focused on these subgroups.</li>
+                <ul class="menu">
+                    <h3 class="line">Data Note</h3>
+                    <p>Schools with incomplete or implausible values for the data needed for the Chronic Student Absenteeism (CSA) analyses were excluded. A total of 4,455 schools were excluded for the following reasons:</p>
+                    <ol style="font-size: 15px;">
+                        <li>The CSA question was not applicable to the school (the school must have students enrolled in grades K–12).</li>
+                        <li>The school reported incomplete data for enrollment and/or CSA count for at least one race/ethnicity subgroup.</li>
+                        <li>The CSA count was larger than the K–12 enrollment for at least one race/ethnicity subgroup. Schools with partial or missing data for students with disabilities or English learners were included in all analyses except those that focused on these subgroups.</li>
 
-</ol>
+                    </ol>
 
-  </ul>
-
-
+                </ul>
 
 
 
-                    </div>
+
+
+            </div>
         </section>
 
         <section id="one" class="image1" class="wrapper style1 fullscreen">
@@ -165,11 +168,11 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
                     </div>
                     <div id="counter" class="6u$ 12u$(medium)">
                         <h2>
-							 OVER <br/>6 MILLION
-							<span>
+                            OVER <br />6 MILLION
+                            <span>
                                 students missed 15 or more days of school in 2013-14.
                             </span>
-						</h2>
+                        </h2>
                         <p>That's 13%—<b>or 1 out of every 8</b>—of all students.</p>
                     </div>
                 </div>
@@ -177,28 +180,27 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
         </section>
 
         <!-- One -->
-
         </section>
 
 
         <section id="one_chart" class="wrapper chart">
             <div id="one_sections" class="inner">
-              <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
+                <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
                 <h2 class="chart"></h2>
                 <p style="margin-bottom: 3.5em"></p>
 
                 <div></div>
                 <div id="ch1_2">
 
-                            </div>
+                </div>
 
-                            <p style="margin-top:1.5em; margin-bottom:3.5em;">The disparities are striking – compared to white students, black students are 30% more likely to miss nearly a month of school or more; Hispanic students are 9% more likely and American Indian and Pacific Islander students are over 50% more likely to be chronically absent. Hover over each bar to see the exact figures for how many students in each group were chronically absent. </p>
+                <p style="margin-top:1.5em; margin-bottom:3.5em;">The disparities are striking – compared to white students, black students are 30% more likely to miss nearly a month of school or more; Hispanic students are 9% more likely and American Indian and Pacific Islander students are over 50% more likely to be chronically absent. Hover over each bar to see the exact figures for how many students in each group were chronically absent. </p>
 
 
 
                 <div id="ch1_3">
-					<p></p>
-                          </div>
+                    <p></p>
+                </div>
                 <div></div>
                 <p style="margin-top:1.5em;">A bright spot in the data - English learners are 1.2 times less likely to be chronically absent that their non-English learner peers. Less than 11% of English learners were chronically absent compared to more than 13% of non-English learners.</p>
 
@@ -212,20 +214,21 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
         <section id="two" class="wrapper style1">
             <div class="inner">
                 <h2 class="line">Lost Along the Way</h2>
-                <p>Research suggests that chronic absence is not evenly distributed across all grades and is instead concentrated at specific points along the educational pipeline, namely the early grades and the later years of high school. Understanding when students are most at risk of missing too much school along the K-12 continuum is the first step toward developing targeted chronic absence interventions that will help stabilize the pipeline.
+                <p>
+                    Research suggests that chronic absence is not evenly distributed across all grades and is instead concentrated at specific points along the educational pipeline, namely the early grades and the later years of high school. Understanding when students are most at risk of missing too much school along the K-12 continuum is the first step toward developing targeted chronic absence interventions that will help stabilize the pipeline.
                 </p>
                 <p>CRDC data collects data at the school level (elementary, middle, high school) so the prevalence of chronic absenteeism in specific grades is masked.  When looking broadly across the school levels, chronic absenteeism is highest in high school.</p>
 
-                      </div>
+            </div>
         </section>
 
         <section id="two_chart" class="wrapper chart">
             <div id="two_sections" class="inner">
-              <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
+                <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
                 <h2 class="chart"></h2>
                 <div></div>
                 <div id="ch2_1">
-                            </div>
+                </div>
                 <p style="margin-top: 1.5em; margin-bottom: 3.5em;">Overall, 19% of students in high school are chronically absent compared to 12% of students in middle school. Students in elementary schools had the lowest chronic absenteeism rate, 10%, though this may be masking high rates of chronic absenteeism in the early elementary grades.</p>
 
 
@@ -233,11 +236,12 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
 
 
 
-					<p></p>
-                            </div>
-                            <p style="margin-top:1.5em;">For each subgroup of students chronic absence follows a similar pattern with the likelihood of students being chronically absent increasing as students progress though middle and high school. Notably, the lower rates of chronic absenteeism that is seen when examining English learners overall dissipates when these students reach high school.
+                    <p></p>
+                </div>
+                <p style="margin-top:1.5em;">
+                    For each subgroup of students chronic absence follows a similar pattern with the likelihood of students being chronically absent increasing as students progress though middle and high school. Notably, the lower rates of chronic absenteeism that is seen when examining English learners overall dissipates when these students reach high school.
 
-                            </p>
+                </p>
 
                 <div></div>
             </div>
@@ -256,17 +260,17 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
         <section id="three" class="wrapper chart">
             <div class="inner">
                 <h2 class="chart">Chronic Absence in 2013-14 by School District</h2>
-            <div style="margin-top: 3.5em;">
-              <center><img style="width: 375px;" src="/images/maplegend.svg" /></center>
-                  <img style="width: 100%" src="/images/Absenteeism_20160601_draft2_legend.jpg" />
+                <div style="margin-top: 3.5em;">
+                    <center><img style="width: 375px;" src="/images/maplegend.svg" /></center>
+                    <img style="width: 100%" src="/images/Absenteeism_20160601_draft2_legend.jpg" />
+                </div>
             </div>
-                    </div>
         </section>
 
         <section class="wrapper style3">
             <div class="inner">
 
-              <p>What a closer look at your state? Use the drop down box to zoom this map into a specific area.</p>
+                <p>What a closer look at your state? Use the drop down box to zoom this map into a specific area.</p>
 
                 <div class="row uniform">
                     <div class="12u$">
@@ -335,7 +339,7 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
 
 
 
-                      <center><p class="mapboxAttribution">© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a></p></center>
+                        <center><p class="mapboxAttribution">© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a></p></center>
 
 
                     </div>
@@ -345,25 +349,25 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
 
         <section id="three" class="wrapper style1">
             <div class="inner">
-                  <h2 class="line">Reaching for #EveryStudentEveryDay</h2>
-            <p style="margin-bottom: 3.5;">The U.S. Department of Education is committed to helping address chronic absenteeism through:</p>
+                <h2 class="line">Reaching for #EveryStudentEveryDay</h2>
+                <p style="margin-bottom: 3.5;">The U.S. Department of Education is committed to helping address chronic absenteeism through:</p>
 
-            <ul class="callout">
-              <li>
-                <h3 class="icon style1 fa-book">Every Student, Every Day: A national initiative to address and eliminate chronic absenteeism.</h3>
-                <p>Supports coordinated community action that addresses the underlying causes of local chronic absenteeism affecting millions of children in our Nation's public schools each year.</p>
-              </li>
-              <li>
-                <h3 class="icon style2 fa-graduation-cap">My Brother's Keeper: A cross-agency initiative to build ladders of opportunity for boys and young men of color.</h3>
-                <p>Text.</p>
-              </li>
-              <li>
-                <h3 class="icon style3 fa-gavel">InformED: The Department's primary open data initiative.</h3>
-                <p>Text.</p>
-              </li>
-            </ul>
+                <ul class="callout">
+                    <li>
+                        <h3 class="icon style1 fa-book">Every Student, Every Day: A national initiative to address and eliminate chronic absenteeism.</h3>
+                        <p>Supports coordinated community action that addresses the underlying causes of local chronic absenteeism affecting millions of children in our Nation's public schools each year.</p>
+                    </li>
+                    <li>
+                        <h3 class="icon style2 fa-graduation-cap">My Brother's Keeper: A cross-agency initiative to build ladders of opportunity for boys and young men of color.</h3>
+                        <p>Text.</p>
+                    </li>
+                    <li>
+                        <h3 class="icon style3 fa-gavel">InformED: The Department's primary open data initiative.</h3>
+                        <p>Text.</p>
+                    </li>
+                </ul>
 
-</div>
+            </div>
         </section>
 
     </div>
@@ -397,10 +401,10 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
 
         // chapter 1 charts
 
-        d3.tsv("assets/data/data.tsv", function(error, data) {
+        d3.tsv("assets/data/data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.var1 = d.group; // This is the subgroup
                     d.var2 = +d.number; // This is the raw number
                     d.var3 = +d.pct; // This is the percentage
@@ -408,8 +412,8 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
                     d.var4 = d.level;
                 });
 
-                data1_2 = data.filter(function(d) { return d.chart == "1-2"; })
-                data1_3 = data.filter(function(d) { if ((d.chart == "1-3") || (d.chart == "1-4") || (d.chart == "1-5")) { return d; }});
+                data1_2 = data.filter(function (d) { return d.chart == "1-2"; })
+                data1_3 = data.filter(function (d) { if ((d.chart == "1-3") || (d.chart == "1-4") || (d.chart == "1-5")) { return d; } });
                 // data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
                 // data1_5 = data.filter(function(d) { return d.chart == "1-5"; });
 
@@ -426,21 +430,21 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
                 // d3.select("#ch1_4").call(chart1_4);
                 // d3.select("#ch1_5").call(chart1_5);
 
-				};
+            };
         });
 
         // chapter 2-1
 
-        d3.tsv("assets/data/data.tsv", function(error, data) {
+        d3.tsv("assets/data/data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.var1 = d.level;
                     d.var2 = +d.number;
                     d.var3 = +d.pct;
                 });
 
-                data = data.filter(function(d) { return d.chart == "2-1"; });
+                data = data.filter(function (d) { return d.chart == "2-1"; });
 
                 var chart2_1 = dotPlot().data(data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").title("19%—nearly 1 in 5—of students in high school are chronically absent.");
 
@@ -451,15 +455,15 @@ For too long, the crisis of chronic absenteeism has been hidden from view.  This
 
         // chapter 2-2
 
-        d3.tsv("assets/data/data.tsv", function(error, data) {
+        d3.tsv("assets/data/data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
-                data.forEach(function(d) {
+                data.forEach(function (d) {
                     d.number = +d.number;
                     d.pct = +d.pct;
                 });
 
-                data0 = data.filter(function(d) { return d.chart == "2-2"; });
+                data0 = data.filter(function (d) { return d.chart == "2-2"; });
 
                 var chart2_2 = groupedBar().data(data0).marginLeft(150).animateTime(750).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
                     .title1("Chronic absence spikes in high school for students of every race and ethnicity.")

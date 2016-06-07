@@ -3987,6 +3987,13 @@ div.preloading #sidebar nav ul li {
     background-position: top right;
 }
 
+#poweredBy {
+    text-align: right;
+    font-size: 13px;
+    font-family: Karla, Helvetica, sans-serif;
+    margin-top: 10em;
+}
+
 
 /* UNIQUE FOR DEPT ED */
 
