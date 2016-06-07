@@ -80,7 +80,7 @@ function barChart() {
 			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-				
+
 		svg.append("title")
 			.text(altText);
 
@@ -175,7 +175,7 @@ function barChart() {
 
 		svg.append("g")
 			.attr("class", "y axis")
-			.attr("aria-hidden", "true")			
+			.attr("aria-hidden", "true")
 			.call(yAxis)
 
 		// resize
@@ -298,8 +298,8 @@ function barChart() {
 		altText = value;
 		return chart;
 
-	};	
-	
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -427,7 +427,7 @@ function colChart() {
 
 		svg.append("title")
 			.text(altText);
-				
+
 		// tooltips using d3-tip
 
 		var tipCol = d3.tip()
@@ -627,7 +627,7 @@ function colChart() {
 		return chart;
 
 	};
-	
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -643,7 +643,7 @@ function colChart() {
 		return chart;
 
 	};
-	
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -770,7 +770,7 @@ function dotPlot() {
 
 		svg.append("title")
 			.text(altText);
-				
+
 		// tooltips using d3-tip
 
 		var tipDot = d3.tip()
@@ -1045,7 +1045,7 @@ function dotPlot() {
 		return chart;
 
 	};
-	
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -1098,7 +1098,7 @@ function groupedCol() {
 	// These are the default values
 
 	var	width = [],
-		maxWidth = 500,
+		maxWidth = 650,
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
@@ -1107,7 +1107,7 @@ function groupedCol() {
 		colWidth = 15,
 		title1 = "Generic chart title. Update me using .title1()!",
 		title2 = "Generic chart title. Update me using .title2()!",
-		title3 = "Generic chart title. Update me using .title3()!",	
+		title3 = "Generic chart title. Update me using .title3()!",
 		altText1 = "Fill in alt text for screen readers! Use .altText1().",
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
@@ -1120,16 +1120,16 @@ function groupedCol() {
 	var updateTitle,
 		updateAltText,
 		updateData;
-		
+
 	function chart(selection) {
 		selection.each(function() {
 
 		// filter data to show LEP by default
-		
+
 		var subchartID = "1-5";
-		
+
 		dataFiltered = data.filter(function(d) { return d.chart == subchartID; });
-		
+
 		// formats
 
 		var	formatNumber = d3.format(",f"),
@@ -1139,11 +1139,11 @@ function groupedCol() {
 
 		if (maxWidth < parseInt(d3.select("#" + sectionID).style("width"), 10)) { width = maxWidth; }
 		else { width = parseInt(d3.select("#" + sectionID).style("width"), 10); }
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
-			
+
 		// buttons for filtering
 
 		var buttons = d3.select(this)
@@ -1157,7 +1157,7 @@ function groupedCol() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Language Learner")
+			.text("English Learner")
 			.on("click", function() {
 
 				updateData("1-5");
@@ -1197,7 +1197,7 @@ function groupedCol() {
 
 		d3.select(this).append("div")
 			.attr("id", "title" + chartID)
-			.style("width", function() { 
+			.style("width", function() {
 				if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
 				else { return maxWidth; }
 			})
@@ -1210,7 +1210,7 @@ function groupedCol() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-			.style("width", function() { 
+			.style("width", function() {
 				if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
 				else { return maxWidth; }
 			})
@@ -1249,7 +1249,7 @@ function groupedCol() {
 
 		svg.append("title")
 			.text(altText1);
-				
+
 		// tooltips using d3-tip
 
 		var tipCol = d3.tip()
@@ -1355,7 +1355,7 @@ function groupedCol() {
 					if (titleID == 3) { return "<span class = 'title'>" + title3 + "</span>"; }
 				})
 
-		};				
+		};
 
 		function updateAltText(altTextID) {
 
@@ -1366,8 +1366,8 @@ function groupedCol() {
 					if (altTextID == 3) { return altText3; }
 				})
 
-		};				
-		
+		};
+
 		function updateData(subchartID) {
 
 			// re-filter data
@@ -1432,14 +1432,14 @@ function groupedCol() {
 				.call(xAxis);
 				/*.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());*/
-					
+
 			/*svg.selectAll(".x.axis")
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 1);*/
 
 			};
-			
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -1451,22 +1451,22 @@ function groupedCol() {
 			widthAdj = width - marginLeft - margin.right;
 
 			d3.select("#title" + chartID)
-				.style("width", function() { 
+				.style("width", function() {
 					if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
 					else { return maxWidth; }
 				})
 				.style("margin", "0 auto")
 				.style("max-width", maxWidth + "px")
 
-				
+
 			d3.select("#" + chartID)
-				.style("width", function() { 
+				.style("width", function() {
 					if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
 					else { return maxWidth; }
 				})
 				.style("margin", "0 auto")
 				.style("max-width", maxWidth + "px")
-			
+
 			// resize chart
 
 			xScale.rangeRoundBands([0, widthAdj], .5);
@@ -1479,7 +1479,7 @@ function groupedCol() {
 				.call(xAxis);
 				/*.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());*/
-				
+
 			dom.select(".y.axis")
 				.call(yAxis);
 
@@ -1487,7 +1487,7 @@ function groupedCol() {
 				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("height", 0)
 				.attr("y", heightAdj);
-						
+
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
@@ -1523,8 +1523,8 @@ function groupedCol() {
         maxWidth = value;
         return chart;
 
-    };	
-	
+    };
+
     chart.height = function(value) {
 
         if (!arguments.length) return height;
@@ -1572,7 +1572,7 @@ function groupedCol() {
 		return chart;
 
 	};
-	
+
 	chart.title1 = function(value) {
 
 		if (!arguments.length) return title1;
@@ -1619,8 +1619,8 @@ function groupedCol() {
 		altText3 = value;
 		return chart;
 
-	};	
-	
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -1687,7 +1687,7 @@ function groupedDot() {
 		altText1 = "Fill in alt text for screen readers! Use .altText1().",
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
-		altText4 = "Fill in alt text for screen readers! Use .altText4().",		
+		altText4 = "Fill in alt text for screen readers! Use .altText4().",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1751,7 +1751,7 @@ function groupedDot() {
 				updateData(2);
 				updateTitle(2);
 				updateAltText(2);
-				
+
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1763,19 +1763,19 @@ function groupedDot() {
 				updateData(3);
 				updateTitle(3);
 				updateAltText(3);
-				
+
 			});
 
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Language Learner")
+			.text("English Learner")
 			.on("click", function() {
 
 				updateData(4);
 				updateTitle(4);
 				updateAltText(4);
-				
+
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1827,7 +1827,7 @@ function groupedDot() {
 
 		svg.append("title")
 			.text(altText1);
-				
+
 		// tooltips using d3-tip
 
 		var tipDot = d3.tip()
@@ -1918,7 +1918,7 @@ function groupedDot() {
 
 		data_nest_noavg = d3.nest()
 			.key(function(d) { return d.group; })
-			.entries(data_noavg);		
+			.entries(data_noavg);
 
 		var group = svg.selectAll(".group")
 			.data(data_nest_noavg, function(d) { return d.key; });
@@ -1927,7 +1927,7 @@ function groupedDot() {
 			.append("g")
 				.attr("class", "group")
 				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
-			
+
 		var lines = group.selectAll("line.dotLine")
 			.data(function(d) { return d.values; });
 
@@ -1967,8 +1967,8 @@ function groupedDot() {
 					svg.selectAll(".national-bar")
 						.transition()
 							.duration(animateTime)
-							.attr("width", function(d) { return xScale(d.pct); });				
-				
+							.attr("width", function(d) { return xScale(d.pct); });
+
 					svg.selectAll("line.dotLine")
 						.transition()
 							.duration(animateTime)
@@ -2060,7 +2060,7 @@ function groupedDot() {
 				})
 
 		};
-			
+
 		function updateData(subChartID) {
 
 			// re-filter data
@@ -2147,7 +2147,7 @@ function groupedDot() {
 					.style("opacity", 0)
 					.attr("x1", 0)
 					.attr("x2", 0);
-					
+
 			updateGroups.exit()
 				.selectAll(".dot")
 				.transition()
@@ -2221,8 +2221,8 @@ function groupedDot() {
 
 			updateDots.exit()
 				.transition()
-					.remove();					
-					
+					.remove();
+
 			// update y axis
 
 			svg.selectAll(".y.axis")
@@ -2273,7 +2273,7 @@ function groupedDot() {
 
 			dom.selectAll(".dotLine")
 				.attr("x2", 0);
-				
+
 			dom.selectAll(".dot")
 				.attr("cx", 0)
 				.attr("r", 0);
@@ -2313,7 +2313,7 @@ function groupedDot() {
 								});
 
 				}});
-				
+
 			legend.selectAll("circle")
 				.attr("cx", widthAdj - 77);
 
@@ -2388,8 +2388,8 @@ function groupedDot() {
 		dotSize = value;
 		return chart;
 
-	};	
-	
+	};
+
 	chart.title1 = function(value) {
 
 		if (!arguments.length) return title1;
@@ -2453,7 +2453,7 @@ function groupedDot() {
 		return chart;
 
 	};
-	
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -2660,7 +2660,7 @@ function groupedBar() {
 
 		svg.append("title")
 			.text(altText1);
-				
+
 		// tooltips using d3-tip
 
 		var tipBar = d3.tip()
@@ -2855,7 +2855,7 @@ function groupedBar() {
 				})
 
 		};
-		
+
 		function updateData(subChartID) {
 
 			// re-filter data
@@ -3177,7 +3177,7 @@ function groupedBar() {
 		return chart;
 
 	};
-	
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;

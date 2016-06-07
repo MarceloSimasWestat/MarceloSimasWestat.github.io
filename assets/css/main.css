@@ -1767,6 +1767,7 @@ h1, h2, h3, h4, h5 {
         border-bottom: solid 2px rgba(26, 28, 32, 0.125);
     }
 
+
    .barChart-icon {
         height: 2.75em;
         opacity: .15;
@@ -3669,6 +3670,7 @@ body.is-ie #sidebar > .inner {
 
     #sidebar .nav-image img {
         width: 75%;
+        margin: 10% 0 20% 0;
     }
 
 #sidebar nav > ul {
