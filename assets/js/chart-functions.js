@@ -1523,8 +1523,6 @@ function groupedCol() {
 			if (parseInt(d3.select("#" + sectionID).style("width"), 10) < 575) { marginBottom = marginBottom1 + 20; }
 			else { marginBottom = marginBottom1 };
 			
-			console.log(marginBottom);
-			
 			heightAdj = height - marginTop - marginBottom;
 			
 		/*	d3.select("#title" + chartID)
