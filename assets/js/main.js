@@ -26,14 +26,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
 
-	setTimeout(function(){
-		$('body').addClass('loaded');
-	}, 3000);
-
-	window.setTimeout(function() {
-		$('div').removeClass('preloading');
-	}, 3100);
-
+	$('body').addClass('loaded');
 
 });
 

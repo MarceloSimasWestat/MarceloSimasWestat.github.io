@@ -3701,16 +3701,16 @@ body.is-ie #sidebar > .inner {
 }
 
     #sidebar nav > ul > li {
-        -moz-transform: translateY(0);
-        -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-        transform: translateY(0);
+        -moz-transform: translateY(2em);
+        -webkit-transform: translateY(2em);
+        -ms-transform: translateY(2em);
+        transform: translateY(2em);
         -moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
         -webkit-transition: opacity 0.15s ease, -webkit-transform 0.75s ease;
         -ms-transition: opacity 0.15s ease, -ms-transform 0.75s ease;
         transition: opacity 0.15s ease, transform 0.75s ease;
         margin: 1.5em 0 0 0;
-        opacity: 1;
+        opacity: 0;
         padding: 0;
         position: relative;
     }
@@ -3917,17 +3917,17 @@ body.is-ie #sidebar > .inner {
         }
 
 /* In template, was body.is-loading #s...  */
-div.preloading #sidebar > .inner {
+/*div.preloading #sidebar > .inner {
     opacity: 0;
-}
+}*/
 
 /* In template, was body.is-loading #s..  */
-div.preloading #sidebar nav ul li {
-    -moz-transform: translateY(2em);
-    -webkit-transform: translateY(2em);
-    -ms-transform: translateY(2em);
-    transform: translateY(2em);
-    opacity: 0;
+body.loaded #sidebar nav ul li {
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
 }
 
 @media screen and (max-width: 1024px) {
