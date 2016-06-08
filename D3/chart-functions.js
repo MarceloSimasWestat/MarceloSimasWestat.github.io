@@ -1996,7 +1996,7 @@ function groupedBar() {
 		d3.select("#buttons")
 			.append("button")
 			.attr("class", "filterButton")
-			.text("With Disability")
+			.text("Disability Status")
 			.on("click", function() {
 
 				updateData(3);
@@ -2007,7 +2007,7 @@ function groupedBar() {
 		d3.select("#buttons")
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Language Learner")
+			.text("English Learner Status")
 			.on("click", function() {
 
 				updateData(4);

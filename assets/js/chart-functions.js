@@ -149,7 +149,7 @@ function barChart() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class", function(d) { 
+					.attr("class", function(d) {
 						if (d.var1 == "Overall") { return "overallBar"; }
 						else { return "bar"; }
 					})
@@ -161,7 +161,7 @@ function barChart() {
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-						
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -174,11 +174,11 @@ function barChart() {
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
 
-					svg.selectAll("rect.overallBar")	
+					svg.selectAll("rect.overallBar")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
-					
+
 			}});
 
 		// draw y-axis above bars
@@ -217,7 +217,7 @@ function barChart() {
 
 			dom.selectAll("rect.bar")
 				.attr("width", 0);
-				
+
 			dom.selectAll("rect.overallBar")
 				.attr("width", 0);
 
@@ -517,7 +517,7 @@ function colChart() {
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-						
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -1179,7 +1179,7 @@ function groupedCol() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Learners")
+			.text("English Learner Status")
 			.on("click", function() {
 
 				updateData("1-5");
@@ -1191,7 +1191,7 @@ function groupedCol() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("With Disability")
+			.text("Disability Status")
 			.on("click", function() {
 
 				updateData("1-4");
@@ -1333,7 +1333,7 @@ function groupedCol() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class", function(d) { 
+					.attr("class", function(d) {
 						if (d.var1 == "Overall") { return "overallColumn"; }
 						else { return "column"; }
 					})
@@ -1345,7 +1345,7 @@ function groupedCol() {
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-						
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -1363,8 +1363,8 @@ function groupedCol() {
 						.transition()
 							.duration(animateTime)
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-							.attr("y", function(d) { return yScale(d.var3); });							
-							
+							.attr("y", function(d) { return yScale(d.var3); });
+
 			}});
 
 		// draw x-axis above columns
@@ -1426,7 +1426,7 @@ function groupedCol() {
 
 			updateCols.select("aria-label")
 				.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-				
+
 			updateCols.enter()
 				.append("g")
 					.attr("transform", "translate(0,0)")
@@ -1445,7 +1445,7 @@ function groupedCol() {
 							.duration(animateTime)
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
 							.attr("y", function(d) { return yScale(d.var3); });
-							
+
 			updateCols.select("rect")
 				.append("aria-label")
 					.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
@@ -1535,7 +1535,7 @@ function groupedCol() {
 				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("height", 0)
 				.attr("y", heightAdj);
-				
+
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
@@ -1553,8 +1553,8 @@ function groupedCol() {
 						.transition()
 							.duration(animateTime)
 							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-							.attr("y", function(d) { return yScale(d.var3); });										
-								
+							.attr("y", function(d) { return yScale(d.var3); });
+
 				}});
 
 		});
@@ -1811,7 +1811,7 @@ function groupedDot() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("With Disability")
+			.text("Disability Status")
 			.on("click", function() {
 
 				updateData(3);
@@ -1823,7 +1823,7 @@ function groupedDot() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Learners")
+			.text("English Learner Status")
 			.on("click", function() {
 
 				updateData(4);
@@ -2626,7 +2626,7 @@ function groupedBar() {
 				updateData(1);
 				updateTitle(1);
 				updateAltText(1);
-				
+
 			});
 
 		d3.select("#buttons" + chartID)
@@ -2644,7 +2644,7 @@ function groupedBar() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("With Disability")
+			.text("Disability Status")
 			.on("click", function() {
 
 				updateData(3);
@@ -2656,7 +2656,7 @@ function groupedBar() {
 		d3.select("#buttons" + chartID)
 			.append("button")
 			.attr("class", "filterButton")
-			.text("English Language Learner")
+			.text("English Learner Status")
 			.on("click", function() {
 
 				updateData(4);
@@ -2832,7 +2832,7 @@ function groupedBar() {
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
 					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
-					
+
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -2946,7 +2946,7 @@ function groupedBar() {
 
 			updateNational.select("aria-label")
 				.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
-				
+
 			updateNational.enter()
 				.append("g")
 					.attr("transform", "translate(0,0)")
@@ -2965,7 +2965,7 @@ function groupedBar() {
 			updateNational.selectAll(".national-bar")
 				.append("aria-label")
 					.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
-							
+
 			updateNational.exit()
 				.transition()
 					.duration(animateTime)
@@ -3020,8 +3020,8 @@ function groupedBar() {
 				.attr("height", barWidth);
 
 			updateGroups.selectAll("aria-label")
-				.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });	
-				
+				.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+
 			updateBars.enter()
 				.append("rect")
 					.attr("class", "bar")
@@ -3041,7 +3041,7 @@ function groupedBar() {
 			updateGroups.selectAll("rect.bar")
 				.append("aria-label")
 					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
-										
+
 			updateBars.exit()
 				.transition()
 					.remove();
