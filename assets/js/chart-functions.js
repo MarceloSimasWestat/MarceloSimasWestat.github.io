@@ -138,7 +138,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14")
+			.text("% CHRONICALLY ABSENT IN 2013-2014")
 
 		// draw bars
 
@@ -160,7 +160,7 @@ function barChart() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -497,7 +497,7 @@ function colChart() {
 			.attr("y", "-2.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "start")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text("% CHRONICALLY ABSENT IN 2013-2014");
 
 		// draw columns
 
@@ -516,7 +516,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -844,7 +844,7 @@ function dotPlot() {
 			.attr("dy", "3.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text("% CHRONICALLY ABSENT IN 2013-2014");
 
 		// draw dots and lines
 
@@ -876,7 +876,7 @@ function dotPlot() {
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1322,7 +1322,7 @@ function groupedCol() {
 			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text("% CHRONICALLY ABSENT IN 2013-2014");
 
 		// draw columns
 
@@ -1344,7 +1344,7 @@ function groupedCol() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1425,7 +1425,7 @@ function groupedCol() {
 				.attr("y", function(d) { return yScale(d.var3); });
 
 			updateCols.select("aria-label")
-				.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+				.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 			updateCols.enter()
 				.append("g")
@@ -1448,7 +1448,7 @@ function groupedCol() {
 
 			updateCols.select("rect")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+					.text(function(d) { return "In 2013-2014, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 			updateCols.exit()
 				.transition()
@@ -1945,7 +1945,7 @@ function groupedDot() {
 			.attr("dy", "3.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text("% CHRONICALLY ABSENT IN 2013-2014");
 
 		// draw national bars
 
@@ -2778,7 +2778,7 @@ function groupedBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text("% CHRONICALLY ABSENT IN 2013-2014");
 
 		// draw national bars
 
@@ -2799,7 +2799,7 @@ function groupedBar() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+						.text(function(d) { return "In 2013-2014, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 		// draw level bars
 
@@ -2831,7 +2831,7 @@ function groupedBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return "In 2013-2014, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -2945,7 +2945,7 @@ function groupedBar() {
 				.attr("height", ((1.25 * levels.length) * barWidth));
 
 			updateNational.select("aria-label")
-				.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+				.text(function(d) { return "In 2013-2014, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateNational.enter()
 				.append("g")
@@ -2964,7 +2964,7 @@ function groupedBar() {
 
 			updateNational.selectAll(".national-bar")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return "In 2013-2014, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateNational.exit()
 				.transition()
@@ -3020,7 +3020,7 @@ function groupedBar() {
 				.attr("height", barWidth);
 
 			updateGroups.selectAll("aria-label")
-				.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+				.text(function(d) { return "In 2013-2014, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateBars.enter()
 				.append("rect")
@@ -3040,7 +3040,7 @@ function groupedBar() {
 
 			updateGroups.selectAll("rect.bar")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return "In 2013-2014, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateBars.exit()
 				.transition()
