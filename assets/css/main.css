@@ -525,8 +525,21 @@ body {
 
     #sidebar .socialmedia {
         display: block;
+		opacity: 0;
     }
 
+	body.loaded #sidebar .socialmedia {
+		opacity: 1;
+		-moz-transition: opacity 0.75s ease;
+		-webkit-transition: opacity 0.75s ease;
+		-ms-transition: opacity 0.75s ease;
+		transition: opacity 0.75s ease;
+		-moz-transition-delay: 1.45s;
+        -webkit-transition-delay: 1.45s;
+		-ms-transition-delay: 1.45s;
+		transition-delay: 1.45s;
+	}
+	
     footer .socialmedia {
         display: none;
     }
@@ -3693,7 +3706,16 @@ body.is-ie #sidebar > .inner {
     #sidebar .nav-image img {
         width: 75%;
         margin: 10% 0 15% 0;
+		opacity: 0;
     }
+	
+body.loaded #sidebar .nav-image img {
+	opacity: 1;
+	-moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
+	-webkit-transition: opacity 0.15s ease, -webkit-transform 0.75s ease;
+	-ms-transition: opacity 0.15s ease, -ms-transform 0.75s ease;
+	transition: opacity 0.15s ease, transform 0.75s ease;
+}
 
 #sidebar nav > ul {
     list-style: none;
