@@ -1679,6 +1679,17 @@ body, input, select, textarea {
 }
 
 /* DeptEd only */
+
+/* Spacing */
+
+.afterHeader {
+  margin-top: 1.5em;
+}
+
+.beforeChart {
+  margin-bottom: 3.5em;
+}
+
 p {
     font-family: Muli, Helvetica, sans-serif;
     font-size: 15px;
@@ -1754,7 +1765,7 @@ h1, h2, h3, h4, h5 {
     }
 
     /* Dept Ed only */
-    h1.line, h2.line, h3.line, h4.line, h5.line, h6.line {
+    .line {
         padding-bottom: 0.35em;
         border-bottom: solid 2px rgba(255, 255, 255, 0.125);
     }
@@ -2501,7 +2512,7 @@ input[type="radio"] {
     input[type="checkbox"] + label,
     input[type="radio"] + label {
         text-decoration: none;
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, .80);
         cursor: pointer;
         display: inline-block;
         font-size: 1em;
@@ -2622,7 +2633,7 @@ input[type="radio"] {
         }
 
 .wrapper.style1 .icon.major:before {
-    color: #358151;
+    color: #42A667;
 }
 
 .wrapper.style1-alt .icon.major:before {
@@ -3317,7 +3328,7 @@ table {
 }
 
 .wrapper.style1 {
-    background-color: #358151;
+    background-color: #42A667;
 }
 
 .wrapper.style1-alt {
@@ -3987,12 +3998,6 @@ div.preloading #sidebar nav ul li {
     background-position: top right;
 }
 
-#poweredBy {
-    text-align: right;
-    font-size: 13px;
-    font-family: Karla, Helvetica, sans-serif;
-    margin-top: 10em;
-}
 
 
 /* UNIQUE FOR DEPT ED */
@@ -4014,7 +4019,7 @@ div.preloading #sidebar nav ul li {
 
     .image1 p {
         font-size: 1.25em;
-        line-height: 1.05em;
+        line-height: 1.75em;
     }
 
 @media screen and (max-width: 980px) {
