@@ -4444,18 +4444,17 @@ ul.callout li {
 
 /* State dropdown styling BLOCKING OUT FOR NOW */ 
 
-/* High-res styles */ /*
+/* High-res styles */ 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack@2x.jpg") no-repeat center center scroll;
         background-size: cover;
     }
 
     .image1 {
-        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus_original.jpg") no-repeat center center fixed;
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus@2x.jpg") no-repeat center center scroll;
         background-size: cover;
     }
 }
 
-*/
