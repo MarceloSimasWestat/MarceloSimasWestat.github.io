@@ -3965,7 +3965,6 @@ div.preloading #sidebar nav ul li {
                     background-color: #A6426C;
                 }
 }
-/* End of copied over */
 
 @media screen and (max-width: 736px) {
 
@@ -3978,7 +3977,6 @@ div.preloading #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    /* differences from template... */
     background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -4422,7 +4420,21 @@ ul.callout li {
     /*-ms-transform: translateY(-100%); /* IE 9 */
     /*transform: translateY(-100%); /* Firefox 16+, IE 10+, Opera */
     /*-webkit-transition: all 0.3s 1s ease-out;
-    /*transition: all 0.3s 1s ease-out;
+    /*transition: all 0.3s 1s ease-out; */
 }
 
 /* State dropdown styling */
+
+/* High-res styles */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+
+    #intro {
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/placeholder_highres_1.jpg") no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .image1 {
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/placeholder_highres_2.jpg") no-repeat center center fixed;
+        background-size: cover;
+    }
+}
