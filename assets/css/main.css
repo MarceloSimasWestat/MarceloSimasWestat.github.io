@@ -3323,6 +3323,20 @@ table {
     }
 }
 
+.wrapper.style5 {
+
+padding: 0px;
+
+
+}
+
+.inner.style5 {
+
+padding: 0px;
+
+
+}
+
 .wrapper.alt {
     background-color: #261c3e;
 }
@@ -3357,7 +3371,7 @@ table {
 }
 
 .wrapper.style5 {
-    background-color: #2C4A7E;
+    background-color: #2C497D;
 }
 
 .wrapper.chart {
