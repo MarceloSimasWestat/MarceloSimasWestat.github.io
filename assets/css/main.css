@@ -4442,18 +4442,20 @@ ul.callout li {
     /*transition: all 0.3s 1s ease-out; */
 }
 
-/* State dropdown styling */
+/* State dropdown styling BLOCKING OUT FOR NOW */ 
 
-/* High-res styles */
+/* High-res styles */ /*
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/placeholder_highres_1.jpg") no-repeat center center fixed;
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;
         background-size: cover;
     }
 
     .image1 {
-        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/placeholder_highres_2.jpg") no-repeat center center fixed;
+        background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus_original.jpg") no-repeat center center fixed;
         background-size: cover;
     }
 }
+
+*/
