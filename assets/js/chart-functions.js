@@ -1124,7 +1124,7 @@ function groupedCol() {
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
-		marginBottom = 25,
+		marginBottom = 45,
 		animateTime = 1000,
 		colWidth = 15,
 		title1 = "Generic chart title. Update me using .title1()!",
@@ -1143,6 +1143,10 @@ function groupedCol() {
 		updateAltText,
 		updateData;
 
+	var marginBottom1;
+
+	marginBottom1 = marginBottom;
+	
 	function chart(selection) {
 		selection.each(function() {
 
@@ -1178,14 +1182,21 @@ function groupedCol() {
 
 		d3.select("#buttons" + chartID)
 			.append("button")
-			.attr("class", "filterButton")
+			.attr("class", "filterButton buttonSelected")
 			.text("English Learner Status")
 			.on("click", function() {
 
 				updateData("1-5");
 				updateTitle(1);
 				updateAltText(1);
-
+				
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1198,6 +1209,13 @@ function groupedCol() {
 				updateTitle(2);
 				updateAltText(2);
 
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);		
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1210,6 +1228,13 @@ function groupedCol() {
 				updateTitle(3);
 				updateAltText(3);
 
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);		
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -1373,9 +1398,9 @@ function groupedCol() {
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + heightAdj + ")")
 			.attr("aria-hidden", "true")
-			.call(xAxis);
-			/*.selectAll(".tick text")
-				.call(wrap, xScale.rangeBand());*/
+			.call(xAxis)
+			.selectAll(".tick text")
+				.call(wrap, xScale.rangeBand());
 
 		// update functions
 
@@ -1472,9 +1497,9 @@ function groupedCol() {
 				.attr("transform", "translate(0," + heightAdj + ")")
 				.style("opacity", 1)
 				.attr("aria-hidden", "true")
-				.call(xAxis);
-				/*.selectAll(".tick text")
-					.call(wrap, xScale.rangeBand());*/
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap, xScale.rangeBand());
 
 			/*svg.selectAll(".x.axis")
 				.transition()
@@ -1492,15 +1517,23 @@ function groupedCol() {
 			if (maxWidth < parseInt(d3.select("#" + sectionID).style("width"), 10)) { width = maxWidth; }
 			else { width = parseInt(d3.select("#" + sectionID).style("width"), 10); }
 			widthAdj = width - marginLeft - margin.right;
-
-			d3.select("#title" + chartID)
+			
+			// Update height if width < 575
+			
+			if (parseInt(d3.select("#" + sectionID).style("width"), 10) < 575) { marginBottom = marginBottom1 + 20; }
+			else { marginBottom = marginBottom1 };
+			
+			console.log(marginBottom);
+			
+			heightAdj = height - marginTop - marginBottom;
+			
+		/*	d3.select("#title" + chartID)
 				.style("width", function() {
 					if (document.getElementById(sectionID).width < maxWidth) { return document.getElementById(sectionID).width; }
 					else { return maxWidth; }
 				})
 				.style("margin", "0 auto")
-				.style("max-width", maxWidth + "px")
-
+				.style("max-width", maxWidth + "px");*/
 
 			d3.select("#" + chartID)
 				.style("width", function() {
@@ -1508,20 +1541,23 @@ function groupedCol() {
 					else { return maxWidth; }
 				})
 				.style("margin", "0 auto")
-				.style("max-width", maxWidth + "px")
+				.style("max-width", maxWidth + "px");
 
 			// resize chart
 
 			xScale.rangeRoundBands([0, widthAdj], .5);
-			yAxis.tickSize(-1 * widthAdj);
-
+			yScale = d3.scale.linear().range([heightAdj, 0]);
+			yAxis.scale(yScale).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+			
 			dom.selectAll(".col-chart")
-				.attr("width", width);
+				.attr("width", width)
+				.attr("height", height);
 
 			dom.select(".x.axis")
-				.call(xAxis);
-				/*.selectAll(".tick text")
-					.call(wrap, xScale.rangeBand());*/
+				.attr("transform", "translate(0," + heightAdj + ")")
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap, xScale.rangeBand());
 
 			dom.select(".y.axis")
 				.call(yAxis);
@@ -2619,14 +2655,21 @@ function groupedBar() {
 
 		d3.select("#buttons" + chartID)
 			.append("button")
-			.attr("class", "filterButton")
+			.attr("class", "filterButton buttonSelected")
 			.text("Race & Ethnicity")
 			.on("click", function() {
 
 				updateData(1);
 				updateTitle(1);
 				updateAltText(1);
-
+				
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -2638,7 +2681,14 @@ function groupedBar() {
 				updateData(2);
 				updateTitle(2);
 				updateAltText(2);
-
+				
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -2650,7 +2700,14 @@ function groupedBar() {
 				updateData(3);
 				updateTitle(3);
 				updateAltText(3);
-
+				
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);
+				
 			});
 
 		d3.select("#buttons" + chartID)
@@ -2662,7 +2719,14 @@ function groupedBar() {
 				updateData(4);
 				updateTitle(4);
 				updateAltText(4);
-
+				
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+					
+				d3.select(this)
+					.classed("buttonSelected", true);
+				
 			});
 
 		d3.select("#buttons" + chartID)

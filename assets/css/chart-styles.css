@@ -27,7 +27,7 @@ button.filterButton {
 	border: solid 1px !important;
 	border-color: rgba(26, 28, 32, 0.15) !important;
 	border-radius: 3em;
-	color: #1A1C20 !important;
+	color: #1A1C20 /*!important*/;
 	cursor: pointer;
 	display: inline-block;
 	font-family: Karla;
@@ -50,6 +50,11 @@ button.filterButton {
 button:hover,
 .filterButton:hover {
 	border-color: #4E75B7 !important;
+}
+
+.buttonSelected {
+	background-color: #4E75B7 !important;
+	color: #FFFFFF !important;
 }
 
 /* Icon array styling */
