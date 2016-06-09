@@ -40,32 +40,9 @@
 </head>
 <body>
 
-    <!-- Preloader !-->
-
-    <script>
-        window.addEventListener("load", function () {
-
-            var loader = document.getElementById("loader");
-            var loader_wrapper = document.getElementById("loader-wrapper");
-
-            loader.style.transition = "all 0.3s ease-out";
-            loader.style.webkitTransition = "all 0.3s ease-out";
-            loader.style.opacity = 0;
-
-            loader_wrapper.style.transition = "all 1s ease-out";
-            loader_wrapper.style.webkitTransition = "all 1s ease-out";
-            loader_wrapper.style.opacity = 0;
-
-            setTimeout(function () { document.body.removeChild(loader_wrapper) }, 1000);
-
-        });
-    </script>
-
-    <div id="loader-wrapper">
+     <div id="loader-wrapper">
         <div id="loader"></div>
-
         <div class="loader-section"></div>
-
     </div>
 
     <!-- Sidebar -->
@@ -76,8 +53,7 @@
                 <img src="images/edsealbw.svg" alt="Department of Learning" />
             </div>
 
-
-            <div>
+            <div class="nav-wrapper">
                 <nav>
                     <ul>
                         <li><a href="#intro">Introduction</a></li>
@@ -112,7 +88,6 @@
                 <ul class="actions">
                     <li><span class="button scrolly">— U.S. Department of Education</span></li>
                 </ul>
-
             </div>
         </section>
 
@@ -122,9 +97,6 @@
             <div class="inner" style="height: 150px; padding-top: 40px; padding-bottom: 20px;">
                 <center><i class="fa fa-bolt fa-lg" style="margin-bottom: 1em; color: rgba(255,255,255,1);"></i></center>
                 <p align="center">Powered by InformED and the 2013-14 Civil Rights Data Collection.</p>
-
-
-
             </div>
         </section>
 
@@ -175,36 +147,29 @@
                   in cities and towns across the country.
 
                 </p>
-                <div class="row">
-    							<section>
-    								<ul class="disclaimer">
-    									<li>
-    										<span class="left"><span class="icon fa-bar-chart-o"></span></span>
-    										<span class="right">A note: data included in this story may differ slightly from information published elsewhere due to the exclusion of schools with incomplete or inconsistent data values. See more information on data decisions here.</span>
-    									</li>
-    								</ul>
-    							</section>
-
-                  <section>
-    								<ul class="disclaimer">
-    									<li>
-    										<span class="left"><span class="icon fa-mouse-pointer"></span></span>
-    										<span class="right">Our charts are interactive! Hover over or click on chart elements to learn more about specific data points
-                        and where they appear use buttons to filter charts by select groups.</span>
-    									</li>
-    								</ul>
-    							</section>
-
-    						</div>
-
-
-
-
+				<div class="disclaimer">
+					<div style="display: table-row" width="100%">
+						<div style="display: table-cell; vertical-align: middle";>
+							<div class="icon"><span class="left icon fa-bar-chart-o"></span></div>
+						</div>
+						<div class="right">A note: data included in this story may differ slightly from information published elsewhere due to the exclusion of schools with incomplete or inconsistent data values. See more information on data decisions here.</div>
+					</div>
+				</div>
+				<p></p>
+				<div class="disclaimer">			
+					<div style="display: table-row" width="100%">
+						<div style="display: table-cell; vertical-align: middle";>
+							<div class="icon"><span class="left icon fa-mouse-pointer"></span></div>
+						</div>
+						<div class="right">Our charts are interactive! Hover over or click on chart elements to learn more about specific data points
+                        and where they appear use buttons to filter charts by select groups.</div>
+					</div>
+				</div>
 
             </div>
         </section>
 
-        <section id="one" class="image1" class="wrapper style1 fullscreen">
+        <section id="one" class="wrapper image1">
             <div class="inner">
                 <div class="row">
                     <div class="6u 12u$(medium)">

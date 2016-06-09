@@ -765,6 +765,12 @@ body {
         margin-left: 8.33333%;
     }
 
+	#sidebar .nav-wrapper {
+		margin: 0 auto;
+		text-align: center;
+		font-size: 90%;
+	}
+	
     #sidebar .socialmedia {
         display: none;
     }
@@ -1693,6 +1699,45 @@ body, input, select, textarea {
 
 /* Disclaimer */
 
+div.disclaimer {
+	display: table;
+	max-width: 100%;
+	overflow: hidden;
+	background: #FFF;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	padding: 0;
+}
+
+  div.disclaimer .right  {
+    /*float: right;*/
+	display: table-cell;
+    width: 90%;
+    padding: 1.3em 1.5em 1.3em 1.5em;
+    background: #4E75B7;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.75;
+  }
+
+  div.disclaimer .left {
+    /*float: left;*/
+    width: 10%;
+    text-align: center;
+    color: #4E75B7;
+  } 
+  
+  div.disclaimer .icon {
+	display: table-cell flex;
+	vertical-align: middle;
+	text-align: center;
+    position: relative;
+    margin: 0 auto;
+    font-size: 1.25em;
+  } 
+  
 ul.disclaimer {
   overflow: hidden;
   background: #FFF;
@@ -4104,7 +4149,7 @@ body.loaded #sidebar nav ul li {
     -o-background-size: cover;
     background-size: cover;
     background-position: top right;
-    padding: 5em 5em 3em 5em;
+    /*padding: 5em 5em 3em 5em;*/
     max-width: 100%;
     /*width: 75em;*/
 }
