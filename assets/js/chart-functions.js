@@ -2821,7 +2821,7 @@ function groupedBar() {
 
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max((widthAdj - 100)/50, 2)),
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max((widthAdj - 100)/100, 2)),
 			yAxis = d3.svg.axis().scale(yScale0).orient("left").outerTickSize(0);
 
 		// draw x-axis below bars
@@ -3138,7 +3138,7 @@ function groupedBar() {
 			// resize chart
 
 			xScale.range([0, widthAdj - 100]);
-			xAxis.ticks(Math.max((widthAdj - 100)/50, 2))
+			xAxis.ticks(Math.max((widthAdj - 100)/100, 2))
 
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
