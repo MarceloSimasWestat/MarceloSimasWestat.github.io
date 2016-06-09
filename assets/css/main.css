@@ -1698,10 +1698,11 @@ ul.disclaimer {
   background: #FFF;
   border-radius: 5px;
   margin-bottom: 15px;
+  padding: 0;
 }
 
   ul.disclaimer .right {
-    float: right;
+    /*float: right;*/
     width: 90%;
     padding: 1.3em 1.5em 1.3em 1.5em;
     background: #4E75B7;
@@ -1713,7 +1714,7 @@ ul.disclaimer {
   }
 
   ul.disclaimer .left {
-    float: left;
+    /*float: left;*/
     width: 10%;
     text-align: center;
     color: #4E75B7;
@@ -1721,6 +1722,9 @@ ul.disclaimer {
 
   ul.disclaimer li {
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   ul.disclaimer a {
