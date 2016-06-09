@@ -770,7 +770,7 @@ body {
 		text-align: center;
 		font-size: 90%;
 	}
-	
+
     #sidebar .socialmedia {
         display: none;
     }
@@ -1727,8 +1727,8 @@ div.disclaimer {
     width: 10%;
     text-align: center;
     color: #4E75B7;
-  } 
-  
+  }
+
   div.disclaimer .icon {
 	display: table-cell flex;
 	vertical-align: middle;
@@ -1736,8 +1736,8 @@ div.disclaimer {
     position: relative;
     margin: 0 auto;
     font-size: 1.25em;
-  } 
-  
+  }
+
 ul.disclaimer {
   overflow: hidden;
   background: #FFF;
@@ -3842,6 +3842,18 @@ body.is-ie #sidebar > .inner {
 		opacity: 0;
     }
 
+    @media screen and (max-width: 1300px) {
+
+
+          #sidebar .nav-image img {
+              width: 68%;
+              margin: 8% 0 10% 0;
+      		opacity: 0;
+          }
+
+    }
+
+
 body.loaded #sidebar .nav-image img {
 	opacity: 1;
 	-moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
@@ -4639,4 +4651,3 @@ footer .socialmedia {
 footer .footer-image {
 	display: none;
 }
-	
