@@ -539,7 +539,7 @@ body {
 		-ms-transition-delay: 1.45s;
 		transition-delay: 1.45s;
 	}
-	
+
     footer .socialmedia {
         display: none;
     }
@@ -1690,6 +1690,60 @@ body, input, select, textarea {
     font-weight: normal;
     line-height: 1.75;
 }
+
+/* Disclaimer */
+
+ul.disclaimer {
+  overflow: hidden;
+  background: #FFF;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+  ul.disclaimer .right {
+    float: right;
+    width: 90%;
+    padding: 1.3em 1.5em 1.3em 1.5em;
+    background: #4E75B7;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.75;
+  }
+
+  ul.disclaimer .left {
+    float: left;
+    width: 10%;
+    text-align: center;
+    color: #4E75B7;
+  }
+
+  ul.disclaimer li {
+    overflow: hidden;
+  }
+
+  ul.disclaimer a {
+    display: block;
+    text-decoration: none;
+    color: #514439;
+  }
+
+    ul.disclaimer a:hover {
+      text-decoration: underline;
+    }
+
+  ul.disclaimer .icon {
+    position: relative;
+    margin: auto;
+    font-size: 1.5em;
+  }
+
+  ul.disclaimer .first {
+    margin-top: 0 !important;
+  }
+
+
 
 /* DeptEd only */
 
@@ -3708,7 +3762,7 @@ body.is-ie #sidebar > .inner {
         margin: 10% 0 15% 0;
 		opacity: 0;
     }
-	
+
 body.loaded #sidebar .nav-image img {
 	opacity: 1;
 	-moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
@@ -4009,7 +4063,7 @@ body.loaded #sidebar nav ul li {
 
                 #sidebar nav a:after {
                     background-image: none;
-                    background-color: #A6426C;
+                    background-color: #42A667;
                 }
 }
 
@@ -4464,9 +4518,9 @@ ul.callout li {
     /*transition: all 0.3s 1s ease-out; */
 }
 
-/* State dropdown styling BLOCKING OUT FOR NOW */ 
+/* State dropdown styling BLOCKING OUT FOR NOW */
 
-/* High-res styles */ 
+/* High-res styles */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
@@ -4479,4 +4533,3 @@ ul.callout li {
         background-size: cover;
     }
 }
-
