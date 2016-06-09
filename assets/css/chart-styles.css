@@ -43,8 +43,10 @@ button.filterButton {
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
+	margin-top: 4px;
 	margin-left: 4px;
 	margin-right: 4px;
+	margin-bottom: 4px;
 }
 
 button:hover,
