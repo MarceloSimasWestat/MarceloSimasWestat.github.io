@@ -1701,7 +1701,7 @@ body, input, select, textarea {
 
 div.disclaimer {
 	display: table;
-	max-width: 100%;
+	width: 100%;
 	overflow: hidden;
 	background: #FFF;
 	border-radius: 5px;
