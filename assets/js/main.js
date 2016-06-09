@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 	skel.breakpoints({
 		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
+		large:	'(max-width: 1024px)',
 		medium:	'(max-width: 980px)',
 		small:	'(max-width: 736px)',
 		xsmall:	'(max-width: 480px)'
@@ -71,14 +71,14 @@ $(document).ready(function() {
 				$body.addClass('is-ie');
 
 		// Disable animations/transitions until the page has loaded.
-			if (skel.canUse('transition'))
+			/*if (skel.canUse('transition'))
 				$body.addClass('is-loading');
 
-			$window.on('load', function() {
+			/*$window.on('load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
-			});
+			});*/
 
 		// Forms.
 
