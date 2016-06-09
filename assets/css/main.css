@@ -784,10 +784,10 @@ body {
     }
 
     #footer .footer-image {
-        width: 30%;
-        display: block;
-        padding-top: 0;
-        padding-bottom: 0;
+        /*width: 30%; */
+        display: none; /* Per Ivan, we're not displaying this anymore, regardless of res */
+        /* padding-top: 0;
+        padding-bottom: 0;*/
     }
 
         #footer .footer-image img {
@@ -4628,3 +4628,15 @@ ul.callout li {
         border-bottom-color: transparent;
         color: rgba(23, 26, 29, 1);
 	}
+
+/* Hide footer images (this solves them showing up at resolutions > 1680px */
+/* Lower res images will still show because of classes defined earlier */
+
+footer .socialmedia {
+	display: none;
+}
+
+footer .footer-image {
+	display: none;
+}
+	
