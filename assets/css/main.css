@@ -3839,12 +3839,12 @@ body.is-ie #sidebar > .inner {
 		opacity: 0;
     }
 
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1400px) {
 
 
           #sidebar .nav-image img {
-              width: 50%;
-              margin: 0 0 0% 0;
+              width: 65%;
+              margin: 0 0 5% 0;
       		opacity: 0;
           }
 
