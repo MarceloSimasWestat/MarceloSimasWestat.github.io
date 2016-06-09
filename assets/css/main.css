@@ -2907,13 +2907,10 @@ ul {
         }
 
             /* Dept of Ed only */
+
+
             ul.icons li a:hover {
-                background: -moz-linear-gradient(to right, #42A667, #4E75B7);
-                background: -webkit-linear-gradient(to right, #42A667, #4E75B7);
-                background: -ms-linear-gradient(to right, #42A667, #4E75B7);
-                background: linear-gradient(to right, #42A667, #4E75B7);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                color: #A6426C;
             }
             /* End unique to Dept Ed */
 
@@ -3846,8 +3843,8 @@ body.is-ie #sidebar > .inner {
 
 
           #sidebar .nav-image img {
-              width: 68%;
-              margin: 8% 0 10% 0;
+              width: 65%;
+              margin: 0 0 5% 0;
       		opacity: 0;
           }
 
