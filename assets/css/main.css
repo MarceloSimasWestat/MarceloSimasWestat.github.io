@@ -770,7 +770,7 @@ body {
 		text-align: center;
 		font-size: 90%;
 	}
-	
+
     #sidebar .socialmedia {
         display: none;
     }
@@ -1727,8 +1727,8 @@ div.disclaimer {
     width: 10%;
     text-align: center;
     color: #4E75B7;
-  } 
-  
+  }
+
   div.disclaimer .icon {
 	display: table-cell flex;
 	vertical-align: middle;
@@ -1736,8 +1736,8 @@ div.disclaimer {
     position: relative;
     margin: 0 auto;
     font-size: 1.25em;
-  } 
-  
+  }
+
 ul.disclaimer {
   overflow: hidden;
   background: #FFF;
@@ -1891,6 +1891,12 @@ h1, h2, h3, h4, h5 {
         padding-bottom: 0.35em;
         border-bottom: solid 2px rgba(26, 28, 32, 0.125);
     }
+
+    a.chart {
+
+    color: #4E75B7;
+
+    {
 
 .barChart-icon {
     height: 2.75em;
@@ -3506,6 +3512,7 @@ padding: 0px;
 .wrapper.style3 {
     background-color: #4E75B7;
 }
+
 
 
 .wrapper.style3-alt {
