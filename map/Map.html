@@ -1,36 +1,53 @@
 ﻿<!doctype html>
 <html>
+
 <head>
-    <title>Leaflet</title>
+    <title>Chronic Absenteeism in the Nation's Schools</title>
+    <!-- Start EDWeb Metadata - Do Not Modify Tags in Block Below -->
+    <!-- End EDWeb Metadata - Do Not Modify Tags in Block Above -->
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lte IE 8]>
+    <script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../assets/css/ie8.css"/><![endif]-->
 
-    <style>
-        html, body {
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            background: rgb(14, 21, 30);
-            height: 100%;
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
-            font-size:12px;
-            color:#808080;
-        }
+    <link rel="stylesheet" href="../assets/css/chart-styles.css">
 
-        #map {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background-color: #333;
-        }
-    </style>
+    <!-- browser tab icon (aka favicon) -->
+    <link rel="icon" href="../images/doelogo_rev.png">
+
+    <!-- Scripts -->
+    <!--<script src="widgets.js"></script>-->
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/skel.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <!--[if lte IE 8]>
+    <script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../assets/js/main.js"></script>
+    <!-- Substitutes high-res images for Retina displays (html file only) -->
+    <script type="text/javascript" src="../assets/js/retina.js"></script>
 
 </head>
 <body>
+
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section"></div>
+</div>
+
 <div id="map"></div>
 <div id='district' class='district'></div>
 
 <link rel="stylesheet" href="leaflet/leaflet.css">
-<link rel="stylesheet" href="main.css" />
+<link rel="stylesheet" href="main.css"/>
 
 <script src="jquery-2.2.4.min.js"></script>
 <script src="leaflet/leaflet.js"></script>

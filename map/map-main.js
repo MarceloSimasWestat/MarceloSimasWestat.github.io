@@ -37,8 +37,8 @@ $(document).ready(function () {
             var y = e.latlng.lat;
             var layer = leafletPip.pointInLayer([x,y], polygonLayer, true);
             if(layer.length) {
-                $('#district').html("<strong>" + layer[0].feature.properties['Name'] + "</strong></br>" +
-                    "<strong>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "%</strong>");
+                $('#district').html("<b>" + layer[0].feature.properties['Name'] + "</b></br>" +
+                    "<b>Percent Absent: DUMMY </b>");
             }else{
                 $('#district').html("");
             }
