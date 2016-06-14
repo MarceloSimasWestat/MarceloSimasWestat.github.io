@@ -32,7 +32,7 @@ $(document).ready(function () {
         var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
         tileLayer.addTo(leafletMap);
 
-        leafletMap.on('click', function (e) {
+        leafletMap.on('mousemove', function (e) {
             var x = e.latlng.lng;
             var y = e.latlng.lat;
             var layer = leafletPip.pointInLayer([x,y], polygonLayer, true);
@@ -45,18 +45,6 @@ $(document).ready(function () {
         });
     }
 
-    /*function getNationalJson(callback) {
-        var file = "medium_dummy.json";
-        $.ajax({
-            dataType: "json",
-            url: file,
-            success: callback
-        });
-    }*/
-
-    //getNationalJson(loadNationalData);
-
-
     function colorizeFeatures(dummy) {
         for (var i = 0; i < dummy.features.length; i++) {
             dummy.features[i].properties.color = getColor(dummy.features[i].properties["Percent Absent"]);
@@ -66,17 +54,15 @@ $(document).ready(function () {
     //Set color based on absent percentage
     function getColor(d) {
         return d > 95 ? '#800026' :
-            d > 90 ? '#BD0026' :
+                d > 90 ? '#BD0026' :
                 d > 80 ? '#E31A1C' :
-                    d > 60 ? '#FC4E2A' :
-                        d > 40 ? '#FD8D3C' :
-                            d > 20 ? '#FEB24C' :
-                                d > 0 ? '#FED976' :
-                                    '#808080';
+                d > 60 ? '#FC4E2A' :
+                d > 40 ? '#FD8D3C' :
+                d > 20 ? '#FEB24C' :
+                d > 0 ? '#FED976' : '#808080';
     }
 
     var pad = 0;
-
     //This function comes from http://bl.ocks.org/sumbera/c67e5551b21c68dc8299
     function drawingOnCanvas(canvasOverlay, params) {
         params.tilePoint.z = params.zoom;
@@ -119,5 +105,4 @@ $(document).ready(function () {
         }
     }
     loadNationalData();
-
 });
