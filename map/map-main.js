@@ -10,7 +10,7 @@ $(document).ready(function () {
     }).fitBounds(maxBounds);
 
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ,<a href="http://mapbox.com/about/maps/">&copy;MapBox</a>',
         maxZoom: 16
     }).addTo(leafletMap);
 
@@ -32,34 +32,34 @@ $(document).ready(function () {
         var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
         tileLayer.addTo(leafletMap);
 
-        leafletMap.on('mousemove', function (e) {
+        leafletMap.on('click', function (e) {
             var x = e.latlng.lng;
             var y = e.latlng.lat;
             var layer = leafletPip.pointInLayer([x,y], polygonLayer, true);
+            var popup;
             if(layer.length) {
-                $('#district').html("<b>" + layer[0].feature.properties['Name'] + "</b></br>" +
-                    "<b>Percent Absent: DUMMY </b>");
-            }else{
-                $('#district').html("");
+                popup = "<b>" + layer[0].feature.properties['Name'] +
+                    "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
+                    "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
+                    "</b></br><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>";
+                leafletMap.openPopup(popup, e.latlng);
             }
         });
     }
 
     function colorizeFeatures(dummy) {
         for (var i = 0; i < dummy.features.length; i++) {
-            dummy.features[i].properties.color = getColor(dummy.features[i].properties["Percent Absent"]);
+            dummy.features[i].properties.color = getColor(dummy.features[i].properties["Group"]);
         }
     }
 
     //Set color based on absent percentage
     function getColor(d) {
-        return d > 95 ? '#800026' :
-                d > 90 ? '#BD0026' :
-                d > 80 ? '#E31A1C' :
-                d > 60 ? '#FC4E2A' :
-                d > 40 ? '#FD8D3C' :
-                d > 20 ? '#FEB24C' :
-                d > 0 ? '#FED976' : '#808080';
+        return d == 5 ? '#800026' :
+            d == 4 ? '#BD0026' :
+                d == 3 ? '#E31A1C' :
+                    d == 2 ? '#FC4E2A' :
+                        d == 1 ? '#FD8D3C' : '#FEB24C';
     }
 
     var pad = 0;
@@ -105,4 +105,16 @@ $(document).ready(function () {
         }
     }
     loadNationalData();
+
+    $('.unified').click(function () {
+
+    });
+
+    $('.elementary').click(function () {
+
+    });
+
+    $('.secondary').click(function () {
+
+    });
 });

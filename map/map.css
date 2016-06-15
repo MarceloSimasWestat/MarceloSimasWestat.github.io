@@ -1,6 +1,6 @@
-#mapid { 
-height: 800px; 
-width: 1200px;
+#mapid {
+    height: 800px;
+    width: 1200px;
 }
 
 /*html, body {
@@ -28,14 +28,11 @@ b{
 }
 
 #map {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+
     background-color: #333;
 }
 .district {
     padding: 5px;
-    background-color: white;
     min-height: 54px;
     width: 300px;
     border: 1px solid black;
@@ -43,4 +40,23 @@ b{
     top: 10px;
     right: 10px;
     z-index: 1000;
+}
+
+.legend {
+    position: absolute;
+    top: 10px;
+    right: 60px;
+}
+
+.legendItem {
+}
+.legend input[type=checkbox]
+{
+    /* Bigger Checkboxes */
+    -moz-transform: scale(1.25); /* FF */
+    -webkit-transform: scale(1.25); /* Safari and Chrome */
+}
+
+form{
+    margin: 0;
 }
