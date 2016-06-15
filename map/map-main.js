@@ -26,9 +26,10 @@ $(document).ready(function () {
     };
 
     function loadNationalData() {
-        polygonLayer = L.geoJson(dummy);
-        tileIndex = geojsonvt(dummy, tileOptions);
-        colorizeFeatures(dummy);
+        // 'data' variable comes from medium.js which contains the json data.
+        polygonLayer = L.geoJson(data);
+        tileIndex = geojsonvt(data, tileOptions);
+        colorizeFeatures(data);
         var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
         tileLayer.addTo(leafletMap);
 
@@ -38,6 +39,10 @@ $(document).ready(function () {
             var layer = leafletPip.pointInLayer([x,y], polygonLayer, true);
             var popup;
             if(layer.length) {
+                if(layer[0].feature.properties['Percent Absent'] == 0){
+                    popup = "<b>NO DATA</b>";
+                    leafletMap.openPopup(popup, e.latlng);
+                }else
                 popup = "<b>" + layer[0].feature.properties['Name'] +
                     "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
                     "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
@@ -47,9 +52,9 @@ $(document).ready(function () {
         });
     }
 
-    function colorizeFeatures(dummy) {
-        for (var i = 0; i < dummy.features.length; i++) {
-            dummy.features[i].properties.color = getColor(dummy.features[i].properties["Group"]);
+    function colorizeFeatures(d) {
+        for (var i = 0; i < d.features.length; i++) {
+            d.features[i].properties.color = getColor(d.features[i].properties["Group"]);
         }
     }
 
@@ -59,7 +64,7 @@ $(document).ready(function () {
             d == 4 ? '#BD0026' :
                 d == 3 ? '#E31A1C' :
                     d == 2 ? '#FC4E2A' :
-                        d == 1 ? '#FD8D3C' : '#FEB24C';
+                        d == 1 ? '#FD8D3C' : '#808080';
     }
 
     var pad = 0;
