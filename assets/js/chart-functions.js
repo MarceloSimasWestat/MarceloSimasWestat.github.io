@@ -2960,10 +2960,10 @@ function groupedBar() {
 								
 				color = d3.scale.ordinal().range(["#DDDDDE", "#5D42A6", "#A6426C", "#C07A98", "#DBB3C4"]);
 				
-				d3.selectAll(".bar")
+				group.selectAll(".bar")
 					.style("fill", function(d) { return color(d.level); });
 				
-				d3.selectAll(".legend circle")
+				legend.selectAll("circle")
 					.style("fill", color);
 				
 			}
@@ -2973,10 +2973,10 @@ function groupedBar() {
 								
 				color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
 				
-				d3.selectAll(".bar")
+				group.selectAll(".bar")
 					.style("fill", function(d) { return color(d.level); });
 					
-				d3.selectAll(".legend circle")
+				legend.selectAll("circle")
 					.style("fill", color);					
 					
 			}
