@@ -159,20 +159,12 @@ button:hover,
 	fill: #5D42A6;
 }
 
-.bar:hover {
-	fill-opacity:.65;
-}
-
 .overallBar {
 	fill: #A6426C;
 }
 
-.overallBar:hover {
-	fill-opacity: .65;
-}
-
-#animation1 {
-
+.bar:hover,
+.overallBar:hover,
 }
 
 /* Column chart styling */

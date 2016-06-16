@@ -79,16 +79,16 @@ $(document).ready(function() {
     $('#highContrast').click(function () {
 
         if ($('#highContrast').is(":checked")) {
-            $('link').attr('href', 'assets/css/main-highcontrast.css');
-
-            $('head').append('<link rel="stylesheet" title="chartStylesHC" type="text/css" href="assets/css/chart-styles-highcontrast.css">');
-            $('link[title="chartStyles"]').prop('disabled', true);
-            $('link[title="chartStylesHC"]').prop('disabled', false);
+            $('link').attr('href', 'assets/css/main-highcontrast.css')
+			
+            //$('head').append('<link rel="stylesheet" title="chartStylesHC" type="text/css" href="assets/css/chart-styles-highcontrast.css">');
+            //$('link[title="chartStyles"]').prop('disabled', true);
+            //$('link[title="chartStylesHC"]').prop('disabled', false);
         } else {
-            $('link').attr('href', 'assets/css/main.css');
-
-            $('link[title="chartStylesHC"]').prop('disabled', true);
-            $('link[title="chartStyles"]').prop('disabled', false);
+            $('link').attr('href', 'assets/css/main.css')
+			
+            //$('link[title="chartStylesHC"]').prop('disabled', true);
+            //$('link[title="chartStyles"]').prop('disabled', false);
         }
 
     });

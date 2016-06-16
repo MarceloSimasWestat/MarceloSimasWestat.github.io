@@ -187,7 +187,7 @@ function barChart() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
-
+			
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -215,10 +215,10 @@ function barChart() {
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
 
-			dom.selectAll("rect.bar")
+			dom.selectAll("rect")
 				.attr("width", 0);
 
-			dom.selectAll("rect.overallBar")
+			dom.selectAll("rect")
 				.attr("width", 0);
 
 			var gs2 = graphScroll()
@@ -228,12 +228,7 @@ function barChart() {
 			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
-					svg.selectAll("rect.bar")
-						.transition()
-						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.var3); });
-
-					svg.selectAll("rect.overallBar")
+					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
