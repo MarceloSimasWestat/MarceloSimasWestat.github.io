@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    var elementaryLayer;
+    var secondaryLayer;
     var tileIndex;
     var polygonLayer;
     var maxBounds = [[50, -52], [43, -135]]; //US bounds
@@ -26,27 +27,50 @@ $(document).ready(function () {
     };
 
     function loadNationalData() {
-        // 'data' variable comes from medium.js which contains the json data.
-        polygonLayer = L.geoJson(data);
-        tileIndex = geojsonvt(data, tileOptions);
-        colorizeFeatures(data);
+        secondaryLayer = L.geoJson(secondaryData, {
+            onEachFeature: function (feature, layer) {
+                var popup;
+                if (layer.feature.properties['Absent Group'] <= 0) {
+                    popup = "<b>" + layer.feature.properties['Name'] +
+                        "</br><b>NO DATA</b>";
+                } else {
+                    popup = "<b>" + layer.feature.properties['Name'] +
+                        "</b></br><b>Percent Absent: " + layer.feature.properties['Percent Absent'] + "</b>" +
+                        "</b></br><b>Total Enrolled: " + layer.feature.properties['Total Enrolled'] + "</b>" +
+                        "</b></br><b>Total Absent: " + layer.feature.properties['Total Absent'] + "</b>";
+                }
+                layer.bindPopup(popup);
+            },
+            style: function (feature) {
+                return {
+                    fillColor: getColor(feature.properties["Absent Group"]),
+                    color: 'black',
+                    weight: 0.5,
+                    fillOpacity: 1,
+                    opacity: 1
+                };
+            }
+        });
+
+        polygonLayer = L.geoJson(unifiedData);
+        tileIndex = geojsonvt(unifiedData, tileOptions);
+        colorizeFeatures(unifiedData);
         var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
         tileLayer.addTo(leafletMap);
 
         leafletMap.on('click', function (e) {
-            var x = e.latlng.lng;
-            var y = e.latlng.lat;
-            var layer = leafletPip.pointInLayer([x,y], polygonLayer, true);
+            var layer = leafletPip.pointInLayer([e.latlng.lng, e.latlng.lat], polygonLayer, true);
             var popup;
-            if(layer.length) {
-                if(layer[0].feature.properties['Percent Absent'] == 0){
-                    popup = "<b>NO DATA</b>";
+            if (layer.length) {
+                if (layer[0].feature.properties['Absent Group'] <= 0) {
+                    popup = "<b>" + layer[0].feature.properties['Name'] +
+                        "</br><b>NO DATA</b>";
                     leafletMap.openPopup(popup, e.latlng);
-                }else
-                popup = "<b>" + layer[0].feature.properties['Name'] +
-                    "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
-                    "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
-                    "</b></br><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>";
+                } else
+                    popup = "<b>" + layer[0].feature.properties['Name'] +
+                        "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
+                        "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
+                        "</b></br><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>";
                 leafletMap.openPopup(popup, e.latlng);
             }
         });
@@ -54,17 +78,18 @@ $(document).ready(function () {
 
     function colorizeFeatures(d) {
         for (var i = 0; i < d.features.length; i++) {
-            d.features[i].properties.color = getColor(d.features[i].properties["Group"]);
+            d.features[i].properties.color = getColor(d.features[i].properties["Absent Group"]);
         }
     }
 
-    //Set color based on absent percentage
+    //Set color based on group
     function getColor(d) {
-        return d == 5 ? '#800026' :
-            d == 4 ? '#BD0026' :
-                d == 3 ? '#E31A1C' :
-                    d == 2 ? '#FC4E2A' :
-                        d == 1 ? '#FD8D3C' : '#808080';
+        return d == 5 ? '#a63603' :
+            d == 4 ? '#e6550d' :
+                d == 3 ? '#fd8d3c' :
+                    d == 2 ? '#fdae6b' :
+                        d == 1 ? '#fdd0a2' :
+                            '#808080'; // less than or equal to 0 is grey.
     }
 
     var pad = 0;
@@ -79,7 +104,7 @@ $(document).ready(function () {
         }
         ctx.clearRect(0, 0, params.canvas.width, params.canvas.height);
         var features = tile.features;
-        ctx.strokeStyle = 'grey';
+        ctx.strokeStyle = 'black';
 
         for (var i = 0; i < features.length; i++) {
             var feature = features[i],
@@ -106,20 +131,30 @@ $(document).ready(function () {
                 }
             }
             if (type === 3 || type === 1) ctx.fill('evenodd');
+            //ctx.globalAlpha = 0.5;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
         }
     }
+
     loadNationalData();
 
-    $('.unified').click(function () {
-
-    });
-
     $('.elementary').click(function () {
-
+        leafletMap.removeLayer(secondaryLayer);
+        leafletMap.closePopup();
     });
 
     $('.secondary').click(function () {
-
+        secondaryLayer.addTo(leafletMap);
+        leafletMap.closePopup();
     });
+
+    //Prevent mouse clicking through legend
+    var div = L.DomUtil.get('legend');
+    if (!L.Browser.touch) {
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+    } else {
+        L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+    }
 });
