@@ -9,7 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
+    font-size: 125%;
     font: inherit;
     vertical-align: baseline;
 }
@@ -768,7 +768,7 @@ body {
 	#sidebar .nav-wrapper {
 		margin: 0 auto;
 		text-align: center;
-		font-size: 90%;
+		font-size: 100%;
 	}
 
     #sidebar .socialmedia {
@@ -1690,9 +1690,9 @@ div.preloading *, div.preloading *:before, div.preloading *:after {
 /* Type */
 
 body, input, select, textarea {
-    color: rgba(255, 255, 255, 0.80);
+    color: rgb(255, 255, 255);
     font-family: Muli, Helvetica, sans-serif;
-    font-size: 15pt;
+    font-size: 17pt;
     font-weight: normal;
     line-height: 1.75;
 }
@@ -1714,11 +1714,11 @@ div.disclaimer {
 	display: table-cell;
     width: 90%;
     padding: 1.3em 1.5em 1.3em 1.5em;
-    background: #4E75B7;
+    background: #a0b9de;
     border-radius: 0px 4px 4px 0px;
     border: solid 1px rgba(255, 255, 255, 0.15);
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.80);
+    font-size: 17px;
+    color: black;
     line-height: 1.75;
   }
 
@@ -1726,7 +1726,7 @@ div.disclaimer {
     /*float: left;*/
     width: 10%;
     text-align: center;
-    color: #4E75B7;
+    color: #39588c;
   }
 
   div.disclaimer .icon {
@@ -1753,8 +1753,8 @@ ul.disclaimer {
     background: #4E75B7;
     border-radius: 0px 4px 4px 0px;
     border: solid 1px rgba(255, 255, 255, 0.15);
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.80);
+    font-size: 17px;
+    color: rgb(255, 255, 255);
     line-height: 1.75;
   }
 
@@ -1808,7 +1808,7 @@ ul.disclaimer {
 
 p {
     font-family: Muli, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: normal;
 }
 
@@ -1894,7 +1894,7 @@ h1, h2, h3, h4, h5 {
 
 .barChart-icon {
     height: 2.75em;
-    opacity: .15;
+    /*opacity: .15;*/
 }
 
 /* End unique to Dept Ed */
@@ -2074,7 +2074,7 @@ hr {
     transition: border-color 0.2s ease;
     background-color: transparent;
     border: solid 1px !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: white !important;
     border-radius: 3em;
     color: #ffffff /*!important*/;
     display: inline-block;
@@ -2108,9 +2108,10 @@ button,
     transition: border-color 0.2s ease;
     background-color: transparent;
     border: solid 1px !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: black; 
+    /*border-color: rgba(255, 255, 255, 0.15) !important;*/
     border-radius: 3em;
-    color: #ffffff /*!important*/;
+    /*color: #ffffff*/ /*!important*/;
     cursor: pointer;
     display: inline-block;
     font-family: Karla;
@@ -2779,7 +2780,7 @@ input[type="radio"] {
         }
 
 .wrapper.style1 .icon.major:before {
-    color: #42A667;
+    color: #358151;  /* 235636 */
 }
 
 .wrapper.style1-alt .icon.major:before {
@@ -3485,7 +3486,7 @@ padding: 0px;
 }
 
 .wrapper.style1 {
-    background-color: #42A667;
+    background-color: #235636;
 }
 
 .wrapper.style1-alt {
@@ -3501,7 +3502,7 @@ padding: 0px;
 }
 
 .wrapper.style3 {
-    background-color: #4E75B7;
+    background-color: #39588c;
 }
 
 
@@ -3514,12 +3515,12 @@ padding: 0px;
 }
 
 .wrapper.style5 {
-    background-color: #2C497D;
+    background-color: #1b2d4f;
 }
 
 .wrapper.chart {
     background-color: #ffffff;
-    color: rgba(23, 26, 29, 0.80);
+    color: black;
     /*font-size: 15px;*/
 }
 
@@ -4029,7 +4030,7 @@ body.loaded #sidebar .nav-image img {
     -ms-transition: color 0.2s ease;
     transition: color 0.2s ease;
     border: 0;
-    color: rgba(255, 255, 255, 0.35);
+    color: white;
     display: block;
     font-size: 0.6em;
     font-weight: bold;
@@ -4074,6 +4075,8 @@ body.loaded #sidebar .nav-image img {
 
     #sidebar nav a.active {
         color: #ffffff;
+        padding: 0 5px;
+        border: 2px solid white;
     }
 
         #sidebar nav a.active:after {
@@ -4097,11 +4100,11 @@ body.loaded #sidebar nav ul li {
 @media screen and (max-width: 1024px) {
 
     #sidebar {
-        height: 3.5em;
+        height: 4em;
         left: 0;
         line-height: 3.5em;
         overflow: hidden;
-        padding: 0;
+        padding: 5px 0;
         text-align: center;
         top: 0;
         width: 100%;
@@ -4166,7 +4169,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;
+    /*background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack.jpg") no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4182,7 +4185,8 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus.jpg") no-repeat center center fixed;
+    /*background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus.jpg") no-repeat center center fixed;*/
+    background-color: #235636;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4237,7 +4241,7 @@ body.loaded #sidebar nav ul li {
         #counter h2 span {
             font-size: 22px;
             font-family: Muli, Helvetica, sans-serif;
-            color: rgba(255, 255, 255, 0.80);
+            color: rgb(255, 255, 255);
             display: inline-block;
         }
 
@@ -4752,11 +4756,11 @@ button:hover,
 }
 
 .bar {
-	fill: #5D42A6;
+	fill: #A6426C;
 }
 
 .overallBar {
-	fill: #A6426C;
+	fill: #5D42A6;
 }
 
 .bar:hover,
@@ -5014,7 +5018,7 @@ button:hover,
 }
 
 .groupedBar .national-bar {
-	fill: #DDDDDE;
+	fill: #DBB3C4;
 	fill-opacity: 0.85;
 }
 

@@ -187,7 +187,7 @@ function barChart() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
-
+			
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -215,10 +215,10 @@ function barChart() {
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
 
-			dom.selectAll("rect.bar")
+			dom.selectAll("rect")
 				.attr("width", 0);
 
-			dom.selectAll("rect.overallBar")
+			dom.selectAll("rect")
 				.attr("width", 0);
 
 			var gs2 = graphScroll()
@@ -228,12 +228,7 @@ function barChart() {
 			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
-					svg.selectAll("rect.bar")
-						.transition()
-						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.var3); });
-
-					svg.selectAll("rect.overallBar")
+					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.var3); });
@@ -2797,7 +2792,13 @@ function groupedBar() {
 			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
 			yScale1 = d3.scale.ordinal();
 
+		// define colors, need to change for HC
+			
+		var hc = 0;	
 		var color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
+		
+		d3.select("#highContrast")
+			.on("change", changeHC);
 
 		// domains
 
@@ -2950,6 +2951,37 @@ function groupedBar() {
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
+		// high contrast toggle
+				
+		function changeHC() {
+			if (hc == 0) {
+				
+				hc = 1;
+								
+				color = d3.scale.ordinal().range(["#DDDDDE", "#5D42A6", "#A6426C", "#C07A98", "#DBB3C4"]);
+				
+				group.selectAll(".bar")
+					.style("fill", function(d) { return color(d.level); });
+				
+				legend.selectAll("circle")
+					.style("fill", color);
+				
+			}
+			else if (hc == 1) {
+				
+				hc = 0;
+								
+				color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
+				
+				group.selectAll(".bar")
+					.style("fill", function(d) { return color(d.level); });
+					
+				legend.selectAll("circle")
+					.style("fill", color);					
+					
+			}
+		};			
+			
 		// update functions
 
 		function updateTitle(titleID) {
