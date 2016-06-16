@@ -1,0 +1,62 @@
+#mapid {
+    height: 800px;
+    width: 1200px;
+}
+
+/*html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}*/
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: rgb(14, 21, 30);
+    height: 100%;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-size:12px;
+    color:#808080;
+}
+
+b{
+    color: black;
+}
+
+#map {
+
+    background-color: #333;
+}
+.district {
+    padding: 5px;
+    min-height: 54px;
+    width: 300px;
+    border: 1px solid black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.legend {
+    position: absolute;
+    top: 10px;
+    right: 60px;
+}
+
+.legendItem {
+}
+.legend input[type=checkbox]
+{
+    /* Bigger Checkboxes */
+    -moz-transform: scale(1.25); /* FF */
+    -webkit-transform: scale(1.25); /* Safari and Chrome */
+}
+
+form{
+    margin: 0;
+}
