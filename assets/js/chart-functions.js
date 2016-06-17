@@ -2792,20 +2792,16 @@ function groupedBar() {
 			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
 			yScale1 = d3.scale.ordinal();
 
-		// define colors, need to change for HC
-			
-		var hc = 0;	
-		var color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
-		
-		d3.select("#highContrast")
-			.on("change", changeHC);
-
 		// domains
 
 		data_nest = d3.nest()
 			.key(function(d) { return d.group; })
 			.entries(dataFiltered);
 
+		data_levels = d3.nest()
+			.key(function(d) { return d.level; })
+			.entries(dataFiltered);
+			
 		var levels = ["Elementary","Middle","High","Other"];
 
 		xScale.domain([0, 0.5]);
@@ -2854,7 +2850,7 @@ function groupedBar() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class","national-bar")
+					.attr("class", function(d) { return "national-bar " + d.level; })
 					.attr("x", 0)
 					.attr("width", 0)
 					.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
@@ -2885,12 +2881,12 @@ function groupedBar() {
 
 		levelBars.enter()
 			.append("rect")
-				.attr("class", "bar")
+				.attr("class", function(d) { return "bar " + d.level; })
 				.attr("x", 0)
 				.attr("width", 0)
 				.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 				.attr("height", 0)
-				.style("fill", function(d) { return color(d.level); })
+				//.style("fill", function(d) { return color(d.level); }) 
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
@@ -2938,10 +2934,11 @@ function groupedBar() {
 				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend.append("circle")
+			.attr("class", function(d) { return d; })
 			.attr("cx", widthAdj - 77)
 			.attr("cy", 9)
-			.attr("r", 6.5)
-			.style("fill", color);
+			.attr("r", 6.5);
+			//.style("fill", color);
 
 		legend.append("text")
 			.attr("x", widthAdj - 65)
@@ -2951,37 +2948,6 @@ function groupedBar() {
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
-		// high contrast toggle
-				
-		function changeHC() {
-			if (hc == 0) {
-				
-				hc = 1;
-								
-				color = d3.scale.ordinal().range(["#DDDDDE", "#5D42A6", "#A6426C", "#C07A98", "#DBB3C4"]);
-				
-				group.selectAll(".bar")
-					.style("fill", function(d) { return color(d.level); });
-				
-				legend.selectAll("circle")
-					.style("fill", color);
-				
-			}
-			else if (hc == 1) {
-				
-				hc = 0;
-								
-				color = d3.scale.ordinal().range(["#DBB3C4", "#C07A98", "#A6426C", "5D42A6", "#DDDDDE"]);
-				
-				group.selectAll(".bar")
-					.style("fill", function(d) { return color(d.level); });
-					
-				legend.selectAll("circle")
-					.style("fill", color);					
-					
-			}
-		};			
-			
 		// update functions
 
 		function updateTitle(titleID) {
@@ -3045,7 +3011,7 @@ function groupedBar() {
 				.append("g")
 					.attr("transform", "translate(0,0)")
 					.append("rect")
-						.attr("class","national-bar")
+						.attr("class", function(d) { return "national-bar " + d.level; })
 						.attr("x", 0)
 						.attr("width", 0)
 						.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
@@ -3118,12 +3084,12 @@ function groupedBar() {
 
 			updateBars.enter()
 				.append("rect")
-					.attr("class", "bar")
+					.attr("class", function(d) { return "bar " + d.level; })
 					.attr("x", 0)
 					.attr("width", 0)
 					.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 					.attr("height", 0)
-					.style("fill", function(d) { return color(d.level); })
+					//.style("fill", function(d) { return color(d.level); })
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.transition()

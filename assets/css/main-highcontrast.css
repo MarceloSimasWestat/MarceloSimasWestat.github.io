@@ -5017,8 +5017,8 @@ button:hover,
 	font-weight: bold;
 }
 
-.groupedBar .national-bar {
-	fill: #DBB3C4;
+.groupedBar .Overall {
+	fill: #DDDDDE;
 	fill-opacity: 0.85;
 }
 
@@ -5029,6 +5029,23 @@ button:hover,
 .groupedBar .bar:hover {
 	fill-opacity: 0.75;
 }
+
+.groupedBar .Elementary {
+	fill: #5D42A6;
+}
+
+.groupedBar .Middle {
+	fill: #A6426C;
+}
+
+.groupedBar .High {
+	fill: #C07A98;
+}
+
+.groupedBar .Other {
+	fill: #DBB3C4;
+}
+
 
 /* Styling tooltips for individual graph types */
 
