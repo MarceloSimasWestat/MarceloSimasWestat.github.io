@@ -142,11 +142,15 @@ $(document).ready(function () {
     $('.elementary').click(function () {
         leafletMap.removeLayer(secondaryLayer);
         leafletMap.closePopup();
+        $(this).css({"background-color":"yellow"}).prop("disabled",true);
+        $('.secondary').css({"background-color":"white"}).prop("disabled",false);
     });
 
     $('.secondary').click(function () {
         secondaryLayer.addTo(leafletMap);
         leafletMap.closePopup();
+        $(this).css({"background-color":"yellow"}).prop("disabled",true);
+        $('.elementary').css({"background-color":"white"}).prop("disabled",false);
     });
 
     //Prevent mouse clicking through legend
