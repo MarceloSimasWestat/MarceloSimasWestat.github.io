@@ -2079,7 +2079,7 @@ hr {
     color: #ffffff /*!important*/;
     display: inline-block;
     font-family: Karla;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-weight: bold;
     height: calc(4.75em + 2px);
     letter-spacing: 0.25em;
@@ -2109,13 +2109,12 @@ button,
     background-color: transparent;
     border: solid 1px !important;
     border-color: black; 
-    /*border-color: rgba(255, 255, 255, 0.15) !important;*/
     border-radius: 3em;
     /*color: #ffffff*/ /*!important*/;
     cursor: pointer;
     display: inline-block;
     font-family: Karla;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-weight: bold;
     height: calc(4.75em + 2px);
     letter-spacing: 0.25em;
@@ -2180,7 +2179,7 @@ button,
     input[type="button"].small,
     button.small,
     .button.small {
-        font-size: 0.4em;
+        font-size: 0.5em;
     }
 
     input[type="submit"].big,
@@ -2188,7 +2187,7 @@ button,
     input[type="button"].big,
     button.big,
     .button.big {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
     input[type="submit"].special,
@@ -2864,6 +2863,7 @@ ol {
     list-style: decimal;
     margin: 0 0 2em 0;
     padding-left: 1.25em;
+    font-size: 15px;
 }
 
     ol li {
@@ -3261,7 +3261,7 @@ body.is-ie .spotlights > section {
         -webkit-transition: opacity 1s ease;
         -ms-transition: opacity 1s ease;
         transition: opacity 1s ease;
-        background: rgba(44, 74, 126, 0.9);
+        background: rgb(44, 74, 126);
         content: '';
         display: block;
         height: 100%;
@@ -3751,6 +3751,27 @@ body.is-ie .wrapper.fullscreen {
     margin-left: 18em;
 }
 
+footer .dataExclusion {
+    font-size: 14px; 
+    text-align: left; 
+    margin-top: 3.5em;
+}
+
+footer h3 {
+    font-size: 17px;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+footer ol {
+    font-size: 14px;
+}
+
+
+
+
 /* Copied over from template */
 @media screen and (max-width: 1024px) {
 
@@ -4032,7 +4053,7 @@ body.loaded #sidebar .nav-image img {
     border: 0;
     color: white;
     display: block;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-weight: bold;
     letter-spacing: 0.2em;
     line-height: 1.75;
@@ -4643,7 +4664,7 @@ background-size: cover;
 
 	.chart a:hover {
         border-bottom-color: transparent;
-        color: rgba(23, 26, 29, 1);
+        color: black;
 	}
 
 /* Hide footer images (this solves them showing up at resolutions > 1680px */
@@ -4657,12 +4678,14 @@ footer .footer-image {
 	display: none;
 }
 
+/* ------------- */
 /* Chart styling */
+/* ------------- */
 
 
 .title {
 	font: 400 18px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
+	color: black;
 	font-weight: bold;
 }
 
@@ -4681,19 +4704,19 @@ button.filterButton {
 	transition: border-color 0.2s ease;
 	background-color: transparent;
 	border: solid 1px !important;
-	border-color: rgba(26, 28, 32, 0.15) !important;
+	border-color: black;
 	border-radius: 3em;
-	color: #1A1C20 /*!important*/;
+	color: black; 
 	cursor: pointer;
 	display: inline-block;
 	font-family: Karla;
-	font-size: 0.5em;
+	font-size: 0.7em;
 	font-weight: bold;
-	height: calc(4.75em + 2px);
+	height: calc(4.75em);
 	letter-spacing: 0.25em;
 	line-height: 4.75em;
 	outline: 0;
-	padding: 0 3.75em;
+	padding: 0 3em;
 	position: relative;
 	text-align: center;
 	text-decoration: none;
@@ -4707,12 +4730,13 @@ button.filterButton {
 
 button:hover,
 .filterButton:hover {
-	border-color: #4E75B7 !important;
+	background-color: #385889 !important;
+    color: white;
 }
 
 .buttonSelected {
-	background-color: #4E75B7 !important;
-	color: #FFFFFF !important;
+	background-color: #375175 !important;
+	color: white !important;
 }
 
 /* Bar chart styling */
@@ -4720,13 +4744,13 @@ button:hover,
 .bar-chart .axis path,
 .bar-chart .axis line {
 	fill: none;
-	stroke: #1A1C20;
+	stroke: black;
 	shape-rendering: crispEdges;
 }
 
 .bar-chart .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	font: 400 14px Inconsolata;
+	fill: black;
 }
 
 .bar-chart .x.axis path {
@@ -4734,23 +4758,23 @@ button:hover,
 }
 
 .bar-chart .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
 .bar-chart .y.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+	font: normal 14px Karla;
+	color: black;
 }
 
 .bar-chart .y.axis path {
-	stroke: #1A1C20;
+	stroke: black;
 	stroke-width: 1.5px;
 }
 
 .bar-chart .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
+	color: black;
 	font-weight: bold;
 	text-align: right;
 }
@@ -4765,7 +4789,8 @@ button:hover,
 
 .bar:hover,
 .overallBar:hover {
-	fill-opacity:.65;
+	/*fill-opacity:.65;*/
+    filter: brightness(75%);
 }
 
 /* Column chart styling */
@@ -4778,18 +4803,18 @@ button:hover,
 }
 
 .col-chart .x.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+	font: normal 14px Karla;
+	color: black;
 }
 
 .col-chart .x.axis path {
-	stroke: #1A1C20;
+	stroke: black;
 	stroke-width: 1.5px;
 }
 
 .col-chart .y.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	font: 400 14px Inconsolata;
+	fill: black;
 }
 
 .col-chart .y.axis path {
@@ -4797,13 +4822,13 @@ button:hover,
 }
 
 .col-chart .y.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
 .col-chart .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: black;
 	font-weight: bold;
 }
 
@@ -4812,7 +4837,8 @@ button:hover,
 }
 
 .column:hover {
-	fill-opacity: .85;
+	/*fill-opacity: .85;*/
+    filter: brightness(75%);
 }
 
 .overallColumn {
@@ -4820,7 +4846,8 @@ button:hover,
 }
 
 .overallColumn:hover {
-	fill-opacity: .65;
+	/*fill-opacity: .65;*/
+    filter: brightness(75%);
 }
 
 /* Dot plot styling */
@@ -4833,8 +4860,8 @@ button:hover,
 }
 
 .dotPlot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, 0.65);
+	font: 400 14px Inconsolata;
+	fill: black;
 }
 
 .dotPlot .x.axis path {
@@ -4842,23 +4869,23 @@ button:hover,
 }
 
 .dotPlot .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
 .dotPlot .y.axis {
-	font: normal 13px Karla;
-	color: #1C1E21;
+	font: normal 14px Karla;
+	color: black;
 }
 
 .dotPlot .y.axis path {
-	stroke: #1C1E21;
+	stroke: black;
 	stroke-width: 1.5px;
 }
 
 .dotPlot .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: black;
 	font-weight: bold;
 }
 
@@ -4867,7 +4894,8 @@ button:hover,
 }
 
 .dot:hover {
-	opacity: .65;
+	/*opacity: .65;*/
+    filter: brightness(75%);
 }
 
 .dotLine {
@@ -4887,8 +4915,8 @@ button:hover,
 
 .scatterPlot .x.axis,
 .scatterPlot .y.axis {
-	font: 400 13px Inconsolata;
-	color: #46484B;
+	font: 400 14px Inconsolata;
+	color: black;
 }
 
 .scatterPlot .x.axis path,
@@ -4903,7 +4931,7 @@ button:hover,
 }
 
 /* .scatterPlot .y.axis {
-	font: normal 13px Karla;
+	font: normal 15px Karla;
 	color: #1C1E21;
 }
 
@@ -4914,7 +4942,7 @@ button:hover,
 
 .scatterPlot .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: black;
 	font-weight: bold;
 }
 
@@ -4932,8 +4960,8 @@ button:hover,
 }
 
 .groupedDot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	font: 400 14px Inconsolata;
+	fill: black;
 }
 
 .groupedDot .x.axis path {
@@ -4941,24 +4969,24 @@ button:hover,
 }
 
 .groupedDot .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
 .groupedDot .y.axis,
 .groupedDot .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
+	font: normal 14px Karla;
+	color: black;
 }
 
 .groupedDot .y.axis path {
-	stroke: #1C1E21;
+	stroke: black;
 	stroke-width: 1.5px;
 }
 
 .groupedDot .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: black;
 	font-weight: bold;
 }
 
@@ -4968,7 +4996,8 @@ button:hover,
 }
 
 .groupedDot .dot:hover {
-	opacity: .65;
+    /*opacity: .65;*/
+    filter: brightness(75%);
 }
 
 .groupedDot .dotLine {
@@ -4988,7 +5017,7 @@ button:hover,
 
 .groupedBar .x.axis {
 	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	fill: black;
 }
 
 .groupedBar .x.axis path {
@@ -4996,24 +5025,24 @@ button:hover,
 }
 
 .groupedBar .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
 .groupedBar .y.axis,
 .groupedBar .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
+	font: normal 14px Karla;
+	color: black;
 }
 
 .groupedBar .y.axis path {
-	stroke: #1C1E21;
+	stroke: black;
 	stroke-width: 1.5px;
 }
 
 .groupedBar .title {
 	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
+	color: black;
 	font-weight: bold;
 }
 
@@ -5027,7 +5056,8 @@ button:hover,
 } */
 
 .groupedBar .bar:hover {
-	fill-opacity: 0.75;
+	/*fill-opacity: 0.75;*/
+    filter: brightness(75%);
 }
 
 .groupedBar .Elementary {
@@ -5053,9 +5083,9 @@ button:hover,
 .d3-tip-bar,
 .d3-tip-col,
 .d3-tip-dot {
-	font: 13px Inconsolata;
+	font: 15px Inconsolata;
 	padding: 13px;
-	background: rgba(26, 28, 32, 0.85);
+	background: black;
 	color: #fff;
 	width: auto;
 	padding: 10px;

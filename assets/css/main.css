@@ -3750,6 +3750,24 @@ body.is-ie .wrapper.fullscreen {
     margin-left: 18em;
 }
 
+footer .dataExclusion {
+    text-align: left; 
+    margin-top: 3.5em;
+}
+
+footer h3 {
+    font-size: 15px;
+}
+
+footer p {
+    font-size: 12px;
+}
+
+footer ol {
+    font-size: 12px;
+}
+
+
 /* Copied over from template */
 @media screen and (max-width: 1024px) {
 
