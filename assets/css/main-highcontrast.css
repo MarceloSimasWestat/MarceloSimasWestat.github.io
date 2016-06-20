@@ -4638,18 +4638,17 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack@2x.jpg") no-repeat center center scroll;
+      /*background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/boywbackpack@2x.jpg") no-repeat center center scroll;*/
       background-size: cover;
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus@2x.jpg") no-repeat center center scroll;
+      /*background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus@2x.jpg") no-repeat center center scroll;*/
       background-size: cover;
+      background-color: #235636;
     }
 }
 
-background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus@2x.jpg") no-repeat center center scroll;
-background-size: cover;
 
 /* Styling for chart area links */
 
@@ -4789,8 +4788,8 @@ button:hover,
 
 .bar:hover,
 .overallBar:hover {
-	/*fill-opacity:.65;*/
-    filter: brightness(75%);
+	fill-opacity:.65;
+    /*filter: brightness(75%);*/
 }
 
 /* Column chart styling */
@@ -4837,8 +4836,8 @@ button:hover,
 }
 
 .column:hover {
-	/*fill-opacity: .85;*/
-    filter: brightness(75%);
+	fill-opacity: .85;
+    /*filter: brightness(75%);*/
 }
 
 .overallColumn {
@@ -4846,8 +4845,8 @@ button:hover,
 }
 
 .overallColumn:hover {
-	/*fill-opacity: .65;*/
-    filter: brightness(75%);
+	fill-opacity: .65;
+    /*filter: brightness(75%);*/
 }
 
 /* Dot plot styling */
@@ -4894,8 +4893,8 @@ button:hover,
 }
 
 .dot:hover {
-	/*opacity: .65;*/
-    filter: brightness(75%);
+	opacity: .65;
+    /*filter: brightness(75%);*/
 }
 
 .dotLine {
@@ -4996,8 +4995,8 @@ button:hover,
 }
 
 .groupedDot .dot:hover {
-    /*opacity: .65;*/
-    filter: brightness(75%);
+    opacity: .65;
+    /*filter: brightness(75%); */
 }
 
 .groupedDot .dotLine {
