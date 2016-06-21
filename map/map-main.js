@@ -138,7 +138,7 @@ $(document).ready(function () {
     }
 
     loadNationalData();
-
+    $('.elementary').css('background-color','yellow').prop("disabled",true);
     $('.elementary').click(function () {
         leafletMap.removeLayer(secondaryLayer);
         leafletMap.closePopup();
