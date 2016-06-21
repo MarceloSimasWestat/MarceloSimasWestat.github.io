@@ -4641,9 +4641,6 @@ ul.callout li {
     }
 }
 
-background: linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/schoolbus@2x.jpg") no-repeat center center scroll;
-background-size: cover;
-
 /* Styling for chart area links */
 
 .chart a {
