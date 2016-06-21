@@ -1879,7 +1879,7 @@ h1, h2, h3, h4, h5 {
         border-bottom: solid 2px rgba(255, 255, 255, 0.125);
     }
 
-    h2.chart {
+    div.chart {
         color: #1A1C20;
         padding-bottom: 0.35em;
         border-bottom: solid 2px rgba(26, 28, 32, 0.125);
