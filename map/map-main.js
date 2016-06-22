@@ -4,16 +4,27 @@ $(document).ready(function () {
     var tileIndex;
     var polygonLayer;
     var maxBounds = [[50, -52], [43, -135]]; //US bounds
-    var leafletMap = L.map('map', {
+    var map = L.map('map', {
         'center': [0, 0],
         'zoom': 10,
         'bounds': maxBounds
     }).fitBounds(maxBounds);
+    //map.createPane('labels');
 
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ,<a href="http://mapbox.com/about/maps/">&copy;MapBox</a>',
-        maxZoom: 16
-    }).addTo(leafletMap);
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19,
+        pane: 'labels',
+        zIndex: 650,
+        style:{pointerEvents:'none'}
+    }).addTo(map);
+    //map.getPane('labels').style.pointerEvents = 'none';
 
     var tileOptions = {
         maxZoom: 20,  // max zoom to preserve detail on
@@ -49,31 +60,34 @@ $(document).ready(function () {
                     fillOpacity: 1,
                     opacity: 1
                 };
-            }
+            },
+            zIndex: 10,
+            transparent: true
         });
 
         polygonLayer = L.geoJson(unifiedData);
         tileIndex = geojsonvt(unifiedData, tileOptions);
         colorizeFeatures(unifiedData);
         var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
-        tileLayer.addTo(leafletMap);
+        tileLayer.addTo(map);
 
-        leafletMap.on('click', function (e) {
+        map.on('click', function (e) {
             var layer = leafletPip.pointInLayer([e.latlng.lng, e.latlng.lat], polygonLayer, true);
             var popup;
             if (layer.length) {
                 if (layer[0].feature.properties['Absent Group'] <= 0) {
                     popup = "<b>" + layer[0].feature.properties['Name'] +
                         "</br><b>NO DATA</b>";
-                    leafletMap.openPopup(popup, e.latlng);
+                    map.openPopup(popup, e.latlng);
                 } else
                     popup = "<b>" + layer[0].feature.properties['Name'] +
                         "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
                         "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
                         "</b></br><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>";
-                leafletMap.openPopup(popup, e.latlng);
+                map.openPopup(popup, e.latlng);
             }
         });
+        $('.leaflet-container').css('cursor','pointer');
     }
 
     function colorizeFeatures(d) {
@@ -138,17 +152,18 @@ $(document).ready(function () {
     }
 
     loadNationalData();
+
     $('.elementary').css('background-color','yellow').prop("disabled",true);
     $('.elementary').click(function () {
-        leafletMap.removeLayer(secondaryLayer);
-        leafletMap.closePopup();
+        map.removeLayer(secondaryLayer);
+        map.closePopup();
         $(this).css({"background-color":"yellow"}).prop("disabled",true);
         $('.secondary').css({"background-color":"white"}).prop("disabled",false);
     });
 
     $('.secondary').click(function () {
-        secondaryLayer.addTo(leafletMap);
-        leafletMap.closePopup();
+        secondaryLayer.addTo(map);
+        map.closePopup();
         $(this).css({"background-color":"yellow"}).prop("disabled",true);
         $('.elementary').css({"background-color":"white"}).prop("disabled",false);
     });
