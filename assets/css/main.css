@@ -3753,6 +3753,7 @@ body.is-ie .wrapper.fullscreen {
 footer .dataExclusion {
     text-align: left; 
     margin-top: 3.5em;
+    display: inline-block;
 }
 
 footer h3 {
