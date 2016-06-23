@@ -4086,7 +4086,8 @@ body.loaded #sidebar .nav-image img {
     }
 
     #sidebar nav a:hover {
-        color: rgba(255, 255, 255, 0.70);
+        /*color: rgba(255, 255, 255, 0.70);*/
+        text-decoration: underline;
     }
 
     #sidebar nav a.active {
@@ -4655,6 +4656,11 @@ ul.callout li {
         border-bottom: 2px solid black; 
         color: black;
 	}
+
+#maplegend {
+    max-width: 375px; 
+    display: inline;
+}
 
 /* Hide footer images (this solves them showing up at resolutions > 1680px */
 /* Lower res images will still show because of classes defined earlier */

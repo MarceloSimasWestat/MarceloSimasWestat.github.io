@@ -4658,6 +4658,11 @@ ul.callout li {
         color: rgba(23, 26, 29, 1);
 	}
 
+#maplegend {
+    max-width: 375px; 
+    display: inline;
+}
+
 /* Hide footer images (this solves them showing up at resolutions > 1680px */
 /* Lower res images will still show because of classes defined earlier */
 
