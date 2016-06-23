@@ -3749,6 +3749,7 @@ footer .dataExclusion {
     font-size: 14px; 
     text-align: left; 
     margin-top: 3.5em;
+    display: inline-block;
 }
 
 footer h3 {
