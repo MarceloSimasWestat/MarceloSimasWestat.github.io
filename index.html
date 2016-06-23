@@ -92,9 +92,11 @@
         <!-- InformED Shouout -->
 
         <section class="wrapper style5">
-            <div class="inner" style="padding-top: 40px; padding-bottom: 20px;">
-                <center><i class="fa fa-bolt fa-lg" style="margin-bottom: 1em; color: rgba(255,255,255,1);"></i></center>
-                <p align="center">Powered by InformED and the <a href="http://www2.ed.gov/about/offices/list/ocr/docs/crdc-2013-14.html">2013-14 Civil Rights Data Collection.</a></p>
+            <div class="inner align-center" style="padding-top: 40px; padding-bottom: 20px;">
+                <div>
+                    <i class="fa fa-bolt fa-lg" style="margin-bottom: 1em; color: rgba(255,255,255,1);"></i>
+                </div>
+                <p>Powered by InformED and the <a href="http://www2.ed.gov/about/offices/list/ocr/docs/crdc-2013-14.html">2013-14 Civil Rights Data Collection.</a></p>
             </div>
         </section>
 
@@ -102,7 +104,7 @@
         <section class="wrapper style3">
             <div class="inner">
 
-                <div align="right">
+                <div class="align-right">
                     <div style="margin-bottom: 2.5em;">
                         <input type="checkbox" id="highContrast" name="highContrast">
                         <label for="highContrast">Enable High Contrast (508)</label>
@@ -170,7 +172,8 @@
             <div class="inner">
                 <div class="row">
                     <div class="6u 12u$(medium)">
-                        <img src="images/chairMask.svg" class="chair">
+                        <!-- FYI: no alt text necessary on chair because extraneous image, meaning-wise -->
+                        <img src="images/chairMask.svg" class="chair" alt=""> 
                     </div>
                     <div id="counter" class="6u$ 12u$(medium)">
                         <h2>
@@ -189,7 +192,9 @@
 
         <section id="one_chart" class="wrapper chart">
             <div id="one_sections" class="inner">
-                <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
                 <div class="chart"></div>
 
                 <p style="margin-top:1.5em; margin-bottom:3.5em;">
@@ -206,9 +211,9 @@
 
                 <p style="margin-top:1.5em;">The disparities are striking. Consider the relative differences: compared to their white peers, American Indian and Pacific Islander students are over 50 percent more likely to lose three weeks of school or more, black students 30 percent more likely, and Hispanic students 9 percent more likely.</p>
 
-                <p style="margin-bottom: 3.5;">See chronic absenteeism rates for other student groups in the next chart.</p>
+                <p style="margin-bottom: 3.5em;">See chronic absenteeism rates for other student groups in the next chart.</p>
 
-                <p align="center" style="margin-top:3.5em;">View Chart By:</p>
+                <p class="align-center" style="margin-top:3.5em;">View Chart By:</p>
                 <div id="ch1_3">
                     <p></p>
                 </div>
@@ -242,7 +247,9 @@
 
         <section id="two_chart" class="wrapper chart">
             <div id="two_sections" class="inner">
-                <center><img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" /></center>
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
                 <div style="margin-bottom: 1.5em" class="chart"></div>
                 <div></div>
                 <div id="ch2_1">
@@ -253,12 +260,12 @@
                     The chronic absenteeism rate was the lowest for elementary school students, at 10 percent.
                     For more information on how we defined grade levels, <a href="#datanotes">see the data notes</a>.
                 </p></p>
-                <p style="margin-bottom: 3.5;">
+                <p style="margin-bottom: 3.5em;">
                     Next, we looked at how chronic absenteeism
                     varied across grade levels for specific groups of students.
                 </p>
 
-                <p align="center" style="margin-top:3.5em;">View Chart By:</p>
+                <p class="align-center" style="margin-top:3.5em;">View Chart By:</p>
                 <div id="ch2_2">
 
 
@@ -344,7 +351,7 @@
             <div class="inner">
 
                 <div class="socialmedia">
-                    <ul style="text-align: right;" class="icons">
+                    <ul class="align-right icons">
                         <li><a href="https://twitter.com/home?status=Over%206%20million%20students%20miss%2015%20days%20or%20more%20per%20school%20year.%20This%20needs%20to%20change.%20http%3A//bit.ly/ChronicAbsenteeismInAmerica%20%40usedgov" target="_blank" title="Tweet" class="fa-twitter"><span class="label">Twitter</span></a></li>
                         <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www2.ed.gov/datastory/chronicabsenteeism.html" target="_blank" title="Share on Facebook" class="fa-facebook"><span class="label">Facebook</span></a></li>
                         <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww2.ed.gov%2Fdatastory%2Fchronicabsenteeism.html&title=Chronic%20Absenteeism%20in%20the%20Nation's%20Schools&summary=&source=http%3A%2F%2Fwww2.ed.gov%2Fdatastory%2Fchronicabsenteeism.html" target="_blank" title="Share on LinkedIn" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
@@ -395,44 +402,40 @@
 
     <!-- Footer -->
     <footer id="footer" class="wrapper style1-alt">
-        <div class="inner">
-            <center>
-                <div class="6u$ 12u$(medium) dataExclusion">
-                    <h3 id="datanotes" class="line">Data Exclusion Rules</h3>
-                    <p>Data included in this story may differ slightly from other published reports due to certain data decisions. For the purposes of these analyses, schools with incomplete or inconsistent data values were excluded. Less than 5% of schools were excluded for the following reasons:</p>
-                    <ol>
-                        <li>
-                            The chronic absenteeism question was not applicable to the school
-                            (the school must have students enrolled in grades K–12).
-                        </li>
-                        <li>
-                            The school reported incomplete data for enrollment and/or
-                            the chronic absenteeism count for at least one race/ethnicity subgroup.
-                        </li>
-                        <li>
-                            The chronic absenteeism count was larger than the K–12
-                            enrollment for at least one race/ethnicity subgroup. Schools with partial or missing data for students with disabilities or English learners were included in all analyses except those that focused on these subgroups.
-                        </li>
-                    </ol>
-                </div>
+        <div class="inner align-center">
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 id="datanotes" class="line">Data Exclusion Rules</h3>
+                <p>Data included in this story may differ slightly from other published reports due to certain data decisions. For the purposes of these analyses, schools with incomplete or inconsistent data values were excluded. Less than 5% of schools were excluded for the following reasons:</p>
+                <ol>
+                    <li>
+                        The chronic absenteeism question was not applicable to the school
+                        (the school must have students enrolled in grades K–12).
+                    </li>
+                    <li>
+                        The school reported incomplete data for enrollment and/or
+                        the chronic absenteeism count for at least one race/ethnicity subgroup.
+                    </li>
+                    <li>
+                        The chronic absenteeism count was larger than the K–12
+                        enrollment for at least one race/ethnicity subgroup. Schools with partial or missing data for students with disabilities or English learners were included in all analyses except those that focused on these subgroups.
+                    </li>
+                </ol>
+            </div>
 
-                <div class="6u$ 12u$(medium) dataExclusion">
-                    <h3 style="font-size: 15px;" class="line">Grade Level Definitions</h3>
-                    <p>School grade levels were defined using the National Center for Education Statistics (NCES) definition: elementary schools are those in which the lowest grade offered is PK through grade 3 and the highest is PK through grade 8, middle schools are those in which the lowest grade offered is grade 4 through grade 7 and the highest is grade 4 through grade 9, high schools are those in which the lowest grade offered is grade 7 through grade 12 and the highest is grade 12, other schools are those with any other configuration that does not fall within the previous three categories.</p>
-                </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 style="font-size: 15px;" class="line">Grade Level Definitions</h3>
+                <p>School grade levels were defined using the National Center for Education Statistics (NCES) definition: elementary schools are those in which the lowest grade offered is PK through grade 3 and the highest is PK through grade 8, middle schools are those in which the lowest grade offered is grade 4 through grade 7 and the highest is grade 4 through grade 9, high schools are those in which the lowest grade offered is grade 7 through grade 12 and the highest is grade 12, other schools are those with any other configuration that does not fall within the previous three categories.</p>
+            </div>
 
-                <div class="6u$ 12u$(medium) dataExclusion">
-                    <h3 style="font-size: 15px;" class="line">Map Notes</h3>
-                    <p>Data might be missing from the chronic absenteeism map if:</p>
-                    <ol>
-                        <li>A district did not report chronic absenteeism data or the data were inconsistent.</li>
-                        <li>A district that reported chronic absenteeism data did not match with the NCES district boundary file.</li>
-                        <li>District boundaries overlapped and we could not associate reported data with a unique district boundary.</li>
-                    </ol>
-                </div>
-            </center>
-
-            <!-- Logo and Social Media links will only appear in footer on narrower screens where the sidebar is hidden -->
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 style="font-size: 15px;" class="line">Map Notes</h3>
+                <p>Data might be missing from the chronic absenteeism map if:</p>
+                <ol>
+                    <li>A district did not report chronic absenteeism data or the data were inconsistent.</li>
+                    <li>A district that reported chronic absenteeism data did not match with the NCES district boundary file.</li>
+                    <li>District boundaries overlapped and we could not associate reported data with a unique district boundary.</li>
+                </ol>
+            </div>
 
         </div>
 
