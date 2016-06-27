@@ -1,30 +1,31 @@
 $(document).ready(function () {
     var elementaryLayer;
     var secondaryLayer;
+    var statesBorders;
     var tileIndex;
     var polygonLayer;
     var maxBounds = [[50, -52], [43, -135]]; //US bounds
-    var map = L.map('map', {
-        'center': [0, 0],
-        'zoom': 10,
-        'bounds': maxBounds
-    }).fitBounds(maxBounds);
-    //map.createPane('labels');
 
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    var noLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(map);
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+    });
+    var labels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         subdomains: 'abcd',
-        maxZoom: 19,
         pane: 'labels',
         zIndex: 650,
-        style:{pointerEvents:'none'}
-    }).addTo(map);
-    //map.getPane('labels').style.pointerEvents = 'none';
+        style: {pointerEvents: 'none'}
+    });
+
+    var map = L.map('map', {
+        center: [0, 0],
+        maxZoom: 11,
+        layers: [noLabels, labels],
+        'bounds': maxBounds
+    }).fitBounds(maxBounds);
+    var baseMap = {"noLabels": noLabels};
+    var labelMap = {"labels": labels};
 
     var tileOptions = {
         maxZoom: 20,  // max zoom to preserve detail on
@@ -36,19 +37,25 @@ $(document).ready(function () {
         indexMaxZoom: 0,        // max zoom in the initial tile index
         indexMaxPoints: 100000 // max number of points per tile in the index
     };
+    var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
 
-    function loadNationalData() {
+    var firstKey = Object.keys(elementaryData.objects)[0];
+    var data = topojson.feature(elementaryData, elementaryData.objects[firstKey]);
+
+    var secondaryKey = Object.keys(secondary.objects)[0];
+    var secondaryData = topojson.feature(secondary, secondary.objects[secondaryKey]);
+
+    function loadJsonData() {
         secondaryLayer = L.geoJson(secondaryData, {
             onEachFeature: function (feature, layer) {
                 var popup;
                 if (layer.feature.properties['Absent Group'] <= 0) {
                     popup = "<b>" + layer.feature.properties['Name'] +
-                        "</br><b>NO DATA</b>";
+                        "<hr><b>NO DATA</b>";
                 } else {
                     popup = "<b>" + layer.feature.properties['Name'] +
-                        "</b></br><b>Percent Absent: " + layer.feature.properties['Percent Absent'] + "</b>" +
-                        "</b></br><b>Total Enrolled: " + layer.feature.properties['Total Enrolled'] + "</b>" +
-                        "</b></br><b>Total Absent: " + layer.feature.properties['Total Absent'] + "</b>";
+                        "</b><hr><b>Total Absent: " + layer.feature.properties['Total Absent'] + "</b>" +
+                        "</b></br><b>Percent Absent: " + layer.feature.properties['Percent Absent'] + "</b>";
                 }
                 layer.bindPopup(popup);
             },
@@ -65,30 +72,58 @@ $(document).ready(function () {
             transparent: true
         });
 
-        polygonLayer = L.geoJson(unifiedData);
-        tileIndex = geojsonvt(unifiedData, tileOptions);
-        colorizeFeatures(unifiedData);
-        var tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
+        polygonLayer = L.geoJson(data, {
+
+        });
+        tileIndex = geojsonvt(data, tileOptions);
+        colorizeFeatures(data);
         tileLayer.addTo(map);
 
+        var highlight;
         map.on('click', function (e) {
+            if(highlight){
+                map.removeLayer(highlight);
+            }
             var layer = leafletPip.pointInLayer([e.latlng.lng, e.latlng.lat], polygonLayer, true);
             var popup;
             if (layer.length) {
+                var highlightIndex = layer[0].feature.properties.gid;
+                highlight = new L.geoJson(data, {
+                    filter: function(feature, layer) {
+                        return feature.properties.gid == highlightIndex
+                    },
+                    style: {color:'deepskyblue'}}).addTo(map);
                 if (layer[0].feature.properties['Absent Group'] <= 0) {
                     popup = "<b>" + layer[0].feature.properties['Name'] +
-                        "</br><b>NO DATA</b>";
+                        "<hr><b>NO DATA</b>";
                     map.openPopup(popup, e.latlng);
                 } else
                     popup = "<b>" + layer[0].feature.properties['Name'] +
-                        "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>" +
-                        "</b></br><b>Total Enrolled: " + layer[0].feature.properties['Total Enrolled'] + "</b>" +
-                        "</b></br><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>";
+                        "</b><hr><b>Total Absent: " + layer[0].feature.properties['Total Absent'] + "</b>" +
+                        "</b></br><b>Percent Absent: " + layer[0].feature.properties['Percent Absent'] + "</b>";
                 map.openPopup(popup, e.latlng);
+                map.on('popupclose', function() {
+                    map.removeLayer(highlight)
+                });
             }
         });
-        $('.leaflet-container').css('cursor','pointer');
+        $('.leaflet-container').css('cursor', 'pointer');
+
+
     }
+    /*function loadStateBorders(){
+        statesBorders = L.geoJson(statesData, {
+            style: function (feature) {
+                return {
+                    color: 'black',
+                    weight: 2,
+                    opacity: 0,
+                    fillOpacity: 0
+                }
+            }
+        }).addTo(map);
+        statesBorders.bringToBack();
+    }*/
 
     function colorizeFeatures(d) {
         for (var i = 0; i < d.features.length; i++) {
@@ -151,21 +186,51 @@ $(document).ready(function () {
         }
     }
 
-    loadNationalData();
+    loadJsonData();
+    //loadStateBorders();
 
-    $('.elementary').css('background-color','yellow').prop("disabled",true);
+    $('.elementary').css('background-color', 'yellow').prop("disabled", true);
     $('.elementary').click(function () {
         map.removeLayer(secondaryLayer);
         map.closePopup();
-        $(this).css({"background-color":"yellow"}).prop("disabled",true);
-        $('.secondary').css({"background-color":"white"}).prop("disabled",false);
+        $(this).css({"background-color": "yellow"}).prop("disabled", true);
+        $('.secondary').css({"background-color": "white"}).prop("disabled", false);
     });
 
     $('.secondary').click(function () {
         secondaryLayer.addTo(map);
         map.closePopup();
-        $(this).css({"background-color":"yellow"}).prop("disabled",true);
-        $('.elementary').css({"background-color":"white"}).prop("disabled",false);
+        $(this).css({"background-color": "yellow"}).prop("disabled", true);
+        $('.elementary').css({"background-color": "white"}).prop("disabled", false);
+    });
+
+    //Toggle polygons
+    $('.polygonControl').click(function () {
+        if (!this.checked) {
+            //elementary and unified
+            for (var i = 0; i < data.features.length; i++) {
+                if (data.features[i].properties["Absent Group"] == $(this).val()) {
+                    data.features[i].properties.color = '#e5f5f9';
+                }
+            }
+            map.removeLayer(tileLayer);
+            tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
+            tileLayer.addTo(map);
+
+            secondaryLayer.setStyle({
+                fillColor: '#e5f5f9'
+            })
+
+        } else {
+            for (var j = 0; j < data.features.length; j++) {
+                if (data.features[j].properties["Absent Group"] == $(this).val()) {
+                    data.features[j].properties.color = getColor(data.features[j].properties["Absent Group"]);
+                }
+            }
+            map.removeLayer(tileLayer);
+            tileLayer = L.canvasTiles().params({debug: false, padding: 5}).drawing(drawingOnCanvas);
+            tileLayer.addTo(map);
+        }
     });
 
     //Prevent mouse clicking through legend

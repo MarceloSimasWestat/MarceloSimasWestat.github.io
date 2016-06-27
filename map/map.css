@@ -48,15 +48,32 @@ b{
     right: 60px;
 }
 
-.legendItem {
-}
-.legend input[type=checkbox]
+
+input[type="checkbox"]
 {
+    float: none;
+    margin: 5px;
+    opacity: 1;
+    z-index: 1;
+    display: inline-block;
     /* Bigger Checkboxes */
-    -moz-transform: scale(1.25); /* FF */
-    -webkit-transform: scale(1.25); /* Safari and Chrome */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -webkit-appearance: checkbox;
+    appearance: normal;
+    -moz-appearance: default;
+    -ms-appearance: normal;
 }
 
 form{
     margin: 0;
+}
+
+hr{
+    border-bottom: 1px solid black;
+    margin: 0;
+}
+
+.mapButton{
+    width: 350px;
 }
