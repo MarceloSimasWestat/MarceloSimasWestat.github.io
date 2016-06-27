@@ -30,8 +30,8 @@ function barChart() {
 
 		// margins; adjust width and height to account for margins
 
-		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-
+		var width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -106,9 +106,13 @@ function barChart() {
 
 		// domains
 
-		xScale.domain([0, 0.5]);
-		yScale.domain(data.map(function(d, i) { return d.var1; }));
-
+		function xDomain() { 
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice() }
+			else { xScale.domain([0, 0.5]); }
+		};
+		xDomain();
+		yScale.domain(data.map(function(d) { return d.var1; }));
+		
 		// axes
 
 		function formatValueAxis(d) {
@@ -200,6 +204,7 @@ function barChart() {
 			// resize chart
 
 			xScale.range([0, widthAdj]);
+			xDomain();
 			xAxis.ticks(Math.max(widthAdj/100, 2));
 
 			/*d3.select("#" + chartID)
@@ -807,7 +812,11 @@ function dotPlot() {
 
 		// domains
 
-		xScale.domain([0, 0.5]);
+		function xDomain() { 
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice() }
+			else { xScale.domain([0, 0.5]); }
+		};
+		xDomain();
 		yScale.domain(data.map(function(d, i) { return d.var1; }));
 
 		// axes
@@ -932,6 +941,7 @@ function dotPlot() {
 			// resize chart
 
 			xScale.range([0, widthAdj]);
+			xDomain();
 			xAxis.ticks(Math.max(widthAdj/100, 2));
 
 			/*d3.select("#" + chartID)
@@ -2804,7 +2814,15 @@ function groupedBar() {
 			
 		var levels = ["Elementary","Middle","High","Other"];
 
-		xScale.domain([0, 0.5]);
+		function xDomain() { 
+			if (window.innerWidth <= 736) { 
+			
+				xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice()
+				
+			}
+			else { xScale.domain([0, 0.5]); }
+		};
+		xDomain();
 		yScale0.domain(data_nest.map(function(d) { return d.key; }));
 		yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
 
@@ -2986,7 +3004,7 @@ function groupedBar() {
 
 			// update scales
 
-			xScale.domain([0, 0.5]);
+			xDomain();
 			yScale0.domain(data_nest.map(function(d) { return d.key; }));
 			yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
 
@@ -3136,6 +3154,7 @@ function groupedBar() {
 			// resize chart
 
 			xScale.range([0, widthAdj - 100]);
+			xDomain();
 			xAxis.ticks(Math.max((widthAdj - 100)/100, 2))
 
 			/*d3.select("#" + chartID)
