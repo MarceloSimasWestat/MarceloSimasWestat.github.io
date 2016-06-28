@@ -1,0 +1,76 @@
+.district-boundary {
+    fill: grey;
+    stroke: white;
+    stroke-linejoin: round;
+}
+.state-boundary {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+.state{
+    fill: none;
+    stroke: blue;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.absentGroup-2,.absentGroup-1,.absentGroup0 {
+     fill: #edf8fb;
+     stroke: #777;
+     stroke-linejoin: round;
+ }
+.absentGroup1 {
+    fill: #bfd3e6;
+    stroke: #777;
+    stroke-linejoin: round;
+}
+.absentGroup2 {
+    fill: #9ebcda;
+    stroke: #777;
+    stroke-linejoin: round;
+}
+.absentGroup3 {
+    fill: #8c96c6;
+    stroke: #777;
+    stroke-linejoin: round;
+}
+.absentGroup4 {
+    fill: #8856a7;
+    stroke: #777;
+    stroke-linejoin: round;
+}
+.absentGroup5 {
+    fill: #810f7c;
+    stroke: #777;
+    stroke-linejoin: round;
+}
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 170px;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    background: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+}
+div.tooltip h3 {
+    font-size: 12px; margin: 0 0 7px 0;
+    line-height: 1.2em;
+}
+div.tooltip .line { clear: both; margin-top: 3px; font-size: 11px; }
+div.tooltip .symbol { float: left; width: 6px; height: 6px; margin: 3px 4px 0 0; }
+div.tooltip .val { float: right; width: 25px; text-align: right; margin-right: 4px; }
+div.tooltip .moe { float: right; color: #aaa; width: 30px; text-align: right; }
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
