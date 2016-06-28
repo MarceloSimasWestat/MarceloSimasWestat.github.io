@@ -95,7 +95,7 @@ $(document).ready(function () {
 
         updateClasses();
 
-        d3.selectAll("#legend li")
+        d3.selectAll("#absentGroup li")
             .on("click", function() {
                 var item = d3.select(this);
                 if (item.classed("selected")) {
@@ -106,6 +106,11 @@ $(document).ready(function () {
                     CURR_SELECT.push(item.attr("data-metric"));
                 }
                 updateClasses();
+            });
+
+        d3.selectAll("#selectDistrictType li")
+            .on("click", function() {
+                d3.select(this).style("background","blue");
             });
 
         // Zoom buttons
