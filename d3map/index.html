@@ -529,7 +529,7 @@
 
                 d3.select("#ch2_1").call(chart2_1);
 
-            };
+            }
         });
 
         // chapter 2-2
@@ -561,9 +561,9 @@
         var center = [width / 2, height / 2];
         var defaultFill = "#e0e0e0";
 
-        var projection = d3.geo.albersUsa()
-                .scale(1280)
-                .translate([width / 2, height / 2]);
+        var projection = d3.geo.albersUsa();
+        //.scale(960)
+        //.translate([width / 2, height / 2]);
 
         var path = d3.geo.path()
                 .projection(projection);
@@ -573,8 +573,11 @@
                 .on("zoom", move);
 
         var svg = d3.select("#map").append("svg")
-                .attr("width", width)
-                .attr("height", height)
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                .attr("viewBox", "0 0 " + width + " " + height)
+                .classed("svg-content-responsive", true)
+                //.attr("width", width)
+                //.attr("height", height)
                 .append("g")
                 .call(zoom);
         svg.on("wheel.zoom", null);
@@ -586,7 +589,7 @@
                 .attr("class", "districtTooltip")
                 .style("opacity", 0);
 
-        var CURR_SELECT = ["-2","-1","0","1","2","3","4","5"];
+        var CURR_SELECT = ["-2", "-1", "0", "1", "2", "3", "4", "5"];
 
         queue()
                 .defer(d3.json, "assets/data/us.json")
@@ -595,15 +598,17 @@
                 .await(ready);
 
         function ready(error, us, primary, secondary) {
-            if (error) { console.log(error); }
+            if (error) {
+                console.log(error);
+            }
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
                     .enter().append("path")
                     .attr("class", "district")
                     .attr("d", path)
-                    .attr("stroke","#777")
-                    .attr("stroke-linejoin","round")
+                    .attr("stroke", "#777")
+                    .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
 
                         var coordinates = [0, 0];
@@ -611,18 +616,26 @@
                         var x = coordinates[0];
                         var y = coordinates[1];
 
-                        d3.select(this).style("stroke-width", 1 + "px").attr("stroke","blue");
+                        d3.select(this).style("stroke-width", 1.5 + "px").attr("stroke", "blue");
                         d3.select(this).classed("selected", true);
                         tooltip.transition().duration(100).style("opacity", 1);
-                        tooltip.style("left", (x + 20) + "px");
-                        tooltip.style("top", (y + 20) + "px");
+                        if (x > ($("#map").width()/2)) {
+                            tooltip.style("left", (x ) + "px");
+                        } else {
+                            tooltip.style("left", (x + 210) + "px")
+                        }
+                        if (y > ($("#map").width()/2)) {
+                            tooltip.style("top", (y) + "px");
+                        } else {
+                            tooltip.style("top", (y + 330) + "px");
+                        }
 
                         tooltip.select(".name").text(d.properties.Name);
                         tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
                         tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).style("stroke-width",.5 + "px").attr("stroke","#777");
+                        d3.select(this).style("stroke-width", .5 + "px").attr("stroke", "#777");
                         d3.select(this).classed("selected", false);
                         tooltip.transition().duration(300)
                                 .style("opacity", 0);
@@ -637,40 +650,49 @@
                     .attr("d", path);
 
             d3.select("#selectElementary").on("click", function () {
-                d3.select("#selectSecondary").style("background","white");
-                d3.select(this).style("background","yellow");
+                d3.select("#selectSecondary").style("background", "white");
+                d3.select(this).style("background", "yellow");
                 d3.selectAll(".secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
-                d3.select("#selectElementary").style("background","white");
-                d3.select(this).style("background","yellow");
+                d3.select("#selectElementary").style("background", "white");
+                d3.select(this).style("background", "yellow");
                 g.append("g")
                         .selectAll("path")
                         .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
                         .enter().append("path")
                         .attr("class", "district secondaryDistrict")
                         .attr("d", path)
-                        .attr("stroke","#777")
-                        .attr("stroke-linejoin","round")
+                        .attr("stroke", "#777")
+                        .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
                             var coordinates = [0, 0];
                             coordinates = d3.mouse(this);
                             var x = coordinates[0];
                             var y = coordinates[1];
 
-                            d3.select(this).style("stroke-width", 1 + "px").attr("stroke","blue");
+                            d3.select(this).style("stroke-width", 1.5 + "px").attr("stroke", "blue");
                             d3.select(this).classed("selected", true);
                             tooltip.transition().duration(100).style("opacity", 1);
-                            tooltip.style("left", (x + 20) + "px");
-                            tooltip.style("top", (y + 20) + "px");
+                            if (d3.event.pageX > (width - 200)) {
+                                tooltip.style("left", (x - 210) + "px");
+                            } else {
+                                tooltip.style("left", (x + 20) + "px")
+                                        .style("top", (y - 30) + "px");
+                            }
+                            if (d3.event.pageY > (height - 150)) {
+                                tooltip.style("top", (y - 140) + "px");
+                            } else {
+                                tooltip.style("top", (y - 30) + "px");
+                            }
 
                             tooltip.select(".name").text(d.properties.Name);
                             tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
                             tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
                         })
                         .on("mouseout", function () {
-                            d3.select(this).style("stroke-width",.5 + "px").attr("stroke","#777");
+                            d3.select(this).style("stroke-width", .5 + "px").attr("stroke", "#777");
                             d3.select(this).classed("selected", false);
                             tooltip.transition().duration(300)
                                     .style("opacity", 0);
@@ -679,15 +701,15 @@
             });
 
             d3.selectAll("#absentGroup li")
-                    .on("click", function() {
+                    .on("click", function () {
                         var item = d3.select(this);
-                        item.style("border","2px solid black");
+                        item.style("border", "2px solid black");
                         if (item.classed("selected")) {
                             item.attr("class", "district");
                             removeFromArray(CURR_SELECT, item.attr("data-metric"));
                         } else {
-                            item.style("border","2px solid #e0e0e0");
-                            item.classed("selected " + "absentGroup"+item.attr("data-metric"), true);
+                            item.style("border", "2px solid #e0e0e0");
+                            item.classed("selected " + "absentGroup" + item.attr("data-metric"), true);
                             CURR_SELECT.push(item.attr("data-metric"));
                         }
                         updateClasses();
@@ -766,9 +788,13 @@
         function updateClasses() {
             if (CURR_SELECT.length > 0) {
                 svg.selectAll(".district")
-                        .attr("fill", function(d) { return colorByGroup(d.properties["Absent Group"]) });
+                        .attr("fill", function (d) {
+                            return colorByGroup(d.properties["Absent Group"])
+                        });
                 svg.selectAll(".secondaryDistrict")
-                        .attr("fill", function(d) { return colorByGroup(d.properties["Absent Group"]) });
+                        .attr("fill", function (d) {
+                            return colorByGroup(d.properties["Absent Group"])
+                        });
             } else {
                 svg.selectAll(".district")
                         .attr("class", "district")
@@ -780,7 +806,7 @@
         }
 
         function colorByGroup(d) {
-            if(CURR_SELECT.indexOf(d) != -1) {
+            if (CURR_SELECT.indexOf(d) != -1) {
                 return d == 5 ? '#810f7c' :
                         d == 4 ? '#8856a7' :
                                 d == 3 ? '#8c96c6' :
@@ -788,7 +814,7 @@
                                                 d == 1 ? '#bfd3e6' :
                                                         '#edf8fb';
             }
-            else{
+            else {
                 return 'gray';
             }
         }

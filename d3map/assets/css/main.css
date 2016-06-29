@@ -5137,6 +5137,8 @@ button:hover,
     background: #ffffff;
     pointer-events: none;
     opacity: 0;
+    z-index: 900;
+    border: 1px solid black;
 }
 
 .districtTooltip h3 {
@@ -5243,4 +5245,20 @@ button:hover,
 #mapWrapper #legend .selectDistrict{
     color: black;
     background: yellow;
+}
+
+#map {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
