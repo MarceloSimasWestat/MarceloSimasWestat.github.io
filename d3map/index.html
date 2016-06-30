@@ -584,12 +584,28 @@
         scaleSVG.selectAll("rect")
                 .on("mouseover", function () {
                     var item = d3.select(this);
-                    removeFromArray(CURR_SELECT, item.attr("data-metric"));
-                    console.log(CURR_SELECT);
-                }).on("mouseout", function () {
-            var item = d3.select(this);
-            CURR_SELECT.push(item.attr("data-metric"));
-            console.log(CURR_SELECT);
+                    var itemColor = item.attr("data-metric");
+
+                    svg.selectAll(".district")
+                            .attr("fill", function (d) {
+                                if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                    return itemColor;
+                                }else{
+                                    return "gray";
+                                }
+                            });
+                    svg.selectAll(".secondaryDistrict")
+                            .attr("fill", function (d) {
+                                if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                    return itemColor;
+                                }else{
+                                    return "gray";
+                                }
+                            });
+                });
+
+        scaleSVG.selectAll(".key").on("mouseout", function () {
+                    updateClasses();
         });
 
         //  D3 MAP
@@ -692,6 +708,7 @@
             });
 
             d3.select("#selectSecondary").on("click", function () {
+                d3.selectAll(".state").remove();
                 d3.select("#selectElementary").style("background", "white");
                 d3.select(this).style("background", "yellow");
                 g.append("g")
@@ -737,22 +754,14 @@
                                     .style("opacity", 0);
                         });
                 updateClasses();
+                g.append("g")
+                        .attr("class", "states")
+                        .selectAll("path")
+                        .data(topojson.feature(us, us.objects.states).features)
+                        .enter().append("path")
+                        .attr("class", "state")
+                        .attr("d", path);
             });
-
-            d3.selectAll("#absentGroup li")
-                    .on("click", function () {
-                        var item = d3.select(this);
-                        item.style("border", "2px solid black");
-                        if (item.classed("selected")) {
-                            item.attr("class", "district");
-                            removeFromArray(CURR_SELECT, item.attr("data-metric"));
-                        } else {
-                            item.style("border", "2px solid #e0e0e0");
-                            item.classed("selected " + "absentGroup" + item.attr("data-metric"), true);
-                            CURR_SELECT.push(item.attr("data-metric"));
-                        }
-                        updateClasses();
-                    });
 
             // Zoom buttons
             svg.selectAll(".button")
