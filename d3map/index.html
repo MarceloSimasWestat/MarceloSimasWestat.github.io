@@ -652,7 +652,7 @@
             d3.select("#selectElementary").on("click", function () {
                 d3.select("#selectSecondary").style("background", "white");
                 d3.select(this).style("background", "yellow");
-                d3.selectAll(".secondaryDistrict").remove();
+                d3.selectAll("#secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
@@ -662,7 +662,8 @@
                         .selectAll("path")
                         .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
                         .enter().append("path")
-                        .attr("class", "district secondaryDistrict")
+                        .attr("id","secondaryDistrict")
+                        .attr("class", "district")
                         .attr("d", path)
                         .attr("stroke", "#777")
                         .attr("stroke-linejoin", "round")

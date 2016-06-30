@@ -5167,7 +5167,6 @@ button:hover,
 }
 
 #mapWrapper #legend {
-    width: 920px;
     margin: 0 auto 15px 0;
     font-family: Helvetica, sans-serif;
 }
@@ -5185,6 +5184,7 @@ button:hover,
     padding: 0;
 }
 #absentGroup ul li {
+    float: left;
     color: black;
     list-style: none;
     margin: 10px 10px 0 0;
