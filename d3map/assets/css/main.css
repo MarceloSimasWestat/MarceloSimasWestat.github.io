@@ -5078,21 +5078,15 @@ button:hover,
 }
 
 /*D3 Map styling*/
-#mapWrapper .district-boundary {
-    fill: grey;
-    stroke: white;
-    stroke-linejoin: round;
-}
-#mapWrapper .state-boundary {
-    fill: none;
+#mapWrapper .district {
     stroke: #fff;
-    stroke-width: 1px;
+    stroke-opacity: .15;
     stroke-linejoin: round;
 }
 
 #mapWrapper .state{
     fill: none;
-    stroke: white;
+    stroke: #fff;
     stroke-width: 1px;
     stroke-linejoin: round;
 }
@@ -5151,7 +5145,7 @@ button:hover,
     pointer-events: all;
 }
 
-#mapWrapper h3.name{
+#mapWrapper h3.name, h3.stateName{
     color: black;
     font-family: Karla, Helvetica, sans-serif;
     font-weight: bold;
@@ -5170,13 +5164,16 @@ button:hover,
     margin: 0 auto 15px 0;
     font-family: Helvetica, sans-serif;
 }
-
+#legend b {
+    color: black;
+}
 #legend h3 {
     color: black;
     font-size: 13px;
     font-family: Helvetica, sans-serif;
     text-align: center;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+}
 #legend ul {
     font-size: 12px;
     font-family: Helvetica, sans-serif;
@@ -5251,7 +5248,7 @@ button:hover,
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* aspect ratio */
+    padding-bottom: 50%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
 }
@@ -5261,4 +5258,22 @@ button:hover,
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+.caption {
+    font-weight: bold;
+}
+.key{
+    cursor: pointer;
+}
+.key .domain {
+    display: none;
+}
+
+.key line {
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.scale{
 }

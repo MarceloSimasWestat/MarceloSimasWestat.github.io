@@ -301,29 +301,14 @@
 
                         <div id="mapWrapper">
                             <div id="legend">
-                                <div id="selectDistrictType">
-                                    <h3>School District</h3>
-                                    <ul>
-                                        <li id="selectElementary" class="selected ">&nbsp;&nbsp;&nbsp;Elementary and Unified </li>
-                                        <li id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</li>
-                                    </ul>
-                                </div>
-                                <div id="absentGroup">
-                                    <h3>Absent Group</h3>
-                                    <ul>
-                                        <li id="absentGroup-2" data-metric="-2" class="selected absentGroup-2">Group -2</li>
-                                        <li id="absentGroup-1" data-metric="-1" class="selected absentGroup-1">Group -1</li>
-                                        <li id="absentGroup0" data-metric="0" class="selected absentGroup0">Group 0</li>
-                                        <li id="absentGroup1" data-metric="1" class="selected absentGroup1">Group 1</li>
-                                        <li id="absentGroup2" data-metric="2" class="selected absentGroup2">Group 2</li>
-                                        <li id="absentGroup3" data-metric="3" class="selected absentGroup3">Group 3</li>
-                                        <li id="absentGroup4" data-metric="4" class="selected absentGroup4">Group 4</li>
-                                        <li id="absentGroup5" data-metric="5" class="selected absentGroup5">Group 5</li>
-                                    </ul>
-                                </div>
-                                <div class="clr"></div>
+                                <h3><b>Chronically Absent Student Percentage</b></h3>
+                            </div>
+                            <div id="selectDistrictType">
+                                <div id="selectElementary" class="selected ">Elementary and Unified </div>
+                                <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
                             </div>
                             <div id="districtTooltip" class="districtTooltip">
+                                <h3 class="stateName"></h3>
                                 <h3 class="name"></h3>
                                 <div class="totalAbsent"></div>
                                 <div class="percentAbsent"></div>
@@ -555,6 +540,58 @@
             }
         });
 
+        // D3 MAP SCALE
+        var CURR_SELECT = ['-2','-1','0','1','2','3','4','5'];
+
+        var scaleSVG = d3.select("#legend").append("svg").attr("height",50);
+        var scale = scaleSVG.append("g").attr("class","scale").attr("class", "key");
+        var formatNumber = d3.format(",d");
+        var color = d3.scale.threshold()
+                .domain([0,5,15,30,35])
+                .range(["gray","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"]);
+        var xKey = d3.scale.linear()
+                .domain([0, 60])
+                .range([5, 400]);
+
+        var xAxis = d3.svg.axis()
+                .scale(xKey)
+                .orient("bottom")
+                .tickSize(13)
+                .tickValues(color.domain())
+                .tickFormat(function(d) { return d >= 0 ? formatNumber(d) : null; });
+
+        scale.selectAll("rect")
+                .data(color.range().map(function(d, i) {
+                    return {
+                        x0: i ? xKey(color.domain()[i - 1]) : xKey.range()[0],
+                        x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
+                        z: d
+                    };
+                }))
+                .enter().append("rect")
+                .attr("height", 15)
+                .attr("x", function(d) { return d.x0; })
+                .attr("width", function(d) { return d.x1 - d.x0; })
+                .attr("data-metric", function(d) { return d.z; })
+                .style("fill", function(d) { return d.z; })
+                .style("margin",1);
+
+        scale.call(xAxis).append("text")
+                .attr("class", "caption")
+                .attr("y", -6)
+                .text("Absent per District");
+
+        scaleSVG.selectAll("rect")
+                .on("mouseover", function () {
+                    var item = d3.select(this);
+                    removeFromArray(CURR_SELECT, item.attr("data-metric"));
+                    console.log(CURR_SELECT);
+                }).on("mouseout", function () {
+            var item = d3.select(this);
+            CURR_SELECT.push(item.attr("data-metric"));
+            console.log(CURR_SELECT);
+        });
+
         //  D3 MAP
         var width = 960;
         var height = 600;
@@ -562,8 +599,6 @@
         var defaultFill = "#e0e0e0";
 
         var projection = d3.geo.albersUsa();
-        //.scale(960)
-        //.translate([width / 2, height / 2]);
 
         var path = d3.geo.path()
                 .projection(projection);
@@ -576,8 +611,6 @@
                 .attr("preserveAspectRatio", "xMinYMin meet")
                 .attr("viewBox", "0 0 " + width + " " + height)
                 .classed("svg-content-responsive", true)
-                //.attr("width", width)
-                //.attr("height", height)
                 .append("g")
                 .call(zoom);
         svg.on("wheel.zoom", null);
@@ -588,8 +621,6 @@
         var tooltip = d3.select("#districtTooltip")
                 .attr("class", "districtTooltip")
                 .style("opacity", 0);
-
-        var CURR_SELECT = ["-2", "-1", "0", "1", "2", "3", "4", "5"];
 
         queue()
                 .defer(d3.json, "assets/data/us.json")
@@ -610,14 +641,16 @@
                     .attr("stroke", "#777")
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
-
                         var coordinates = [0, 0];
                         coordinates = d3.mouse(this);
                         var x = coordinates[0];
                         var y = coordinates[1];
 
-                        d3.select(this).style("stroke-width", 1.5 + "px").attr("stroke", "blue");
+                        d3.select(this).style("stroke-width", 1.5 + "px")
+                                .attr("stroke", "#1A1C20")
+                                .attr("stroke-opacity",1);
                         d3.select(this).classed("selected", true);
+
                         tooltip.transition().duration(100).style("opacity", 1);
                         if (x > ($("#map").width()/2)) {
                             tooltip.style("left", (x ) + "px");
@@ -630,12 +663,15 @@
                             tooltip.style("top", (y + 330) + "px");
                         }
 
+                        tooltip.select(".stateName").text(d.properties.State);
                         tooltip.select(".name").text(d.properties.Name);
                         tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
                         tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).style("stroke-width", .5 + "px").attr("stroke", "#777");
+                        d3.select(this).style("stroke-width", .5 + "px")
+                                .attr("stroke", "#fff")
+                                .attr("stroke-opacity","1");
                         d3.select(this).classed("selected", false);
                         tooltip.transition().duration(300)
                                 .style("opacity", 0);
@@ -673,19 +709,21 @@
                             var x = coordinates[0];
                             var y = coordinates[1];
 
-                            d3.select(this).style("stroke-width", 1.5 + "px").attr("stroke", "blue");
+                            d3.select(this).style("stroke-width", 1.5 + "px")
+                                    .attr("stroke", "#1A1C20")
+                                    .attr("stroke-opacity",1);
                             d3.select(this).classed("selected", true);
+
                             tooltip.transition().duration(100).style("opacity", 1);
-                            if (d3.event.pageX > (width - 200)) {
-                                tooltip.style("left", (x - 210) + "px");
+                            if (x > ($("#map").width()/2)) {
+                                tooltip.style("left", (x ) + "px");
                             } else {
-                                tooltip.style("left", (x + 20) + "px")
-                                        .style("top", (y - 30) + "px");
+                                tooltip.style("left", (x + 210) + "px")
                             }
-                            if (d3.event.pageY > (height - 150)) {
-                                tooltip.style("top", (y - 140) + "px");
+                            if (y > ($("#map").width()/2)) {
+                                tooltip.style("top", (y) + "px");
                             } else {
-                                tooltip.style("top", (y - 30) + "px");
+                                tooltip.style("top", (y + 330) + "px");
                             }
 
                             tooltip.select(".name").text(d.properties.Name);
@@ -790,11 +828,11 @@
             if (CURR_SELECT.length > 0) {
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            return colorByGroup(d.properties["Absent Group"])
+                            return colorByGroup(d.properties["Percent Absent"])
                         });
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            return colorByGroup(d.properties["Absent Group"])
+                            return colorByGroup(d.properties["Percent Absent"])
                         });
             } else {
                 svg.selectAll(".district")
@@ -805,19 +843,15 @@
                         .attr("fill", defaultFill);
             }
         }
-
-        function colorByGroup(d) {
-            if (CURR_SELECT.indexOf(d) != -1) {
-                return d == 5 ? '#810f7c' :
-                        d == 4 ? '#8856a7' :
-                                d == 3 ? '#8c96c6' :
-                                        d == 2 ? '#9ebcda' :
-                                                d == 1 ? '#bfd3e6' :
-                                                        '#edf8fb';
-            }
-            else {
-                return 'gray';
-            }
+        //Purple color brewer
+        //["#fcfbfd","#efedf5","#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"]
+        function colorByGroup(p) {
+           var d = parseFloat(p);
+                return d == 0 ? '#9e9ac8' :
+                        (d > 0 && d <= 5) ? '#807dba' :
+                        (d > 5 && d <= 15) ? '#6a51a3' :
+                        (d > 15 && d <= 30) ? '#54278f' :
+                        d > 30 ? '#3f007d' : 'gray';
         }
 
         function zoomIn() {
