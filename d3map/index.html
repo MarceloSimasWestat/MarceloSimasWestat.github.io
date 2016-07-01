@@ -542,14 +542,14 @@
 
         // D3 MAP SCALE
         var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
-        var scale = scaleSVG.append("g").attr("class", "scale").attr("class", "key");
+        var scale = scaleSVG.append("g").attr("class", "scale").attr("class", "key").attr("transform", "translate(25,0)");
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
-                .domain([1, 5, 15, 30, 35])
+                .domain([0, 0.01, 5, 15, 30])
                 .range(["gray", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"]);
         var xKey = d3.scale.linear()
-                .domain([0, 60])
-                .range([0, 400]);
+                .domain([-5, 40])
+                .range([0, 250]);
 
         var xAxis = d3.svg.axis()
                 .scale(xKey)
@@ -740,15 +740,31 @@
                         d3.select(this).classed("selected", true);
 
                         tooltip.transition().duration(100).style("opacity", 1);
-                        if (x > ($("#map").width()/2)) {
-                            tooltip.style("left", (x ) + "px");
+                        /*if (x > ($("#map").width()/2)) {
+                            tooltip.style("left", (x) + "px");
                         } else {
                             tooltip.style("left", (x + 210) + "px")
+                                    .style("top", (y + 330) + "px");
                         }
-                        if (y > ($("#map").width()/2)) {
+                        if (y > ($("#map").height()/2)) {
                             tooltip.style("top", (y) + "px");
                         } else {
                             tooltip.style("top", (y + 330) + "px");
+                        }*/
+                        var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
+                        var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
+                        console.log(y);
+                        console.log(mapHeight);
+
+                        if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
+                            tooltip.style("left", x + "px");
+                        } else {
+                            tooltip.style("left", (x + 150) + "px");
+                        }
+                        if (y < (mapHeight/3)) {
+                            tooltip.style("top", (y + 100) + "px");
+                        } else {
+                            tooltip.style("top", (y + 150) + "px");
                         }
 
                         tooltip.select(".stateName").text(d.properties["State"]);
@@ -941,7 +957,7 @@
                                 (d > 5 && d <= 15) ? '#6a51a3' :
                                         (d > 15 && d <= 30) ? '#54278f' :
                                                 d > 30 ? '#3f007d' :
-                                                        "red";
+                                                        defaultFill;
             }
         }
 
