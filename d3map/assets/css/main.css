@@ -5078,16 +5078,11 @@ button:hover,
 }
 
 /*D3 Map styling*/
-#mapWrapper .district {
-    stroke: #fff;
-    stroke-opacity: .15;
-    stroke-linejoin: round;
-}
 
 #mapWrapper .state{
     fill: none;
     stroke: #fff;
-    stroke-width: 1px;
+    stroke-width: .5px;
     stroke-linejoin: round;
 }
 

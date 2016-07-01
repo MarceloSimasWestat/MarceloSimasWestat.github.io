@@ -541,27 +541,27 @@
         });
 
         // D3 MAP SCALE
-        var CURR_SELECT = ['-2','-1','0','1','2','3','4','5'];
-
-        var scaleSVG = d3.select("#legend").append("svg").attr("height",50);
-        var scale = scaleSVG.append("g").attr("class","scale").attr("class", "key");
+        var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
+        var scale = scaleSVG.append("g").attr("class", "scale").attr("class", "key");
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
-                .domain([0,5,15,30,35])
-                .range(["gray","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"]);
+                .domain([1, 5, 15, 30, 35])
+                .range(["gray", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"]);
         var xKey = d3.scale.linear()
                 .domain([0, 60])
-                .range([5, 400]);
+                .range([0, 400]);
 
         var xAxis = d3.svg.axis()
                 .scale(xKey)
                 .orient("bottom")
-                .tickSize(13)
+                .tickSize(25)
                 .tickValues(color.domain())
-                .tickFormat(function(d) { return d >= 0 ? formatNumber(d) : null; });
+                .tickFormat(function (d) {
+                    return d >= 0 ? formatNumber(d) : null;
+                });
 
         scale.selectAll("rect")
-                .data(color.range().map(function(d, i) {
+                .data(color.range().map(function (d, i) {
                     return {
                         x0: i ? xKey(color.domain()[i - 1]) : xKey.range()[0],
                         x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
@@ -570,11 +570,19 @@
                 }))
                 .enter().append("rect")
                 .attr("height", 15)
-                .attr("x", function(d) { return d.x0; })
-                .attr("width", function(d) { return d.x1 - d.x0; })
-                .attr("data-metric", function(d) { return d.z; })
-                .style("fill", function(d) { return d.z; })
-                .style("margin",1);
+                .attr("x", function (d) {
+                    return d.x0;
+                })
+                .attr("width", function (d) {
+                    return d.x1 - d.x0;
+                })
+                .attr("data-metric", function (d) {
+                    return d.z;
+                })
+                .style("fill", function (d) {
+                    return d.z;
+                })
+                .style("margin", 1);
 
         scale.call(xAxis).append("text")
                 .attr("class", "caption")
@@ -584,35 +592,98 @@
         scaleSVG.selectAll("rect")
                 .on("mouseover", function () {
                     var item = d3.select(this);
-                    var itemColor = item.attr("data-metric");
-
-                    svg.selectAll(".district")
-                            .attr("fill", function (d) {
+                    if (!item.classed("scaleSelect")) {
+                        var itemColor = item.attr("data-metric");
+                        svg.selectAll(".district")
+                                .attr("fill", function (d) {
+                                    if(d.properties["Absent Group"] != "Null or Missing Data") {
+                                        if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                            return itemColor;
+                                        }else{
+                                            return "lightgray";
+                                        }
+                                    }
+                                    else{
+                                        if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                            return itemColor;
+                                        }else{
+                                            return "lightgray";
+                                        }
+                                    }
+                                });
+                        svg.selectAll(".secondaryDistrict")
+                                .attr("fill", function (d) {
+                                    if(d.properties["Absent Group"] != "Null or Missing Data") {
+                                        if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                            return itemColor;
+                                        }else{
+                                            return "lightgray";
+                                        }
+                                    }
+                                    else{
+                                        if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                            return itemColor;
+                                        }else{
+                                            return "lightgray";
+                                        }
+                                    }
+                                });
+                    }
+                }).on("mouseout", function () {
+            var item = d3.select(this);
+            if (!item.classed("scaleSelect")) {
+                updateColors();
+            }
+        }).on("click", function () {
+            var item = d3.select(this);
+            if (item.classed("scaleSelect")) {
+                item.attr("class", "");
+                updateColors();
+            } else {
+                item.attr("class", "scaleSelect");
+                var itemColor = item.attr("data-metric");
+                svg.selectAll(".district")
+                        .attr("fill", function (d) {
+                            if(d.properties["Absent Group"] != "Null or Missing Data") {
                                 if(itemColor == colorByGroup(d.properties["Percent Absent"])){
                                     return itemColor;
                                 }else{
-                                    return "gray";
+                                    return "lightgray";
                                 }
-                            });
-                    svg.selectAll(".secondaryDistrict")
-                            .attr("fill", function (d) {
+                            }
+                            else{
+                                if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                    return itemColor;
+                                }else{
+                                    return "lightgray";
+                                }
+                            }
+                        });
+                svg.selectAll(".secondaryDistrict")
+                        .attr("fill", function (d) {
+                            if(d.properties["Absent Group"] != "Null or Missing Data") {
                                 if(itemColor == colorByGroup(d.properties["Percent Absent"])){
                                     return itemColor;
                                 }else{
-                                    return "gray";
+                                    return "lightgray";
                                 }
-                            });
-                });
-
-        scaleSVG.selectAll(".key").on("mouseout", function () {
-                    updateClasses();
+                            }
+                            else{
+                                if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                    return itemColor;
+                                }else{
+                                    return "lightgray";
+                                }
+                            }
+                        });
+            }
         });
 
         //  D3 MAP
         var width = 960;
         var height = 600;
         var center = [width / 2, height / 2];
-        var defaultFill = "#e0e0e0";
+        var defaultFill = "lightgray";
 
         var projection = d3.geo.albersUsa();
 
@@ -654,7 +725,8 @@
                     .enter().append("path")
                     .attr("class", "district")
                     .attr("d", path)
-                    .attr("stroke", "#777")
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
                         var coordinates = [0, 0];
@@ -662,9 +734,9 @@
                         var x = coordinates[0];
                         var y = coordinates[1];
 
-                        d3.select(this).style("stroke-width", 1.5 + "px")
-                                .attr("stroke", "#1A1C20")
-                                .attr("stroke-opacity",1);
+                        d3.select(this).attr("stroke", "#1A1C20")
+                                .attr("stroke-opacity",1)
+                                .attr("stroke-width",.5);
                         d3.select(this).classed("selected", true);
 
                         tooltip.transition().duration(100).style("opacity", 1);
@@ -679,15 +751,15 @@
                             tooltip.style("top", (y + 330) + "px");
                         }
 
-                        tooltip.select(".stateName").text(d.properties.State);
+                        tooltip.select(".stateName").text(d.properties["State"]);
                         tooltip.select(".name").text(d.properties.Name);
                         tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
                         tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).style("stroke-width", .5 + "px")
-                                .attr("stroke", "#fff")
-                                .attr("stroke-opacity","1");
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15)
+                                .attr("stroke-width",.2);
                         d3.select(this).classed("selected", false);
                         tooltip.transition().duration(300)
                                 .style("opacity", 0);
@@ -718,17 +790,16 @@
                         .attr("id","secondaryDistrict")
                         .attr("class", "district")
                         .attr("d", path)
-                        .attr("stroke", "#777")
-                        .attr("stroke-linejoin", "round")
-                        .on("mouseover", function (d) {
+                        .attr("stroke", "#fff")
+                        .attr("stroke-linejoin", "round").on("mouseover", function (d) {
                             var coordinates = [0, 0];
                             coordinates = d3.mouse(this);
                             var x = coordinates[0];
                             var y = coordinates[1];
 
-                            d3.select(this).style("stroke-width", 1.5 + "px")
-                                    .attr("stroke", "#1A1C20")
-                                    .attr("stroke-opacity",1);
+                            d3.select(this).attr("stroke", "#1A1C20")
+                                    .attr("stroke-opacity",1)
+                                    .attr("stroke-width", .5);
                             d3.select(this).classed("selected", true);
 
                             tooltip.transition().duration(100).style("opacity", 1);
@@ -743,17 +814,20 @@
                                 tooltip.style("top", (y + 330) + "px");
                             }
 
+                            tooltip.select(".stateName").text(d.properties["State"]);
                             tooltip.select(".name").text(d.properties.Name);
                             tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
                             tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
                         })
                         .on("mouseout", function () {
-                            d3.select(this).style("stroke-width", .5 + "px").attr("stroke", "#777");
+                            d3.select(this).attr("stroke", "#fff")
+                                    .attr("stroke-opacity", .15)
+                                    .attr("stroke-width",.2);
                             d3.select(this).classed("selected", false);
                             tooltip.transition().duration(300)
                                     .style("opacity", 0);
                         });
-                updateClasses();
+                updateColors();
                 g.append("g")
                         .attr("class", "states")
                         .selectAll("path")
@@ -830,37 +904,43 @@
                             };
                         });
                     });
-            updateClasses();
+            updateColors();
         }
 
-        function updateClasses() {
-            if (CURR_SELECT.length > 0) {
+        function updateColors() {
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            return colorByGroup(d.properties["Percent Absent"])
+                            if(d.properties["Absent Group"] != "Null or Missing Data") {
+                                return colorByGroup(d.properties["Percent Absent"]);
+                            }
+                            else{
+                                return colorByGroup(d.properties["Absent Group"]);
+                            }
                         });
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            return colorByGroup(d.properties["Percent Absent"])
+                            if(d.properties["Absent Group"] != "Null or Missing Data") {
+                                return colorByGroup(d.properties["Percent Absent"]);
+                            }
+                            else{
+                                return colorByGroup(d.properties["Absent Group"]);
+                            }
                         });
-            } else {
-                svg.selectAll(".district")
-                        .attr("class", "district")
-                        .attr("fill", defaultFill);
-                svg.selectAll(".secondaryDistrict")
-                        .attr("class", "secondaryDistrict")
-                        .attr("fill", defaultFill);
-            }
         }
         //Purple color brewer
         //["#fcfbfd","#efedf5","#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"]
         function colorByGroup(p) {
-           var d = parseFloat(p);
+            if (p == "Null or Missing Data") {
+                return 'gray';
+            }else {
+                var d = parseFloat(p);
                 return d == 0 ? '#9e9ac8' :
                         (d > 0 && d <= 5) ? '#807dba' :
-                        (d > 5 && d <= 15) ? '#6a51a3' :
-                        (d > 15 && d <= 30) ? '#54278f' :
-                        d > 30 ? '#3f007d' : 'gray';
+                                (d > 5 && d <= 15) ? '#6a51a3' :
+                                        (d > 15 && d <= 30) ? '#54278f' :
+                                                d > 30 ? '#3f007d' :
+                                                        "red";
+            }
         }
 
         function zoomIn() {
