@@ -5270,5 +5270,6 @@ button:hover,
     shape-rendering: crispEdges;
 }
 
-.scale{
+.tick text{
+    font-size: 11px;
 }

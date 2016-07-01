@@ -791,7 +791,9 @@
                         .attr("class", "district")
                         .attr("d", path)
                         .attr("stroke", "#fff")
-                        .attr("stroke-linejoin", "round").on("mouseover", function (d) {
+                        .attr("stroke-opacity", .15)
+                        .attr("stroke-linejoin", "round")
+                        .on("mouseover", function (d) {
                             var coordinates = [0, 0];
                             coordinates = d3.mouse(this);
                             var x = coordinates[0];
