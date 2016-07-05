@@ -5091,29 +5091,9 @@ button:hover,
     pointer-events: all;
 }
 
-#absentGroup-2,#absentGroup-1,#absentGroup0 {
-    fill: #edf8fb;
-    background: #edf8fb;
-}
-#absentGroup1 {
-    fill: #bfd3e6;
-    background: #bfd3e6;
-}
-#absentGroup2 {
-    fill: #9ebcda;
-    background: #9ebcda;
-}
-#absentGroup3 {
-    fill: #8c96c6;
-    background: #8c96c6;
-}
-#absentGroup4 {
-    fill: #8856a7;
-    background: #8856a7;
-}
-#absentGroup5 {
-    fill: #810f7c;
-    background: #810f7c;
+#legendTriangle{
+    position: absolute;
+    z-index: 900;
 }
 
 .districtTooltip {
@@ -5163,6 +5143,7 @@ button:hover,
     color: black;
 }
 #legend h3 {
+    padding-bottom: 30px;
     color: black;
     font-size: 13px;
     font-family: Helvetica, sans-serif;

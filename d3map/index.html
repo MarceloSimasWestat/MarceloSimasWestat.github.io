@@ -300,12 +300,13 @@
                     <div class="align-center">
                         <div id="mapWrapper">
                             <div id="legend">
-                                <h3><b>Chronically Absent Student Percentage</b></h3>
+                                <h3><b>% of all students (K–12) who received one or more out-of-school suspension</b></h3>
                             </div>
                             <div id="selectDistrictType">
                                 <div id="selectElementary" class="selected ">Elementary and Unified </div>
                                 <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
                             </div>
+                            <div id="legendTriangle" class="triangle">&#9660;</div>
                             <div id="districtTooltip" class="districtTooltip">
                                 <h3 class="stateName"></h3>
                                 <h3 class="name"></h3>
@@ -540,6 +541,8 @@
         });
 
         // D3 MAP SCALE
+        var triangle = d3.select("#legendTriangle")
+                .style("opacity", 0);
         var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
         var scale = scaleSVG.append("g")
                 .attr("class", "scale")
@@ -547,10 +550,10 @@
                 .attr("transform", "translate(25,0)");
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
-                .domain([0, 0.01, 5, 15, 30])
-                .range(["gray", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"]);
+                .domain([0,  3, 6])
+                .range(["#9e9ac8", "#807dba", "#6a51a3",  "#3f007d"]);
         var xKey = d3.scale.linear()
-                .domain([-5, 40])
+                .domain([0, 10])
                 .range([0, 250]);
 
         var xAxis = d3.svg.axis()
@@ -569,8 +572,8 @@
                         x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
                         z: d
                     };
-                }))
-                .enter().append("rect")
+                })).enter().append("g")
+                .append("rect")
                 .attr("height", 15)
                 .attr("x", function (d) {
                     return d.x0;
@@ -598,15 +601,15 @@
                         var itemColor = item.attr("data-metric");
                         svg.selectAll(".district")
                                 .attr("fill", function (d) {
-                                    if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                        if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                    if(d.properties["OOS Group"] != "Null or Missing Data") {
+                                        if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                             return itemColor;
                                         }else{
                                             return "lightgray";
                                         }
                                     }
                                     else{
-                                        if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                        if(itemColor == colorByGroup(d.properties["OOS Group"])){
                                             return itemColor;
                                         }else{
                                             return "lightgray";
@@ -616,14 +619,14 @@
                         svg.selectAll(".secondaryDistrict")
                                 .attr("fill", function (d) {
                                     if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                        if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                        if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                             return itemColor;
                                         }else{
                                             return "lightgray";
                                         }
                                     }
                                     else{
-                                        if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                        if(itemColor == colorByGroup(d.properties["OOS Group"])){
                                             return itemColor;
                                         }else{
                                             return "lightgray";
@@ -637,41 +640,48 @@
                 updateColors();
             }
         }).on("click", function () {
+            var triangleCoord = this.getBoundingClientRect();
+            triangle.style("left", ((triangleCoord.left + triangleCoord.right)/2  - 320) + "px")
+            .style("top", (triangleCoord.top -320) + "px");
+
             var item = d3.select(this);
             if (item.classed("scaleSelect")) {
                 item.attr("class", "");
+                triangle.style("opacity",0);
                 updateColors();
             } else {
                 item.attr("class", "scaleSelect");
+                //triangle.style("opacity",1);
                 var itemColor = item.attr("data-metric");
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
                             if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                                if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
                                 }
                             }
                             else{
-                                if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                if(itemColor == colorByGroup(d.properties["OOS Group"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
                                 }
                             }
                         });
+
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                if(itemColor == colorByGroup(d.properties["Percent Absent"])){
+                            if(d.properties["OOS Group"] != "Null or Missing Data") {
+                                if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
                                 }
                             }
                             else{
-                                if(itemColor == colorByGroup(d.properties["Absent Group"])){
+                                if(itemColor == colorByGroup(d.properties["OOS Group"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
@@ -738,10 +748,7 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
-                        var coordinates = [0, 0];
                         var districtCoord = this.getBoundingClientRect();
-                        coordinates = d3.mouse(this);
-                        var y = coordinates[1];
 
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity",1)
@@ -759,16 +766,16 @@
                         } else {
                             tooltip.style("left", (districtCoord.left - 250) + "px");
                         }
-                        if (y < (mapHeight/3)) {
-                            tooltip.style("top", (districtCoord.top + 100) + "px");
+                        if (districtCoord.top < (mapHeight/2)) {
+                            tooltip.style("top", (districtCoord.top + 150) + "px");
                         } else {
-                            tooltip.style("top", (districtCoord.top - 100) + "px");
+                            tooltip.style("top", (districtCoord.top - 30) + "px");
                         }
 
                         tooltip.select(".stateName").text(d.properties["State"]);
                         tooltip.select(".name").text(d.properties.Name);
-                        tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
-                        tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
+                        tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
+                        tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
                     })
                     .on("mouseout", function () {
                         d3.select(this).attr("stroke", "#fff")
@@ -835,8 +842,8 @@
 
                             tooltip.select(".stateName").text(d.properties["State"]);
                             tooltip.select(".name").text(d.properties.Name);
-                            tooltip.select(".totalAbsent").text("Total Absent: " + d.properties["Total Absent"]);
-                            tooltip.select(".percentAbsent").text("Percent Absent: " + d.properties["Percent Absent"]);
+                            tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
+                            tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
                         })
                         .on("mouseout", function () {
                             d3.select(this).attr("stroke", "#fff")
@@ -931,19 +938,19 @@
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
                             if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                return colorByGroup(d.properties["Percent Absent"]);
+                                return colorByGroup(d.properties["Percent OOS"]);
                             }
                             else{
-                                return colorByGroup(d.properties["Absent Group"]);
+                                return colorByGroup(d.properties["OOS Group"]);
                             }
                         });
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                return colorByGroup(d.properties["Percent Absent"]);
+                            if(d.properties["OOS Group"] != "Null or Missing Data") {
+                                return colorByGroup(d.properties["Percent OOS"]);
                             }
                             else{
-                                return colorByGroup(d.properties["Absent Group"]);
+                                return colorByGroup(d.properties["OOS Group"]);
                             }
                         });
         }
@@ -955,10 +962,9 @@
             }else {
                 var d = parseFloat(p);
                 return d == 0 ? '#9e9ac8' :
-                        (d > 0 && d <= 5) ? '#807dba' :
-                                (d > 5 && d <= 15) ? '#6a51a3' :
-                                        (d > 15 && d <= 30) ? '#54278f' :
-                                                d > 30 ? '#3f007d' :
+                        (d > 0 && d <= 3) ? '#807dba' :
+                                (d > 3 && d <= 6) ? '#6a51a3' :
+                                        (d > 6) ? '#3f007d' :
                                                         defaultFill;
             }
         }
