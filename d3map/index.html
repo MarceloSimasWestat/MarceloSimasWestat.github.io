@@ -298,7 +298,6 @@
             <div class="inner">
                 <div>
                     <div class="align-center">
-
                         <div id="mapWrapper">
                             <div id="legend">
                                 <h3><b>Chronically Absent Student Percentage</b></h3>
@@ -542,7 +541,10 @@
 
         // D3 MAP SCALE
         var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
-        var scale = scaleSVG.append("g").attr("class", "scale").attr("class", "key").attr("transform", "translate(25,0)");
+        var scale = scaleSVG.append("g")
+                .attr("class", "scale")
+                .attr("class", "key")
+                .attr("transform", "translate(25,0)");
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
                 .domain([0, 0.01, 5, 15, 30])
@@ -703,6 +705,15 @@
         svg.on("wheel.zoom", null);
         svg.on("mousewheel.zoom", null);
 
+        svg.append("svg:image")
+                .attr("xlink:href", "images/progress-anim.gif")
+                .attr("id", "progress-image")
+                .attr("width", 43)
+                .attr("height", 11)
+                .attr("x", width / 2)
+                .attr("y", height / 2)
+                .style("opacity",1);
+
         var g = svg.append("g");
 
         var tooltip = d3.select("#districtTooltip")
@@ -716,9 +727,7 @@
                 .await(ready);
 
         function ready(error, us, primary, secondary) {
-            if (error) {
-                console.log(error);
-            }
+            if (error) { console.log(error);}
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
@@ -730,8 +739,8 @@
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
                         var coordinates = [0, 0];
+                        var districtCoord = this.getBoundingClientRect();
                         coordinates = d3.mouse(this);
-                        var x = coordinates[0];
                         var y = coordinates[1];
 
                         d3.select(this).attr("stroke", "#1A1C20")
@@ -740,31 +749,20 @@
                         d3.select(this).classed("selected", true);
 
                         tooltip.transition().duration(100).style("opacity", 1);
-                        /*if (x > ($("#map").width()/2)) {
-                            tooltip.style("left", (x) + "px");
-                        } else {
-                            tooltip.style("left", (x + 210) + "px")
-                                    .style("top", (y + 330) + "px");
-                        }
-                        if (y > ($("#map").height()/2)) {
-                            tooltip.style("top", (y) + "px");
-                        } else {
-                            tooltip.style("top", (y + 330) + "px");
-                        }*/
+
                         var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
                         var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
-                        console.log(y);
-                        console.log(mapHeight);
+
 
                         if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
-                            tooltip.style("left", x + "px");
+                            tooltip.style("left", (districtCoord.left - 500) + "px");
                         } else {
-                            tooltip.style("left", (x + 150) + "px");
+                            tooltip.style("left", (districtCoord.left - 250) + "px");
                         }
                         if (y < (mapHeight/3)) {
-                            tooltip.style("top", (y + 100) + "px");
+                            tooltip.style("top", (districtCoord.top + 100) + "px");
                         } else {
-                            tooltip.style("top", (y + 150) + "px");
+                            tooltip.style("top", (districtCoord.top - 100) + "px");
                         }
 
                         tooltip.select(".stateName").text(d.properties["State"]);
@@ -812,7 +810,7 @@
                         .on("mouseover", function (d) {
                             var coordinates = [0, 0];
                             coordinates = d3.mouse(this);
-                            var x = coordinates[0];
+                            var districtCoord = this.getBoundingClientRect();
                             var y = coordinates[1];
 
                             d3.select(this).attr("stroke", "#1A1C20")
@@ -821,15 +819,18 @@
                             d3.select(this).classed("selected", true);
 
                             tooltip.transition().duration(100).style("opacity", 1);
-                            if (x > ($("#map").width()/2)) {
-                                tooltip.style("left", (x ) + "px");
+                            var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
+                            var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
+
+                            if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
+                                tooltip.style("left", (districtCoord.left - 500) + "px");
                             } else {
-                                tooltip.style("left", (x + 210) + "px")
+                                tooltip.style("left", (districtCoord.left - 250) + "px");
                             }
-                            if (y > ($("#map").width()/2)) {
-                                tooltip.style("top", (y) + "px");
+                            if (y < (mapHeight/3)) {
+                                tooltip.style("top", (districtCoord.top + 100) + "px");
                             } else {
-                                tooltip.style("top", (y + 330) + "px");
+                                tooltip.style("top", (districtCoord.top - 100) + "px");
                             }
 
                             tooltip.select(".stateName").text(d.properties["State"]);
@@ -923,6 +924,7 @@
                         });
                     });
             updateColors();
+            svg.select("#progress-image").style("opacity",0);
         }
 
         function updateColors() {
@@ -1012,9 +1014,7 @@
             }
             return arr;
         }
-
         d3.select(self.frameElement).style("height", height + "px");
-
     </script>
 </body>
 </html>
