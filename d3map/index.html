@@ -97,7 +97,7 @@
                 <div class="align-center">
                     <div id="mapWrapper">
                         <div id="legend">
-                            <h3><b>% of all students (K–12) who received one or more out-of-school suspension</b></h3>
+                            <h3><b>% of all students (preschool–12) who received one or more out-of-school suspension</b></h3>
                         </div>
                         <div id="selectDistrictType">
                             <div id="selectElementary" class="selected ">Elementary and Unified</div>
@@ -107,10 +107,6 @@
                         <div id="map"></div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <br/>
-                <p>* <a href="#datanotes">See data notes</a>.</p>
             </div>
         </div>
     </section>
@@ -140,6 +136,9 @@
             .attr("width", 50)
             .style("fill", "gray")
             .attr("data-metric", "gray")
+            .style("stroke","black")
+            .style("stroke-width",2)
+            .style("pointer","cursor")
             .attr("transform", "translate(130,60)");
     scaleSVG.append("text")
             .text("Missing Data*")
@@ -147,6 +146,7 @@
             .attr("transform", "translate(120,90)");
 
     var formatNumber = d3.format(",d");
+
     var color = d3.scale.threshold()
             .domain([0, 3, 6, 12])
             .range(["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"]);
@@ -231,7 +231,7 @@
             item.style("stroke","black");
             updateColors();
         } else if (key.classed("scaleSelect") && !item.classed("scaleSelect")) {
-            d3.select("rect.scaleSelect").attr("class", "").style("stroke","black");;
+            d3.select("rect.scaleSelect").attr("class", "").style("stroke","black");
             item.style("stroke","yellow");
             item.attr("class", "scaleSelect");
             svg.selectAll(".district")
@@ -334,7 +334,6 @@
                 .attr("stroke-opacity", .15)
                 .attr("stroke-linejoin", "round")
                 .on("mouseover", function (d) {
-
                     d3.select(this).attr("stroke", "#1A1C20")
                             .attr("stroke-opacity", 1)
                             .attr("stroke-width", .5);
