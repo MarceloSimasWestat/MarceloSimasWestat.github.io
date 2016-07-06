@@ -6,7 +6,7 @@
 -->
 <html lang="en-us">
 <head>
-    <title>Chronic Absenteeism in the Nation's Schools</title>
+    <title>Out-of-School Suspensions</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
@@ -424,17 +424,13 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
-                        var districtCoord = this.getBoundingClientRect();
-
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1)
                                 .attr("stroke-width", .5);
                         d3.select(this).classed("selected", true);
 
-                        //tooltip.transition().duration(100).style("opacity", 1);
-
                         tooltip.transition()
-                                .duration(200)
+                                .duration(100)
                                 .style("opacity", 1);
                         tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
@@ -444,7 +440,6 @@
 
                         var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
                         var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
-
 
                         /*if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
                          tooltip.style("left", (d3.event.pageX + 50) + "px");
@@ -457,8 +452,8 @@
                          tooltip.style("top", (d3.event.pageY - 128) + "px");
                          }
                          */
-                        tooltip.select(".stateName").text(d.properties["State"]);
-                        tooltip.select(".name").text(d.properties.Name);
+                        //tooltip.select(".stateName").text(d.properties["State"]);
+                        //tooltip.select(".name").text(d.properties.Name);
                         if (d.properties["Percent OOS"] != null) {
                             tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
                             tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
