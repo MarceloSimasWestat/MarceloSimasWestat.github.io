@@ -5115,6 +5115,10 @@ button:hover,
     line-height: 1.2em;
 }
 
+.districtTooltip div {
+    font-size: 12px;
+}
+
 #mapWrapper .overlay {
     fill: none;
     pointer-events: all;

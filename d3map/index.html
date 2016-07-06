@@ -550,10 +550,10 @@
                 .attr("transform", "translate(25,0)");
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
-                .domain([0,  3, 6])
-                .range(["#9e9ac8", "#807dba", "#6a51a3",  "#3f007d"]);
+                .domain([0, 3, 6, 12])
+                .range(["#f2f0f7","#cbc9e2","#9e9ac8","#756bb1","#54278f"]);
         var xKey = d3.scale.linear()
-                .domain([0, 10])
+                .domain([-5, 15])
                 .range([0, 250]);
 
         var xAxis = d3.svg.axis()
@@ -774,8 +774,13 @@
 
                         tooltip.select(".stateName").text(d.properties["State"]);
                         tooltip.select(".name").text(d.properties.Name);
-                        tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
-                        tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
+                        if(d.properties["Percent OOS"] != null) {
+                            tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
+                            tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
+                        }else{
+                            tooltip.select(".totalAbsent").text("Total OOS: NO DATA");
+                            tooltip.select(".percentAbsent").text("Percent OOS: NO DATA");
+                        }
                     })
                     .on("mouseout", function () {
                         d3.select(this).attr("stroke", "#fff")
@@ -937,36 +942,24 @@
         function updateColors() {
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                return colorByGroup(d.properties["Percent OOS"]);
-                            }
-                            else{
-                                return colorByGroup(d.properties["OOS Group"]);
-                            }
+                            return colorByGroup(d.properties["Percent OOS"]);
                         });
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            if(d.properties["OOS Group"] != "Null or Missing Data") {
                                 return colorByGroup(d.properties["Percent OOS"]);
-                            }
-                            else{
-                                return colorByGroup(d.properties["OOS Group"]);
-                            }
                         });
         }
-        //Purple color brewer
-        //["#fcfbfd","#efedf5","#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"]
+
         function colorByGroup(p) {
-            if (p == "Null or Missing Data") {
-                return 'gray';
-            }else {
-                var d = parseFloat(p);
-                return d == 0 ? '#9e9ac8' :
-                        (d > 0 && d <= 3) ? '#807dba' :
-                                (d > 3 && d <= 6) ? '#6a51a3' :
-                                        (d > 6) ? '#3f007d' :
-                                                        defaultFill;
-            }
+
+                var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
+                return d == 0 ? '#f2f0f7' :
+                        (d > 0 && d <= 3) ? '#cbc9e2' :
+                                (d > 3 && d <= 6) ? '#9e9ac8' :
+                                        (d > 6 && d <= 12) ? '#756bb1' :
+                                                (d > 12) ? '#54278f' :
+                                                        (d < 0) ?  'gray' :
+                                                                defaultFill;
         }
 
         function zoomIn() {
