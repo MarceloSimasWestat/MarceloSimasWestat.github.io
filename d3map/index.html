@@ -97,7 +97,8 @@
                 <div class="align-center">
                     <div id="mapWrapper">
                         <div id="legend">
-                            <h3><b>% of all students (preschool–12) who received one or more out-of-school suspension</b></h3>
+                            <h3><b>% of all students (preschool–12) who received one or more out-of-school
+                                suspension</b></h3>
                         </div>
                         <div id="selectDistrictType">
                             <div id="selectElementary" class="selected ">Elementary and Unified</div>
@@ -136,9 +137,9 @@
             .attr("width", 50)
             .style("fill", "gray")
             .attr("data-metric", "gray")
-            .style("stroke","black")
-            .style("stroke-width",2)
-            .style("pointer","cursor")
+            .style("stroke", "black")
+            .style("stroke-width", 2)
+            .style("pointer", "cursor")
             .attr("transform", "translate(130,60)");
     scaleSVG.append("text")
             .text("Missing Data*")
@@ -186,8 +187,8 @@
             .style("fill", function (d) {
                 return d.z;
             })
-            .style("stroke","black")
-            .style("stroke-width",2)
+            .style("stroke", "black")
+            .style("stroke-width", 2)
             .style("margin", 1);
 
     scale.call(xAxis).append("text")
@@ -228,11 +229,11 @@
         if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
             key.attr("class", "key");
             item.attr("class", "");
-            item.style("stroke","black");
+            item.style("stroke", "black");
             updateColors();
         } else if (key.classed("scaleSelect") && !item.classed("scaleSelect")) {
-            d3.select("rect.scaleSelect").attr("class", "").style("stroke","black");
-            item.style("stroke","yellow");
+            d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+            item.style("stroke", "yellow");
             item.attr("class", "scaleSelect");
             svg.selectAll(".district")
                     .attr("fill", function (d) {
@@ -253,7 +254,7 @@
                     });
         } else {
             item.attr("class", "scaleSelect");
-            item.style("stroke","yellow");
+            item.style("stroke", "yellow");
             key.attr("class", "key scaleSelect");
             svg.selectAll(".district")
                     .attr("fill", function (d) {
@@ -342,14 +343,16 @@
                     tooltip.transition().duration(100).style("opacity", 1);
 
                     if (d.properties["Percent OOS"] != null) {
-                        tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
+                        tooltip.html("<h3>" + d.properties.State + "</h3>" +
+                                        "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
                                         "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
                                 .style("left", (d3.event.pageX) + "px")
                                 .style("top", (d3.event.pageY - 128) + "px");
 
                     } else {
-                        tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
+                        tooltip.html("<h3>" + d.properties.State + "</h3>" +
+                                        "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: NO DATA</div>" +
                                         "<div>Percent OOS: NO DATA </div>")
                                 .style("left", (d3.event.pageX + 50) + "px")
@@ -387,7 +390,6 @@
                     .selectAll("path")
                     .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
                     .enter().append("path")
-                    .attr("id", "secondaryDistrict")
                     .attr("class", "district")
                     .attr("d", path)
                     .attr("stroke", "#fff")
@@ -399,37 +401,24 @@
                                 .attr("stroke-width", .5);
                         d3.select(this).classed("selected", true);
 
-                        tooltip.transition()
-                                .duration(100)
-                                .style("opacity", 1);
-                        tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-                                        "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
-                                .style("left", (d3.event.pageX + 50) + "px")
-                                .style("top", (d3.event.pageY - 128) + "px");
+                        tooltip.transition().duration(100).style("opacity", 1);
 
-                        var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
-                        var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
-
-                        /*if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
-                         tooltip.style("left", (d3.event.pageX + 50) + "px");
-                         } else {
-                         tooltip.style("left", (d3.event.pageX + 50) + "px");
-                         }
-                         if (districtCoord.top < (mapHeight / 2)) {
-                         tooltip.style("top", (d3.event.pageY - 128) + "px");
-                         } else {
-                         tooltip.style("top", (d3.event.pageY - 128) + "px");
-                         }
-                         */
-                        //tooltip.select(".stateName").text(d.properties["State"]);
-                        //tooltip.select(".name").text(d.properties.Name);
                         if (d.properties["Percent OOS"] != null) {
-                            tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
-                            tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
+                            tooltip.html("<h3>" + d.properties.State + "</h3>" +
+                                            "<h3>" + d.properties.Name + "</h3>" +
+                                            "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                            "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
+                                    .style("left", (d3.event.pageX) + "px")
+                                    .style("top", (d3.event.pageY - 128) + "px");
+
                         } else {
-                            tooltip.select(".totalAbsent").text("Total OOS: NO DATA");
-                            tooltip.select(".percentAbsent").text("Percent OOS: NO DATA");
+                            tooltip.html("<h3>" + d.properties.State + "</h3>" +
+                                            "<h3>" + d.properties.Name + "</h3>" +
+                                            "<div>Total OOS: NO DATA</div>" +
+                                            "<div>Percent OOS: NO DATA </div>")
+                                    .style("left", (d3.event.pageX + 50) + "px")
+                                    .style("top", (d3.event.pageY - 128) + "px");
+
                         }
                     })
                     .on("mouseout", function () {
