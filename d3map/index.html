@@ -104,12 +104,6 @@
                             <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
                             </div>
                         </div>
-                        <div id="districtTooltip" class="districtTooltip">
-                            <h3 class="stateName"></h3>
-                            <h3 class="name"></h3>
-                            <div class="totalAbsent"></div>
-                            <div class="percentAbsent"></div>
-                        </div>
                         <div id="map"></div>
                     </div>
                 </div>
@@ -193,11 +187,6 @@
                 return d.z;
             })
             .style("margin", 1);
-
-    /*scale.selectAll("g:not(.tick)")
-     .append("text").html("&#9660;")
-     .style("opacity",1)
-     .attr("class","legendTriangle");*/
 
     scale.call(xAxis).append("text")
             .attr("class", "caption")
@@ -326,10 +315,6 @@
             .defer(d3.json, "assets/data/secondary.json")
             .await(ready);
 
-    /*var div = d3.select("body").append("div")
-     .attr("class", "tooltip")
-     .style("opacity", 0);*/
-
     function ready(error, us, primary, secondary) {
         if (error) {
             console.log(error);
@@ -344,47 +329,28 @@
                 .attr("stroke-opacity", .15)
                 .attr("stroke-linejoin", "round")
                 .on("mouseover", function (d) {
-                    var districtCoord = this.getBoundingClientRect();
 
                     d3.select(this).attr("stroke", "#1A1C20")
                             .attr("stroke-opacity", 1)
                             .attr("stroke-width", .5);
                     d3.select(this).classed("selected", true);
 
-                    //tooltip.transition().duration(100).style("opacity", 1);
+                    tooltip.transition().duration(100).style("opacity", 1);
 
-                    tooltip.transition()
-                            .duration(200)
-                            .style("opacity", 1);
-                    tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
-                                    "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-                                    "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
-                            .style("left", (d3.event.pageX + 50) + "px")
-                            .style("top", (d3.event.pageY - 128) + "px");
-
-                    var mapWidth = parseFloat(d3.select(".svg-content-responsive").style("width"));
-                    var mapHeight = parseFloat(d3.select(".svg-content-responsive").style("height"));
-
-
-                    /*if (d3.event.pageX > (mapWidth - $('#sidebar').width())) {
-                        tooltip.style("left", (d3.event.pageX + 50) + "px");
-                    } else {
-                        tooltip.style("left", (d3.event.pageX + 50) + "px");
-                    }
-                    if (districtCoord.top < (mapHeight / 2)) {
-                        tooltip.style("top", (d3.event.pageY - 128) + "px");
-                    } else {
-                        tooltip.style("top", (d3.event.pageY - 128) + "px");
-                    }
-*/
-                    tooltip.select(".stateName").text(d.properties["State"]);
-                    tooltip.select(".name").text(d.properties.Name);
                     if (d.properties["Percent OOS"] != null) {
-                        tooltip.select(".totalAbsent").text("Total OOS: " + d.properties["Total OOS"]);
-                        tooltip.select(".percentAbsent").text("Percent OOS: " + d.properties["Percent OOS"]);
+                        tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
+                                        "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                        "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
+                                .style("left", (d3.event.pageX + 50) + "px")
+                                .style("top", (d3.event.pageY - 128) + "px");
+
                     } else {
-                        tooltip.select(".totalAbsent").text("Total OOS: NO DATA");
-                        tooltip.select(".percentAbsent").text("Percent OOS: NO DATA");
+                        tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
+                                        "<div>Total OOS: NO DATA</div>" +
+                                        "<div>Percent OOS: NO DATA </div>")
+                                .style("left", (d3.event.pageX + 50) + "px")
+                                .style("top", (d3.event.pageY - 128) + "px");
+
                     }
                 })
                 .on("mouseout", function () {
