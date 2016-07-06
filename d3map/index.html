@@ -540,12 +540,24 @@
         });
 
         // D3 MAP SCALE
+        var scaleSVG = d3.select("#legend").append("svg").attr("height", 120);
 
-        var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
         var scale = scaleSVG.append("g")
                 .attr("class", "scale")
                 .attr("class", "key")
                 .attr("transform", "translate(25,0)");
+
+        scaleSVG.append("rect")
+                .attr("height",15)
+                .attr("width",50)
+                .style("fill","gray")
+                .attr("data-metric", "gray")
+                .attr("transform", "translate(130,60)");
+        scaleSVG.append("text")
+                .text("Missing Data*")
+                .style("font-size",12)
+                .attr("transform", "translate(120,90)");
+
         var formatNumber = d3.format(",d");
         var color = d3.scale.threshold()
                 .domain([0, 3, 6, 12])
