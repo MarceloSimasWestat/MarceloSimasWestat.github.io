@@ -342,22 +342,36 @@
 
                     tooltip.transition().duration(100).style("opacity", 1);
 
+                    var windowWidth = $(window).width();
+                    if(windowWidth > 1024) {
+                        if (d3.event.pageX > 1000) {
+                            tooltip.style("left", (d3.event.pageX - 200) + "px")
+                                    .style("top", (d3.event.pageY - 150) + "px");
+                        } else {
+                            tooltip.style("left", (d3.event.pageX + 40) + "px")
+                                    .style("top", (d3.event.pageY - 150) + "px");
+                        }
+                    }
+                    if(windowWidth < 1024) {
+                        if (d3.event.pageX > 400) {
+                            tooltip.style("left", (d3.event.pageX - 200) + "px")
+                                    .style("top", (d3.event.pageY - 150) + "px");
+                        } else {
+                            tooltip.style("left", (d3.event.pageX + 40) + "px")
+                                    .style("top", (d3.event.pageY - 150) + "px");
+                        }
+                    }
                     if (d.properties["Percent OOS"] != null) {
-                        tooltip.html("<h3>" + d.properties.State + "</h3>" +
-                                        "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-                                        "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
-                                .style("left", (d3.event.pageX) + "px")
-                                .style("top", (d3.event.pageY - 128) + "px");
+                        tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                "<h3>" + d.properties.Name + "</h3>" +
+                                "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
 
                     } else {
-                        tooltip.html("<h3>" + d.properties.State + "</h3>" +
-                                        "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total OOS: NO DATA</div>" +
-                                        "<div>Percent OOS: NO DATA </div>")
-                                .style("left", (d3.event.pageX + 50) + "px")
-                                .style("top", (d3.event.pageY - 128) + "px");
-
+                        tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                "<h3>" + d.properties.Name + "</h3>" +
+                                "<div>Total OOS: NO DATA</div>" +
+                                "<div>Percent OOS: NO DATA </div>");
                     }
                 })
                 .on("mouseout", function () {
@@ -401,24 +415,21 @@
                                 .attr("stroke-width", .5);
                         d3.select(this).classed("selected", true);
 
-                        tooltip.transition().duration(100).style("opacity", 1);
+                        tooltip.transition().duration(100).style("opacity", 1)
+                                .style("left", (d3.event.pageX + 50) + "px")
+                                .style("top", (d3.event.pageY - 128) + "px");
 
                         if (d.properties["Percent OOS"] != null) {
                             tooltip.html("<h3>" + d.properties.State + "</h3>" +
                                             "<h3>" + d.properties.Name + "</h3>" +
                                             "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-                                            "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
-                                    .style("left", (d3.event.pageX) + "px")
-                                    .style("top", (d3.event.pageY - 128) + "px");
+                                            "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
 
                         } else {
                             tooltip.html("<h3>" + d.properties.State + "</h3>" +
                                             "<h3>" + d.properties.Name + "</h3>" +
                                             "<div>Total OOS: NO DATA</div>" +
-                                            "<div>Percent OOS: NO DATA </div>")
-                                    .style("left", (d3.event.pageX + 50) + "px")
-                                    .style("top", (d3.event.pageY - 128) + "px");
-
+                                            "<div>Percent OOS: NO DATA </div>");
                         }
                     })
                     .on("mouseout", function () {

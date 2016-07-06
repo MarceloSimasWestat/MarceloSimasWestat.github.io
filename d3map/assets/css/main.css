@@ -5107,14 +5107,20 @@ button:hover,
 
 .districtTooltip h3 {
     color: black;
-    font-size: 12px;
-    margin: 0 0 7px 0;
-    line-height: 1.2em;
+    font-size: 15px;
+    margin: 0;
+    line-height: 17px;
 }
 
 .districtTooltip div {
     color: black;
     font-size: 12px;
+}
+
+.districtTooltip hr {
+    margin: 0;
+    border-bottom: 1px solid black;
+    color: black;
 }
 
 #mapWrapper .overlay {
