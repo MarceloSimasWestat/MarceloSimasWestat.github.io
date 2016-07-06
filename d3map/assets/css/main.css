@@ -5091,11 +5091,6 @@ button:hover,
     pointer-events: all;
 }
 
-#legendTriangle{
-    position: absolute;
-    z-index: 900;
-}
-
 .districtTooltip {
     position: absolute;
     text-align: left;
@@ -5257,4 +5252,9 @@ button:hover,
 
 .tick text{
     font-size: 11px;
+}
+
+rect.scaleSelect{
+    stroke: black;
+    stroke-width: 2;
 }

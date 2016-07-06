@@ -306,7 +306,6 @@
                                 <div id="selectElementary" class="selected ">Elementary and Unified </div>
                                 <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
                             </div>
-                            <div id="legendTriangle" class="triangle">&#9660;</div>
                             <div id="districtTooltip" class="districtTooltip">
                                 <h3 class="stateName"></h3>
                                 <h3 class="name"></h3>
@@ -541,8 +540,7 @@
         });
 
         // D3 MAP SCALE
-        var triangle = d3.select("#legendTriangle")
-                .style("opacity", 0);
+
         var scaleSVG = d3.select("#legend").append("svg").attr("height", 50);
         var scale = scaleSVG.append("g")
                 .attr("class", "scale")
@@ -553,7 +551,7 @@
                 .domain([0, 3, 6, 12])
                 .range(["#f2f0f7","#cbc9e2","#9e9ac8","#756bb1","#54278f"]);
         var xKey = d3.scale.linear()
-                .domain([-5, 15])
+                .domain([-3, 15])
                 .range([0, 250]);
 
         var xAxis = d3.svg.axis()
@@ -564,6 +562,7 @@
                 .tickFormat(function (d) {
                     return d >= 0 ? formatNumber(d) : null;
                 });
+        var key = d3.select(".key");
 
         scale.selectAll("rect")
                 .data(color.range().map(function (d, i) {
@@ -589,6 +588,11 @@
                 })
                 .style("margin", 1);
 
+        /*scale.selectAll("g:not(.tick)")
+                .append("text").html("&#9660;")
+                .style("opacity",1)
+                .attr("class","legendTriangle");*/
+
         scale.call(xAxis).append("text")
                 .attr("class", "caption")
                 .attr("y", -6)
@@ -597,96 +601,76 @@
         scaleSVG.selectAll("rect")
                 .on("mouseover", function () {
                     var item = d3.select(this);
-                    if (!item.classed("scaleSelect")) {
+                    if (!key.classed("scaleSelect")) {
                         var itemColor = item.attr("data-metric");
                         svg.selectAll(".district")
                                 .attr("fill", function (d) {
-                                    if(d.properties["OOS Group"] != "Null or Missing Data") {
-                                        if(itemColor == colorByGroup(d.properties["Percent OOS"])){
-                                            return itemColor;
-                                        }else{
-                                            return "lightgray";
-                                        }
-                                    }
-                                    else{
-                                        if(itemColor == colorByGroup(d.properties["OOS Group"])){
-                                            return itemColor;
-                                        }else{
-                                            return "lightgray";
-                                        }
+                                    if(itemColor == colorByGroup(d.properties["Percent OOS"])){
+                                        return itemColor;
+                                    }else{
+                                        return "lightgray";
                                     }
                                 });
+
                         svg.selectAll(".secondaryDistrict")
                                 .attr("fill", function (d) {
-                                    if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                        if(itemColor == colorByGroup(d.properties["Percent OOS"])){
-                                            return itemColor;
-                                        }else{
-                                            return "lightgray";
-                                        }
-                                    }
-                                    else{
-                                        if(itemColor == colorByGroup(d.properties["OOS Group"])){
-                                            return itemColor;
-                                        }else{
-                                            return "lightgray";
-                                        }
+                                    if(itemColor == colorByGroup(d.properties["Percent OOS"])){
+                                        return itemColor;
+                                    }else{
+                                        return "lightgray";
                                     }
                                 });
                     }
                 }).on("mouseout", function () {
-            var item = d3.select(this);
-            if (!item.classed("scaleSelect")) {
+            if (!key.classed("scaleSelect")) {
                 updateColors();
             }
         }).on("click", function () {
-            var triangleCoord = this.getBoundingClientRect();
-            triangle.style("left", ((triangleCoord.left + triangleCoord.right)/2  - 320) + "px")
-            .style("top", (triangleCoord.top -320) + "px");
-
             var item = d3.select(this);
-            if (item.classed("scaleSelect")) {
-                item.attr("class", "");
-                triangle.style("opacity",0);
+            var itemColor = item.attr("data-metric");
+            if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
+                key.attr("class", "key");
+                item.attr("class","");
                 updateColors();
-            } else {
-                item.attr("class", "scaleSelect");
-                //triangle.style("opacity",1);
-                var itemColor = item.attr("data-metric");
+            }else if(key.classed("scaleSelect") && !item.classed("scaleSelect")){
+                d3.select("rect.scaleSelect").attr("class","");
+                item.attr("class","scaleSelect");
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            if(d.properties["Absent Group"] != "Null or Missing Data") {
-                                if(itemColor == colorByGroup(d.properties["Percent OOS"])){
-                                    return itemColor;
-                                }else{
-                                    return "lightgray";
-                                }
-                            }
-                            else{
-                                if(itemColor == colorByGroup(d.properties["OOS Group"])){
-                                    return itemColor;
-                                }else{
-                                    return "lightgray";
-                                }
+                            if(itemColor == colorByGroup(d.properties["Percent OOS"])){
+                                return itemColor;
+                            }else{
+                                return "lightgray";
                             }
                         });
 
                 svg.selectAll(".secondaryDistrict")
                         .attr("fill", function (d) {
-                            if(d.properties["OOS Group"] != "Null or Missing Data") {
+                            if(itemColor == colorByGroup(d.properties["Percent OOS"])){
+                                return itemColor;
+                            }else{
+                                return "lightgray";
+                            }
+                        });
+            } else {
+                item.attr("class","scaleSelect");
+                key.attr("class", "key scaleSelect");
+                svg.selectAll(".district")
+                        .attr("fill", function (d) {
                                 if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
                                 }
-                            }
-                            else{
-                                if(itemColor == colorByGroup(d.properties["OOS Group"])){
+                        });
+
+                svg.selectAll(".secondaryDistrict")
+                        .attr("fill", function (d) {
+                                if(itemColor == colorByGroup(d.properties["Percent OOS"])){
                                     return itemColor;
                                 }else{
                                     return "lightgray";
                                 }
-                            }
                         });
             }
         });
