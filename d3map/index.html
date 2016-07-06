@@ -132,14 +132,13 @@
             .attr("class", "key")
             .attr("transform", "translate(25,0)");
 
-    scaleSVG.append("rect")
+    scaleSVG.append("g").attr("class","grayRect").append("rect")
             .attr("height", 15)
             .attr("width", 50)
             .style("fill", "gray")
             .attr("data-metric", "gray")
             .style("stroke", "black")
             .style("stroke-width", 2)
-            .style("pointer", "cursor")
             .attr("transform", "translate(130,60)");
     scaleSVG.append("text")
             .text("Missing Data*")
@@ -391,12 +390,16 @@
                 .attr("d", path);
 
         d3.select("#selectElementary").on("click", function () {
+            d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+            key.attr("class", "key");
             d3.select("#selectSecondary").style("background", "white");
             d3.select(this).style("background", "yellow");
             d3.selectAll("#secondaryDistrict").remove();
         });
 
         d3.select("#selectSecondary").on("click", function () {
+            d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+            key.attr("class", "key");
             d3.selectAll(".state").remove();
             d3.select("#selectElementary").style("background", "white");
             d3.select(this).style("background", "yellow");
@@ -404,6 +407,7 @@
                     .selectAll("path")
                     .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
                     .enter().append("path")
+                    .attr("id","secondaryDistrict")
                     .attr("class", "district")
                     .attr("d", path)
                     .attr("stroke", "#fff")
