@@ -644,150 +644,152 @@
 				.defer(d3.json, "assets/data/secondary.json")
 				.await(ready);
 
-		function ready(error, us, primary, secondary) {
-			if (error) {
-				console.log(error);
-			}
-			g.append("g")
-					.selectAll("path")
-					.data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
-					.enter().append("path")
-					.attr("class", "district")
-					.attr("d", path)
-					.attr("stroke", "#fff")
-					.attr("stroke-opacity", .15)
-					.attr("stroke-linejoin", "round")
-					.on("mouseover", function (d) {
-						d3.select(this).attr("stroke", "#1A1C20")
-								.attr("stroke-opacity", 1)
-								.attr("stroke-width", .5);
-						d3.select(this).classed("selected", true);
+        function ready(error, us, primary, secondary) {
+            if (error) {
+                console.log(error);
+            }
+            g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
+                    .enter().append("path")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        d3.select(this).attr("stroke", "#1A1C20")
+                                .attr("stroke-opacity", 1)
+                                .attr("stroke-width", .5);
+                        d3.select(this).classed("selected", true);
 
-						tooltip.transition().duration(100).style("opacity", 1);
+                        tooltip.transition().duration(100)
+                                .style("opacity", 1)
+                                .style("top", (d3.event.pageY - 100) + "px");
 
-						var windowWidth = $(window).width();
-						if (windowWidth > 1024) {
-							if (d3.event.pageX > 1000) {
-								tooltip.style("left", (d3.event.pageX - 200) + "px")
-										.style("top", (d3.event.pageY - 150) + "px");
-							} else {
-								tooltip.style("left", (d3.event.pageX + 40) + "px")
-										.style("top", (d3.event.pageY - 150) + "px");
-							}
-						}
-						if (windowWidth < 1024) {
-							if (d3.event.pageX > 400) {
-								tooltip.style("left", (d3.event.pageX - 200) + "px")
-										.style("top", (d3.event.pageY - 150) + "px");
-							} else {
-								tooltip.style("left", (d3.event.pageX + 40) + "px")
-										.style("top", (d3.event.pageY - 150) + "px");
-							}
-						}
-						if (d.properties["Percent OOS"] != null) {
-							tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-									"<h3>" + d.properties.Name + "</h3>" +
-									"<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-									"<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
+                        var windowWidth = $(window).width();
+                        if (windowWidth > 1024) {
+                            if (d3.event.pageX > 1000) {
+                                tooltip.style("left", (d3.event.pageX - 200) + "px");
+                            } else {
+                                tooltip.style("left", (d3.event.pageX + 40) + "px");
+                            }
+                        }
+                        if (windowWidth < 1024) {
+                            if (d3.event.pageX > 400) {
+                                tooltip.style("left", (d3.event.pageX - 200) + "px");
+                            } else {
+                                tooltip.style("left", (d3.event.pageX + 40) + "px");
+                            }
+                        }
+                        if (d.properties["Percent OOS"] != null) {
+                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                    "<h3>" + d.properties.Name + "</h3>" +
+                                    "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                    "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
 
-						} else {
-							tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-									"<h3>" + d.properties.Name + "</h3>" +
-									"<div>Total OOS: NO DATA</div>" +
-									"<div>Percent OOS: NO DATA </div>");
-						}
-					})
-					.on("mouseout", function () {
-						d3.select(this).attr("stroke", "#fff")
-								.attr("stroke-opacity", .15)
-								.attr("stroke-width", .2);
-						d3.select(this).classed("selected", false);
-						tooltip.transition().duration(300).style("opacity", 0);
-					});
+                        } else {
+                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                    "<h3>" + d.properties.Name + "</h3>" +
+                                    "<div>Total OOS: NO DATA</div>" +
+                                    "<div>Percent OOS: NO DATA </div>");
+                        }
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15)
+                                .attr("stroke-width", .2);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
 
-			g.append("g")
-					.attr("class", "states")
-					.selectAll("path")
-					.data(topojson.feature(us, us.objects.states).features)
-					.enter().append("path")
-					.attr("class", "state")
-					.attr("d", path);
+            g.append("g")
+                    .attr("class", "states")
+                    .selectAll("path")
+                    .data(topojson.feature(us, us.objects.states).features)
+                    .enter().append("path")
+                    .attr("class", "state")
+                    .attr("d", path);
 
-			d3.select("#selectElementary").on("click", function () {
-				d3.select("#selectSecondary").style("background", "white");
-				d3.select(this).style("background", "yellow");
-				d3.selectAll("#secondaryDistrict").remove();
-			});
+            d3.select("#selectElementary").on("click", function () {
+                d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+                key.attr("class", "key");
+                d3.select("#selectSecondary").style("background", "white");
+                d3.select(this).style("background", "yellow");
+                d3.selectAll("#secondaryDistrict").remove();
+            });
 
-			d3.select("#selectSecondary").on("click", function () {
-				d3.selectAll(".state").remove();
-				d3.select("#selectElementary").style("background", "white");
-				d3.select(this).style("background", "yellow");
-				g.append("g")
-						.selectAll("path")
-						.data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
-						.enter().append("path")
-						.attr("class", "district")
-						.attr("d", path)
-						.attr("stroke", "#fff")
-						.attr("stroke-opacity", .15)
-						.attr("stroke-linejoin", "round")
-						.on("mouseover", function (d) {
-							d3.select(this).attr("stroke", "#1A1C20")
-									.attr("stroke-opacity", 1)
-									.attr("stroke-width", .5);
-							d3.select(this).classed("selected", true);
+            d3.select("#selectSecondary").on("click", function () {
+                d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+                key.attr("class", "key");
+                d3.selectAll(".state").remove();
+                d3.select("#selectElementary").style("background", "white");
+                d3.select(this).style("background", "yellow");
+                g.append("g")
+                        .selectAll("path")
+                        .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
+                        .enter().append("path")
+                        .attr("id","secondaryDistrict")
+                        .attr("class", "district")
+                        .attr("d", path)
+                        .attr("stroke", "#fff")
+                        .attr("stroke-opacity", .15)
+                        .attr("stroke-linejoin", "round")
+                        .on("mouseover", function (d) {
+                            d3.select(this).attr("stroke", "#1A1C20")
+                                    .attr("stroke-opacity", 1)
+                                    .attr("stroke-width", .5);
+                            d3.select(this).classed("selected", true);
 
-							tooltip.transition().duration(100).style("opacity", 1);
+                            tooltip.transition().duration(100)
+                                    .style("opacity", 1)
+                                    .style("top", (d3.event.pageY - 100) + "px");
 
-							var windowWidth = $(window).width();
-							if (windowWidth > 1024) {
-								if (d3.event.pageX > 1000) {
-									tooltip.style("left", (d3.event.pageX - 200) + "px")
-											.style("top", (d3.event.pageY - 150) + "px");
-								} else {
-									tooltip.style("left", (d3.event.pageX + 40) + "px")
-											.style("top", (d3.event.pageY - 150) + "px");
-								}
-							}
-							if (windowWidth < 1024) {
-								if (d3.event.pageX > 400) {
-									tooltip.style("left", (d3.event.pageX - 200) + "px")
-											.style("top", (d3.event.pageY - 150) + "px");
-								} else {
-									tooltip.style("left", (d3.event.pageX + 40) + "px")
-											.style("top", (d3.event.pageY - 150) + "px");
-								}
-							}
-							if (d.properties["Percent OOS"] != null) {
-								tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-										"<h3>" + d.properties.Name + "</h3>" +
-										"<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
-										"<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
 
-							} else {
-								tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-										"<h3>" + d.properties.Name + "</h3>" +
-										"<div>Total OOS: NO DATA</div>" +
-										"<div>Percent OOS: NO DATA </div>");
-							}
-						})
-						.on("mouseout", function () {
-							d3.select(this).attr("stroke", "#fff")
-									.attr("stroke-opacity", .15)
-									.attr("stroke-width", .2);
-							d3.select(this).classed("selected", false);
-							tooltip.transition().duration(300).style("opacity", 0);
-						});
-				updateColors();
-				g.append("g")
-						.attr("class", "states")
-						.selectAll("path")
-						.data(topojson.feature(us, us.objects.states).features)
-						.enter().append("path")
-						.attr("class", "state")
-						.attr("d", path);
-			});
+                            var windowWidth = $(window).width();
+                            if (windowWidth > 1024) {
+                                if (d3.event.pageX > 1000) {
+                                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                                } else {
+                                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                                }
+                            }
+                            if (windowWidth < 1024) {
+                                if (d3.event.pageX > 400) {
+                                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                                } else {
+                                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                                }
+                            }
+                            if (d.properties["Percent OOS"] != null) {
+                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                        "<h3>" + d.properties.Name + "</h3>" +
+                                        "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                        "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
+
+                            } else {
+                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                        "<h3>" + d.properties.Name + "</h3>" +
+                                        "<div>Total OOS: NO DATA</div>" +
+                                        "<div>Percent OOS: NO DATA </div>");
+                            }
+                        })
+                        .on("mouseout", function () {
+                            d3.select(this).attr("stroke", "#fff")
+                                    .attr("stroke-opacity", .15)
+                                    .attr("stroke-width", .2);
+                            d3.select(this).classed("selected", false);
+                            tooltip.transition().duration(300).style("opacity", 0);
+                        });
+                updateColors();
+                g.append("g")
+                        .attr("class", "states")
+                        .selectAll("path")
+                        .data(topojson.feature(us, us.objects.states).features)
+                        .enter().append("path")
+                        .attr("class", "state")
+                        .attr("d", path);
+            });
 
 			// Zoom buttons
 			svg.selectAll(".button")
