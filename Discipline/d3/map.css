@@ -1,0 +1,148 @@
+.district-boundary {
+    fill: grey;
+    stroke: white;
+    stroke-linejoin: round;
+}
+.state-boundary {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+
+.state{
+    fill: none;
+    stroke: white;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.absentGroup-2,.absentGroup-1,.absentGroup0 {
+     fill: #edf8fb;
+    background: #edf8fb;
+ }
+.absentGroup1 {
+    fill: #bfd3e6;
+    background: #bfd3e6;
+}
+.absentGroup2 {
+    fill: #9ebcda;
+    background: #9ebcda;
+}
+.absentGroup3 {
+    fill: #8c96c6;
+    background: #8c96c6;
+}
+.absentGroup4 {
+    fill: #8856a7;
+    background: #8856a7;
+}
+.absentGroup5 {
+    fill: #810f7c;
+    background: #810f7c;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 170px;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    background: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+}
+div.tooltip h3 {
+    font-size: 12px; margin: 0 0 7px 0;
+    line-height: 1.2em;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+h3.name{
+    color: black;
+    font-family: Karla, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.totalAbsent, .percentAbsent{
+    color: black;
+    font-family: Karla, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+#wrapper{
+    height: 100%;
+    background: lightgray;
+}
+
+#legend {
+    width: 920px;
+    margin: 0 auto 15px 0;
+    font-family: Helvetica, sans-serif;
+}
+#legend #instruct {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    float: left;
+    width: 210px;
+    font-size: 14px;
+    line-height: 1.4em;
+    font-family: Georgia, serif;
+}
+#legend h3 {
+    color: black;
+    font-size: 13px;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 0; }
+#legend ul {
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    margin-left: 0;
+    padding: 0;
+}
+#legend ul li {
+    color: black;
+    list-style: none;
+    margin: 10px 10px 0 0;
+    padding: 4px 0;
+    display: inline-block;
+    width: 108px;
+    /*background: #e0e0e0;*/
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+}
+#legend ul li.bottom { margin-bottom: 0; }
+#legend #selectDistrictType {
+    width: 250px;
+    float: left;
+    border-right: 1px solid #ccc;
+    margin-right: 15px;
+}
+#legend #absentGroup {
+    width: 250px;
+    float: left;
+    padding-left: 5px;
+}
+#legend .block-button {
+    width: 80px;
+    display: block;
+    float:left;
+    clear:both;
+}
+#legend .selectDistrict{
+    color: black;
+    background: yellow;
+}

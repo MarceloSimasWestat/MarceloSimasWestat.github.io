@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Chronic Absenteeism in the Nation's Schools</title>
+    <!-- Start EDWeb Metadata - Do Not Modify Tags in Block Below -->
+    <!-- End EDWeb Metadata - Do Not Modify Tags in Block Above -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lte IE 8]>
+    <script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="map.css"/>
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../assets/css/ie8.css"/><![endif]-->
+
+    <link rel="stylesheet" href="../assets/css/chart-styles.css">
+
+    <!-- browser tab icon (aka favicon) -->
+    <link rel="icon" href="../images/doelogo_rev.png">
+
+    <!-- Scripts -->
+    <!--<script src="widgets.js"></script>-->
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/skel.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <!--[if lte IE 8]>
+    <script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../assets/js/main.js"></script>
+    <!-- Substitutes high-res images for Retina displays (html file only) -->
+    <script type="text/javascript" src="../assets/js/retina.js"></script>
+    <script src="d3.min.js"></script>
+    <script src="queue.v1.min.js"></script>
+    <script src="topojson.v1.min.js"></script>
+    <script src="d3map.js"></script>
+</head>
+<body>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section"></div>
+</div>
+<section id="sidebar">
+    <div class="inner">
+        <div class="nav-image">
+            <img src="../images/edsealbw.svg" alt="Department of Learning"/>
+        </div>
+    </div>
+</section>
+<div id="wrapper">
+    <div id="legend">
+        <div id="selectDistrictType">
+            <h3>School District</h3>
+            <ul>
+                <li class="selected selectDistrict">Elementary and Unified</li>
+                <li class="selected selectDistrict">Independent Elementary, Secondary, and Unified</li>
+            </ul>
+        </div>
+        <div id="absentGroup">
+            <h3>Absent Group</h3>
+            <ul>
+                <li data-metric="-2" class="selected absentGroup-2">Group -2</li>
+                <li data-metric="-1" class="selected absentGroup-1">Group -1</li>
+                <li data-metric="0" class="selected absentGroup0">Group 0</li>
+                <li data-metric="1" class="selected absentGroup1">Group 1</li>
+                <li data-metric="2" class="selected absentGroup2">Group 2</li>
+                <li data-metric="3" class="selected absentGroup3">Group 3</li>
+                <li data-metric="4" class="selected absentGroup4">Group 4</li>
+                <li data-metric="5" class="selected absentGroup5">Group 5</li>
+            </ul>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div id="tooltip" class="tooltip">
+        <h3 class="name"></h3>
+        <div class="totalAbsent"></div>
+        <div class="percentAbsent"></div>
+    </div>
+    <div id="map"></div>
+</div>
+</body>
+<script>
+
+</script>
