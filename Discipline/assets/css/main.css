@@ -4997,61 +4997,6 @@ button:hover,
 	fill: rgb(242, 167, 115);
 }
 
-/* Grouped dot plot styling */
-
-.groupedDot .axis path,
-.groupedDot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
-}
-
-.groupedDot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
-}
-
-.groupedDot .x.axis path {
-	display: none;
-}
-
-.groupedDot .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
-
-.groupedDot .y.axis,
-.groupedDot .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
-}
-
-.groupedDot .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
-
-.groupedDot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
-}
-
-.groupedDot .national-bar {
-	fill: #DDDDDE;
-	fill-opacity: 0.85;
-}
-
-.groupedDot .dot:hover {
-	opacity: .65;
-}
-
-.groupedDot .dotLine {
-	stroke: #5D42A6;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
-}
-
 /* Grouped bar chart styling */
 
 .groupedBar .axis path,
@@ -5110,10 +5055,7 @@ button:hover,
 
 /* Styling tooltips for individual graph types */
 
-.d3-tip,
-.d3-tip-bar,
-.d3-tip-col,
-.d3-tip-dot {
+.d3-tip {
 	font: 13px Inconsolata;
 	padding: 13px;
 	background: rgba(26, 28, 32, 0.85);
