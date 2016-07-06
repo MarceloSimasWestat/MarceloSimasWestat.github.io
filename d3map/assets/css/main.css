@@ -5256,19 +5256,3 @@ button:hover,
 .tick text{
     font-size: 11px;
 }
-
-rect.scaleSelect{
-    stroke: black;
-    stroke-width: 2;
-}
-
-
-div.tooltip {
-    position: absolute;
-    text-align: center;
-    width: 60px;
-    padding: 2px;
-    border: 0px;
-    border-radius: 8px;
-    pointer-events: none;
-}

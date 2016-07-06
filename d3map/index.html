@@ -186,6 +186,8 @@
             .style("fill", function (d) {
                 return d.z;
             })
+            .style("stroke","black")
+            .style("stroke-width",2)
             .style("margin", 1);
 
     scale.call(xAxis).append("text")
@@ -226,9 +228,11 @@
         if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
             key.attr("class", "key");
             item.attr("class", "");
+            item.style("stroke","black");
             updateColors();
         } else if (key.classed("scaleSelect") && !item.classed("scaleSelect")) {
-            d3.select("rect.scaleSelect").attr("class", "");
+            d3.select("rect.scaleSelect").attr("class", "").style("stroke","black");;
+            item.style("stroke","yellow");
             item.attr("class", "scaleSelect");
             svg.selectAll(".district")
                     .attr("fill", function (d) {
@@ -249,6 +253,7 @@
                     });
         } else {
             item.attr("class", "scaleSelect");
+            item.style("stroke","yellow");
             key.attr("class", "key scaleSelect");
             svg.selectAll(".district")
                     .attr("fill", function (d) {
@@ -341,7 +346,7 @@
                         tooltip.html("<h3>" + d.properties.State + "</h3>" + "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
                                         "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>")
-                                .style("left", (d3.event.pageX + 50) + "px")
+                                .style("left", (d3.event.pageX) + "px")
                                 .style("top", (d3.event.pageY - 128) + "px");
 
                     } else {
