@@ -5202,7 +5202,8 @@ button:hover,
 }
 
 #mapWrapper #legend {
-    margin: 0 auto 15px 0;
+    width: 530px;
+    margin: 0 auto 15px auto;
     font-family: Helvetica, sans-serif;
 }
 #legend b {
@@ -5305,6 +5306,7 @@ button:hover,
 .caption {
     font-weight: bold;
 }
+
 .key, .grayRect{
     cursor: pointer;
 }

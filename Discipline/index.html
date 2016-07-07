@@ -450,12 +450,12 @@
 	<script>
 
 		// D3 MAP SCALE
-		var scaleSVG = d3.select("#legend").append("svg").attr("height", 120);
+		var scaleSVG = d3.select("#legend").append("svg").attr("class","scaleSVG").attr("height", 120);
 
 		var scale = scaleSVG.append("g")
 				.attr("class", "scale")
-				.attr("class", "key")
-				.attr("transform", "translate(25,0)");
+				.attr("class", "key");
+				//.attr("transform", "translateX(25px)");
 
 		scaleSVG.append("rect")
 				.attr("height", 15)
@@ -466,11 +466,11 @@
 				.style("stroke", "black")
 				.style("stroke-width", 2)
 				.style("pointer", "cursor")
-				.attr("transform", "translate(130,60)");
+				.attr("transform", "translate(100,60)");
 		scaleSVG.append("text")
 				.text("Missing Data*")
 				.style("font-size", 12)
-				.attr("transform", "translate(120,90)");
+				.attr("transform", "translate(90,90)");
 
 		var formatNumber = d3.format(",d");
 
