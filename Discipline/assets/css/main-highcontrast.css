@@ -4899,64 +4899,6 @@ button:hover,
 	shape-rendering: crispEdges;
 }
 
-/* Two-dot dot plot styling */
-
-.dotPlot .axis path,
-.dotPlot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
-}
-
-.dotPlot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, 0.65);
-}
-
-.dotPlot .x.axis path {
-	display: none;
-}
-
-.dotPlot .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
-	stroke-dasharray: 1,1;
-}
-
-.dotPlot .y.axis {
-	font: normal 13px Karla;
-	color: #1C1E21;
-}
-
-.dotPlot .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
-
-.dotPlot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
-}
-
-.dotM {
-	fill: #A6426C;
-}
-
-.dotF {
-	fill: #42A667;
-}
-
-.dotM:hover,
-.dotF:hover {
-	opacity: .65;
-}
-
-.dotL {
-	stroke: #5D42A6;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
-}
-
 /* Scatter plot styling */
 
 .scatterPlot .axis path,
@@ -5001,6 +4943,62 @@ button:hover,
 
 .mark {
 	fill: rgb(242, 167, 115);
+}
+
+/* Grouped dot plot styling */
+
+.groupedDot .axis path,
+.groupedDot .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.groupedDot .x.axis {
+	font: 400 14px Inconsolata;
+	fill: black;
+}
+
+.groupedDot .x.axis path {
+	display: none;
+}
+
+.groupedDot .x.axis line {
+	stroke: black;
+	stroke-dasharray: 1,1;
+}
+
+.groupedDot .y.axis,
+.groupedDot .legend {
+	font: normal 14px Karla;
+	color: black;
+}
+
+.groupedDot .y.axis path {
+	stroke: black;
+	stroke-width: 1.5px;
+}
+
+.groupedDot .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: black;
+	font-weight: bold;
+}
+
+.groupedDot .national-bar {
+	fill: #DDDDDE;
+	fill-opacity: 0.85;
+}
+
+.groupedDot .dot:hover {
+    opacity: .65;
+    /*filter: brightness(75%); */
+}
+
+.groupedDot .dotLine {
+	stroke: #5D42A6;
+	stroke-width: 1px;
+	shape-rendering: crispEdges;
 }
 
 /* Grouped bar chart styling */
@@ -5057,17 +5055,29 @@ button:hover,
     filter: brightness(75%);
 }
 
-.groupedBar .Enrolled {
+.groupedBar .Elementary {
 	fill: #5D42A6;
 }
 
-.groupedBar .Suspended {
+.groupedBar .Middle {
 	fill: #A6426C;
 }
 
+.groupedBar .High {
+	fill: #C07A98;
+}
+
+.groupedBar .Other {
+	fill: #DBB3C4;
+}
+
+
 /* Styling tooltips for individual graph types */
 
-.d3-tip {
+.d3-tip-donut,
+.d3-tip-bar,
+.d3-tip-col,
+.d3-tip-dot {
 	font: 15px Inconsolata;
 	padding: 13px;
 	background: black;
@@ -5246,7 +5256,7 @@ button:hover,
 .caption {
     font-weight: bold;
 }
-.key{
+.key, .grayRect{
     cursor: pointer;
 }
 .key .domain {

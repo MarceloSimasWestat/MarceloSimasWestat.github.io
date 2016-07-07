@@ -496,7 +496,7 @@
 						x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
 						z: d
 					};
-				})).enter().append("g")
+				})).enter()
 				.append("rect")
 				.attr("height", 15)
 				.attr("x", function (d) {
@@ -517,8 +517,7 @@
 
 		scale.call(xAxis).append("text")
 				.attr("class", "caption")
-				.attr("y", -6)
-				.text("Absent per District");
+				.attr("y", -6);
 
 		scaleSVG.selectAll("rect")
 				.on("mouseover", function () {
