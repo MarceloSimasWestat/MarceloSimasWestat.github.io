@@ -50,43 +50,23 @@ $(document).ready(function(){
 });
 
 // Preloader
-if(window.addEventListener) {
-    window.addEventListener("load", function () {
 
-        var loader = document.getElementById("loader");
-        var loader_wrapper = document.getElementById("loader-wrapper");
+window.addEventListener("load", function () {
 
-        loader.style.transition = "all 0.3s ease-out";
-        loader.style.webkitTransition = "all 0.3s ease-out";
-        loader.style.opacity = 0;
+    var loader = document.getElementById("loader");
+    var loader_wrapper = document.getElementById("loader-wrapper");
 
-        loader_wrapper.style.transition = "all 1s ease-out";
-        loader_wrapper.style.webkitTransition = "all 1s ease-out";
-        loader_wrapper.style.opacity = 0;
+    loader.style.transition = "all 0.3s ease-out";
+    loader.style.webkitTransition = "all 0.3s ease-out";
+    loader.style.opacity = 0;
 
-        setTimeout(function () {
-            document.body.removeChild(loader_wrapper)
-        }, 1000);
+    loader_wrapper.style.transition = "all 1s ease-out";
+    loader_wrapper.style.webkitTransition = "all 1s ease-out";
+    loader_wrapper.style.opacity = 0;
 
-    });
-}else if (window.attachEvent){
-    window.attachEvent('onload',function(){
-        var loader = document.getElementById("loader");
-        var loader_wrapper = document.getElementById("loader-wrapper");
+    setTimeout(function () { document.body.removeChild(loader_wrapper) }, 1000);
 
-        loader.style.transition = "all 0.3s ease-out";
-        loader.style.webkitTransition = "all 0.3s ease-out";
-        loader.style.opacity = 0;
-
-        loader_wrapper.style.transition = "all 1s ease-out";
-        loader_wrapper.style.webkitTransition = "all 1s ease-out";
-        loader_wrapper.style.opacity = 0;
-
-        setTimeout(function () {
-            document.body.removeChild(loader_wrapper)
-        }, 1000);
-    });
-}
+});
 
 $(document).ready(function() {
 

@@ -682,11 +682,14 @@
                                 tooltip.style("left", (d3.event.pageX + 40) + "px");
                             }
                         }
-                        if (d.properties["Percent OOS"] != null) {
+                        if (d.properties["Percent OOS"] != null || d.properties["Total OOS"] != null) {
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                     "<h3>" + d.properties.Name + "</h3>" +
                                     "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
                                     "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
+                        }else if(d.properties.Name === "School District Not Defined"){
+                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                    "<h3>No Operating District</h3>");
 
                         } else {
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
@@ -761,11 +764,14 @@
                                     tooltip.style("left", (d3.event.pageX + 40) + "px");
                                 }
                             }
-                            if (d.properties["Percent OOS"] != null) {
+                            if (d.properties["Percent OOS"] != null || d.properties["Total OOS"] != null) {
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                         "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
                                         "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
+                            }else if(d.properties.Name === "School District Not Defined"){
+                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                                        "<h3>No Operating District</h3>");
 
                             } else {
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
