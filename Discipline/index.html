@@ -466,11 +466,14 @@
 						.duration(5000)
 						.tween("text", function() {
 						
-							var	formatNumber = d3.format(",f");	
-							var i = d3.interpolate (0, 2500000);
-							counterValue = 2500000;	
-							
-							return function(t) { d3.select(this).text(formatNumber(i(t))); };
+							if (counterValue == 0) { 
+						
+								var	formatNumber = d3.format(",f");	
+								var i = d3.interpolate (0, 2500000);
+								counterValue = 2500000;	
+								
+								return function(t) { d3.select(this).text(formatNumber(i(t))); };
+							}
 							
 						});
 
