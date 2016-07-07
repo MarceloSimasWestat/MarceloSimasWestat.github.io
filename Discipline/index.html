@@ -460,6 +460,7 @@
 		scaleSVG.append("rect")
 				.attr("height", 15)
 				.attr("width", 50)
+                .attr("class","grayRect")
 				.style("fill", "gray")
 				.attr("data-metric", "gray")
 				.style("stroke", "black")
@@ -653,6 +654,7 @@
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
                     .enter().append("path")
+                    .attr("id","elementaryDistrict")
                     .attr("class", "district")
                     .attr("d", path)
                     .attr("stroke", "#fff")
@@ -849,8 +851,8 @@
 						x = (x - center[0]) * factor + center[0];
 						y = (y - center[1]) * factor + center[1];
 
-						// Transition to the new view over 350ms
-						d3.transition().duration(250).tween("zoom", function () {
+						// Transition to the new view over 200ms
+						d3.transition().duration(200).tween("zoom", function () {
 							var interpolate_scale = d3.interpolate(scale, target_scale),
 									interpolate_trans = d3.interpolate(translate, [x, y]);
 							return function (t) {
