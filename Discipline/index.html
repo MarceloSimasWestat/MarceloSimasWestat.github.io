@@ -463,17 +463,27 @@
 						.duration(5000)
 						.tween("text", function() {
 						
-							if (counterValue == 0) { 
+							if (counterValue != 2600000) { 
 						
 								var	formatNumber = d3.format(",f");	
 								var i = d3.interpolate (0, 2600000);
-								counterValue = 2600000;	
+
 								
 								return function(t) { d3.select(this).text(formatNumber(i(t))); };
 							}
 							
 						});
 
+				d3.select("#counter > h2")
+					.selectAll("text")
+					.transition()
+						.delay(5000)
+						.tween("text", function() {
+						
+							counterValue = 2600000;
+						
+						});
+				
 			}});
 
     </script>
