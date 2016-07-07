@@ -2505,7 +2505,7 @@ function groupedBarDiv() {
 				.attr("width", 0);*/
 
 			svg.selectAll(".bar")
-				.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
+				.attr("x", xScale(0))
 				.attr("width", 0);
 
 			var gsResize = graphScroll()
@@ -2524,6 +2524,7 @@ function groupedBarDiv() {
 							.transition()
 								.delay(animateTime / 2)
 								.duration(animateTime)
+								.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
 								.attr("width", function(d) { return Math.abs(xScale(d.diff_ppt) - xScale(0)); })
 								.attr("height", barWidth);
 
