@@ -611,7 +611,7 @@
 				.projection(projection);
 
 		var zoom = d3.behavior.zoom()
-				.scaleExtent([1, 8])
+				.scaleExtent([1, 32])
 				.on("zoom", move);
 
 		var svg = d3.select("#map").append("svg")
@@ -659,8 +659,7 @@
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
                         d3.select(this).attr("stroke", "#1A1C20")
-                                .attr("stroke-opacity", 1)
-                                .attr("stroke-width", .5);
+                                .attr("stroke-opacity", 1);
                         d3.select(this).classed("selected", true);
 
                         tooltip.transition().duration(100)
@@ -700,8 +699,7 @@
                     })
                     .on("mouseout", function () {
                         d3.select(this).attr("stroke", "#fff")
-                                .attr("stroke-opacity", .15)
-                                .attr("stroke-width", .2);
+                                .attr("stroke-opacity", .15);
                         d3.select(this).classed("selected", false);
                         tooltip.transition().duration(300).style("opacity", 0);
                     });
@@ -740,8 +738,7 @@
                         .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
                             d3.select(this).attr("stroke", "#1A1C20")
-                                    .attr("stroke-opacity", 1)
-                                    .attr("stroke-width", .5);
+                                    .attr("stroke-opacity", 1);
                             d3.select(this).classed("selected", true);
 
                             tooltip.transition().duration(100)
@@ -782,8 +779,7 @@
                         })
                         .on("mouseout", function () {
                             d3.select(this).attr("stroke", "#fff")
-                                    .attr("stroke-opacity", .15)
-                                    .attr("stroke-width", .2);
+                                    .attr("stroke-opacity", .15);
                             d3.select(this).classed("selected", false);
                             tooltip.transition().duration(300).style("opacity", 0);
                         });
@@ -836,13 +832,12 @@
 					.on("click", function () {
 						d3.event.preventDefault();
 
-						var scale = zoom.scale(),
-								extent = zoom.scaleExtent(),
-								translate = zoom.translate(),
-								x = translate[0], y = translate[1],
-								factor = (this.id === 'zoom_in') ? 2 : 1 / 2,
-								target_scale = scale * factor;
-
+                        var scale = zoom.scale();
+                        var extent = zoom.scaleExtent();
+                        var translate = zoom.translate();
+                        var x = translate[0], y = translate[1];
+                        var factor = (this.id === 'zoom_in') ? 2 : 1 / 2;
+                        var target_scale = scale * factor;
 						var clamped_target_scale = Math.max(extent[0], Math.min(extent[1], target_scale));
 						if (clamped_target_scale != target_scale) {
 							target_scale = clamped_target_scale;
@@ -854,7 +849,7 @@
 						y = (y - center[1]) * factor + center[1];
 
 						// Transition to the new view over 350ms
-						d3.transition().duration(350).tween("zoom", function () {
+						d3.transition().duration(250).tween("zoom", function () {
 							var interpolate_scale = d3.interpolate(scale, target_scale),
 									interpolate_trans = d3.interpolate(translate, [x, y]);
 							return function (t) {
