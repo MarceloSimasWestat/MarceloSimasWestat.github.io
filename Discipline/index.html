@@ -154,23 +154,22 @@
             </div>
         </section>
 
-        <section id="intro_chart" class="wrapper chart">
-            <div id="intro_sections" class="inner">
-                <div class="align-center">
-                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
-                </div>
-                <div style="margin-bottom: 1.5em" class="chart"></div>
-                <div></div>
-                <div id="ch1_1">
-                </div>
-                <p style="margin-top: 1.5em;">
-					Sed ultricies pulvinar rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a rhoncus risus.
-                </p>
-                <p style="margin-bottom: 3.5em;">
-                    Nam tincidunt, nisi id blandit commodo, neque leo bibendum nunc, a finibus lorem nunc at enim. Maecenas iaculis tellus turpis, non condimentum neque pulvinar ac.
-                </p>
-                <div></div>
-            </div>
+        <section id="intro_chart" class="wrapper image1">
+            <div id = "intro_sections" class="inner">
+				<div></div>
+                <div id="counter" class="6u$ 12u$(medium)">
+					<h2 style="line-height: 2em;">
+						OVER</br>
+					</h2>
+					<p style="margin-top:1.5em; line-height: 1.75em;">
+						K-12 students received at least one out-of-school suspension in 2013-14.
+					</p>
+					<p style="margin-top:1.5em; line-height: 1.75em;">
+						That count is <b>20% lower</b> than in 2011-12.
+					</p>
+				</div>
+				<div></div>
+			</div>
         </section>
 		
         <!-- One -->
@@ -442,6 +441,41 @@
 
             };
         });
+		
+		// counter
+		
+		var counterValue = 0;
+		
+		d3.select("#counter > h2")
+			.append("text")
+				.text(counterValue);
+		
+		var gs = graphScroll()
+			.container(d3.select("#intro_chart"))
+			.graph(d3.selectAll("#counter"))
+			.sections(d3.selectAll("#intro_sections > div"))
+			.on("active", function() {
+				if ((document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active") || (document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active graph-scroll-fixed")) {
+				
+				d3.select("#counter > h2")
+					.selectAll("text")
+					.transition()
+						.duration(5000)
+						.tween("text", function() {
+						
+							var	formatNumber = d3.format(",f");	
+						
+							if (counterValue == 2500000) { return formatNumber(counterValue); }
+							else {
+								
+								counterValue = 2500000;								
+								var i = d3.interpolate (0, counterValue);
+							
+								return function(t) { d3.select(this).text(formatNumber(i(t))); };
+							}
+						});
+
+			}});
 
     </script>
 
