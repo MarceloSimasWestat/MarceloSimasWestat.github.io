@@ -455,7 +455,7 @@
 			.graph(d3.selectAll("#counter"))
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
-				if ((document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active") || (document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active graph-scroll-fixed")) {
+				if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
 				
 				d3.select("#counter > h2")
 					.selectAll("text")
@@ -464,15 +464,11 @@
 						.tween("text", function() {
 						
 							var	formatNumber = d3.format(",f");	
-						
-							if (counterValue == 2500000) { return formatNumber(counterValue); }
-							else {
-								
-								counterValue = 2500000;								
-								var i = d3.interpolate (0, counterValue);
+							var i = d3.interpolate (0, 2500000);
+							counterValue = 2500000;	
 							
-								return function(t) { d3.select(this).text(formatNumber(i(t))); };
-							}
+							return function(t) { d3.select(this).text(formatNumber(i(t))); };
+							
 						});
 
 			}});
