@@ -70,7 +70,7 @@ if(window.addEventListener) {
 
     });
 }else if (window.attachEvent){
-    window.attachEvent('on'+load,function(){
+    window.attachEvent('onload',function(){
         var loader = document.getElementById("loader");
         var loader_wrapper = document.getElementById("loader-wrapper");
 
