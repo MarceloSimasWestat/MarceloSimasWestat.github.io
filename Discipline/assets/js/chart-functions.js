@@ -1,4 +1,4 @@
-// Reusable bar chart function
+// Bar chart function
 
 function barChart() {
 
@@ -117,7 +117,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% RECEIVING ONE OR MORE OUT-OF-SCHOOL SUSPENSIONS IN 2013-14")
+			.text("% SUSPENDED IN 2013-14")
 
 		// draw bars
 
@@ -324,354 +324,9 @@ function barChart() {
 
 };
 
-// Reusable bar chart function
+// Column chart with three tabs function
 
-function colChart() {
-
-	// Options accessible to the caller
-	// These are the default values
-
-	var	width = [],
-		height = 500,
-		marginTop = 60,
-		marginLeft = 20,
-		marginBottom = 25,
-		animateTime = 1000,
-		colWidth = 15,
-		title = "Generic chart title. Update me using .title()!",
-		altText = "Fill in alt text for screen readers!",
-		containerID = [],
-		subcontainerID = [],
-		chartID = [],
-		sectionID = [],
-		data = [];
-
-	function chart(selection) {
-		selection.each(function() {
-
-		// formats
-
-		var	formatNumber = d3.format(",f"),
-			formatPercent = d3.format(",.1%");
-
-		// margins; adjust width and height to account for margins
-
-		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-
-		var margin = {right: 20},
-			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - marginTop - marginBottom;
-
-		// chart title
-
-		d3.select(this).append("div")
-			.attr("class", "title")
-			.text(title);
-
-		// selections
-
-		var dom = d3.select(this)
-			.append("div")
-			.attr("id", chartID)
-				/*.style({
-					"max-width": width + "px",
-					"margin": "0 auto"
-				})
-				.append("div")
-					.style({
-						"width": "100%",
-						"max-width": width + "px",
-						"height": 0,
-						"padding-top": (100*(height/width)) + "%",
-						"position": "relative",
-						"margin": "0 auto"
-					});*/
-
-		var svg = dom.append("svg")
-			.attr("class", "col-chart")
-			/*.attr("viewBox", "0 0 " + width + " " + height)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style({
-				"max-width": width,
-				"position": "absolute",
-				"top": 0,
-				"left": 0,
-				"width": "100%",
-				"height": "100%"
-			})*/
-			.attr("width", width)
-			.attr("height", height)
-			.append("g")
-				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
-
-		svg.append("aria-label")
-			.text(altText);
-
-		// tooltips using d3-tip
-
-		var tipCol = d3.tip()
-			.attr("class", "d3-tip-col")
-			.offset([-10, 0])
-			.html(function(d) {
-
-			return formatPercent(d.var3) + " (" + formatNumber(d.var2) + " students)";
-
-
-		});
-
-		svg.call(tipCol);
-
-		// axis scales
-
-		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5),
-			yScale = d3.scale.linear().range([heightAdj, 0]);
-
-		// domains
-
-		xScale.domain(data.map(function(d, i) { return d.var1; }));
-		yScale.domain([0, 0.5]);
-
-		// axes
-
-		function formatValueAxis(d) {
-
-			var TickValue = formatNumber(d * 100);
-
-			return TickValue;
-
-		};
-
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
-
-		// draw y-axis under columns
-
-		svg.append("g")
-			.attr("class", "y axis")
-			.attr("aria-hidden", "true")
-			.call(yAxis)
-			.selectAll("text")
-
-		svg.append("text")
-			.attr("class", "y axis")
-			.attr("x", -15)
-			.attr("y", "-2.1em")
-			.attr("aria-hidden", "true")
-			.attr("text-anchor", "start")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
-
-		// draw columns
-
-		var cols = svg.selectAll("rect.column")
-			.data(data);
-
-		cols.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)")
-				.append("rect")
-					.attr("class","column")
-					.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
-					.attr("width", colWidth)
-					.attr("y", heightAdj)
-					.attr("height", 0)
-					.on("mouseover", tipCol.show)
-					.on("mouseout", tipCol.hide)
-					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
-
-		var gs = graphScroll()
-			.container(d3.select("#" + containerID))
-			.graph(d3.selectAll("#" + chartID))
-			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-
-					svg.selectAll("rect.column")
-						.transition()
-							.duration(animateTime)
-							.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-							.attr("y", function(d) { return yScale(d.var3); });
-
-			}});
-
-		// draw x-axis above columns
-
-		svg.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + heightAdj + ")")
-			.attr("aria-hidden", "true")
-			.call(xAxis)
-			.selectAll(".tick text")
-				.call(wrap, xScale.rangeBand());
-
-		// resize
-
-		window.addEventListener("resize", function() {
-
-			// update width
-
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-			widthAdj = width - marginLeft - margin.right;
-
-			// resize chart
-
-			xScale.rangeRoundBands([0, widthAdj], .5);
-			yAxis.tickSize(-1 * widthAdj);
-
-			dom.selectAll(".col-chart")
-				.attr("width", width);
-
-			dom.select(".x.axis")
-				.call(xAxis);
-
-			dom.select(".y.axis")
-				.call(yAxis);
-
-			dom.selectAll("rect.column")
-				.attr("x", function(d, i) { return xScale(d.var1) + (xScale.rangeBand() / 2) - (colWidth / 2); })
-				.attr("height", 0)
-				.attr("y", heightAdj);
-
-			var gs2 = graphScroll()
-				.container(d3.select("#" + containerID))
-				.graph(d3.selectAll("#" + chartID))
-				.sections(d3.selectAll("#" + subcontainerID + " > div"))
-				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
-
-						svg.selectAll("rect.column")
-							.transition()
-								.duration(animateTime)
-								.attr("height", function(d) { return heightAdj - yScale(d.var3); })
-								.attr("y", function(d) { return yScale(d.var3); });
-
-				}});
-
-		});
-
-		});
-
-	};
-
-    /* chart.width = function(value) {
-
-        if (!arguments.length) return width;
-        width = value;
-        return chart;
-
-    }; */
-
-    chart.height = function(value) {
-
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
-
-    };
-
-	chart.marginTop = function(value) {
-
-		if (!arguments.length) return marginTop;
-		marginTop = value;
-		return chart;
-
-	};
-
-	chart.marginLeft = function(value) {
-
-		if (!arguments.length) return marginLeft;
-		marginLeft = value;
-		return chart;
-
-	};
-
-	chart.marginBottom = function(value) {
-
-		if (!arguments.length) return marginBottom;
-		marginBottom = value;
-		return chart;
-
-	};
-
-	chart.animateTime = function(value) {
-
-		if (!arguments.length) return animateTime;
-		animateTime = value;
-		return chart;
-
-	};
-
-	chart.colWidth = function(value) {
-
-		if (!arguments.length) return colWidth;
-		colWidth = value;
-		return chart;
-
-	};
-
-	chart.title = function(value) {
-
-		if (!arguments.length) return title;
-		title = value;
-		return chart;
-
-	};
-
-	chart.altText = function(value) {
-
-		if (!arguments.length) return altText;
-		altText = value;
-		return chart;
-
-	};
-
-	chart.containerID = function(value) {
-
-		if (!arguments.length) return containerID;
-		containerID = value;
-		return chart;
-
-	};
-
-	chart.chartID = function(value) {
-
-		if (!arguments.length) return chartID;
-		chartID = value;
-		return chart;
-
-	};
-
-	chart.subcontainerID = function(value) {
-
-		if (!arguments.length) return subcontainerID;
-		subcontainerID = value;
-		return chart;
-
-	};
-
-	chart.sectionID = function(value) {
-
-		if (!arguments.length) return sectionID;
-		sectionID = value;
-		return chart;
-
-	};
-
-    chart.data = function(value) {
-
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
-
-    };
-
-	return chart;
-
-};
-
-// Grouped column chart function 
-
-function groupedCol() {
+function columnThree() {
 
 	// Options accessible to the caller
 	// These are the default values
@@ -876,7 +531,7 @@ function groupedCol() {
 			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
 			.attr("aria-hidden", "true")
-			.text("% RECEIVING ONE OR MORE OUT-OF-SCHOOL SUSPENSIONS IN 2013-14");
+			.text("% SUSPENDED IN 2013-14");
 
 		// draw columns
 
@@ -1267,7 +922,7 @@ function groupedCol() {
 
 };
 
-// Reusable dot plot with two dots function
+// Dot plot (two dots) function
 
 function dotTwo() {
 
@@ -1316,32 +971,9 @@ function dotTwo() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID);
-			/*	.style({
-					"max-width": width + "px",
-					"margin": "0 auto"
-				})
-				.append("div")
-					.style({
-						"width": "100%",
-						"max-width": width + "px",
-						"height": 0,
-						"padding-top": (100*(height/width)) + "%",
-						"position": "relative",
-						"margin": "0 auto"
-					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
-			/*.attr("viewBox", "0 0 " + width + " " + height)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style({
-				"max-width": width,
-				"position": "absolute",
-				"top": 0,
-				"left": 0,
-				"width": "100%",
-				"height": "100%"
-			})*/
 			.attr("width", width)
 			.attr("height", height)
 			.append("g")
@@ -1436,7 +1068,7 @@ function dotTwo() {
 			.attr("dy", "3.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
-			.text("% RECEIVING ONE OR MORE OUT-OF-SCHOOL SUSPENSIONS IN 2013-14");
+			.text("% SUSPENDED IN 2013-14");
 
 		// draw dots and lines
 
@@ -1470,6 +1102,16 @@ function dotTwo() {
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.male_p) + " of male " + d.group + " students, or " + formatNumber(d.male_n) + " students, received one or more out-of-school suspensions."; });
 
+		dotsMale.append("text")
+			.attr("x", function(d) { return xScale(d.male_p); })
+			.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+			.attr("dy", (-2.5 * dotSize))
+			.attr("text-anchor", "middle")
+			.attr("class", "labelM")
+			.attr("aria-hidden", "true")
+			.style("opacity", 0)
+			.text("Male");
+								
 		var dotsFemale = svg.selectAll("circle.dotF")
 			.data(data);
 
@@ -1486,7 +1128,17 @@ function dotTwo() {
 					.on("mouseout", tipFemale.hide)
 					.append("aria-label")
 						.text(function(d) { return "In 2013-14, " + formatPercent(d.female_p) + " of male " + d.group + " students, or " + formatNumber(d.female_n) + " students, received one or more out-of-school suspensions."; });						
-						
+	
+		dotsFemale.append("text")
+			.attr("x", function(d) { return xScale(d.female_p); })
+			.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+			.attr("dy", (-2.5 * dotSize))
+			.attr("text-anchor", "middle")
+			.attr("aria-hidden", "true")
+			.attr("class", "labelF")
+			.style("opacity", 0)
+			.text("Female");	
+	
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
@@ -1518,6 +1170,15 @@ function dotTwo() {
 										.attr("r", dotSize);
 							});
 
+					svg.selectAll("text.labelM")
+						.transition()
+							.duration(animateTime)
+							.delay(animateTime)
+							.style("opacity", function(d) { 
+								if (d.group == "Overall") { return 1; }
+								else { return 0; }
+							});
+							
 					svg.selectAll("circle.dotF")
 						.transition()
 							.duration(animateTime)
@@ -1528,6 +1189,15 @@ function dotTwo() {
 										.duration(animateTime)
 										.attr("r", dotSize);
 							});							
+
+					svg.selectAll("text.labelF")
+						.transition()
+							.duration(animateTime)
+							.delay(animateTime)
+							.style("opacity", function(d) { 
+								if (d.group == "Overall") { return 1; }
+								else { return 0; }
+							});
 							
 			}});
 
@@ -1588,10 +1258,18 @@ function dotTwo() {
 				.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 				.attr("cx", 0);
 				
+			svg.selectAll("text.labelM")
+				.attr("x", function(d) { return xScale(d.male_p); })
+				.style("opacity", 0);
+				
 			svg.selectAll("circle.dotF")
 				.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 				.attr("cx", 0);
-						
+
+			svg.selectAll("text.labelF")
+				.attr("x", function(d) { return xScale(d.female_p); })
+				.style("opacity", 0);
+				
 			var gsResize = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
@@ -1623,6 +1301,15 @@ function dotTwo() {
 											.attr("r", dotSize);
 								});
 
+						svg.selectAll("text.labelM")
+						.transition()
+							.duration(animateTime)
+							.delay(animateTime)
+							.style("opacity", function(d) { 
+								if (d.group == "Overall") { return 1; }
+								else { return 0; }
+							});					
+								
 						svg.selectAll("circle.dotF")
 							.transition()
 								.duration(animateTime)
@@ -1632,7 +1319,17 @@ function dotTwo() {
 										.transition()
 											.duration(animateTime)
 											.attr("r", dotSize);
-								});		
+								});	
+
+					svg.selectAll("text.labelF")
+						.transition()
+							.duration(animateTime)
+							.delay(animateTime)
+							.style("opacity", function(d) { 
+								if (d.group == "Overall") { return 1; }
+								else { return 0; }
+							});
+								
 				}});
 			});
 
@@ -1910,34 +1607,9 @@ function groupedBar() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID);
-			/*	.style({
-					"max-width": width + "px",
-					"margin": "0 auto"
-				})
-				.append("div")
-					.style({
-						"width": "100%",
-						"max-width": width + "px",
-						"height": 0,
-						"max-height": height + "px",
-						"padding-top": (100*(height/width)) + "%",
-						"position": "relative",
-						"margin": "0 auto"
-					});*/
 
 		var svg = dom.append("svg")
 			.attr("class", "groupedBar")
-			/*.attr("viewBox", "0 0 " + width + " " + height)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style({
-				"max-width": width,
-				"max-height": height,
-				"position": "absolute",
-				"top": 0,
-				"left": 0,
-				"width": "100%",
-				"height": "100%"
-			})*/
 			.attr("width", width)
 			.attr("height", height)
 			.append("g")
@@ -1953,9 +1625,7 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-		return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
-
-
+				return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
 		});
 
 		svg.call(tipBar);
@@ -2019,7 +1689,7 @@ function groupedBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% RECEIVING ONE OR MORE OUT-OF-SCHOOL SUSPENSIONS IN 2013-14");
+			.text("% OF ENROLLED/SUSPENDED IN 2013-14");
 
 		// draw national bars
 
@@ -2072,7 +1742,10 @@ function groupedBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.overall_p) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.overall_n) + " students, received one or more out-of-school suspensions."; });
+					.text(function(d) { 
+						if (d.level == "Enrolled") { return "In 2013-14, " + d.group + " students comprised " + formatPercent(d.overall_p) + " of the total students enrolled in pre-school."; }
+						else if (d.level == "Suspended") { return "In 2013-14, " + d.group + " students comprised " + formatPercent(d.overall_p) + " of the total pre-school students receiving one or more out-of-school suspensions."; }
+					});
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -2282,7 +1955,10 @@ function groupedBar() {
 
 			updateGroups.selectAll("rect.bar")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.overall_p) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.overall_n) + " students, were chronically absent."; });
+					.text(function(d) { 
+						if (d.level == "Enrolled") { return "In 2013-14, " + d.group + " students comprised " + formatPercent(d.overall_p) + " of the total students enrolled in pre-school."; }
+						else if (d.level == "Suspended") { return "In 2013-14, " + d.group + " students comprised " + formatPercent(d.overall_p) + " of the total pre-school students receiving one or more out-of-school suspensions."; }
+					});
 
 			updateBars.exit()
 				.transition()
@@ -2530,6 +2206,449 @@ function groupedBar() {
         if (!arguments.length) return data;
         data = value;
         if (typeof updateData === 'function') updateData();
+        return chart;
+
+    };
+
+	return chart;
+
+};
+
+// Grouped bar (diverging)
+
+function groupedBarDiv() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 650,
+		marginTop = 20,
+		marginLeft = 100,
+		marginBottom = 45,
+		animateTime = 1000,
+		barWidth = 15,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers! Use .altText().",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+		
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatNumberD = d3.format(",.1f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("id", "title" + chartID)
+			.html("<span class = 'title'>" + title + "</span>");
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+			var svg = dom.append("svg")
+			.attr("class", "groupedBarDiv")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipBar = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {
+				return d.group + ", " + d.level + "</br>" + formatNumberD(d.diff_ppt) + " percentage points";
+			});
+
+		svg.call(tipBar);
+
+		// axis scales
+
+		var xScale = d3.scale.linear().range([0, widthAdj - 100]),
+			yScale0 = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15),
+			yScale1 = d3.scale.ordinal();
+
+		// domains
+
+		data_nest = d3.nest()
+			.key(function(d) { return d.group; })
+			.entries(data);
+
+		data_levels = d3.nest()
+			.key(function(d) { return d.level; })
+			.entries(data);
+		
+		var levels = ["Female","Male"];
+
+		var maxPos = d3.max(data, function(d) { return d.diff_ppt; });
+		var maxNeg = d3.min(data, function(d) { return d.diff_ppt; });
+		var maxValue;		
+		
+		function maxVal() {		
+			if ((-1 * maxNeg) > maxPos) { maxValue = (-1 * maxNeg); }
+			else { maxValue = maxPos; }
+		};
+		
+		maxVal();		
+		
+		function xDomain() { 
+			if (window.innerWidth <= 736) { 
+			
+				xScale.domain([-1 * maxValue, maxValue]).nice()
+				
+			}
+			else { xScale.domain([-25, 25]); }
+		};
+		xDomain();
+		yScale0.domain(data_nest.map(function(d) { return d.key; }));
+		yScale1.domain(levels).rangeRoundBands([0, yScale0.rangeBand()], 0.15);
+
+		// axes
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(-1 * heightAdj).ticks(Math.max((widthAdj - 100)/100, 2)),
+			yAxis = d3.svg.axis().scale(yScale0).orient("left").outerTickSize(0);
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj - 100)
+			.attr("dx", ".5em")
+			.attr("y", heightAdj)
+			.attr("dy", "3.1em")
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.text("DIFFERENCE IN % OF SUSPENDED AND ENROLLED IN 2013-14");
+
+		// draw national bars
+
+	/*	data_national = dataFiltered.filter(function(d) { return d.level == "Overall"; });
+
+		var nationalBar = svg.selectAll(".national-bar")
+			.data(data_national);
+
+		nationalBar.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("rect")
+					.attr("class", function(d) { return "national-bar " + d.level; })
+					.attr("x", 0)
+					.attr("width", 0)
+					.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
+					.attr("height", ((1.25 * levels.length) * barWidth))
+					.on("mouseover", tipBar.show)
+					.on("mouseout", tipBar.hide)
+					.append("aria-label")
+						.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; }); */
+
+		// draw level bars
+
+		data_nest_noavg = d3.nest()
+			.key(function(d) { return d.group; })
+			.entries(data);
+			
+		var group = svg.selectAll(".group")
+			.data(data_nest_noavg, function(d) { return d.key; });
+
+		group.enter()
+			.append("g")
+				.attr("class", "group")
+				.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
+
+		var levelBars = group.selectAll("rect.bar")
+			.data(function(d) { return d.values; });
+
+		levelBars.enter()
+			.append("rect")
+				.attr("class", function(d) { return "bar " + d.level; })
+				.attr("x", xScale(0)/*function(d) { return xScale(Math.min(0, d.diff_ppt)); }*/)
+				.attr("width", 0)
+				.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
+				.attr("height", 0)
+				//.style("fill", function(d) { return color(d.level); }) 
+				.on("mouseover", tipBar.show)
+				.on("mouseout", tipBar.hide)
+				.append("aria-label")
+					.text(function(d) { return "In 2013-14, the difference in the percentage of preschool students who received one or more out-of-school suspensions and percentage of total preschool enrollment for " + d.group + " " + d.level + " students was " + d.diff_ppt + " percentage points."; });
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+					/*svg.selectAll(".national-bar")
+						.transition()
+							.duration(animateTime)
+							.attr("width", function(d) { return xScale(d.overall_p); });*/
+
+					svg.selectAll(".bar")
+						.transition()
+							.delay(animateTime / 2)
+							.duration(animateTime)
+							.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
+							.attr("width", function(d) { return Math.abs(xScale(d.diff_ppt) - xScale(0)); })
+							.attr("height", barWidth);
+
+			}});
+
+		// draw y-axis above bars
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.style("opacity", 0)
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+			.transition()
+				.duration(animateTime)
+				.style("opacity", 1);
+
+		// add 0 line above bars
+		
+		svg.append("line")
+			.attr("class", "zeroLine")
+			.attr("x1", xScale(0))
+			.attr("x2", xScale(0))
+			.attr("y1", 0)
+			.attr("y2", heightAdj);
+				
+		// legend
+
+		var legend = svg.selectAll(".legend")
+			.data(levels)
+			.enter()
+			.append("g")
+				.attr("class", "legend")
+				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		legend.append("circle")
+			.attr("class", function(d) { return d; })
+			.attr("cx", widthAdj - 77)
+			.attr("cy", 9)
+			.attr("r", 6.5);
+			//.style("fill", color);
+
+		legend.append("text")
+			.attr("x", widthAdj - 65)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.attr("aria-hidden", "true")
+			.style("text-anchor", "start")
+			.text(function(d) { return d; });
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.range([0, widthAdj - 100]);
+			maxVal();
+			xDomain();
+			xAxis.ticks(Math.max((widthAdj - 100)/100, 2))
+
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+
+			dom.selectAll(".groupedBarDiv")
+				.attr("width", width);
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.select("text.x.axis")
+				.attr("x", widthAdj - 100)
+				.attr("dx", "0.5em");
+
+			svg.select("line.zeroLine")
+				.attr("x1", xScale(0))
+				.attr("x2", xScale(0));
+				
+			/*dom.selectAll(".national-bar")
+				.attr("width", 0);*/
+
+			svg.selectAll(".bar")
+				.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
+				.attr("width", 0);
+
+			var gsResize = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+						/*svg.selectAll(".national-bar")
+							.transition()
+								.duration(animateTime)
+								.attr("width", function(d) { return xScale(d.pct); }); */
+
+						svg.selectAll(".bar")
+							.transition()
+								.delay(animateTime / 2)
+								.duration(animateTime)
+								.attr("width", function(d) { return Math.abs(xScale(d.diff_ppt) - xScale(0)); })
+								.attr("height", barWidth);
+
+				}});
+
+			legend.selectAll("circle")
+				.attr("cx", widthAdj - 77);
+
+			legend.selectAll("text")
+				.attr("x", widthAdj - 65);
+
+		});
+
+		});
+
+	};
+
+ /*   chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+    chart.height = function(value) {
+
+        if (!arguments.length) return height;
+        height = value;
+        return chart;
+
+    };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.barWidth = function(value) {
+
+		if (!arguments.length) return barWidth;
+		barWidth = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+    chart.data = function(value) {
+
+        if (!arguments.length) return data;
+        data = value;
         return chart;
 
     };

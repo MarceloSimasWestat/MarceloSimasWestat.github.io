@@ -419,6 +419,7 @@
                     d.male_p = +d.male_p;
                     d.female_n = +d.female_n;
                     d.female_p = +d.female_p;
+					d.diff_ppt = +d.diff_ppt;
                 });
 
 				data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
@@ -428,10 +429,10 @@
 				data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 
 				var chart2_1 = barChart().marginLeft(150).data(data2_1).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
-				var chart2_2 = groupedCol().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2");
+				var chart2_2 = columnThree().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2");
                 var chart2_3 = dotTwo().marginLeft(150).data(data2_3).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3");
 				var chart3_1 = groupedBar().data(data3_1).marginLeft(150).animateTime(750).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1");
-                var chart3_2 = dotTwo().marginLeft(150).data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2");				
+                var chart3_2 = groupedBarDiv().marginLeft(150).data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2");
 
 				d3.select("#ch2_1").call(chart2_1);
 				d3.select("#ch2_2").call(chart2_2);

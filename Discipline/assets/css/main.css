@@ -4940,6 +4940,16 @@ button:hover,
 	fill: #42A667;
 }
 
+.labelM {
+	font: 400 13px Inconsolata;
+	fill: #A6426C;
+}
+
+.labelF {
+	font: 400 13px Inconsolata;
+	fill: #42A667;
+}
+
 .dotM:hover,
 .dotF:hover {
 	opacity: .65;
@@ -5042,7 +5052,7 @@ button:hover,
 } */
 
 .groupedBar .bar:hover {
-	fill-opacity: 0.65;
+	fill-opacity: 0.75;
 }
 
 .groupedBar .Enrolled {
@@ -5051,6 +5061,67 @@ button:hover,
 
 .groupedBar .Suspended {
 	fill: #C07A98;
+}
+
+/* Grouped bar chart (diverging) styling */
+
+.groupedBarDiv .axis path,
+.groupedBarDiv .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.groupedBarDiv .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
+.groupedBarDiv .x.axis path {
+	display: none;
+}
+
+.groupedBarDiv .x.axis line {
+	stroke: rgba(26, 28, 32, 0.25);
+	stroke-dasharray: 1,1;
+}
+
+.groupedBarDiv .y.axis,
+.groupedBarDiv .legend {
+	font: normal 13px Karla;
+	color: #1C1E21;
+}
+
+.groupedBarDiv .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.groupedBarDiv .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+	font-weight: bold;
+}
+
+/* .groupedBarDiv .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.groupedBarDiv .bar:hover {
+	fill-opacity: 0.75;
+}
+
+.groupedBarDiv .Female {
+	fill: #DBB3C4;
+}
+
+.groupedBarDiv .Male {
+	fill: #C07A98;
+}
+
+.zeroLine {
+	stroke-width: 1px;
+	stroke: #000;
 }
 
 /* Styling tooltips for individual graph types */
