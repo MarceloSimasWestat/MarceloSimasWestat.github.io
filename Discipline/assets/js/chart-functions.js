@@ -1,3 +1,290 @@
+// Donut chart function
+
+function donutChart() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 650,
+		marginTop = 20,
+		marginBottom = 45,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers! Use .altText().",
+		caption = "Fill in caption using .caption()."
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		var width = parseInt(d3.select("#" + sectionID).style("width"), 10) / 2;
+		
+		var margin = {left: 20, right: 20},
+			widthAdj = width - margin.left - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID)
+			.attr("width", width/2)
+			.style("text-align", "center");
+
+		var svg = dom.append("svg")
+			.attr("class", "donut")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + width / 2 + "," + (marginTop + heightAdj) / 2 + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDonut = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {
+
+			return d.data.group + "<br/>" + formatPercent(d.data.overall_p) + " (" + formatNumber(d.data.overall_n) + " students)";
+
+		});
+
+		svg.call(tipDonut);
+
+		// define arcs
+		
+		var currAngle;
+		
+		var radius = Math.min(width, height) / 2;
+		
+		var arc = d3.svg.arc()
+			.outerRadius(radius - 10)
+			.innerRadius(radius - 70)
+			.startAngle(function(d) { 
+				currAngle = d.startAngle + Math.PI/3;
+				return currAngle;
+			})
+			.endAngle(function(d) { return d.endAngle + Math.PI/3; });		
+		
+		var pie = d3.layout.pie()
+			.sort(null)
+			.value(function(d) { return d.overall_p; });
+			
+		// draw arcs
+		
+		var arc_g = svg.selectAll(".arc")
+			.data(pie(data))
+			.enter()
+				.append("g")
+					.attr("class", function(d, i) { return "arc segment" + i; });
+					
+		arc_g.append("path")
+			.on("mouseover", tipDonut.show)
+			.on("mouseout", tipDonut.hide);
+		
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+					arc_g.selectAll("path")
+						.transition()
+							.duration(animateTime)
+							.delay(function(d, i) { return i * animateTime; })
+							.attrTween("d", function(d) {
+								
+								var i = d3.interpolate(d.startAngle, d.endAngle)
+								
+								return function(t) { 
+								
+									currAngle = i(t);
+									d.endAngle = i(t);
+									return arc(d); 
+									
+								}
+								
+							});
+
+			}});
+			
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - margin.left - margin.right;
+
+			// resize chart
+
+			dom.attr("width", width/2);
+			
+			dom.selectAll(".donut")
+				.attr("width", width);
+				
+			svg.attr("transform", "translate(" + width / 2 + "," + (marginTop + heightAdj) / 2 + ")");
+
+			var radius = Math.min(width, height) / 2;
+			
+			var arc = d3.svg.arc()
+				.outerRadius(radius - 10)
+				.innerRadius(radius - 70)
+				.startAngle(function(d) { return d.startAngle + Math.PI/3; })
+				.endAngle(function(d) { return d.endAngle + Math.PI/3; });
+								
+			var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+						arc_g.selectAll("path")
+							.transition()
+								.duration(animateTime)
+								.delay(function(d, i) { return i * animateTime; })
+								.attrTween("d", function(d) {
+									
+									var i = d3.interpolate(d.startAngle, d.endAngle);
+									
+									return function(t) { d.endAngle = i(t); return arc(d); }
+									
+								});
+
+				}});
+
+		});
+
+		});
+
+	};
+
+    chart.height = function(value) {
+
+        if (!arguments.length) return height;
+        height = value;
+        return chart;
+
+    };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.barWidth = function(value) {
+
+		if (!arguments.length) return barWidth;
+		barWidth = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		return chart;
+
+	};
+
+    chart.data = function(value) {
+
+        if (!arguments.length) return data;
+        data = value;
+        return chart;
+
+    };
+
+	return chart;
+
+};
+
 // Bar chart function
 
 function barChart() {
@@ -146,14 +433,14 @@ function barChart() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
-					svg.selectAll("rect.bar")
-						.transition()
-						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.overall_p); });
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
 
-					svg.selectAll("rect.overallBar")
+					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.overall_p); });
@@ -182,6 +469,9 @@ function barChart() {
 			xDomain();
 			xAxis.ticks(Math.max(widthAdj/100, 2));
 
+			d3.select("#" + sectionID)
+				.classed("activated", null)
+			
 			dom.selectAll(".bar-chart")
 				.attr("width", width);
 
@@ -200,8 +490,13 @@ function barChart() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+				
 					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
@@ -279,6 +574,14 @@ function barChart() {
 
 	};
 
+	chart.caption = function(value) {
+		
+		if (!arguments.length) return caption;
+		caption = value;
+		return chart;
+		
+	};
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -560,15 +863,14 @@ function columnThree() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
-					svg.selectAll("rect.column")
-						.transition()
-							.duration(animateTime)
-							.attr("height", function(d) { return heightAdj - yScale(d.overall_p); })
-							.attr("y", function(d) { return yScale(d.overall_p); });
-
-					svg.selectAll("rect.overallColumn")
+					d3.select("#" + sectionID)
+						.classed("activated", "true");				
+				
+					svg.selectAll("rect")
 						.transition()
 							.duration(animateTime)
 							.attr("height", function(d) { return heightAdj - yScale(d.overall_p); })
@@ -716,6 +1018,9 @@ function columnThree() {
 			yScale.domain([0, 0.25]);
 			yAxis.scale(yScale).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
 
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+			
 			dom.selectAll(".col-chart")
 				.attr("width", width)
 				.attr("height", height);
@@ -744,19 +1049,18 @@ function columnThree() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
-						svg.selectAll("rect.column")
+						d3.select("#" + sectionID)
+							.classed("activated", "true");		
+
+						svg.selectAll("rect")
 							.transition()
 								.duration(animateTime)
 								.attr("height", function(d) { return heightAdj - yScale(d.overall_p); })
 								.attr("y", function(d) { return yScale(d.overall_p); });
-
-					svg.selectAll("rect.overallColumn")
-						.transition()
-							.duration(animateTime)
-							.attr("height", function(d) { return heightAdj - yScale(d.overall_p); })
-							.attr("y", function(d) { return yScale(d.overall_p); });
 
 				}});
 
@@ -950,6 +1254,7 @@ function dotTwo() {
 		// formats
 
 		var	formatNumber = d3.format(",f"),
+			formatNumberD = d3.format(",.1f"),
 			formatPercent = d3.format(",.1%");
 
 		// margins; adjust width and height to account for margins
@@ -1009,9 +1314,20 @@ function dotTwo() {
 			return "Female: " + formatPercent(d.female_p) + " (" + formatNumber(d.female_n) + " students)";
 
 		});
+
+		var tipLine = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) {
+
+			return "Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
+
+		});
 		
 		svg.call(tipMale);
 		svg.call(tipFemale);
+		svg.call(tipLine);
 
 		// axis scales and axes
 
@@ -1085,6 +1401,18 @@ function dotTwo() {
 				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); });
 
+		lines.enter()
+			.append("g")
+			.attr("transform", "translate(0,0)")
+			.append("line")
+				.attr("class", "dotLHit")
+				.attr("x1", function(d) { return xScale((d.male_p + d.female_p)/2); })
+				.attr("x2", function(d) { return xScale((d.male_p + d.female_p)/2); })
+				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+				.on("mouseover", tipLine.show)
+				.on("mouseout", tipLine.hide);
+				
 		var dotsMale = svg.selectAll("circle.dotM")
 			.data(data);
 
@@ -1144,9 +1472,27 @@ function dotTwo() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+				
 					svg.selectAll("line.dotL")
+						.transition()
+							.duration(animateTime)
+							.delay(animateTime)
+							.attr("x1", function(d) { 
+								if (d.female_p > d.male_p) { return xScale(d.male_p) + dotSize; }
+								else { return xScale(d.female_p) + dotSize; }
+							})
+							.attr("x2", function(d) { 
+								if (d.female_p > d.male_p) { return xScale(d.female_p) - dotSize; }
+								else { return xScale(d.male_p) - dotSize; }
+							});
+							
+					svg.selectAll("line.dotLHit")
 						.transition()
 							.duration(animateTime)
 							.delay(animateTime)
@@ -1239,6 +1585,9 @@ function dotTwo() {
 			dom.selectAll(".dotPlot")
 				.attr("width", width);
 
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+				
 			d3.select("#clipRect" + chartID)
 				.attr("width", widthAdj + margin.right)
 				.attr("height", heightAdj);			
@@ -1251,6 +1600,10 @@ function dotTwo() {
 				.attr("dx", "0.5em"); 
 
 			svg.selectAll("line.dotL")
+				.attr("x1", function(d) { return xScale((d.male_p + d.female_p)/2); })
+				.attr("x2", function(d) { return xScale((d.male_p + d.female_p)/2); });
+				
+			svg.selectAll("line.dotLHit")
 				.attr("x1", function(d) { return xScale((d.male_p + d.female_p)/2); })
 				.attr("x2", function(d) { return xScale((d.male_p + d.female_p)/2); });
 					
@@ -1275,7 +1628,12 @@ function dotTwo() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
 						
 						svg.selectAll("line.dotL")
 							.transition()
@@ -1290,6 +1648,19 @@ function dotTwo() {
 									else { return xScale(d.male_p) - dotSize; }
 								});
 
+						svg.selectAll("line.dotLHit")
+							.transition()
+								.duration(animateTime)
+								.delay(animateTime)
+								.attr("x1", function(d) { 
+									if (d.female_p > d.male_p) { return xScale(d.male_p) + dotSize; }
+									else { return xScale(d.female_p) + dotSize; }
+								})
+								.attr("x2", function(d) { 
+									if (d.female_p > d.male_p) { return xScale(d.female_p) - dotSize; }
+									else { return xScale(d.male_p) - dotSize; }
+								});								
+								
 						svg.selectAll("circle.dotM")
 							.transition()
 								.duration(animateTime)
@@ -1752,8 +2123,13 @@ function groupedBar() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+				
 					/*svg.selectAll(".national-bar")
 						.transition()
 							.duration(animateTime)
@@ -1761,7 +2137,6 @@ function groupedBar() {
 
 					svg.selectAll(".bar")
 						.transition()
-							.delay(animateTime / 2)
 							.duration(animateTime)
 							.attr("width", function(d) { return xScale(d.overall_p); })
 							.attr("height", barWidth);
@@ -1948,7 +2323,6 @@ function groupedBar() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.transition()
-						.delay(animateTime / 2)
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.overall_p); })
 						.attr("height", barWidth);
@@ -2000,6 +2374,9 @@ function groupedBar() {
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
 
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+				
 			dom.selectAll(".groupedBar")
 				.attr("width", width);
 
@@ -2021,7 +2398,12 @@ function groupedBar() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
 
 						/*svg.selectAll(".national-bar")
 							.transition()
@@ -2030,7 +2412,6 @@ function groupedBar() {
 
 						svg.selectAll(".bar")
 							.transition()
-								.delay(animateTime / 2)
 								.duration(animateTime)
 								.attr("width", function(d) { return xScale(d.overall_p); })
 								.attr("height", barWidth);
@@ -2223,7 +2604,7 @@ function groupedBarDiv() {
 
 	var	width = [],
 		height = 650,
-		marginTop = 20,
+		marginTop = 35,
 		marginLeft = 100,
 		marginBottom = 45,
 		animateTime = 1000,
@@ -2407,8 +2788,13 @@ function groupedBarDiv() {
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
-
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+				
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+				
 					/*svg.selectAll(".national-bar")
 						.transition()
 							.duration(animateTime)
@@ -2416,7 +2802,6 @@ function groupedBarDiv() {
 
 					svg.selectAll(".bar")
 						.transition()
-							.delay(animateTime / 2)
 							.duration(animateTime)
 							.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
 							.attr("width", function(d) { return Math.abs(xScale(d.diff_ppt) - xScale(0)); })
@@ -2443,7 +2828,30 @@ function groupedBarDiv() {
 			.attr("x2", xScale(0))
 			.attr("y1", 0)
 			.attr("y2", heightAdj);
-				
+		
+		// add under/overrepresented text
+		
+		svg.append("text")
+			.attr("id", "guide1")
+			.attr("x", 0)
+			.attr("y", 0)
+			.attr("dx", "0.5em")
+			.attr("dy", "-0.5em")
+			.attr("class", "guide")			
+			.attr("aria-hidden", "true")
+			.text("< UNDERREPRESENTED");
+			
+		svg.append("text")
+			.attr("id", "guide2")
+			.attr("x", widthAdj - 100)
+			.attr("y", 0)
+			.attr("dx", "-0.5em")
+			.attr("dy", "-0.5em")
+			.attr("class", "guide")			
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.text("OVERREPRESENTED >");
+		
 		// legend
 
 		var legend = svg.selectAll(".legend")
@@ -2487,6 +2895,9 @@ function groupedBarDiv() {
 			/*d3.select("#" + chartID)
 				.attr("width", width);*/
 
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+				
 			dom.selectAll(".groupedBarDiv")
 				.attr("width", width);
 
@@ -2500,6 +2911,14 @@ function groupedBarDiv() {
 			svg.select("line.zeroLine")
 				.attr("x1", xScale(0))
 				.attr("x2", xScale(0));
+
+			svg.select("#guide1")
+				.attr("x", 0)
+				.attr("dx", "0.5em");
+				
+			svg.select("#guide2")
+				.attr("x", widthAdj - 100)
+				.attr("dx", "-0.5em");
 				
 			/*dom.selectAll(".national-bar")
 				.attr("width", 0);*/
@@ -2513,7 +2932,12 @@ function groupedBarDiv() {
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+					
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
 
 						/*svg.selectAll(".national-bar")
 							.transition()
@@ -2522,7 +2946,6 @@ function groupedBarDiv() {
 
 						svg.selectAll(".bar")
 							.transition()
-								.delay(animateTime / 2)
 								.duration(animateTime)
 								.attr("x", function(d) { return xScale(Math.min(0, d.diff_ppt)); })
 								.attr("width", function(d) { return Math.abs(xScale(d.diff_ppt) - xScale(0)); })

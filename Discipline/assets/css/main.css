@@ -4961,6 +4961,13 @@ button:hover,
 	shape-rendering: crispEdges;
 }
 
+.dotLHit {
+	stroke: #5D42A6;
+	stroke-width: 10px;
+	shape-rendering: crispEdges;
+	opacity: 0;
+}
+
 /* Scatter plot styling */
 
 .scatterPlot .axis path,
@@ -5072,7 +5079,8 @@ button:hover,
 	shape-rendering: crispEdges;
 }
 
-.groupedBarDiv .x.axis {
+.groupedBarDiv .x.axis,
+.groupedBarDiv .guide {
 	font: 400 13px Inconsolata;
 	fill: rgba(26, 28, 32, .65);
 }
@@ -5122,6 +5130,26 @@ button:hover,
 .zeroLine {
 	stroke-width: 1px;
 	stroke: #000;
+}
+
+/* Donut chart */
+
+.donut .segment0 {
+	fill: #DBB3C4;
+}
+
+.donut .segment1 {
+	fill: #C07A98;		
+}
+
+.donut .arc{
+	stroke-width: 1px;
+	stroke-opacity: 0.5;
+	stroke: #000;
+}
+
+.donut .arc:hover {
+	opacity: 0.75;
 }
 
 /* Styling tooltips for individual graph types */
