@@ -191,6 +191,7 @@
 							<div id="legend">
 								<h3><b>% of all students (preschool–12) who received one or more out-of-school
 									suspension</b></h3>
+                                <div id="innerLegend"></div>
 							</div>
 							<div id="selectDistrictType">
 								<div id="selectElementary" class="selected ">Elementary and Unified</div>
@@ -484,7 +485,7 @@
 	<script>
 
 		// D3 MAP SCALE
-		var scaleSVG = d3.select("#legend").append("svg").attr("class","scaleSVG").attr("height", 120);
+		var scaleSVG = d3.select("#innerLegend").append("svg").attr("width",250).attr("class","scaleSVG").attr("height", 120);
 
 		var scale = scaleSVG.append("g")
 				.attr("class", "scale")
@@ -502,8 +503,8 @@
 				.style("pointer", "cursor")
 				.attr("transform", "translate(100,60)");
 		scaleSVG.append("text")
+                .attr("class","scaleText")
 				.text("Missing Data*")
-				.style("font-size", 12)
 				.attr("transform", "translate(90,90)");
 
 		var formatNumber = d3.format(",d");
@@ -568,15 +569,6 @@
 										return "lightgray";
 									}
 								});
-
-						svg.selectAll(".secondaryDistrict")
-								.attr("fill", function (d) {
-									if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-										return itemColor;
-									} else {
-										return "lightgray";
-									}
-								});
 					}
 				}).on("mouseout", function () {
 			if (!key.classed("scaleSelect")) {
@@ -603,28 +595,11 @@
 							}
 						});
 
-				svg.selectAll(".secondaryDistrict")
-						.attr("fill", function (d) {
-							if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-								return itemColor;
-							} else {
-								return "lightgray";
-							}
-						});
 			} else {
 				item.attr("class", "scaleSelect");
 				item.style("stroke", "yellow");
 				key.attr("class", "key scaleSelect");
 				svg.selectAll(".district")
-						.attr("fill", function (d) {
-							if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-								return itemColor;
-							} else {
-								return "lightgray";
-							}
-						});
-
-				svg.selectAll(".secondaryDistrict")
 						.attr("fill", function (d) {
 							if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
 								return itemColor;
@@ -718,7 +693,7 @@
                                 tooltip.style("left", (d3.event.pageX + 40) + "px");
                             }
                         }
-                        if (d.properties["Percent OOS"] != null || d.properties["Total OOS"] != null) {
+                        if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                     "<h3>" + d.properties.Name + "</h3>" +
                                     "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
@@ -798,7 +773,7 @@
                                     tooltip.style("left", (d3.event.pageX + 40) + "px");
                                 }
                             }
-                            if (d.properties["Percent OOS"] != null || d.properties["Total OOS"] != null) {
+                            if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                         "<h3>" + d.properties.Name + "</h3>" +
                                         "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
@@ -902,10 +877,6 @@
 
 		function updateColors() {
 			svg.selectAll(".district")
-					.attr("fill", function (d) {
-						return colorByGroup(d.properties["Percent OOS"]);
-					});
-			svg.selectAll(".secondaryDistrict")
 					.attr("fill", function (d) {
 						return colorByGroup(d.properties["Percent OOS"]);
 					});
