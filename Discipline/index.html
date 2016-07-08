@@ -566,24 +566,7 @@
 				.attr("y", -6);
 
 		scaleSVG.selectAll("rect")
-				.on("mouseover", function () {
-					var item = d3.select(this);
-					if (!key.classed("scaleSelect")) {
-						var itemColor = item.attr("data-metric");
-						svg.selectAll(".district")
-								.attr("fill", function (d) {
-									if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-										return itemColor;
-									} else {
-										return "lightgray";
-									}
-								});
-					}
-				}).on("mouseout", function () {
-			if (!key.classed("scaleSelect")) {
-				updateColors();
-			}
-		}).on("click", function () {
+				.on("click", function () {
 			var item = d3.select(this);
 			var itemColor = item.attr("data-metric");
 			if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
@@ -785,7 +768,7 @@
                             if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                         "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                        "<div>Total Students OOS: " + d.properties['Total OOS'] + "</div>" +
                                         "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
                             }else if(d.properties.Name === "School District Not Defined"){
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
@@ -794,7 +777,7 @@
                             } else {
                                 tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                         "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total OOS: NO DATA</div>" +
+                                        "<div>Total Students OOS: NO DATA</div>" +
                                         "<div>Percent OOS: NO DATA </div>");
                             }
                         })
