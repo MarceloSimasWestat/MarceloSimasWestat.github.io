@@ -162,10 +162,7 @@
 						OVER</br>
 					</h2>
 					<p style="margin-top:1.5em; line-height: 1.75em;">
-						K-12 students received at least one out-of-school suspension in 2013-14.
-					</p>
-					<p style="margin-top:1.5em; line-height: 1.75em;">
-						That count is <b>20% lower</b> than in 2011-12.
+						Preschool-12 students received at least one out-of-school suspension in 2013-14.
 					</p>
 				</div>
 				<div></div>
@@ -276,7 +273,10 @@
                 </p>
                 <div id="ch3_2">
                 </div>
-                <p style="margin-top:1.5em;">
+				<p style="margin-top:1.5em;">
+					Note: For Pacific Islander, the difference was less than -0.1 for females and zero for males.
+				</p>
+				<p style="margin-bottom: 3.5em;">
                     Cras malesuada, felis a congue rhoncus, felis ipsum venenatis justo, non viverra est sapien eu nisl. Suspendisse scelerisque non nibh et euismod. In condimentum diam vitae tellus vestibulum, ut rhoncus lectus finibus. Vestibulum vulputate nisi ante, id tincidunt velit mattis a. Nunc sodales congue blandit. Pellentesque vitae scelerisque mi.
                 </p>
                 <div></div>
@@ -456,7 +456,7 @@
 			.graph(d3.selectAll("#counter"))
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
-				if ((document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active") || (document.getElementById("counter").className == "6u$ 12u$(medium) graph-scroll-active graph-scroll-fixed")) {
+				if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
 				
 				d3.select("#counter > h2")
 					.selectAll("text")
@@ -464,18 +464,27 @@
 						.duration(5000)
 						.tween("text", function() {
 						
-							var	formatNumber = d3.format(",f");	
+							if (counterValue != 2600000) { 
 						
-							if (counterValue == 2500000) { return formatNumber(counterValue); }
-							else {
+								var	formatNumber = d3.format(",f");	
+								var i = d3.interpolate (0, 2600000);
+
 								
-								counterValue = 2500000;								
-								var i = d3.interpolate (0, counterValue);
-							
 								return function(t) { d3.select(this).text(formatNumber(i(t))); };
 							}
+							
 						});
 
+				d3.select("#counter > h2")
+					.selectAll("text")
+					.transition()
+						.delay(5000)
+						.tween("text", function() {
+						
+							counterValue = 2600000;
+						
+						});
+				
 			}});
 
     </script>
