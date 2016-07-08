@@ -5199,6 +5199,11 @@ button:hover,
 }
 
 .districtTooltip div {
+     color: black;
+     font-size: 12px;
+ }
+
+.districtTooltip b {
     color: black;
     font-size: 12px;
 }

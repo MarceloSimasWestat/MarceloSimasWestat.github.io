@@ -5131,7 +5131,7 @@ button:hover,
 #mapWrapper .state{
     fill: none;
     stroke: #fff;
-    stroke-width: .3px;
+    stroke-width: 0.3px;
     stroke-linejoin: round;
 }
 
@@ -5166,6 +5166,11 @@ button:hover,
     font-size: 12px;
 }
 
+.districtTooltip b {
+    color: black;
+    font-size: 12px;
+}
+
 .districtTooltip hr {
     margin: 0;
     border-bottom: 1px solid black;
@@ -5182,18 +5187,13 @@ button:hover,
     font-family: Karla, Helvetica, sans-serif;
     font-weight: bold;
 }
-#mapWrapper .totalAbsent, .percentAbsent{
-    color: black;
-    font-family: Karla, Helvetica, sans-serif;
-    font-weight: normal;
-}
 
 #mapWrapper{
     height: 100%;
 }
 
 #mapWrapper #legend {
-    margin: 0 auto 15px 0;
+    margin: 0 auto 15px auto;
     font-family: Helvetica, sans-serif;
 }
 #legend b {
@@ -5213,19 +5213,7 @@ button:hover,
     margin-left: 0;
     padding: 0;
 }
-#absentGroup ul li {
-    float: left;
-    color: black;
-    list-style: none;
-    margin: 10px 10px 0 0;
-    padding: 4px 0;
-    display: inline-block;
-    width: 108px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 11px;
-    border: 2px solid #e0e0e0;
-}
+
 #selectElementary {
     color: black;
     list-style: none;
@@ -5252,20 +5240,13 @@ button:hover,
     border: 1px solid #e0e0e0;
 }
 
-#mapWrapper #legend ul li.bottom {
-    margin-bottom: 0;
-}
 #mapWrapper #legend #selectDistrictType {
     width: 310px;
     float: left;
     border-right: 1px solid #ccc;
     margin-right: 15px;
 }
-#mapWrapper #legend #absentGroup {
-    width: 250px;
-    float: left;
-    padding-left: 5px;
-}
+
 #mapWrapper #legend .block-button {
     width: 80px;
     display: block;
@@ -5296,7 +5277,8 @@ button:hover,
 .caption {
     font-weight: bold;
 }
-.key{
+
+.key, .grayRect{
     cursor: pointer;
 }
 .key .domain {
@@ -5310,4 +5292,19 @@ button:hover,
 
 #map .tick text{
     font-size: 11px;
+}
+
+#innerLegend{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scaleSVG{
+    margin:0;
+    padding:0;
+}
+
+.scaleText{
+    font-size: 12px;
 }

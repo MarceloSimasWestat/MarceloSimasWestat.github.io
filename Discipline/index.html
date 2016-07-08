@@ -500,122 +500,12 @@
 	 
 	<script>
 
-		// D3 MAP SCALE
-		var scaleSVG = d3.select("#innerLegend").append("svg").attr("width",250).attr("class","scaleSVG").attr("height", 120);
-
-		var scale = scaleSVG.append("g")
-				.attr("class", "scale")
-				.attr("class", "key");
-				//.attr("transform", "translateX(25px)");
-
-		scaleSVG.append("rect")
-				.attr("height", 15)
-				.attr("width", 50)
-                .attr("class","grayRect")
-				.style("fill", "gray")
-				.attr("data-metric", "gray")
-				.style("stroke", "black")
-				.style("stroke-width", 2)
-				.style("pointer", "cursor")
-				.attr("transform", "translate(100,60)");
-		scaleSVG.append("text")
-                .attr("class","scaleText")
-				.text("Missing Data*")
-				.attr("transform", "translate(90,90)");
-
-		var formatNumber = d3.format(",d");
-
-		var color = d3.scale.threshold()
-				.domain([0, 3, 6, 12])
-				.range(["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"]);
-		var xKey = d3.scale.linear()
-				.domain([-3, 15])
-				.range([0, 250]);
-
-		var xAxis = d3.svg.axis()
-				.scale(xKey)
-				.orient("bottom")
-				.tickSize(25)
-				.tickValues(color.domain())
-				.tickFormat(function (d) {
-					return d >= 0 ? formatNumber(d) : null;
-				});
-		var key = d3.select(".key");
-
-		scale.selectAll("rect")
-				.data(color.range().map(function (d, i) {
-					return {
-						x0: i ? xKey(color.domain()[i - 1]) : xKey.range()[0],
-						x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
-						z: d
-					};
-				})).enter()
-				.append("rect")
-				.attr("height", 15)
-				.attr("x", function (d) {
-					return d.x0;
-				})
-				.attr("width", function (d) {
-					return d.x1 - d.x0;
-				})
-				.attr("data-metric", function (d) {
-					return d.z;
-				})
-				.style("fill", function (d) {
-					return d.z;
-				})
-				.style("stroke", "black")
-				.style("stroke-width", 1)
-				.style("margin", 1);
-
-		scale.call(xAxis).append("text")
-				.attr("class", "caption")
-				.attr("y", -6);
-
-		scaleSVG.selectAll("rect")
-				.on("click", function () {
-			var item = d3.select(this);
-			var itemColor = item.attr("data-metric");
-			if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
-				key.attr("class", "key");
-				item.attr("class", "");
-				item.style("stroke", "black");
-				updateColors();
-			} else if (key.classed("scaleSelect") && !item.classed("scaleSelect")) {
-				d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
-				item.style("stroke", "yellow");
-				item.attr("class", "scaleSelect");
-				svg.selectAll(".district")
-						.attr("fill", function (d) {
-							if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-								return itemColor;
-							} else {
-								return "lightgray";
-							}
-						});
-
-			} else {
-				item.attr("class", "scaleSelect");
-				item.style("stroke", "yellow");
-				key.attr("class", "key scaleSelect");
-				svg.selectAll(".district")
-						.attr("fill", function (d) {
-							if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
-								return itemColor;
-							} else {
-								return "lightgray";
-							}
-						});
-			}
-		});
-
-        scale.select(".tick").selectAll('.tick > text').text(">0");
-
 		//  D3 MAP
 		var width = 960;
 		var height = 600;
 		var center = [width / 2, height / 2];
 		var defaultFill = "lightgray";
+        var key = d3.select(".key");
 
 		var projection = d3.geo.albersUsa();
 
@@ -677,6 +567,14 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
+                        var state = d.properties.State;
+                        var name = d.properties.Name;
+                        var totalEnrollmentLabel = Object.keys(d.properties)[0];
+                        var totalEnrollment = d.properties["Total Enrollment"];
+                        var totalStudentOOSlabel = Object.keys(d.properties)[2];
+                        var totalStudentOOS = d.properties["Total Students OOS"];
+                        var percentOOSlabel = Object.keys(d.properties)[6];
+                        var percentOOS = d.properties['Percent OOS'];
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
                         d3.select(this).classed("selected", true);
@@ -700,18 +598,19 @@
                                 tooltip.style("left", (d3.event.pageX + 40) + "px");
                             }
                         }
-                        if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
-                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-                                    "<h3>" + d.properties.Name + "</h3>" +
-                                    "<div>Total Students OOS: " + d.properties['Total OOS'] + "</div>" +
-                                    "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
-                        }else if(d.properties.Name === "School District Not Defined"){
-                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                        if (percentOOS != null && totalStudentOOS != null) {
+                            tooltip.html("<h3>" + state + "</h3><hr>" +
+                                    "<h3>" + name + "</h3>" +
+                                    "<div><b>"+percentOOSlabel+": "+ percentOOS + "</b></div>"+
+                                    "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
+                                    "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
+                        }else if(name === "School District Not Defined"){
+                            tooltip.html("<h3>" + state + "</h3><hr>" +
                                     "<h3>No Operating District</h3>");
 
                         } else {
-                            tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-                                    "<h3>" + d.properties.Name + "</h3>" +
+                            tooltip.html("<h3>" + state + "</h3><hr>" +
+                                    "<h3>" + name + "</h3>" +
                                     "<div>Total Students OOS: NO DATA</div>" +
                                     "<div>Percent OOS: NO DATA </div>");
                         }
@@ -756,6 +655,14 @@
                         .attr("stroke-opacity", .15)
                         .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
+                            var state = d.properties.State;
+                            var name = d.properties.Name;
+                            var totalEnrollmentLabel = Object.keys(d.properties)[0];
+                            var totalEnrollment = d.properties["Total Enrollment"];
+                            var totalStudentOOSlabel = Object.keys(d.properties)[2];
+                            var totalStudentOOS = d.properties["Total Students OOS"];
+                            var percentOOSlabel = Object.keys(d.properties)[6];
+                            var percentOOS = d.properties['Percent OOS'];
                             d3.select(this).attr("stroke", "#1A1C20")
                                     .attr("stroke-opacity", 1);
                             d3.select(this).classed("selected", true);
@@ -779,18 +686,19 @@
                                     tooltip.style("left", (d3.event.pageX + 40) + "px");
                                 }
                             }
-                            if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
-                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-                                        "<h3>" + d.properties.Name + "</h3>" +
-                                        "<div>Total Students OOS: " + d.properties['Total OOS'] + "</div>" +
-                                        "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
-                            }else if(d.properties.Name === "School District Not Defined"){
-                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
+                            if (percentOOS != null && totalStudentOOS != null) {
+                                tooltip.html("<h3>" + state + "</h3><hr>" +
+                                        "<h3>" + name + "</h3>" +
+                                        "<div><b>"+percentOOSlabel+": "+ percentOOS + "</b></div>"+
+                                        "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
+                                        "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
+                            }else if(name === "School District Not Defined"){
+                                tooltip.html("<h3>" + state + "</h3><hr>" +
                                         "<h3>No Operating District</h3>");
 
                             } else {
-                                tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
-                                        "<h3>" + d.properties.Name + "</h3>" +
+                                tooltip.html("<h3>" + state + "</h3><hr>" +
+                                        "<h3>" + name + "</h3>" +
                                         "<div>Total Students OOS: NO DATA</div>" +
                                         "<div>Percent OOS: NO DATA </div>");
                             }
@@ -878,12 +786,131 @@
 						});
 					});
 			updateColors();
+            createLegend();
 			svg.select("#progress-image").style("opacity", 0);
 		}
+
+        // D3 MAP SCALE
+        function createLegend() {
+            var totalDistricts = document.getElementsByClassName("district").length;
+            var color0 = document.getElementsByClassName("#f2f0f7").length;
+            var color1 = document.getElementsByClassName("#cbc9e2").length;
+            var color2 = document.getElementsByClassName("#9e9ac8").length;
+            var color3 = document.getElementsByClassName("#756bb1").length;
+            var color4 = document.getElementsByClassName("#54278f").length;
+
+            var scaleSVG = d3.select("#innerLegend").append("svg").attr("width", 250).attr("class", "scaleSVG").attr("height", 120);
+
+            var scale = scaleSVG.append("g")
+                    .attr("class", "scale")
+                    .attr("class", "key");
+            //.attr("transform", "translateX(25px)");
+
+            scaleSVG.append("rect")
+                    .attr("height", 15)
+                    .attr("width", 50)
+                    .attr("class", "grayRect")
+                    .style("fill", "gray")
+                    .attr("data-metric", "gray")
+                    .style("stroke", "black")
+                    .style("stroke-width", 2)
+                    .style("pointer", "cursor")
+                    .attr("transform", "translate(100,60)");
+            scaleSVG.append("text")
+                    .attr("class", "scaleText")
+                    .text("Missing Data*")
+                    .attr("transform", "translate(90,90)");
+
+            var formatNumber = d3.format(",d");
+
+            var color = d3.scale.threshold()
+                    .domain([0, 3, 6, 12])
+                    .range(["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"]);
+            var xKey = d3.scale.linear()
+                    .domain([-3, 15])
+                    .range([0, 250]);
+
+            var xAxis = d3.svg.axis()
+                    .scale(xKey)
+                    .orient("bottom")
+                    .tickSize(25)
+                    .tickValues(color.domain())
+                    .tickFormat(function (d) {
+                        return d >= 0 ? formatNumber(d) : null;
+                    });
+
+            scale.selectAll("rect")
+                    .data(color.range().map(function (d, i) {
+                        return {
+                            x0: i ? xKey(color.domain()[i - 1]) : xKey.range()[0],
+                            x1: i < color.domain().length ? xKey(color.domain()[i]) : xKey.range()[1],
+                            z: d
+                        };
+                    })).enter()
+                    .append("rect")
+                    .attr("height", 20)
+                    .attr("x", function (d) {
+                        return d.x0;
+                    })
+                    .attr("width", function (d) {
+                        return d.x1 - d.x0;
+                    })
+                    .attr("data-metric", function (d) {
+                        return d.z;
+                    })
+                    .style("fill", function (d) {
+                        return d.z;
+                    })
+                    .style("stroke", "black")
+                    .style("stroke-width", 1)
+                    .style("margin", 1);
+
+            scale.call(xAxis).append("text")
+                    .attr("class", "caption")
+                    .attr("y", -6);
+
+            scaleSVG.selectAll("rect")
+                    .on("click", function () {
+                        var item = d3.select(this);
+                        var itemColor = item.attr("data-metric");
+                        if (key.classed("scaleSelect") && item.classed("scaleSelect")) {
+                            key.attr("class", "key");
+                            item.attr("class", "");
+                            item.style("stroke", "black");
+                            updateColors();
+                        } else if (key.classed("scaleSelect") && !item.classed("scaleSelect")) {
+                            d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
+                            item.style("stroke", "yellow");
+                            item.attr("class", "scaleSelect");
+                            svg.selectAll(".district")
+                                    .attr("fill", function (d) {
+                                        if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
+                                            return itemColor;
+                                        } else {
+                                            return "lightgray";
+                                        }
+                                    });
+                        } else {
+                            item.attr("class", "scaleSelect");
+                            item.style("stroke", "yellow");
+                            key.attr("class", "key scaleSelect");
+                            svg.selectAll(".district")
+                                    .attr("fill", function (d) {
+                                        if (itemColor == colorByGroup(d.properties["Percent OOS"])) {
+                                            return itemColor;
+                                        } else {
+                                            return "lightgray";
+                                        }
+                                    });
+                        }
+                    });
+            scale.select(".tick").selectAll('.tick > text').text(">0");
+        }
 
 		function updateColors() {
 			svg.selectAll(".district")
 					.attr("fill", function (d) {
+                        d3.select(this).attr("class","district "+colorByGroup(d.properties["Percent OOS"]));
 						return colorByGroup(d.properties["Percent OOS"]);
 					});
 		}
