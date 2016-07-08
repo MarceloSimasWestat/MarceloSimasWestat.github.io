@@ -157,6 +157,7 @@
         <section id="intro_chart" class="wrapper image1">
             <div id = "intro_sections" class="inner">
 				<div></div>
+				<div id="counter_pre"></div>
                 <div id="counter" class="6u$ 12u$(medium)">
 					<h2 style="line-height: 2em;">
 						OVER</br>
@@ -165,7 +166,7 @@
 						Preschool-12 students received at least one out-of-school suspension in 2013-14.
 					</p>
 				</div>
-				<div></div>
+				<div id="ch1_2"></div>
 			</div>
         </section>
 		
@@ -422,18 +423,21 @@
 					d.diff_ppt = +d.diff_ppt;
                 });
 
+				data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
 				data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
 				data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
                 data2_3 = data.filter(function(d) { return d.chart == "2-3"; });
 				data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
 				data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
-
+				
+				var chart1_2 = donutChart().data(data1_2).containerID("intro_chart").subcontainerID("intro_sections").sectionID("ch1_2").chartID("chart1_2");
 				var chart2_1 = barChart().marginLeft(150).data(data2_1).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
 				var chart2_2 = columnThree().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2");
                 var chart2_3 = dotTwo().marginLeft(150).data(data2_3).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3");
 				var chart3_1 = groupedBar().data(data3_1).marginLeft(150).animateTime(750).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1");
                 var chart3_2 = groupedBarDiv().marginLeft(150).data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2");
 
+				//d3.select("#ch1_2").call(chart1_2);
 				d3.select("#ch2_1").call(chart2_1);
 				d3.select("#ch2_2").call(chart2_2);
                 d3.select("#ch2_3").call(chart2_3);
@@ -451,40 +455,43 @@
 			.append("text")
 				.text(counterValue);
 		
+		function countUp(text, duration) {
+			text.transition()
+				.duration(duration)
+				.ease("linear")
+				.tween("text", function() {
+				
+					/*if ((counterValue != 2600000)) { */
+				
+						var	formatNumber = d3.format(",f");	
+						var i = d3.interpolate(counterValue, 2500000);
+
+						return function(t) { 
+							d3.select(this).text(formatNumber(i(t))); 
+							counterValue = i(t);
+						};
+						
+					/*}*/
+					
+				});
+		};
+		
 		var gs = graphScroll()
 			.container(d3.select("#intro_chart"))
 			.graph(d3.selectAll("#counter"))
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
-				if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
+				
+				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
+				
+				d3.select("#counter")
+					.classed("activated", "true");
 				
 				d3.select("#counter > h2")
 					.selectAll("text")
-					.transition()
-						.duration(5000)
-						.tween("text", function() {
-						
-							if (counterValue != 2600000) { 
-						
-								var	formatNumber = d3.format(",f");	
-								var i = d3.interpolate (0, 2600000);
-
-								
-								return function(t) { d3.select(this).text(formatNumber(i(t))); };
-							}
-							
-						});
-
-				d3.select("#counter > h2")
-					.selectAll("text")
-					.transition()
-						.delay(5000)
-						.tween("text", function() {
-						
-							counterValue = 2600000;
-						
-						});
-				
+					.call(countUp, 5000);
+		
 			}});
 
     </script>

@@ -1,4 +1,6 @@
 chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	diff_ppt
+1-2			Black	0.133			969705			
+1-2			All others	0.867			1634149			
 2-1			Overall	0.053			2603854			
 2-1			White	0.035			841205			
 2-1			Black	0.133			969705			
@@ -16,14 +18,14 @@ chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	d
 2-2	3		Overall	0.053			2603854			
 2-2	3		English Learners	0.039			190928			
 2-2	3		Non-English Learners	0.054			2357127			
-2-3			Overall		0.033	0.073		783391	1820463	
-2-3			White		0.019	0.051		216911	624294	
-2-3			Black		0.094	0.17		337773	631932	
-2-3			Hispanic		0.028	0.064		160091	388277	
-2-3			Asian		0.007	0.023		8123	27805	
-2-3			American Indian		0.052	0.107		13723	29715	
-2-3			Pacific Islander		0.031	0.073		3220	7870	
-2-3			Two or more races		0.043	0.098		30624	71228	
+2-3			Overall		0.033	0.073		783391	1820463	4
+2-3			White		0.019	0.051		216911	624294	3.2
+2-3			Black		0.094	0.17		337773	631932	7.6
+2-3			Hispanic		0.028	0.064		160091	388277	3.6
+2-3			Asian		0.007	0.023		8123	27805	1.6
+2-3			American Indian		0.052	0.107		13723	29715	5.5
+2-3			Pacific Islander		0.031	0.073		3220	7870	4.2
+2-3			Two or more races		0.043	0.098		30624	71228	5.5
 3-1	1	Enrolled	White	0.416			567122			
 3-1	1	Enrolled	Black	0.186			252825			
 3-1	1	Enrolled	Hispanic	0.302			411732			
