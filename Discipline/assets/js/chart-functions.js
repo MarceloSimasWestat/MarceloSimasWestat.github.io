@@ -6,7 +6,6 @@ function donutChart() {
 	// These are the default values
 
 	var	width = [],
-		height = 650,
 		marginTop = 20,
 		marginBottom = 45,
 		animateTime = 1000,
@@ -30,23 +29,18 @@ function donutChart() {
 		// margins; adjust width and height to account for margins
 
 		var width = parseInt(d3.select("#" + sectionID).style("width"), 10) / 2;
+		var height = width;
 		
 		var margin = {left: 20, right: 20},
 			widthAdj = width - margin.left - margin.right,
 			heightAdj = height - marginTop - marginBottom;
-
-		// chart title
-
-		d3.select(this).append("div")
-			.attr("class", "title")
-			.text(title);
 
 		// selections
 
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-			.attr("width", width/2)
+			.attr("width", "100%")
 			.style("text-align", "center");
 
 		var svg = dom.append("svg")
@@ -80,8 +74,8 @@ function donutChart() {
 		var radius = Math.min(width, height) / 2;
 		
 		var arc = d3.svg.arc()
-			.outerRadius(radius - 10)
-			.innerRadius(radius - 70)
+			.outerRadius(radius)
+			.innerRadius(radius - 25)
 			.startAngle(function(d) { 
 				currAngle = d.startAngle + Math.PI/3;
 				return currAngle;
@@ -103,31 +97,39 @@ function donutChart() {
 		arc_g.append("path")
 			.on("mouseover", tipDonut.show)
 			.on("mouseout", tipDonut.hide);
+
+		function drawArcs(path, duration) {
+			path.transition()
+				.duration(duration)
+				.delay(function(d, i) { return i * animateTime; })
+				.attrTween("d", function(d) {
+					
+					var i = d3.interpolate(d.startAngle, d.endAngle);
+					return function(t) { d.endAngle = i(t); return arc(d); }
+					
+				});
+		}
+		
+		// add caption div
+		
+		dom.append("div")
+			.append("text")
+				.text(caption);
 		
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
 			.graph(d3.selectAll("#" + chartID))
 			.sections(d3.selectAll("#" + subcontainerID + " > div"))
 			.on("active", function() {
-				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+				
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+				
 					arc_g.selectAll("path")
-						.transition()
-							.duration(animateTime)
-							.delay(function(d, i) { return i * animateTime; })
-							.attrTween("d", function(d) {
-								
-								var i = d3.interpolate(d.startAngle, d.endAngle)
-								
-								return function(t) { 
-								
-									currAngle = i(t);
-									d.endAngle = i(t);
-									return arc(d); 
-									
-								}
-								
-							});
+						.call(drawArcs, animateTime);
 
 			}});
 			
@@ -142,11 +144,12 @@ function donutChart() {
 
 			// resize chart
 
-			dom.attr("width", width/2);
-			
 			dom.selectAll(".donut")
 				.attr("width", width);
-				
+			
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+			
 			svg.attr("transform", "translate(" + width / 2 + "," + (marginTop + heightAdj) / 2 + ")");
 
 			var radius = Math.min(width, height) / 2;
@@ -156,25 +159,21 @@ function donutChart() {
 				.innerRadius(radius - 70)
 				.startAngle(function(d) { return d.startAngle + Math.PI/3; })
 				.endAngle(function(d) { return d.endAngle + Math.PI/3; });
-								
+			
 			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
+					
 						arc_g.selectAll("path")
-							.transition()
-								.duration(animateTime)
-								.delay(function(d, i) { return i * animateTime; })
-								.attrTween("d", function(d) {
-									
-									var i = d3.interpolate(d.startAngle, d.endAngle);
-									
-									return function(t) { d.endAngle = i(t); return arc(d); }
-									
-								});
+							.call(drawArcs, animateTime);
 
 				}});
 
@@ -183,14 +182,6 @@ function donutChart() {
 		});
 
 	};
-
-    chart.height = function(value) {
-
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
-
-    };
 
 	chart.marginTop = function(value) {
 
