@@ -558,7 +558,7 @@
 					return d.z;
 				})
 				.style("stroke", "black")
-				.style("stroke-width", 2)
+				.style("stroke-width", 1)
 				.style("margin", 1);
 
 		scale.call(xAxis).append("text")
@@ -601,6 +601,8 @@
 						});
 			}
 		});
+
+        scale.select(".tick").selectAll('.tick > text').text(">0");
 
 		//  D3 MAP
 		var width = 960;
@@ -651,6 +653,12 @@
             if (error) {
                 console.log(error);
             }
+            /*g.on("mousedown", function () {
+                d3.select(this).style("cursor", "-webkit-grab");
+            });
+            g.on("mouseup", function () {
+                d3.select(this).style("cursor", "default");
+            });*/
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
