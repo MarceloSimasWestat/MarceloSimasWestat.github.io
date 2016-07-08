@@ -688,7 +688,7 @@
                         if (d.properties["Percent OOS"] != null && d.properties["Total OOS"] != null) {
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                     "<h3>" + d.properties.Name + "</h3>" +
-                                    "<div>Total OOS: " + d.properties['Total OOS'] + "</div>" +
+                                    "<div>Total Students OOS: " + d.properties['Total OOS'] + "</div>" +
                                     "<div>Percent OOS: " + d.properties['Percent OOS'] + "</div>");
                         }else if(d.properties.Name === "School District Not Defined"){
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
@@ -697,7 +697,7 @@
                         } else {
                             tooltip.html("<h3>" + d.properties.State + "</h3><hr>" +
                                     "<h3>" + d.properties.Name + "</h3>" +
-                                    "<div>Total OOS: NO DATA</div>" +
+                                    "<div>Total Students OOS: NO DATA</div>" +
                                     "<div>Percent OOS: NO DATA </div>");
                         }
                     })
@@ -748,7 +748,6 @@
                             tooltip.transition().duration(100)
                                     .style("opacity", 1)
                                     .style("top", (d3.event.pageY - 100) + "px");
-
 
                             var windowWidth = $(window).width();
                             if (windowWidth > 1024) {
