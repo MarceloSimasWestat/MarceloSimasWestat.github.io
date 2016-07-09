@@ -4250,13 +4250,14 @@ body.loaded #sidebar nav ul li {
         font-weight: normal;
         font-size: 3.5em;
         margin-bottom: 9px;
+		color: #fff;
+		opacity: 0.8;
         line-height: normal;
     }
 
         #counter h2 span {
             font-size: 22px;
-            font-family: Muli, Helvetica, sans-serif;
-            color: rgba(255, 255, 255, 0.80);
+            font-family: Muli, Helvetica, sans-serif;            
             display: inline-block;
         }
 
@@ -4265,6 +4266,13 @@ body.loaded #sidebar nav ul li {
         line-height: normal;
     }
 
+.donutCount {
+	font-size: 3.5em;
+	font-family: KARLA;
+	fill: #fff;
+	opacity: 0.8;
+}	
+	
 @media screen and (max-width: 980px) {
 
     .chair {
@@ -4275,8 +4283,13 @@ body.loaded #sidebar nav ul li {
 
     #counter h2 {
         margin-top: 5%;
-        line-height: .75em;
+        line-height: 2.5em;
     }
+	
+	.donutCount {
+		font-size: 2em;
+	}
+	
 }
 
 @media screen and (max-width: 736px) {
@@ -4290,6 +4303,11 @@ body.loaded #sidebar nav ul li {
     #counter h2 {
         margin-top: 5%;
     }
+	
+	.donutCount {
+		font-size: 1em;
+	}
+	
 }
 
 /*
