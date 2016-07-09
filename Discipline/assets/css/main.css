@@ -5345,3 +5345,20 @@ button:hover,
 .scaleText{
     font-size: 12px;
 }
+
+.legendButtonWrapper{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: none;
+}
+
+button.legendButton{
+    display: block;
+    float: left;
+    border-radius: 0;
+    border: 1px solid black;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+}
