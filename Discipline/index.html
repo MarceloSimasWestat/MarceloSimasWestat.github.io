@@ -910,10 +910,11 @@
                         var extent = zoom.scaleExtent();
                         var translate = zoom.translate();
                         var x = translate[0], y = translate[1];
-                        var factor = (this.id === 'zoom_in') ? 2 : 1 / 2;
+                        var factor = (this.id === 'zoom_in') ? 1.75 : 1 / 2;
                         var target_scale = scale * factor;
 						var clamped_target_scale = Math.max(extent[0], Math.min(extent[1], target_scale));
-						if (clamped_target_scale != target_scale) {
+
+                        if (clamped_target_scale != target_scale) {
 							target_scale = clamped_target_scale;
 							factor = target_scale / scale;
 						}
