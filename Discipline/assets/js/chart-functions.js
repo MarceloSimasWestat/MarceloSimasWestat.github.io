@@ -53,6 +53,7 @@ function counter() {
 			.style("width", "70%")
 			.style("height", "200px")
 			.style("display", "inline-block")
+			.style("margin-left", "20px")
 			.append("div")
 				.attr("id", "cd2_right")
 				.style("width", "200px")

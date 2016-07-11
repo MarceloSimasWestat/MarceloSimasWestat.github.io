@@ -1,6 +1,6 @@
 chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	diff_ppt
-1-2			Black	0.133			969705			
-1-2			All others	0.867			1634149			
+1-2			Black	0.248						
+1-2			All others	0.752						
 2-1			Overall	0.053			2603854			
 2-1			White	0.035			841205			
 2-1			Black	0.133			969705			
