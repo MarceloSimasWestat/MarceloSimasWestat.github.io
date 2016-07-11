@@ -711,9 +711,8 @@
             if (error) {
                 console.log(error);
             }
-            
             g.on("mousedown", function () {
-                d3.select(this).style("cursor", "-webkit-grabbing");
+                d3.select(this).attr("style", "cursor: move; cursor: grabbing; cursor:-moz-grabbing; cursor:-webkit-grabbing;");
             });
             g.on("mouseup", function () {
                 d3.select(this).style("cursor", "default");
@@ -789,14 +788,12 @@
                     .attr("d", path);
 
             d3.select("#selectElementary").on("click", function () {
-                d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
                 d3.select("#selectSecondary").style("background", "white");
                 d3.select(this).style("background", "yellow");
                 d3.selectAll("#secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
-                d3.select("rect.scaleSelect").attr("class", "").style("stroke", "black");
                 d3.selectAll(".state").remove();
                 d3.select("#selectElementary").style("background", "white");
                 d3.select(this).style("background", "yellow");
