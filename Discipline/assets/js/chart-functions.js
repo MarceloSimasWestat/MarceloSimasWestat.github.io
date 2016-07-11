@@ -1,17 +1,13 @@
-// Donut chart function
+// Counter function
 
-function donutChart() {
+function counter() {
 
 	// Options accessible to the caller
 	// These are the default values
 
-	var	width = [],
-		marginTop = 20,
-		marginBottom = 45,
-		animateTime = 1000,
-		title = "Generic chart title. Update me using .title()!",
-		altText = "Fill in alt text for screen readers! Use .altText().",
-		caption = "Fill in caption using .caption()."
+	var	animateTime = 1000,
+		caption = "Fill in caption using .caption().",
+		altText = "Fill in alt text using .altText().",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -24,9 +20,159 @@ function donutChart() {
 		// formats
 
 		var	formatNumber = d3.format(",f"),
-			formatPercent = d3.format(",.1%");
+			formatPercent = d3.format(",%");
 
-		// margins; adjust width and height to account for margins
+		// First half
+		
+		var counterDiv = d3.select("#counter");
+		
+		counterDiv.append("div")
+			.style("text-align", "left")
+			.html("<h2>OVER </h2><p>students were out-of-school suspended in 2013-14.</p>");
+			
+		counterDiv.append("div")
+			.html("<hr style='opacity: 0'>");
+
+		/* Second half */
+			
+		var counterDiv2 = counterDiv.append("div")
+			.style("text-align", "left")
+			.style("display", "table-row");
+		
+		var donut = counterDiv2.append("div")
+			.attr("id", "donut")
+			.attr("overflow", "hidden")
+			.style("display", "table-cell")
+			.style("vertical-align", "middle")
+			.style("width", "200px")
+			.style("height", "200px")
+			//.style("display", "inline-block");
+		
+		var width = parseInt(d3.select("#donut").style("width"), 10),
+			height = width;
+		
+		var margin = {top: 0, right: 20, bottom: 0, left: 0},
+			widthAdj = width - margin.right - margin.left,
+			heightAdj = height - margin.top - margin.bottom;
+		
+		var svg = donut.append("svg")
+			.attr("class", "donut")
+				.attr("width", width)
+				.attr("height", height)
+				.attr("aria-label", altText)
+				.append("g")
+					.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+		
+		var radius = Math.min(widthAdj/2, heightAdj/2);
+
+		var arc = d3.svg.arc()
+			.outerRadius(radius - 0)
+			.innerRadius(radius/1.5)
+			.startAngle(function(d) { return d.startAngle + Math.PI*2;	})
+			.endAngle(function(d) { return d.endAngle + Math.PI*2; });		
+		
+		var pie = d3.layout.pie()
+			.sort(null)
+			.value(function(d) { return d.overall_p; });
+
+		// draw arcs
+		
+		var donutText = counterDiv2.append("div")
+			.data(data)
+			.attr("id", "donutText")
+			.style("display", "table-cell")
+			.style("vertical-align", "middle")
+			.style("margin-left", "20px")
+			.style("width", "70%")
+			.style("height", "200px")
+			.style("text-align", "left")
+			.style("opacity", 0)
+			//.style("display", "inline-block");
+			
+		donutText.append("text")
+			.html("<p style='font-size: 19px;'>Among those who received out-of-school suspensions,</p><h2></h2>");
+			
+		donutText.select("h2")
+			.append("text")
+			.text(function(d) { return formatPercent(d.overall_p) + " were black students."});
+		
+		// counter function
+		
+		var counterValue = 0;
+		
+		counterDiv.select("h2")
+			.append("text")
+				.text(counterValue);
+				
+		function countUp(text, duration) {
+			text.transition()
+				.duration(duration)
+				.ease("linear")
+				.tween("text", function() {
+				
+					var	formatNumber = d3.format(",f");	
+					var i = d3.interpolate(counterValue, 2500000);
+
+					return function(t) { 
+						d3.select(this).text(formatNumber(i(t))); 
+						counterValue = i(t);
+					};
+														
+				})
+				.each("end", function() {
+					counterDiv.select("hr")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1)
+							.each("end", function() {
+								
+								var arc_g = svg.selectAll(".arc")
+									.data(pie(data))
+									.enter()
+										.append("g")
+											.attr("class", function(d, i) { return "arc segment" + i; })
+											.append("path")
+												.transition()
+													.duration(animateTime)
+													.delay(function(d, i) { return i * animateTime; })
+													.attrTween("d", function(d) {
+														
+														var i = d3.interpolate(d.startAngle, d.endAngle);
+														return function(t) { d.endAngle = i(t); return arc(d); }
+									
+													})
+													.each("end", function() {
+														
+														d3.select("#donutText")
+															.transition()
+																.duration(animateTime)
+																.style("opacity", 1);
+													});																
+							});
+					});					
+		};
+		
+		// activate on scroll
+		
+		var gs = graphScroll()
+			.container(d3.select("#intro_chart"))
+			.graph(d3.selectAll("#counter"))
+			.sections(d3.selectAll("#intro_sections > div"))
+			.on("active", function() {
+				
+				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
+				
+				d3.select("#counter")
+					.classed("activated", "true");
+				
+				d3.select("#counter > div > h2")
+					.selectAll("text")
+					.call(countUp, 2.5 * animateTime);
+		
+			}});
+					
+/*		// margins; adjust width and height to account for margins
 
 		var width = parseInt(d3.select("#" + sectionID).style("width"), 10) / 2;
 		var height = width;
@@ -135,7 +281,7 @@ function donutChart() {
 			
 		// resize
 
-		window.addEventListener("resize", function() {
+/*		window.addEventListener("resize", function() {
 
 			// update width
 
@@ -177,25 +323,9 @@ function donutChart() {
 
 				}});
 
-		});
+		}); */
 
 		});
-
-	};
-
-	chart.marginTop = function(value) {
-
-		if (!arguments.length) return marginTop;
-		marginTop = value;
-		return chart;
-
-	};
-
-	chart.marginBottom = function(value) {
-
-		if (!arguments.length) return marginBottom;
-		marginBottom = value;
-		return chart;
 
 	};
 
@@ -207,18 +337,10 @@ function donutChart() {
 
 	};
 
-	chart.barWidth = function(value) {
+	chart.caption = function(value) {
 
-		if (!arguments.length) return barWidth;
-		barWidth = value;
-		return chart;
-
-	};
-
-	chart.title = function(value) {
-
-		if (!arguments.length) return title;
-		title = value;
+		if (!arguments.length) return caption;
+		caption = value;
 		return chart;
 
 	};
@@ -230,7 +352,7 @@ function donutChart() {
 		return chart;
 
 	};
-
+	
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;

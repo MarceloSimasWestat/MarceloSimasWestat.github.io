@@ -4243,15 +4243,13 @@ body.loaded #sidebar nav ul li {
 #counter {
 }
 
-
-    #counter h2 {
-        margin-top: 56%;
+	#counter h2 {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
-        margin-bottom: 9px;
+        margin: 35% 0 0 0;
 		color: #fff;
-		opacity: 0.8;
+		opacity: 1;
         line-height: normal;
     }
 
@@ -4264,15 +4262,32 @@ body.loaded #sidebar nav ul li {
     #counter p {
         font-size: 22px;
         line-height: normal;
+		margin: 0 0 0 0;
+		opacity: 1;
     }
 
+	#counter hr {
+		border: 1px solid #fff;
+		margin: 1.5em 0;
+	}
+	
 .donutCount {
 	font-size: 3.5em;
 	font-family: KARLA;
 	fill: #fff;
-	opacity: 0.8;
+	opacity: 1;
 }	
-	
+
+#donutText h2 {
+        font-family: KARLA;
+        font-weight: normal;
+        font-size: 3.5em;
+        margin: 0 0 0 0;
+		color: #fff;
+		opacity: 1;
+        line-height: normal;
+}
+
 @media screen and (max-width: 980px) {
 
     .chair {
@@ -5153,22 +5168,22 @@ button:hover,
 /* Donut chart */
 
 .donut .segment0 {
-	fill: #DBB3C4;
+	fill: #fff;
 }
 
 .donut .segment1 {
-	fill: #C07A98;		
+	fill: rgba(0,0,0,0);		
 }
 
 .donut .arc{
-	stroke-width: 1px;
-	stroke-opacity: 0.5;
-	stroke: #000;
+	stroke-width: 1.5px;
+	stroke-opacity: 1;
+	stroke: #fff;
 }
 
-.donut .arc:hover {
+/*.donut .arc:hover {
 	opacity: 0.75;
-}
+}*/
 
 /* Styling tooltips for individual graph types */
 

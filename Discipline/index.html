@@ -157,13 +157,7 @@
         <section id="intro_chart" class="wrapper image1">
 			<div id = "intro_sections" class="inner align-center">
 				<div></div>	
-				<div id = "counter" style="width: 48%; display: inline-block; text-align: left;">
-					<h2 style="line-height: 2em;">OVER</br></h2>
-					<p style="margin-top:1.5em; line-height: 1.75em;">
-						Preschool-12 students received at least one out-of-school suspension in 2013-14.
-					</p>
-				</div>
-				<div id = "ch1_2" style="width: 48%; display: inline-block; text-align: center;"></div>
+				<div id = "counter" style="max-width: 736px;"></div>
 			</div>
         </section>
 		
@@ -449,14 +443,14 @@
 				data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
 				data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 				
-				var chart1_2 = donutChart().data(data1_2).containerID("intro_chart").subcontainerID("intro_sections").sectionID("ch1_2").chartID("chart1_2");
+				var counterChart = counter().data(data1_2).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
 				var chart2_1 = barChart().marginLeft(150).data(data2_1).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1");
 				var chart2_2 = columnThree().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2");
                 var chart2_3 = dotTwo().marginLeft(150).data(data2_3).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3");
 				var chart3_1 = groupedBar().data(data3_1).marginLeft(150).animateTime(750).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1");
                 var chart3_2 = groupedBarDiv().marginLeft(150).data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2");
 
-				//d3.select("#ch1_2").call(chart1_2);
+				d3.select("#counter").call(counterChart);
 				d3.select("#ch2_1").call(chart2_1);
 				d3.select("#ch2_2").call(chart2_2);
                 d3.select("#ch2_3").call(chart2_3);
@@ -466,196 +460,6 @@
             };
         });
 		
-		// counter
-		
-		var counterValue = 0;
-		
-		d3.select("#counter > h2")
-			.append("text")
-				.text(counterValue);
-		
-		function countUp(text, duration) {
-			text.transition()
-				.duration(duration)
-				.ease("linear")
-				.tween("text", function() {
-				
-					/*if ((counterValue != 2600000)) { */
-				
-						var	formatNumber = d3.format(",f");	
-						var i = d3.interpolate(counterValue, 2500000);
-
-						return function(t) { 
-							d3.select(this).text(formatNumber(i(t))); 
-							counterValue = i(t);
-						};
-						
-					/*}*/
-					
-				})
-				.each("end", function() {
-					
-					d3.tsv("assets/data/data.tsv", function (error, data) {
-						if (error) { console.log(error); }
-						else {
-							data.forEach(function (d) {
-								d.chart = d.chart;
-								d.subchart = +d.subchart;
-								d.level = d.level;
-								d.group = d.group;
-								d.overall_n = +d.overall_n;
-								d.overall_p = +d.overall_p;
-								d.male_n = +d.male_n;
-								d.male_p = +d.male_p;
-								d.female_n = +d.female_n;
-								d.female_p = +d.female_p;
-								d.diff_ppt = +d.diff_ppt;
-							});
-							
-							data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
-														
-							var	width = parseInt(d3.select("#ch1_2").style("width"), 10),
-								height = width,
-								animateTime = 1000,
-								altText = "Fill in alt text for screen readers! Use .altText().",
-								caption = "of students who were suspended <br> were black males";
-								
-							var margin = {top: 20, right: 20, bottom: 20, left: 20},
-								widthAdj = width - margin.right - margin.left,
-								heightAdj = height - margin.top - margin.bottom;
-						
-							var svg = d3.select("#ch1_2")
-								.append("svg")
-									.attr("class", "donut")
-									.attr("width", width/2)
-									.attr("height", height/2)
-									.attr("aria-label", altText)
-									.append("g")
-										.attr("transform", "translate(" + width / 4 + "," + height / 4 + ")");
-										
-							var radius = Math.min(widthAdj/2, heightAdj/2) / 2;
-		
-							var arc = d3.svg.arc()
-								.outerRadius(radius - 0)
-								.innerRadius(radius/1.25)
-								.startAngle(function(d) { return d.startAngle + Math.PI/3;	})
-								.endAngle(function(d) { return d.endAngle + Math.PI/3; });		
-							
-							var pie = d3.layout.pie()
-								.sort(null)
-								.value(function(d) { return d.overall_p; });
-							
-							// add text in middle
-							
-							svg.append("text")
-								.data(data.filter(function(d) {
-									if ((d.chart == "1-2") & (d.group == "Black")) { return d; }
-								}))
-								.attr("x", 0)
-								.attr("y", 0)
-								.attr("dy", "0.15em")
-								.attr("text-anchor", "middle")
-								.attr("class", "donutCount")
-								.text("0")
-								.transition()
-									.duration(2000)
-									.tween("text", function(d) {
-									
-											var	formatNumber = d3.format(",f");	
-											var i = d3.interpolate(0, d.overall_p);
-
-											return function(t) { 
-												d3.select(this).text(formatNumber(100 * i(t)) + "%"); 
-												counterValue = i(t);
-											};
-											
-										/*}*/
-										
-									})
-							
-							// draw arcs
-							
-							var arc_g = svg.selectAll(".arc")
-								.data(pie(data1_2))
-								.enter()
-									.append("g")
-										.attr("class", function(d, i) { return "arc segment" + i; })
-										.append("path")
-											.transition()
-												.duration(2000)
-												.delay(function(d, i) { return i * animateTime; })
-												.attrTween("d", function(d) {
-													
-													var i = d3.interpolate(d.startAngle, d.endAngle);
-													return function(t) { d.endAngle = i(t); return arc(d); }
-													
-												})
-												.each("end", function(d, i) {
-													
-													d3.select("#caption" + i)
-														.style("opacity", 1);												
-												});
-												
-							// add caption
-			
-							d3.select("#ch1_2")
-								.append("div")
-								.attr("id", "caption1")
-								.attr("width", width/4)
-								.style("opacity", 0)
-								.html(caption);
-								
-							// resize
-							
-							window.addEventListener("resize", function() {
-
-								// update width
-
-								width = parseInt(d3.select("#ch1_2").style("width"), 10);
-								height = width;
-								widthAdj = width - margin.right - margin.left;
-								heightAdj = height - margin.top - margin.bottom;
-
-								// resize chart
-								
-								d3.select("svg.donut")
-									.attr("width", width/2)
-									.attr("height", height/2);
-									
-								svg.attr("transform", "translate(" + width / 4 + "," + height / 4 + ")");
-								
-								radius = Math.min(widthAdj/2, heightAdj/2) / 2;
-								
-								arc.outerRadius(radius - 0)
-									.innerRadius(radius/1.25);
-								
-								svg.selectAll("g.arc")
-									.selectAll("path")
-										.attr("d", arc);
-							})
-						}	
-					})
-				})
-		};
-		
-		var gs = graphScroll()
-			.container(d3.select("#intro_chart"))
-			.graph(d3.selectAll("#counter"))
-			.sections(d3.selectAll("#intro_sections > div"))
-			.on("active", function() {
-				
-				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
-				
-				d3.select("#counter")
-					.classed("activated", "true");
-				
-				d3.select("#counter > h2")
-					.selectAll("text")
-					.call(countUp, 2500);
-		
-			}});
-
     </script>
 
 	<!-- Map -->
