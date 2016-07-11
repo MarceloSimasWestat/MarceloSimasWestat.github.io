@@ -2107,8 +2107,8 @@ button,
     -ms-transition: border-color 0.2s ease;
     transition: border-color 0.2s ease;
     background-color: transparent;
-    border: solid 1px !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
+    border: solid 1px /*!important*/;
+    border-color: rgba(255, 255, 255, 0.15) /*!important*/;
     border-radius: 3em;
     color: #ffffff /*!important*/;
     cursor: pointer;
@@ -5327,54 +5327,45 @@ button:hover,
     left: 0;
 }
 
-.caption {
-    font-weight: bold;
-}
-
-.key, .grayRect{
-    cursor: pointer;
-}
-.key .domain {
-    display: none;
-}
-
-.key line {
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-#map .tick text{
-    font-size: 11px;
-}
-
-#innerLegend{
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.scaleSVG{
-    margin:0;
-    padding:0;
-}
-
-.scaleText{
-    font-size: 12px;
-}
-
 .legendButtonWrapper{
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    border: none;
+    width: 70%;
+    height: 50px;
+    cursor: pointer;
 }
 
-button.legendButton{
+.innerLegend{
+    width: 50%;
+    height: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+div.legendButton{
+    color: black;
     display: block;
     float: left;
+    border-style: none;
     border-radius: 0;
     border: 1px solid black;
+    font-size: 12px;
+    font-weight: bold;
     height: 20px;
+    min-width: 30px;
     padding: 0;
     margin: 0;
+}
+
+.innerLegend div{
+    font-size: 10px;
+}
+
+div.grayButton {
+    margin-left: 45%;
+}
+
+.legendText{
+    margin-top: 25px;
 }
