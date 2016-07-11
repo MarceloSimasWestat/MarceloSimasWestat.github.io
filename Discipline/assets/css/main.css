@@ -5198,7 +5198,7 @@ button:hover,
 .districtTooltip {
     position: absolute;
     text-align: left;
-    width: 190px;
+    width: 200px;
     padding: 10px;
     font-size: 10px;
     font-family: Karla;
@@ -5210,6 +5210,7 @@ button:hover,
 }
 
 .districtTooltip h3 {
+    text-align: center;
     font-size: 15px;
     margin: 0;
     line-height: 17px;

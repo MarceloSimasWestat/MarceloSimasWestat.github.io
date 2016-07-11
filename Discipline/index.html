@@ -836,11 +836,8 @@
                     .on("mouseover", function (d) {
                         var state = d.properties.State;
                         var name = d.properties.Name;
-                        var totalEnrollmentLabel = Object.keys(d.properties)[0];
                         var totalEnrollment = d.properties["Total Enrollment"];
-                        var totalStudentOOSlabel = Object.keys(d.properties)[2];
                         var totalStudentOOS = d.properties["Total Students OOS"];
-                        var percentOOSlabel = Object.keys(d.properties)[6];
                         var percentOOS = d.properties['Percent OOS'];
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
@@ -866,17 +863,16 @@
                             }
                         }
                         if (percentOOS != null && totalStudentOOS != null) {
-                            tooltip.html("<h3>" + state + "</h3><hr>" +
+                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                     "<h3>" + name + "</h3><hr>" +
-                                    "<div>"+percentOOSlabel+": "+ percentOOS + "</div>"+
-                                    "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
-                                    "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
+                                    "<div>"+ percentOOS + " out-of-school suspended</div>"+
+                                    "<div>("+ totalStudentOOS + " out of "+ totalEnrollment+" students)</div>");
                         }else if(name === "School District Not Defined"){
-                            tooltip.html("<h3>" + state + "</h3><hr>" +
+                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                     "<h3>No Operating District</h3>");
 
                         } else {
-                            tooltip.html("<h3>" + state + "</h3><hr>" +
+                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                     "<h3>" + name + "</h3><hr>" +
                                     "<div> NO DATA </div>");
                         }
@@ -953,17 +949,16 @@
                                 }
                             }
                             if (percentOOS != null && totalStudentOOS != null) {
-                                tooltip.html("<h3>" + state + "</h3><hr>" +
+                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                         "<h3>" + name + "</h3><hr>" +
-                                        "<div>"+percentOOSlabel+": "+ percentOOS + "</div>"+
-                                        "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
-                                        "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
+                                        "<div>"+ percentOOS + " out-of-school suspended</div>"+
+                                        "<div>("+ totalStudentOOS + " out of "+ totalEnrollment+" students)</div>");
                             }else if(name === "School District Not Defined"){
-                                tooltip.html("<h3>" + state + "</h3><hr>" +
+                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                         "<h3>No Operating District</h3>");
 
                             } else {
-                                tooltip.html("<h3>" + state + "</h3><hr>" +
+                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                         "<h3>" + name + "</h3><hr>" +
                                         "<div> NO DATA </div>");
                             }
