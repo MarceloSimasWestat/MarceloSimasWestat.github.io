@@ -39,14 +39,35 @@ function counter() {
 			.style("text-align", "left")
 			.style("display", "table-row");
 		
-		var donut = counterDiv2.append("div")
-			.attr("id", "donut")
-			.attr("overflow", "hidden")
-			.style("display", "table-cell")
-			.style("vertical-align", "middle")
+		counterDiv2.append("div")
 			.style("width", "200px")
 			.style("height", "200px")
-			//.style("display", "inline-block");
+			.style("display", "inline-block")
+			.append("div")
+				.attr("id", "cd2_left")
+				.style("width", "200px")
+				.style("height", "200px")
+				.style("display", "table-row");
+			
+		counterDiv2.append("div")
+			.style("width", "70%")
+			.style("height", "200px")
+			.style("display", "inline-block")
+			.append("div")
+				.attr("id", "cd2_right")
+				.style("width", "200px")
+				.style("height", "200px")
+				.style("display", "table-row");
+		
+		var donut = d3.select("#cd2_left")
+			.append("div")
+				.attr("id", "donut")
+				.attr("overflow", "hidden")
+				.style("display", "table-cell")
+				.style("vertical-align", "middle")
+				.style("width", "200px")
+				.style("height", "200px")
+				//.style("display", "inline-block");
 		
 		var width = parseInt(d3.select("#donut").style("width"), 10),
 			height = width;
@@ -77,17 +98,18 @@ function counter() {
 
 		// draw arcs
 		
-		var donutText = counterDiv2.append("div")
+		var donutText = d3.select("#cd2_right")
+			.append("div")
 			.data(data)
-			.attr("id", "donutText")
-			.style("display", "table-cell")
-			.style("vertical-align", "middle")
-			.style("margin-left", "20px")
-			.style("width", "70%")
-			.style("height", "200px")
-			.style("text-align", "left")
-			.style("opacity", 0)
-			//.style("display", "inline-block");
+				.attr("id", "donutText")
+				.style("display", "table-cell")
+				.style("vertical-align", "middle")
+				.style("margin-left", "20px")
+				.style("width", "70%")
+				.style("height", "200px")
+				.style("text-align", "left")
+				.style("opacity", 0)
+				//.style("display", "inline-block");
 			
 		donutText.append("text")
 			.html("<p style='font-size: 19px;'>Among those who received out-of-school suspensions,</p><h2></h2>");
@@ -160,8 +182,8 @@ function counter() {
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
 				
-				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
+				if (document.getElementById("counter_pre").className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById("counter_pre").className.indexOf("graph-scroll") >= 0) {
 				
 				d3.select("#counter")
 					.classed("activated", "true");

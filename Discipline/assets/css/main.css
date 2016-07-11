@@ -4298,7 +4298,7 @@ body.loaded #sidebar nav ul li {
 
     #counter h2 {
         margin-top: 5%;
-        line-height: 2.5em;
+        line-height: normal;
     }
 	
 	.donutCount {
