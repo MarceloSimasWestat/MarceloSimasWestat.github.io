@@ -5198,38 +5198,35 @@ button:hover,
 .districtTooltip {
     position: absolute;
     text-align: left;
-    width: 170px;
+    width: 190px;
     padding: 10px;
     font-size: 10px;
-    font-family: Helvetica, sans-serif;
-    background: #ffffff;
+    font-family: Karla;
+    background: #1A1C20;
+    border: 1px solid #979797;
     pointer-events: none;
     opacity: 0;
     z-index: 900;
-    border: 1px solid black;
 }
 
 .districtTooltip h3 {
-    color: black;
     font-size: 15px;
     margin: 0;
     line-height: 17px;
 }
 
 .districtTooltip div {
-     color: black;
      font-size: 12px;
  }
 
 .districtTooltip b {
-    color: black;
     font-size: 12px;
 }
 
 .districtTooltip hr {
     margin: 0;
-    border-bottom: 1px solid black;
-    color: black;
+    border-bottom: 1px solid #979797;
+    color: #979797;
 }
 
 #mapWrapper .overlay {

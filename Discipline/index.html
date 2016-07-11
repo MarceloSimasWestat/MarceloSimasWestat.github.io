@@ -867,8 +867,8 @@
                         }
                         if (percentOOS != null && totalStudentOOS != null) {
                             tooltip.html("<h3>" + state + "</h3><hr>" +
-                                    "<h3>" + name + "</h3>" +
-                                    "<div><b>"+percentOOSlabel+": "+ percentOOS + "</b></div>"+
+                                    "<h3>" + name + "</h3><hr>" +
+                                    "<div>"+percentOOSlabel+": "+ percentOOS + "</div>"+
                                     "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
                                     "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
                         }else if(name === "School District Not Defined"){
@@ -877,9 +877,8 @@
 
                         } else {
                             tooltip.html("<h3>" + state + "</h3><hr>" +
-                                    "<h3>" + name + "</h3>" +
-                                    "<div>Total Students OOS: NO DATA</div>" +
-                                    "<div>Percent OOS: NO DATA </div>");
+                                    "<h3>" + name + "</h3><hr>" +
+                                    "<div> NO DATA </div>");
                         }
                     })
                     .on("mouseout", function () {
@@ -955,8 +954,8 @@
                             }
                             if (percentOOS != null && totalStudentOOS != null) {
                                 tooltip.html("<h3>" + state + "</h3><hr>" +
-                                        "<h3>" + name + "</h3>" +
-                                        "<div><b>"+percentOOSlabel+": "+ percentOOS + "</b></div>"+
+                                        "<h3>" + name + "</h3><hr>" +
+                                        "<div>"+percentOOSlabel+": "+ percentOOS + "</div>"+
                                         "<div>"+totalStudentOOSlabel+": " + totalStudentOOS + "</div>" +
                                         "<div>"+totalEnrollmentLabel+": "+ totalEnrollment + "</div>");
                             }else if(name === "School District Not Defined"){
@@ -965,9 +964,8 @@
 
                             } else {
                                 tooltip.html("<h3>" + state + "</h3><hr>" +
-                                        "<h3>" + name + "</h3>" +
-                                        "<div>Total Students OOS: NO DATA</div>" +
-                                        "<div>Percent OOS: NO DATA </div>");
+                                        "<h3>" + name + "</h3><hr>" +
+                                        "<div> NO DATA </div>");
                             }
                         })
                         .on("mouseout", function () {
