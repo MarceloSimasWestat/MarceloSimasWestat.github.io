@@ -711,12 +711,14 @@
             if (error) {
                 console.log(error);
             }
-            /*g.on("mousedown", function () {
-                d3.select(this).style("cursor", "-webkit-grab");
+            
+            g.on("mousedown", function () {
+                d3.select(this).style("cursor", "-webkit-grabbing");
             });
             g.on("mouseup", function () {
                 d3.select(this).style("cursor", "default");
-            });*/
+            });
+
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
