@@ -97,6 +97,10 @@ function counter() {
 			.sort(null)
 			.value(function(d) { return d.overall_p; });
 
+		var arc1 = d3.svg.arc()
+			.outerRadius(radius - 0)
+			.innerRadius(radius/1.5);
+			
 		// draw arcs
 		
 		var donutText = d3.select("#cd2_right")
@@ -117,7 +121,7 @@ function counter() {
 			
 		donutText.select("h2")
 			.append("text")
-			.text(function(d) { return formatPercent(d.overall_p) + " were black students."});
+			.text(function(d) { return formatPercent(d.overall_p) + " were black male students."});
 		
 		// counter function
 		
@@ -149,28 +153,48 @@ function counter() {
 							.style("opacity", 1)
 							.each("end", function() {
 								
-								var arc_g = svg.selectAll(".arc")
-									.data(pie(data))
-									.enter()
-										.append("g")
-											.attr("class", function(d, i) { return "arc segment" + i; })
-											.append("path")
-												.transition()
-													.duration(animateTime)
-													.delay(function(d, i) { return i * animateTime; })
-													.attrTween("d", function(d) {
-														
-														var i = d3.interpolate(d.startAngle, d.endAngle);
-														return function(t) { d.endAngle = i(t); return arc(d); }
+								svg.append("circle")
+									.attr("r", radius)
+									.attr("stroke", "white")
+									.attr("stroke-width", "1.5px")
+									.attr("fill", "none")
+									.style("opacity", 0);
 									
-													})
-													.each("end", function() {
-														
-														d3.select("#donutText")
+								svg.append("circle")
+									.attr("r", radius/1.5)
+									.attr("stroke", "white")
+									.attr("stroke-width", "1.5px")
+									.attr("fill", "none")
+									.style("opacity", 0);
+									
+								svg.selectAll("circle")
+									.transition()
+										.duration(animateTime)
+										.style("opacity", 1)
+										.each("end", function(d) {
+											svg.selectAll(".arc")
+												.data(pie(data))
+												.enter()
+													.append("g")
+														.attr("class", function(d, i) { return "arc segment" + i; })
+														.append("path")
 															.transition()
 																.duration(animateTime)
-																.style("opacity", 1);
-													});																
+																.delay(function(d, i) { return i * animateTime; })
+																.attrTween("d", function(d) {
+																	
+																	var i = d3.interpolate(d.startAngle, d.endAngle);
+																	return function(t) { d.endAngle = i(t); return arc(d); }
+												
+																})
+																.each("end", function() {
+																	
+																	d3.select("#donutText")
+																		.transition()
+																			.duration(animateTime)
+																			.style("opacity", 1);
+																});																
+										});
 							});
 					});					
 		};
@@ -195,158 +219,6 @@ function counter() {
 		
 			}});
 					
-/*		// margins; adjust width and height to account for margins
-
-		var width = parseInt(d3.select("#" + sectionID).style("width"), 10) / 2;
-		var height = width;
-		
-		var margin = {left: 20, right: 20},
-			widthAdj = width - margin.left - margin.right,
-			heightAdj = height - marginTop - marginBottom;
-
-		// selections
-
-		var dom = d3.select(this)
-			.append("div")
-			.attr("id", chartID)
-			.attr("width", "100%")
-			.style("text-align", "center");
-
-		var svg = dom.append("svg")
-			.attr("class", "donut")
-			.attr("width", width)
-			.attr("height", height)
-			.append("g")
-				.attr("transform", "translate(" + width / 2 + "," + (marginTop + heightAdj) / 2 + ")");
-
-		svg.append("aria-label")
-			.text(altText);
-
-		// tooltips using d3-tip
-
-		var tipDonut = d3.tip()
-			.attr("class", "d3-tip")
-			.direction("e")
-			.offset([0, 10])
-			.html(function(d) {
-
-			return d.data.group + "<br/>" + formatPercent(d.data.overall_p) + " (" + formatNumber(d.data.overall_n) + " students)";
-
-		});
-
-		svg.call(tipDonut);
-
-		// define arcs
-		
-		var currAngle;
-		
-		var radius = Math.min(width, height) / 2;
-		
-		var arc = d3.svg.arc()
-			.outerRadius(radius)
-			.innerRadius(radius - 25)
-			.startAngle(function(d) { 
-				currAngle = d.startAngle + Math.PI/3;
-				return currAngle;
-			})
-			.endAngle(function(d) { return d.endAngle + Math.PI/3; });		
-		
-		var pie = d3.layout.pie()
-			.sort(null)
-			.value(function(d) { return d.overall_p; });
-			
-		// draw arcs
-		
-		var arc_g = svg.selectAll(".arc")
-			.data(pie(data))
-			.enter()
-				.append("g")
-					.attr("class", function(d, i) { return "arc segment" + i; });
-					
-		arc_g.append("path")
-			.on("mouseover", tipDonut.show)
-			.on("mouseout", tipDonut.hide);
-
-		function drawArcs(path, duration) {
-			path.transition()
-				.duration(duration)
-				.delay(function(d, i) { return i * animateTime; })
-				.attrTween("d", function(d) {
-					
-					var i = d3.interpolate(d.startAngle, d.endAngle);
-					return function(t) { d.endAngle = i(t); return arc(d); }
-					
-				});
-		}
-		
-		// add caption div
-		
-		dom.append("div")
-			.append("text")
-				.text(caption);
-		
-		var gs = graphScroll()
-			.container(d3.select("#" + containerID))
-			.graph(d3.selectAll("#" + chartID))
-			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() {
-				
-				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
-
-					d3.select("#" + sectionID)
-						.classed("activated", "true");
-				
-					arc_g.selectAll("path")
-						.call(drawArcs, animateTime);
-
-			}});
-			
-		// resize
-
-/*		window.addEventListener("resize", function() {
-
-			// update width
-
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-			widthAdj = width - margin.left - margin.right;
-
-			// resize chart
-
-			dom.selectAll(".donut")
-				.attr("width", width);
-			
-			d3.select("#" + sectionID)
-				.classed("activated", null);
-			
-			svg.attr("transform", "translate(" + width / 2 + "," + (marginTop + heightAdj) / 2 + ")");
-
-			var radius = Math.min(width, height) / 2;
-			
-			var arc = d3.svg.arc()
-				.outerRadius(radius - 10)
-				.innerRadius(radius - 70)
-				.startAngle(function(d) { return d.startAngle + Math.PI/3; })
-				.endAngle(function(d) { return d.endAngle + Math.PI/3; });
-			
-			var gs2 = graphScroll()
-				.container(d3.select("#" + containerID))
-				.graph(d3.selectAll("#" + chartID))
-				.sections(d3.selectAll("#" + subcontainerID + " > div"))
-				.on("active", function() {
-					
-					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
-					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
-
-						d3.select("#" + sectionID)
-							.classed("activated", "true");
-					
-						arc_g.selectAll("path")
-							.call(drawArcs, animateTime);
-
-				}});
-
-		}); */
 
 		});
 
@@ -2004,6 +1876,7 @@ function groupedBar() {
 		// formats
 
 		var	formatNumber = d3.format(",f"),
+			formatNumberD = d3.format(",.1f"),
 			formatPercent = d3.format(",.1%");
 
 		// margins; adjust width and height to account for margins
@@ -2132,7 +2005,7 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
+				return "Enrolled: " + formatPercent(d.enrolled_p) + " (" + formatNumber(d.enrolled_n) + " students)<br>Suspended: " + formatPercent(d.suspended_p) + " (" + formatNumber(d.suspended_n) + " students)<br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
 		});
 
 		svg.call(tipBar);
