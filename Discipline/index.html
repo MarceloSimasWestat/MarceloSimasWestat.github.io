@@ -61,7 +61,7 @@
                     <ul>
                         <li><a href="#intro">Introduction</a></li>
                         <li><a href="#one">Suspensions Mapped</a></li>
-                        <li><a href="#two">Who is Impacted</a></li>
+                        <li><a href="#two">Uneven Impact</a></li>
                         <li><a href="#three">The Preschool Crisis</a></li>
                         <li><a href="#four">Wrap Up</a></li>
                     </ul>
@@ -167,7 +167,7 @@
             <div class="inner">
                 <h2 class="line">Students across the country are removed from school for disciplinary reasons</h2>
                 <p>
-					We are seeing progress (the total number of students decreased by about 20% since the last CRDC data collection in 2011-12) as more and more schools <a href="http://www.ncbi.nlm.nih.gov/pubmed/19011963">find alternative ways of addressing non-violent discipline issues</a>. However this progress is not occurring in all areas, or for all groups of students. The map below shows which districts have the highest rates of out-of-school suspension. Hover over [click on] a district to see more information and zoom in for a closer look. You can also click on a specific range on the map legend to see which districts fall into a category.
+					We are seeing progress (the total number of students decreased by about 20% since the last CRDC data collection in 2011-12) as more and more schools <a href="http://www.ncbi.nlm.nih.gov/pubmed/19011963">find alternative ways of addressing non-violent discipline issues</a>. However this progress is not occurring in all areas, or for all groups of students. The map below shows which districts have the highest rates of out-of-school suspension. Hover over a district to see more information and zoom in for a closer look. You can also click on a specific range on the map legend to see which districts fall into a category.
                 </p>
             </div>
         </section>
@@ -293,7 +293,7 @@
 					Nearly half of all suspended preschoolers were black and 1 in 5 were Hispanic. Additionally, though white students make up 42% of the preschool population, they only make up 28% of those suspended.  The data show that suspended preschoolers were overwhelmingly male and that students with disabilities and English learners were underrepresented in the suspended population.
                 </p>
                 <p style="margin-bottom: 3.5em;">
-                    Digging deeper into this data shows that there are differences by gender within each race and ethnicity as well. The graph below shows weather each group is overrepresented or underrepresented when their proportion of those suspended is compared to their proportion of those enrolled.
+                    Digging deeper into this data shows that there are differences by gender within each race and ethnicity as well. The graph below shows whether each group is overrepresented or underrepresented when their proportion of those suspended is compared to their proportion of those enrolled.
                 </p>
                 <div id="ch3_2">
                 </div>
@@ -403,12 +403,6 @@
                     </li>
                 </ol>
             </div>
-
-            <div class="6u$ 12u$(medium) dataExclusion">
-                <h3 style="font-size: 15px;" class="line">Grade Level Definitions</h3>
-                <p>School grade levels were defined using the National Center for Education Statistics (NCES) definition: elementary schools are those in which the lowest grade offered is PK through grade 3 and the highest is PK through grade 8, middle schools are those in which the lowest grade offered is grade 4 through grade 7 and the highest is grade 4 through grade 9, high schools are those in which the lowest grade offered is grade 7 through grade 12 and the highest is grade 12, other schools are those with any other configuration that does not fall within the previous three categories.</p>
-            </div>
-
             <div class="6u$ 12u$(medium) dataExclusion">
                 <h3 style="font-size: 15px;" class="line">Map Notes</h3>
                 <p>Data might be missing from the map if:</p>
@@ -463,7 +457,7 @@
                 var chart2_3 = dotTwo().marginLeft(150).data(data2_3).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
 					.title("Males are more likely to be suspended in every racial and ethnic group.");
 				var chart3_1 = groupedBar().data(data3_1).marginLeft(150).animateTime(750).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
-					.title1("Though black students make up only 17% of the preschool population, they make up 46% of suspended preschoolers.")
+					.title1("Though black students make up only 19% of the preschool population, they make up 46% of suspended preschoolers.")
 					.title2("78% of all suspended preschoolers were male.")
 					.title3("Though 20% of all preschools were identified as having a disability, they make up only 15% of those suspended.")
 					.title4("Preschoolers who are English learners make up 7% of those suspended though they make up 13% of the population.");
