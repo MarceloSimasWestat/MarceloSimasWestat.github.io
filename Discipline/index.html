@@ -182,26 +182,28 @@
 								<h3><b>% of all students (preschool–12) who received one or more out-of-school
 									suspension</b></h3>
                                 <div class="legendButtonWrapper">
-                                    <div data-value="#f2f0f7" class="legendButton">
-                                        <div class="legendText">0</div>
-                                    </div>
                                     <div data-value="#cbc9e2" class="legendButton">
-                                        <div class="legendText">>0-3</div>
-                                        </div>
-                                    <div data-value="#9e9ac8" class="legendButton">
-                                        <div class="legendText">>3-6</div>
-                                        </div>
-                                    <div data-value="#756bb1" class="legendButton">
-                                        <div class="legendText">>6-12</div>
-                                        </div>
-                                    <div data-value="#54278f" class="legendButton">
-                                        <div class="legendText">>12</div>
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">0</div>
+                                    </div><div data-value="#9e9ac8" class="legendButton">
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">3</div>
+                                </div><div data-value="#756bb1" class="legendButton">
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">6</div>
+                                </div><div data-value="#54278f" class="legendButton">
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">12</div>
                                         </div>
                                 </div>
                                 <div class="innerLegend">
-                                    <div data-value="gray" class="legendButton grayButton"></div>
-                                    <br>
-                                    <div>Missing Data*</div>
+                                    <div data-value="#f2f0f7" class="legendButton">
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">0</div>
+                                    </div><div data-value="gray" class="legendButton">
+                                        <hr class="verticalLine" size="33">
+                                        <div class="legendText">Missing Data*</div>
+                                    </div>
                                 </div>
 							</div>
 							<div id="selectDistrictType">
@@ -771,7 +773,7 @@ function createLegend() {
         var valueSize = document.getElementsByClassName(buttonValue).length;
         var width = (valueSize / totalDistricts) * 100;
         $(this).css("background-color", buttonValue);
-        $(this).css("width", width + '%');
+        $(this).css("width", (width) + '%');
     });
 
     legendButton.on("click", function () {
@@ -784,6 +786,7 @@ function createLegend() {
         }else {
             legendButton.each(function () {
                 $(this).css("border-color","black");
+                $(this).removeClass("highlightButton");
             });
             $(this).addClass("highlightButton");
             $(this).css("border-color","yellow");

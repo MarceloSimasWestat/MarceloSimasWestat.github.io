@@ -5215,7 +5215,7 @@ button:hover,
 #selectElementary {
     color: black;
     list-style: none;
-    margin: 10px 10px 0 0;
+    margin: 0;
     padding: 4px 0;
     display: inline-block;
     width: 300px;
@@ -5228,7 +5228,7 @@ button:hover,
 #selectSecondary {
     color: black;
     list-style: none;
-    margin: 10px 10px 0 0;
+    margin: 0;
     padding: 4px 0;
     display: inline-block;
     width: 300px;
@@ -5236,6 +5236,14 @@ button:hover,
     text-align: center;
     font-size: 11px;
     border: 1px solid #e0e0e0;
+}
+
+#selectDistrictType{
+    float: left;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 #mapWrapper #legend #selectDistrictType {
@@ -5272,13 +5280,8 @@ button:hover,
     left: 0;
 }
 
-#innerLegend{
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .legendButtonWrapper{
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
@@ -5287,24 +5290,25 @@ button:hover,
 }
 
 .innerLegend{
-    width: 50%;
-    height: 32px;
+    text-align: center;
+    width: 30%;
+    height: 70px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
 }
 
 div.legendButton{
+    text-align: left;
     color: black;
-    display: block;
-    float: left;
+    display: inline-block;
     border-style: none;
     border-radius: 0;
     border: 1px solid black;
+    border-left: 2px;
     font-size: 12px;
     font-weight: bold;
     height: 20px;
-    min-width: 30px;
     padding: 0;
     margin: 0;
 }
@@ -5313,10 +5317,17 @@ div.legendButton{
     font-size: 10px;
 }
 
-div.grayButton {
-    margin-left: 45%;
+.legendText{
+    margin-top: 30px;
+    white-space: nowrap;
 }
 
-.legendText{
-    margin-top: 25px;
+.verticalLine{
+    width: 1px;
+    color: black;
+    background: black;
+    border: 0;
+    margin-top: 0px;
+    margin-left: -1px;
+    float: left;
 }
