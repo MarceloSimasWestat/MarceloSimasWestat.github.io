@@ -1852,6 +1852,7 @@ function groupedBar() {
 		// formats
 
 		var	formatNumber = d3.format(",f"),
+			formatNumberD = d3.format(",.1f"),
 			formatPercent = d3.format(",.1%");
 
 		// margins; adjust width and height to account for margins
@@ -1980,7 +1981,7 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
+				return "Enrolled: " + formatPercent(d.enrolled_p) + " (" + formatNumber(d.enrolled_n) + " students)<br>Suspended: " + formatPercent(d.suspended_p) + " (" + formatNumber(d.suspended_n) + " students)<br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
 		});
 
 		svg.call(tipBar);
