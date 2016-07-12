@@ -97,6 +97,10 @@ function counter() {
 			.sort(null)
 			.value(function(d) { return d.overall_p; });
 
+		var arc1 = d3.svg.arc()
+			.outerRadius(radius - 0)
+			.innerRadius(radius/1.5);
+			
 		// draw arcs
 		
 		var donutText = d3.select("#cd2_right")
@@ -149,28 +153,48 @@ function counter() {
 							.style("opacity", 1)
 							.each("end", function() {
 								
-								var arc_g = svg.selectAll(".arc")
-									.data(pie(data))
-									.enter()
-										.append("g")
-											.attr("class", function(d, i) { return "arc segment" + i; })
-											.append("path")
-												.transition()
-													.duration(animateTime)
-													.delay(function(d, i) { return i * animateTime; })
-													.attrTween("d", function(d) {
-														
-														var i = d3.interpolate(d.startAngle, d.endAngle);
-														return function(t) { d.endAngle = i(t); return arc(d); }
+								svg.append("circle")
+									.attr("r", radius)
+									.attr("stroke", "white")
+									.attr("stroke-width", "1.5px")
+									.attr("fill", "none")
+									.style("opacity", 0);
 									
-													})
-													.each("end", function() {
-														
-														d3.select("#donutText")
+								svg.append("circle")
+									.attr("r", radius/1.5)
+									.attr("stroke", "white")
+									.attr("stroke-width", "1.5px")
+									.attr("fill", "none")
+									.style("opacity", 0);
+									
+								svg.selectAll("circle")
+									.transition()
+										.duration(animateTime)
+										.style("opacity", 1)
+										.each("end", function(d) {
+											svg.selectAll(".arc")
+												.data(pie(data))
+												.enter()
+													.append("g")
+														.attr("class", function(d, i) { return "arc segment" + i; })
+														.append("path")
 															.transition()
 																.duration(animateTime)
-																.style("opacity", 1);
-													});																
+																.delay(function(d, i) { return i * animateTime; })
+																.attrTween("d", function(d) {
+																	
+																	var i = d3.interpolate(d.startAngle, d.endAngle);
+																	return function(t) { d.endAngle = i(t); return arc(d); }
+												
+																})
+																.each("end", function() {
+																	
+																	d3.select("#donutText")
+																		.transition()
+																			.duration(animateTime)
+																			.style("opacity", 1);
+																});																
+										});
 							});
 					});					
 		};

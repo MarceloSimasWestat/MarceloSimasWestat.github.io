@@ -5168,18 +5168,22 @@ button:hover,
 /* Donut chart */
 
 .donut .segment0 {
+	stroke-width: 1.5px;
+	stroke-opacity: 1;
+	stroke: #fff;
 	fill: #fff;
 }
 
 .donut .segment1 {
+	stroke-opacity: 0;
 	fill: rgba(0,0,0,0);		
 }
 
-.donut .arc{
+/*.donut .arc{
 	stroke-width: 1.5px;
 	stroke-opacity: 1;
 	stroke: #fff;
-}
+}*/
 
 /*.donut .arc:hover {
 	opacity: 0.75;
