@@ -4241,7 +4241,7 @@ body.loaded #sidebar nav ul li {
 
 
 #counter {
-	margin-bottom: 35%;
+	margin-top: 35%;
 }
 
 	#counter h2 {
@@ -5174,7 +5174,7 @@ button:hover,
 
 .donut .segment0 {
 	stroke-width: 1.5px;
-	stroke-opacity: 1;
+	stroke-opacity: 0;
 	stroke: #fff;
 	fill: #fff;
 }
