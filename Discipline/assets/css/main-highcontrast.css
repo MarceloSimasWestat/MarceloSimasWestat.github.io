@@ -4251,13 +4251,14 @@ body.loaded #sidebar nav ul li {
 
 
 #counter {
+	margin-bottom: 35%;
 }
 
 	#counter h2 {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
-        margin: 35% 0 0 0;
+        margin: 0 0 0 0;
 		color: #fff;
 		/* opacity: 1; */
         line-height: normal;
@@ -4990,21 +4991,21 @@ button:hover,
 }
 
 .dotM {
-	fill: #A6426C;
+	fill: #42A667;
 }
 
 .dotF {
-	fill: #42A667;
+	fill: #A6426C;
 }
 
 .labelM {
 	font: 400 13px Inconsolata;
-	fill: #A6426C;
+	fill: #42A667;
 }
 
 .labelF {
 	font: 400 13px Inconsolata;
-	fill: #42A667;
+	fill: #A6426C;
 }
 
 .dotM:hover,
@@ -5178,11 +5179,11 @@ button:hover,
 }
 
 .groupedBarDiv .Female {
-	fill: #DBB3C4;
+	fill: #A6426C;
 }
 
 .groupedBarDiv .Male {
-	fill: #C07A98;
+	fill: #42A667;
 }
 
 .zeroLine {
