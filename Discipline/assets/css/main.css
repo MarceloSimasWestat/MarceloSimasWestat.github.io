@@ -4670,7 +4670,7 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_tennis@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps@2x.jpg") no-repeat center center scroll;
       background-size: cover;
     }
 
