@@ -197,7 +197,7 @@
                                         </div>
                                 </div>
                                 <div class="innerLegend">
-                                    <div data-value="#f2f0f7" class="legendButton">
+                                    <div data-value="#99d8c9" class="legendButton">
                                         <hr class="verticalLine" size="33">
                                         <div class="legendText">0</div>
                                     </div><div data-value="gray" class="legendButton">
@@ -488,7 +488,7 @@
         var width = 960;
         var height = 600;
         var center = [width / 2, height / 2];
-        var defaultFill = "lightgray";
+        var defaultFill = "#f0f0f0";
 
         var projection = d3.geo.albersUsa()
                 .translate([width / 2, height / 2])
@@ -773,7 +773,7 @@
                                 if (buttonValue == colorByGroup(d.properties["Percent OOS"])) {
                                     return buttonValue;
                                 } else {
-                                    return "lightgray";
+                                    return "#f0f0f0";
                                 }
                             });
                 }
@@ -792,7 +792,7 @@
         function colorByGroup(p) {
 
             var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#f2f0f7' :
+            return d == 0 ? '#99d8c9' :
                     (d > 0 && d <= 3) ? '#cbc9e2' :
                             (d > 3 && d <= 6) ? '#9e9ac8' :
                                     (d > 6 && d <= 12) ? '#756bb1' :
