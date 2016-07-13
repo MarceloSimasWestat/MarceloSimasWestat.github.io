@@ -4689,6 +4689,7 @@ ul.callout li {
     -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     text-decoration: none;
+	color: #000;
 	opacity: 1;
 	border-bottom: dotted 1px rgba(23, 26, 29, 0.35);
 }
