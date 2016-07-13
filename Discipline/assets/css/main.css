@@ -4201,7 +4201,7 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_warmhue.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4674,7 +4674,7 @@ ul.callout li {
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_warmhue@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs@2x.jpg") no-repeat center center scroll;
       background-size: cover;
     }
 }
