@@ -5328,8 +5328,8 @@ button:hover,
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 115px;
-    text-align: right;
+    margin-bottom: 90px;
+    text-align: center;
 }
 
 #mapWrapper #legend #selectDistrictType {
