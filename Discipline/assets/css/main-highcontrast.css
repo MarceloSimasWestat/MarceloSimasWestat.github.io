@@ -5287,7 +5287,7 @@ button:hover,
 }
 
 #mapWrapper h3.name, h3.stateName{
-    color: black;
+    color: rgba(26,28,32,0.90);
     font-family: Karla, Helvetica, sans-serif;
     text-align: right;
     font-weight: bold;
@@ -5302,11 +5302,13 @@ button:hover,
     font-family: Helvetica, sans-serif;
 }
 #legend b {
-    color: black;
+    font-family: Inconsolata-Regular;
+    font-size: 13px;
+    color: rgba(26,28,32,0.90);
 }
 #legend h3 {
     padding-bottom: 15px;
-    color: black;
+    color: rgba(26,28,32,0.90);
     font-size: 13px;
     font-family: Helvetica, sans-serif;
     text-align: center;
@@ -5320,7 +5322,7 @@ button:hover,
 }
 
 #selectElementary {
-    color: black;
+    color: rgba(26,28,32,0.90);
     list-style: none;
     margin: 0;
     padding: 4px 0;
@@ -5333,7 +5335,7 @@ button:hover,
     background: yellow;
 }
 #selectSecondary {
-    color: black;
+    color: rgba(26,28,32,0.90);
     list-style: none;
     margin: 0;
     padding: 4px 0;
@@ -5350,6 +5352,7 @@ button:hover,
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -5367,7 +5370,7 @@ button:hover,
     clear:both;
 }
 #mapWrapper #legend .selectDistrict{
-    color: black;
+    color: rgba(26,28,32,0.90);
     background: yellow;
 }
 
@@ -5407,32 +5410,33 @@ button:hover,
 
 div.legendButton{
     text-align: left;
-    color: black;
+    color: rgba(26,28,32,0.90);
     display: inline-block;
     border-style: none;
     border-radius: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-left: 2px;
     font-size: 12px;
     font-weight: bold;
-    height: 20px;
+    height: 15px;
     padding: 0;
     margin: 0;
 }
 
-.innerLegend div{
-    font-size: 10px;
-}
-
 .legendText{
-    margin-top: 30px;
+    font-family: Inconsolata-Regular;
+    font-size: 13px;
+    color: rgba(26,28,32,0.90);
+    letter-spacing: 0.53px;
+    margin-top: 20px;
+    text-align: left;
     white-space: nowrap;
 }
 
 .verticalLine{
     width: 1px;
-    color: black;
-    background: black;
+    color: rgba(26,28,32,0.90);
+    background: #1A1C20;
     border: 0;
     margin-top: 0px;
     margin-left: -1px;

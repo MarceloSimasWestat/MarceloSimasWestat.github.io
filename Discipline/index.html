@@ -188,38 +188,38 @@
 				<div>
 					<div class="align-center">
 						<div id="mapWrapper">
+                            <div id="selectDistrictType">
+                                <div id="selectElementary" class="selected ">Elementary and Unified</div>
+                                <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
+                                </div>
+                            </div>
 							<div id="legend">
 								<h3><b>% of all students (preschool–12) who received one or more out-of-school
 									suspension</b></h3>
                                 <div class="legendButtonWrapper">
                                     <div data-value="#cbc9e2" class="legendButton">
-                                        <hr class="verticalLine" size="33">
+                                        <hr class="verticalLine" size="25">
                                         <div class="legendText">0</div>
                                     </div><div data-value="#9e9ac8" class="legendButton">
-                                        <hr class="verticalLine" size="33">
+                                        <hr class="verticalLine" size="25">
                                         <div class="legendText">3</div>
                                 </div><div data-value="#756bb1" class="legendButton">
-                                        <hr class="verticalLine" size="33">
+                                        <hr class="verticalLine" size="25">
                                         <div class="legendText">6</div>
                                 </div><div data-value="#54278f" class="legendButton">
-                                        <hr class="verticalLine" size="33">
+                                        <hr class="verticalLine" size="25">
                                         <div class="legendText">12</div>
                                         </div>
                                 </div>
                                 <div class="innerLegend">
                                     <div data-value="#a1d99b" class="legendButton">
-                                        <hr class="verticalLine" size="33">
+                                        <hr class="verticalLine" size="25">
                                         <div class="legendText">0</div>
                                     </div><div data-value="gray" class="legendButton">
-                                        <hr class="verticalLine" size="33">
-                                        <div class="legendText">Missing Data*</div>
+                                        <hr class="verticalLine" size="25">
+                                        <div class="legendText">Missing*</div>
                                     </div>
                                 </div>
-							</div>
-							<div id="selectDistrictType">
-								<div id="selectElementary" class="selected ">Elementary and Unified</div>
-								<div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
-								</div>
 							</div>
 							<div id="map"></div>
 						</div>
@@ -765,17 +765,17 @@
             legendButton.on("click", function () {
                 if ($(this).hasClass("highlightButton")) {
                     legendButton.each(function () {
-                        $(this).css("border-color", "black");
+                        $(this).css("border-color", "white");
                         $(this).removeClass("highlightButton");
                     });
                     updateColors();
                 } else {
                     legendButton.each(function () {
-                        $(this).css("border-color", "black");
+                        $(this).css("border-color", "white");
                         $(this).removeClass("highlightButton");
                     });
                     $(this).addClass("highlightButton");
-                    $(this).css("border-color", "yellow");
+                    $(this).css("border-color", "black");
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
