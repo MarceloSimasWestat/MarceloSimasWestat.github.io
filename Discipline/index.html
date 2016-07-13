@@ -207,7 +207,7 @@
                                         </div>
                                 </div>
                                 <div class="innerLegend">
-                                    <div data-value="#99d8c9" class="legendButton">
+                                    <div data-value="#a1d99b" class="legendButton">
                                         <hr class="verticalLine" size="33">
                                         <div class="legendText">0</div>
                                     </div><div data-value="gray" class="legendButton">
@@ -592,7 +592,7 @@
                             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                     "<h4>" + name + "</h4><hr>" +
                                     "<div>" + percentOOS + "</div>" +
-                                    "<div>(" + totalStudentOOS + " out of " + totalEnrollment + " students)</div>");
+                                    "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
                         } else if (name === "School District Not Defined") {
                             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                     "<h3>No Operating District</h3>");
@@ -672,7 +672,7 @@
                                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                         "<h4>" + name + "</h4><hr>" +
                                         "<div>" + percentOOS + "</div>" +
-                                        "<div>(" + totalStudentOOS + " out of " + totalEnrollment + " students)</div>");
+                                        "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
                             } else if (name === "School District Not Defined") {
                                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                                         "<h3>No Operating District</h3>");
@@ -799,7 +799,7 @@
         function colorByGroup(p) {
 
             var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#99d8c9' :
+            return d == 0 ? '#a1d99b' :
                     (d > 0 && d <= 3) ? '#cbc9e2' :
                             (d > 3 && d <= 6) ? '#9e9ac8' :
                                     (d > 6 && d <= 12) ? '#756bb1' :
