@@ -4251,13 +4251,14 @@ body.loaded #sidebar nav ul li {
 
 
 #counter {
+	margin-bottom: 35%;
 }
 
 	#counter h2 {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
-        margin: 35% 0 0 0;
+        margin: 0 0 0 0;
 		color: #fff;
 		/* opacity: 1; */
         line-height: normal;
@@ -4994,7 +4995,7 @@ button:hover,
 }
 
 .dotF {
-	fill: #42A667;
+	fill: #5D3EA8;
 }
 
 .labelM {
@@ -5004,7 +5005,7 @@ button:hover,
 
 .labelF {
 	font: 400 13px Inconsolata;
-	fill: #42A667;
+	fill: #5D3EA8;
 }
 
 .dotM:hover,
@@ -5178,11 +5179,11 @@ button:hover,
 }
 
 .groupedBarDiv .Female {
-	fill: #DBB3C4;
+	fill: #5D3EA8;
 }
 
 .groupedBarDiv .Male {
-	fill: #C07A98;
+	fill: #A6426C;
 }
 
 .zeroLine {
@@ -5242,35 +5243,41 @@ button:hover,
 .districtTooltip {
     position: absolute;
     text-align: left;
-    width: 200px;
+    width: 180px;
     padding: 10px;
-    font-size: 10px;
+    font-size: 11px;
     font-family: Karla;
     background: #1A1C20;
-    border: 1px solid #979797;
     pointer-events: none;
     opacity: 0;
     z-index: 900;
 }
 
 .districtTooltip h3 {
-    text-align: center;
-    font-size: 15px;
+    text-align: left;
+    font-size: 11px;
+    margin: 0;
+    line-height: 17px;
+}
+
+.districtTooltip h4 {
+    text-align: left;
+    font-size: 11px;
     margin: 0;
     line-height: 17px;
 }
 
 .districtTooltip div {
-    font-size: 12px;
+    text-align: right;
+    font-size: 11px;
 }
 
 .districtTooltip b {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .districtTooltip hr {
-    margin: 0;
-    border-bottom: 1px solid #979797;
+    margin: 3px 0 3px 0;
     color: #979797;
 }
 
@@ -5282,6 +5289,7 @@ button:hover,
 #mapWrapper h3.name, h3.stateName{
     color: black;
     font-family: Karla, Helvetica, sans-serif;
+    text-align: right;
     font-weight: bold;
 }
 
@@ -5375,7 +5383,6 @@ button:hover,
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
-    top: 10px;
     left: 0;
 }
 
@@ -5391,7 +5398,7 @@ button:hover,
 .innerLegend{
     text-align: center;
     width: 30%;
-    height: 70px;
+    height: 45px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;

@@ -131,7 +131,7 @@ function counter() {
 			.append("text")
 				.text(counterValue);
 
-		$("#overCount").append("<span>students were out-of-school suspended in 2013-14.</span>");
+		$("#overCount").append("<br><span>students were out-of-school suspended in 2013-14.</span>");
         		
 		function countUp(text, duration) {
 			text.transition()
@@ -209,8 +209,8 @@ function counter() {
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
 				
-				if (document.getElementById("counter_pre").className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById("counter_pre").className.indexOf("graph-scroll") >= 0) {
+				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
 				
 				d3.select("#counter")
 					.classed("activated", "true");
@@ -1248,7 +1248,7 @@ function dotTwo() {
 		marginTop = 20,
 		marginLeft = 100,
 		marginBottom = 45,
-		dotSize = 5,
+		dotSize = 4,
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
@@ -1448,7 +1448,7 @@ function dotTwo() {
 			.attr("class", "labelM")
 			.attr("aria-hidden", "true")
 			.style("opacity", 0)
-			.text("Male");
+			.text("MALE");
 								
 		var dotsFemale = svg.selectAll("circle.dotF")
 			.data(data);
@@ -1475,7 +1475,7 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.attr("class", "labelF")
 			.style("opacity", 0)
-			.text("Female");	
+			.text("FEMALE");	
 	
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
