@@ -4971,21 +4971,21 @@ button:hover,
 }
 
 .dotM {
-	fill: #42A667;
+	fill: #A6426C;
 }
 
 .dotF {
-	fill: #A6426C;
+	fill: #5D3EA8;
 }
 
 .labelM {
 	font: 400 13px Inconsolata;
-	fill: #42A667;
+	fill: #A6426C;
 }
 
 .labelF {
 	font: 400 13px Inconsolata;
-	fill: #A6426C;
+	fill: #5D3EA8;
 }
 
 .dotM:hover,
@@ -5158,11 +5158,11 @@ button:hover,
 }
 
 .groupedBarDiv .Female {
-	fill: #A6426C;
+	fill: #5D3EA8;
 }
 
 .groupedBarDiv .Male {
-	fill: #42A667;
+	fill: #A6426C;
 }
 
 .zeroLine {
