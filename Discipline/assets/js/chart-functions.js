@@ -209,8 +209,8 @@ function counter() {
 			.sections(d3.selectAll("#intro_sections > div"))
 			.on("active", function() {
 				
-				if (document.getElementById("counter").className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById("counter").className.indexOf("graph-scroll") >= 0) {
+				if (document.getElementById("counter_pre").className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById("counter_pre").className.indexOf("graph-scroll") >= 0) {
 				
 				d3.select("#counter")
 					.classed("activated", "true");
