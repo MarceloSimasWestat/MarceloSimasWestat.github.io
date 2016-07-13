@@ -560,11 +560,12 @@
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
                         var format = d3.format("0,000");
+                        var decimal = d3.format(",.1f");
                         var state = d.properties.State;
                         var name = d.properties.Name;
                         var totalEnrollment = format(d.properties["Total Enrollment"]);
                         var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                        var percentOOS = d.properties['Percent OOS'];
+                        var percentOOS = decimal(d.properties['Percent OOS'].replace("%",""))+'%';
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
                         d3.select(this).classed("selected", true);
@@ -640,11 +641,12 @@
                         .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
                             var format = d3.format("0,000");
+                            var decimal = d3.format(",.1f");
                             var state = d.properties.State;
                             var name = d.properties.Name;
                             var totalEnrollment = format(d.properties["Total Enrollment"]);
                             var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                            var percentOOS = d.properties['Percent OOS'];
+                            var percentOOS = decimal(d.properties['Percent OOS'].replace("%",""))+'%';
                             d3.select(this).attr("stroke", "#1A1C20")
                                     .attr("stroke-opacity", 1);
                             d3.select(this).classed("selected", true);
