@@ -179,6 +179,16 @@
 					<div class="align-center">
 						<div id="mapWrapper">
 							<div id="legend">
+                                <div class="disclaimer">
+                                    <div style="display: table-row; width: 100%;">
+                                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                                            <div class="icon"><span class="left icon fa-mouse-pointer"></span></div>
+                                        </div>
+                                        <div class="right">
+                                            Our map is interactive! Hover over a school district to learn more, use legend to filter map by select groups.
+                                        </div>
+                                    </div>
+                                </div>
 								<h3><b>% of all students (preschool–12) who received one or more out-of-school
 									suspension</b></h3>
                                 <div class="legendButtonWrapper">
@@ -549,10 +559,11 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
+                        var format = d3.format("0,000");
                         var state = d.properties.State;
                         var name = d.properties.Name;
-                        var totalEnrollment = d.properties["Total Enrollment"];
-                        var totalStudentOOS = d.properties["Total Students OOS"];
+                        var totalEnrollment = format(d.properties["Total Enrollment"]);
+                        var totalStudentOOS = format(d.properties["Total Students OOS"]);
                         var percentOOS = d.properties['Percent OOS'];
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
@@ -628,10 +639,11 @@
                         .attr("stroke-opacity", .15)
                         .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
+                            var format = d3.format("0,000");
                             var state = d.properties.State;
                             var name = d.properties.Name;
-                            var totalEnrollment = d.properties["Total Enrollment"];
-                            var totalStudentOOS = d.properties["Total Students OOS"];
+                            var totalEnrollment = format(d.properties["Total Enrollment"]);
+                            var totalStudentOOS = format(d.properties["Total Students OOS"]);
                             var percentOOS = d.properties['Percent OOS'];
                             d3.select(this).attr("stroke", "#1A1C20")
                                     .attr("stroke-opacity", 1);
