@@ -189,13 +189,12 @@
 					<div class="align-center">
 						<div id="mapWrapper">
                             <div id="selectDistrictType">
-                                <div id="selectElementary" class="selected ">Elementary and Unified</div>
-                                <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
-                                </div>
+                                <button id="selectElementary" class="buttonSelected filterButton">Elementary and Unified</button>
+                                <button id="selectSecondary" class="filterButton">Independent Elementary, Secondary, and Unified
+                                </button>
                             </div>
 							<div id="legend">
-								<h3><b>% of all students (preschool–12) who received one or more out-of-school
-									suspension</b></h3>
+								<h3>% OF ALL STUDENTS (PRESCHOOL–12) WHO RECEIVED ONE OR MORE OUT-OF-SHCOOL SUSPENSION</h3>
                                 <div class="legendButtonWrapper">
                                     <div data-value="#cbc9e2" class="legendButton">
                                         <hr class="verticalLine" size="25">
@@ -212,7 +211,7 @@
                                         </div>
                                 </div>
                                 <div class="innerLegend">
-                                    <div data-value="#a1d99b" class="legendButton">
+                                    <div data-value="#84C59C" class="legendButton">
                                         <hr class="verticalLine" size="25">
                                         <div class="legendText">0</div>
                                     </div><div data-value="gray" class="legendButton">
@@ -631,15 +630,15 @@
                     .attr("d", path);
 
             d3.select("#selectElementary").on("click", function () {
-                d3.select("#selectSecondary").style("background", "white");
-                d3.select(this).style("background", "yellow");
+                $("#selectSecondary").removeClass("buttonSelected");
+                $("#selectElementary").addClass("buttonSelected");
                 d3.selectAll("#secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
                 d3.selectAll(".state").remove();
-                d3.select("#selectElementary").style("background", "white");
-                d3.select(this).style("background", "yellow");
+                $("#selectElementary").removeClass("buttonSelected");
+                $("#selectSecondary").addClass("buttonSelected");
                 g.append("g")
                         .selectAll("path")
                         .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
@@ -776,17 +775,16 @@
             legendButton.on("click", function () {
                 if ($(this).hasClass("highlightButton")) {
                     legendButton.each(function () {
-                        $(this).css("border-color", "white");
+                        $(this).css("border", 0);
                         $(this).removeClass("highlightButton");
                     });
                     updateColors();
                 } else {
                     legendButton.each(function () {
-                        $(this).css("border-color", "white");
+                        $(this).css("border", 0);
                         $(this).removeClass("highlightButton");
                     });
                     $(this).addClass("highlightButton");
-                    $(this).css("border-color", "black");
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
@@ -812,7 +810,7 @@
         function colorByGroup(p) {
 
             var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#a1d99b' :
+            return d == 0 ? '#84C59C ' :
                     (d > 0 && d <= 3) ? '#cbc9e2' :
                             (d > 3 && d <= 6) ? '#9e9ac8' :
                                     (d > 6 && d <= 12) ? '#756bb1' :
