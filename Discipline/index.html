@@ -189,9 +189,9 @@
 					<div class="align-center">
 						<div id="mapWrapper">
                             <div id="selectDistrictType">
-                                <button id="selectElementary" class="buttonSelected filterButton">Elementary and Unified</button>
-                                <button id="selectSecondary" class="filterButton">Independent Elementary, Secondary, and Unified
-                                </button>
+                                <div id="selectElementary" class="selected ">Elementary and Unified</div>
+                                <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
+                                </div>
                             </div>
 							<div id="legend">
 								<h3>% OF ALL STUDENTS (PRESCHOOL–12) WHO RECEIVED ONE OR MORE OUT-OF-SHCOOL SUSPENSION</h3>
@@ -216,7 +216,7 @@
                                         <div class="legendText">0</div>
                                     </div><div data-value="gray" class="legendButton">
                                         <hr class="verticalLine" size="25">
-                                        <div class="legendText">Missing*</div>
+                                        <div class="legendText">MISSING*</div>
                                     </div>
                                 </div>
 							</div>
@@ -621,15 +621,19 @@
                     .attr("d", path);
 
             d3.select("#selectElementary").on("click", function () {
-                $("#selectSecondary").removeClass("buttonSelected");
-                $("#selectElementary").addClass("buttonSelected");
+                d3.select("#selectSecondary").style("background", "white")
+                        .style("color","#1A1C20");
+                d3.select(this).style("background", "#1A1C20")
+                        .style("color","white");
                 d3.selectAll("#secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
                 d3.selectAll(".state").remove();
-                $("#selectElementary").removeClass("buttonSelected");
-                $("#selectSecondary").addClass("buttonSelected");
+                d3.select("#selectElementary").style("background", "white")
+                        .style("color","#1A1C20");
+                d3.select(this).style("background", "#1A1C20")
+                        .style("color","white");
                 g.append("g")
                         .selectAll("path")
                         .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
@@ -723,7 +727,7 @@
                         return d
                     })
                     .attr("y", function (d, i) {
-                        return 20 + 25 * i
+                        return 25 * i
                     })
                     .attr({x: 20, width: 20, height: 20});
 
@@ -735,7 +739,7 @@
                     })
                     .style("fill", "white")
                     .style("font-size", "20px")
-                    .attr("y", 35)
+                    .attr("y", 15)
                     .attr({x: 24.5, width: 20, height: 20})
                     .on('click', zoomClick);
 
@@ -747,7 +751,7 @@
                     })
                     .style("fill", "white")
                     .style("font-size", "20px")
-                    .attr("y", 60)
+                    .attr("y", 40)
                     .attr({x: 26, width: 20, height: 20})
                     .on('click', zoomClick);
 

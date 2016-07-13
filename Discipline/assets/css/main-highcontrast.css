@@ -5362,7 +5362,6 @@ button:hover,
 
 .svg-content-responsive {
     display: inline-block;
-    margin-top: 10px;
     position: absolute;
     left: 0;
 }
@@ -5379,7 +5378,7 @@ button:hover,
 .innerLegend{
     text-align: center;
     width: 30%;
-    height: 45px;
+    height: 35px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -5400,20 +5399,42 @@ div.legendButton{
     margin: 0;
 }
 
-#selectElementary{
-    margin-bottom: 5px;
-    padding: 0;
-    width: 310px;
+#selectElementary {
+    font-family: Inconsolata-Regular;
+    color: white;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+    background: #1A1C20;
+}
+#selectSecondary {
+    font-family: Inconsolata-Regular;
+    color: rgba(26,28,32,0.90);
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
 }
 
-#selectSecondary{
-    margin-bottom: 5px;
-    padding: 0;
-    width: 340px;
+.districtButtonSelected{
+    background: #1A1C20;
+    color: white;
 }
 
 .legendText{
     font-family: Inconsolata-Regular;
+    font-weight: normal;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
     letter-spacing: 0.53px;
