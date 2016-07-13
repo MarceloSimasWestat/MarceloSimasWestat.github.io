@@ -508,9 +508,6 @@
 
         var g = svg.append("g");
 
-        svg.on("wheel.zoom", null);
-        svg.on("mousewheel.zoom", null);
-
         svg.append("svg:image")
                 .attr("xlink:href", "images/progress-anim.gif")
                 .attr("id", "progress-image")
@@ -531,6 +528,9 @@
                 .defer(d3.json, "assets/data/elementary_unified.json")
                 .defer(d3.json, "assets/data/secondary.json")
                 .await(ready);
+
+        svg.on("wheel.zoom", null);
+        svg.on("mousewheel.zoom", null);
 
         function ready(error, us, primary, secondary) {
             if (error) {
