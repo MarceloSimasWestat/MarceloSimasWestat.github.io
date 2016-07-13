@@ -536,12 +536,7 @@
             if (error) {
                 console.log(error);
             }
-            g.on("mousedown", function () {
-                d3.select(this).attr("style", "cursor: move; cursor: grabbing; cursor:-moz-grabbing; cursor:-webkit-grabbing;");
-            });
-            g.on("mouseup", function () {
-                d3.select(this).style("cursor", "default");
-            });
+            g.attr("cursor","pointer");
 
             g.append("g")
                     .selectAll("path")
@@ -584,8 +579,8 @@
                         }
                         if (percentOOS != null && totalStudentOOS != null) {
                             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h3>" + name + "</h3><hr>" +
-                                    "<div>" + percentOOS + " out-of-school suspended</div>" +
+                                    "<h4>" + name + "</h4><hr>" +
+                                    "<div>" + percentOOS + "</div>" +
                                     "<div>(" + totalStudentOOS + " out of " + totalEnrollment + " students)</div>");
                         } else if (name === "School District Not Defined") {
                             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
@@ -593,7 +588,7 @@
 
                         } else {
                             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h3>" + name + "</h3><hr>" +
+                                    "<h4>" + name + "</h4><hr>" +
                                     "<div> NO DATA </div>");
                         }
                     })
@@ -663,8 +658,8 @@
                             }
                             if (percentOOS != null && totalStudentOOS != null) {
                                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                        "<h3>" + name + "</h3><hr>" +
-                                        "<div>" + percentOOS + " out-of-school suspended</div>" +
+                                        "<h4>" + name + "</h4><hr>" +
+                                        "<div>" + percentOOS + "</div>" +
                                         "<div>(" + totalStudentOOS + " out of " + totalEnrollment + " students)</div>");
                             } else if (name === "School District Not Defined") {
                                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
@@ -672,7 +667,7 @@
 
                             } else {
                                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                        "<h3>" + name + "</h3><hr>" +
+                                        "<h4>" + name + "</h4><hr>" +
                                         "<div> NO DATA </div>");
                             }
                         })

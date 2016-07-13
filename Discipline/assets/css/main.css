@@ -5232,6 +5232,13 @@ button:hover,
 }
 
 .districtTooltip h3 {
+    text-align: center;
+    font-size: 11px;
+    margin: 0;
+    line-height: 17px;
+}
+
+.districtTooltip h4 {
     text-align: left;
     font-size: 11px;
     margin: 0;
@@ -5239,6 +5246,7 @@ button:hover,
 }
 
 .districtTooltip div {
+    text-align: right;
      font-size: 11px;
  }
 
@@ -5247,7 +5255,7 @@ button:hover,
 }
 
 .districtTooltip hr {
-    margin: 0;
+    margin: 3px 0 3px 0;
     color: #979797;
 }
 
