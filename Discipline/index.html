@@ -575,7 +575,13 @@
                         var name = d.properties.Name;
                         var totalEnrollment = format(d.properties["Total Enrollment"]);
                         var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                        var percentOOS = d.properties['Percent OOS'];
+                        var percentOOS;
+                        if(d.properties['Percent OOS'] != null) {
+                            percentOOS = decimal(d.properties['Percent OOS'].replace(/%/g, "")) + '%';
+                        }
+                        else {
+                            percentOOS = d.properties['Percent OOS'];
+                        }
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
                         d3.select(this).classed("selected", true);
@@ -656,7 +662,13 @@
                             var name = d.properties.Name;
                             var totalEnrollment = format(d.properties["Total Enrollment"]);
                             var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                            var percentOOS = d.properties['Percent OOS'];
+                            var percentOOS;
+                            if(d.properties['Percent OOS'] != null) {
+                                percentOOS = decimal(d.properties['Percent OOS'].replace(/%/g, "")) + '%';
+                            }
+                            else {
+                                percentOOS = d.properties['Percent OOS'];
+                            }
                             d3.select(this).attr("stroke", "#1A1C20")
                                     .attr("stroke-opacity", 1);
                             d3.select(this).classed("selected", true);
