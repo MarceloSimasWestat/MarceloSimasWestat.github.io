@@ -5285,7 +5285,7 @@ button:hover,
 
 #legend h3 {
     padding-bottom: 15px;
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
     text-align: left;
@@ -5380,7 +5380,7 @@ div.legendButton{
 }
 
 #selectElementary {
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     color: white;
     list-style: none;
     margin: 0;
@@ -5394,7 +5394,7 @@ div.legendButton{
     background: #1A1C20;
 }
 #selectSecondary {
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     color: rgba(26,28,32,0.90);
     list-style: none;
     margin: 0;
@@ -5413,7 +5413,7 @@ div.legendButton{
 }
 
 .legendText{
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     font-weight: normal;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
