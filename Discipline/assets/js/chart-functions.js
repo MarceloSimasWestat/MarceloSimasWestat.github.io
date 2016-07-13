@@ -28,7 +28,7 @@ function counter() {
 		
 		counterDiv.append("div")
 			.style("text-align", "left")
-			.html("<h2>OVER </h2><p>students were out-of-school suspended in 2013-14.</p>");
+			.html("<h2 id='overCount'>OVER </h2>");
 			
 		counterDiv.append("div")
 			.html("<hr style='opacity: 0'>");
@@ -130,7 +130,9 @@ function counter() {
 		counterDiv.select("h2")
 			.append("text")
 				.text(counterValue);
-				
+
+		$("#overCount").append("<span>students were out-of-school suspended in 2013-14.</span>");
+        		
 		function countUp(text, duration) {
 			text.transition()
 				.duration(duration)

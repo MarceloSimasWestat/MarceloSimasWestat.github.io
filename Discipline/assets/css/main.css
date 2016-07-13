@@ -4271,6 +4271,10 @@ body.loaded #sidebar nav ul li {
 		margin: 1.5em 0;
 	}
 
+#overCount {
+    line-height: 0.7em !important;
+}
+
 .donutCount {
 	font-size: 3.5em;
 	font-family: KARLA;
