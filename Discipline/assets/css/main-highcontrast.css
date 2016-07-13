@@ -1772,6 +1772,16 @@ ul.disclaimer {
     justify-content: center;
   }
 
+  ul.disclaimer a {
+    display: block;
+	border-bottom-color: black;
+  }
+
+    ul.disclaimer a:hover {
+      border-bottom-color: black;
+    }
+
+
 .disclaimer a {
     border-bottom-color: black;
   }
@@ -3765,8 +3775,6 @@ footer ol {
 }
 
 
-
-
 /* Copied over from template */
 @media screen and (max-width: 1024px) {
 
@@ -4245,13 +4253,13 @@ body.loaded #sidebar nav ul li {
 #counter {
 }
 
-
-    #counter h2 {
-        margin-top: 56%;
+	#counter h2 {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
-        margin-bottom: 9px;
+        margin: 35% 0 0 0;
+		color: #fff;
+		/* opacity: 1; */
         line-height: normal;
     }
 
@@ -4265,7 +4273,35 @@ body.loaded #sidebar nav ul li {
     #counter p {
         font-size: 22px;
         line-height: normal;
+		margin: 0 0 0 0;
+		opacity: 1;
     }
+
+	#counter hr {
+		border: 1px solid #fff;
+		margin: 1.5em 0;
+	}
+
+#overCount {
+    line-height: 0.7em !important;
+}
+
+.donutCount {
+	font-size: 3.5em;
+	font-family: KARLA;
+	fill: #fff;
+	opacity: 1;
+}
+
+#donutText h2 {
+        font-family: KARLA;
+        font-weight: normal;
+        font-size: 3.5em;
+        margin: 0 0 0 0;
+		color: #fff;
+		opacity: 1;
+        line-height: normal;
+}
 
 @media screen and (max-width: 980px) {
 
@@ -4277,8 +4313,13 @@ body.loaded #sidebar nav ul li {
 
     #counter h2 {
         margin-top: 5%;
-        line-height: .75em;
+        line-height: normal;
     }
+
+	.donutCount {
+		font-size: 2em;
+	}
+
 }
 
 @media screen and (max-width: 736px) {
@@ -4292,6 +4333,11 @@ body.loaded #sidebar nav ul li {
     #counter h2 {
         margin-top: 5%;
     }
+
+	.donutCount {
+		font-size: 1em;
+	}
+
 }
 
 /*
@@ -4649,6 +4695,11 @@ ul.callout li {
 /* Styling for chart area links */
 
 .chart a {
+	-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    -webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    text-decoration: none;
 	border-bottom: 1px solid black;
 }
 
@@ -4658,7 +4709,7 @@ ul.callout li {
 	}
 
 #maplegend {
-    max-width: 375px; 
+    max-width: 375px;
     display: inline;
 }
 
@@ -4967,6 +5018,13 @@ button:hover,
 	shape-rendering: crispEdges;
 }
 
+.dotLHit {
+	stroke: #5D42A6;
+	stroke-width: 10px;
+	shape-rendering: crispEdges;
+	opacity: 0;
+}
+
 /* Scatter plot styling */
 
 .scatterPlot .axis path,
@@ -5053,11 +5111,6 @@ button:hover,
 	font-weight: bold;
 }
 
-.groupedBar .Overall {
-	fill: #DDDDDE;
-	fill-opacity: 0.85;
-}
-
 /* .groupedBar .bar {
 	fill: rgb(242, 167, 115);
 } */
@@ -5084,9 +5137,10 @@ button:hover,
 	shape-rendering: crispEdges;
 }
 
-.groupedBarDiv .x.axis {
+.groupedBarDiv .x.axis,
+.groupedBarDiv .guide {
 	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	fill: black;
 }
 
 .groupedBarDiv .x.axis path {
@@ -5094,7 +5148,7 @@ button:hover,
 }
 
 .groupedBarDiv .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
@@ -5114,6 +5168,51 @@ button:hover,
 	color: #1C1E21;
 	font-weight: bold;
 }
+
+/* .groupedBarDiv .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.groupedBarDiv .bar:hover {
+	fill-opacity: 0.75;
+}
+
+.groupedBarDiv .Female {
+	fill: #DBB3C4;
+}
+
+.groupedBarDiv .Male {
+	fill: #C07A98;
+}
+
+.zeroLine {
+	stroke-width: 1px;
+	stroke: #000;
+}
+
+/* Donut chart */
+
+.donut .segment0 {
+	stroke-width: 1.5px;
+	stroke-opacity: 1;
+	stroke: #fff;
+	fill: #fff;
+}
+
+.donut .segment1 {
+	stroke-opacity: 0;
+	fill: rgba(0,0,0,0);
+}
+
+/*.donut .arc{
+	stroke-width: 1.5px;
+	stroke-opacity: 1;
+	stroke: #fff;
+}*/
+
+/*.donut .arc:hover {
+	opacity: 0.75;
+}*/
 
 /* Styling tooltips for individual graph types */
 
