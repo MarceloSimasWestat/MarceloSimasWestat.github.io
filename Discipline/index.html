@@ -397,33 +397,44 @@
     <!-- Footer -->
     <footer id="footer" class="wrapper style1-alt">
         <div class="inner align-center">
-			<h2 class="line">Data Notes</h2>
+			<h2 id="datanotes" class="line">Data Notes</h2>
             <div class="6u$ 12u$(medium) dataExclusion">
-                <h3 id="datanotes" class="line">Data Exclusion Rules</h3>
-                <p>Data included in this story may differ slightly from other published reports due to certain data decisions. For the purposes of these analyses, schools with incomplete or inconsistent data values were excluded. Less than x% of schools were excluded for the following reasons:</p>
+                <h3 class="line">Data Exclusion Rules</h3>
+                <p>Data included in this story may differ slightly from other published reports due to certain data decisions. For the purposes of these analyses, schools with incomplete or inconsistent data values were excluded. Less than 5 percent of schools were excluded for the following reasons:</p>
                 <ol>
                     <li>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis quam, ut faucibus dui. Nullam placerat leo et porta dignissim. Aliquam id ultrices nibh. Phasellus non ligula eros.
+                        The school reported incomplete data for enrollment and/or the count of students suspended for at least one race/ethnicity subgroup.
                     </li>
                     <li>
-						Cras vel tincidunt mi, quis vulputate quam. Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.
-                    </li>
-                    <li>
-						Aenean bibendum eleifend diam imperdiet condimentum. Sed quis leo ut metus scelerisque consequat. Nullam congue nulla sed lectus congue, id ultrices nisi luctus. Nullam sed dapibus massa.
+						The count of students suspended was larger than the school enrollment for at least one race/ethnicity subgroup. Schools with partial or missing data for English learners were included in all analyses except those that focused on these subgroups.
                     </li>
                 </ol>
             </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 class="line">Preschool Definition</h3>
+                <p>The definition of preschool used in the Civil Rights Data Collection (CRDC) includes preschool programs and services for children ages 3 through 5.</p>
+            </div>			
             <div class="6u$ 12u$(medium) dataExclusion">
                 <h3 style="font-size: 15px;" class="line">Map Notes</h3>
                 <p>Data might be missing from the map if:</p>
                 <ol>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Sed vel mollis quam, ut faucibus dui.</li>
-                    <li>Nullam placerat leo et porta dignissim.</li>
+                    <li>It did not report suspension data or the data were inconsistent.</li>
+                    <li>It reported suspension data that did not match with the NCES district boundary file.</li>
+                    <li>Twenty-five percent of its enrollment was in schools with incomplete or inconsistent data (see Data Exclusion Rules).</li>
                 </ol>
+				<p>District data displayed on the map may not be based on all schools in the district. All districts with data have complete and consistent data for at least 75 percent of their enrollment.</p>
             </div>
-
-        </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 style="font-size: 15px;" class="line">Other Technical Notes</h3>
+                <p>This report uses three different types of percentages: a suspension rate, an enrollment composition percent, and a suspension composition percent.</p>
+                <ul style="font-size: 12px;">
+                    <li>The suspension rate is the number of students suspended divided by the number of students enrolled. A suspension rate is calculated overall and for each subgroup group.</li>
+                    <li>The enrollment composition percent is the number of subgroup students enrolled divided by the total number of students enrolled.</li>
+                    <li>The suspension composition percent is the number of subgroup students suspended divided by the total number of students suspended.</li>
+                </ul>
+				<p>When calculating the suspension rate for students with disabilities in each racial/ethnic group, suppressed enrollment counts were imputed to zero. Enrollment by race/ethnicity for students with disabilities was suppressed for privacy protection when the count was fewer than three (including zero).</p>
+            </div>
+		</div>
 
     </footer>
 
