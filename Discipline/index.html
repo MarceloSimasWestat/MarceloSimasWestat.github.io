@@ -575,7 +575,7 @@
                         var name = d.properties.Name;
                         var totalEnrollment = format(d.properties["Total Enrollment"]);
                         var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                        var percentOOS = decimal(d.properties['Percent OOS'].replace("%",""))+'%';
+                        var percentOOS = d.properties['Percent OOS'];
                         d3.select(this).attr("stroke", "#1A1C20")
                                 .attr("stroke-opacity", 1);
                         d3.select(this).classed("selected", true);
@@ -656,7 +656,7 @@
                             var name = d.properties.Name;
                             var totalEnrollment = format(d.properties["Total Enrollment"]);
                             var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                            var percentOOS = decimal(d.properties['Percent OOS'].replace("%",""))+'%';
+                            var percentOOS = d.properties['Percent OOS'];
                             d3.select(this).attr("stroke", "#1A1C20")
                                     .attr("stroke-opacity", 1);
                             d3.select(this).classed("selected", true);
@@ -810,7 +810,7 @@
         function colorByGroup(p) {
 
             var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#84C59C ' :
+            return d == 0 ? '#84C59C' :
                     (d > 0 && d <= 3) ? '#cbc9e2' :
                             (d > 3 && d <= 6) ? '#9e9ac8' :
                                     (d > 6 && d <= 12) ? '#756bb1' :
@@ -844,7 +844,6 @@
                     translate0 = [],
                     l = [],
                     view = {x: translate[0], y: translate[1], k: zoom.scale()};
-
             d3.event.preventDefault();
             direction = (d3.select(this).attr("class") === 'zoom_in') ? 1 : -1;
             target_zoom = zoom.scale() * (1 + factor * direction);
