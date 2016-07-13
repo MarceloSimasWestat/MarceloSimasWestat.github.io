@@ -3751,7 +3751,7 @@ body.is-ie .wrapper.fullscreen {
 }
 
 footer .dataExclusion {
-    text-align: left; 
+    text-align: left;
     margin-top: 3.5em;
     display: inline-block;
 }
@@ -4185,7 +4185,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_building.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fenceSchool.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4201,7 +4201,7 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_court.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/warmHue_fence.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4255,7 +4255,7 @@ body.loaded #sidebar nav ul li {
 
         #counter h2 span {
             font-size: 22px;
-            font-family: Muli, Helvetica, sans-serif;            
+            font-family: Muli, Helvetica, sans-serif;
             display: inline-block;
         }
 
@@ -4270,13 +4270,13 @@ body.loaded #sidebar nav ul li {
 		border: 1px solid #fff;
 		margin: 1.5em 0;
 	}
-	
+
 .donutCount {
 	font-size: 3.5em;
 	font-family: KARLA;
 	fill: #fff;
 	opacity: 1;
-}	
+}
 
 #donutText h2 {
         font-family: KARLA;
@@ -4300,11 +4300,11 @@ body.loaded #sidebar nav ul li {
         margin-top: 5%;
         line-height: normal;
     }
-	
+
 	.donutCount {
 		font-size: 2em;
 	}
-	
+
 }
 
 @media screen and (max-width: 736px) {
@@ -4318,11 +4318,11 @@ body.loaded #sidebar nav ul li {
     #counter h2 {
         margin-top: 5%;
     }
-	
+
 	.donutCount {
 		font-size: 1em;
 	}
-	
+
 }
 
 /*
@@ -4665,12 +4665,12 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_building@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fenceSchool.jpg") no-repeat center center scroll;
       background-size: cover;
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/fence_court@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/warmHue_fence.jpg") no-repeat center center scroll;
       background-size: cover;
     }
 }
@@ -4692,7 +4692,7 @@ ul.callout li {
 	}
 
 #maplegend {
-    max-width: 375px; 
+    max-width: 375px;
     display: inline;
 }
 
@@ -5176,7 +5176,7 @@ button:hover,
 
 .donut .segment1 {
 	stroke-opacity: 0;
-	fill: rgba(0,0,0,0);		
+	fill: rgba(0,0,0,0);
 }
 
 /*.donut .arc{
@@ -5219,33 +5219,31 @@ button:hover,
     text-align: left;
     width: 200px;
     padding: 10px;
-    font-size: 10px;
+    font-size: 11px;
     font-family: Karla;
     background: #1A1C20;
-    border: 1px solid #979797;
     pointer-events: none;
     opacity: 0;
     z-index: 900;
 }
 
 .districtTooltip h3 {
-    text-align: center;
-    font-size: 15px;
+    text-align: left;
+    font-size: 11px;
     margin: 0;
     line-height: 17px;
 }
 
 .districtTooltip div {
-     font-size: 12px;
+     font-size: 11px;
  }
 
 .districtTooltip b {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .districtTooltip hr {
     margin: 0;
-    border-bottom: 1px solid #979797;
     color: #979797;
 }
 
@@ -5257,6 +5255,7 @@ button:hover,
 #mapWrapper h3.name, h3.stateName{
     color: black;
     font-family: Karla, Helvetica, sans-serif;
+    text-align: right;
     font-weight: bold;
 }
 
