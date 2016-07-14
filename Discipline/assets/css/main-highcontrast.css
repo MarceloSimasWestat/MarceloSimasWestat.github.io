@@ -5326,10 +5326,10 @@ button:hover,
 
 #selectDistrictType{
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 90px;
-    text-align: right;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #mapWrapper #legend #selectDistrictType {
@@ -5416,7 +5416,7 @@ div.legendButton{
     font-family: Inconsolata-Regular;
     color: rgba(26,28,32,0.90);
     list-style: none;
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 4px 0;
     display: inline-block;
     width: 300px;
