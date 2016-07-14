@@ -2071,7 +2071,7 @@ function groupedBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% ENROLLED VS. % SUSPENDED IN 2013-14");
+			.text("% ENROLLED VS. % OF SUSPENDED IN 2013-14");
 
 		// draw national bars
 
