@@ -5329,7 +5329,7 @@ button:hover,
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 
 #mapWrapper #legend #selectDistrictType {
