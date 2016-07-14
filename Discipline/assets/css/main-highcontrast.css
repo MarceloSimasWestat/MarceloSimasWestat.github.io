@@ -2111,7 +2111,7 @@ button,
     transition: border-color 0.2s ease;
     background-color: transparent;
     border: solid 1px !important;
-    border-color: black; 
+    border-color: black;
     border-radius: 3em;
     /*color: #ffffff*/ /*!important*/;
     cursor: pointer;
@@ -3756,8 +3756,8 @@ body.is-ie .wrapper.fullscreen {
 }
 
 footer .dataExclusion {
-    font-size: 14px; 
-    text-align: left; 
+    font-size: 14px;
+    text-align: left;
     margin-top: 3.5em;
     display: inline-block;
 }
@@ -4705,7 +4705,7 @@ ul.callout li {
 }
 
 	.chart a:hover {
-        border-bottom: 2px solid black; 
+        border-bottom: 2px solid black;
         color: black;
 	}
 
@@ -4753,7 +4753,7 @@ button.filterButton {
 	border: solid 1px !important;
 	border-color: black;
 	border-radius: 3em;
-	color: black; 
+	color: black;
 	cursor: pointer;
 	display: inline-block;
 	font-family: Karla;
@@ -5329,7 +5329,7 @@ button:hover,
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 90px;
-    text-align: center;
+    text-align: right;
 }
 
 #mapWrapper #legend #selectDistrictType {
