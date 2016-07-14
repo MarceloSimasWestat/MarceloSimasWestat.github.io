@@ -2007,8 +2007,8 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return "Enrolled: " + formatPercent(d.enrolled_p) + " (" + formatNumber(d.enrolled_n) + " students)<br>Suspended: " + formatPercent(d.suspended_p) + " (" + formatNumber(d.suspended_n) + " students)<br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
-		});
+return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
+				});
 
 		svg.call(tipBar);
 
