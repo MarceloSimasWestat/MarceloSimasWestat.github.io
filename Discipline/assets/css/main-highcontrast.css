@@ -3864,16 +3864,7 @@ body.is-ie #sidebar > .inner {
 		opacity: 0;
     }
 
-    @media screen and (max-width: 1400px) {
 
-
-          #sidebar .nav-image img {
-              width: 68%;
-              margin: 0 0 5% 0;
-      		opacity: 0;
-          }
-
-    }
 
 
 body.loaded #sidebar .nav-image img {
@@ -4061,7 +4052,7 @@ body.loaded #sidebar .nav-image img {
     letter-spacing: 0.2em;
     line-height: 1.75;
     outline: 0;
-    padding: 1.35em 0;
+    padding: .75em 0;
     position: relative;
     text-decoration: none;
     text-transform: uppercase;
