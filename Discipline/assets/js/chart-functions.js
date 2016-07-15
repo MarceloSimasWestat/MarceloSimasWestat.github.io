@@ -2419,8 +2419,8 @@ function groupedBar() {
 
 			svg.select("#xAxisT_a")
 				.text(function() { 
-					if (window.innerWidth <= 736) { return "% ENROLLED VS. % OF"; }
-					else { return "% ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
+					if (window.innerWidth <= 736) { return "% OF ENROLLED VS. % OF"; }
+					else { return "% OF ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
 				});
 				
 			svg.select("#xAxisT_b")
@@ -2776,7 +2776,7 @@ function groupedBarDiv() {
 			.attr("aria-hidden", "true")
 			.text(function() { 
 				if (window.innerWidth <= 736) { return "DIFFERENCE BETWEEN % OF SUSPENDED"; }
-				else { return "DIFFERENCE BETWEEN % OF SUSPENDED VS. % ENROLLED IN 2013-14"; }
+				else { return "DIFFERENCE BETWEEN % OF SUSPENDED VS. % OF ENROLLED IN 2013-14"; }
 			});
 			
 		svg.append("text")
@@ -2792,7 +2792,7 @@ function groupedBarDiv() {
 				if (window.innerWidth <= 736) { return 1; }
 				else { return 0; }
 			})
-			.text("VS. % ENROLLED IN 2013-14");
+			.text("VS. % OF ENROLLED IN 2013-14");
 
 		// draw national bars
 
