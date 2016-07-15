@@ -2617,7 +2617,7 @@ function groupedBarDiv() {
 		height = 650,
 		marginTop = 35,
 		marginLeft = 100,
-		marginBottom = 45,
+		marginBottom = 60,
 		animateTime = 1000,
 		barWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
@@ -2741,7 +2741,17 @@ function groupedBarDiv() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("DIFFERENCE BETWEEN % OF SUSPENDED VS. % ENROLLED IN 2013-14");
+			.text("DIFFERENCE BETWEEN % OF SUSPENDED");
+			
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj - 100)
+			.attr("dx", ".5em")
+			.attr("y", heightAdj)
+			.attr("dy", "4.1em")
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.text("VS. % ENROLLED IN 2013-14");
 
 		// draw national bars
 
@@ -2850,6 +2860,10 @@ function groupedBarDiv() {
 			.attr("dy", "-0.5em")
 			.attr("class", "guide")
 			.attr("aria-hidden", "true")
+			.style("opacity", function() { 
+				if (window.innerWidth <= 736) { return 0; }
+				else { return 1; }
+			})
 			.text("< UNDERREPRESENTED");
 
 		svg.append("text")
@@ -2861,6 +2875,10 @@ function groupedBarDiv() {
 			.attr("class", "guide")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
+			.style("opacity", function() { 
+				if (window.innerWidth <= 736) { return 0; }
+				else { return 1; }
+			})
 			.text("OVERREPRESENTED >");
 
 		// legend
@@ -2912,10 +2930,22 @@ function groupedBarDiv() {
 			dom.selectAll(".groupedBarDiv")
 				.attr("width", width);
 
+			d3.select("#guide1")
+				.style("opacity", function() { 
+					if (window.innerWidth <= 736) { return 0; }
+					else { return 1; }
+				})
+
+			d3.select("#guide2")
+				.style("opacity", function() { 
+					if (window.innerWidth <= 736) { return 0; }
+					else { return 1; }
+				})
+				
 			svg.select(".x.axis")
 				.call(xAxis);
 
-			svg.select("text.x.axis")
+			svg.selectAll("text.x.axis")
 				.attr("x", widthAdj - 100)
 				.attr("dx", "0.5em");
 
