@@ -2413,7 +2413,7 @@ function groupedBar() {
 			svg.select(".x.axis")
 				.call(xAxis);
 
-			svg.select("text.x.axis")
+			svg.selectAll("text.x.axis")
 				.attr("x", widthAdj - 100)
 				.attr("dx", "0.5em");
 
