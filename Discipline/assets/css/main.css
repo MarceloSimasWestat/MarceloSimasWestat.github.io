@@ -4183,6 +4183,15 @@ body.loaded #sidebar nav ul li {
     background-position: top right;
 }
 
+@media screen and (max-width: 736px) {
+
+    #intro {
+      background-attachment: scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps.jpg") no-repeat center center scroll;
+
+    }
+}
+
 
 
 /* UNIQUE FOR DEPT ED */
@@ -4219,6 +4228,14 @@ body.loaded #sidebar nav ul li {
     .image1 p {
         font-size: 1em;
     }
+
+    .image1 {
+      background-attachment: scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs.jpg") no-repeat center center scroll;
+
+
+    }
+
 }
 
 /* Chair + Counter */
@@ -4668,6 +4685,24 @@ ul.callout li {
       background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs@2x.jpg") no-repeat center center fixed;
       background-size: cover;
     }
+
+
+@media screen and (max-width: 736px) {
+
+  #intro {
+    background-attachment: scroll;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps@2x.jpg") no-repeat center center scroll;
+
+  }
+
+    .image1 {
+      background-attachment: scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs@2x.jpg") no-repeat center center scroll;
+
+
+    }
+
+}
 }
 
 /* Styling for chart area links */
