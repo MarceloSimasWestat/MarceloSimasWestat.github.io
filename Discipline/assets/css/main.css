@@ -4216,18 +4216,10 @@ body.loaded #sidebar nav ul li {
         line-height: 1.75em;
     }
 
-@media screen and (max-width: 980px) {
 
-    .image1 p br {
-        display: none;
-    }
-}
 
 @media screen and (max-width: 736px) {
 
-    .image1 p {
-        font-size: 1em;
-    }
 
     .image1 {
       background-attachment: scroll;
@@ -4321,19 +4313,65 @@ body.loaded #sidebar nav ul li {
 
 @media screen and (max-width: 736px) {
 
-    .chair {
-        width: 65%;
-        height: 65%;
-        margin: auto;
-    }
 
     #counter h2 {
+      ont-family: KARLA;
+      font-weight: normal;
+      font-size: 1.5em;
         margin-top: 5%;
     }
 
 	.donutCount {
 		font-size: 1em;
 	}
+
+  	#counter h2 {
+          font-family: KARLA;
+          font-weight: normal;
+          font-size: 2.5em;
+          margin: 0 0 0 0;
+  		color: #fff;
+  		opacity: 1;
+      }
+
+          #counter h2 span {
+              font-size: 19px;
+              font-family: Muli, Helvetica, sans-serif;
+              margin-top: 10px;
+              display: inline-block;
+          }
+
+      #counter p {
+          font-size: 19px;
+  		margin: 0 0 0 0;
+  		opacity: 1;
+      }
+
+  	#counter hr {
+  		border: 1px solid #fff;
+  		margin: 1.5em 0;
+  	}
+
+  #overCount {
+      line-height: 0.7em !important;
+  }
+
+  .donutCount {
+  	font-size: 3.5em;
+  	font-family: KARLA;
+  	fill: #fff;
+  	opacity: 1;
+  }
+
+  #donutText h2 {
+          font-family: KARLA;
+          font-weight: normal;
+          font-size: 2.5em;
+          margin: 0 0 0 0;
+  		color: #fff;
+  		opacity: 1;
+          line-height: normal;
+  }
 
 }
 
