@@ -2074,7 +2074,7 @@ function groupedBar() {
 			.attr("aria-hidden", "true")
 			.text(function() { 
 				if (window.innerWidth <= 736) { return "% ENROLLED VS. % OF"; }
-				else { return "% ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
+				else { return "% OF ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
 			});
 			
 		svg.append("text")
