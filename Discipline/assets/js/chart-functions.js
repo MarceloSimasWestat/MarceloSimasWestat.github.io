@@ -2734,6 +2734,7 @@ function groupedBarDiv() {
 			.call(xAxis)
 
 		svg.append("text")
+			.attr("id", "xAxisT1")
 			.attr("class", "x axis")
 			.attr("x", widthAdj - 100)
 			.attr("dx", ".5em")
@@ -2741,9 +2742,13 @@ function groupedBarDiv() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("DIFFERENCE BETWEEN % OF SUSPENDED");
+			.text(function() { 
+				if (window.innerWidth <= 736) { return "DIFFERENCE BETWEEN % OF SUSPENDED"; }
+				else { return "DIFFERENCE BETWEEN % OF SUSPENDED VS. % ENROLLED IN 2013-14"; }
+			});
 			
 		svg.append("text")
+			.attr("id", "xAxisT2")
 			.attr("class", "x axis")
 			.attr("x", widthAdj - 100)
 			.attr("dx", ".5em")
@@ -2751,6 +2756,10 @@ function groupedBarDiv() {
 			.attr("dy", "4.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
+			.style("opacity", function() {
+				if (window.innerWidth <= 736) { return 1; }
+				else { return 0; }
+			})
 			.text("VS. % ENROLLED IN 2013-14");
 
 		// draw national bars
@@ -2930,13 +2939,13 @@ function groupedBarDiv() {
 			dom.selectAll(".groupedBarDiv")
 				.attr("width", width);
 
-			d3.select("#guide1")
+			svg.select("#guide1")
 				.style("opacity", function() { 
 					if (window.innerWidth <= 736) { return 0; }
 					else { return 1; }
 				})
 
-			d3.select("#guide2")
+			svg.select("#guide2")
 				.style("opacity", function() { 
 					if (window.innerWidth <= 736) { return 0; }
 					else { return 1; }
@@ -2949,6 +2958,18 @@ function groupedBarDiv() {
 				.attr("x", widthAdj - 100)
 				.attr("dx", "0.5em");
 
+			svg.select("#xAxisT1")
+				.text(function() { 
+					if (window.innerWidth <= 736) { return "DIFFERENCE BETWEEN % OF SUSPENDED"; }
+					else { return "DIFFERENCE BETWEEN % OF SUSPENDED VS. % ENROLLED IN 2013-14"; }
+				});
+			
+			svg.select("#xAxisT2")
+				.style("opacity", function() {
+					if (window.innerWidth <= 736) { return 1; }
+					else { return 0; }
+				});
+				
 			svg.select("line.zeroLine")
 				.attr("x1", xScale(0))
 				.attr("x2", xScale(0));
