@@ -1845,7 +1845,7 @@ function groupedBar() {
 		height = 650,
 		marginTop = 20,
 		marginLeft = 100,
-		marginBottom = 45,
+		marginBottom = 60,
 		animateTime = 1000,
 		barWidth = 15,
 		title1 = "Generic chart title #1. Update me using .title1()!",
@@ -2007,8 +2007,8 @@ function groupedBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
-				});
+				return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.overall_n) + " students)";
+			});
 
 		svg.call(tipBar);
 
@@ -2064,6 +2064,7 @@ return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.ov
 			.call(xAxis)
 
 		svg.append("text")
+			.attr("id", "xAxisT_a")
 			.attr("class", "x axis")
 			.attr("x", widthAdj - 100)
 			.attr("dx", ".5em")
@@ -2071,7 +2072,25 @@ return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.ov
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% ENROLLED VS. % OF SUSPENDED IN 2013-14");
+			.text(function() { 
+				if (window.innerWidth <= 736) { return "% ENROLLED VS. % OF"; }
+				else { return "% ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
+			});
+			
+		svg.append("text")
+			.attr("id", "xAxisT_b")
+			.attr("class", "x axis")
+			.attr("x", widthAdj - 100)
+			.attr("dx", ".5em")
+			.attr("y", heightAdj)
+			.attr("dy", "4.1em")
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.style("opacity", function() {
+				if (window.innerWidth <= 736) { return 1; }
+				else { return 0; }
+			})
+			.text("SUSPENDED IN 2013-14");	
 
 		// draw national bars
 
@@ -2398,6 +2417,19 @@ return d.level + "</br>" + formatPercent(d.overall_p) + " (" + formatNumber(d.ov
 				.attr("x", widthAdj - 100)
 				.attr("dx", "0.5em");
 
+			svg.select("#xAxisT_a")
+				.text(function() { 
+					if (window.innerWidth <= 736) { return "% ENROLLED VS. % OF"; }
+					else { return "% ENROLLED VS. % OF SUSPENDED IN 2013-14"; }
+				});
+				
+			svg.select("#xAxisT_b")
+				.style("opacity", function() {
+					if (window.innerWidth <= 736) { return 1; }
+					else { return 0; }
+				})
+				.text("SUSPENDED IN 2013-14");					
+				
 			/*dom.selectAll(".national-bar")
 				.attr("width", 0);*/
 
