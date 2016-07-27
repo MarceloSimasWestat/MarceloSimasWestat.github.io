@@ -2706,7 +2706,7 @@ function groupedBarDiv() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.group + ", " + d.level + "</br>" + formatNumberD(d.diff_ppt) + " percentage points";
+				return d.group + ", " + d.level + "</br>Of Enrolled: " + formatPercent(d.enrolled_p) + "</br>Of Suspended: " + formatPercent(d.suspended_p) + "</br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
 			});
 
 		svg.call(tipBar);

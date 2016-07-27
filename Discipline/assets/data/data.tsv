@@ -52,17 +52,17 @@ chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	e
 3-1	3	Suspended	Without Disabilities	0.848			5357			0.801	0.848	4.7	1091327	5357
 3-1	4	Suspended	English Learners	0.069			435			0.126	0.069	5.7	172303	435
 3-1	4	Suspended	Non-English Learners	0.931			5878			0.874	0.931	5.7	1190032	5878
-3-2		Female	White									-13.2		
-3-2		Female	Black									2.9		
-3-2		Female	Hispanic									-10.7		
-3-2		Female	Asian									-1.768329375		
-3-2		Female	American Indian									-0.3		
-3-2		Female	Pacific Islander									-0.068329375		
-3-2		Female	Two or more races									-0.9		
-3-2		Male	White									-0.3		
-3-2		Male	Black									24.5		
-3-2		Male	Hispanic									0.1		
-3-2		Male	Asian									-1.6		
-3-2		Male	American Indian									0.4		
-3-2		Male	Pacific Islander									0		
-3-2		Male	Two or more races									0.9		
+3-2		Female	White							0.186	0.054	-13.2		
+3-2		Female	Black							0.088	0.117	2.9		
+3-2		Female	Hispanic							0.143	0.036	-10.7		
+3-2		Female	Asian							0.018	0	-1.768329375		
+3-2		Female	American Indian							0.007	0.004	-0.3		
+3-2		Female	Pacific Islander							0.001	0	-0.068329375		
+3-2		Female	Two or more races							0.018	0.009	-0.9		
+3-2		Male	White							0.23	0.227	-0.3		
+3-2		Male	Black							0.097	0.342	24.5		
+3-2		Male	Hispanic							0.159	0.16	0.1		
+3-2		Male	Asian							0.021	0.005	-1.6		
+3-2		Male	American Indian							0.009	0.013	0.4		
+3-2		Male	Pacific Islander							0.002	0.002	0		
+3-2		Male	Two or more races							0.021	0.03	0.9		
