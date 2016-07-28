@@ -5295,7 +5295,7 @@ button:hover,
 
 #legend h3 {
     padding-bottom: 15px;
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
     text-align: left;
@@ -5390,40 +5390,41 @@ div.legendButton{
 }
 
 #selectElementary {
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     color: white;
     list-style: none;
     margin: 0;
     padding: 4px 0;
     display: inline-block;
-    width: 300px;
+    min-width: 400px;
     cursor: pointer;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     border: 1px solid #e0e0e0;
     background: #1A1C20;
 }
+
 #selectSecondary {
-    font-family: Inconsolata-Regular;
-    color: rgba(26,28,32,0.90);
+    font-family: Inconsolata;
+    color: rgb(26,28,32);
     list-style: none;
     margin: 10px 0 0 0;
     padding: 4px 0;
     display: inline-block;
-    width: 300px;
+    min-width: 400px;
     cursor: pointer;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     border: 1px solid #e0e0e0;
 }
 
 .districtButtonSelected{
-    background: #1A1C20;
+    background: black;
     color: white;
 }
 
 .legendText{
-    font-family: Inconsolata-Regular;
+    font-family: Inconsolata;
     font-weight: normal;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
