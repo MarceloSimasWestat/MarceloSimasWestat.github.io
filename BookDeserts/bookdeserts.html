@@ -193,8 +193,8 @@
 
     queue()
             .defer(d3.json, "../Discipline/assets/data/us.json")
-            .defer(d3.json, "assets/data/elementary_unified_BD.json")
-            .defer(d3.json, "assets/data/secondary_BD.json")
+            .defer(d3.json, "assets/data/elementaryunified.json")
+            .defer(d3.json, "assets/data/secondary.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
