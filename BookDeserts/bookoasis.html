@@ -99,8 +99,7 @@
                                 <div data-value="#84C59C" class="legendButton">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">0</div>
-                                </div>
-                                <div data-value="#cbc9e2" class="legendButton">
+                                </div><div data-value="#cbc9e2" class="legendButton">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText"> 1-10 </div>
                                 </div><div data-value="#9e9ac8" class="legendButton">
@@ -339,20 +338,6 @@
         var childPovertyRate = d.properties.g;
         var percentMinorityStudents = d.properties.h;
         var percent;
-
-        if(percentMinorityStudents != null) {
-            percentMinorityStudents = decimal(percentMinorityStudents.replace(/%/g, "")) + '%';
-        }
-        else {
-            percentMinorityStudents = d.properties.h;
-        }
-        if(childPovertyRate != null) {
-            childPovertyRate = decimal(childPovertyRate.replace(/%/g, "")) + '%';
-        }
-        else {
-            childPovertyRate = d.properties.g;
-        }
-
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
                 .attr("stroke-opacity", 1);
         d3.select(currentDistrict).classed("selected", true);
@@ -364,16 +349,16 @@
         var windowWidth = $(window).width();
         if (windowWidth > 1024) {
             if (d3.event.pageX > 1000) {
-                tooltip.style("left", (d3.event.pageX - 220) + "px");
+                tooltip.style("left", (d3.event.pageX - 320) + "px");
             } else {
-                tooltip.style("left", (d3.event.pageX + 40) + "px");
+                tooltip.style("left", (d3.event.pageX + 140) + "px");
             }
         }
         if (windowWidth < 1024) {
             if (d3.event.pageX > 400) {
-                tooltip.style("left", (d3.event.pageX - 220) + "px");
+                tooltip.style("left", (d3.event.pageX - 320) + "px");
             } else {
-                tooltip.style("left", (d3.event.pageX + 40) + "px");
+                tooltip.style("left", (d3.event.pageX + 140) + "px");
             }
         }
         if (name != null) {
