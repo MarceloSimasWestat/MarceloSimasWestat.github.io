@@ -88,9 +88,7 @@
     <!-- Suspension Map -->
     <section class="wrapper chart">
         <div class="inner">
-            <p style="font-family:Karla; font-size:18px; font-weight:bold; color:#1A1C20; margin-bottom:3.5em;">
-                The Book Desert HEADER goes here.
-            </p>
+
             <div>
                 <div class="align-center">
                     <div id="mapWrapper">
@@ -144,6 +142,16 @@
 <!-- Map -->
 
 <script>
+    /*
+    "a":"State"
+     "b":"Name"
+     "c":"Students"
+     "d":"Annual circulation of children's materials"
+     "e":"Percent students of circulated children's materials"
+     "f":"Circulation rate category"
+     "g":"Child poverty rate"
+     "h":"Percent minority students"
+     */
     $("#legend").css("display", "none");
     //  D3 MAP
     var width = 960;
@@ -186,8 +194,8 @@
 
     queue()
             .defer(d3.json, "../Discipline/assets/data/us.json")
-            .defer(d3.json, "assets/data/elementary_unified_bd.json")
-            .defer(d3.json, "assets/data/secondary_bd.json")
+            .defer(d3.json, "assets/data/elementary_unified_BD.json")
+            .defer(d3.json, "assets/data/secondary_BD.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
@@ -210,57 +218,7 @@
                 .attr("stroke-opacity", .15)
                 .attr("stroke-linejoin", "round")
                 .on("mouseover", function (d) {
-                    var format = d3.format("0,000");
-                    var decimal = d3.format(",.1f");
-                    var state = d.properties.State;
-                    var name = d.properties.Name;
-                    var totalEnrollment = format(d.properties["Students"]);
-                    var materialsCheckedOut = format(d.properties["Materials Checked Out"]);
-                    var percent;
-                    if(d.properties['Percent'] != null) {
-                        percent = decimal(d.properties['Percent'].replace(/%/g, "")) + '%';
-                    }
-                    else {
-                        percent = d.properties['Percent'];
-                    }
-                    d3.select(this).attr("stroke", "#1A1C20")
-                            .attr("stroke-opacity", 1);
-                    d3.select(this).classed("selected", true);
-
-                    tooltip.transition().duration(100)
-                            .style("opacity", 1)
-                            .style("top", (d3.event.pageY - 100) + "px");
-
-                    var windowWidth = $(window).width();
-                    if (windowWidth > 1024) {
-                        if (d3.event.pageX > 1000) {
-                            tooltip.style("left", (d3.event.pageX - 220) + "px");
-                        } else {
-                            tooltip.style("left", (d3.event.pageX + 40) + "px");
-                        }
-                    }
-                    if (windowWidth < 1024) {
-                        if (d3.event.pageX > 400) {
-                            tooltip.style("left", (d3.event.pageX - 220) + "px");
-                        } else {
-                            tooltip.style("left", (d3.event.pageX + 40) + "px");
-                        }
-                    }
-                    if (percent != null && totalEnrollment != null) {
-                        tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                "<h4>" + name + "</h4><hr>" +
-                                "<div> Students: " + totalEnrollment + "</div>" +
-                                "<div> Percent: " + percent + "</div>" +
-                                "<div> Materials Checked Out: " + materialsCheckedOut + "</div>");
-                    } else if (name === "School District Not Defined") {
-                        tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                "<h3>No Operating District</h3>");
-
-                    } else {
-                        tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                "<h4>" + name + "</h4><hr>" +
-                                "<div> NO DATA </div>");
-                    }
+                    createTooltip(this,d);
                 })
                 .on("mouseout", function () {
                     d3.select(this).attr("stroke", "#fff")
@@ -302,57 +260,7 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
-                        var format = d3.format("0,000");
-                        var decimal = d3.format(",.1f");
-                        var state = d.properties.State;
-                        var name = d.properties.Name;
-                        var totalEnrollment = format(d.properties["Students"]);
-                        var materialsCheckedOut = format(d.properties["Materials Checked Out"]);
-                        var percent;
-                        if(d.properties['Percent'] != null) {
-                            percent = decimal(d.properties['Percent'].replace(/%/g, "")) + '%';
-                        }
-                        else {
-                            percent = d.properties['Percent'];
-                        }
-                        d3.select(this).attr("stroke", "#1A1C20")
-                                .attr("stroke-opacity", 1);
-                        d3.select(this).classed("selected", true);
-
-                        tooltip.transition().duration(100)
-                                .style("opacity", 1)
-                                .style("top", (d3.event.pageY - 100) + "px");
-
-                        var windowWidth = $(window).width();
-                        if (windowWidth > 1024) {
-                            if (d3.event.pageX > 1000) {
-                                tooltip.style("left", (d3.event.pageX - 220) + "px");
-                            } else {
-                                tooltip.style("left", (d3.event.pageX + 40) + "px");
-                            }
-                        }
-                        if (windowWidth < 1024) {
-                            if (d3.event.pageX > 400) {
-                                tooltip.style("left", (d3.event.pageX - 220) + "px");
-                            } else {
-                                tooltip.style("left", (d3.event.pageX + 40) + "px");
-                            }
-                        }
-                        if (percent != null && totalEnrollment != null) {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h4>" + name + "</h4><hr>" +
-                                    "<div> Students: " + totalEnrollment + "</div>" +
-                                    "<div> Percent: " + percent + "</div>" +
-                                    "<div> Materials Checked Out: " + materialsCheckedOut + "</div>");
-                        } else if (name === "School District Not Defined") {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h3>No Operating District</h3>");
-
-                        } else {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h4>" + name + "</h4><hr>" +
-                                    "<div> NO DATA </div>");
-                        }
+                        createTooltip(this,d);
                     })
                     .on("mouseout", function () {
                         d3.select(this).attr("stroke", "#fff")
@@ -419,7 +327,73 @@
         $("#legend").css("display", "block");
     }
 
-    // D3 MAP SCALE
+    function createTooltip(currentDistrict,d){
+        var format = d3.format("0,000");
+        var decimal = d3.format(",.1f");
+        var state = d.properties.a;
+        var name = d.properties.b;
+        var students = d.properties.c;
+        var annualCirculation = d.properties.d;
+        //var percentStudentsCirculated = d.properties.e;
+        //var circulationRateCategory = d.properties.f;
+        var childPovertyRate = d.properties.g;
+        var percentMinorityStudents = d.properties.h;
+        var percent;
+
+        if(percentMinorityStudents != null) {
+            percentMinorityStudents = decimal(percentMinorityStudents.replace(/%/g, "")) + '%';
+        }
+        else {
+            percentMinorityStudents = d.properties.h;
+        }
+        if(childPovertyRate != null) {
+            childPovertyRate = decimal(childPovertyRate.replace(/%/g, "")) + '%';
+        }
+        else {
+            childPovertyRate = d.properties.g;
+        }
+
+        d3.select(currentDistrict).attr("stroke", "#1A1C20")
+                .attr("stroke-opacity", 1);
+        d3.select(currentDistrict).classed("selected", true);
+
+        tooltip.transition().duration(100)
+                .style("opacity", 1)
+                .style("top", (d3.event.pageY - 100) + "px");
+
+        var windowWidth = $(window).width();
+        if (windowWidth > 1024) {
+            if (d3.event.pageX > 1000) {
+                tooltip.style("left", (d3.event.pageX - 220) + "px");
+            } else {
+                tooltip.style("left", (d3.event.pageX + 40) + "px");
+            }
+        }
+        if (windowWidth < 1024) {
+            if (d3.event.pageX > 400) {
+                tooltip.style("left", (d3.event.pageX - 220) + "px");
+            } else {
+                tooltip.style("left", (d3.event.pageX + 40) + "px");
+            }
+        }
+        if (name != null) {
+            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    "<h4>" + name + "</h4><hr>" +
+                    "<div> Annual circulation of children’s materials   : " + annualCirculation + "</div>" +
+                    "<div> Students: " + students + "</div>" +
+                    "<div> Child Poverty Rate: " + childPovertyRate + "</div>" +
+                    "<div> Student percent minority: " + percentMinorityStudents + "</div>");
+        } else if (name === "School District Not Defined") {
+            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    "<h3>No Operating District</h3>");
+
+        } else {
+            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    "<h4>" + name + "</h4><hr>" +
+                    "<div> NO DATA </div>");
+        }
+    }
+
     function createLegend() {
         var legendButton = $(".legendButton");
         legendButton.each(function () {
@@ -447,7 +421,7 @@
                 var buttonValue = $(this).attr("data-value");
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            if (buttonValue == colorByGroup(d.properties["Group"])) {
+                            if (buttonValue == colorByGroup(d.properties.f)) {
                                 return buttonValue;
                             } else {
                                 return "#E6E6E6";
@@ -461,18 +435,18 @@
     function updateColors() {
         svg.selectAll(".district")
                 .attr("fill", function (d) {
-                    d3.select(this).attr("class", "district " + colorByGroup(d.properties["Group"]));
-                    return colorByGroup(d.properties["Group"]);
+                    d3.select(this).attr("class", "district " + colorByGroup(d.properties.f));
+                    return colorByGroup(d.properties.f);
                 });
     }
 
     function colorByGroup(p) {
         if(p != null) var d = p.toString();
-        return d === "Less than 1%" ? '#84C59C' :
-                (d === "1% to 10%") ? '#cbc9e2' :
-                        (d === "11% to 50%") ? '#9e9ac8' :
-                                (d === "51% to 100%") ? '#756bb1' :
-                                        (d === "More than 100%") ? '#54278f' :
+        return d === "More than 100" ? '#84C59C' :
+                (d === "51 to 100") ? '#cbc9e2' :
+                        (d === "11 to 50") ? '#9e9ac8' :
+                                (d === "1 to 10") ? '#756bb1' :
+                                        (d === "Less than 1") ? '#54278f' :
                                                 (d === "Null or missing data") ? 'gray' :
                                                         defaultFill;
     }
