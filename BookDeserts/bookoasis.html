@@ -96,31 +96,31 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Annual Circulation of Children’s Materials per Student</h3>
+                            <h3>Book Rich Environments</h3>
                             <div class="legendButtonWrapper">
-                                <div data-value="#54278f" class="legendButton">
+                                <div data-value="#84C59C" class="legendButton">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">0</div>
                                 </div>
-                                <div data-value="#756bb1" class="legendButton">
+                                <div data-value="#cbc9e2" class="legendButton">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText"> 1-10 </div>
                                 </div><div data-value="#9e9ac8" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">11-50</div>
-                            </div><div data-value="#cbc9e2" class="legendButton">
+                            </div><div data-value="#756bb1" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">50-100</div>
-                            </div><div data-value="#84C59C" class="legendButton">
+                            </div><div data-value="#54278f" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText"> More than 100 </div>
                             </div>
                             </div>
                             <div class="innerLegend">
                                 <div data-value="gray" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">MISSING*</div>
-                            </div>
+                                    <hr class="verticalLine" size="25">
+                                    <div class="legendText">MISSING*</div>
+                                </div>
                             </div>
                         </div>
 
@@ -447,7 +447,7 @@
                 var buttonValue = $(this).attr("data-value");
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            if (buttonValue == colorByGroup(d.properties["Group"])) {
+                            if (buttonValue == colorByGroup(d.properties["Percent"])) {
                                 return buttonValue;
                             } else {
                                 return "#E6E6E6";
@@ -473,7 +473,7 @@
                         (d === "11% to 50%") ? '#9e9ac8' :
                                 (d === "51% to 100%") ? '#756bb1' :
                                         (d === "More than 100%") ? '#54278f' :
-                                                (d === "Null or missing data") ? 'gray' :
+                                                (d === null) ? 'gray' :
                                                         defaultFill;
     }
 

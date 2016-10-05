@@ -783,6 +783,7 @@
             legendButton.each(function () {
                 var buttonValue = $(this).attr("data-value");
                 var totalDistricts = document.getElementsByClassName("district").length;
+                console.log(buttonValue);
                 var valueSize = document.getElementsByClassName(buttonValue).length;
                 var width = (valueSize / totalDistricts) * 100;
                 $(this).css("background-color", buttonValue);
