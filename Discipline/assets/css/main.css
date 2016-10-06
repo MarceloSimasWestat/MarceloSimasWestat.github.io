@@ -5351,9 +5351,9 @@ button:hover,
     font-family: Inconsolata;
     font-size: 13px;
     color: rgba(26,28,32,0.90);
-    text-align: left;
+    text-align: center;
     margin-bottom: 0;
-    margin-left: 20%;
+    /*margin-left: 20%;*/
 }
 #legend ul {
     font-size: 12px;
@@ -5513,4 +5513,52 @@ div.disclaimer .legendPointer {
     width: 10%;
     text-align: center;
     color: #42A667;
+}
+
+@media screen and (max-width: 1260px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -10px;
+    }
+
+}
+
+@media screen and (max-width: 1040px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -15px;
+    }
+
+}
+
+@media screen and (max-width: 736px) {
+
+    #selectDistrictType {
+        align-items: center;
+    }
+
+    .dataLinksText {
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -25px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -30px;
+    }
+
 }

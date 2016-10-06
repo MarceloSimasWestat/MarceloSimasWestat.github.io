@@ -94,7 +94,7 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Annual Circulation of Children’s Materials per Student</h3>
+                            <h3>Annual Circulation of Children’s Library Materials per Student</h3>
                             <div class="legendButtonWrapper">
                                 <div data-value="#54278f" class="legendButton">
                                     <hr class="verticalLine" size="25">
@@ -114,10 +114,10 @@
                             </div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="gray" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">MISSING*</div>
-                            </div>
+                                <div data-value="gray" class="legendButton missing">
+                                    <hr class="verticalLine" size="25">
+                                    <div class="legendText">MISSING*</div>
+                                </div>
                             </div>
                         </div>
 
@@ -132,7 +132,7 @@
             </div>
             <div>
                 <br/>
-                <p>* <a href="#datanotes">See data notes</a>. <a href="../Discipline/assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.</p>
+                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <a href="../Discipline/assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.</p>
             </div>
         </div>
     </section>
@@ -332,7 +332,9 @@
         var state = d.properties.a;
         var name = d.properties.b;
         var students = d.properties.c;
+        students = students.toLocaleString();
         var annualCirculation = d.properties.d;
+        annualCirculation = annualCirculation.toLocaleString();
         //var percentStudentsCirculated = d.properties.e;
         //var circulationRateCategory = d.properties.f;
         var childPovertyRate = d.properties.g;
@@ -386,6 +388,9 @@
             var totalDistricts = document.getElementsByClassName("district").length;
             var valueSize = document.getElementsByClassName(buttonValue).length;
             var width = (valueSize / totalDistricts) * 100;
+            if ($(this).hasClass("missing")) {
+                width = width * 4;
+            }
             $(this).css("background-color", buttonValue);
             $(this).css("width", (width) + '%');
         });
