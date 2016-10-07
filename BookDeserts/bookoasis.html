@@ -10,36 +10,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="../Discipline/assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="../Discipline/assets/css/main.css" />
-    <!--[if lte IE 9]><link rel="stylesheet" href="../Discipline/assets/css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><link rel="stylesheet" href="../Discipline/assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
     <!--<link rel="stylesheet" href="widgets.css" />-->
     <!-- <link rel="stylesheet" href="assets/css/chart-styles.css" /> -->
 
     <!-- browser tab icon (aka favicon) -->
-    <link rel="icon" href="../Discipline/images/doelogo_rev.png" />
+    <link rel="icon" href="images/doelogo_rev.png" />
 
     <!-- Scripts -->
     <!--<script src="widgets.js"></script>-->
-    <script src="../Discipline/assets/js/jquery.min.js"></script>
-    <script src="../Discipline/assets/js/jquery.scrollex.min.js"></script>
-    <script src="../Discipline/assets/js/jquery.scrolly.min.js"></script>
-    <script src="../Discipline/assets/js/skel.min.js"></script>
-    <script src="../Discipline/assets/js/util.js"></script>
-    <!--[if lte IE 8]><script src="../Discipline/assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="../Discipline/assets/js/main.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
 
     <!-- Substitutes high-res images for Retina displays (html file only) -->
-    <script type="text/javascript" src="../assets/js/retina.js"></script>
+    <script type="text/javascript" src="assets/js/retina.js"></script>
 
-    <script src="../Discipline/assets/js/d3.v3.min.js"></script>
-    <script src="../Discipline/assets/js/d3-tip.js"></script>
-    <script src="../Discipline/assets/js/chart-functions.js"></script>
-    <script src="../Discipline/assets/js/graph-scroll.js"></script>
-    <script src="../Discipline/assets/js/queue.v1.min.js"></script>
-    <script src="../Discipline/assets/js/topojson.v1.min.js"></script>
+    <script src="assets/js/d3.v3.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script src="assets/js/chart-functions.js"></script>
+    <script src="assets/js/graph-scroll.js"></script>
+    <script src="assets/js/queue.v1.min.js"></script>
+    <script src="assets/js/topojson.v1.min.js"></script>
 
 </head>
 <body>
@@ -54,7 +54,7 @@
     <div class="inner">
 
         <div class="nav-image">
-            <img src="../Discipline/images/edsealbw.svg" alt="U.S. Department of Education" />
+            <img src="images/edsealbw.svg" alt="U.S. Department of Education" />
         </div>
 
         <div class="nav-wrapper">
@@ -328,18 +328,17 @@
 
     function createTooltip(currentDistrict,d){
         var format = d3.format("0,000");
-        var decimal = d3.format(",.1f");
+        //var decimal = d3.format(",.1f");
         var state = d.properties.a;
         var name = d.properties.b;
         var students = d.properties.c;
-        students = students.toLocaleString();
+        students = format(students);
         var annualCirculation = d.properties.d;
-        annualCirculation = annualCirculation.toLocaleString();
+        annualCirculation = format(annualCirculation);
         //var percentStudentsCirculated = d.properties.e;
         //var circulationRateCategory = d.properties.f;
-        var childPovertyRate = d.properties.g;
-        var percentMinorityStudents = d.properties.h;
-        var percent;
+        var childPovertyRate = (d.properties.g == null)? "NO DATA": d.properties.g;
+        var percentMinorityStudents = (d.properties.h == null)? "NO DATA": d.properties.h;
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
                 .attr("stroke-opacity", 1);
         d3.select(currentDistrict).classed("selected", true);
@@ -353,28 +352,42 @@
             if (d3.event.pageX > 1000) {
                 tooltip.style("left", (d3.event.pageX - 320) + "px");
             } else {
-                tooltip.style("left", (d3.event.pageX + 140) + "px");
+                tooltip.style("left", (d3.event.pageX + 80) + "px");
             }
         }
-        if (windowWidth < 1024) {
+        if (windowWidth < 1024 && windowWidth > 850) {
             if (d3.event.pageX > 400) {
                 tooltip.style("left", (d3.event.pageX - 320) + "px");
             } else {
-                tooltip.style("left", (d3.event.pageX + 140) + "px");
+                tooltip.style("left", (d3.event.pageX + 80) + "px");
             }
         }
-        if (name != null) {
+        if (windowWidth < 850) {
+            if (d3.event.pageX > 350) {
+                tooltip.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltip.style("left", (d3.event.pageX + 40) + "px");
+            }
+        }
+        if (windowWidth < 680) {
+            if (d3.event.pageX > 350) {
+                tooltip.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltip.style("left", (d3.event.pageX + 20) + "px");
+            }
+        }
+        if (name === "School District Not Defined") {
+            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    "<h3>No Operating District</h3>");
+
+        }else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> Annual circulation of children’s materials   : " + annualCirculation + "</div>" +
                     "<div> Students: " + students + "</div>" +
                     "<div> Child Poverty Rate: " + childPovertyRate + "</div>" +
                     "<div> Student percent minority: " + percentMinorityStudents + "</div>");
-        } else if (name === "School District Not Defined") {
-            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                    "<h3>No Operating District</h3>");
-
-        } else {
+        }else{
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> NO DATA </div>");
