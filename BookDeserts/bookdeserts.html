@@ -177,7 +177,7 @@
     var g = svg.append("g");
 
     svg.append("svg:image")
-            .attr("xlink:href", "../Discipline/images/progress-anim.gif")
+            .attr("xlink:href", "images/progress-anim.gif")
             .attr("id", "progress-image")
             .attr("width", 30)
             .attr("height", 30)
@@ -192,7 +192,7 @@
             .style("opacity", 0);
 
     queue()
-            .defer(d3.json, "../Discipline/assets/data/us.json")
+            .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
             .await(ready);
