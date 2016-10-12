@@ -4175,7 +4175,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4187,7 +4187,7 @@ body.loaded #sidebar nav ul li {
 
     #intro {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books.jpg") no-repeat center center scroll;
 
     }
 }
@@ -4200,7 +4200,7 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4223,7 +4223,7 @@ body.loaded #sidebar nav ul li {
 
     .image1 {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands.jpg") no-repeat center center scroll;
 
 
     }
@@ -4715,12 +4715,12 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps@2x.jpg") no-repeat center center fixed;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books@2x.jpg") no-repeat center center fixed;
       background-size: cover;
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs@2x.jpg") no-repeat center center fixed;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands@2x.jpg") no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -4729,13 +4729,13 @@ ul.callout li {
 
   #intro {
     background-attachment: scroll;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_steps@2x.jpg") no-repeat center center scroll;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books@2x.jpg") no-repeat center center scroll;
 
   }
 
     .image1 {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/school_stairs@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands@2x.jpg") no-repeat center center scroll;
 
 
     }
@@ -5500,7 +5500,7 @@ div.disclaimer .legendExplain  {
     display: table-cell;
     width: 90%;
     padding: 1.3em 1.5em 1.3em 1.5em;
-    background: #42A667;
+    background: #4E75B7;
     border-radius: 0px 4px 4px 0px;
     border: solid 1px rgba(255, 255, 255, 0.15);
     font-size: 15px;
@@ -5512,7 +5512,7 @@ div.disclaimer .legendPointer {
     /*float: left;*/
     width: 10%;
     text-align: center;
-    color: #42A667;
+    color: #4E75B7;
 }
 
 @media screen and (max-width: 1260px) {
