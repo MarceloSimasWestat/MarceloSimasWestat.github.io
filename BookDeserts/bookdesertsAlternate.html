@@ -153,6 +153,7 @@
      */
     $("#legend").css("display", "none");
     //  D3 MAP
+    var vector;
     var width = 960;
     var height = 600;
     var center = [width / 2, height / 2];
@@ -195,12 +196,13 @@
             .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
+            .defer(d3.json, "assets/data/phas.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary) {
+    function ready(error, us, primary, secondary, phas) {
         if (error) {
             console.log(error);
         }
@@ -234,6 +236,11 @@
                 .attr("class", "state")
                 .attr("d", path);
 
+        vector = g.append("path")
+                .datum(topojson.feature(phas, phas.objects.phas))
+                .attr("class", "phaPoints")
+                .attr("d", path);
+
         d3.select("#selectElementary").on("click", function () {
             d3.select("#selectSecondary").style("background", "white")
                     .style("color","#1A1C20");
@@ -244,6 +251,7 @@
 
         d3.select("#selectSecondary").on("click", function () {
             d3.selectAll(".state").remove();
+            d3.selectAll(".phaPoints").remove();
             d3.select("#selectElementary").style("background", "white")
                     .style("color","#1A1C20");
             d3.select(this).style("background", "#1A1C20")
@@ -274,6 +282,10 @@
                     .data(topojson.feature(us, us.objects.states).features)
                     .enter().append("path")
                     .attr("class", "state")
+                    .attr("d", path);
+            vector = g.append("path")
+                    .datum(topojson.feature(phas, phas.objects.phas))
+                    .attr("class", "phaPoints")
                     .attr("d", path);
         });
 
@@ -453,7 +465,7 @@
                         (p === "3") ? '#9e9ac8' :
                                 (p === "4") ? '#bcbddc' :
                                         (p === "5") ? '#dadaeb' :
-                                                (p === "0data") ? 'gray' :
+                                                (p === "0") ? 'gray' :
                                                         defaultFill;
     }
 

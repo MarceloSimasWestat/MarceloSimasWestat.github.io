@@ -153,6 +153,7 @@
      */
     $("#legend").css("display", "none");
     //  D3 MAP
+    var vector;
     var width = 960;
     var height = 600;
     var center = [width / 2, height / 2];
@@ -161,9 +162,13 @@
     var projection = d3.geo.albersUsa()
             .translate([width / 2, height / 2])
             .scale(1000);
-    var zoom = d3.behavior.zoom()
-            .scaleExtent([1, 32])
-            .on("zoom", move);
+
+    var tile = d3.tile()
+            .size([width, height]);
+
+    var zoom = d3.zoom()
+            .scaleExtent([1 << 11, 1 << 14])
+            .on("zoom", zoomClick);
 
     var path = d3.geo.path()
             .projection(projection);
@@ -175,7 +180,6 @@
             .append("g");
 
     var g = svg.append("g");
-    var vector = svg.append("path");
 
     svg.append("svg:image")
             .attr("xlink:href", "images/progress-anim.gif")
@@ -196,13 +200,13 @@
             .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.csv,"assets/data/PHAs_GEO.scv")
+            .defer(d3.json, "assets/data/phas.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary, PHAs) {
+    function ready(error, us, primary, secondary, phas) {
         if (error) {
             console.log(error);
         }
@@ -236,6 +240,11 @@
                 .attr("class", "state")
                 .attr("d", path);
 
+        vector = g.append("path")
+                .datum(topojson.feature(phas, phas.objects.phas))
+                .attr("class", "phaPoints")
+                .attr("d", path);
+
         d3.select("#selectElementary").on("click", function () {
             d3.select("#selectSecondary").style("background", "white")
                     .style("color","#1A1C20");
@@ -246,6 +255,7 @@
 
         d3.select("#selectSecondary").on("click", function () {
             d3.selectAll(".state").remove();
+            d3.selectAll(".phaPoints").remove();
             d3.select("#selectElementary").style("background", "white")
                     .style("color","#1A1C20");
             d3.select(this).style("background", "#1A1C20")
@@ -276,6 +286,10 @@
                     .data(topojson.feature(us, us.objects.states).features)
                     .enter().append("path")
                     .attr("class", "state")
+                    .attr("d", path);
+            vector = g.append("path")
+                    .datum(topojson.feature(phas, phas.objects.phas))
+                    .attr("class", "phaPoints")
                     .attr("d", path);
         });
 
@@ -455,7 +469,7 @@
                         (p === "3") ? '#9e9ac8' :
                                 (p === "4") ? '#756bb1' :
                                         (p === "5") ? '#54278f' :
-                                                (p === "0data") ? 'gray' :
+                                                (p === "0") ? 'gray' :
                                                         defaultFill;
     }
 
@@ -505,7 +519,6 @@
     function move() {
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
-        vector.attr("d", path);
     }
 
     d3.select(self.frameElement).style("height", height + "px");
