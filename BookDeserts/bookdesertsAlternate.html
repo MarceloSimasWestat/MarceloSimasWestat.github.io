@@ -96,19 +96,19 @@
                         <div id="legend">
                             <h3>Annual Circulation of Children’s Library Materials per Student</h3>
                             <div class="legendButtonWrapper">
-                                <div data-value="#dadaeb" class="legendButton">
+                                <div data-value="#54278f" class="legendButton">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">0</div>
-                                </div><div data-value="#bcbddc" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText"> 1-10 </div>
-                                </div><div data-value="#9e9ac8" class="legendButton">
+                                </div><div data-value="#756bb1" class="legendButton">
+                                <hr class="verticalLine" size="25">
+                                <div class="legendText"> 1-10 </div>
+                            </div><div data-value="#9e9ac8" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">10-25</div>
-                            </div><div data-value="#756bb1" class="legendButton">
+                            </div><div data-value="#bcbddc" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">25-100</div>
-                            </div><div data-value="#54278f" class="legendButton">
+                            </div><div data-value="#dadaeb" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText"> More than 100 </div>
                             </div>
@@ -448,12 +448,12 @@
     }
 
     function colorByGroup(p) {
-    return p === "1" ? '#dadaeb' :
-                (p === "2") ? '#bcbddc' :
+        return p === "1" ? '#54278f' :
+                (p === "2") ? '#756bb1' :
                         (p === "3") ? '#9e9ac8' :
-                                (p === "4") ? '#756bb1' :
-                                        (p === "5") ? '#54278f' :
-                                                (p === "0") ? 'gray' :
+                                (p === "4") ? '#bcbddc' :
+                                        (p === "5") ? '#dadaeb' :
+                                                (p === "0data") ? 'gray' :
                                                         defaultFill;
     }
 

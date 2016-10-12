@@ -100,9 +100,9 @@
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">0</div>
                                 </div><div data-value="#bcbddc" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText"> 1-10 </div>
-                                </div><div data-value="#9e9ac8" class="legendButton">
+                                <hr class="verticalLine" size="25">
+                                <div class="legendText"> 1-10 </div>
+                            </div><div data-value="#9e9ac8" class="legendButton">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">10-25</div>
                             </div><div data-value="#756bb1" class="legendButton">
@@ -175,6 +175,7 @@
             .append("g");
 
     var g = svg.append("g");
+    var vector = svg.append("path");
 
     svg.append("svg:image")
             .attr("xlink:href", "images/progress-anim.gif")
@@ -195,12 +196,13 @@
             .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
+            .defer(d3.csv,"assets/data/PHAs_GEO.scv")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary) {
+    function ready(error, us, primary, secondary, PHAs) {
         if (error) {
             console.log(error);
         }
@@ -448,12 +450,12 @@
     }
 
     function colorByGroup(p) {
-    return p === "1" ? '#dadaeb' :
+        return p === "1" ? '#dadaeb' :
                 (p === "2") ? '#bcbddc' :
                         (p === "3") ? '#9e9ac8' :
                                 (p === "4") ? '#756bb1' :
                                         (p === "5") ? '#54278f' :
-                                                (p === "0") ? 'gray' :
+                                                (p === "0data") ? 'gray' :
                                                         defaultFill;
     }
 
@@ -503,6 +505,7 @@
     function move() {
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+        vector.attr("d", path);
     }
 
     d3.select(self.frameElement).style("height", height + "px");
