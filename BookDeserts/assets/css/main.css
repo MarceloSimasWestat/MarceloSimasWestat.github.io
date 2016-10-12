@@ -4766,6 +4766,10 @@ ul.callout li {
     display: inline;
 }
 
+.phaPoints{
+    fill: red;
+}
+
 /* Hide footer images (this solves them showing up at resolutions > 1680px */
 /* Lower res images will still show because of classes defined earlier */
 

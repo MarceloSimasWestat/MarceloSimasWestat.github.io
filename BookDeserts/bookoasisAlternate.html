@@ -257,9 +257,11 @@
                 .attr("class", "state")
                 .attr("d", path);
 
-        vector = g.append("path")
-                .datum(topojson.feature(phas, phas.objects.phas))
+        vector = g.append("g")
                 .attr("class", "phaPoints")
+                .selectAll("path")
+                .data(topojson.feature(phas, phas.objects.phas).features)
+                .enter().append("path")
                 .attr("d", path);
 
         d3.select("#selectElementary").on("click", function () {
@@ -304,9 +306,11 @@
                     .enter().append("path")
                     .attr("class", "state")
                     .attr("d", path);
-            vector = g.append("path")
-                    .datum(topojson.feature(phas, phas.objects.phas))
+            vector = g.append("g")
                     .attr("class", "phaPoints")
+                    .selectAll("path")
+                    .data(topojson.feature(phas, phas.objects.phas).features)
+                    .enter().append("path")
                     .attr("d", path);
         });
 
