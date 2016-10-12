@@ -448,13 +448,12 @@
     }
 
     function colorByGroup(p) {
-        if(p != null) var d = p.toString();
-        return d === "Less than 1" ? '#dadaeb' :
-                (d === "1 to 10") ? '#bcbddc' :
-                        (d === "11 to 50") ? '#9e9ac8' :
-                                (d === "51 to 100") ? '#756bb1' :
-                                        (d === "More than 100") ? '#54278f' :
-                                                (d === "Null or missing data") ? 'gray' :
+        return p === "1" ? '#dadaeb' :
+                (p === "2") ? '#bcbddc' :
+                        (p === "3") ? '#9e9ac8' :
+                                (p === "4") ? '#756bb1' :
+                                        (p === "5") ? '#54278f' :
+                                                (p === "0") ? 'gray' :
                                                         defaultFill;
     }
 
