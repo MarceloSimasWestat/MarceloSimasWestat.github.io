@@ -200,13 +200,14 @@
             .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
+            .defer(d3.json, "assets/data/medium.json")
             .defer(d3.json, "assets/data/phas.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary, phas) {
+    function ready(error, us, primary, secondary, extra, phas) {
         if (error) {
             console.log(error);
         }
@@ -215,6 +216,26 @@
         g.append("g")
                 .selectAll("path")
                 .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
+                .enter().append("path")
+                .attr("id", "elementaryDistrict")
+                .attr("class", "district")
+                .attr("d", path)
+                .attr("stroke", "#fff")
+                .attr("stroke-opacity", .15)
+                .attr("stroke-linejoin", "round")
+                .on("mouseover", function (d) {
+                    createTooltip(this,d);
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("stroke", "#fff")
+                            .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
+                });
+
+        g.append("g")
+                .selectAll("path")
+                .data(topojson.feature(extra, extra.objects.extra_districts).features)
                 .enter().append("path")
                 .attr("id", "elementaryDistrict")
                 .attr("class", "district")
