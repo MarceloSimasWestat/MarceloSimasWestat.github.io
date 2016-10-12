@@ -162,13 +162,9 @@
     var projection = d3.geo.albersUsa()
             .translate([width / 2, height / 2])
             .scale(1000);
-
-    var tile = d3.tile()
-            .size([width, height]);
-
-    var zoom = d3.zoom()
-            .scaleExtent([1 << 11, 1 << 14])
-            .on("zoom", zoomClick);
+    var zoom = d3.behavior.zoom()
+            .scaleExtent([1, 32])
+            .on("zoom", move);
 
     var path = d3.geo.path()
             .projection(projection);

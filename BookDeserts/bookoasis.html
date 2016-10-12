@@ -226,7 +226,7 @@
                     d3.select(this).classed("selected", false);
                     tooltip.transition().duration(300).style("opacity", 0);
                 });
-        
+
         g.append("g")
                 .selectAll("path")
                 .data(topojson.feature(extra, extra.objects.extra_districts).features)
