@@ -4706,7 +4706,8 @@ ul.callout li {
 }
 
 .phaPoints{
-    fill: red;
+    fill: white;
+    stroke: black;
 }
 
 /* Hide footer images (this solves them showing up at resolutions > 1680px */
