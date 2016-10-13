@@ -1,0 +1,22 @@
+Field names:
+
+"a":"State"
+"b":"Name"
+"c":"Students"
+"d":"Annual circulation of children's materials"
+"e":"Percent students of circulated children's materials"
+"f":"Circulation rate category"
+"g":"Child poverty rate"
+"h":"Percent minority students"
+
+
+
+
+Field "f" dictionary:
+
+"0";"Null or missing data"
+"1";"Less than 1"
+"2";"1 to 10"
+"3";"More than 10 to 25"
+"4";"More than 25 to 100"
+"5";"More than 100"
