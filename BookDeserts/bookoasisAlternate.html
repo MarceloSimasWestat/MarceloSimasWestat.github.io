@@ -191,7 +191,10 @@
     var tooltip = d3.select("body").append("div")
             .attr("class", "districtTooltip")
             .style("opacity", 0);
-
+    var tooltipPHA = d3.select("body").append("div")
+            .attr("class", "phaTooltip")
+            .style("z-index", "999")
+            .style("opacity", 0);
     queue()
             .defer(d3.json, "assets/data/us.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
