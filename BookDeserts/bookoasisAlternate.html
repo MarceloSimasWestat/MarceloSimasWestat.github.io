@@ -261,11 +261,17 @@
                 .data(topojson.feature(phas, phas.objects.phas).features)
                 .enter().append("circle")
                 .attr("class", "phaPoints")
-                .attr("r", 3)
+                .attr("r",pointRadius())
                 .attr("transform", function (d) {
                     var lat = d.geometry.coordinates[0];
                     var long = d.geometry.coordinates[1];
                     return "translate(" + projection([lat, long]) + ")";
+                })
+                .on("mouseover", function (d) {
+                    createPHAtooltip(d)
+                })
+                .on("mouseout", function () {
+                    tooltipPHA.transition().duration(300).style("opacity", 0);
                 });
 
         d3.select("#selectElementary").on("click", function () {
@@ -319,6 +325,12 @@
                         var lat = d.geometry.coordinates[0];
                         var long = d.geometry.coordinates[1];
                         return "translate(" + projection([lat, long]) + ")";
+                    })
+                    .on("mouseover", function (d) {
+                        createPHAtooltip(d)
+                    })
+                    .on("mouseout", function () {
+                        tooltipPHA.transition().duration(300).style("opacity", 0);
                     });
         });
 
@@ -369,6 +381,52 @@
         createLegend();
         svg.select("#progress-image").style("opacity", 0);
         $("#legend").css("display", "block");
+    }
+
+    function createPHAtooltip(d){
+        var name = (d.properties.Name === null)? "NO DATA": d.properties.Name;
+        var address = (d.properties.Address === null)? "NO DATA": d.properties.Address;
+        var city = (d.properties.City === null)? "NO DATA": d.properties.City;
+        var state = (d.properties.State === null)? "NO DATA": d.properties.State;
+        var jurisdiction = (d.properties.Jurisdiction === null)? "NO DATA": d.properties.Jurisdiction;
+        tooltipPHA.transition().duration(100)
+                .style("opacity", 1)
+                .style("top", (d3.event.pageY - 100) + "px");
+
+        var windowWidth = $(window).width();
+        if (windowWidth > 1024) {
+            if (d3.event.pageX > 1000) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 80) + "px");
+            }
+        }
+        if (windowWidth < 1024 && windowWidth > 850) {
+            if (d3.event.pageX > 400) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 80) + "px");
+            }
+        }
+        if (windowWidth < 850) {
+            if (d3.event.pageX > 350) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 40) + "px");
+            }
+        }
+        if (windowWidth < 680) {
+            if (d3.event.pageX > 350) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 20) + "px");
+            }
+        }
+        tooltipPHA.html("<h3>" + name.toUpperCase() + "</h3><hr>" +
+                "<h4>Address: " + address + "</h4>" +
+                "<h4>" + city + "</h4>" +
+                "<h4>" + state + "</h4><hr>" +
+                "<h4>Jurisdiction: " + jurisdiction + "</h4><hr>");
     }
 
     function createTooltip(currentDistrict,d){
