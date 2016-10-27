@@ -1,63 +1,63 @@
 chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	enrolled_p	suspended_p	diff_ppt	enrolled_n	suspended_n
-1-2			Black	0.248										
-1-2			All others	0.752										
-2-1			Overall	0.053			2603854							
-2-1			White	0.035			841205							
-2-1			Black	0.133			969705							
-2-1			Hispanic	0.046			548368							
-2-1			Asian	0.015			35928							
-2-1			American Indian	0.08			43438							
-2-1			Pacific Islander	0.052			11090							
-2-1			Two or more races	0.07			101852							
-2-2	1		Overall	0.053			2603854							
-2-2	1		Female	0.033			783391							
-2-2	1		Male	0.073			1820463							
-2-2	2		Overall	0.053			2603854							
-2-2	2		With Disabilities	0.103			602819							
-2-2	2		Without Disabilities	0.047			2001035							
-2-2	3		Overall	0.053			2603854							
-2-2	3		English Learners	0.039			190928							
-2-2	3		Non-English Learners	0.054			2357127							
-2-3			Overall		0.033	0.073		783391	1820463			4		
-2-3			White		0.019	0.051		216911	624294			3.2		
-2-3			Black		0.094	0.17		337773	631932			7.6		
-2-3			Hispanic		0.028	0.064		160091	388277			3.6		
-2-3			Asian		0.007	0.023		8123	27805			1.6		
-2-3			American Indian		0.052	0.107		13723	29715			5.5		
-2-3			Pacific Islander		0.031	0.073		3220	7870			4.2		
-2-3			Two or more races		0.043	0.098		30624	71228			5.5		
-3-1	1	Enrolled	White	0.416			567122			0.416	0.281	13.5	567122	1777
-3-1	1	Enrolled	Black	0.186			252825			0.186	0.459	27.3	252825	2898
-3-1	1	Enrolled	Hispanic	0.302			411732			0.302	0.196	10.6	411732	1238
-3-1	1	Enrolled	Asian	0.038			52054			0.038	0.005	3.3	52054	34
+1-2			Black	0.261										
+1-2			All others	0.739										
+2-1			Overall	0.054			2646080							
+2-1			White	0.036			854197							
+2-1			Black	0.135			986750							
+2-1			Hispanic	0.047			557401							
+2-1			Asian	0.015			36114							
+2-1			American Indian	0.08			43634							
+2-1			Pacific Islander	0.053			11146							
+2-1			Two or more races	0.072			103845							
+2-2	1		Overall	0.054			2646080							
+2-2	1		Female	0.033			792955							
+2-2	1		Male	0.074			1853125							
+2-2	2		Overall	0.054			2646080							
+2-2	2		With Disabilities	0.11			644835							
+2-2	2		Without Disabilities	0.047			2001245							
+2-2	3		Overall	0.054			2646080							
+2-2	3		English Learners	0.04			193211							
+2-2	3		Non-English Learners	0.055			2396345							
+2-3			Overall		0.033	0.074		792955	1853125			4.1		
+2-3			White		0.019	0.051		219540	634657			3.2		
+2-3			Black		0.095	0.174		342030	644720			7.9		
+2-3			Hispanic		0.028	0.065		162097	395304			3.7		
+2-3			Asian		0.007	0.023		8151	27963			1.6		
+2-3			American Indian		0.052	0.108		13755	29879			5.6		
+2-3			Pacific Islander		0.031	0.073		3234	7912			4.2		
+2-3			Two or more races		0.043	0.1		31068	72777			5.7		
+3-1	1	Enrolled	White	0.416			567008			0.416	0.281	13.5	567008	1777
+3-1	1	Enrolled	Black	0.186			252798			0.186	0.459	27.3	252798	2898
+3-1	1	Enrolled	Hispanic	0.302			411690			0.302	0.196	10.6	411690	1238
+3-1	1	Enrolled	Asian	0.038			52048			0.038	0.005	3.3	52048	34
 3-1	1	Enrolled	American Indian	0.016			21885			0.016	0.017	0.1	21885	108
 3-1	1	Enrolled	Pacific Islander	0.003			4258			0.003	0.002	0.1	4258	12
-3-1	1	Enrolled	Two or more races	0.039			52909			0.039	0.039	0	52909	248
-3-1	2	Enrolled	Female	0.463			630637			0.463	0.222	24.1	630637	1399
-3-1	2	Enrolled	Male	0.537			732148			0.537	0.778	24.1	732148	4916
-3-1	3	Enrolled	With Disabilities	0.199			271458			0.199	0.152	4.7	271458	958
-3-1	3	Enrolled	Without Disabilities	0.801			1091327			0.801	0.848	4.7	1091327	5357
-3-1	4	Enrolled	English Learners	0.126			172303			0.126	0.069	5.7	172303	435
-3-1	4	Enrolled	Non-English Learners	0.874			1190032			0.874	0.931	5.7	1190032	5878
-3-1	1	Suspended	White	0.281			1777			0.416	0.281	13.5	567122	1777
-3-1	1	Suspended	Black	0.459			2898			0.186	0.459	27.3	252825	2898
-3-1	1	Suspended	Hispanic	0.196			1238			0.302	0.196	10.6	411732	1238
-3-1	1	Suspended	Asian	0.005			34			0.038	0.005	3.3	52054	34
+3-1	1	Enrolled	Two or more races	0.039			52894			0.039	0.039	0	52894	248
+3-1	2	Enrolled	Female	0.463			630540			0.463	0.222	24.1	630540	1399
+3-1	2	Enrolled	Male	0.537			732041			0.537	0.778	24.1	732041	4916
+3-1	3	Enrolled	With Disabilities	0.199			271415			0.199	0.152	4.7	271415	958
+3-1	3	Enrolled	Without Disabilities	0.801			1091166			0.801	0.848	4.7	1091166	5357
+3-1	4	Enrolled	English Learners	0.126			172293			0.126	0.069	5.7	172293	435
+3-1	4	Enrolled	Non-English Learners	0.874			1189838			0.874	0.931	5.7	1189838	5878
+3-1	1	Suspended	White	0.281			1777			0.416	0.281	13.5	567008	1777
+3-1	1	Suspended	Black	0.459			2898			0.186	0.459	27.3	252798	2898
+3-1	1	Suspended	Hispanic	0.196			1238			0.302	0.196	10.6	411690	1238
+3-1	1	Suspended	Asian	0.005			34			0.038	0.005	3.3	52048	34
 3-1	1	Suspended	American Indian	0.017			108			0.016	0.017	0.1	21885	108
 3-1	1	Suspended	Pacific Islander	0.002			12			0.003	0.002	0.1	4258	12
-3-1	1	Suspended	Two or more races	0.039			248			0.039	0.039	0	52909	248
-3-1	2	Suspended	Female	0.222			1399			0.463	0.222	24.1	630637	1399
-3-1	2	Suspended	Male	0.778			4916			0.537	0.778	24.1	732148	4916
-3-1	3	Suspended	With Disabilities	0.152			958			0.199	0.152	4.7	271458	958
-3-1	3	Suspended	Without Disabilities	0.848			5357			0.801	0.848	4.7	1091327	5357
-3-1	4	Suspended	English Learners	0.069			435			0.126	0.069	5.7	172303	435
-3-1	4	Suspended	Non-English Learners	0.931			5878			0.874	0.931	5.7	1190032	5878
+3-1	1	Suspended	Two or more races	0.039			248			0.039	0.039	0	52894	248
+3-1	2	Suspended	Female	0.222			1399			0.463	0.222	24.1	630540	1399
+3-1	2	Suspended	Male	0.778			4916			0.537	0.778	24.1	732041	4916
+3-1	3	Suspended	With Disabilities	0.152			958			0.199	0.152	4.7	271415	958
+3-1	3	Suspended	Without Disabilities	0.848			5357			0.801	0.848	4.7	1091166	5357
+3-1	4	Suspended	English Learners	0.069			435			0.126	0.069	5.7	172293	435
+3-1	4	Suspended	Non-English Learners	0.931			5878			0.874	0.931	5.7	1189838	5878
 3-2		Female	White							0.186	0.054	-13.2		
 3-2		Female	Black							0.088	0.117	2.9		
 3-2		Female	Hispanic							0.143	0.036	-10.7		
-3-2		Female	Asian							0.018	0	-1.768329375		
+3-2		Female	Asian							0.018	0.000	-1.8		
 3-2		Female	American Indian							0.007	0.004	-0.3		
-3-2		Female	Pacific Islander							0.001	0	-0.068329375		
+3-2		Female	Pacific Islander							0.001	0.000	-0.1		
 3-2		Female	Two or more races							0.018	0.009	-0.9		
 3-2		Male	White							0.23	0.227	-0.3		
 3-2		Male	Black							0.097	0.342	24.5		
