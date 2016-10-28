@@ -431,10 +431,10 @@
             var valueSize = document.getElementsByClassName(buttonValue).length;
             var width = (valueSize / totalDistricts) * 100;
             if ($(this).hasClass("missing")) {
-                width = width * 4;
+                width = width * 32;
             }
             if ($(this).hasClass("null")) {
-                width = width * 32;
+                width = width * 4;
             }
             $(this).css("background-color", buttonValue);
             $(this).css("width", (width) + '%');
