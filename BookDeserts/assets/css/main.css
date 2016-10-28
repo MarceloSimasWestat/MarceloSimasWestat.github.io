@@ -5280,7 +5280,7 @@ button:hover,
 #mapWrapper .state{
     fill: none;
     stroke: #fff;
-    stroke-width: 1.0px;
+    /*stroke-width: 1.0px;*/
     stroke-linejoin: round;
 }
 
@@ -5289,7 +5289,7 @@ button:hover,
     pointer-events: all;
 }
 
-.districtTooltip {
+.districtTooltip, .phaTooltip {
     position: absolute;
     text-align: left;
     width: 285px;
@@ -5302,30 +5302,30 @@ button:hover,
     z-index: 900;
 }
 
-.districtTooltip h3 {
+.districtTooltip h3, .phaTooltip h3 {
     text-align: left;
     font-size: 11px;
     margin: 0;
     line-height: 17px;
 }
 
-.districtTooltip h4 {
+.districtTooltip h4, .phaTooltip h4 {
     text-align: left;
     font-size: 11px;
     margin: 0;
     line-height: 17px;
 }
 
-.districtTooltip div {
+.districtTooltip div, .phaTooltip div {
     text-align: right;
      font-size: 11px;
  }
 
-.districtTooltip b {
+.districtTooltip b, .phaTooltip b {
     font-size: 11px;
 }
 
-.districtTooltip hr {
+.districtTooltip hr, .phaTooltip hr {
     margin: 3px 0 3px 0;
     color: #979797;
 }

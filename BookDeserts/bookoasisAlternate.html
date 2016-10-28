@@ -191,9 +191,12 @@
     var tooltip = d3.select("body").append("div")
             .attr("class", "districtTooltip")
             .style("opacity", 0);
-
+    var tooltipPHA = d3.select("body").append("div")
+            .attr("class", "phaTooltip")
+            .style("z-index", "999")
+            .style("opacity", 0);
     queue()
-            .defer(d3.json, "assets/data/us.json")
+            .defer(d3.json, "assets/data/states.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
             .defer(d3.json, "assets/data/medium.json")
@@ -257,12 +260,22 @@
                 .attr("class", "state")
                 .attr("d", path);
 
-        vector = g.append("g")
-                .attr("class", "phaPoints")
-                .selectAll("path")
+        vector = g.selectAll("circles")
                 .data(topojson.feature(phas, phas.objects.phas).features)
-                .enter().append("path")
-                .attr("d", path);
+                .enter().append("circle")
+                .attr("class", "phaPoints")
+                .attr("r",pointRadius())
+                .attr("transform", function (d) {
+                    var lat = d.geometry.coordinates[0];
+                    var long = d.geometry.coordinates[1];
+                    return "translate(" + projection([lat, long]) + ")";
+                })
+                .on("mouseover", function (d) {
+                    createPHAtooltip(d)
+                })
+                .on("mouseout", function () {
+                    tooltipPHA.transition().duration(300).style("opacity", 0);
+                });
 
         d3.select("#selectElementary").on("click", function () {
             d3.select("#selectSecondary").style("background", "white")
@@ -306,12 +319,22 @@
                     .enter().append("path")
                     .attr("class", "state")
                     .attr("d", path);
-            vector = g.append("g")
-                    .attr("class", "phaPoints")
-                    .selectAll("path")
+            vector = g.selectAll("circles")
                     .data(topojson.feature(phas, phas.objects.phas).features)
-                    .enter().append("path")
-                    .attr("d", path);
+                    .enter().append("circle")
+                    .attr("class", "phaPoints")
+                    .attr("r",pointRadius())
+                    .attr("transform", function (d) {
+                        var lat = d.geometry.coordinates[0];
+                        var long = d.geometry.coordinates[1];
+                        return "translate(" + projection([lat, long]) + ")";
+                    })
+                    .on("mouseover", function (d) {
+                        createPHAtooltip(d)
+                    })
+                    .on("mouseout", function () {
+                        tooltipPHA.transition().duration(300).style("opacity", 0);
+                    });
         });
 
         // Zoom buttons
@@ -361,6 +384,52 @@
         createLegend();
         svg.select("#progress-image").style("opacity", 0);
         $("#legend").css("display", "block");
+    }
+
+    function createPHAtooltip(d){
+        var name = (d.properties.Name === null)? "NO DATA": d.properties.Name;
+        var address = (d.properties.Address === null)? "NO DATA": d.properties.Address;
+        var city = (d.properties.City === null)? "NO DATA": d.properties.City;
+        var state = (d.properties.State === null)? "NO DATA": d.properties.State;
+        var jurisdiction = (d.properties.Jurisdiction === null)? "NO DATA": d.properties.Jurisdiction;
+        tooltipPHA.transition().duration(100)
+                .style("opacity", 1)
+                .style("top", (d3.event.pageY - 100) + "px");
+
+        var windowWidth = $(window).width();
+        if (windowWidth > 1024) {
+            if (d3.event.pageX > 1000) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 80) + "px");
+            }
+        }
+        if (windowWidth < 1024 && windowWidth > 850) {
+            if (d3.event.pageX > 400) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 80) + "px");
+            }
+        }
+        if (windowWidth < 850) {
+            if (d3.event.pageX > 350) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 40) + "px");
+            }
+        }
+        if (windowWidth < 680) {
+            if (d3.event.pageX > 350) {
+                tooltipPHA.style("left", (d3.event.pageX - 320) + "px");
+            } else {
+                tooltipPHA.style("left", (d3.event.pageX + 20) + "px");
+            }
+        }
+        tooltipPHA.html("<h3>" + name.toUpperCase() + "</h3><hr>" +
+                "<h4>Address: " + address + "</h4>" +
+                "<h4>" + city + "</h4>" +
+                "<h4>" + state + "</h4><hr>" +
+                "<h4>Jurisdiction: " + jurisdiction + "</h4><hr>");
     }
 
     function createTooltip(currentDistrict,d){
@@ -538,8 +607,29 @@
     }
 
     function move() {
+        d3.selectAll(".phaPoints").attr("r", pointRadius());
+        d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+    }
+    function resizeStateBorder() {
+        var z = zoom.scale();
+        return (z > 7) ? .25 :
+                (z > 4) ? .5 :
+                        1
+    }
+    function pointRadius() {
+        var z = zoom.scale();
+        return (z > 13) ? .2 :
+                (z > 8) ? .4 :
+                        (z > 6) ? .6 :
+                                (z > 5) ? .75 :
+                                        (z > 4) ? 1 :
+                                                (z > 3) ? 1.2 :
+                                                        (z > 2) ? 1.6 :
+                                                                (z > 1.5) ? 1.8 :
+                                                                        (z > 1.2) ? 2 :
+                                                                                3;
     }
 
     d3.select(self.frameElement).style("height", height + "px");
