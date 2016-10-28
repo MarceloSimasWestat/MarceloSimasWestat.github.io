@@ -254,7 +254,6 @@
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
                 .attr("class", function(d){
-                        console.log(d);
                     if(d.properties.ps_grant == 1) {
                         d3.select(this.parentNode.appendChild(this))
                                 .style({"stroke-opacity":1,"stroke":"black"});
@@ -366,14 +365,6 @@
         if(!isNaN(preschoolStudents)){
             preschoolStudents = format(preschoolStudents);
         }
-        //var annualCirculation = (d.properties.d === null)? "NO DATA": d.properties.d;
-        //if(!isNaN(annualCirculation)){
-        //    annualCirculation = format(annualCirculation);
-        //}
-        //var percentStudentsCirculated = d.properties.e;
-        //var circulationRateCategory = d.properties.f;
-        //var childPovertyRate = (d.properties.g == null)? "NO DATA": d.properties.g;
-        //var percentMinorityStudents = (d.properties.h == null)? "NO DATA": d.properties.h;
         var g_g = (d.properties.d == null) ? "NO DATA" : d.properties.d;
         var pct_psenr = (d.properties.e == null) ? "NO DATA" : d.properties.e;
         var cpct_psenr = (d.properties.f == null) ? "NO DATA" : d.properties.f;
@@ -476,19 +467,6 @@
 
     }
 
-    /*function filterStateGrants() {
-        g.selectAll(".state")
-                .attr("stroke", function (d) {
-                    if(d.properties.ps_grant == 0){
-                        console.log("blue");
-                        return "white";
-                    }else{
-                         console.log("black");
-                        return "black";
-                    }
-                });
-    }*/
-
     function updateColors() {
         svg.selectAll(".district")
                 .attr("fill", function (d) {
@@ -559,6 +537,5 @@
     d3.select(self.frameElement).style("height", height + "px");
 
 </script>
-
 </body>
 </html>
