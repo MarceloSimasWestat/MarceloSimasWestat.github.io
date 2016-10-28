@@ -353,9 +353,9 @@
         //var decimal = d3.format(",.1f");
         var state = (d.properties.a === null)? "NO DATA": d.properties.a;
         var name = (d.properties.b === null)? "NO DATA": d.properties.b;
-        var students = (d.properties.c === null)? "NO DATA": d.properties.c;
-        if(!isNaN(students)){
-            students = format(students);
+        var preschoolStudents = (d.properties.c === null)? "NO DATA": d.properties.c;
+        if(!isNaN(preschoolStudents)){
+            preschoolStudents = format(preschoolStudents);
         }
         //var annualCirculation = (d.properties.d === null)? "NO DATA": d.properties.d;
         //if(!isNaN(annualCirculation)){
@@ -413,10 +413,9 @@
         }else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> g01_g02: " + g_g + "</div>" +
-                    "<div> Students: " + students + "</div>" +
-                    "<div> pct_psenr: " + pct_psenr + "</div>" +
-                    "<div> cpct_psenr: " + cpct_psenr + "</div>");
+                    "<div> Preschool children enrolled: " + preschoolStudents + "</div>" +
+                    "<div> Students enrolled in grades 1 and 2: " + g_g + "</div>" +
+                    "<div> Percentage of enrollment in grades 1 and 2: " + pct_psenr + "</div>");
         }else{
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
