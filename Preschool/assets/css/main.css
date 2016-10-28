@@ -5278,8 +5278,14 @@ button:hover,
 /*D3 Map styling*/
 
 #mapWrapper .state{
+     fill: none;
+     /*stroke: #fff;*/
+     /*stroke-width: 1.0px;*/
+     stroke-linejoin: round;
+ }
+#mapWrapper .grantState{
     fill: none;
-    stroke: #fff;
+    /*stroke: #fff;*/
     /*stroke-width: 1.0px;*/
     stroke-linejoin: round;
 }

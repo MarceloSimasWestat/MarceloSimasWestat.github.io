@@ -196,7 +196,7 @@
             .defer(d3.json, "assets/data/states.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
             .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/medium.json")
+            .defer(d3.json, "assets/data/extradistricts.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
@@ -253,7 +253,16 @@
                 .selectAll("path")
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
-                .attr("class", "state")
+                .attr("class", function(d){
+                        console.log(d);
+                    if(d.properties.ps_grant == 1) {
+                        d3.select(this.parentNode.appendChild(this))
+                                .style({"stroke-opacity":1,"stroke":"black"});
+                    }else{
+                        d3.select(this).attr("stroke", "white")
+                    }
+                    return "state";
+                })
                 .attr("d", path);
 
         d3.select("#selectElementary").on("click", function () {
@@ -466,6 +475,19 @@
         });
 
     }
+
+    /*function filterStateGrants() {
+        g.selectAll(".state")
+                .attr("stroke", function (d) {
+                    if(d.properties.ps_grant == 0){
+                        console.log("blue");
+                        return "white";
+                    }else{
+                         console.log("black");
+                        return "black";
+                    }
+                });
+    }*/
 
     function updateColors() {
         svg.selectAll(".district")
