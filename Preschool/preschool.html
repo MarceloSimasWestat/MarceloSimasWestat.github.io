@@ -94,7 +94,7 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Access to Preschool Education</h3>
+                            <h3>Percentage of Early Elementary Population Enrolled in Public Preschool Programs</h3>
                             <div class="legendButtonWrapper">
                                 <div data-value="#dadaeb" class="legendButton">
                                     <hr class="verticalLine" size="25">
@@ -114,10 +114,10 @@
                             </div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="gray" class="legendButton missing">
+                                <div data-value="black" class="legendButton missing">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">MISSING*</div>
-                                </div><div data-value="black" class="legendButton null">
+                                </div><div data-value="gray" class="legendButton null">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">NULL*</div>
                                 </div>
@@ -361,12 +361,12 @@
         //var decimal = d3.format(",.1f");
         var state = (d.properties.a === null)? "NO DATA": d.properties.a;
         var name = (d.properties.b === null)? "NO DATA": d.properties.b;
-        var preschoolStudents = (d.properties.c === null)? "NO DATA": d.properties.c;
+        var preschoolStudents = (d.properties.c === null)? "N/A": d.properties.c;
         if(!isNaN(preschoolStudents)){
             preschoolStudents = format(preschoolStudents);
         }
-        var g_g = (d.properties.d == null) ? "NO DATA" : d.properties.d;
-        var pct_psenr = (d.properties.e == null) ? "NO DATA" : d.properties.e;
+        var g_g = (d.properties.d == null) ? "N/A" : d.properties.d;
+        var pct_psenr = (d.properties.e == null) ? "N/A" : d.properties.e;
         var cpct_psenr = (d.properties.f == null) ? "NO DATA" : d.properties.f;
 
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
@@ -414,8 +414,8 @@
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> Preschool children enrolled: " + preschoolStudents + "</div>" +
-                    "<div> Students enrolled in grades 1 and 2: " + g_g + "</div>" +
-                    "<div> Percentage of enrollment in grades 1 and 2: " + pct_psenr + "</div>");
+                    "<div> Enrollment in grades 1 and 2: " + g_g + "</div>" +
+                    "<div> Preschool as a % of grades 1 and 2 enrollment: " + pct_psenr + "</div>");
         }else{
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
@@ -481,8 +481,8 @@
                         (p === "3") ? '#9e9ac8' :
                                 (p === "4") ? '#756bb1' :
                                         (p === "5") ? '#54278f' :
-                                                (p === "-1") ? 'gray' :
-                                                        (p === "0") ? 'black' :
+                                                (p === "-1") ? 'black' :
+                                                        (p === "0") ? 'gray' :
                                                         defaultFill;
     }
 
