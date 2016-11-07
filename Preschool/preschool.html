@@ -125,11 +125,6 @@
                         </div>
 
                         <div id="map"></div>
-                        <div id="selectDistrictType">
-                            <div id="selectElementary" class="selected ">Elementary and Unified</div>
-                            <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -195,14 +190,13 @@
     queue()
             .defer(d3.json, "assets/data/states.json")
             .defer(d3.json, "assets/data/elementaryunified.json")
-            .defer(d3.json, "assets/data/secondary.json")
             .defer(d3.json, "assets/data/extradistricts.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary, extra) {
+    function ready(error, us, primary, extra) {
         if (error) {
             console.log(error);
         }
@@ -254,58 +248,17 @@
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
                 .attr("class", function(d){
+                    var className = "state";
                     if(d.properties.ps_grant == 1) {
+                        className = "state psState";
                         d3.select(this.parentNode.appendChild(this))
-                                .style({"stroke-opacity":1,"stroke":"black"});
+                                .style({"stroke-opacity":1,"stroke":"black", "stroke-width": 2});
                     }else{
                         d3.select(this).attr("stroke", "white")
                     }
-                    return "state";
+                    return className;
                 })
                 .attr("d", path);
-
-        d3.select("#selectElementary").on("click", function () {
-            d3.select("#selectSecondary").style("background", "white")
-                    .style("color","#1A1C20");
-            d3.select(this).style("background", "#1A1C20")
-                    .style("color","white");
-            d3.selectAll("#secondaryDistrict").remove();
-        });
-
-        d3.select("#selectSecondary").on("click", function () {
-            d3.selectAll(".state").remove();
-            d3.select("#selectElementary").style("background", "white")
-                    .style("color","#1A1C20");
-            d3.select(this).style("background", "#1A1C20")
-                    .style("color","white");
-            g.append("g")
-                    .selectAll("path")
-                    .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
-                    .enter().append("path")
-                    .attr("id", "secondaryDistrict")
-                    .attr("class", "district")
-                    .attr("d", path)
-                    .attr("stroke", "#fff")
-                    .attr("stroke-opacity", .15)
-                    .attr("stroke-linejoin", "round")
-                    .on("mouseover", function (d) {
-                        createTooltip(this,d);
-                    })
-                    .on("mouseout", function () {
-                        d3.select(this).attr("stroke", "#fff")
-                                .attr("stroke-opacity", .15);
-                        d3.select(this).classed("selected", false);
-                        tooltip.transition().duration(300).style("opacity", 0);
-                    });
-            updateColors();
-            g.append("g")
-                    .attr("class", "states")
-                    .selectAll("path")
-                    .data(topojson.feature(us, us.objects.states).features)
-                    .enter().append("path")
-                    .attr("class", "state")
-                    .attr("d", path);
-        });
 
         // Zoom buttons
         svg.selectAll(".button")
@@ -539,6 +492,10 @@
     function move() {
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+        d3.selectAll(".psState").style("stroke-width", function(d){
+            console.log(d);
+            return 2/zoom.scale();
+        })
     }
 
     d3.select(self.frameElement).style("height", height + "px");
