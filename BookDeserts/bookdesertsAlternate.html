@@ -198,9 +198,9 @@
 
     queue()
             .defer(d3.json, "assets/data/states.json")
-            .defer(d3.json, "assets/data/elementaryunified.json")
+            .defer(d3.json, "assets/data/elementary.json")
             .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/medium.json")
+            .defer(d3.json, "assets/data/extra.json")
             .defer(d3.json, "assets/data/phas.json")
             .await(ready);
 
@@ -619,7 +619,7 @@
     }
     function pointRadius() {
         var z = zoom.scale();
-        return (z > 13) ? .2 :
+        return (z > 13) ? .15 :
                 (z > 8) ? .4 :
                         (z > 6) ? .6 :
                                 (z > 5) ? .75 :
