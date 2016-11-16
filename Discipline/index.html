@@ -504,6 +504,15 @@
 	<!-- Map -->
 
 	<script>
+        /*
+         "a":"State"
+         "b":"School District Name"
+         "c":"OOS Group"
+         "d":"Total Students OOS"
+         "e":"Percent OOS"
+         "f":"Total Enrollment"
+         */
+
         $("#legend").css("display", "none");
         //  D3 MAP
         var width = 960;
@@ -546,14 +555,15 @@
 
         queue()
                 .defer(d3.json, "assets/data/states.json")
-                .defer(d3.json, "assets/data/elementary_unified.json")
+                .defer(d3.json, "assets/data/elementary.json")
                 .defer(d3.json, "assets/data/secondary.json")
+                .defer(d3.json, "assets/data/extra.json")
                 .await(ready);
 
         svg.on("wheel.zoom", null);
         svg.on("mousewheel.zoom", null);
 
-        function ready(error, us, primary, secondary) {
+        function ready(error, us, primary, secondary, extra) {
             if (error) {
                 console.log(error);
             }
@@ -573,11 +583,25 @@
                         createTooltip(this,d);
                     })
         .on("mouseout", function () {
-                d3.select(this).attr("stroke", "#fff")
-                        .attr("stroke-opacity", .15);
-                d3.select(this).classed("selected", false);
-                tooltip.transition().duration(300).style("opacity", 0);
+            removeTooltip(this);
             });
+
+            g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(extra, extra.objects.extra_districts).features)
+                    .enter().append("path")
+                    .attr("id", "elementaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
+                    })
+                    .on("mouseout", function () {
+                        removeTooltip(this);
+                    });
 
             g.append("g")
                     .attr("class", "states")
@@ -678,19 +702,26 @@
             $("#legend").css("display", "block");
         }
 
+        function removeTooltip(currentDistrict){
+            d3.select(currentDistrict).attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15);
+            d3.select(currentDistrict).classed("selected", false);
+            tooltip.transition().duration(300).style("opacity", 0);
+        }
+
         function createTooltip(currentDistrict,d){
             var format = d3.format("0,000");
             var decimal = d3.format(",.1f");
-            var state = d.properties.State;
-            var name = d.properties.Name;
-            var totalEnrollment = format(d.properties["Total Enrollment"]);
-            var totalStudentOOS = format(d.properties["Total Students OOS"]);
+            var state = d.properties.a;
+            var name = d.properties.b;
+            var totalEnrollment = format(d.properties.f);
+            var totalStudentOOS = format(d.properties.d);
             var percentOOS;
-            if(d.properties['Percent OOS'] != null) {
-                percentOOS = decimal(d.properties['Percent OOS'].replace(/%/g, "")) + '%';
+            if(d.properties.e != null) {
+                percentOOS = decimal(d.properties.e.replace(/%/g, "")) + '%';
             }
             else {
-                percentOOS = d.properties['Percent OOS'];
+                percentOOS = d.properties.e;
             }
             d3.select(currentDistrict).attr("stroke", "#1A1C20")
                     .attr("stroke-opacity", 1);
@@ -759,7 +790,7 @@
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
-                                if (buttonValue == colorByGroup(d.properties["Percent OOS"])) {
+                                if (buttonValue == colorByGroup(d.properties.c)) {
                                     return buttonValue;
                                 } else {
                                     return "#E6E6E6";
@@ -773,20 +804,25 @@
         function updateColors() {
             svg.selectAll(".district")
                     .attr("fill", function (d) {
-                        d3.select(this).attr("class", "district " + colorByGroup(d.properties["Percent OOS"]));
-                        return colorByGroup(d.properties["Percent OOS"]);
+                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.c));
+                        return colorByGroup(d.properties.c);
                     });
         }
 
-        function colorByGroup(p) {
-
-            var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#84C59C' :
-                    (d > 0 && d <= 3) ? '#cbc9e2' :
-                            (d > 3 && d <= 6) ? '#9e9ac8' :
-                                    (d > 6 && d <= 12) ? '#756bb1' :
-                                            (d > 12) ? '#54278f' :
-                                                    (d < 0) ? 'gray' :
+        function colorByGroup(d) {
+            /*Field "c" dictionary:
+            "0";Null or Missing Data
+            "1";No Students Subject to OOS
+            "2";0% to 3%
+            "3";3% to 6%
+            "4";6% to 12%
+            "5";More than 12%*/
+            return (d == 0) ? 'gray' :
+                    (d == 1) ? '#84C59C' :
+                            (d == 2) ? '#cbc9e2' :
+                                    (d == 3) ? '#9e9ac8' :
+                                            (d == 4) ? '#756bb1' :
+                                                    (d == 5) ? '#54278f' :
                                                             defaultFill;
         }
 
