@@ -145,7 +145,7 @@
     "a":"State"
      "b":"Name"
      "c":"Students"
-     "d":"Annual circulation of children's materials"
+     "d":"Number of public library service outlets"
      "e":"Percent students of circulated children's materials"
      "f":"Circulation rate category"
      "g":"Child poverty rate"
@@ -221,10 +221,7 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("stroke", "#fff")
-                            .attr("stroke-opacity", .15);
-                    d3.select(this).classed("selected", false);
-                    tooltip.transition().duration(300).style("opacity", 0);
+                    removeTooltip(this);
                 });
 
         g.append("g")
@@ -241,10 +238,7 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("stroke", "#fff")
-                            .attr("stroke-opacity", .15);
-                    d3.select(this).classed("selected", false);
-                    tooltip.transition().duration(300).style("opacity", 0);
+                    removeTooltip(this);
                 });
 
         g.append("g")
@@ -283,10 +277,7 @@
                         createTooltip(this,d);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).attr("stroke", "#fff")
-                                .attr("stroke-opacity", .15);
-                        d3.select(this).classed("selected", false);
-                        tooltip.transition().duration(300).style("opacity", 0);
+                        removeTooltip(this);
                     });
             updateColors();
             g.append("g")
@@ -345,6 +336,13 @@
         createLegend();
         svg.select("#progress-image").style("opacity", 0);
         $("#legend").css("display", "block");
+    }
+
+    function removeTooltip(currentDistrict){
+        d3.select(currentDistrict).attr("stroke", "#fff")
+                .attr("stroke-opacity", .15);
+        d3.select(currentDistrict).classed("selected", false);
+        tooltip.transition().duration(300).style("opacity", 0);
     }
 
     function createTooltip(currentDistrict,d){
@@ -408,7 +406,7 @@
         }else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> Annual circulation of children’s materials   : " + annualCirculation + "</div>" +
+                    "<div> Number of public library service outlets: " + annualCirculation + "</div>" +
                     "<div> Students: " + students + "</div>" +
                     "<div> Child Poverty Rate: " + childPovertyRate + "</div>" +
                     "<div> Student percent minority: " + percentMinorityStudents + "</div>");
