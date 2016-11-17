@@ -1,10 +1,10 @@
--- DROP TABLE schooldistricts_medium_with_features_not_simplified;
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_not_simplified;
 CREATE TABLE schooldistricts_medium_with_features_not_simplified AS
 SELECT schooldistricts.gid, schooldistricts.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
 	member::INT AS "c",
-	kidcircl::INT AS "d",
+	outlets::INT AS "d",
 	round(kidcircpers::NUMERIC)::TEXT || '%' AS "e",
 	COALESCE(kidcircpersc, '0') AS "f",
 	round(povpct_age517fam::NUMERIC)::TEXT || '%' AS "g",
@@ -20,13 +20,13 @@ INNER JOIN regions USING (statefp)
 INNER JOIN kidcircpersc_data ON schooldistricts.leaid = kidcircpersc_data.leaid::TEXT;
 
 
--- DROP TABLE schooldistricts_medium_with_features_g5420_g5400;
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_g5420_g5400;
 CREATE TABLE schooldistricts_medium_with_features_g5420_g5400 AS
 SELECT a.gid, a.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
 	member::INT AS "c",
-	kidcircl::INT AS "d",
+	outlets::INT AS "d",
 	round(kidcircpers::NUMERIC)::TEXT || '%' AS "e",
 	COALESCE(kidcircpersc, '0') AS "f",
 	round(povpct_age517fam::NUMERIC)::TEXT || '%' AS "g",
@@ -39,13 +39,13 @@ INNER JOIN kidcircpersc_data ON schooldistricts.leaid = kidcircpersc_data.leaid:
 WHERE mtfcc IN ('G5420','G5400');
 
 
--- DROP TABLE schooldistricts_medium_with_features_g5410;
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_g5410;
 CREATE TABLE schooldistricts_medium_with_features_g5410 AS
 SELECT a.gid, a.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
 	member::INT AS "c",
-	kidcircl::INT AS "d",
+	outlets::INT AS "d",
 	round(kidcircpers::NUMERIC)::TEXT || '%' AS "e",
 	COALESCE(kidcircpersc, '0') AS "f",
 	round(povpct_age517fam::NUMERIC)::TEXT || '%' AS "g",
@@ -77,7 +77,7 @@ LEFT JOIN
 WHERE mtfcc IN ('G5410');
 
 
--- DROP TABLE schooldistricts_medium_state_borders;
+DROP TABLE IF EXISTS schooldistricts_medium_state_borders;
 CREATE TABLE schooldistricts_medium_state_borders AS
 SELECT row_number() OVER () AS gid, state, geom
 FROM

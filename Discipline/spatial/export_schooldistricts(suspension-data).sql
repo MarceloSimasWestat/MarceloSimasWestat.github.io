@@ -1,36 +1,52 @@
--- DROP TABLE schooldistricts_medium_with_features_g5420_g5400;
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_not_simplified;
+CREATE TABLE schooldistricts_medium_with_features_not_simplified AS
+SELECT schooldistricts.gid, schooldistricts.geom,
+	regions."name" AS "a",
+	schooldistricts."name" AS "b",
+	coos_pct::INT AS "c",
+	oos_tot::INT AS "d",
+	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	COALESCE(enr_tot, '0') AS "f"
+FROM
+(
+	SELECT *
+	FROM schooldistricts
+	/* There are districts missing from the simplified output table, so until we know why they are missing just stick them in their own 'prioritized' layer */
+	WHERE leaid IN ('1717903','3200450','3418270','0623130','3408280','0634290','4606960')
+) schooldistricts
+INNER JOIN regions USING (statefp)
+INNER JOIN oos_data ON schooldistricts.leaid = oos_data.nces_leaid::TEXT;
+
+
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_g5420_g5400;
 CREATE TABLE schooldistricts_medium_with_features_g5420_g5400 AS
 SELECT a.gid, a.geom,
-	regions."name" AS "State",
-	schooldistricts."name" AS "Name",
-	COALESCE(coos_pct.label, 'Null or missing data') AS "OOS Group",
-	oos_tot::INT AS "Total Students OOS",
-	round(oos_pct::NUMERIC * 100, 2)::TEXT || '%' AS "Percent OOS",
-	oos_data.enr_tot::INT AS "Total Enrollment"
+	regions."name" AS "a",
+	schooldistricts."name" AS "b",
+	coos_pct::INT AS "c",
+	oos_tot::INT AS "d",
+	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	COALESCE(enr_tot, '0') AS "f"
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
 INNER JOIN regions USING (statefp)
 INNER JOIN oos_data ON schooldistricts.leaid = oos_data.nces_leaid::TEXT
-LEFT JOIN cpct_abs USING (cpct_abs)
-LEFT JOIN coos_pct USING (coos_pct)
 WHERE mtfcc IN ('G5420','G5400');
 
 
--- DROP TABLE schooldistricts_medium_with_features_g5410;
+DROP TABLE IF EXISTS schooldistricts_medium_with_features_g5410;
 CREATE TABLE schooldistricts_medium_with_features_g5410 AS
-SELECT a.gid, merged_districts.geom AS geom,
-	regions."name" AS "State",
-	schooldistricts."name" AS "Name",
-	COALESCE(coos_pct.label, 'Null or missing data') AS "OOS Group",
-	oos_tot::INT AS "Total Students OOS",
-	round(oos_pct::NUMERIC * 100, 2)::TEXT || '%' AS "Percent OOS",
-	oos_data.enr_tot::INT AS "Total Enrollment"
+SELECT a.gid, a.geom,
+	regions."name" AS "a",
+	schooldistricts."name" AS "b",
+	coos_pct::INT AS "c",
+	oos_tot::INT AS "d",
+	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	COALESCE(enr_tot, '0') AS "f"
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
 INNER JOIN regions USING (statefp)
 INNER JOIN oos_data ON schooldistricts.leaid = oos_data.nces_leaid::TEXT
-LEFT JOIN cpct_abs USING (cpct_abs)
-LEFT JOIN coos_pct USING (coos_pct)
 LEFT JOIN
 ( /* This subquery removes internal boundaries of a multipolygon by searching for duplicate points (shared borders) and removing all of those records - http://gis.stackexchange.com/questions/113029/polygon-from-line-creation-problem */
 	WITH points as
@@ -50,4 +66,20 @@ LEFT JOIN
 		)
 		GROUP BY gid
 ) AS merged_districts ON merged_districts.gid = a.gid
-WHERE mtfcc IN ('G5410')
+WHERE mtfcc IN ('G5410');
+
+
+DROP TABLE IF EXISTS schooldistricts_medium_state_borders;
+CREATE TABLE schooldistricts_medium_state_borders AS
+SELECT row_number() OVER () AS gid, geom, state,
+		CASE WHEN abbreviation IN ('AL','AR','AZ','CA','CO','CT','DE','GA','HI','IL','KY','LA','MA','MD','ME','MI','MN','MT','NC','NJ','NM','NV','NY','OH','OR','PA','RI','TN','VA','VT','WA','WI')
+		THEN 1
+		ELSE 0
+		END AS ps_grant
+FROM
+(
+	SELECT a AS state, st_union(geom) AS geom
+	FROM schooldistricts_medium_with_features_g5420_g5400
+	GROUP BY a
+) foo
+INNER JOIN regions ON regions.name = foo.state;

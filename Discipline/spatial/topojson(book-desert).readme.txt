@@ -3,7 +3,7 @@ Field names:
 "a":"State"
 "b":"Name"
 "c":"Students"
-"d":"Annual circulation of children's materials"
+"d":"Number of Library Outlets"
 "e":"Percent students of circulated children's materials"
 "f":"Circulation rate category"
 "g":"Child poverty rate"
