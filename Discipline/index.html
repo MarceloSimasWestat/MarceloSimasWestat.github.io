@@ -504,6 +504,15 @@
 	<!-- Map -->
 
 	<script>
+        /*
+         "a":"State"
+         "b":"School District Name"
+         "c":"OOS Group"
+         "d":"Total Students OOS"
+         "e":"Percent OOS"
+         "f":"Total Enrollment"
+         */
+
         $("#legend").css("display", "none");
         //  D3 MAP
         var width = 960;
@@ -545,15 +554,16 @@
                 .style("opacity", 0);
 
         queue()
-                .defer(d3.json, "assets/data/us.json")
-                .defer(d3.json, "assets/data/elementary_unified.json")
+                .defer(d3.json, "assets/data/states.json")
+                .defer(d3.json, "assets/data/elementary.json")
                 .defer(d3.json, "assets/data/secondary.json")
+                .defer(d3.json, "assets/data/extra.json")
                 .await(ready);
 
         svg.on("wheel.zoom", null);
         svg.on("mousewheel.zoom", null);
 
-        function ready(error, us, primary, secondary) {
+        function ready(error, us, primary, secondary, extra) {
             if (error) {
                 console.log(error);
             }
@@ -570,62 +580,27 @@
                     .attr("stroke-opacity", .15)
                     .attr("stroke-linejoin", "round")
                     .on("mouseover", function (d) {
-                        var format = d3.format("0,000");
-                        var decimal = d3.format(",.1f");
-                        var state = d.properties.State;
-                        var name = d.properties.Name;
-                        var totalEnrollment = format(d.properties["Total Enrollment"]);
-                        var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                        var percentOOS;
-                        if(d.properties['Percent OOS'] != null) {
-                            percentOOS = decimal(d.properties['Percent OOS'].replace(/%/g, "")) + '%';
-                        }
-                        else {
-                            percentOOS = d.properties['Percent OOS'];
-                        }
-                        d3.select(this).attr("stroke", "#1A1C20")
-                                .attr("stroke-opacity", 1);
-                        d3.select(this).classed("selected", true);
+                        createTooltip(this,d);
+                    })
+        .on("mouseout", function () {
+            removeTooltip(this);
+            });
 
-                        tooltip.transition().duration(100)
-                                .style("opacity", 1)
-                                .style("top", (d3.event.pageY - 100) + "px");
-
-                        var windowWidth = $(window).width();
-                        if (windowWidth > 1024) {
-                            if (d3.event.pageX > 1000) {
-                                tooltip.style("left", (d3.event.pageX - 220) + "px");
-                            } else {
-                                tooltip.style("left", (d3.event.pageX + 40) + "px");
-                            }
-                        }
-                        if (windowWidth < 1024) {
-                            if (d3.event.pageX > 400) {
-                                tooltip.style("left", (d3.event.pageX - 220) + "px");
-                            } else {
-                                tooltip.style("left", (d3.event.pageX + 40) + "px");
-                            }
-                        }
-                        if (percentOOS != null && totalStudentOOS != null) {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h4>" + name + "</h4><hr>" +
-                                    "<div>" + percentOOS + "</div>" +
-                                    "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
-                        } else if (name === "School District Not Defined") {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h3>No Operating District</h3>");
-
-                        } else {
-                            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                    "<h4>" + name + "</h4><hr>" +
-                                    "<div> NO DATA </div>");
-                        }
+            g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(extra, extra.objects.extra_districts).features)
+                    .enter().append("path")
+                    .attr("id", "elementaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).attr("stroke", "#fff")
-                                .attr("stroke-opacity", .15);
-                        d3.select(this).classed("selected", false);
-                        tooltip.transition().duration(300).style("opacity", 0);
+                        removeTooltip(this);
                     });
 
             g.append("g")
@@ -661,56 +636,7 @@
                         .attr("stroke-opacity", .15)
                         .attr("stroke-linejoin", "round")
                         .on("mouseover", function (d) {
-                            var format = d3.format("0,000");
-                            var decimal = d3.format(",.1f");
-                            var state = d.properties.State;
-                            var name = d.properties.Name;
-                            var totalEnrollment = format(d.properties["Total Enrollment"]);
-                            var totalStudentOOS = format(d.properties["Total Students OOS"]);
-                            var percentOOS;
-                            if(d.properties['Percent OOS'] != null) {
-                                percentOOS = decimal(d.properties['Percent OOS'].replace(/%/g, "")) + '%';
-                            }
-                            else {
-                                percentOOS = d.properties['Percent OOS'];
-                            }
-                            d3.select(this).attr("stroke", "#1A1C20")
-                                    .attr("stroke-opacity", 1);
-                            d3.select(this).classed("selected", true);
-
-                            tooltip.transition().duration(100)
-                                    .style("opacity", 1)
-                                    .style("top", (d3.event.pageY - 100) + "px");
-
-                            var windowWidth = $(window).width();
-                            if (windowWidth > 1024) {
-                                if (d3.event.pageX > 1000) {
-                                    tooltip.style("left", (d3.event.pageX - 200) + "px");
-                                } else {
-                                    tooltip.style("left", (d3.event.pageX + 40) + "px");
-                                }
-                            }
-                            if (windowWidth < 1024) {
-                                if (d3.event.pageX > 400) {
-                                    tooltip.style("left", (d3.event.pageX - 200) + "px");
-                                } else {
-                                    tooltip.style("left", (d3.event.pageX + 40) + "px");
-                                }
-                            }
-                            if (percentOOS != null && totalStudentOOS != null) {
-                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                        "<h4>" + name + "</h4><hr>" +
-                                        "<div>" + percentOOS + "</div>" +
-                                        "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
-                            } else if (name === "School District Not Defined") {
-                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                        "<h3>No Operating District</h3>");
-
-                            } else {
-                                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                                        "<h4>" + name + "</h4><hr>" +
-                                        "<div> NO DATA </div>");
-                            }
+                            createTooltip(this,d);
                         })
                         .on("mouseout", function () {
                             d3.select(this).attr("stroke", "#fff")
@@ -770,11 +696,70 @@
                     .attr("y", 40)
                     .attr({x: 26, width: 20, height: 20})
                     .on('click', zoomClick);
-
             updateColors();
             createLegend();
             svg.select("#progress-image").style("opacity", 0);
             $("#legend").css("display", "block");
+        }
+
+        function removeTooltip(currentDistrict){
+            d3.select(currentDistrict).attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15);
+            d3.select(currentDistrict).classed("selected", false);
+            tooltip.transition().duration(300).style("opacity", 0);
+        }
+
+        function createTooltip(currentDistrict,d){
+            var format = d3.format("0,000");
+            var decimal = d3.format(",.1f");
+            var state = d.properties.a;
+            var name = d.properties.b;
+            var totalEnrollment = format(d.properties.f);
+            var totalStudentOOS = format(d.properties.d);
+            var percentOOS;
+            if(d.properties.e != null) {
+                percentOOS = decimal(d.properties.e.replace(/%/g, "")) + '%';
+            }
+            else {
+                percentOOS = d.properties.e;
+            }
+            d3.select(currentDistrict).attr("stroke", "#1A1C20")
+                    .attr("stroke-opacity", 1);
+            d3.select(currentDistrict).classed("selected", true);
+
+            tooltip.transition().duration(100)
+                    .style("opacity", 1)
+                    .style("top", (d3.event.pageY - 100) + "px");
+
+            var windowWidth = $(window).width();
+            if (windowWidth > 1024) {
+                if (d3.event.pageX > 1000) {
+                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                }
+            }
+            if (windowWidth < 1024) {
+                if (d3.event.pageX > 400) {
+                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                }
+            }
+            if (percentOOS != null && totalStudentOOS != null) {
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div>" + percentOOS + "</div>" +
+                        "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+            } else if (name === "School District Not Defined") {
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h3>No Operating District</h3>");
+
+            } else {
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div> NO DATA </div>");
+            }
         }
 
         // D3 MAP SCALE
@@ -783,7 +768,6 @@
             legendButton.each(function () {
                 var buttonValue = $(this).attr("data-value");
                 var totalDistricts = document.getElementsByClassName("district").length;
-                console.log(buttonValue);
                 var valueSize = document.getElementsByClassName(buttonValue).length;
                 var width = (valueSize / totalDistricts) * 100;
                 $(this).css("background-color", buttonValue);
@@ -806,7 +790,7 @@
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
-                                if (buttonValue == colorByGroup(d.properties["Percent OOS"])) {
+                                if (buttonValue == colorByGroup(d.properties.e)) {
                                     return buttonValue;
                                 } else {
                                     return "#E6E6E6";
@@ -814,19 +798,17 @@
                             });
                 }
             });
-
         }
 
         function updateColors() {
             svg.selectAll(".district")
                     .attr("fill", function (d) {
-                        d3.select(this).attr("class", "district " + colorByGroup(d.properties["Percent OOS"]));
-                        return colorByGroup(d.properties["Percent OOS"]);
+                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.e));
+                        return colorByGroup(d.properties.e);
                     });
         }
 
         function colorByGroup(p) {
-
             var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
             return d == 0 ? '#84C59C' :
                     (d > 0 && d <= 3) ? '#cbc9e2' :

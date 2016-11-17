@@ -145,7 +145,7 @@
      "a":"State"
      "b":"Name"
      "c":"Students"
-     "d":"Annual circulation of children's materials"
+     "d":"Number of public library service outlets"
      "e":"Percent students of circulated children's materials"
      "f":"Circulation rate category"
      "g":"Child poverty rate"
@@ -153,7 +153,6 @@
      */
     $("#legend").css("display", "none");
     //  D3 MAP
-    var vector;
     var width = 960;
     var height = 600;
     var center = [width / 2, height / 2];
@@ -199,9 +198,9 @@
 
     queue()
             .defer(d3.json, "assets/data/states.json")
-            .defer(d3.json, "assets/data/elementaryunified.json")
+            .defer(d3.json, "assets/data/elementary.json")
             .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/medium.json")
+            .defer(d3.json, "assets/data/extra.json")
             .defer(d3.json, "assets/data/phas.json")
             .await(ready);
 
@@ -228,10 +227,7 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("stroke", "#fff")
-                            .attr("stroke-opacity", .15);
-                    d3.select(this).classed("selected", false);
-                    tooltip.transition().duration(300).style("opacity", 0);
+                    removeTooltip(this);
                 });
 
         g.append("g")
@@ -248,10 +244,7 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("stroke", "#fff")
-                            .attr("stroke-opacity", .15);
-                    d3.select(this).classed("selected", false);
-                    tooltip.transition().duration(300).style("opacity", 0);
+                    removeTooltip(this);
                 });
 
         g.append("g")
@@ -262,7 +255,7 @@
                 .attr("class", "state")
                 .attr("d", path);
 
-        vector = g.selectAll("circles")
+        g.selectAll("circles")
                 .data(topojson.feature(phas, phas.objects.phas).features)
                 .enter().append("circle")
                 .attr("class", "phaPoints")
@@ -308,10 +301,7 @@
                         createTooltip(this,d);
                     })
                     .on("mouseout", function () {
-                        d3.select(this).attr("stroke", "#fff")
-                                .attr("stroke-opacity", .15);
-                        d3.select(this).classed("selected", false);
-                        tooltip.transition().duration(300).style("opacity", 0);
+                        removeTooltip(this);
                     });
             updateColors();
             g.append("g")
@@ -321,7 +311,7 @@
                     .enter().append("path")
                     .attr("class", "state")
                     .attr("d", path);
-            vector = g.selectAll("circles")
+            g.selectAll("circles")
                     .data(topojson.feature(phas, phas.objects.phas).features)
                     .enter().append("circle")
                     .attr("class", "phaPoints")
@@ -434,6 +424,12 @@
                 "<h4>Jurisdiction: " + jurisdiction + "</h4><hr>");
     }
 
+    function removeTooltip(currentDistrict){
+        d3.select(currentDistrict).attr("stroke", "#fff")
+                .attr("stroke-opacity", .15);
+        d3.select(currentDistrict).classed("selected", false);
+        tooltip.transition().duration(300).style("opacity", 0);
+    }
 
     function createTooltip(currentDistrict,d){
         var format = d3.format("0,000");
@@ -496,7 +492,7 @@
         }else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> Annual circulation of children’s materials   : " + annualCirculation + "</div>" +
+                    "<div> Number of public library service outlets: " + annualCirculation + "</div>" +
                     "<div> Students: " + students + "</div>" +
                     "<div> Child Poverty Rate: " + childPovertyRate + "</div>" +
                     "<div> Student percent minority: " + percentMinorityStudents + "</div>");
@@ -623,7 +619,7 @@
     }
     function pointRadius() {
         var z = zoom.scale();
-        return (z > 13) ? .2 :
+        return (z > 13) ? .15 :
                 (z > 8) ? .4 :
                         (z > 6) ? .6 :
                                 (z > 5) ? .75 :
