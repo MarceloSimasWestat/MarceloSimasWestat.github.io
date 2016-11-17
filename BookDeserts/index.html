@@ -322,36 +322,51 @@
         <div class="inner align-center">
 			<h2 id="datanotes" style="font-size:15px; font-weight:bold; margin-top:3.5em;">ENDNOTES</h2>
             <div class="6u$ 12u$(medium) dataExclusion">
-                <h3 class="line">Data Exclusion Rules</h3>
-                <p>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam. Vestibulum ut metus et mauris pharetra commodo nec venenatis nisi. In eget lobortis ligula, fermentum ultricies arcu. Etiam elit leo, sollicitudin sit amet rhoncus a, commodo fermentum lectus.</p>
+                <h3 class="line">Data Processing Notes</h3>
+                <p>
+					A district’s annual circulation of children’s library materials is based on public use data files from Institute of Museum and Library Services (IMLS) FY 2014 Public Libraries Survey (PLS). These data were assigned to districts in three steps.
+				</p>
                 <ol>
                     <li>
-                        Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.
+                        Based on assigned latitude and longitude from the PLS data and the district boundaries from the 2013 TIGER/Line Shapefiles, each library outlet was assigned to a district. (In situations where an outlet was located within the boundaries of more than one district, the outlet was assigned to each of those overlapping districts.)
                     </li>
                     <li>
-						Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.
+						Districts were assigned data from the PLS administrative entity file for the library system with at least one outlet within the district’s boundaries. For districts with outlets from more than one library system, the district’s annual circulation of children’s materials represents the sum of the annual circulation for each of the library systems with outlets within the district’s boundaries. If the library system’s annual circulation data were missing, the district’s annual circulation of children’s materials was also be missing.
                     </li>
+					<li>
+						Districts with no library outlets within their boundaries were assigned zero as their annual circulation of children’s materials.
+					</li>
                 </ol>
+				<p>
+					A district’s per student annual circulation of children’s library material was calculated by dividing the annual circulation by the number of students in the district. The number of students in the district  came from the 2013-14 National Center for Education Statistics’ Common Core of Data (CCD) Local Education Agency (School District) Universe Survey. Districts with missing data for either the number of students or annual circulation were assigned a missing value for the per student circulation. (Districts with zero students also were assigned a missing value for the per student annual circulation.)
+				</p>
+				<p>
+					The child poverty rate came from the 2014 Small Area Income and Poverty Estimates (SAIPE) school district data supplemented with SAIPE county data for the 5 boroughs (counties) of New York City (NYC). For the 32 mapped school districts in NYC, districts were assigned the poverty data for the county where they are located.
+				</p>
+				<p>
+					Student percent minority was based on LEA data from the CCD. For the purpose of this story map, minority was defined as students in the district who are American Indian/Alaska Native, Asian, Black, Native Hawaiian/Pacific Islander, Hispanic, or Two or More Races. Districts with missing or zero students were assigned a missing value for student percent minority.
+				</p>
             </div>
             <div class="6u$ 12u$(medium) dataExclusion">
-                <h3 style="font-size: 15px;" class="line">Map Notes</h3>
-                <p>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</p>
-                <ol>
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
-                </ol>
-				<p>Fusce a erat suscipit, egestas dui sit amet, pulvinar ex. Ut quis consequat quam. Sed vitae risus lobortis, posuere ex vitae, pharetra dolor. Ut imperdiet, nulla a egestas vulputate, libero sem elementum velit, sit amet vestibulum augue metus eget tortor. Aenean magna nisi, auctor eget ex ac, venenatis volutpat mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sollicitudin augue ac velit maximus, sed lobortis orci mattis. Vivamus aliquet ex lacus, ac dictum libero pharetra mattis. Suspendisse potenti.</p>
-            </div>
-            <div class="6u$ 12u$(medium) dataExclusion">
-                <h3 style="font-size: 15px;" class="line">Other Technical Notes</h3>
-                <p>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</p>
-                <ul style="font-size: 12px;">
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
-                    <li>Duis consectetur, enim quis mollis egestas, justo dui ultricies elit, id viverra lorem erat sed diam.</li>
+                <h3 style="font-size: 15px;" class="line">Map-Specific Notes</h3>
+                <p>
+					On this map, the label <strong>Elementary</strong> includes all school districts that are financially responsible for providing education only to children in the elementary grades. Some elementary districts share territory with one or more Secondary districts. The label Independent Elementary refers to those Elementary school districts that are geographically independent of other school districts.
+				</p>
+				<p>
+					The label <strong>Secondary</strong> includes all school districts that are financially responsible for providing education only to children in the upper grades. This includes pseudo-secondary school districts created by the Census Bureau. 
+				</p>
+				<p>
+					The label <strong>Unified</strong> refers to districts that provide education to children of all school ages. In general, where there is a unified school district, no elementary or secondary school district exists.
+				</p>
+				<p>
+					Map areas displayed as having missing data include: 
+				</p>
+                <ul>
+                    <li>Districts with missing enrollment data in the 2013-14 National Center for Education Statistics’ Common Core of Data (CCD).</li>
+                    <li>Districts whose library outlets belong to a library system with missing children’s materials circulation data from the Public Libraries Survey (PLS).</li>
+                    <li>Districts that do not match to the U.S. Census Bureau’s 2013 TIGER/Line Shapefiles (machine readable data files) used to produce the map.</li>
+					<li>Spatial areas that do not align with any school district reported in the CCD. For more information refer to the 2013 TIGER/Line Shapefiles technical documentation.</li>
                 </ul>
-				<p>Fusce a erat suscipit, egestas dui sit amet, pulvinar ex. Ut quis consequat quam. Sed vitae risus lobortis, posuere ex vitae, pharetra dolor. Ut imperdiet, nulla a egestas vulputate, libero sem elementum velit, sit amet vestibulum augue metus eget tortor. Aenean magna nisi, auctor eget ex ac, venenatis volutpat mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sollicitudin augue ac velit maximus, sed lobortis orci mattis. Vivamus aliquet ex lacus, ac dictum libero pharetra mattis. Suspendisse potenti.</p>
             </div>
 		</div>
 
