@@ -747,10 +747,16 @@
                 }
             }
             if (percentOOS != null && totalStudentOOS != null) {
-                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                        "<h4>" + name + "</h4><hr>" +
-                        "<div>" + percentOOS + "</div>" +
-                        "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+                if (d.properties.c == 0) {
+                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                            "<h4>" + name + "</h4><hr>" +
+                            "<div> NO DATA </div>");
+                } else {
+                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                            "<h4>" + name + "</h4><hr>" +
+                            "<div>" + percentOOS + "</div>" +
+                            "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+                }
             } else if (name === "School District Not Defined") {
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h3>No Operating District</h3>");
@@ -790,7 +796,7 @@
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
-                                if (buttonValue == colorByGroup(d.properties.e)) {
+                                if (buttonValue == colorByGroup(d.properties.c)) {
                                     return buttonValue;
                                 } else {
                                     return "#E6E6E6";
@@ -803,19 +809,25 @@
         function updateColors() {
             svg.selectAll(".district")
                     .attr("fill", function (d) {
-                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.e));
-                        return colorByGroup(d.properties.e);
+                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.c));
+                        return colorByGroup(d.properties.c);
                     });
         }
 
-        function colorByGroup(p) {
-            var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#84C59C' :
-                    (d > 0 && d <= 3) ? '#cbc9e2' :
-                            (d > 3 && d <= 6) ? '#9e9ac8' :
-                                    (d > 6 && d <= 12) ? '#756bb1' :
-                                            (d > 12) ? '#54278f' :
-                                                    (d < 0) ? 'gray' :
+        function colorByGroup(d) {
+            /*Field "c" dictionary:
+             "0";Null or Missing Data
+             "1";No Students Subject to OOS
+             "2";0% to 3%
+             "3";3% to 6%
+             "4";6% to 12%
+             "5";More than 12%*/
+            return (d == 0) ? 'gray' :
+                    (d == 1) ? '#84C59C' :
+                            (d == 2) ? '#cbc9e2' :
+                                    (d == 3) ? '#9e9ac8' :
+                                            (d == 4) ? '#756bb1' :
+                                                    (d == 5) ? '#54278f' :
                                                             defaultFill;
         }
 
