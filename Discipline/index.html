@@ -718,7 +718,12 @@
             var totalStudentOOS = format(d.properties.d);
             var percentOOS;
             if(d.properties.e != null) {
-                percentOOS = decimal(d.properties.e.replace(/%/g, "")) + '%';
+                percentOOS = decimal(d.properties.e.replace(/%/g, ""));
+                if (d.properties.c == 2 && percentOOS < 1) {
+                    percentOOS = "<0.5%"
+                } else {
+                    percentOOS = percentOOS + '%';
+                }
             }
             else {
                 percentOOS = d.properties.e;
