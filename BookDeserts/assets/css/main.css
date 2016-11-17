@@ -3766,8 +3766,12 @@ footer p {
 
 footer ol {
     font-size: 12px;
+	
 }
 
+footer ul {
+	font-size: 12px;
+}
 
 /* Copied over from template */
 @media screen and (max-width: 1024px) {
