@@ -711,16 +711,18 @@
 
         function createTooltip(currentDistrict,d){
             var format = d3.format("0,000");
-            var decimal = d3.format(",.1f");
+            //var decimal = d3.format(",.1f");
             var state = d.properties.a;
             var name = d.properties.b;
             var totalEnrollment = format(d.properties.f);
             var totalStudentOOS = format(d.properties.d);
             var percentOOS;
             if(d.properties.e != null) {
-                percentOOS = decimal(d.properties.e.replace(/%/g, ""));
+                percentOOS = d.properties.e.replace(/%/g, "");
                 if (d.properties.c == 2 && percentOOS < 1) {
                     percentOOS = "<0.5%"
+                } else if (percentOOS == 0.0) {
+                    percentOOS = "0%";
                 } else {
                     percentOOS = percentOOS + '%';
                 }
