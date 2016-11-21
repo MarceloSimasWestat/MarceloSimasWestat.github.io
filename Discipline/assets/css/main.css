@@ -5275,7 +5275,7 @@ button:hover,
 #mapWrapper .state{
     fill: none;
     stroke: #fff;
-    stroke-width: 1.0px;
+    /*stroke-width: 1.0px;*/
     stroke-linejoin: round;
 }
 
@@ -5360,6 +5360,23 @@ button:hover,
     font-family: Helvetica, sans-serif;
     margin-left: 0;
     padding: 0;
+}
+
+.zoomButton{
+    z-index: 999;
+    float: left;
+    background-color: black;
+    border: none;
+    border-radius: 0;
+    color: white;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    letter-spacing: 0;
+    line-height: 25px;
+    padding: 0;
+    position: relative;
+    top: 35px;
 }
 
 .highlightButton {
