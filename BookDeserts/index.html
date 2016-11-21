@@ -228,7 +228,12 @@
                                 </div>
                             </div>
 
-                            <div id="map"></div>
+                            <div id="map">
+                                <div><button class="zoomButton" data-zoom="+1">+</button>
+                                    <div style="clear: both; height:5px"></div>
+                                    <button class="zoomButton" data-zoom="-1">-</button>
+                                </div>
+                            </div>
                             <div id="selectDistrictType">
                                 <div id="selectElementary" class="selected ">Elementary and Unified</div>
                                 <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
@@ -620,49 +625,6 @@
                         .attr("d", path);
             });
 
-            // Zoom buttons
-            svg.selectAll(".button")
-                    .data(['zoom_in', 'zoom_out'])
-                    .enter()
-                    .append("g")
-                    .attr("id", function (d) {
-                        return d
-                    })
-                    .attr("class", "button")
-                    .attr({x: 20, width: 20, height: 20})
-                    .append("rect")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .attr("y", function (d, i) {
-                        return 25 * i
-                    })
-                    .attr({x: 20, width: 20, height: 20});
-
-            // Plus button
-            svg.select("#zoom_in")
-                    .append("text").text("+")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .style("fill", "white")
-                    .style("font-size", "20px")
-                    .attr("y", 15)
-                    .attr({x: 24.5, width: 20, height: 20})
-                    .on('click', zoomClick);
-
-            // Minus button
-            svg.select("#zoom_out")
-                    .append("text").text("-")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .style("fill", "white")
-                    .style("font-size", "20px")
-                    .attr("y", 40)
-                    .attr({x: 26, width: 20, height: 20})
-                    .on('click', zoomClick);
-
             updateColors();
             createLegend();
             svg.select("#progress-image").style("opacity", 0);
@@ -813,8 +775,7 @@
                 var iTranslate = d3.interpolate(zoom.translate(), translate),
                         iScale = d3.interpolate(zoom.scale(), scale);
                 return function (t) {
-                    zoom
-                            .scale(iScale(t))
+                    zoom.scale(iScale(t))
                             .translate(iTranslate(t));
                     move();
                 };
@@ -833,7 +794,7 @@
                     l = [],
                     view = {x: translate[0], y: translate[1], k: zoom.scale()};
             d3.event.preventDefault();
-            direction = (d3.select(this).attr("class") === 'zoom_in') ? 1 : -1;
+            direction = this.getAttribute("data-zoom");
             target_zoom = zoom.scale() * (1 + factor * direction);
 
             if (target_zoom < extent[0] || target_zoom > extent[1]) {
@@ -851,10 +812,19 @@
         }
 
         function move() {
+            d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
             g.style("stroke-width", 1 / zoom.scale())
                     .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
         }
+        function resizeStateBorder() {
+            var z = zoom.scale();
+            return (z > 7) ? .25 :
+                    (z > 4) ? .5 :
+                            1
+        }
 
+        d3.selectAll("button[data-zoom]")
+                .on("click", zoomClick);
         d3.select(self.frameElement).style("height", height + "px");
 
     </script>
