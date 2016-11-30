@@ -748,7 +748,6 @@
                             });
                 }
             });
-
         }
 
         function updateColors() {
@@ -759,14 +758,16 @@
                     });
         }
 
-        function colorByGroup(p) {
-            return p === "1" ? '#54278f' :
-                    (p === "2") ? '#756bb1' :
-                            (p === "3") ? '#9e9ac8' :
-                                    (p === "4") ? '#bcbddc' :
-                                            (p === "5") ? '#dadaeb' :
-                                                    (p === "0") ? 'gray' :
-                                                            defaultFill;
+        function colorByGroup(f) {
+            switch (f){
+                case "0": return 'gray'; break;
+                case "1": return '#dadaeb'; break;
+                case "2": return '#bcbddc'; break;
+                case "3": return '#9e9ac8'; break;
+                case "4": return '#756bb1'; break;
+                case "5": return '#54278f'; break;
+                default : return 'black'; break;
+            }
         }
 
         function interpolateZoom(translate, scale) {
@@ -816,6 +817,7 @@
             g.style("stroke-width", 1 / zoom.scale())
                     .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
         }
+
         function resizeStateBorder() {
             var z = zoom.scale();
             return (z > 7) ? .25 :

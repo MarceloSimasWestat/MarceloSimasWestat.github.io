@@ -5278,17 +5278,10 @@ button:hover,
 /*D3 Map styling*/
 
 #mapWrapper .state{
-     fill: none;
      /*stroke: #fff;*/
      /*stroke-width: 1.0px;*/
      stroke-linejoin: round;
  }
-#mapWrapper .grantState{
-    fill: none;
-    /*stroke: #fff;*/
-    /*stroke-width: 1.0px;*/
-    stroke-linejoin: round;
-}
 
 #mapWrapper .overlay {
     fill: none;
@@ -5371,6 +5364,23 @@ button:hover,
     font-family: Helvetica, sans-serif;
     margin-left: 0;
     padding: 0;
+}
+
+.grantToggle{
+    z-index: 999;
+    float: left;
+    background-color: black;
+    border: none;
+    border-radius: 0;
+    color: white;
+    font-size: 15px;
+    width: auto;
+    height: 30px;
+    letter-spacing: 0;
+    line-height: 5px;
+    padding: 0 3px 0 3px;
+    position: relative;
+    top: 35px;
 }
 
 .zoomButton{

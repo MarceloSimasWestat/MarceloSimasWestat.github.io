@@ -6,7 +6,7 @@
 -->
 <html lang="en-us">
 <head>
-    <title>Book Deserts</title>
+    <title>Preschool Education</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,7 +61,7 @@
             <nav>
                 <ul style="margin-bottom: 1.5em;">
                     <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#one">Book Data Mapped</a></li>
+                    <li><a href="#one">District Preschool Participation Mapped</a></li>
                     <li><a href="#two">Uneven Impact</a></li>
                     <li><a href="#three">The Preschool Crisis</a></li>
                     <li><a href="#four">Wrap Up</a></li>
@@ -94,42 +94,42 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Annual Circulation of Children’s Library Materials per Student</h3>
+                            <h3>Percentage of Early Elementary Population Enrolled in Public Preschool Programs</h3>
                             <div class="legendButtonWrapper">
-                                <div data-value="#54278f" class="legendButton">
+                                <div data-value="#dadaeb" class="legendButton">
                                     <hr class="verticalLine" size="25">
-                                    <div class="legendText">0</div>
-                                </div><div data-value="#756bb1" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText"> 1-10 </div>
-                                </div><div data-value="#9e9ac8" class="legendButton">
+                                    <div class="legendText">&nbsp;</div>
+                                </div><div data-value="#bcbddc" class="legendButton">
                                 <hr class="verticalLine" size="25">
-                                <div class="legendText">10-25</div>
-                            </div><div data-value="#bcbddc" class="legendButton">
+                                <div class="legendText">0%</div>
+                            </div><div data-value="#9e9ac8" class="legendButton">
                                 <hr class="verticalLine" size="25">
-                                <div class="legendText">25-100</div>
-                            </div><div data-value="#dadaeb" class="legendButton">
+                                <div class="legendText">15%</div>
+                            </div><div data-value="#756bb1" class="legendButton">
                                 <hr class="verticalLine" size="25">
-                                <div class="legendText"> More than 100 </div>
+                                <div class="legendText">30%</div>
+                            </div><div data-value="#54278f" class="legendButton">
+                                <hr class="verticalLine" size="25">
+                                <div class="legendText">45%</div>
                             </div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="gray" class="legendButton missing">
+                                <div data-value="black" class="legendButton missing">
                                     <hr class="verticalLine" size="25">
                                     <div class="legendText">MISSING*</div>
-                                </div>
+                                </div><div data-value="gray" class="legendButton null">
+                                <hr class="verticalLine" size="25">
+                                <div class="legendText">NULL*</div>
+                            </div>
                             </div>
                         </div>
 
                         <div id="map">
-                            <div><button class="zoomButton" data-zoom="+1">+</button>
+                            <div><button class="grantToggle" style="float:left">Show Grant States</button>
+                                <div style="clear: both; height:5px"></div>
+                                <button class="zoomButton" data-zoom="+1">+</button>
                                 <div style="clear: both; height:5px"></div>
                                 <button class="zoomButton" data-zoom="-1">-</button>
-                            </div>
-                        </div>
-                        <div id="selectDistrictType">
-                            <div id="selectElementary" class="selected ">Elementary and Unified</div>
-                            <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
                             </div>
                         </div>
                     </div>
@@ -147,14 +147,12 @@
 
 <script>
     /*
-    "a":"State"
+     "a":"State"
      "b":"Name"
-     "c":"Students"
-     "d":"Number of public library service outlets"
-     "e":"Percent students of circulated children's materials"
-     "f":"Circulation rate category"
-     "g":"Child poverty rate"
-     "h":"Percent minority students"
+     "c":"Preschool Students"
+     "d":"g01_g02"
+     "e":"pct_psenr"
+     "f":"cpct_psenr"
      */
     $("#legend").css("display", "none");
     //  D3 MAP
@@ -198,15 +196,14 @@
 
     queue()
             .defer(d3.json, "assets/data/states.json")
-            .defer(d3.json, "assets/data/elementary.json")
-            .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/extra.json")
+            .defer(d3.json, "assets/data/elementaryunified.json")
+            .defer(d3.json, "assets/data/extradistricts.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, secondary, extra) {
+    function ready(error, us, primary, extra) {
         if (error) {
             console.log(error);
         }
@@ -226,7 +223,10 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    removeTooltip(this);
+                    d3.select(this).attr("stroke", "#fff")
+                            .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
                 });
 
         g.append("g")
@@ -243,7 +243,10 @@
                     createTooltip(this,d);
                 })
                 .on("mouseout", function () {
-                    removeTooltip(this);
+                    d3.select(this).attr("stroke", "#fff")
+                            .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
                 });
 
         g.append("g")
@@ -251,48 +254,18 @@
                 .selectAll("path")
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
-                .attr("class", "state")
+                .attr("class", function(d){
+                    var className = "state";
+                    if(d.properties.ps_grant == 1) {
+                        className = "state psState";
+                        d3.select(this.parentNode.appendChild(this))
+                                .style({"stroke-opacity":1,"stroke":"white","fill":"none","fill-opacity":0});
+                    }else{
+                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
+                    }
+                    return className;
+                })
                 .attr("d", path);
-
-        d3.select("#selectElementary").on("click", function () {
-            d3.select("#selectSecondary").style("background", "white")
-                    .style("color","#1A1C20");
-            d3.select(this).style("background", "#1A1C20")
-                    .style("color","white");
-            d3.selectAll("#secondaryDistrict").remove();
-        });
-
-        d3.select("#selectSecondary").on("click", function () {
-            d3.selectAll(".state").remove();
-            d3.select("#selectElementary").style("background", "white")
-                    .style("color","#1A1C20");
-            d3.select(this).style("background", "#1A1C20")
-                    .style("color","white");
-            g.append("g")
-                    .selectAll("path")
-                    .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
-                    .enter().append("path")
-                    .attr("id", "secondaryDistrict")
-                    .attr("class", "district")
-                    .attr("d", path)
-                    .attr("stroke", "#fff")
-                    .attr("stroke-opacity", .15)
-                    .attr("stroke-linejoin", "round")
-                    .on("mouseover", function (d) {
-                        createTooltip(this,d);
-                    })
-                    .on("mouseout", function () {
-                        removeTooltip(this);
-                    });
-            updateColors();
-            g.append("g")
-                    .attr("class", "states")
-                    .selectAll("path")
-                    .data(topojson.feature(us, us.objects.states).features)
-                    .enter().append("path")
-                    .attr("class", "state")
-                    .attr("d", path);
-        });
 
         updateColors();
         createLegend();
@@ -300,30 +273,26 @@
         $("#legend").css("display", "block");
     }
 
-    function removeTooltip(currentDistrict){
-        d3.select(currentDistrict).attr("stroke", "#fff")
-                .attr("stroke-opacity", .15);
-        d3.select(currentDistrict).classed("selected", false);
-        tooltip.transition().duration(300).style("opacity", 0);
-    }
-
     function createTooltip(currentDistrict,d){
         var format = d3.format("0,000");
         //var decimal = d3.format(",.1f");
         var state = (d.properties.a === null)? "NO DATA": d.properties.a;
         var name = (d.properties.b === null)? "NO DATA": d.properties.b;
-        var students = (d.properties.c === null)? "NO DATA": d.properties.c;
-        if(!isNaN(students)){
-            students = format(students);
+        if (d.properties.f === "0") {
+            var preschoolStudents = (d.properties.c === null) ? "N/A" : d.properties.c;
+            var g_g = (d.properties.d === null) ? "N/A" : d.properties.d;
+            var pct_psenr = (d.properties.e === null) ? "N/A" : d.properties.e;
+        } else {
+            preschoolStudents = (d.properties.c === null) ? "NO DATA" : d.properties.c;
+            g_g = (d.properties.d === null) ? "NO DATA" : d.properties.d;
+            pct_psenr = (d.properties.e === null) ? "NO DATA" : d.properties.e;
         }
-        var annualCirculation = (d.properties.d === null)? "NO DATA": d.properties.d;
-        if(!isNaN(annualCirculation)){
-            annualCirculation = format(annualCirculation);
+        var cpct_psenr = (d.properties.f === null) ? "NO DATA" : d.properties.f;
+
+        if(!isNaN(preschoolStudents)){
+            preschoolStudents = format(preschoolStudents);
         }
-        //var percentStudentsCirculated = d.properties.e;
-        //var circulationRateCategory = d.properties.f;
-        var childPovertyRate = (d.properties.g == null)? "NO DATA": d.properties.g;
-        var percentMinorityStudents = (d.properties.h == null)? "NO DATA": d.properties.h;
+
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
                 .attr("stroke-opacity", 1);
         d3.select(currentDistrict).classed("selected", true);
@@ -368,10 +337,9 @@
         }else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> Number of public library service outlets: " + annualCirculation + "</div>" +
-                    "<div> Students: " + students + "</div>" +
-                    "<div> Child poverty rate: " + childPovertyRate + "</div>" +
-                    "<div> Student percent minority: " + percentMinorityStudents + "</div>");
+                    "<div> Preschool children enrolled: " + preschoolStudents + "</div>" +
+                    "<div> Enrollment in grades 1 and 2: " + g_g + "</div>" +
+                    "<div> Preschool as a % of grades 1 and 2 enrollment: " + pct_psenr + "</div>");
         }else{
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
@@ -387,6 +355,9 @@
             var valueSize = document.getElementsByClassName(buttonValue).length;
             var width = (valueSize / totalDistricts) * 100;
             if ($(this).hasClass("missing")) {
+                width = width * 100;
+            }
+            if ($(this).hasClass("null")) {
                 width = width * 4;
             }
             $(this).css("background-color", buttonValue);
@@ -431,12 +402,12 @@
     function colorByGroup(f) {
         switch (f){
             case "0": return 'gray'; break;
-            case "1": return '#54278f'; break;
-            case "2": return '#756bb1'; break;
+            case "1": return '#dadaeb'; break;
+            case "2": return '#bcbddc'; break;
             case "3": return '#9e9ac8'; break;
-            case "4": return '#bcbddc'; break;
-            case "5": return '#dadaeb'; break;
-            default : return defaultFill; break;
+            case "4": return '#756bb1'; break;
+            case "5": return '#54278f'; break;
+            default : return 'black'; break;
         }
     }
 
@@ -483,10 +454,34 @@
         interpolateZoom([view.x, view.y], view.k);
     }
 
+    function toggleGrantStates(){
+        if(d3.select(".grantToggle").classed("showGrantStates")){
+            console.log("toggle off");
+            d3.select(".grantToggle").text("Show Grant States").classed("showGrantStates",false);
+            d3.selectAll(".psState")
+                    .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
+            d3.selectAll(".state:not(.psState)").style({"fill":"none"});
+        }else{
+            console.log("toggle on");
+            d3.select(".grantToggle").text("Show All States").attr("class","grantToggle showGrantStates");
+        d3.selectAll(".psState")
+                .style({"stroke-opacity":1,"stroke":"black", "stroke-width": resizePsStateBorder()});
+        d3.selectAll(".state:not(.psState)").style({"fill-opacity": 0.5, "fill":"white"});
+    }
+    }
+
     function move() {
         d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
+        d3.selectAll(".psState").style("stroke-width", resizePsStateBorder());
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+    }
+
+    function resizePsStateBorder(){
+        var z = zoom.scale();
+        return (z > 7) ? .40 :
+                (z > 4) ? .75 :
+                        2
     }
 
     function resizeStateBorder() {
@@ -495,11 +490,11 @@
                 (z > 4) ? .5 :
                         1
     }
-    d3.selectAll("button[data-zoom]")
-            .on("click", zoomClick);
+
+    d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
+    d3.selectAll(".grantToggle").on("click", toggleGrantStates);
     d3.select(self.frameElement).style("height", height + "px");
 
 </script>
-
 </body>
 </html>

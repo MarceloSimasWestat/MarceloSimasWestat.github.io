@@ -573,7 +573,6 @@
                 console.log(error);
             }
             g.attr("cursor","pointer");
-
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
@@ -792,13 +791,15 @@
              "3";3% to 6%
              "4";6% to 12%
              "5";More than 12%*/
-            return (d == 0) ? 'gray' :
-                    (d == 1) ? '#84C59C' :
-                            (d == 2) ? '#cbc9e2' :
-                                    (d == 3) ? '#9e9ac8' :
-                                            (d == 4) ? '#756bb1' :
-                                                    (d == 5) ? '#54278f' :
-                                                            defaultFill;
+            switch (d){
+                case 0: return 'gray'; break;
+                case 1: return '#84C59C'; break;
+                case 2: return '#cbc9e2'; break;
+                case 3: return '#9e9ac8'; break;
+                case 4: return '#756bb1'; break;
+                case 5: return '#54278f'; break;
+                default : return defaultFill; break;
+            }
         }
 
         function interpolateZoom(translate, scale) {
