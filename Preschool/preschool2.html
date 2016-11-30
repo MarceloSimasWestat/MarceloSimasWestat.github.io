@@ -465,14 +465,14 @@
             console.log("toggle on");
             d3.select(".grantToggle").text("Show All States").attr("class","grantToggle showGrantStates");
         d3.selectAll(".psState")
-                .style({"stroke-opacity":1,"stroke":"black", "stroke-width": resizePsStateBorder()});
-        d3.selectAll(".state:not(.psState)").style({"fill-opacity": 0.5, "fill":"white"});
+                .style({"stroke-opacity":1,"stroke":"gray", "stroke-width": resizeStateBorder()});
+        d3.selectAll(".state:not(.psState)").style({"fill-opacity": 0.7, "fill":"white"});
     }
     }
 
     function move() {
         d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
-        d3.selectAll(".psState").style("stroke-width", resizePsStateBorder());
+        //d3.selectAll(".psState").style("stroke-width", resizePsStateBorder());
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
     }
