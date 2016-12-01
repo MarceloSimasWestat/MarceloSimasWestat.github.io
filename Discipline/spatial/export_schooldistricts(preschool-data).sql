@@ -72,8 +72,12 @@ WHERE mtfcc IN ('G5410');
 DROP TABLE IF EXISTS schooldistricts_medium_state_borders;
 CREATE TABLE schooldistricts_medium_state_borders AS
 SELECT row_number() OVER () AS gid, geom, state,
-		CASE WHEN abbreviation IN ('AL','AR','AZ','CA','CO','CT','DE','GA','HI','IL','KY','LA','MA','MD','ME','MI','MN','MT','NC','NJ','NM','NV','NY','OH','OR','PA','RI','TN','VA','VT','WA','WI')
-		THEN 1
+		CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','RI','WA','WI')
+		THEN 1 -- RTT-ELC grant only states
+		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','RI','TN','VA')
+		THEN 2 -- PDG grant only states
+		WHEN abbreviation IN ('IL','MA','MD','NJ','VT')
+		THEN 3 -- RTT-ELC & PDG grant states
 		ELSE 0
 		END AS ps_grant
 FROM
@@ -83,3 +87,12 @@ FROM
 	GROUP BY a
 ) foo
 INNER JOIN regions ON regions.name = foo.state;
+
+/*
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Rhode Island','Washington','Wisconsin');
+-- 'CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','RI','WA','WI'
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Rhode Island','Tennessee','Virginia');
+-- 'AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','RI','TN','VA'
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont');
+-- 'IL','MA','MD','NJ','VT'
+*/

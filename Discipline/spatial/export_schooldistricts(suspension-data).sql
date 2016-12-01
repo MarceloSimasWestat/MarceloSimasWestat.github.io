@@ -5,7 +5,11 @@ SELECT schooldistricts.gid, schooldistricts.geom,
 	schooldistricts."name" AS "b",
 	coos_pct::INT AS "c",
 	oos_tot::INT AS "d",
-	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	-- show precision only when percent is less than half a percent
+	CASE WHEN oos_pct::NUMERIC < 0.005
+	THEN round(oos_pct::NUMERIC * 100, 1)::TEXT || '%'
+	ELSE round(oos_pct::NUMERIC * 100)::TEXT || '%'
+	END AS "e",
 	COALESCE(enr_tot, '0') AS "f"
 FROM
 (
@@ -25,7 +29,10 @@ SELECT a.gid, a.geom,
 	schooldistricts."name" AS "b",
 	coos_pct::INT AS "c",
 	oos_tot::INT AS "d",
-	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	CASE WHEN oos_pct::NUMERIC < 0.005
+	THEN round(oos_pct::NUMERIC * 100, 1)::TEXT || '%'
+	ELSE round(oos_pct::NUMERIC * 100)::TEXT || '%'
+	END AS "e",
 	COALESCE(enr_tot, '0') AS "f"
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
@@ -41,7 +48,10 @@ SELECT a.gid, a.geom,
 	schooldistricts."name" AS "b",
 	coos_pct::INT AS "c",
 	oos_tot::INT AS "d",
-	round(oos_pct::NUMERIC * 100)::TEXT || '%' AS "e",
+	CASE WHEN oos_pct::NUMERIC < 0.005
+	THEN round(oos_pct::NUMERIC * 100, 1)::TEXT || '%'
+	ELSE round(oos_pct::NUMERIC * 100)::TEXT || '%'
+	END AS "e",
 	COALESCE(enr_tot, '0') AS "f"
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
