@@ -5314,6 +5314,23 @@ button:hover,
     padding: 0;
 }
 
+.rttGrantToggle, .pdgGrantToggle {
+    z-index: 999;
+    float: left;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 0;
+    color: black;
+    font-size: 15px;
+    width: auto;
+    height: 30px;
+    letter-spacing: 0;
+    line-height: 5px;
+    padding: 0 3px 0 3px;
+    position: relative;
+    top: 35px;
+}
+
 .zoomButton{
     z-index: 999;
     float: left;
