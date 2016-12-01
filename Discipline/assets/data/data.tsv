@@ -1,6 +1,6 @@
 chart	subchart	level	group	overall_p	female_p	male_p	overall_n	female_n	male_n	enrolled_p	suspended_p	diff_ppt	enrolled_n	suspended_n
-1-2			Black	0.261										
-1-2			All others	0.739										
+1-2			Black	0.2486303										
+1-2			All others	0.7513697										
 2-1			Overall	0.054			2646080							
 2-1			White	0.036			854197							
 2-1			Black	0.135			986750							

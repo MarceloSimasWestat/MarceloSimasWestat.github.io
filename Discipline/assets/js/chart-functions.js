@@ -2705,8 +2705,9 @@ function groupedBarDiv() {
 			.attr("class", "d3-tip")
 			.direction("e")
 			.offset([0, 10])
-			.html(function(d) {
-				return d.group + ", " + d.level + "</br>Of Enrolled: " + formatPercent(d.enrolled_p) + "</br>Of Suspended: " + formatPercent(d.suspended_p) + "</br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points";
+			.html(function(d) { 
+				if ((d.group == "Asian" && d.level == "Female") || (d.group == "Pacific Islander" && d.level == "Female")) { return d.group + ", " + d.level + "</br>Of Enrolled: " + formatPercent(d.enrolled_p) + "</br>Of Suspended: <0.1%</br>Difference: Approx. " + formatNumberD(d.diff_ppt) + " percentage points"; }
+				else { return d.group + ", " + d.level + "</br>Of Enrolled: " + formatPercent(d.enrolled_p) + "</br>Of Suspended: " + formatPercent(d.suspended_p) + "</br>Difference: " + formatNumberD(d.diff_ppt) + " percentage points"; }
 			});
 
 		svg.call(tipBar);

@@ -221,7 +221,12 @@
                                 </div>
 							</div>
 
-							<div id="map"></div>
+							<div id="map">
+                                <div><button class="zoomButton" data-zoom="+1">+</button>
+                                    <div style="clear: both; height:5px"></div>
+                                    <button class="zoomButton" data-zoom="-1">-</button>
+                                </div>
+                            </div>
               <div id="selectDistrictType">
                   <div id="selectElementary" class="selected ">Elementary and Unified</div>
                   <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
@@ -256,7 +261,7 @@
                 <div></div>
                 <div id="ch2_1"></div>
                 <p style="margin-top: 1.5em;">
-					Overall, about 5 percent of students received at least one out-of-school suspension in 2013–14. Thirteen percent of black students were suspended, the highest rate of any group of students and more than twice the national average. American Indian students were the next mostly likely to be suspended, at 8 percent. The least likely to be suspended were Asian students, at less than 2 percent.
+					Overall, about 5 percent of students received at least one out-of-school suspension in 2013–14. Fourteen percent of black students were suspended, the highest rate of any group of students and more than twice the national average. American Indian students were the next mostly likely to be suspended, at 8 percent. The least likely to be suspended were Asian students, at less than 2 percent.
                 </p>
                 <p style="margin-bottom: 3.5em;">
                     See suspension rates for other student groups in the next chart.
@@ -268,7 +273,7 @@
                 </p>
                 <div id="ch2_3"></div>
                 <p style="margin-top: 1.5em;">
-					Seventeen percent of black males were suspended out of school at least once. The rate for black females was 9 percent, showing that black males were almost 8 percentage points more likely to receive suspensions than black females. Hispanic males were nearly 4 percentage points more likely than Hispanic females to be suspended, and the suspension rate for white males was 3 percentage points higher than for white females.
+					More than 17 percent of black males were suspended out of school at least once. The rate for black females was almost 10 percent, showing that black males were almost 8 percentage points more likely to receive suspensions than black females. Hispanic males were nearly 4 percentage points more likely than Hispanic females to be suspended, and the suspension rate for white males was 3 percentage points higher than for white females.
                 </p>
                 <p>
                     When broken out further, by disability status, the data diverge even more. Though black males make up only 12 percent of those identified with disabilities, they make up 26 percent of students with disabilities who were suspended.
@@ -307,7 +312,7 @@
                 <div id="ch3_2">
                 </div>
 				<p style="margin-top:1.5em;">
-					Black males had the highest rate of overrepresentation. Black male preschoolers make up less than 10 percent of the population but more than 34 percent of suspended preschoolers, indicating that they are overrepresented in suspensions by nearly 25 percentage points. Black females make up 9 percent of the preschool population but 12 percent of suspended students, indicating that they are overrepresented in the suspension population by 3 percentage points.
+					Black males had the highest rate of overrepresentation. Black male preschoolers make up 10 percent of the population but about 34 percent of suspended preschoolers, indicating that they are overrepresented in suspensions by almost 25 percentage points. Black females make up 9 percent of the preschool population but 12 percent of suspended students, indicating that they are overrepresented in the suspension population by 3 percentage points.
         </p>
 
 				<p>
@@ -468,7 +473,7 @@
 					.altText("This chart displays the percentage of students receiving one or more out-of school suspensions, overall and within each racial or ethnic category, in 2013-14.");
 				var chart2_2 = columnThree().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
 					.title1("Male students are more than twice as likely to be suspended as female students.")
-					.title2("1 in 10 students with disabilities received at least one out-of-school suspension.")
+					.title2("About one in 10 students with disabilities received at least one out-of-school suspension.")
 					.title3("English language learners are suspended at a rate below the national average.")
 					.altText1("This chart displays the percentage of students receiving one or more out-of school suspensions, overall and by gender, in 2013-14.")
 					.altText2("This chart displays the percentage of students receiving one or more out-of school suspensions, overall and by disability status, in 2013-14.")
@@ -568,7 +573,6 @@
                 console.log(error);
             }
             g.attr("cursor","pointer");
-
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
@@ -654,48 +658,6 @@
                         .attr("d", path);
             });
 
-            // Zoom buttons
-            svg.selectAll(".button")
-                    .data(['zoom_in', 'zoom_out'])
-                    .enter()
-                    .append("g")
-                    .attr("id", function (d) {
-                        return d
-                    })
-                    .attr("class", "button")
-                    .attr({x: 20, width: 20, height: 20})
-                    .append("rect")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .attr("y", function (d, i) {
-                        return 25 * i
-                    })
-                    .attr({x: 20, width: 20, height: 20});
-
-            // Plus button
-            svg.select("#zoom_in")
-                    .append("text").text("+")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .style("fill", "white")
-                    .style("font-size", "20px")
-                    .attr("y", 15)
-                    .attr({x: 24.5, width: 20, height: 20})
-                    .on('click', zoomClick);
-
-            // Minus button
-            svg.select("#zoom_out")
-                    .append("text").text("-")
-                    .attr("class", function (d) {
-                        return d
-                    })
-                    .style("fill", "white")
-                    .style("font-size", "20px")
-                    .attr("y", 40)
-                    .attr({x: 26, width: 20, height: 20})
-                    .on('click', zoomClick);
             updateColors();
             createLegend();
             svg.select("#progress-image").style("opacity", 0);
@@ -711,14 +673,21 @@
 
         function createTooltip(currentDistrict,d){
             var format = d3.format("0,000");
-            var decimal = d3.format(",.1f");
+            //var decimal = d3.format(",.1f");
             var state = d.properties.a;
             var name = d.properties.b;
             var totalEnrollment = format(d.properties.f);
             var totalStudentOOS = format(d.properties.d);
             var percentOOS;
             if(d.properties.e != null) {
-                percentOOS = decimal(d.properties.e.replace(/%/g, "")) + '%';
+                percentOOS = d.properties.e.replace(/%/g, "");
+                if (d.properties.c == 2 && percentOOS < 1) {
+                    percentOOS = "<0.5%"
+                } else if (percentOOS == 0.0) {
+                    percentOOS = "0%";
+                } else {
+                    percentOOS = percentOOS + '%';
+                }
             }
             else {
                 percentOOS = d.properties.e;
@@ -747,10 +716,16 @@
                 }
             }
             if (percentOOS != null && totalStudentOOS != null) {
-                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                        "<h4>" + name + "</h4><hr>" +
-                        "<div>" + percentOOS + "</div>" +
-                        "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+                if (d.properties.c == 0) {
+                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                            "<h4>" + name + "</h4><hr>" +
+                            "<div> NO DATA </div>");
+                } else {
+                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                            "<h4>" + name + "</h4><hr>" +
+                            "<div>" + percentOOS + "</div>" +
+                            "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+                }
             } else if (name === "School District Not Defined") {
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h3>No Operating District</h3>");
@@ -790,7 +765,7 @@
                     var buttonValue = $(this).attr("data-value");
                     svg.selectAll(".district")
                             .attr("fill", function (d) {
-                                if (buttonValue == colorByGroup(d.properties.e)) {
+                                if (buttonValue == colorByGroup(d.properties.c)) {
                                     return buttonValue;
                                 } else {
                                     return "#E6E6E6";
@@ -803,20 +778,28 @@
         function updateColors() {
             svg.selectAll(".district")
                     .attr("fill", function (d) {
-                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.e));
-                        return colorByGroup(d.properties.e);
+                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.c));
+                        return colorByGroup(d.properties.c);
                     });
         }
 
-        function colorByGroup(p) {
-            var d = isNaN(parseFloat(p)) ? -1 : parseFloat(p);
-            return d == 0 ? '#84C59C' :
-                    (d > 0 && d <= 3) ? '#cbc9e2' :
-                            (d > 3 && d <= 6) ? '#9e9ac8' :
-                                    (d > 6 && d <= 12) ? '#756bb1' :
-                                            (d > 12) ? '#54278f' :
-                                                    (d < 0) ? 'gray' :
-                                                            defaultFill;
+        function colorByGroup(d) {
+            /*Field "c" dictionary:
+             "0";Null or Missing Data
+             "1";No Students Subject to OOS
+             "2";0% to 3%
+             "3";3% to 6%
+             "4";6% to 12%
+             "5";More than 12%*/
+            switch (d){
+                case 0: return 'gray'; break;
+                case 1: return '#84C59C'; break;
+                case 2: return '#cbc9e2'; break;
+                case 3: return '#9e9ac8'; break;
+                case 4: return '#756bb1'; break;
+                case 5: return '#54278f'; break;
+                default : return defaultFill; break;
+            }
         }
 
         function interpolateZoom(translate, scale) {
@@ -845,7 +828,7 @@
                     l = [],
                     view = {x: translate[0], y: translate[1], k: zoom.scale()};
             d3.event.preventDefault();
-            direction = (d3.select(this).attr("class") === 'zoom_in') ? 1 : -1;
+            direction = this.getAttribute("data-zoom");
             target_zoom = zoom.scale() * (1 + factor * direction);
 
             if (target_zoom < extent[0] || target_zoom > extent[1]) {
@@ -863,10 +846,20 @@
         }
 
         function move() {
+            d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
             g.style("stroke-width", 1 / zoom.scale())
                     .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
         }
 
+        function resizeStateBorder() {
+            var z = zoom.scale();
+            return (z > 7) ? .25 :
+                    (z > 4) ? .5 :
+                            1
+        }
+
+        d3.selectAll("button[data-zoom]")
+                .on("click", zoomClick);
         d3.select(self.frameElement).style("height", height + "px");
 
 	</script>
