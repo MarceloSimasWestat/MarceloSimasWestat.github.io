@@ -5366,13 +5366,13 @@ button:hover,
     padding: 0;
 }
 
-.grantToggle{
+.rttGrantToggle, .pdgGrantToggle, .allStatesToggle {
     z-index: 999;
     float: left;
-    background-color: black;
-    border: none;
+    background-color: white;
+    border: 2px solid black;
     border-radius: 0;
-    color: white;
+    color: black;
     font-size: 15px;
     width: auto;
     height: 30px;
