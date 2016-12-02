@@ -5314,7 +5314,7 @@ button:hover,
     padding: 0;
 }
 
-.rttGrantToggle, .pdgGrantToggle {
+.rttGrantToggle, .pdgGrantToggle, .allStatesToggle {
     z-index: 999;
     float: left;
     background-color: white;

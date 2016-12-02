@@ -127,8 +127,8 @@
                         <div id="map">
                             <div>
                                 <button class="toggleButton rttGrantToggle" style="float:left">RTT-ELC Grant States</button>
-                                <div style="clear: both; height:5px"></div>
                                 <button class="toggleButton pdgGrantToggle" style="float:left">PDG Grant States</button>
+                                <button class="toggleButton allStatesToggle" style="float:left; display: none">Show All States</button>
                                 <div style="clear: both; height:5px"></div>
                                 <button class="zoomButton" data-zoom="+1">+</button>
                                 <div style="clear: both; height:5px"></div>
@@ -261,16 +261,13 @@
                     var className = "state";
                     if (d.properties.ps_grant == 1) {
                         className = "state psState rttGrantState";
-                        d3.select(this.parentNode.appendChild(this))
-                                .style({"stroke-opacity":1,"stroke":"white","fill":"none","fill-opacity":0});
+                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
                     } else if (d.properties.ps_grant == 2) {
                         className = "state psState pdgGrantState";
-                        d3.select(this.parentNode.appendChild(this))
-                                .style({"stroke-opacity": 1, "stroke": "white", "fill": "none", "fill-opacity": 0});
+                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
                     } else if (d.properties.ps_grant == 3) {
                         className = "state psState bothGrantState";
-                        d3.select(this.parentNode.appendChild(this))
-                            .style({"stroke-opacity": 1, "stroke": "white", "fill": "none", "fill-opacity": 0});
+                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
                     }else {
                         d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
                     }
@@ -465,40 +462,59 @@
         interpolateZoom([view.x, view.y], view.k);
     }
 
+    function allStatesToggle(){
+        d3.select(".allStatesToggle").style("display","none");
+        d3.select(".rttGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
+        d3.selectAll(".rttGrantState,.bothGrantState")
+                .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
+        d3.select(".pdgGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
+        d3.selectAll(".pdgGrantState,.bothGrantState")
+                .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
+        d3.selectAll(".state").style({"fill":"none"});
+    }
+
     function rttToggleGrantStates(){
         if(d3.select(".rttGrantToggle").classed("active")){
-            console.log("toggle off");
+            d3.select(".allStatesToggle").style("display","none");
             d3.select(".rttGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
             d3.selectAll(".rttGrantState,.bothGrantState")
                     .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
             d3.selectAll(".state").style({"fill":"none"});
         }else{
-            console.log("toggle on");
+            d3.select(".allStatesToggle").style("display","block");
             if (d3.select(".pdgGrantToggle").classed("active")) {
                 pdgToggleGrantStates();
+                d3.select(".allStatesToggle").style("display","block");
             }
             d3.select(".rttGrantToggle").style({"background-color": "black", "color": "white"}).attr("class","rttGrantToggle active");
             d3.selectAll(".rttGrantState,.bothGrantState")
-                    .style({"stroke-opacity":1,"stroke":"gray", "stroke-width": resizeStateBorder()});
+                    .style("stroke-width", resizeStateBorder()).style("stroke-opacity", function(){
+                d3.select(this.parentNode.appendChild(this)).style("stroke","gray");
+                return 1;
+            });
             d3.selectAll(".state:not(.rttGrantState):not(.bothGrantState)").style({"fill-opacity": 0.7, "fill":"white"});
         }
     }
 
     function pdgToggleGrantStates(){
         if(d3.select(".pdgGrantToggle").classed("active")){
-            console.log("toggle off");
+            d3.select(".allStatesToggle").style("display","none");
             d3.select(".pdgGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
             d3.selectAll(".pdgGrantState,.bothGrantState")
                     .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
             d3.selectAll(".state").style({"fill":"none"});
         }else{
-            console.log("toggle on");
+            d3.select(".allStatesToggle").style("display","block");
             if (d3.select(".rttGrantToggle").classed("active")) {
                 rttToggleGrantStates();
+                d3.select(".allStatesToggle").style("display","block");
             }
             d3.select(".pdgGrantToggle").style({"background-color": "black", "color": "white"}).attr("class","pdgGrantToggle active");
             d3.selectAll(".pdgGrantState,.bothGrantState")
-                    .style({"stroke-opacity":1,"stroke":"gray", "stroke-width": resizeStateBorder()});
+                    .style("stroke-width", resizeStateBorder()).style("stroke-opacity", function(){
+                d3.select(this.parentNode.appendChild(this)).style("stroke","gray");
+                return 1;
+            });
             d3.selectAll(".state:not(.pdgGrantState):not(.bothGrantState)").style({"fill-opacity": 0.7, "fill":"white"});
         }
     }
@@ -527,6 +543,7 @@
     d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
     d3.selectAll(".rttGrantToggle").on("click", rttToggleGrantStates);
     d3.selectAll(".pdgGrantToggle").on("click", pdgToggleGrantStates);
+    d3.selectAll(".allStatesToggle").on("click", allStatesToggle);
     d3.select(self.frameElement).style("height", height + "px");
 
 </script>
