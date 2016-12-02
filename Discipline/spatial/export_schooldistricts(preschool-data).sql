@@ -72,11 +72,11 @@ WHERE mtfcc IN ('G5410');
 DROP TABLE IF EXISTS schooldistricts_medium_state_borders;
 CREATE TABLE schooldistricts_medium_state_borders AS
 SELECT row_number() OVER () AS gid, geom, state,
-		CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','RI','WA','WI')
+		CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','WA','WI')
 		THEN 1 -- RTT-ELC grant only states
-		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','RI','TN','VA')
+		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','TN','VA')
 		THEN 2 -- PDG grant only states
-		WHEN abbreviation IN ('IL','MA','MD','NJ','VT')
+		WHEN abbreviation IN ('IL','MA','MD','NJ','VT','RI')
 		THEN 3 -- RTT-ELC & PDG grant states
 		ELSE 0
 		END AS ps_grant
@@ -89,10 +89,10 @@ FROM
 INNER JOIN regions ON regions.name = foo.state;
 
 /*
-SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Rhode Island','Washington','Wisconsin');
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin');
 -- 'CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','RI','WA','WI'
-SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Rhode Island','Tennessee','Virginia');
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia');
 -- 'AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','RI','TN','VA'
-SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont');
+SELECT string_agg(quote_literal(abbreviation),',' ORDER BY abbreviation) FROM regions WHERE name IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island');
 -- 'IL','MA','MD','NJ','VT'
 */
