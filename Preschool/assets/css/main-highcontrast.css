@@ -5329,6 +5329,7 @@ button:hover,
     padding: 0 3px 0 3px;
     position: relative;
     top: 35px;
+    margin-right: 15px;
 }
 
 .zoomButton{
