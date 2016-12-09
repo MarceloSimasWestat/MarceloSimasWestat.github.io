@@ -296,6 +296,8 @@
                 pct_psenr = d.properties.e.replace(/%/g, "");
                 if(pct_psenr > 100){
                     pct_psenr = ">100%";
+                } else if (pct_psenr > 0 && pct_psenr < 1 ){
+                    pct_psenr = "<0.5%";
                 } else {
                     pct_psenr = pct_psenr + '%';
                 }
@@ -364,6 +366,8 @@
                 tooltip.append("div").html("State preschool grant: PDG");
             } else if (d.properties.g == 3){
                 tooltip.append("div").html("State preschool grant: RTT-ELC and PDG");
+            } else {
+                tooltip.append("div").html("State preschool grant: None");
             }
         } else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
