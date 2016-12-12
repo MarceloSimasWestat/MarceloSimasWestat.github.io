@@ -280,30 +280,33 @@
 
     function createTooltip(currentDistrict,d){
         var format = d3.format("0,000");
-        //var decimal = d3.format(",.1f");
+        var decimal = d3.format(",.1f");
         var state = (d.properties.a === null)? "NO DATA": d.properties.a;
         var name = (d.properties.b === null)? "NO DATA": d.properties.b;
         if (d.properties.f === "0") {
             var preschoolStudents = (d.properties.c === null) ? "N/A" : "N/A";
             var g_g = (d.properties.d === null) ? "N/A" : "N/A";
-            var pct_psenr = (d.properties.e === null) ? "N/A" : "N/A";
+            var pct_psenr = "N/A";
         } else {
             preschoolStudents = (d.properties.c === null) ? "NO DATA" : d.properties.c;
             g_g = (d.properties.d === null) ? "NO DATA" : d.properties.d;
             if (d.properties.e === null) {
-                pct_psenr = "NO DATA";
-            } else {
+                pct_psenr =  "NO DATA";
+            }else {
                 pct_psenr = d.properties.e.replace(/%/g, "");
-                if(pct_psenr > 100){
+                if (pct_psenr > 100) {
                     pct_psenr = ">100%";
-                } else if (pct_psenr > 0 && pct_psenr < 1 ){
-                    pct_psenr = "<0.5%";
-                } else {
+                } else if (pct_psenr > 0 && pct_psenr < 0.1) {
+                    pct_psenr = "<0.1%";
+                } else if (pct_psenr == 0.00) {
+                    pct_psenr = "0.0%";
+                }
+                else {
                     pct_psenr = pct_psenr + '%';
                 }
             }
         }
-        var cpct_psenr = (d.properties.f === null) ? "NO DATA" : d.properties.f;
+        //var cpct_psenr = (d.properties.f === null) ? "NO DATA" : d.properties.f;
 
         if(!isNaN(preschoolStudents)){
             preschoolStudents = format(preschoolStudents);
