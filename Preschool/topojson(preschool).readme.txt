@@ -24,6 +24,7 @@ medium_G5420_G5400.topojson
 
 	Field "g"/"ps_grant" dictionary:
 	
+	"0":"State preschool grant: None"
 	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
 	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
 	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
@@ -32,6 +33,7 @@ states.topojson
 
 	Field "ps_grant" dictionary:
 	
+	"0":"State preschool grant: None"
 	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
 	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
 	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
