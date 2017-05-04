@@ -1,0 +1,20 @@
+Field names:
+
+"a":"State"
+"b":"School District Name"
+"c":"OOS Group"
+"d":"Total Students OOS"
+"e":"Percent OOS"
+"f":"Total Enrollment"
+
+
+
+
+Field "c" dictionary:
+
+"0";Null or Missing Data
+"1";No Students Subject to OOS
+"2";0% to 3%
+"3";3% to 6%
+"4";6% to 12%
+"5";More than 12%
