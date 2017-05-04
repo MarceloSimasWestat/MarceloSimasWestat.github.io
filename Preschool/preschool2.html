@@ -114,10 +114,7 @@
                             </div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="black" class="legendButton missing">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">MISSING*</div>
-                                </div><div data-value="gray" class="legendButton null">
+                                <div data-value="gray" class="legendButton null">
                                 <hr class="verticalLine" size="25">
                                 <div class="legendText">NULL*</div>
                             </div>
@@ -140,7 +137,7 @@
             </div>
             <div>
                 <br/>
-                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <a href="../Discipline/assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.</p>
+                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <!--<a href="../Discipline/assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.--></p>
             </div>
         </div>
     </section>
@@ -283,22 +280,40 @@
 
     function createTooltip(currentDistrict,d){
         var format = d3.format("0,000");
-        //var decimal = d3.format(",.1f");
+        var decimal = d3.format(",.1f");
         var state = (d.properties.a === null)? "NO DATA": d.properties.a;
         var name = (d.properties.b === null)? "NO DATA": d.properties.b;
         if (d.properties.f === "0") {
-            var preschoolStudents = (d.properties.c === null) ? "N/A" : d.properties.c;
-            var g_g = (d.properties.d === null) ? "N/A" : d.properties.d;
-            var pct_psenr = (d.properties.e === null) ? "N/A" : d.properties.e;
+            var preschoolStudents = (d.properties.c === null) ? "N/A" : "N/A";
+            var g_g = (d.properties.d === null) ? "N/A" : "N/A";
+            var pct_psenr = "N/A";
         } else {
             preschoolStudents = (d.properties.c === null) ? "NO DATA" : d.properties.c;
             g_g = (d.properties.d === null) ? "NO DATA" : d.properties.d;
-            pct_psenr = (d.properties.e === null) ? "NO DATA" : d.properties.e;
+            if (d.properties.e === null) {
+                pct_psenr =  "NO DATA";
+            }else {
+                pct_psenr = d.properties.e.replace(/%/g, "");
+                if (pct_psenr > 100) {
+                    pct_psenr = ">100%";
+                } else if (pct_psenr > 0 && pct_psenr < 0.1) {
+                    pct_psenr = "<0.1%";
+                } else if (pct_psenr == 0.00) {
+                    pct_psenr = "0%";
+                }
+                else {
+                    pct_psenr = pct_psenr + '%';
+                }
+            }
         }
-        var cpct_psenr = (d.properties.f === null) ? "NO DATA" : d.properties.f;
+        //var cpct_psenr = (d.properties.f === null) ? "NO DATA" : d.properties.f;
 
         if(!isNaN(preschoolStudents)){
             preschoolStudents = format(preschoolStudents);
+        }
+
+        if(!isNaN(g_g)){
+            g_g = format(g_g);
         }
 
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
@@ -342,13 +357,22 @@
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h3>No Operating District</h3>");
 
-        }else if (name != null ) {
+        } else if (name != null ) {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> Preschool children enrolled: " + preschoolStudents + "</div>" +
                     "<div> Enrollment in grades 1 and 2: " + g_g + "</div>" +
                     "<div> Preschool as a % of grades 1 and 2 enrollment: " + pct_psenr + "</div>");
-        }else{
+            if(d.properties.g == 1){
+                tooltip.append("div").html("State preschool grant: RTT-ELC");
+            } else if (d.properties.g == 2) {
+                tooltip.append("div").html("State preschool grant: PDG");
+            } else if (d.properties.g == 3){
+                tooltip.append("div").html("State preschool grant: RTT-ELC and PDG");
+            } else {
+                tooltip.append("div").html("State preschool grant: None");
+            }
+        } else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> NO DATA </div>");
@@ -362,9 +386,9 @@
             var totalDistricts = document.getElementsByClassName("district").length;
             var valueSize = document.getElementsByClassName(buttonValue).length;
             var width = (valueSize / totalDistricts) * 100;
-            if ($(this).hasClass("missing")) {
-                width = width * 100;
-            }
+            //if ($(this).hasClass("missing")) {
+            //    width = width * 100;
+            //}
             if ($(this).hasClass("null")) {
                 width = width * 4;
             }
@@ -409,13 +433,12 @@
 
     function colorByGroup(f) {
         switch (f){
-            case "0": return 'gray'; break;
             case "1": return '#dadaeb'; break;
             case "2": return '#bcbddc'; break;
             case "3": return '#9e9ac8'; break;
             case "4": return '#756bb1'; break;
             case "5": return '#54278f'; break;
-            default : return 'black'; break;
+            default : return 'gray'; break;
         }
     }
 

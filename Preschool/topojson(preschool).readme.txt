@@ -1,21 +1,39 @@
-Field names:
+extra_districts.topojson
+medium_G5410.topojson
+medium_G5420_G5400.topojson
 
-"a":"State"
-"b":"Name"
-"c":"Preschool Students"
-"d":"g01_g02"
-"e":"pct_psenr"
-"f":"cpct_psenr"
+	Field names:
 
+	"a":"State"
+	"b":"School District Name"
+	"c":"Number of preschool children enrolled"
+	"d":"Number of students enrolled in grades 1 and 2"
+	"e":"Preschool students as a percentage of enrollment in grades 1 and 2"
+	"f":"Preschool students as a percentage of enrollment in grades 1 and 2, categorized"
+	"g":"School district state's grant program"
 
+	Field "f" dictionary:
 
+	"-1";"Missing"
+	"0";"Null"
+	"1";"No preschool students"
+	"2";"More than 0% to 15%"
+	"3";"More than 15% to 30%"
+	"4";"More than 30% to 45%"
+	"5";"More than 45%"
 
-Field "f" dictionary:
+	Field "g"/"ps_grant" dictionary:
+	
+	"0":"State preschool grant: None"
+	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
+	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
+	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
+	
+states.topojson
 
-"-1";"Missing"
-"0";"Null"
-"1";"No preschool students"
-"2";"More than 0% to 15%"
-"3";"More than 15% to 30%"
-"4";"More than 30% to 45%"
-"5";"More than 45%"
+	Field "ps_grant" dictionary:
+	
+	"0":"State preschool grant: None"
+	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
+	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
+	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
