@@ -3,14 +3,14 @@ CREATE TABLE schooldistricts_medium_with_features_not_simplified AS
 SELECT schooldistricts.gid, schooldistricts.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
-	tot_psenr::INT AS "c",
-	g01_g02::INT AS "d",
+	COALESCE(oela.oela, '-1') AS "c",
+	el_tot::INT AS "d",
+	student_tot::INT AS "e",
 		-- show precision only when percent is less than half a percent
-	CASE WHEN pct_psenr::NUMERIC < 0.001
-		THEN round(pct_psenr::NUMERIC * 100, 2)::TEXT || '%'
-		ELSE round(pct_psenr::NUMERIC * 100, 1)::TEXT || '%'
-	END AS "e",
-	COALESCE(cpct_psenr, '0') AS "f",
+	CASE WHEN el_pct::NUMERIC < 0.001
+		THEN round(el_pct::NUMERIC * 100, 2)::TEXT || '%'
+		ELSE round(el_pct::NUMERIC * 100, 1)::TEXT || '%'
+	END AS "f",
 	CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','WA','WI')
 		THEN 1 -- RTT-ELC grant only states
 		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','TN','VA')
@@ -18,7 +18,7 @@ SELECT schooldistricts.gid, schooldistricts.geom,
 		WHEN abbreviation IN ('IL','MA','MD','NJ','VT','RI')
 		THEN 3 -- RTT-ELC & PDG grant states
 		ELSE 0
-	END AS "g"
+	END AS "g" 
 FROM
 (
 	SELECT *
@@ -27,7 +27,8 @@ FROM
 	WHERE leaid IN ('1717903','3200450','3418270','0623130','3408280','0634290','4606960')
 ) schooldistricts
 INNER JOIN regions USING (statefp)
-INNER JOIN cpct_psenr_data ON schooldistricts.leaid = cpct_psenr_data.leaid::TEXT;
+INNER JOIN oela_data ON schooldistricts.leaid = oela_data.leaid::TEXT
+LEFT JOIN oela ON oela_data.el_cat = oela.label;
 
 
 DROP TABLE IF EXISTS schooldistricts_medium_with_features_g5420_g5400;
@@ -35,14 +36,14 @@ CREATE TABLE schooldistricts_medium_with_features_g5420_g5400 AS
 SELECT a.gid, a.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
-	tot_psenr::INT AS "c",
-	g01_g02::INT AS "d",
+	COALESCE(oela.oela, '-1') AS "c",
+	el_tot::INT AS "d",
+	student_tot::INT AS "e",
 		-- show precision only when percent is less than half a percent
-	CASE WHEN pct_psenr::NUMERIC < 0.001
-		THEN round(pct_psenr::NUMERIC * 100, 2)::TEXT || '%'
-		ELSE round(pct_psenr::NUMERIC * 100, 1)::TEXT || '%'
-	END AS "e",
-	COALESCE(cpct_psenr, '0') AS "f",
+	CASE WHEN el_pct::NUMERIC < 0.001
+		THEN round(el_pct::NUMERIC * 100, 2)::TEXT || '%'
+		ELSE round(el_pct::NUMERIC * 100, 1)::TEXT || '%'
+	END AS "f",
 	CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','WA','WI')
 		THEN 1 -- RTT-ELC grant only states
 		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','TN','VA')
@@ -50,11 +51,12 @@ SELECT a.gid, a.geom,
 		WHEN abbreviation IN ('IL','MA','MD','NJ','VT','RI')
 		THEN 3 -- RTT-ELC & PDG grant states
 		ELSE 0
-	END AS "g"
+	END AS "g" 
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
 INNER JOIN regions USING (statefp)
-INNER JOIN cpct_psenr_data ON schooldistricts.leaid = cpct_psenr_data.leaid::TEXT
+INNER JOIN oela_data ON schooldistricts.leaid = oela_data.leaid::TEXT
+LEFT JOIN oela ON oela_data.el_cat = oela.label
 WHERE mtfcc IN ('G5420','G5400');
 
 
@@ -63,14 +65,14 @@ CREATE TABLE schooldistricts_medium_with_features_g5410 AS
 SELECT a.gid, a.geom,
 	regions."name" AS "a",
 	schooldistricts."name" AS "b",
-	tot_psenr::INT AS "c",
-	g01_g02::INT AS "d",
+	COALESCE(oela.oela, '-1') AS "c",
+	el_tot::INT AS "d",
+	student_tot::INT AS "e",
 		-- show precision only when percent is less than half a percent
-	CASE WHEN pct_psenr::NUMERIC < 0.001
-		THEN round(pct_psenr::NUMERIC * 100, 2)::TEXT || '%'
-		ELSE round(pct_psenr::NUMERIC * 100, 1)::TEXT || '%'
-	END AS "e",
-	COALESCE(cpct_psenr, '0') AS "f",
+	CASE WHEN el_pct::NUMERIC < 0.001
+		THEN round(el_pct::NUMERIC * 100, 2)::TEXT || '%'
+		ELSE round(el_pct::NUMERIC * 100, 1)::TEXT || '%'
+	END AS "f",
 	CASE WHEN abbreviation IN ('CA','CO','DE','GA','KY','MI','MN','NC','NM','OH','OR','PA','WA','WI')
 		THEN 1 -- RTT-ELC grant only states
 		WHEN abbreviation IN ('AL','AR','AZ','CT','HI','LA','ME','MT','NV','NY','TN','VA')
@@ -78,11 +80,12 @@ SELECT a.gid, a.geom,
 		WHEN abbreviation IN ('IL','MA','MD','NJ','VT','RI')
 		THEN 3 -- RTT-ELC & PDG grant states
 		ELSE 0
-	END AS "g"
+	END AS "g" 
 FROM schooldistricts_medium AS a
 INNER JOIN schooldistricts USING (gid)
 INNER JOIN regions USING (statefp)
-INNER JOIN cpct_psenr_data ON schooldistricts.leaid = cpct_psenr_data.leaid::TEXT
+INNER JOIN oela_data ON schooldistricts.leaid = oela_data.leaid::TEXT
+LEFT JOIN oela ON oela_data.el_cat = oela.label
 LEFT JOIN
 ( /* This subquery removes internal boundaries of a multipolygon by searching for duplicate points (shared borders) and removing all of those records - http://gis.stackexchange.com/questions/113029/polygon-from-line-creation-problem */
 	WITH points as

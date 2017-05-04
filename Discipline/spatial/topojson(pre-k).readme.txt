@@ -6,21 +6,21 @@ medium_G5420_G5400.topojson
 
 	"a":"State"
 	"b":"School District Name"
-	"c":"Number of preschool children enrolled"
-	"d":"Number of students enrolled in grades 1 and 2"
-	"e":"Preschool students as a percentage of enrollment in grades 1 and 2"
-	"f":"Preschool students as a percentage of enrollment in grades 1 and 2, categorized"
+	"c":"Number of children enrolled in prekindergarten"
+	"d":"Number of children enrolled in grades 1 and 2"
+	"e":"Preschool students as a percentage of enrollment in kindergarten"
+	"f":"Preschool students as a percentage of enrollment in kindergarten, categorized"
 	"g":"School district state's grant program"
 
 	Field "f" dictionary:
 
-	"-1";"Missing"
-	"0";"Null"
-	"1";"No preschool students"
-	"2";"More than 0% to 15%"
-	"3";"More than 15% to 30%"
-	"4";"More than 30% to 45%"
-	"5";"More than 45%"
+	"-1";"Missing/null"
+	"0";"No prekindergarten students"
+	"1";"More than 0% to 10%"
+	"2";"More than 10% to 25%"
+	"3";"More than 25% to 45%"
+	"4";"More than 45% to 100%"
+	"5";"More than 100%"
 
 	Field "g"/"ps_grant" dictionary:
 	
