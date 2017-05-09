@@ -95,26 +95,22 @@
 
                         <div id="legend">
                             <h3>Percentage of students that are English learners (SY 2014-15)</h3>
+                            <!-- this strange formatting is required in order to
+                            prevent spaces from showing up between the legend buttons-->
                             <div class="legendButtonWrapper">
-                                <div data-value="#dadaeb" class="legendButton">
+                                <div data-value="#9e9ac8" class="legendButton">
                                     <hr class="verticalLine" size="25">
-                                    <div class="legendText">&nbsp;</div>
-                                </div><div data-value="#bcbddc" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">0%</div>
-                            </div><div data-value="#9e9ac8" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">10%</div>
-                            </div><div data-value="#756bb1" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">25%</div>
-                            </div><div data-value="#54278f" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">45%</div>
-                            </div><div data-value="#340d67" class="legendButton">
-                                <hr class="verticalLine" size="25">
-                                <div class="legendText">100%</div>
-                            </div>
+                                    <div class="legendText">No EL students</div>
+                                </div><div data-value="#756bb1" class="legendButton">
+                                    <hr class="verticalLine" size="25">
+                                    <div class="legendText">Low</div>
+                                </div><div data-value="#54278f" class="legendButton">
+                                    <hr class="verticalLine" size="25">
+                                    <div class="legendText">Medium</div>
+                                </div><div data-value="#340d67" class="legendButton">
+                                    <hr class="verticalLine" size="25">
+                                    <div class="legendText">High</div>
+                                </div>
                             </div>
                             <div class="innerLegend">
                                 <div data-value="gray" class="legendButton null">
@@ -126,9 +122,6 @@
 
                         <div id="map">
                             <div>
-                                <button class="toggleButton rttGrantToggle" style="float:left">RTT-ELC Grant States</button>
-                                <button class="toggleButton pdgGrantToggle" style="float:left">PDG Grant States</button>
-                                <button class="toggleButton allStatesToggle" style="float:left; display: none">Show All States</button>
                                 <div style="clear: both; height:5px"></div>
                                 <button class="zoomButton" data-zoom="+1">+</button>
                                 <div style="clear: both; height:5px"></div>
@@ -317,45 +310,42 @@
 		var name = (d.properties.b === null)? "NO DATA": d.properties.b;
 		
         if (name === "School District Not Defined") {
-            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                    "<h3>No Operating District</h3>");
+            tooltip.html(
+                "<h3>" + state.toUpperCase() + "</h3>" +
+                "<hr>" +
+                "<h3>No Operating District</h3>"
+            );
+        }
+        else if (name != null) {
+            var numEL = d.properties.d;
+            var totalStudents = d.properties.e;
+            var percentEL = d.properties.f;
+            if(percentEL === "0") {
+                numEL = 'N/A';
+                totalStudents = 'N/A';
+                percentEL = 'N/A';
+            }
+            else {
+                if(numEL === null) numEL = 'NO DATA';
+                if(totalStudents === null) totalStudents = 'NO DATA';
+                if(percentEL === null) {
+                    percentEL = 'NO DATA';
+                }
+                else {
+                    var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
+                    if(rawPercent > 100) {
+                        percentEL = '>100%';
+                    }
+                }
+            }
 
-        } else if (name != null ) {
-			var numEL = d.properties.d;
-			var totalStudents = d.properties.e;
-			var percentEL = d.properties.f;
-			if(percentEL === "0") {
-				numEL = 'N/A';
-				totalStudents = 'N/A';
-				percentEL = 'N/A';
-			}
-			else {
-				if(numEL === null) numEL = 'NO DATA';
-				if(totalStudents === null) totalStudents = 'NO DATA';
-				if(percentEL === null) {
-					percentEL = 'NO DATA';
-				}
-				else {
-					var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
-					if(rawPercent > 100) {
-						percentEL = '>100%';
-					}
-				}
-			}
-			
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> Number of English Learners: " + numEL + "</div>" +
                     "<div> Total number of students: " + totalStudents + "</div>" +
                     "<div> Percent of students who are English Learners: " + percentEL + "</div>");
-            if(d.properties.g == 1){
-                tooltip.append("div").html("State preschool grant: RTT-ELC");
-            } else if (d.properties.g == 2) {
-                tooltip.append("div").html("State preschool grant: PDG");
-            } else if (d.properties.g == 3){
-                tooltip.append("div").html("State preschool grant: RTT-ELC and PDG");
-            }
-        } else {
+        }
+        else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> NO DATA </div>");
@@ -369,9 +359,6 @@
             var totalDistricts = document.getElementsByClassName("district").length;
             var valueSize = document.getElementsByClassName(buttonValue).length;
             var width = (valueSize / totalDistricts) * 100;
-            //if ($(this).hasClass("missing")) {
-            //    width = width * 100;
-            //}
             if ($(this).hasClass("null")) {
                 width = width * 6;
             }
@@ -417,7 +404,7 @@
 
     function colorByGroup(c) {
         switch (c){
-            case "-1": return '#bcbddc';
+            case "-1": return 'gray';
             case "0": return '#9e9ac8';
             case "1": return '#756bb1';
             case "2": return '#54278f';
@@ -469,63 +456,6 @@
         interpolateZoom([view.x, view.y], view.k);
     }
 
-    function allStatesToggle(){
-        d3.select(".allStatesToggle").style("display","none");
-        d3.select(".rttGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
-        d3.selectAll(".rttGrantState,.bothGrantState")
-                .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
-        d3.select(".pdgGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
-        d3.selectAll(".pdgGrantState,.bothGrantState")
-                .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
-        d3.selectAll(".state").style({"fill":"none"});
-    }
-
-    function rttToggleGrantStates(){
-        if(d3.select(".rttGrantToggle").classed("active")){
-            d3.select(".allStatesToggle").style("display","none");
-            d3.select(".rttGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
-            d3.selectAll(".rttGrantState,.bothGrantState")
-                    .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
-            d3.selectAll(".state").style({"fill":"none"});
-        }else{
-            d3.select(".allStatesToggle").style("display","block");
-            if (d3.select(".pdgGrantToggle").classed("active")) {
-                pdgToggleGrantStates();
-                d3.select(".allStatesToggle").style("display","block");
-            }
-            d3.select(".rttGrantToggle").style({"background-color": "black", "color": "white"}).attr("class","rttGrantToggle active");
-            d3.selectAll(".rttGrantState,.bothGrantState")
-                    .style("stroke-width", resizeStateBorder()).style("stroke-opacity", function(){
-                d3.select(this.parentNode.appendChild(this)).style("stroke","gray");
-                return 1;
-            });
-            d3.selectAll(".state:not(.rttGrantState):not(.bothGrantState)").style({"fill-opacity": 0.7, "fill":"white"});
-        }
-    }
-
-    function pdgToggleGrantStates(){
-        if(d3.select(".pdgGrantToggle").classed("active")){
-            d3.select(".allStatesToggle").style("display","none");
-            d3.select(".pdgGrantToggle").style({"background-color": "white", "color": "black"}).classed("active",false);
-            d3.selectAll(".pdgGrantState,.bothGrantState")
-                    .style({"stroke-opacity":1,"stroke":"white", "stroke-width": resizeStateBorder()});
-            d3.selectAll(".state").style({"fill":"none"});
-        }else{
-            d3.select(".allStatesToggle").style("display","block");
-            if (d3.select(".rttGrantToggle").classed("active")) {
-                rttToggleGrantStates();
-                d3.select(".allStatesToggle").style("display","block");
-            }
-            d3.select(".pdgGrantToggle").style({"background-color": "black", "color": "white"}).attr("class","pdgGrantToggle active");
-            d3.selectAll(".pdgGrantState,.bothGrantState")
-                    .style("stroke-width", resizeStateBorder()).style("stroke-opacity", function(){
-                d3.select(this.parentNode.appendChild(this)).style("stroke","gray");
-                return 1;
-            });
-            d3.selectAll(".state:not(.pdgGrantState):not(.bothGrantState)").style({"fill-opacity": 0.7, "fill":"white"});
-        }
-    }
-
     function move() {
         d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
         //d3.selectAll(".psState").style("stroke-width", resizePsStateBorder());
@@ -548,9 +478,6 @@
     }
 
     d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
-    d3.selectAll(".rttGrantToggle").on("click", rttToggleGrantStates);
-    d3.selectAll(".pdgGrantToggle").on("click", pdgToggleGrantStates);
-    d3.selectAll(".allStatesToggle").on("click", allStatesToggle);
     d3.select(self.frameElement).style("height", height + "px");
 
 </script>
