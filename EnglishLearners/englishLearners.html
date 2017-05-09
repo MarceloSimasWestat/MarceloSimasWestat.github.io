@@ -491,16 +491,8 @@
 
     function move() {
         d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
-        //d3.selectAll(".psState").style("stroke-width", resizePsStateBorder());
         g.style("stroke-width", 1 / zoom.scale())
                 .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
-    }
-
-    function resizePsStateBorder(){
-        var z = zoom.scale();
-        return (z > 7) ? .40 :
-                (z > 4) ? .75 :
-                        2
     }
 
     function resizeStateBorder() {
