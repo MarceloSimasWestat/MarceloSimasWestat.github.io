@@ -5278,9 +5278,9 @@ button:hover,
 /*D3 Map styling*/
 
 #mapWrapper .state{
-     /*stroke: #fff;*/
-     /*stroke-width: 1.0px;*/
-     stroke-linejoin: round;
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
  }
 
 #mapWrapper .overlay {

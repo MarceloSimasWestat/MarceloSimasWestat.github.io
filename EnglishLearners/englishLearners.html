@@ -128,6 +128,10 @@
                                 <button class="zoomButton" data-zoom="-1">-</button>
                             </div>
                         </div>
+                        <div id="selectDistrictType">
+                            <div id="selectElementary" class="selected ">Elementary and Unified</div>
+                            <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -185,13 +189,14 @@
     queue()
             .defer(d3.json, "assets/data/states.json")
             .defer(d3.json, "assets/data/elementary.json")
+            .defer(d3.json, "assets/data/secondary.json")
             .defer(d3.json, "assets/data/extradistricts.json")
             .await(ready);
 
     svg.on("wheel.zoom", null);
     svg.on("mousewheel.zoom", null);
 
-    function ready(error, us, primary, extra) {
+    function ready(error, us, primary, secondary, extra) {
         if (error) {
             console.log(error);
         }
@@ -242,23 +247,51 @@
                 .selectAll("path")
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
-                .attr("class", function(d){
-                    var className = "state";
-                    if (d.properties.ps_grant == 1) {
-                        className = "state psState rttGrantState";
-                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
-                    } else if (d.properties.ps_grant == 2) {
-                        className = "state psState pdgGrantState";
-                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
-                    } else if (d.properties.ps_grant == 3) {
-                        className = "state psState bothGrantState";
-                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
-                    }else {
-                        d3.select(this).attr("stroke", "white").style({"fill":"none","fill-opacity":0});
-                    }
-                    return className;
-                })
+                .attr("class", "state")
                 .attr("d", path);
+
+        d3.select("#selectElementary").on("click", function () {
+            d3.select("#selectSecondary").style("background", "white")
+                .style("color","#1A1C20");
+            d3.select(this).style("background", "#1A1C20")
+                .style("color","white");
+            d3.selectAll("#secondaryDistrict").remove();
+        });
+
+        d3.select("#selectSecondary").on("click", function () {
+            d3.selectAll(".state").remove();
+            d3.select("#selectElementary").style("background", "white")
+                .style("color","#1A1C20");
+            d3.select(this).style("background", "#1A1C20")
+                .style("color","white");
+            g.append("g")
+                .selectAll("path")
+                .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
+                .enter().append("path")
+                .attr("id", "secondaryDistrict")
+                .attr("class", "district")
+                .attr("d", path)
+                .attr("stroke", "#fff")
+                .attr("stroke-opacity", .15)
+                .attr("stroke-linejoin", "round")
+                .on("mouseover", function (d) {
+                    createTooltip(this,d);
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("stroke", "#fff")
+                            .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
+                });
+            updateColors();
+            g.append("g")
+                .attr("class", "states")
+                .selectAll("path")
+                .data(topojson.feature(us, us.objects.states).features)
+                .enter().append("path")
+                .attr("class", "state")
+                .attr("d", path);
+        });
 
         updateColors();
         createLegend();
