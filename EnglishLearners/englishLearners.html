@@ -94,29 +94,58 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Percentage of students that are English learners (SY 2014-15)</h3>
-                            <!-- this strange formatting is required in order to
-                            prevent spaces from showing up between the legend buttons-->
+                            <h3>Percentage of students who are English learners (SY 2014-15)</h3>
                             <div class="legendButtonWrapper">
                                 <div data-value="#9e9ac8" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">No EL students</div>
-                                </div><div data-value="#756bb1" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">Low</div>
-                                </div><div data-value="#54278f" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">Medium</div>
-                                </div><div data-value="#340d67" class="legendButton">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">High</div>
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        No EL students
+                                    </div>
                                 </div>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Low
+                                        <br>
+                                        (&gt;0% to &lt;5%)
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Medium
+                                        <br>
+                                        (5% to &lt; 20%)
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        High
+                                        <br>
+                                        (20% or more)
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="gray" class="legendButton null">
-                                    <hr class="verticalLine" size="25">
-                                    <div class="legendText">NULL*</div>
+                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
                                 </div>
+                                <div style="clear: both;"></div>
                             </div>
                         </div>
 
@@ -183,8 +212,10 @@
     svg.call(zoom).call(zoom.event);
 
     var tooltip = d3.select("body").append("div")
-            .attr("class", "districtTooltip")
-            .style("opacity", 0);
+        .attr("class", "districtTooltip")
+        .style("opacity", 0)
+        .style('top', '0px')
+        .style('left', '0px');
 
     queue()
             .defer(d3.json, "assets/data/states.json")
@@ -365,6 +396,8 @@
                     percentEL = 'NO DATA';
                 }
                 else {
+                    numEL = format(numEL);
+                    totalStudents = format(totalStudents);
                     var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
                     if(rawPercent > 100) {
                         percentEL = '>100%';
@@ -386,8 +419,8 @@
     }
 
     function createLegend() {
-        var legendButton = $(".legendButton");
-        legendButton.each(function () {
+        var legendButtons = $(".legendButton");
+        legendButtons.each(function () {
             var buttonValue = $(this).attr("data-value");
             var totalDistricts = document.getElementsByClassName("district").length;
             var valueSize = document.getElementsByClassName(buttonValue).length;
@@ -395,19 +428,18 @@
             if ($(this).hasClass("null")) {
                 width = width * 6;
             }
-            $(this).css("background-color", buttonValue);
             $(this).css("width", (width) + '%');
         });
 
-        legendButton.on("click", function () {
+        legendButtons.on("click", function () {
             if ($(this).hasClass("highlightButton")) {
-                legendButton.each(function () {
+                legendButtons.each(function () {
                     $(this).css("border", 0);
                     $(this).removeClass("highlightButton");
                 });
                 updateColors();
             } else {
-                legendButton.each(function () {
+                legendButtons.each(function () {
                     $(this).css("border", 0);
                     $(this).removeClass("highlightButton");
                 });
