@@ -5344,9 +5344,57 @@ button:hover,
 
 .stackedBar .label {
   font: normal 13px Karla;
-  fill: #FFF; 
+  fill: #FFF;
   pointer-events: none;
   font-weight: bold;
+}
+
+/* Multi bar chart styling */
+
+.multiBar .axis path,
+.multiBar .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.multiBar .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
+.multiBar .x.axis path {
+	display: none;
+}
+
+.multiBar .x.axis line {
+	stroke: rgba(26, 28, 32, 0.25);
+	stroke-dasharray: 1,1;
+}
+
+.multiBar .y.axis,
+.multiBar .legend {
+	font: normal 13px Karla;
+	color: #1C1E21;
+}
+
+.multiBar .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.multiBar .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+	font-weight: bold;
+}
+
+/* .multiBar .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.multiBar .bar:hover {
+	fill-opacity: 0.75;
 }
 
 /*D3 Map styling*/
