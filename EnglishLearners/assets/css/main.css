@@ -5344,7 +5344,7 @@ button:hover,
 
 .stackedBar .label {
   font: normal 13px Karla;
-  fill: #FFF;
+  /*fill: #FFF;*/
   pointer-events: none;
   font-weight: bold;
 }
