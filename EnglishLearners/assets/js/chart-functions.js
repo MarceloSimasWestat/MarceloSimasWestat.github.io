@@ -3997,20 +3997,28 @@ function stackedBar() {
 		// round up to 1% if < 1% and not missing
 
 		data.forEach(function(d) {
-			if ((d.lang1_p < 0.01) && (d.lang1_name != "Missing")) { d.lang1_p1 = 0.01; }
+
+			if ((d.lang1_p < 0.01) && (d.lang1_p > 0) && (d.lang1_name != "Missing")) { d.lang1_p1 = 0.01; }
 			else { d.lang1_p1 = d.lang1_p; };
-			if ((d.lang2_p < 0.01) && (d.lang2_name != "Missing")) { d.lang2_p1 = 0.01; }
+
+			if ((d.lang2_p < 0.01) && (d.lang2_p > 0)  && (d.lang2_name != "Missing")) { d.lang2_p1 = 0.01; }
 			else { d.lang2_p1 = d.lang2_p; };
-			if ((d.lang3_p < 0.01) && (d.lang3_name != "Missing")) { d.lang3_p1 = 0.01; }
+
+			if ((d.lang3_p < 0.01) && (d.lang3_p > 0)  && (d.lang3_name != "Missing")) { d.lang3_p1 = 0.01; }
 			else { d.lang3_p1 = d.lang3_p; };
-			if ((d.lang4_p < 0.01) && (d.lang4_name != "Missing")) { d.lang4_p1 = 0.01; }
+
+			if ((d.lang4_p < 0.01) && (d.lang4_p > 0)  && (d.lang4_name != "Missing")) { d.lang4_p1 = 0.01; }
 			else { d.lang4_p1 = d.lang4_p; };
-			if ((d.lang5_p < 0.01) && (d.lang5_name != "Missing")) { d.lang5_p1 = 0.01; }
+
+			if ((d.lang5_p < 0.01) && (d.lang5_p > 0)  && (d.lang5_name != "Missing")) { d.lang5_p1 = 0.01; }
 			else { d.lang5_p1 = d.lang5_p; };
-			if ((d.lang6_p < 0.01) && (d.lang6_name != "Missing")) { d.lang6_p1 = 0.01; }
+
+			if ((d.lang6_p < 0.01) && (d.lang6_p > 0)  && (d.lang6_name != "Missing")) { d.lang6_p1 = 0.01; }
 			else { d.lang6_p1 = d.lang6_p; };
-			if ((d.lang7_p < 0.01) && (d.lang7_name != "Missing")) { d.lang7_p1 = 0.01; }
+
+			if ((d.lang7_p < 0.01) && (d.lang7_p > 0)  && (d.lang7_name != "Missing")) { d.lang7_p1 = 0.01; }
 			else { d.lang7_p1 = d.lang7_p; };
+
 		});
 
 		data.forEach(function(d) {
