@@ -3988,7 +3988,7 @@ function stackedBar() {
 
 		var color = d3.scale.ordinal()
 			.domain(["lang1_p1", "lang2_p1", "lang3_p1", "lang4_p1", "lang5_p1", "lang6_p1", "lang7_p1"])
-			.range(["#5D42A6", "#A6426C", "#C07A98", "#DBB3C4", "#E4C6D3", "#E0E0E0", "#F0F0F0"]);
+			.range(["#5D42A6", "#A6426C", "#C07A98", "#DBB3C4", "#EBD4DE", "#E0E0E0", "#F0F0F0"]);
 
 		var color2 = d3.scale.ordinal()
 			.domain(["lang1_p1", "lang2_p1", "lang3_p1", "lang4_p1", "lang5_p1", "lang6_p1", "lang7_p1"])
