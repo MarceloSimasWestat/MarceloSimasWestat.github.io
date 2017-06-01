@@ -322,13 +322,13 @@ function sankeyChart() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -3895,6 +3895,50 @@ function stackedBar() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// sorter buttons
+
+		var sorter = d3.select(this)
+			.append("div")
+				.style({
+					"margin": "0 auto"
+				})
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+		sorter.append("button")
+			.attr("class", "filterButton buttonSelected")
+			.text("Sort by state")
+			.on("click", function() {
+
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+
+				d3.select(this)
+					.classed("buttonSelected", true);
+
+				sortState();
+
+			});
+
+		sorter.append("button")
+			.attr("class", "filterButton")
+			.text("Sort by percentage")
+			.on("click", function() {
+
+				d3.select("#buttons" + chartID)
+					.selectAll("button")
+						.attr("class", "filterButton");
+
+				d3.select(this)
+					.classed("buttonSelected", true);
+
+				sortPerc();
+
+			});
+
+		sorter.append("p")
+
 		// chart title
 
 		d3.select(this).append("div")
@@ -3924,13 +3968,13 @@ function stackedBar() {
 			.direction("n")
 			.offset([-5, 0])
 			.html(function(d) {
-				if (d.segment == "lang1_p") { return d.lang1_name + ": " + formatPercent(d.lang1_p) + "<br/>" + formatNumber(d.lang1_n) + " ELs"; }
-				if (d.segment == "lang2_p") { return d.lang2_name + ": " + formatPercent(d.lang2_p) + "<br/>" + formatNumber(d.lang2_n) + " ELs"; }
-				if (d.segment == "lang3_p") { return d.lang3_name + ": " + formatPercent(d.lang3_p) + "<br/>" + formatNumber(d.lang3_n) + " ELs"; }
-				if (d.segment == "lang4_p") { return d.lang4_name + ": " + formatPercent(d.lang4_p) + "<br/>" + formatNumber(d.lang4_n) + " ELs"; }
-				if (d.segment == "lang5_p") { return d.lang5_name + ": " + formatPercent(d.lang5_p) + "<br/>" + formatNumber(d.lang5_n) + " ELs"; }
-				if (d.segment == "lang6_p") { return d.lang6_name + ": " + formatPercent(d.lang6_p) + "<br/>" + formatNumber(d.lang6_n) + " ELs"; }
-				if (d.segment == "lang7_p") { return d.lang7_name + ": " + formatPercent(d.lang7_p) + "<br/>" + formatNumber(d.lang7_n) + " ELs"; };
+				if (d.segment == "lang1_p1") { return d.lang1_name + ": " + formatPercent(d.lang1_p) + "<br/>" + formatNumber(d.lang1_n) + " ELs"; }
+				if (d.segment == "lang2_p1") { return d.lang2_name + ": " + formatPercent(d.lang2_p) + "<br/>" + formatNumber(d.lang2_n) + " ELs"; }
+				if (d.segment == "lang3_p1") { return d.lang3_name + ": " + formatPercent(d.lang3_p) + "<br/>" + formatNumber(d.lang3_n) + " ELs"; }
+				if (d.segment == "lang4_p1") { return d.lang4_name + ": " + formatPercent(d.lang4_p) + "<br/>" + formatNumber(d.lang4_n) + " ELs"; }
+				if (d.segment == "lang5_p1") { return d.lang5_name + ": " + formatPercent(d.lang5_p) + "<br/>" + formatNumber(d.lang5_n) + " ELs"; }
+				if (d.segment == "lang6_p1") { return d.lang6_name + ": " + formatPercent(d.lang6_p) + "<br/>" + formatNumber(d.lang6_n) + " ELs"; }
+				if (d.segment == "lang7_p1") { return d.lang7_name + ": " + formatPercent(d.lang7_p) + "<br/>" + formatNumber(d.lang7_n) + " ELs"; };
 			});
 
 		svg.call(tipStackedBar);
@@ -3942,8 +3986,32 @@ function stackedBar() {
 
 		// domains and colors
 
-		var color = d3.scale.category10();
-		color.domain(["lang1_p", "lang2_p", "lang3_p", "lang4_p", "lang5_p", "lang6_p", "lang7_p"]);
+		var color = d3.scale.ordinal()
+			.domain(["lang1_p1", "lang2_p1", "lang3_p1", "lang4_p1", "lang5_p1", "lang6_p1", "lang7_p1"])
+			.range(["#5D42A6", "#A6426C", "#C07A98", "#DBB3C4", "#E4C6D3", "#E0E0E0", "#F0F0F0"]);
+
+		var color2 = d3.scale.ordinal()
+			.domain(["lang1_p1", "lang2_p1", "lang3_p1", "lang4_p1", "lang5_p1", "lang6_p1", "lang7_p1"])
+			.range(["#FFF", "#FFF", "#FFF", "#202020", "#202020", "#202020", "#202020"]);
+
+		// round up to 1% if < 1% and not missing
+
+		data.forEach(function(d) {
+			if ((d.lang1_p < 0.01) && (d.lang1_name != "Missing")) { d.lang1_p1 = 0.01; }
+			else { d.lang1_p1 = d.lang1_p; };
+			if ((d.lang2_p < 0.01) && (d.lang2_name != "Missing")) { d.lang2_p1 = 0.01; }
+			else { d.lang2_p1 = d.lang2_p; };
+			if ((d.lang3_p < 0.01) && (d.lang3_name != "Missing")) { d.lang3_p1 = 0.01; }
+			else { d.lang3_p1 = d.lang3_p; };
+			if ((d.lang4_p < 0.01) && (d.lang4_name != "Missing")) { d.lang4_p1 = 0.01; }
+			else { d.lang4_p1 = d.lang4_p; };
+			if ((d.lang5_p < 0.01) && (d.lang5_name != "Missing")) { d.lang5_p1 = 0.01; }
+			else { d.lang5_p1 = d.lang5_p; };
+			if ((d.lang6_p < 0.01) && (d.lang6_name != "Missing")) { d.lang6_p1 = 0.01; }
+			else { d.lang6_p1 = d.lang6_p; };
+			if ((d.lang7_p < 0.01) && (d.lang7_name != "Missing")) { d.lang7_p1 = 0.01; }
+			else { d.lang7_p1 = d.lang7_p; };
+		});
 
 		data.forEach(function(d) {
 			var y0 = 0;
@@ -3959,6 +4027,13 @@ function stackedBar() {
 				lang5_p: +d.lang5_p,
 				lang6_p: +d.lang6_p,
 				lang7_p: +d.lang7_p,
+				lang1_p1: +d.lang1_p1,
+				lang2_p1: +d.lang2_p1,
+				lang3_p1: +d.lang3_p1,
+				lang4_p1: +d.lang4_p1,
+				lang5_p1: +d.lang5_p1,
+				lang6_p1: +d.lang6_p1,
+				lang7_p1: +d.lang7_p1,
 				lang1_n: +d.lang1_n,
 				lang2_n: +d.lang2_n,
 				lang3_n: +d.lang3_n,
@@ -4031,6 +4106,7 @@ function stackedBar() {
 			.enter()
 				.append("rect")
 					.attr("class", "bar")
+					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 					.attr("height", barWidth)
 					.attr("x", function(d) { return xScale(d.y0); })
 					.attr("width", 0)
@@ -4039,13 +4115,13 @@ function stackedBar() {
 					.on("mouseout", tipStackedBar.hide)
 					.append("aria-label")
 						.text(function(d) {
-							if (d.segment == "lang1_p") { return "In 2014-15, " + formatPercent(d.lang1_p) + " of ELs, or " + formatNumber(d.lang1_n) + ", in " + d.state + " primarily spoke " + d.lang1_name + " at home." }
-							if (d.segment == "lang2_p") { return "In 2014-15, " + formatPercent(d.lang2_p) + " of ELs, or " + formatNumber(d.lang2_n) + ", in " + d.state + " primarily spoke " + d.lang2_name + " at home." }
-							if (d.segment == "lang3_p") { return "In 2014-15, " + formatPercent(d.lang3_p) + " of ELs, or " + formatNumber(d.lang3_n) + ", in " + d.state + " primarily spoke " + d.lang3_name + " at home." }
-							if (d.segment == "lang4_p") { return "In 2014-15, " + formatPercent(d.lang4_p) + " of ELs, or " + formatNumber(d.lang4_n) + ", in " + d.state + " primarily spoke " + d.lang4_name + " at home." }
-							if (d.segment == "lang5_p") { return "In 2014-15, " + formatPercent(d.lang5_p) + " of ELs, or " + formatNumber(d.lang5_n) + ", in " + d.state + " primarily spoke " + d.lang5_name + " at home." }
-							if (d.segment == "lang6_p") { return "In 2014-15, " + formatPercent(d.lang6_p) + " of ELs, or " + formatNumber(d.lang6_n) + ", in " + d.state + " primarily spoke " + d.lang6_name + " at home." }
-							if (d.segment == "lang7_p") { return "In 2014-15, " + formatPercent(d.lang7_p) + " of ELs, or " + formatNumber(d.lang7_n) + ", in " + d.state + " primarily spoke " + d.lang7_name + " at home." };
+							if (d.segment == "lang1_p1") { return "In 2014-15, " + formatPercent(d.lang1_p) + " of ELs, or " + formatNumber(d.lang1_n) + ", in " + d.state + " primarily spoke " + d.lang1_name + " at home." }
+							if (d.segment == "lang2_p1") { return "In 2014-15, " + formatPercent(d.lang2_p) + " of ELs, or " + formatNumber(d.lang2_n) + ", in " + d.state + " primarily spoke " + d.lang2_name + " at home." }
+							if (d.segment == "lang3_p1") { return "In 2014-15, " + formatPercent(d.lang3_p) + " of ELs, or " + formatNumber(d.lang3_n) + ", in " + d.state + " primarily spoke " + d.lang3_name + " at home." }
+							if (d.segment == "lang4_p1") { return "In 2014-15, " + formatPercent(d.lang4_p) + " of ELs, or " + formatNumber(d.lang4_n) + ", in " + d.state + " primarily spoke " + d.lang4_name + " at home." }
+							if (d.segment == "lang5_p1") { return "In 2014-15, " + formatPercent(d.lang5_p) + " of ELs, or " + formatNumber(d.lang5_n) + ", in " + d.state + " primarily spoke " + d.lang5_name + " at home." }
+							if (d.segment == "lang6_p1") { return "In 2014-15, " + formatPercent(d.lang6_p) + " of ELs, or " + formatNumber(d.lang6_n) + ", in " + d.state + " primarily spoke " + d.lang6_name + " at home." }
+							if (d.segment == "lang7_p1") { return "In 2014-15, " + formatPercent(d.lang7_p) + " of ELs, or " + formatNumber(d.lang7_n) + ", in " + d.state + " primarily spoke " + d.lang7_name + " at home." };
 						});
 
 		state.selectAll("text")
@@ -4058,14 +4134,15 @@ function stackedBar() {
 					.attr("dy", "0.3em")
 					.attr("text-anchor", "middle")
 					.style("opacity", 0)
+					.style("fill", function(d) { return color2(d.segment); })
 					.text(function(d) {
-						if (d.segment == "lang1_p") { return d.lang1_code; }
-						if (d.segment == "lang2_p") { return d.lang2_code; }
-						if (d.segment == "lang3_p") { return d.lang3_code; }
-						if (d.segment == "lang4_p") { return d.lang4_code; }
-						if (d.segment == "lang5_p") { return d.lang5_code; }
-						if (d.segment == "lang6_p") { return d.lang6_code; }
-						if (d.segment == "lang7_p") { return d.lang7_code; };
+						if (d.segment == "lang1_p1") { return d.lang1_code; }
+						if (d.segment == "lang2_p1") { return d.lang2_code; }
+						if (d.segment == "lang3_p1") { return d.lang3_code; }
+						if (d.segment == "lang4_p1") { return d.lang4_code; }
+						if (d.segment == "lang5_p1") { return d.lang5_code; }
+						if (d.segment == "lang6_p1") { return d.lang6_code; }
+						if (d.segment == "lang7_p1") { return d.lang7_code; };
 					});
 
 		var gs = graphScroll()
@@ -4108,6 +4185,82 @@ function stackedBar() {
 				.duration(animateTime)
 				.style("opacity", 1);
 
+		// add clip path
+
+		svg.append("defs")
+			.append("clipPath")
+				.attr("id", function() { return "clip" + chartID; })
+					.append("rect")
+						.attr("id", function() { return "clipRect" + chartID; })
+						.attr("width", widthAdj)
+						.attr("height", heightAdj);
+
+		// sort by state
+
+		function sortState() {
+
+			// sort data
+
+			data.sort(function(a, b) { return d3.ascending(a.state, b.state); });
+
+			// reset domain on y-axis
+
+			yScale.domain(data.map(function(d) { return d.state; }));
+
+			// move things
+
+			svg.selectAll(".state")
+				.transition()
+					.duration(animateTime/3)
+					.style("opacity", 0.85)
+						.transition()
+							.duration(animateTime)
+							.attr("transform", function(d) { return "translate(0," + yScale(d.state) + ")"; })
+							.transition()
+								.duration(animateTime/3)
+								.style("opacity", 1);
+
+			svg.transition()
+				.delay(animateTime/3)
+				.duration(animateTime)
+				.select(".y.axis")
+					.call(yAxis);
+
+		};
+
+		// sort by percentage
+
+		function sortPerc() {
+
+			// sort data
+
+			data.sort(function(a, b) { return +b.lang1_p - +a.lang1_p; });
+
+			// reset domain on y-axis
+
+			yScale.domain(data.map(function(d) { return d.state; }));
+
+			// move things
+
+			svg.selectAll(".state")
+				.transition()
+					.duration(animateTime/3)
+					.style("opacity", .85)
+					.transition()
+						.duration(animateTime)
+							.attr("transform", function(d) { return "translate(0," + yScale(d.state) + ")"; })
+							.transition()
+								.duration(animateTime/3)
+								.style("opacity", 1);
+
+			svg.transition()
+				.delay(animateTime/3)
+				.duration(animateTime)
+				.select(".y.axis")
+					.call(yAxis);
+
+		};
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -4138,15 +4291,20 @@ function stackedBar() {
 				.attr("x", widthAdj)
 				.attr("dx", "0.5em");
 
+			svg.selectAll("defs")
+				.selectAll("clipPath")
+				.selectAll("rect")
+				.attr("width", widthAdj);
+
 			state.selectAll(".bar")
-				.attr("x", function(d) { return xScale(d.y0); })
-				.attr("width", 0)
-				.transition();
+				.transition()
+					.attr("x", function(d) { return xScale(d.y0); })
+					.attr("width", 0);
 
 			state.selectAll(".label")
+				.transition()
 				.style("opacity", 0)
-				.attr("x", function(d) { return (xScale(d.y0) + xScale(d.y1))/2; })
-				.transition();
+				.attr("x", function(d) { return (xScale(d.y0) + xScale(d.y1))/2; });
 
 			var gsResize = graphScroll()
 				.container(d3.select("#" + containerID))

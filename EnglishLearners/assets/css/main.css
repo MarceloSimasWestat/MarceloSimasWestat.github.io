@@ -5344,7 +5344,7 @@ button:hover,
 
 .stackedBar .label {
   font: normal 13px Karla;
-  fill: #FFF;
+  /*fill: #FFF;*/
   pointer-events: none;
   font-weight: bold;
 }
@@ -5575,8 +5575,8 @@ button:hover,
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 50px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .innerLegend{
@@ -5593,18 +5593,21 @@ button:hover,
 }
 
 div.legendButton{
-    box-sizing: border-box;
     text-align: left;
     color: rgba(26,28,32,0.90);
-    display: inline-block;
+    float: left;
     border-style: none;
     border-radius: 0;
     border-left: 2px;
     font-size: 12px;
     font-weight: bold;
-    height: 15px;
     padding: 0;
     margin: 0;
+}
+
+.legendButtonColor {
+    width: 100%;
+    height: 15px;
 }
 
 #selectElementary {
@@ -5646,18 +5649,20 @@ div.legendButton{
     font-size: 13px;
     color: rgba(26,28,32,0.90);
     letter-spacing: 0.53px;
-    margin-top: 20px;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
+    margin-top: 5px;
 }
 
 .verticalLine{
     width: 1px;
+    height: 25px;
     color: rgba(26,28,32,0.90);
     background: #1A1C20;
     border: 0;
-    margin-top: 0px;
-    float: left;
+    margin: 0;
+    position: relative;
+    left: -1px;
 }
 
 div.disclaimer .legendExplain  {
