@@ -5272,7 +5272,15 @@ button:hover,
 	background: rgba(26, 28, 32, 0.85);
 	color: #fff;
 	width: auto;
-	padding: 10px;
+	/*padding: 10px;*/
+}
+
+/* Notes */
+
+.chartNotes {
+  font: 13px Inconsolata;
+  color: #000;
+  display: block;
 }
 
 /* Sankey chart */
