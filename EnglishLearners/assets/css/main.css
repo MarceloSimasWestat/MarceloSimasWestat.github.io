@@ -5272,7 +5272,137 @@ button:hover,
 	background: rgba(26, 28, 32, 0.85);
 	color: #fff;
 	width: auto;
-	padding: 10px;
+	/*padding: 10px;*/
+}
+
+/* Notes */
+
+.chartNotes {
+  font: 13px Inconsolata;
+  color: #000;
+  display: block;
+}
+
+/* Sankey chart */
+
+.sankey-chart .node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.sankey-chart .node text {
+  pointer-events: none;
+  font: 13px Inconsolata;
+}
+
+.sankey-chart .link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .1;
+}
+
+.sankey-chart .link:hover {
+  stroke-opacity: .3;
+}
+
+/* Stacked bar chart styling */
+
+.stackedBar .axis path,
+.stackedBar .axis line {
+	fill: none;
+	stroke: #1A1C20;
+	shape-rendering: crispEdges;
+}
+
+.stackedBar .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
+.stackedBar .x.axis path {
+	display: none;
+}
+
+.stackedBar .x.axis line {
+	stroke: rgba(26, 28, 32, 0.25);
+	stroke-dasharray: 1,1;
+}
+
+.stackedBar .y.axis {
+	font: normal 13px Karla;
+	color: #1A1C20;
+}
+
+.stackedBar .y.axis path {
+	stroke: #1A1C20;
+	stroke-width: 1.5px;
+}
+
+.stackedBar .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1A1C20;
+	font-weight: bold;
+	text-align: right;
+}
+
+.stackedBar .bar:hover {
+  .fill-opacity: 0.65;
+}
+
+.stackedBar .label {
+  font: normal 13px Karla;
+  /*fill: #FFF;*/
+  pointer-events: none;
+  font-weight: bold;
+}
+
+/* Multi bar chart styling */
+
+.multiBar .axis path,
+.multiBar .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.multiBar .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
+.multiBar .x.axis path {
+	display: none;
+}
+
+.multiBar .x.axis line {
+	stroke: rgba(26, 28, 32, 0.25);
+	stroke-dasharray: 1,1;
+}
+
+.multiBar .y.axis,
+.multiBar .legend {
+	font: normal 13px Karla;
+	color: #1C1E21;
+}
+
+.multiBar .y.axis path {
+	stroke: #1C1E21;
+	stroke-width: 1.5px;
+}
+
+.multiBar .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1C1E21;
+	font-weight: bold;
+}
+
+/* .multiBar .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.multiBar .bar:hover {
+	fill-opacity: 0.75;
 }
 
 /*D3 Map styling*/
