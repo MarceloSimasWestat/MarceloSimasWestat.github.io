@@ -4194,6 +4194,12 @@ function stackedBar() {
 				.duration(animateTime)
 				.style("opacity", 1);
 
+		svg.select(".y.axis")
+			.selectAll("text")
+				.each(function() {
+					if (this.textContent == "National") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+				});
+
 		// add clip path
 
 		svg.append("defs")
@@ -4210,8 +4216,6 @@ function stackedBar() {
 			if (!notes) {}
 			else {
 
-				console.log(notes);
-
 				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
 						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
@@ -4227,7 +4231,7 @@ function stackedBar() {
 
 			// sort data
 
-			data.sort(function(a, b) { return d3.ascending(a.state, b.state); });
+			data.sort(function(a, b) { return d3.ascending(+a.order, +b.order); });
 
 			// reset domain on y-axis
 
