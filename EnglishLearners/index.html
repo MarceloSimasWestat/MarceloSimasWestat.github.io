@@ -440,19 +440,19 @@
             if (error) { console.log(error); }
             else {
                 data.forEach(function (d) {
-      					d.chart = d.chart;
-      					d.subchart = +d.subchart;
-      					d.level = d.level;
-                d.group = d.group;
-      					d.num = +d.num;
-                d.pct = +d.pct;
-      					d.all_p = +d.all_p;
-      					d.el_p = +d.el_p;
-      					d.diff_ppt = +d.diff_ppt;
-      					d.all_n = +d.all_n;
-      					d.el_n = +d.el_n;
-                d.order = +d.order;
-              });
+        					d.chart = d.chart;
+        					d.subchart = +d.subchart;
+        					d.level = d.level;
+                  d.group = d.group;
+        					d.num = +d.num;
+                  d.pct = +d.pct;
+        					d.all_p = +d.all_p;
+        					d.el_p = +d.el_p;
+        					d.diff_ppt = +d.diff_ppt;
+        					d.all_n = +d.all_n;
+        					d.el_n = +d.el_n;
+                  d.order = +d.order;
+                });
 
             dataCounter = data.filter(function(d) { return d.chart == "counter"; });
             data1_1 = data.filter(function(d) { return d.chart == "1-1"; });
@@ -490,20 +490,21 @@
         if (error) { console.log(error); }
         else {
           data.forEach(function (d) {
-            lang1_p = +d.lang1_p,
-            lang2_p = +d.lang2_p,
-            lang3_p = +d.lang3_p,
-            lang4_p = +d.lang4_p,
-            lang5_p = +d.lang5_p,
-            lang6_p = +d.lang6_p,
-            lang7_p = +d.lang7_p,
-            lang1_n = +d.lang1_n,
-            lang2_n = +d.lang2_n,
-            lang3_n = +d.lang3_n,
-            lang4_n = +d.lang4_n,
-            lang5_n = +d.lang5_n,
-            lang6_n = +d.lang6_n,
-            lang7_n = +d.lang7_n;
+            d.order = +d.order,
+            d.lang1_p = +d.lang1_p,
+            d.lang2_p = +d.lang2_p,
+            d.lang3_p = +d.lang3_p,
+            d.lang4_p = +d.lang4_p,
+            d.lang5_p = +d.lang5_p,
+            d.lang6_p = +d.lang6_p,
+            d.lang7_p = +d.lang7_p,
+            d.lang1_n = +d.lang1_n,
+            d.lang2_n = +d.lang2_n,
+            d.lang3_n = +d.lang3_n,
+            d.lang4_n = +d.lang4_n,
+            d.lang5_n = +d.lang5_n,
+            d.lang6_n = +d.lang6_n,
+            d.lang7_n = +d.lang7_n;
           });
 
           var stacked1 = stackedBar().data(data).marginLeft(130).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
