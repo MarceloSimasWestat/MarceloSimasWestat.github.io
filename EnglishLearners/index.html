@@ -67,8 +67,8 @@
                         <li><a href="#one">Who ELs are</a></li>
                         <li><a href="#two">Where ELs are</a></li>
                         <li><a href="#three">Languages</a></li>
-                        <li><a href="#four">Programs</a></li>
-                        <!--<li><a href="#five">Conclusion</a></li>-->
+                        <!--<li><a href="#four">Programs</a></li>-->
+                        <li><a href="#five">Conclusion</a></li>
                     </ul>
                 </nav>
                 <ul class="icons socialmedia" style="margin-bottom: 0;">
@@ -321,11 +321,11 @@
                     <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
                 </div>
                 <div style="margin-bottom: 1.5em" class="chart"></div>
-                <div id="ch3_1">
+                <!--<div id="ch3_1">
                 </div>
                 <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
                   The vast majority - 77 percent, or more than 3.7 million - of ELs speak Spanish as their primary language at home. Other languages that are commonly spoken at home are Arabic, Chinese, and Vietnamese; about 2 percent of ELs speak each of those languages. About 2 percent of ELs speak English as their primary language at home.
-                </p>
+                </p>-->
                 <div id="ch3_2"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                   Consistent with the overall percentage of ELs who speak Spanish as their primary language at home, Spanish is the language most commonly spoken by ELs at home in 45 of states and the District of Columbia. In all but three of those states, more than 50 percent of the ELs in the state spoke Spanish at home. Across all 50 states and the District of Columbia, Spanish is one of the top five most commonly spoken languages at home. Alaska (Yupik languages), Hawaii (Iloko), Maine (Somalia), and Vermont (Nepali) are the five states in which Spanish is not the most commonly spoken language by ELs at home.
@@ -334,7 +334,7 @@
 
         <!-- Four -->
 
-        <section id="four" class="wrapper style3">
+        <!--<section id="four" class="wrapper style3">
             <div class="inner">
 
                 <h2 class="line">Language Instructional Education Programs (LIEPs)</h2>
@@ -355,7 +355,7 @@
                 <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
                   Almost all ELs in 2014-15 participated in an LIEP. Out of the 4.8 million ELs in 2014-15, 97 percent, or more than 4.6 million, participated in an LIEP. Of those particiating in an LIEP, the vast majority - 78 percent, or 3.6 million, were Hispanic; 11 percent, or about 500,000 were Asian; and 6 percent, or about 270,000 were White. The high percentage of ELs participating in an LIEP suggests that these programs are reaching the intended population.
                 </p>
-        </section>
+        </section>-->
 
         <!-- Five -->
 
@@ -466,16 +466,14 @@
             var chart1_2 = colChart().data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("For all students and ELs, the percentage of students with disabilities is about 13 percent.").altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students.");
             var chart2_1 = multiBar().data(data2_1).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").title("Although there are few LEAs with high concentrations of ELs, almost half of all ELs are in those LEAs.").altText("This chart displays the percentage of LEAs, ELs, and all students are within each category of EL concentraion.");
             var chart2_2 = multiBar().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").title("Similar to the distribution of LEAs, there are few schools with high concentrations of ELs, but those schools enroll 65 percent of the ELs.").altText("This chart displays the percentage of schools, ELs, and all students are within each category of EL concentraion.");
-            var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
-            .title("For more than 75 percent of ELs, Spanish is the most commonly spoken language at home.")
-            .altText("This chart displays the five languages most commonly spoken at home for ELs.");
+            //var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1").title("For more than 75 percent of ELs, Spanish is the most commonly spoken language at home.").altText("This chart displays the five languages most commonly spoken at home for ELs.");
 
     				d3.select("#counter").call(counterChart);
             d3.select("#ch1_1").call(chart1_1);
             d3.select("#ch1_2").call(chart1_2);
             d3.select("#ch2_1").call(chart2_1);
             d3.select("#ch2_2").call(chart2_2);
-    				d3.select("#ch3_1").call(chart3_1);
+    				//d3.select("#ch3_1").call(chart3_1);
 
             };
         });
@@ -520,7 +518,7 @@
 
     <!-- Sankey chart -->
 
-    <script>
+    <!--<script>
 
       d3.tsv("assets/data/sankey_data.tsv", function (error, data) {
         if (error) { console.log(error); }
@@ -539,7 +537,7 @@
 
       }});
 
-    </script>
+    </script>-->
 
 	<!-- Map -->
 
