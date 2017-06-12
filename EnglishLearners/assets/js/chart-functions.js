@@ -1988,7 +1988,7 @@ function dotTwo() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return "All students: " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
+			return "All students: " + formatPercent(d.all_p)/* + "<br/>" + formatNumber(d.all_n) + " students"*/;
 
 		});
 
