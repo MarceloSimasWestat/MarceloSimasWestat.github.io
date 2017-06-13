@@ -39,7 +39,7 @@
     <script src="assets/js/graph-scroll.js"></script>
 
     <script src="assets/js/chart-functions.js"></script>
-    <script src="assets/js/sankey.js">script>
+    <script src="assets/js/sankey.js"></script>
 
     <script src="assets/js/queue.v1.min.js"></script>
     <script src="assets/js/topojson.v1.min.js"></script>
@@ -248,60 +248,91 @@
             </div>
         </section>
 
-        <section class="wrapper chart">
-            <div class="inner">
-				<div>
-					<div class="align-center">
-						<div id="mapWrapper">
+        <!-- EL Map -->
+    <section class="wrapper chart">
+        <div class="inner">
 
-							<div id="legend">
-								<h3>% OF ALL STUDENTS WHO RECEIVED ONE OR MORE OUT-OF-SCHOOL SUSPENSIONS IN 2013-14</h3>
-                                <div class="legendButtonWrapper">
-                                    <div data-value="#cbc9e2" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">0</div>
-                                    </div><div data-value="#9e9ac8" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">3</div>
-                                </div><div data-value="#756bb1" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">6</div>
-                                </div><div data-value="#54278f" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">12</div>
-                                        </div>
-                                </div>
-                                <div class="innerLegend">
-                                    <div data-value="#84C59C" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">0</div>
-                                    </div><div data-value="gray" class="legendButton">
-                                        <hr class="verticalLine" size="25">
-                                        <div class="legendText">MISSING*</div>
+            <div>
+                <div class="align-center">
+                    <div id="mapWrapper">
+
+                        <div id="legend">
+                            <h3>Percentage of students who are English learners (2014-15)-DRAFT</h3>
+                            <div class="legendButtonWrapper">
+                                <div data-value="#9e9ac8" class="legendButton">
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        No EL students
                                     </div>
                                 </div>
-							</div>
-
-							<div id="map">
-                                <div><button class="zoomButton" data-zoom="+1">+</button>
-                                    <div style="clear: both; height:5px"></div>
-                                    <button class="zoomButton" data-zoom="-1">-</button>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Low
+                                        <br>
+                                        (&gt;0% to &lt;5%)
+                                    </div>
                                 </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Medium
+                                        <br>
+                                        (5% to &lt; 20%)
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        High
+                                        <br>
+                                        (20% or more)
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
                             </div>
-              <div id="selectDistrictType">
-                  <div id="selectElementary" class="selected ">Elementary and Unified</div>
-                  <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified
-                  </div>
-              </div>
-						</div>
-					</div>
-				</div>
-                <div>
-                    <br/>
-					<p>* <a href="#datanotes">See data notes</a>. <a href="assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.</p>
+                            <div class="innerLegend">
+                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+
+                        <div id="map">
+                            <div>
+                                <div style="clear: both; height:5px"></div>
+                                <button class="zoomButton" data-zoom="+1">+</button>
+                                <div style="clear: both; height:5px"></div>
+                                <button class="zoomButton" data-zoom="-1">-</button>
+                            </div>
+                        </div>
+                        <div id="selectDistrictType">
+                            <div id="selectElementary" class="selected ">Elementary and Unified</div>
+                            <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div>
+                <br/>
+                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <a href="#">Download the district level data</a> used in this map.</p>
+            </div>
+        </div>
+    </section>
 
         <!-- Three -->
 
@@ -330,6 +361,7 @@
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                   Consistent with the overall percentage of ELs who speak Spanish as their primary language at home, Spanish is the language most commonly spoken by ELs at home in 45 of states and the District of Columbia. In all but three of those states, more than 50 percent of the ELs in the state spoke Spanish at home. Across all 50 states and the District of Columbia, Spanish is one of the top five most commonly spoken languages at home. Alaska (Yupik languages), Hawaii (Iloko), Maine (Somalia), and Vermont (Nepali) are the five states in which Spanish is not the most commonly spoken language by ELs at home.
                 </p>
+            </div>
         </section>
 
         <!-- Four -->
@@ -539,18 +571,8 @@
 
     </script>-->
 
-	<!-- Map -->
-
-	<script>
-        /*
-         "a":"State"
-         "b":"School District Name"
-         "c":"OOS Group"
-         "d":"Total Students OOS"
-         "e":"Percent OOS"
-         "f":"Total Enrollment"
-         */
-
+    <!-- Map -->
+    <script>
         $("#legend").css("display", "none");
         //  D3 MAP
         var width = 960;
@@ -588,14 +610,16 @@
         svg.call(zoom).call(zoom.event);
 
         var tooltip = d3.select("body").append("div")
-                .attr("class", "districtTooltip")
-                .style("opacity", 0);
+            .attr("class", "districtTooltip")
+            .style("opacity", 0)
+            .style('top', '0px')
+            .style('left', '0px');
 
         queue()
                 .defer(d3.json, "assets/data/states.json")
                 .defer(d3.json, "assets/data/elementary.json")
                 .defer(d3.json, "assets/data/secondary.json")
-                .defer(d3.json, "assets/data/extra.json")
+                .defer(d3.json, "assets/data/extradistricts.json")
                 .await(ready);
 
         svg.on("wheel.zoom", null);
@@ -606,6 +630,7 @@
                 console.log(error);
             }
             g.attr("cursor","pointer");
+
             g.append("g")
                     .selectAll("path")
                     .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
@@ -619,9 +644,12 @@
                     .on("mouseover", function (d) {
                         createTooltip(this,d);
                     })
-        .on("mouseout", function () {
-            removeTooltip(this);
-            });
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
 
             g.append("g")
                     .selectAll("path")
@@ -637,7 +665,10 @@
                         createTooltip(this,d);
                     })
                     .on("mouseout", function () {
-                        removeTooltip(this);
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
                     });
 
             g.append("g")
@@ -650,45 +681,45 @@
 
             d3.select("#selectElementary").on("click", function () {
                 d3.select("#selectSecondary").style("background", "white")
-                        .style("color","#1A1C20");
+                    .style("color","#1A1C20");
                 d3.select(this).style("background", "#1A1C20")
-                        .style("color","white");
+                    .style("color","white");
                 d3.selectAll("#secondaryDistrict").remove();
             });
 
             d3.select("#selectSecondary").on("click", function () {
                 d3.selectAll(".state").remove();
                 d3.select("#selectElementary").style("background", "white")
-                        .style("color","#1A1C20");
+                    .style("color","#1A1C20");
                 d3.select(this).style("background", "#1A1C20")
-                        .style("color","white");
+                    .style("color","white");
                 g.append("g")
-                        .selectAll("path")
-                        .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
-                        .enter().append("path")
-                        .attr("id", "secondaryDistrict")
-                        .attr("class", "district")
-                        .attr("d", path)
-                        .attr("stroke", "#fff")
-                        .attr("stroke-opacity", .15)
-                        .attr("stroke-linejoin", "round")
-                        .on("mouseover", function (d) {
-                            createTooltip(this,d);
-                        })
-                        .on("mouseout", function () {
-                            d3.select(this).attr("stroke", "#fff")
-                                    .attr("stroke-opacity", .15);
-                            d3.select(this).classed("selected", false);
-                            tooltip.transition().duration(300).style("opacity", 0);
-                        });
+                    .selectAll("path")
+                    .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
+                    .enter().append("path")
+                    .attr("id", "secondaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
                 updateColors();
                 g.append("g")
-                        .attr("class", "states")
-                        .selectAll("path")
-                        .data(topojson.feature(us, us.objects.states).features)
-                        .enter().append("path")
-                        .attr("class", "state")
-                        .attr("d", path);
+                    .attr("class", "states")
+                    .selectAll("path")
+                    .data(topojson.feature(us, us.objects.states).features)
+                    .enter().append("path")
+                    .attr("class", "state")
+                    .attr("d", path);
             });
 
             updateColors();
@@ -697,34 +728,7 @@
             $("#legend").css("display", "block");
         }
 
-        function removeTooltip(currentDistrict){
-            d3.select(currentDistrict).attr("stroke", "#fff")
-                    .attr("stroke-opacity", .15);
-            d3.select(currentDistrict).classed("selected", false);
-            tooltip.transition().duration(300).style("opacity", 0);
-        }
-
         function createTooltip(currentDistrict,d){
-            var format = d3.format("0,000");
-            //var decimal = d3.format(",.1f");
-            var state = d.properties.a;
-            var name = d.properties.b;
-            var totalEnrollment = format(d.properties.f);
-            var totalStudentOOS = format(d.properties.d);
-            var percentOOS;
-            if(d.properties.e != null) {
-                percentOOS = d.properties.e.replace(/%/g, "");
-                if (d.properties.c == 2 && percentOOS < 1) {
-                    percentOOS = "<0.5%"
-                } else if (percentOOS == 0.0) {
-                    percentOOS = "0%";
-                } else {
-                    percentOOS = percentOOS + '%';
-                }
-            }
-            else {
-                percentOOS = d.properties.e;
-            }
             d3.select(currentDistrict).attr("stroke", "#1A1C20")
                     .attr("stroke-opacity", 1);
             d3.select(currentDistrict).classed("selected", true);
@@ -736,61 +740,102 @@
             var windowWidth = $(window).width();
             if (windowWidth > 1024) {
                 if (d3.event.pageX > 1000) {
-                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
                 } else {
-                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
                 }
             }
-            if (windowWidth < 1024) {
+            if (windowWidth < 1024 && windowWidth > 850) {
                 if (d3.event.pageX > 400) {
-                    tooltip.style("left", (d3.event.pageX - 200) + "px");
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
+                }
+            }
+            if (windowWidth < 850) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
                 } else {
                     tooltip.style("left", (d3.event.pageX + 40) + "px");
                 }
             }
-            if (percentOOS != null && totalStudentOOS != null) {
-                if (d.properties.c == 0) {
-                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                            "<h4>" + name + "</h4><hr>" +
-                            "<div> NO DATA </div>");
+            if (windowWidth < 680) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
                 } else {
-                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                            "<h4>" + name + "</h4><hr>" +
-                            "<div>" + percentOOS + "</div>" +
-                            "<div>( " + totalStudentOOS + " out of " + totalEnrollment + " students )</div>");
+                    tooltip.style("left", (d3.event.pageX + 20) + "px");
                 }
-            } else if (name === "School District Not Defined") {
-                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                        "<h3>No Operating District</h3>");
+            }
 
-            } else {
+            var format = d3.format("0,000");
+            var state = (d.properties.a === null)? "NO DATA": d.properties.a;
+            var name = (d.properties.b === null)? "NO DATA": d.properties.b;
+
+            if (name === "School District Not Defined") {
+                tooltip.html(
+                    "<h3>" + state.toUpperCase() + "</h3>" +
+                    "<hr>" +
+                    "<h3>No Operating District</h3>"
+                );
+            }
+            else if (name != null) {
+                var numEL = d.properties.d;
+                var totalStudents = d.properties.e;
+                var percentEL = d.properties.f;
+                if(percentEL === "0") {
+                    numEL = 'N/A';
+                    totalStudents = 'N/A';
+                    percentEL = 'N/A';
+                }
+                else {
+                    if(numEL === null) numEL = 'NO DATA';
+                    if(totalStudents === null) totalStudents = 'NO DATA';
+                    if(percentEL === null) {
+                        percentEL = 'NO DATA';
+                    }
+                    else {
+                        numEL = format(numEL);
+                        totalStudents = format(totalStudents);
+                        var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
+                        if(rawPercent > 100) {
+                            percentEL = '>100%';
+                        }
+                    }
+                }
+
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div> % of students who are English learners: " + percentEL + "</div>");
+            }
+            else {
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h4>" + name + "</h4><hr>" +
                         "<div> NO DATA </div>");
             }
         }
 
-        // D3 MAP SCALE
         function createLegend() {
-            var legendButton = $(".legendButton");
-            legendButton.each(function () {
+            var legendButtons = $(".legendButton");
+            legendButtons.each(function () {
                 var buttonValue = $(this).attr("data-value");
                 var totalDistricts = document.getElementsByClassName("district").length;
                 var valueSize = document.getElementsByClassName(buttonValue).length;
                 var width = (valueSize / totalDistricts) * 100;
-                $(this).css("background-color", buttonValue);
+                if ($(this).hasClass("null")) {
+                    width = width * 6;
+                }
                 $(this).css("width", (width) + '%');
             });
 
-            legendButton.on("click", function () {
+            legendButtons.on("click", function () {
                 if ($(this).hasClass("highlightButton")) {
-                    legendButton.each(function () {
+                    legendButtons.each(function () {
                         $(this).css("border", 0);
                         $(this).removeClass("highlightButton");
                     });
                     updateColors();
                 } else {
-                    legendButton.each(function () {
+                    legendButtons.each(function () {
                         $(this).css("border", 0);
                         $(this).removeClass("highlightButton");
                     });
@@ -806,32 +851,26 @@
                             });
                 }
             });
+
         }
 
         function updateColors() {
             svg.selectAll(".district")
                     .attr("fill", function (d) {
-                        d3.select(this).attr("class", "district " + colorByGroup(d.properties.c));
-                        return colorByGroup(d.properties.c);
+                        var color = colorByGroup(d.properties.c);
+                        d3.select(this).attr("class", "district " + color);
+                        return color;
                     });
         }
 
-        function colorByGroup(d) {
-            /*Field "c" dictionary:
-             "0";Null or Missing Data
-             "1";No Students Subject to OOS
-             "2";0% to 3%
-             "3";3% to 6%
-             "4";6% to 12%
-             "5";More than 12%*/
-            switch (d){
-                case 0: return 'gray'; break;
-                case 1: return '#84C59C'; break;
-                case 2: return '#cbc9e2'; break;
-                case 3: return '#9e9ac8'; break;
-                case 4: return '#756bb1'; break;
-                case 5: return '#54278f'; break;
-                default : return defaultFill; break;
+        function colorByGroup(c) {
+            switch (c){
+                case "-1": return 'gray';
+                case "0": return '#9e9ac8';
+                case "1": return '#756bb1';
+                case "2": return '#54278f';
+                case "3": return '#340d67';
+                default: return 'gray';
             }
         }
 
@@ -891,11 +930,10 @@
                             1
         }
 
-        d3.selectAll("button[data-zoom]")
-                .on("click", zoomClick);
+        d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
         d3.select(self.frameElement).style("height", height + "px");
 
-	</script>
+    </script>
 
 </body>
 </html>
