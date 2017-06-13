@@ -3896,7 +3896,7 @@ function stackedBar() {
 		barWidth = 20,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
-		notes = [],
+		notes = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
