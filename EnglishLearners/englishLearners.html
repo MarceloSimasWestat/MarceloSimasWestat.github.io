@@ -60,11 +60,7 @@
         <div class="nav-wrapper">
             <nav>
                 <ul style="margin-bottom: 1.5em;">
-                    <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#one">District Preschool Participation Mapped</a></li>
-                    <li><a href="#two">Uneven Impact</a></li>
-                    <li><a href="#three">The Preschool Crisis</a></li>
-                    <li><a href="#four">Wrap Up</a></li>
+                    <li><a href="#mapWrapper">Concentration of EL Students Mapped</a></li>
                 </ul>
             </nav>
             <ul class="icons socialmedia" style="margin-bottom: 0;">
@@ -85,7 +81,7 @@
 <!-- Wrapper -->
 <div id="wrapper">
 
-    <!-- Suspension Map -->
+    <!-- EL Map -->
     <section class="wrapper chart">
         <div class="inner">
 
@@ -94,7 +90,7 @@
                     <div id="mapWrapper">
 
                         <div id="legend">
-                            <h3>Percentage of students who are English learners (SY 2014-15)</h3>
+                            <h3>Percentage of students who are English learners (2014-15)-DRAFT</h3>
                             <div class="legendButtonWrapper">
                                 <div data-value="#9e9ac8" class="legendButton">
                                     <div style="background-color: #9e9ac8;" class="legendButtonColor">
@@ -166,7 +162,7 @@
             </div>
             <div>
                 <br/>
-                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <a href="../Discipline/assets/data/CRDC2013_14disc_LEAmap_data.xlsx">Download the district level data</a> used in this map.</p>
+                <p class="dataLinksText">* <a href="#datanotes">See data notes</a>. <a href="#">Download the district level data</a> used in this map.</p>
             </div>
         </div>
     </section>
@@ -407,9 +403,7 @@
 
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> Number of English Learners: " + numEL + "</div>" +
-                    "<div> Total number of students: " + totalStudents + "</div>" +
-                    "<div> Percent of students who are English Learners: " + percentEL + "</div>");
+                    "<div> % of students who are English learners: " + percentEL + "</div>");
         }
         else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
