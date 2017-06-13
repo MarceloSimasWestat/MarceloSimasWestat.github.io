@@ -4175,7 +4175,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4187,7 +4187,7 @@ body.loaded #sidebar nav ul li {
 
     #intro {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center scroll;
 
     }
 }
@@ -4200,7 +4200,7 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4223,7 +4223,7 @@ body.loaded #sidebar nav ul li {
 
     .image1 {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center scroll;
 
 
     }
@@ -4715,12 +4715,12 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books@2x.jpg") no-repeat center center fixed;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center fixed;
       background-size: cover;
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands@2x.jpg") no-repeat center center fixed;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -4729,13 +4729,13 @@ ul.callout li {
 
   #intro {
     background-attachment: scroll;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_books@2x.jpg") no-repeat center center scroll;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center scroll;
 
   }
 
     .image1 {
       background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/stats_hands@2x.jpg") no-repeat center center scroll;
+      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center scroll;
 
 
     }

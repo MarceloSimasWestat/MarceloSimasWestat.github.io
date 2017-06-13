@@ -1106,7 +1106,7 @@ function colChart() {
 			.attr("y", "-2.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "start")
-			.text("% OF IDEA STUDENTS IN 2014-15");
+			.text("% OF STUDENTS IN 2014-15");
 
 		// draw columns
 
@@ -1932,6 +1932,7 @@ function dotTwo() {
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1988,7 +1989,7 @@ function dotTwo() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return "All students: " + formatPercent(d.all_p)/* + "<br/>" + formatNumber(d.all_n) + " students"*/;
+			return "All students: " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
 
 		});
 
@@ -2255,6 +2256,21 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
+		// notes
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -2407,13 +2423,13 @@ function dotTwo() {
 
     }; */
 
-    chart.height = function(value) {
+  chart.height = function(value) {
 
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
 
-    };
+  };
 
 	chart.marginTop = function(value) {
 
@@ -2467,6 +2483,14 @@ function dotTwo() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
 		return chart;
 
 	};
