@@ -457,7 +457,7 @@ function counter() {
 
 		donutText.select("h2")
 			.append("text")
-			.text(function(d) { return formatPercent(d.pct) + " were English Learners (ELs)."});
+			.text(function(d) { return formatPercent(d.pct) + " were English learners (ELs)."});
 
 		// counter function
 
