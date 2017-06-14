@@ -4548,7 +4548,7 @@ function multiBar() {
 
 		var	formatNumber = d3.format(",f"),
 			formatNumberD = d3.format(",.1f"),
-			formatPercent = d3.format(",.1%");
+			formatPercent = d3.format(",%"); // 6/14/17: Changed to remove rounding because figures were already rounded
 
 		// margins; adjust width and height to account for margins
 
