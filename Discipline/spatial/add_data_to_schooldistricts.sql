@@ -27,7 +27,7 @@ UPDATE cpct_psenr_data SET pct_psenr = NULL WHERE btrim(pct_psenr) = '';
 UPDATE cpct_psenr_data SET cpct_psenr = NULL WHERE btrim(cpct_psenr) = '';
 
 --
-
+-- TRUNCATE oela_data;
 UPDATE oela_data SET leaid = NULL WHERE btrim(leaid) = '';
 UPDATE oela_data SET el_cat = NULL WHERE btrim(el_cat) = '';
 UPDATE oela_data SET el_tot = NULL WHERE btrim(el_tot) = '';
