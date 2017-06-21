@@ -364,10 +364,12 @@
                 tooltip.style("left", (d3.event.pageX + 20) + "px");
             }
         }
-		
-		var format = d3.format("0,000");
-		var state = (d.properties.a === null)? "NO DATA": d.properties.a;
-		var name = (d.properties.b === null)? "NO DATA": d.properties.b;
+
+		//var format = d3.format("0,000");
+		var state = d.properties['State'];
+		if(state === null) state = 'NO DATA';
+		var name = d.properties['District'];
+		if(name === null) name = "NO DATA";
 		
         if (name === "School District Not Defined") {
             tooltip.html(
@@ -377,28 +379,18 @@
             );
         }
         else if (name != null) {
-            var numEL = d.properties.d;
-            var totalStudents = d.properties.e;
-            var percentEL = d.properties.f;
-            if(percentEL === "0") {
-                numEL = 'N/A';
-                totalStudents = 'N/A';
+            var percentEL = d.properties['Percent'];
+            if(percentEL === 0) {
                 percentEL = 'N/A';
             }
+            else if(percentEL === null) {
+                percentEL = 'NO DATA';
+            }
+            else if(percentEL > 100) {
+                percentEL = '>100%';
+            }
             else {
-                if(numEL === null) numEL = 'NO DATA';
-                if(totalStudents === null) totalStudents = 'NO DATA';
-                if(percentEL === null) {
-                    percentEL = 'NO DATA';
-                }
-                else {
-                    numEL = format(numEL);
-                    totalStudents = format(totalStudents);
-                    var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
-                    if(rawPercent > 100) {
-                        percentEL = '>100%';
-                    }
-                }
+                percentEL = percentEL + '%';
             }
 
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
@@ -441,7 +433,7 @@
                 var buttonValue = $(this).attr("data-value");
                 svg.selectAll(".district")
                         .attr("fill", function (d) {
-                            if (buttonValue == colorByGroup(d.properties.c)) {
+                            if (buttonValue == colorByGroup(d.properties['Category'])) {
                                 return buttonValue;
                             } else {
                                 return "#E6E6E6";
@@ -455,7 +447,7 @@
     function updateColors() {
         svg.selectAll(".district")
                 .attr("fill", function (d) {
-					var color = colorByGroup(d.properties.c);
+					var color = colorByGroup(d.properties['Category']);
                     d3.select(this).attr("class", "district " + color);
                     return color;
                 });
@@ -463,11 +455,11 @@
 
     function colorByGroup(c) {
         switch (c){
-            case "-1": return 'gray';
-            case "0": return '#9e9ac8';
-            case "1": return '#756bb1';
-            case "2": return '#54278f';
-            case "3": return '#340d67';
+            case -1: return 'gray';
+            case 0: return '#9e9ac8';
+            case 1: return '#756bb1';
+            case 2: return '#54278f';
+            case 3: return '#340d67';
             default: return 'gray';
         }
     }
