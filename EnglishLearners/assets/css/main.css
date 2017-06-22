@@ -5475,12 +5475,12 @@ button:hover,
     height: 100%;
 }
 
-#mapWrapper #legend {
+#mapWrapper .legend {
     margin: 0 auto 0 auto;
     font-family: Helvetica, sans-serif;
 }
 
-#legend h3 {
+.legend h3 {
     padding-bottom: 15px;
     font-family: Inconsolata;
     font-size: 13px;
@@ -5489,7 +5489,7 @@ button:hover,
     margin-bottom: 0;
     /*margin-left: 20%;*/
 }
-#legend ul {
+.legend ul {
     font-size: 12px;
     font-family: Helvetica, sans-serif;
     margin-left: 0;
