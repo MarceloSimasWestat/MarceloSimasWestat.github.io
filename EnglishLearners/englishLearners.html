@@ -235,27 +235,27 @@
 
         d3.select('#englishLearnersButton').on('click', function() {
             drawEnglishLearners(primary, extra, us);
+            $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
         });
 
         d3.select('#percentChangeButton').on('click', function() {
             drawPercentChange(primary, extra, us);
+            $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
         });
 
         d3.select("#selectElementary").on("click", function () {
             $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
             $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-            d3.select('.secondary').remove();
+            $('.secondary').remove();
         });
 
         d3.select("#selectSecondary").on("click", function () {
             $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
             $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-            d3.select('.states').remove();
-            var colorFunc = colorByGroup;
-            if(d3.select('#percentChangeButton').classed('selectedMapButton')) {
-                colorFunc = colorByPercentChange;
-            }
-            drawDistricts('secondary', secondary, secondary.objects.medium_G5410, colorFunc);
+            $('.state').remove();
+            drawDistricts('secondary', secondary, secondary.objects.medium_G5410, getColorFunc());
             drawStates(us, us.objects.states);
         });
 
@@ -266,16 +266,16 @@
     }
 
     function drawEnglishLearners(primary, extra, us) {
-        d3.select('.districts').remove();
-        d3.select('.states').remove();
+        $('.district').remove();
+        $('.state').remove();
         drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
         drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
         drawStates(us, us.objects.states);
     }
 
     function drawPercentChange(primary, extra, us) {
-        d3.select('.districts').remove();
-        d3.select('.states').remove();
+        $('.district').remove();
+        $('.state').remove();
         drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
         drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
         drawStates(us, us.objects.states);
@@ -296,8 +296,7 @@
             .selectAll("path")
             .data(topojson.feature(topology, object).features)
             .enter().append("path")
-            .attr("class", id)
-            .attr("class", "district")
+            .attr("class", id + " district")
             .attr("d", path)
             .attr("stroke", "#fff")
             .attr("stroke-opacity", .15)
@@ -312,6 +311,15 @@
                 d3.select(this).classed("selected", false);
                 tooltip.transition().duration(300).style("opacity", 0);
             });
+    }
+
+    function getColorFunc() {
+        if(d3.select('#englishLearnersButton').classed('selectedMapButton')) {
+            return colorByGroup;
+        }
+        else {
+            return colorByPercentChange;
+        }
     }
 
     function createTooltip(currentDistrict,d){
@@ -358,7 +366,7 @@
 		if(state === null) state = 'NO DATA';
 		var name = d.properties['District'];
 		if(name === null) name = "NO DATA";
-		
+
         if (name === "School District Not Defined") {
             tooltip.html(
                 "<h3>" + state.toUpperCase() + "</h3>" +
@@ -396,8 +404,9 @@
         var legendButtons = $(".legendButton");
         legendButtons.each(function () {
             var buttonValue = $(this).attr("data-value");
-            var totalDistricts = document.getElementsByClassName("district").length;
-            var valueSize = document.getElementsByClassName(buttonValue).length;
+            var districts = $('.district');
+            var totalDistricts = districts.length;
+            var valueSize = districts.filter('[fill=' + buttonValue + ']').length;
             var width = (valueSize / totalDistricts) * 100;
             if ($(this).hasClass("null")) {
                 width = width * 6;
@@ -406,12 +415,13 @@
         });
 
         legendButtons.on("click", function () {
+            var colorFunc = getColorFunc();
             if ($(this).hasClass("highlightButton")) {
                 legendButtons.each(function () {
                     $(this).css("border", 0);
                     $(this).removeClass("highlightButton");
                 });
-                updateColors();
+                svg.selectAll('.district').attr('fill', colorFunc);
             }
             else {
                 legendButtons.each(function () {
@@ -421,19 +431,19 @@
                 $(this).addClass("highlightButton");
                 var buttonValue = $(this).attr("data-value");
                 svg.selectAll(".district")
-                        .attr("fill", function (d) {
-                            if (buttonValue == colorByGroup(d.properties['Category'])) {
-                                return buttonValue;
-                            } else {
-                                return "#E6E6E6";
-                            }
-                        });
+                    .attr("fill", function (d) {
+                        if (buttonValue === colorFunc(d)) {
+                            return buttonValue;
+                        } else {
+                            return "#E6E6E6";
+                        }
+                    });
             }
         });
     }
 
     function colorByGroup(d) {
-        switch (d.properties['Percent']){
+        switch (d.properties['Category']){
             case -1: return 'gray';
             case 0: return '#9e9ac8';
             case 1: return '#756bb1';
