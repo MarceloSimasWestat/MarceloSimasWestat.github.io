@@ -313,8 +313,17 @@
             });
     }
 
-    function getColorFunc() {
+    function getMapMode() {
         if(d3.select('#englishLearnersButton').classed('selectedMapButton')) {
+            return 'percent';
+        }
+        else {
+            return 'percentChange';
+        }
+    }
+
+    function getColorFunc() {
+        if(getMapMode() === 'percent') {
             return colorByGroup;
         }
         else {
@@ -375,23 +384,44 @@
             );
         }
         else if (name != null) {
-            var percentEL = d.properties['Percent'];
-            if(percentEL === 0) {
-                percentEL = 'N/A';
-            }
-            else if(percentEL === null) {
-                percentEL = 'NO DATA';
-            }
-            else if(percentEL > 100) {
-                percentEL = '>100%';
-            }
-            else {
-                percentEL = percentEL + '%';
-            }
+            if(getMapMode() === 'percent') {
+                var percentEL = d.properties['Percent'];
+                if (percentEL === 0) {
+                    percentEL = 'N/A';
+                }
+                else if (percentEL === null) {
+                    percentEL = 'NO DATA';
+                }
+                else if (percentEL > 100) {
+                    percentEL = '>100%';
+                }
+                else {
+                    percentEL = percentEL + '%';
+                }
 
-            tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> % of students who are English learners: " + percentEL + "</div>");
+            }
+            else {
+                var percentChange = d.properties['Percent Change'];
+                if (percentChange === 0) {
+                    percentChange = 'N/A';
+                }
+                else if (percentChange === null) {
+                    percentChange = 'NO DATA';
+                }
+                else if (percentChange > 100) {
+                    percentChange = '>100%';
+                }
+                else {
+                    percentChange = percentChange + '%';
+                }
+
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    "<h4>" + name + "</h4><hr>" +
+                    "<div> % change from 2009-10 to 2014-15: " + percentChange + "</div>");
+            }
         }
         else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
