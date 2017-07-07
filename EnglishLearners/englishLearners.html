@@ -17,6 +17,7 @@
 
     <!--<link rel="stylesheet" href="widgets.css" />-->
     <!-- <link rel="stylesheet" href="assets/css/chart-styles.css" /> -->
+    <link rel="stylesheet" href="assets/css/loader.css" />
 
     <!-- browser tab icon (aka favicon) -->
     <link rel="icon" href="images/doelogo_rev.png" />
@@ -91,6 +92,8 @@
                         <button id="englishLearnersButton" class="mapHeaderButton selectedMapButton">English learners (2014-15)</button>
                         <button id="percentChangeButton" class="mapHeaderButton deselectedMapButton">Percent change (2009-10 to 2014-15)</button>
                     </div>
+
+                    <div class="loader">Loading...</div>
 
                     <div id="mapWrapper">
                         <div id="percentLegend" class="legend" style="display: none;">
@@ -250,15 +253,6 @@
 
     var g = svg.append("g");
 
-    svg.append("svg:image")
-            .attr("xlink:href", "images/progress-anim.gif")
-            .attr("id", "progress-image")
-            .attr("width", 30)
-            .attr("height", 30)
-            .attr("x", width / 2)
-            .attr("y", height / 2)
-            .style("opacity", 1);
-
     svg.call(zoom).call(zoom.event);
 
     var tooltip = d3.select("body").append("div")
@@ -306,7 +300,6 @@
         });
 
         drawEnglishLearners(primary, extra, us);
-        svg.select("#progress-image").style("opacity", 0);
 
         var legendButtons = $('.legendButton');
         legendButtons.on("click", function () {
@@ -337,15 +330,27 @@
         });
     }
 
+    function showLoader(fn) {
+        $('.loader').show();
+        setTimeout(function() {
+            fn();
+            $('.loader').hide();
+        }, 100);
+    }
+
     function drawEnglishLearners(primary, extra, us) {
         $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
         $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
         $('.district').remove();
         $('.state').remove();
-        drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
-        drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
-        drawStates(us, us.objects.states);
-        resizeLegend();
+        $('.legend').hide();
+        showLoader(function() {
+            drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
+            drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
+            drawStates(us, us.objects.states);
+            $('.legend').show();
+            resizeLegend();
+        });
     }
 
     function drawPercentChange(primary, extra, us) {
@@ -353,10 +358,14 @@
         $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
         $('.district').remove();
         $('.state').remove();
-        drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
-        drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
-        drawStates(us, us.objects.states);
-        resizeLegend();
+        $('.legend').hide();
+        showLoader(function() {
+            drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
+            drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
+            drawStates(us, us.objects.states);
+            $('.legend').show();
+            resizeLegend();
+        });
     }
 
     function drawStates(topology, object) {
