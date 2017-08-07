@@ -5596,10 +5596,6 @@ button:hover,
     cursor: pointer;
 }
 
-.innerLegend div:nth-child(2).legendButton {
-    margin-left: 40px;
-}
-
 div.legendButton{
     text-align: left;
     color: rgba(26,28,32,0.90);

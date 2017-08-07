@@ -153,14 +153,38 @@
                         </div>
 
                         <div id="percentChangeLegend" class="legend" style="display: none;">
-                            <h3>Percent change from 2009-10 to 2014-15-DUMMY DATA</h3>
+                            <h3>Percentage change in the number of ELs enrolled in an English language instruction educational program, 2009-10 to 2014-15</h3>
                             <div class="legendButtonWrapper">
+                                <div data-value="#08519c" class="legendButton">
+                                    <div style="background-color: #08519c;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&gt; 50% decrease)
+                                    </div>
+                                </div>
+                                <div data-value="#6baed6" class="legendButton">
+                                    <div style="background-color: #6baed6;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (20-50% decrease)
+                                    </div>
+                                </div>
+                                <div data-value="#c6dbef" class="legendButton">
+                                    <div style="background-color: #c6dbef;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&lt; 20% decrease)
+                                    </div>
+                                </div>
                                 <div data-value="#9e9ac8" class="legendButton">
                                     <div style="background-color: #9e9ac8;" class="legendButtonColor">
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&lt;= 0%)
+                                        (No<br>change)
                                     </div>
                                 </div>
                                 <div data-value="#756bb1" class="legendButton">
@@ -168,7 +192,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&gt;0% to &lt;3%)
+                                        (&lt; 20%)
                                     </div>
                                 </div>
                                 <div data-value="#54278f" class="legendButton">
@@ -176,7 +200,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&gt;=3% to &lt;5%)
+                                        (20-75%)
                                     </div>
                                 </div>
                                 <div data-value="#340d67" class="legendButton">
@@ -184,13 +208,21 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&gt;=10%)
+                                        (&gt;=75%)
                                     </div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
                             <div class="innerLegend">
-                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                <div data-value="#404040" class="legendButton null">
+                                    <div style="background-color: #404040;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (No ELs)
+                                    </div>
+                                </div>
+                                <div data-value="gray" class="legendButton null">
                                     <div style="background-color: gray;" class="legendButtonColor">
                                         <hr class="verticalLine">
                                     </div>
@@ -457,7 +489,7 @@
             }
         }
 
-		//var format = d3.format("0,000");
+		var format = d3.format("0,000");
 		var state = d.properties['State'];
 		if(state === null) state = 'NO DATA';
 		var name = d.properties['District'];
@@ -473,47 +505,50 @@
         else if (name != null) {
             if(getMapMode() === 'percent') {
                 var percentEL = d.properties['Percent'];
-                if (percentEL === 0) {
-                    percentEL = 'N/A';
-                }
-                else if (percentEL === null) {
-                    percentEL = 'NO DATA';
-                }
-                else if (percentEL > 100) {
-                    percentEL = '>100%';
-                }
-                else {
-                    percentEL = percentEL + '%';
-                }
+                percentEL = formatPercent(percentEL);
 
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> % of students who are English learners: " + percentEL + "</div>");
             }
             else {
-                var percentChange = d.properties['Percent Change'];
-                if (percentChange === 0) {
-                    percentChange = 'N/A';
-                }
-                else if (percentChange === null) {
-                    percentChange = 'NO DATA';
-                }
-                else if (percentChange > 100) {
-                    percentChange = '>100%';
-                }
-                else {
-                    percentChange = percentChange + '%';
-                }
+                var liep09 = d.properties['LIEP09'];
+                liep09 = formatPercent(liep09);
+                var liep14 = d.properties['LIEP14'];
+                liep14 = formatPercent(liep14);
+                var change = d.properties['Change from 2009-10 to 2014-15'];
+                change = format(change);
+                var changePercent = d.properties['Change as % of 2014-15'];
+                changePercent = formatPercent(changePercent);
 
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
-                    "<div> % change from 2009-10 to 2014-15: " + percentChange + "</div>");
+                    "<div>Number of ELs in LIEP, 2009-10: " + liep09 + "</div>" +
+                    "<div>Number of ELs in LIEP, 2014-15: " + liep14 + "</div>" +
+                    "<div>Change from 2009-10 to 2014-15: " + change + "</div>" +
+                    "<div>Change as % of 2014-15: " + changePercent + "</div>"
+                );
             }
         }
         else {
             tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
                     "<div> NO DATA </div>");
+        }
+    }
+
+    function formatPercent(p) {
+        if (p === 0) {
+            return 'N/A';
+        }
+        else if (p === null) {
+            return 'NO DATA';
+        }
+        else if (p > 100) {
+            return '>100%';
+        }
+        else {
+            return p + '%';
         }
     }
 
@@ -530,14 +565,18 @@
         var districts = $('.district');
         var totalDistricts = districts.length;
         var nullDistricts = districts.filter('[fill=gray]').length;
-        totalDistricts -= nullDistricts;
+        var noELDistricts = districts.filter('[fill=#404040]').length;
+        totalDistricts -= nullDistricts + noELDistricts;
         var legendButtons = legend.find('.legendButton');
         legendButtons.each(function () {
             var buttonValue = $(this).attr("data-value");
             var valueSize = districts.filter('[fill=' + buttonValue + ']').length;
             var width = (valueSize / totalDistricts) * 100;
-            if ($(this).hasClass("null")) {
+            if (getMapMode() === 'percent' && $(this).hasClass("null")) {
                 width = width * 6;
+            }
+            else if (getMapMode() === 'percentChange' && $(this).hasClass("null")) {
+                width = valueSize / (nullDistricts + noELDistricts) * 100;
             }
             $(this).css("width", (width) + '%');
         });
@@ -555,13 +594,18 @@
     }
 
     function colorByPercentChange(d) {
-        var percentChange = d.properties['Percent Change'];
+        var percentChange = d.properties['Change as % of 2014-15, categorized'];
 
-        if(percentChange === null) return 'gray';
-        if(percentChange <= 0) return '#9e9ac8';
-        if(percentChange > 0 && percentChange < 3) return '#756bb1';
-        if(percentChange >= 3 && percentChange < 5) return '#54278f';
-        if(percentChange >= 10) return '#340d67';
+        switch(percentChange) {
+            case -4: return '#08519c';
+            case -3: return '#6baed6';
+            case -2: return '#c6dbef';
+            case 0: return '#404040';
+            case 1: return '#9e9ac8';
+            case 2: return '#756bb1';
+            case 3: return '#54278f';
+            case 4: return '#340d67';
+        }
         return 'gray';
     }
 
