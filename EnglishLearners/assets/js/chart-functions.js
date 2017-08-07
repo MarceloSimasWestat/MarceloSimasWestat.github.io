@@ -1930,6 +1930,9 @@ function dotTwo() {
 		marginBottom = 45,
 		dotSize = 4,
 		animateTime = 1000,
+		group1 = [],
+		group2 = [],
+		xAxisLabel = [],
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -1989,7 +1992,7 @@ function dotTwo() {
 			.offset([0, 10])
 			.html(function(d) {
 
-			return "All students: " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
+			return group1 + ": " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
 
 		});
 
@@ -2002,7 +2005,7 @@ function dotTwo() {
 			.offset([0, -10])
 			.html(function(d) {
 
-			return "ELs: " + formatPercent(d.el_p) + "<br/>" + formatNumber(d.el_n) + " students";
+			return group2 + ": " + formatPercent(d.el_p) + "<br/>" + formatNumber(d.el_n) + " students";
 
 		});
 
@@ -2076,7 +2079,7 @@ function dotTwo() {
 			.attr("dy", "3.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
-			.text("% OF STUDENTS IN 2014-15");
+			.text(xAxisLabel);
 
 		// draw dots and lines
 
@@ -2120,7 +2123,7 @@ function dotTwo() {
 					.on("mouseover", tipMale.show)
 					.on("mouseout", tipMale.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of all students, or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of " + group1 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
 
 		dotsMale.append("text")
 			.attr("x", function(d) { return xScale(d.all_p); })
@@ -2130,7 +2133,7 @@ function dotTwo() {
 			.attr("class", "labelM")
 			.attr("aria-hidden", "true")
 			.style("opacity", 0)
-			.text("ALL STUDENTS");
+			.text(group1);
 
 		var dotsFemale = svg.selectAll("circle.dotF")
 			.data(data);
@@ -2147,7 +2150,7 @@ function dotTwo() {
 					.on("mouseover", tipFemale.show)
 					.on("mouseout", tipFemale.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of ELs, or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of " + group2 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
 
 		dotsFemale.append("text")
 			.attr("x", function(d) { return xScale(d.el_p); })
@@ -2157,7 +2160,7 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.attr("class", "labelF")
 			.style("opacity", 0)
-			.text("ELs");
+			.text(group2);
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -2467,6 +2470,30 @@ function dotTwo() {
 
 		if (!arguments.length) return animateTime;
 		animateTime = value;
+		return chart;
+
+	};
+
+	chart.group1 = function(value) {
+
+		if (!arguments.length) return group1;
+		group1 = value;
+		return chart;
+
+	};
+
+	chart.group2 = function(value) {
+
+		if (!arguments.length) return group2;
+		group2 = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
 		return chart;
 
 	};
