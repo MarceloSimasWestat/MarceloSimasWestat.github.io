@@ -513,13 +513,16 @@
             }
             else {
                 var liep09 = d.properties['LIEP09'];
-                liep09 = formatPercent(liep09);
+                liep09 = format(liep09);
                 var liep14 = d.properties['LIEP14'];
-                liep14 = formatPercent(liep14);
+                liep14 = format(liep14);
                 var change = d.properties['Change from 2009-10 to 2014-15'];
                 change = format(change);
                 var changePercent = d.properties['Change as % of 2014-15'];
                 changePercent = formatPercent(changePercent);
+                if(changePercent === 'NO DATA') {
+                    change = 'NO DATA';
+                }
 
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
                     "<h4>" + name + "</h4><hr>" +
