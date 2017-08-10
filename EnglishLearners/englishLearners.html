@@ -266,6 +266,7 @@
     var height = 600;
     var center = [width / 2, height / 2];
     var defaultFill = "#E6E6E6";
+    var numberFormat = d3.format("0,000");
 
     var projection = d3.geo.albersUsa()
             .translate([width / 2, height / 2])
@@ -489,7 +490,6 @@
             }
         }
 
-		var format = d3.format("0,000");
 		var state = d.properties['State'];
 		if(state === null) state = 'NO DATA';
 		var name = d.properties['District'];
@@ -513,11 +513,11 @@
             }
             else {
                 var liep09 = d.properties['LIEP09'];
-                liep09 = format(liep09);
+                liep09 = formatNumber(liep09);
                 var liep14 = d.properties['LIEP14'];
-                liep14 = format(liep14);
+                liep14 = formatNumber(liep14);
                 var change = d.properties['Change from 2009-10 to 2014-15'];
-                change = format(change);
+                change = formatNumber(change);
                 var changePercent = d.properties['Change as % of 2014-15'];
                 changePercent = formatPercent(changePercent);
                 if(changePercent === 'NO DATA') {
@@ -552,6 +552,18 @@
         }
         else {
             return p + '%';
+        }
+    }
+
+    function formatNumber(n) {
+        if (n === 0) {
+            return 'N/A';
+        }
+        else if (n === null) {
+            return 'NO DATA';
+        }
+        else {
+            return numberFormat(n);
         }
     }
 
