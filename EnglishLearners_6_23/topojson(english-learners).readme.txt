@@ -1,0 +1,37 @@
+extra_districts.topojson (extradistricts.json)
+medium_G5410.topojson (secondary.json)
+medium_G5420_G5400.topojson (elementary.json)
+
+	Field names:
+
+	"a":"State"
+	"b":"School District Name"
+	"c":"Percent of students who are English learners, categorized"
+	"d":"Number of English Learners"
+	"e":"Total number of students"
+	"f":"Percent of students who are English learners"
+	"g":"School district state's grant program"
+
+	Field "c" dictionary:
+
+	"-1";"Missing"
+	"0";"No: no EL students"
+	"1";"Low: At least 1 EL student but < 5%"
+	"2";"Medium: 5% to < 20%"
+	"3";"High: 20 percent or more"
+
+	Field "g"/"ps_grant" dictionary:
+	
+	"0":"State preschool grant: None"
+	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
+	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
+	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
+	
+states.topojson (states.json)
+
+	Field "ps_grant" dictionary:
+	
+	"0":"State preschool grant: None"
+	"1":"RTT-ELC Grant State" - "state" IN ('California','Colorado','Delaware','Georgia','Kentucky','Michigan','Minnesota','New Mexico','North Carolina','Ohio','Oregon','Pennsylvania','Washington','Wisconsin')
+	"2":"PDG Grant State" - "state" ('Alabama','Arkansas','Arizona','Connecticut','Hawaii','Louisiana','Maine','Montana','Nevada','New York','Tennessee','Virginia')
+	"3":"RTT-ELC & PDG Grant State" - "state" IN ('Illinois','Maryland','Massachusetts','New Jersey','Vermont','Rhode Island')
