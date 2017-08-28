@@ -622,10 +622,10 @@
             .style('left', '0px');
 
         queue()
-                .defer(d3.json, "assets/data/states.json")
-                .defer(d3.json, "assets/data/elementary.json")
-                .defer(d3.json, "assets/data/secondary.json")
-                .defer(d3.json, "assets/data/extradistricts.json")
+                .defer(d3.json, "assets/data/old/states.json")
+                .defer(d3.json, "assets/data/old/elementary.json")
+                .defer(d3.json, "assets/data/old/secondary.json")
+                .defer(d3.json, "assets/data/old/extradistricts.json")
                 .await(ready);
 
         svg.on("wheel.zoom", null);

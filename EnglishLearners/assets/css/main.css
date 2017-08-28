@@ -5475,12 +5475,12 @@ button:hover,
     height: 100%;
 }
 
-#mapWrapper #legend {
+#mapWrapper .legend {
     margin: 0 auto 0 auto;
     font-family: Helvetica, sans-serif;
 }
 
-#legend h3 {
+.legend h3 {
     padding-bottom: 15px;
     font-family: Inconsolata;
     font-size: 13px;
@@ -5489,7 +5489,7 @@ button:hover,
     margin-bottom: 0;
     /*margin-left: 20%;*/
 }
-#legend ul {
+.legend ul {
     font-size: 12px;
     font-family: Helvetica, sans-serif;
     margin-left: 0;
@@ -5596,10 +5596,6 @@ button:hover,
     cursor: pointer;
 }
 
-.innerLegend div:nth-child(2).legendButton {
-    margin-left: 40px;
-}
-
 div.legendButton{
     text-align: left;
     color: rgba(26,28,32,0.90);
@@ -5618,11 +5614,17 @@ div.legendButton{
     height: 15px;
 }
 
-#selectElementary {
+#mapButtonWrapper {
+    margin-bottom: 15px;
+}
+
+.mapHeaderButton {
+    border: 1px solid #e0e0e0;
+}
+
+.mapButton {
     font-family: Inconsolata;
-    color: white;
     list-style: none;
-    margin: 0;
     padding: 4px 0;
     display: inline-block;
     width: 300px;
@@ -5630,20 +5632,19 @@ div.legendButton{
     text-align: center;
     font-size: 11px;
     border: 1px solid #e0e0e0;
+}
+
+.selectedMapButton {
+    color: white;
     background: #1A1C20;
 }
-#selectSecondary {
-    font-family: Inconsolata;
+
+.deselectedMapButton {
     color: rgba(26,28,32,0.90);
-    list-style: none;
+}
+
+#selectSecondary {
     margin: 10px 0 0 0;
-    padding: 4px 0;
-    display: inline-block;
-    width: 300px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 11px;
-    border: 1px solid #e0e0e0;
 }
 
 .districtButtonSelected{
@@ -5658,7 +5659,6 @@ div.legendButton{
     color: rgba(26,28,32,0.90);
     letter-spacing: 0.53px;
     text-align: center;
-    white-space: nowrap;
     margin-top: 5px;
 }
 

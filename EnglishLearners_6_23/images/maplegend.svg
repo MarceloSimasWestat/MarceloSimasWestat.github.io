@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="695px" height="204px" viewBox="0 0 695 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
+    <title>Legend</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="-1.42108547e-14" y="76.3759937" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="0" y="228.182734" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="0" y="304.086104" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <rect id="path-7" x="-1.42108547e-14" y="152.279364" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+        <rect id="path-9" x="-1.42108547e-14" y="0.472623723" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-9"></use>
+        </mask>
+        <rect id="path-11" x="337.956459" y="125.043541" width="21.9904514" height="75.90337"></rect>
+        <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="21.9904514" height="75.90337" fill="white">
+            <use xlink:href="#path-11"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Legend" transform="translate(-2.000000, -6.000000)">
+            <g id="Numbers" transform="translate(229.799988, 84.000000)" font-size="24" font-family="Karla-Regular, Karla" fill="#1A1C20" font-weight="normal">
+                <text id="5">
+                    <tspan x="76.22" y="22">5</tspan>
+                </text>
+                <text id="15">
+                    <tspan x="147.248" y="22">15</tspan>
+                </text>
+                <text id="30">
+                    <tspan x="219.78" y="22">30</tspan>
+                </text>
+                <text id="30+">
+                    <tspan x="294" y="22">30+</tspan>
+                </text>
+                <text id="0">
+                    <tspan x="0.872" y="22">0</tspan>
+                </text>
+            </g>
+            <g id="Numbers" transform="translate(273.000000, 182.000000)" font-size="24" font-family="Karla-Regular, Karla" fill="#1A1C20" font-weight="normal">
+                <text id="Missing-data*">
+                    <tspan x="0.128" y="22">Missing data*</tspan>
+                </text>
+            </g>
+            <g id="Class-Colors" transform="translate(350.000000, 66.000000) rotate(-90.000000) translate(-350.000000, -66.000000) translate(339.000000, -124.000000)" stroke="#FFFFFF" stroke-width="3.2">
+                <use id="Rectangle-2" mask="url(#mask-2)" fill="#9C9BC6" xlink:href="#path-1"></use>
+                <use id="Rectangle-2" mask="url(#mask-4)" fill="#6954A2" xlink:href="#path-3"></use>
+                <use id="Rectangle-2" mask="url(#mask-6)" fill="#491C85" xlink:href="#path-5"></use>
+                <use id="Rectangle-2" mask="url(#mask-8)" fill="#7F7EB9" xlink:href="#path-7"></use>
+                <use id="Rectangle-2" mask="url(#mask-10)" fill="#BBC7DD" xlink:href="#path-9"></use>
+            </g>
+            <use id="Rectangle-2" stroke="#FFFFFF" mask="url(#mask-12)" stroke-width="3.2" fill="#959697" transform="translate(348.951685, 162.995226) rotate(-90.000000) translate(-348.951685, -162.995226) " xlink:href="#path-11"></use>
+            <text id="%-of-students-who-we" font-family="Karla-Bold, Karla" font-size="28" font-weight="bold" letter-spacing="-0.180645153" fill="#1A1C20">
+                <tspan x="0.644773976" y="26">% of students who were chronically absent in 2013-14</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
