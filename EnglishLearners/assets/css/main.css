@@ -5405,6 +5405,65 @@ button:hover,
 	fill-opacity: 0.75;
 }
 
+/* Small multiples */
+
+.smChartDiv .smTitleDiv {
+  font: normal 15px Karla;
+  font-weight: bold;
+  text-align: center;
+}
+
+.smBarChart .axis path,
+.smBarChart .axis line {
+	fill: none;
+	stroke: #1A1C20;
+	shape-rendering: crispEdges;
+}
+
+.smBarChart .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
+.smBarChart .x.axis path {
+	display: none;
+}
+
+.smBarChart .x.axis line {
+	stroke: rgba(26, 28, 32, 0.25);
+	stroke-dasharray: 1,1;
+}
+
+.smBarChart .y.axis {
+	font: normal 13px Karla;
+	color: #1A1C20;
+}
+
+.smBarChart .y.axis path {
+	stroke: #1A1C20;
+	stroke-width: 1.5px;
+}
+
+.smBarChart .title {
+	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+	color: #1A1C20;
+	font-weight: bold;
+	text-align: right;
+}
+
+/* .smBarChart .bar {
+	fill: #5D42A6;
+}
+
+.smBarChart .overallBar {
+	fill: #A6426C;
+} */
+
+.smBarChart .bar:hover,
+.smBarChart .overallBar:hover {
+	fill-opacity:.65;
+}
+
 /*D3 Map styling*/
 
 #mapWrapper .state{

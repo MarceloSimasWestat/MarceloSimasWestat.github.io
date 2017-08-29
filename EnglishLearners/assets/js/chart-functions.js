@@ -973,6 +973,409 @@ function barChart() {
 
 };
 
+// Small multiples bar charts
+
+function smBarChart() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 650,
+		marginTop = 20,
+		marginLeft = 100,
+		marginBottom = 45,
+		barWidth = 15,
+		chartsPerRow = 3, // Charts per row
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+				formatPercent = d3.format(",%");
+
+		// margins; adjust width and height to account for margins
+
+		var width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+
+		function checkMinWidth() {
+			if (width < 275) { width = 275; }
+			else { return width; };
+		};
+
+		checkMinWidth();
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);
+
+		// nest data by level
+
+		dataNest = d3.nest()
+			.key(function(d) { return d.level; })
+			.entries(data);
+
+		// color scales
+
+		var color = d3.scale.ordinal()
+			//.domain([function(d) { return d.key; }])
+			.range(["#5D42A6", "#A6426C", "#C07A98"]);
+
+		console.log(dataNest);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID)
+			.attr("width", width);
+
+		dom.append("p");
+
+		var chartDivs = dom.selectAll("div.smChartDiv")
+			.data(dataNest);
+
+		chartDivs.enter()
+			.append("div")
+				.attr("class", "smChartDiv")
+				.attr("width", width)
+				.attr("max-width", width)
+				.style("display", "inline-block");
+
+		chartDivs.append("div")
+			.attr("class", "smTitleDiv")
+			.style("color", function(d) { return color(d.key); })
+			.text(function(d) { return d.key; });
+
+		var svg = chartDivs.append("svg")
+			.data(dataNest)
+			.attr("class", "smBarChart")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipBar = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {
+
+			return d.level + ": " + formatPercent(d.pct);
+
+		});
+
+		svg.call(tipBar);
+
+		// axis scales
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
+			yScale = d3.scale.ordinal().range([heightAdj, 0]).rangeRoundBands([0, heightAdj], 0.5);
+
+		// domains
+
+		function xDomain() {
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice() }
+			else { xScale.domain([0, 1]); }
+		};
+		xDomain();
+		yScale.domain(data.map(function(d) { return d.group; }));
+
+		// axes
+
+		function formatValueAxis(d) {
+
+			var TickValue = formatNumber(d * 100);
+
+			return TickValue;
+
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
+			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj)
+			.attr("dx", "0.5em")
+			.attr("y", heightAdj)
+			.attr("dy", "3.1em")
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.text("% OF TOTAL IN 2014-15");
+
+		// draw bars
+
+		var bars = svg.selectAll("rect.bar")
+			.data(function(d) { return d.values; });
+
+		bars.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("rect")
+					.attr("class", function(d) {
+						if (d.group == "Overall") { return "overallBar"; }
+						else { return "bar"; }
+					})
+					.attr("x", 0)
+					.attr("width", 0)
+					.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2) - (barWidth/2); })
+					.attr("height", barWidth)
+					.style("fill", function(d) { return color(d.level); })
+					.on("mouseover", tipBar.show)
+					.on("mouseout", tipBar.hide)
+					.append("aria-label")
+						.text(function(d) {
+							if (d.level == "LEAs") { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.level + " had " + d.group + " concentrations of ELs."; }
+							else { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.level + " were in " + d.chartlevel + " with " + d.group + " concentrations of ELs."; }
+						});
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll("rect")
+						.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct); });
+
+			}});
+
+		// draw y-axis above bars
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		// add space below charts
+
+		dom.append("p");
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+
+			checkMinWidth();
+
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.range([0, widthAdj]);
+			xDomain();
+			xAxis.ticks(Math.max(widthAdj/100, 2));
+
+			d3.select("#" + sectionID)
+				.classed("activated", null)
+
+			dom.selectAll(".smChartDiv")
+				.attr("width", width);
+
+			dom.selectAll(".smBarChart")
+				.attr("width", width);
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+
+			svg.selectAll("rect")
+				.attr("width", 0);
+
+			var gs2 = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll("rect")
+						.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct); });
+
+			}});
+
+		});
+
+		});
+
+	};
+
+  chart.height = function(value) {
+
+        if (!arguments.length) return height;
+        height = value;
+        return chart;
+
+    };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.barWidth = function(value) {
+
+		if (!arguments.length) return barWidth;
+		barWidth = value;
+		return chart;
+
+	};
+
+	chart.chartsPerRow = function(value) {
+
+		if (!arguments.length) return chartsPerRow;
+		chartsPerRow = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.caption = function(value) {
+
+		if (!arguments.length) return caption;
+		caption = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		return chart;
+
+	};
+
+    chart.data = function(value) {
+
+        if (!arguments.length) return data;
+        data = value;
+        return chart;
+
+    };
+
+	return chart;
+
+};
+
 // Column chart function
 
 function colChart() {
