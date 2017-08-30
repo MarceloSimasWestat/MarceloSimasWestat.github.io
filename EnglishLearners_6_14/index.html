@@ -1,0 +1,927 @@
+﻿<!DOCTYPE html>
+<!--
+    Hyperspace by Pixelarity
+    pixelarity.com @pixelarity
+    License: pixelarity.com/license
+-->
+<html lang="en-us">
+<head>
+    <title>English Learners</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+	    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!--<link rel="stylesheet" href="widgets.css" />-->
+    <!-- <link rel="stylesheet" href="assets/css/chart-styles.css" /> -->
+
+    <!-- browser tab icon (aka favicon) -->
+    <link rel="icon" href="images/doelogo_rev.png" />
+
+    <!-- Scripts -->
+    <!--<script src="widgets.js"></script>-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Substitutes high-res images for Retina displays (html file only) -->
+    <script type="text/javascript" src="assets/js/retina.js"></script>
+
+    <script src="assets/js/d3.v3.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script src="assets/js/graph-scroll.js"></script>
+
+    <script src="assets/js/chart-functions.js"></script>
+    <script src="assets/js/sankey.js"></script>
+
+    <script src="assets/js/queue.v1.min.js"></script>
+    <script src="assets/js/topojson.v1.min.js"></script>
+
+</head>
+<body>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <section id="sidebar">
+        <div class="inner">
+
+            <div class="nav-image">
+                <img src="images/edsealbw.svg" alt="U.S. Department of Education" />
+            </div>
+
+            <div class="nav-wrapper">
+                <nav>
+                    <ul style="margin-bottom: 1.5em;">
+                        <li><a href="#intro">Introduction</a></li>
+                        <li><a href="#one">Who ELs are</a></li>
+                        <li><a href="#two">Where ELs are</a></li>
+                        <li><a href="#three">Languages</a></li>
+                        <!--<li><a href="#four">Programs</a></li>-->
+                        <!--<li><a href="#five">Conclusion</a></li>-->
+                    </ul>
+                </nav>
+                <ul class="icons socialmedia" style="margin-bottom: 0;">
+                    <li><a href="#" target="_blank" title="Tweet" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" target="_blank" title="Share on Facebook" class="fa-facebook"><span class="label">Facebook</span></a></li>
+					          <li><a href="#" target="_blank" title="Share on LinkedIn" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="#" target="_blank" title="Email" class="fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Given Flex, this allows the social media icons to be paired with the navigation links without hugging the bottom -->
+            <div>
+                &nbsp;
+            </div>
+        </div>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Intro 1 -->
+        <section id="intro" class="wrapper style1 fullscreen fade-up">
+            <div class="inner">
+                <h1 style="max-width: 650px;">ENGLISH LEARNERS<br></h1>
+                <p style="font-size:15pt">What are their characteristics?</p>
+                <ul class="actions">
+                    <li><span class="buttonInactive">— U.S. Department of Education</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- InformED Shouout -->
+
+        <!--<section class="wrapper style5">
+            <div class="inner align-center" style="padding-top: 40px; padding-bottom: 20px;">
+                <div>
+                    <i class="fa fa-bolt fa-lg" style="margin-bottom: 1em; color: rgba(255,255,255,1);"></i>
+                </div>
+                <p>Powered by InformED and the <a href="http://www2.ed.gov/about/offices/list/ocr/docs/crdc-2013-14.html" target="_blank">2013-14 Civil Rights Data Collection.</a></p>
+            </div>
+        </section>-->
+
+        <!-- Intro 2 -->
+
+        <section class="wrapper style3">
+            <div class="inner">
+
+                <div class="align-right">
+                    <div style="margin-bottom: 2.5em;">
+                        <input type="checkbox" id="highContrast" name="highContrast">
+                        <label for="highContrast">Enable High Contrast (508)</label>
+                    </div>
+                </div>
+
+                <h2 class="line">Introduction</h2>
+                <p class="afterHeader">
+                  English learner (EL) students are a growing part of the K-12 student population. Between the 2009-10 and 2014-15 school years, the percentage of EL students increased in more than half of the states, with increases of over 40 percent in five states.<sup>1</sup> Under the <em>Every Student Succeeds Act</em>, states must annually assess the English language proficiency of ELs, provide reasonable accommodations for them on state assessments, and develop new accountability systems that include long-term goals and measures of progress for ELs. States with large or increasing percentages of ELs may have greater resource needs to meet these requirements. In addition, while Spanish is the most common language spoken at home by ELs, in some states there is more variation in the home language of these students.<sup>2</sup> The need to support less commonly spoken languages could be different across school districts.
+                </p>
+                <p style="margin-bottom:3.5em;">
+                  Information about the characteristics and location of ELs in the following story map may help inform decisions about the provision of instructional supports and services for these students. These figures represent the latest look at ELs across the country, using data submitted by the states to EDFacts for the 2014-15 school year.
+                </p>
+                <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="left icon fa-bar-chart-o"></span></div>
+                        </div>
+                        <div class="right">
+                            Note: Data included in this story may differ slightly from other published reports due to certain data decisions.
+                            <a href="#datanotes">More information</a>.
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="left icon fa-mouse-pointer"></span></div>
+                        </div>
+                        <div class="right">
+                            Our charts are interactive! Hover over or click on chart elements to learn more about specific data points and, where they appear, use buttons to filter or sort charts by select groups.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="intro_chart" class="wrapper image1">
+			<div id = "intro_sections" class="inner align-center">
+				<div></div>
+				<div id = "counter_pre"></div>
+				<div id = "counter" style="max-width: 800px; margin-bottom: 50px;"></div>
+			</div>
+        </section>
+
+        <!-- One -->
+
+        <section id="one" class="wrapper style1">
+            <div class="inner">
+                <h2 class="line">Who are English Learners?</h2>
+                <p>
+                  In 2014-15, there were more than 4.8 million ELs across the country. Nearly all ELs (97 percent) participate in language instruction education programs. The racial/ethnic composition of ELs differs significantly from the overall student population; however, similar percentages of EL and all students have disabilities.
+                </p>
+            </div>
+        </section>
+
+        <section id="one_chart" class="wrapper chart">
+            <div id="one_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div></div>
+                <div id="ch1_1"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  More than 75 percent of ELs in 2014-15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprise larger percentages of ELs than of all students; about 5 percent of all students are Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
+                </p>
+                <div id="ch1_2"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  A comparable percentage of EL and all students have disabilities: 14 percent of ELs are students with disabilities, while 13 percent of all students are students with disabilities.
+                </p>
+                <div></div>
+            </div>
+        </section>
+
+        <!-- Two -->
+
+        <section id="two" class="wrapper style3">
+            <div class="inner">
+                <h2 class="line">Where are English Learners?</h2>
+                <p>
+                  The following analyses group schools and districts into four categories based on the percentage of students in the LEA or school that are ELs: high (20 percent or more are ELs), medium (5 percent to 20 percent), low (at least one EL student, but fewer than 5 percent), and no ELs. The analyses reveal that, although relatively small percentages of districts and schools have at least 5 percent EL students, these districts and schools enroll the majority of ELs. In other words, ELs are concentrated in a relatively small percentage of districts and schools.
+                </p>
+            </div>
+        </section>
+
+        <section id="two_chart" class="wrapper chart">
+            <div id="two_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div></div>
+                <div id="ch2_1"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Seven percent of districts have a high percentage of ELs (20 percent or more). These districts enroll 46 percent of ELs. Eighteen percent of districts have a medium percentage of ELs, and these districts also enroll 45 percent of ELs. Together, this 25 percent of districts enroll 91 percent of all ELs in 2014-15.
+                </p>
+                <div id="ch2_2"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Fifteen percent of schools have 20 percent or more ELs, but these schools enroll 61 percent of ELs in 2014-15. Together with schools with five to 20 percent ELs, 91 percent of ELs are enrolled in 38 percent of schools. In contrast, more than half - 57 percent - of all students are enrolled in schools where less than five percent of students are ELs.
+                </p>
+            </div>
+        </section>
+
+        <!-- Map -->
+
+        <section id="mapHead" class="wrapper style3">
+            <div class="inner">
+              <h2 class="line">EL Students Mapped</h2>
+              <p>
+                While districts across large sections of the country have low percentages of ELs, districts with the highest concentrations of ELs cluster in the Southwest and in Alaska.
+              </p>
+              <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="legendPointer icon fa-mouse-pointer"></span></div>
+                        </div>
+                        <div class="legendExplain">
+                            Hover over school districts for information, double-click to zoom in, and select a range from the legend to see specific views of the data.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EL Map -->
+    <section class="wrapper chart">
+        <div class="inner">
+
+            <div>
+                <div class="align-center">
+                    <div id="mapWrapper">
+
+                        <div id="legend">
+                            <h3>Percentage of students who are English learners (2014-15)</h3>
+                            <div class="legendButtonWrapper">
+                                <div data-value="#9e9ac8" class="legendButton">
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        No EL students
+                                    </div>
+                                </div>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Low
+                                        <br>
+                                        (&gt;0% to &lt;5%)
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Medium
+                                        <br>
+                                        (5% to &lt; 20%)
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        High
+                                        <br>
+                                        (20% or more)
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="innerLegend">
+                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+
+                        <div id="map">
+                            <div>
+                                <div style="clear: both; height:5px"></div>
+                                <button class="zoomButton" data-zoom="+1">+</button>
+                                <div style="clear: both; height:5px"></div>
+                                <button class="zoomButton" data-zoom="-1">-</button>
+                            </div>
+                        </div>
+                        <div id="selectDistrictType">
+                            <div id="selectElementary" class="selected ">Elementary and Unified</div>
+                            <div id="selectSecondary" class="selected ">Independent Elementary, Secondary, and Unified</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <br/>
+                <p class="dataLinksText">* <a href="#mapnotes">See map notes</a>. <!--<a href="#">Download the district level data</a> used in this map.--></p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Three -->
+
+        <section id="three" class="wrapper style1">
+            <div class="inner">
+
+                <h2 class="line">Most Common Non-English Languages Spoken by English Learners</h2>
+                <p>
+                  ELs speak a wide variety of languages at home, including Spanish, Arabic, Chinese, Vietnamese, and Somali. States with more variation in the languages spoken at home may require additional resources for instructional supports and services for ELs.
+                </p>
+            </div>
+        </section>
+
+        <section id="three_chart" class="wrapper chart">
+            <div id="three_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <!--<div id="ch3_1">
+                </div>
+                <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
+                  The vast majority - 77 percent, or more than 3.7 million - of ELs speak Spanish as their primary language at home. Other languages that are commonly spoken at home are Arabic, Chinese, and Vietnamese; about 2 percent of ELs speak each of those languages. About 2 percent of ELs speak English as their primary language at home.
+                </p>-->
+                <div id="ch3_2"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Spanish is the language most commonly spoken by ELs at home in 45 of states and the District of Columbia. In all but three of those states, more than 50 percent of the ELs in the state spoke Spanish at home. Alaska (Yupik languages), Hawaii (Iloko), Maine (Somali), Montana (German), and Vermont (Nepali) are the five states where Spanish is not the most commonly spoken language by ELs at home.
+                </p>
+            </div>
+        </section>
+
+        <!-- Four -->
+
+        <!--<section id="four" class="wrapper style3">
+            <div class="inner">
+
+                <h2 class="line">Language Instructional Education Programs (LIEPs)</h2>
+                <p>
+                  Title III, Part A of <em>ESEA</em>, as amended by the <em>No Child Left Behind Act of 2001</em> was designed to assist English Learners in attaining English proficiency and improving academic achievement. One method of accomplishing this goal is through the development of Language Instructional Education Programs (LIEPs) to help states, districts, and schools teach ELs.
+                </p>
+            </div>
+        </section>
+
+        <section id="four_chart" class="wrapper chart">
+            <div id="four_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div id="ch4_1">
+                </div>
+                <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
+                  Almost all ELs in 2014-15 participated in an LIEP. Out of the 4.8 million ELs in 2014-15, 97 percent, or more than 4.6 million, participated in an LIEP. Of those particiating in an LIEP, the vast majority - 78 percent, or 3.6 million, were Hispanic; 11 percent, or about 500,000 were Asian; and 6 percent, or about 270,000 were White. The high percentage of ELs participating in an LIEP suggests that these programs are reaching the intended population.
+                </p>
+        </section>-->
+
+        <!-- Five -->
+
+        <section id="five" class="wrapper style3">
+            <div class="inner">
+                <!--<h2 class="line">Lorem ipsum dolor sit amet</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices augue vel quam egestas, sit amet ultricies est semper. Pellentesque in euismod ipsum. Fusce mi metus, consectetur nec blandit sed, varius sit amet elit. Donec lacinia volutpat sagittis. Donec et neque ut eros lacinia gravida fermentum sit amet leo. In ac ex non mauris fringilla pulvinar. Sed maximus arcu a arcu congue consectetur. Fusce eget pharetra neque. In ultricies ultrices consectetur. Maecenas sit amet magna accumsan, dictum sem vitae, malesuada erat. Maecenas non lectus interdum, tristique felis nec, vehicula ex.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices augue vel quam egestas, sit amet ultricies est semper. Pellentesque in euismod ipsum. Fusce mi metus, consectetur nec blandit sed, varius sit amet elit. Donec lacinia volutpat sagittis. Donec et neque ut eros lacinia gravida fermentum sit amet leo. In ac ex non mauris fringilla pulvinar. Sed maximus arcu a arcu congue consectetur. Fusce eget pharetra neque. In ultricies ultrices consectetur. Maecenas sit amet magna accumsan, dictum sem vitae, malesuada erat. Maecenas non lectus interdum, tristique felis nec, vehicula ex.
+				        </p>-->
+
+        <div class="socialmedia">
+          <ul class="align-center icons fa-2x" style="margin-bottom:1em;">
+            <li><a href="#" target="_blank" title="Tweet" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" target="_blank" title="Share on Facebook" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" target="_blank" title="Share on LinkedIn" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+            <li><a href="#" target="_blank" title="Email" class="fa-envelope"><span class="label">Email</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner align-center">
+			     <h2 id="datanotes" style="font-size:15px; font-weight:bold; margin-top:3.5em;">ENDNOTES</h2>
+           <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 class="line">Overall Notes</h3>
+                <p>Sources: Unless otherwise noted below, EL enrollment data come from 2014-15 EDFacts LEP Enrolled, file C141/data group 678. LIEP participation data come from 2014-15 EDFacts LEP Students in LEP Program, file C046/data group 123 provided by EDFacts on April 7, 2017. Enrollment data for all students come from the 2014 Common Core of Data (CCD), downloaded April 2017. National data are for the 50 states and DC. EL enrollment was treated as zero for LEAs not reported on the EDFacts EL enrollment file, but have enrollment > 0.</p>
+                <p>The analysis of the distribution of districts by EL concentration is based on all LEAs included on the CCD membership file with at least one student enrolled. Because of data quality concerns, this analysis uses Rhode Island’s school-level EL enrollment aggregated to the LEA-level. This analysis excludes 11 New Jersey LEAs with more than 100 percent of their students reported as ELs.</p>
+                <p>The analysis of the distribution of schools by EL concentration is based on all schools included on the CCD membership file with at least one student enrolled. Because of data quality concerns, this analysis uses Nebraska’s 2013-14 EL enrollment data adjusted for changes to the school’s overall enrollment. For New York, this analysis uses school-level data from the state’s website. </p>
+                <p>For the analysis of all students and EL students by race/ethnicity, the percentage values for the distribution of all students by race/ethnicity come from Digest of Education Statistics Table 203.70. Percentage distribution of enrollment in public elementary and secondary schools, by race/ethnicity and state or jurisdiction: Fall 2004 and fall 2014. Downloaded June 2017 from: <a href="https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp?current=yes" target="_blank">https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp?current=yes</a>.</p>
+                <p>For the languages analysis, the other languages category includes English. Language codes of uncoded and undetermined are always classified in the other languages category. The language code of no linguistic content/not applicable was classified to missing except for Georgia where it was classified as other languages because the state provided explanatory information.</p>
+            </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 id="mapnotes" style="font-size: 15px;" class="line">Map Notes</h3>
+                <p>A district might have null/missing data on the map if:</p>
+                <ol>
+                    <li>The district has missing EL enrollment or total student membership.</li>
+                    <li>The district has more than 100 percent of their students reported as ELs.</li>
+                    <li>It did not match with the NCES district boundary file.</li>
+                </ol>
+        				<p>Because of data quality concerns, this analysis uses Rhode Island’s school-level EL enrollment aggregated to the LEA-level.</p>
+                <p>On this map, the label <strong>Elementary</strong> includes all school districts that are financially responsible for providing education only to children in the elementary grades. Some elementary districts share territory with one or more Secondary districts. The label Independent Elementary refers to those Elementary school districts that are geographically independent of other school districts.</p>
+                <p>The label <strong>Secondary</strong> includes all school districts that are financially responsible for providing education only to children in the upper grades. This includes pseudo-secondary school districts created by the Census Bureau.</p>
+                <p>The label <strong>Unified</strong> refers to districts that provide education to children of all school ages. In general, where there is a unified school district, no elementary or secondary school district exists.</p>
+            </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 style="font-size: 15px;" class="line">References</h3>
+                <p>
+                  <sup>1</sup> U.S. Department of Education, Office of English Language Acquisition, National Clearinghouse for English Language Acquisition, <em>Profiles of English Learners (ELs)</em>: <a href="http://www.ncela.us/files/fast_facts/05-19-2017/ProfilesOfELs_FastFacts.pdf" target="_blank">http://www.ncela.us/files/fast_facts/05-19-2017/ProfilesOfELs_FastFacts.pdf</a>. Retrieved June 9, 2017.
+                </p>
+                <p>
+                  <sup>2</sup> Batalova, Jeanne and Margie McHugh, Migration Policy Institute, <em>Top Languages Spoken by English Language Learners Nationally and by State, 2009</em>: <a href="http://www.migrationpolicy.org/sites/default/files/publications/FactSheet%20ELL3%20-%20FINAL.pdf" target="_blank">http://www.migrationpolicy.org/sites/default/files/publications/FactSheet%20ELL3%20-%20FINAL.pdf</a>. Retrieved June 9, 2017.
+                <p>
+                  Ruiz Soto, Ariel G., Sarah Hooker, and Jeanne Batalova, Migration Policy Institute, <em>Top Languages Spoken by English Language Learners Nationally and by State</em>: <a href="http://www.migrationpolicy.org/sites/default/files/publications/ELLFact%20Sheet-No4.pdf" target="_blank">http://www.migrationpolicy.org/sites/default/files/publications/ELLFact%20Sheet-No4.pdf</a>. Retrieved June 9, 2017.
+                </p>
+            </div>
+		</div>
+
+    </footer>
+
+    <!-- Charts -->
+
+    <script>
+
+        // charts
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+        					d.chart = d.chart;
+        					d.subchart = +d.subchart;
+        					d.level = d.level;
+                  d.group = d.group;
+        					d.num = +d.num;
+                  d.pct = +d.pct;
+        					d.all_p = +d.all_p;
+        					d.el_p = +d.el_p;
+        					d.diff_ppt = +d.diff_ppt;
+        					d.all_n = +d.all_n;
+        					d.el_n = +d.el_n;
+                  d.order = +d.order;
+                });
+
+            dataCounter = data.filter(function(d) { return d.chart == "counter"; });
+            data1_1 = data.filter(function(d) { return d.chart == "1-1"; });
+            data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
+            data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
+            data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
+            data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
+
+    				var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
+            var chart1_1 = dotTwo().data(data1_1).marginLeft(120).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1").title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.").altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.");
+            var chart1_2 = colChart().data(data1_2).marginBottom(35).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("For all students and ELs, the percentage of students with disabilities is about 13 percent.").altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students.");
+            var chart2_1 = multiBar().data(data2_1).marginLeft(160).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").title("The majority of ELs are concentrated in 25 percent of districts.").altText("This chart displays the percentage of school districts, ELs, and all students are within each category of EL concentraion.");
+            var chart2_2 = multiBar().marginLeft(160).data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").title("Similar to districts, a majority of ELs are enrolled in 38 percent of schools.").altText("This chart displays the percentage of schools, ELs, and all students are within each category of EL concentraion.");
+            //var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1").title("For more than 75 percent of ELs, Spanish is the most commonly spoken language at home.").altText("This chart displays the five languages most commonly spoken at home for ELs.");
+
+    				d3.select("#counter").call(counterChart);
+            d3.select("#ch1_1").call(chart1_1);
+            d3.select("#ch1_2").call(chart1_2);
+            d3.select("#ch2_1").call(chart2_1);
+            d3.select("#ch2_2").call(chart2_2);
+    				//d3.select("#ch3_1").call(chart3_1);
+
+            };
+        });
+
+    </script>
+
+    <!-- Stacked bar chart -->
+
+    <script>
+
+      d3.tsv("assets/data/stacked_data.tsv", function (error, data) {
+        if (error) { console.log(error); }
+        else {
+          data.forEach(function (d) {
+            d.order = +d.order,
+            d.lang1_p = +d.lang1_p,
+            d.lang2_p = +d.lang2_p,
+            d.lang3_p = +d.lang3_p,
+            d.lang4_p = +d.lang4_p,
+            d.lang5_p = +d.lang5_p,
+            d.lang6_p = +d.lang6_p,
+            d.lang7_p = +d.lang7_p,
+            d.lang1_n = +d.lang1_n,
+            d.lang2_n = +d.lang2_n,
+            d.lang3_n = +d.lang3_n,
+            d.lang4_n = +d.lang4_n,
+            d.lang5_n = +d.lang5_n,
+            d.lang6_n = +d.lang6_n,
+            d.lang7_n = +d.lang7_n;
+          });
+
+          var stacked1 = stackedBar().data(data).marginLeft(130).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
+            .title("Although Spanish is the most commonly spoken language among ELs in most states, there is a wide variety of languages spoken by ELs across the states.")
+            .altText("This chart displays the five most commonly spoken non-English languages among English Learner (EL) students by state.");
+
+          d3.select("#ch3_2").call(stacked1);
+
+      }});
+
+    </script>
+
+    <!-- Sankey chart -->
+
+    <!--<script>
+
+      d3.tsv("assets/data/sankey_data.tsv", function (error, data) {
+        if (error) { console.log(error); }
+        else {
+          data.forEach(function (d) {
+            d.source = d.source;
+            d.target = d.target;
+            d.value = +d.value;
+          });
+
+          var sankey1 = sankeyChart().data(data).containerID("four_chart").subcontainerID("four_sections").sectionID("ch4_1").chartID("chart4_1")
+  					.title("Almost all ELs participate in an LIEP, and the majority of those participating are Hispanic.")
+  					.altText("This chart displays the number of English Learners participating in Langauge Instructional Education Programs, and, of those students, the number from each racial/ethnic category.");
+
+          d3.select("#ch4_1").call(sankey1);
+
+      }});
+
+    </script>-->
+
+    <!-- Map -->
+    <script>
+        $("#legend").css("display", "none");
+        //  D3 MAP
+        var width = 960;
+        var height = 600;
+        var center = [width / 2, height / 2];
+        var defaultFill = "#E6E6E6";
+
+        var projection = d3.geo.albersUsa()
+                .translate([width / 2, height / 2])
+                .scale(1000);
+        var zoom = d3.behavior.zoom()
+                .scaleExtent([1, 32])
+                .on("zoom", move);
+
+        var path = d3.geo.path()
+                .projection(projection);
+
+        var svg = d3.select("#map").append("svg")
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                .attr("viewBox", "0 0 " + width + " " + height)
+                .classed("svg-content-responsive", true)
+                .append("g");
+
+        var g = svg.append("g");
+
+        svg.append("svg:image")
+                .attr("xlink:href", "images/progress-anim.gif")
+                .attr("id", "progress-image")
+                .attr("width", 30)
+                .attr("height", 30)
+                .attr("x", width / 2)
+                .attr("y", height / 2)
+                .style("opacity", 1);
+
+        svg.call(zoom).call(zoom.event);
+
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "districtTooltip")
+            .style("opacity", 0)
+            .style('top', '0px')
+            .style('left', '0px');
+
+        queue()
+                .defer(d3.json, "assets/data/states.json")
+                .defer(d3.json, "assets/data/elementary.json")
+                .defer(d3.json, "assets/data/secondary.json")
+                .defer(d3.json, "assets/data/extradistricts.json")
+                .await(ready);
+
+        svg.on("wheel.zoom", null);
+        svg.on("mousewheel.zoom", null);
+
+        function ready(error, us, primary, secondary, extra) {
+            if (error) {
+                console.log(error);
+            }
+            g.attr("cursor","pointer");
+
+            g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(primary, primary.objects.medium_G5420_G5400).features)
+                    .enter().append("path")
+                    .attr("id", "elementaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
+
+            g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(extra, extra.objects.extra_districts).features)
+                    .enter().append("path")
+                    .attr("id", "elementaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
+
+            g.append("g")
+                    .attr("class", "states")
+                    .selectAll("path")
+                    .data(topojson.feature(us, us.objects.states).features)
+                    .enter().append("path")
+                    .attr("class", "state")
+                    .attr("d", path);
+
+            d3.select("#selectElementary").on("click", function () {
+                d3.select("#selectSecondary").style("background", "white")
+                    .style("color","#1A1C20");
+                d3.select(this).style("background", "#1A1C20")
+                    .style("color","white");
+                d3.selectAll("#secondaryDistrict").remove();
+            });
+
+            d3.select("#selectSecondary").on("click", function () {
+                d3.selectAll(".state").remove();
+                d3.select("#selectElementary").style("background", "white")
+                    .style("color","#1A1C20");
+                d3.select(this).style("background", "#1A1C20")
+                    .style("color","white");
+                g.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(secondary, secondary.objects.medium_G5410).features)
+                    .enter().append("path")
+                    .attr("id", "secondaryDistrict")
+                    .attr("class", "district")
+                    .attr("d", path)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15)
+                    .attr("stroke-linejoin", "round")
+                    .on("mouseover", function (d) {
+                        createTooltip(this,d);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).attr("stroke", "#fff")
+                                .attr("stroke-opacity", .15);
+                        d3.select(this).classed("selected", false);
+                        tooltip.transition().duration(300).style("opacity", 0);
+                    });
+                updateColors();
+                g.append("g")
+                    .attr("class", "states")
+                    .selectAll("path")
+                    .data(topojson.feature(us, us.objects.states).features)
+                    .enter().append("path")
+                    .attr("class", "state")
+                    .attr("d", path);
+            });
+
+            updateColors();
+            createLegend();
+            svg.select("#progress-image").style("opacity", 0);
+            $("#legend").css("display", "block");
+        }
+
+        function createTooltip(currentDistrict,d){
+            d3.select(currentDistrict).attr("stroke", "#1A1C20")
+                    .attr("stroke-opacity", 1);
+            d3.select(currentDistrict).classed("selected", true);
+
+            tooltip.transition().duration(100)
+                    .style("opacity", 1)
+                    .style("top", (d3.event.pageY - 100) + "px");
+
+            var windowWidth = $(window).width();
+            if (windowWidth > 1024) {
+                if (d3.event.pageX > 1000) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
+                }
+            }
+            if (windowWidth < 1024 && windowWidth > 850) {
+                if (d3.event.pageX > 400) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
+                }
+            }
+            if (windowWidth < 850) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                }
+            }
+            if (windowWidth < 680) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 20) + "px");
+                }
+            }
+
+            var format = d3.format("0,000");
+            var state = (d.properties.a === null)? "NO DATA": d.properties.a;
+            var name = (d.properties.b === null)? "NO DATA": d.properties.b;
+
+            if (name === "School District Not Defined") {
+                tooltip.html(
+                    "<h3>" + state.toUpperCase() + "</h3>" +
+                    "<hr>" +
+                    "<h3>No Operating District</h3>"
+                );
+            }
+            else if (name != null) {
+                var numEL = d.properties.d;
+                var totalStudents = d.properties.e;
+                var percentEL = d.properties.f;
+                if(percentEL === "0") {
+                    numEL = 'N/A';
+                    totalStudents = 'N/A';
+                    percentEL = 'N/A';
+                }
+                else {
+                    if(numEL === null) numEL = 'NO DATA';
+                    if(totalStudents === null) totalStudents = 'NO DATA';
+                    if(percentEL === null) {
+                        percentEL = 'NO DATA';
+                    }
+                    else {
+                        numEL = format(numEL);
+                        totalStudents = format(totalStudents);
+                        var rawPercent = parseFloat(percentEL.replace(/%/g, ""));
+                        if(rawPercent > 100) {
+                            percentEL = '>100%';
+                        }
+                    }
+                }
+
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div> % of students who are English learners: " + percentEL + "</div>");
+            }
+            else {
+                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div> NO DATA </div>");
+            }
+        }
+
+        function createLegend() {
+            var legendButtons = $(".legendButton");
+            legendButtons.each(function () {
+                var buttonValue = $(this).attr("data-value");
+                var totalDistricts = document.getElementsByClassName("district").length;
+                var valueSize = document.getElementsByClassName(buttonValue).length;
+                var width = (valueSize / totalDistricts) * 100;
+                if ($(this).hasClass("null")) {
+                    width = width * 6;
+                }
+                $(this).css("width", (width) + '%');
+            });
+
+            legendButtons.on("click", function () {
+                if ($(this).hasClass("highlightButton")) {
+                    legendButtons.each(function () {
+                        $(this).css("border", 0);
+                        $(this).removeClass("highlightButton");
+                    });
+                    updateColors();
+                } else {
+                    legendButtons.each(function () {
+                        $(this).css("border", 0);
+                        $(this).removeClass("highlightButton");
+                    });
+                    $(this).addClass("highlightButton");
+                    var buttonValue = $(this).attr("data-value");
+                    svg.selectAll(".district")
+                            .attr("fill", function (d) {
+                                if (buttonValue == colorByGroup(d.properties.c)) {
+                                    return buttonValue;
+                                } else {
+                                    return "#E6E6E6";
+                                }
+                            });
+                }
+            });
+
+        }
+
+        function updateColors() {
+            svg.selectAll(".district")
+                    .attr("fill", function (d) {
+                        var color = colorByGroup(d.properties.c);
+                        d3.select(this).attr("class", "district " + color);
+                        return color;
+                    });
+        }
+
+        function colorByGroup(c) {
+            switch (c){
+                case "-1": return 'gray';
+                case "0": return '#9e9ac8';
+                case "1": return '#756bb1';
+                case "2": return '#54278f';
+                case "3": return '#340d67';
+                default: return 'gray';
+            }
+        }
+
+        function interpolateZoom(translate, scale) {
+            var self = this;
+            return d3.transition().duration(350).tween("zoom", function () {
+                var iTranslate = d3.interpolate(zoom.translate(), translate),
+                        iScale = d3.interpolate(zoom.scale(), scale);
+                return function (t) {
+                    zoom
+                            .scale(iScale(t))
+                            .translate(iTranslate(t));
+                    move();
+                };
+            });
+        }
+
+        function zoomClick() {
+            var clicked = d3.event.target,
+                    direction = 1,
+                    factor = 0.2,
+                    target_zoom = 1,
+                    center = [width / 2, height / 2],
+                    extent = zoom.scaleExtent(),
+                    translate = zoom.translate(),
+                    translate0 = [],
+                    l = [],
+                    view = {x: translate[0], y: translate[1], k: zoom.scale()};
+            d3.event.preventDefault();
+            direction = this.getAttribute("data-zoom");
+            target_zoom = zoom.scale() * (1 + factor * direction);
+
+            if (target_zoom < extent[0] || target_zoom > extent[1]) {
+                return false;
+            }
+
+            translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+            view.k = target_zoom;
+            l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+            view.x += center[0] - l[0];
+            view.y += center[1] - l[1];
+
+            interpolateZoom([view.x, view.y], view.k);
+        }
+
+        function move() {
+            d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
+            g.style("stroke-width", 1 / zoom.scale())
+                    .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+        }
+
+        function resizeStateBorder() {
+            var z = zoom.scale();
+            return (z > 7) ? .25 :
+                    (z > 4) ? .5 :
+                            1
+        }
+
+        d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
+        d3.select(self.frameElement).style("height", height + "px");
+
+    </script>
+
+</body>
+</html>
