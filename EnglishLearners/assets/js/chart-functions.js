@@ -62,7 +62,7 @@ function sankeyChart() {
 
 		// tooltips using d3-tip
 
-		var tipSankey = d3.tip()
+		var tipSegment = d3.tip()
 			.attr("class", "d3-tip")
 			.direction("n")
 			.offset([-5, 0])
@@ -72,7 +72,18 @@ function sankeyChart() {
 
 		});
 
-		svg.call(tipSankey);
+		var tipLink = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset(function() { return [this.getBBox().height / 2, 0] })
+			.html(function(d) {
+
+			return d.source_abbr + ": " + d.target.name + "<br/>" + formatNumber(d.value) + " students (" + formatPercent(d.pct) + ")";
+
+		});
+
+		svg.call(tipSegment);
+		svg.call(tipLink);
 
 		// set sankey diagram properties
 
@@ -93,7 +104,9 @@ function sankeyChart() {
 				graph.links.push({
 					"source": d.source,
 					"target": d.target,
-					"value": +d.value
+					"value": +d.value,
+					"pct": +d.pct,
+					"source_abbr": d.source_abbr
 				});
 			});
 
@@ -127,7 +140,9 @@ function sankeyChart() {
 		       .attr("class", "link")
 		       .attr("d", path)
 		       .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-		       .sort(function(a, b) { return b.dy - a.dy; });
+		       .sort(function(a, b) { return b.dy - a.dy; })
+					 .on("mouseover", tipLink.show)
+					 .on("mouseout", tipLink.hide);
 
 		 // add the link titles
 		   /*link.append("title")
@@ -137,27 +152,23 @@ function sankeyChart() {
 
 		 // add in the nodes
 		   var node = svg.append("g").selectAll(".node")
-		       .data(graph.nodes)
-		     .enter().append("g")
-		       .attr("class", "node")
-		       .attr("transform", function(d) {
-		 		  return "translate(" + d.x + "," + d.y + ")"; })
-		     .call(d3.behavior.drag()
-		       .origin(function(d) { return d; })
-		       .on("dragstart", function() {
-		 		  this.parentNode.appendChild(this); })
-		       .on("drag", dragmove));
+       	.data(graph.nodes)
+				.enter().append("g")
+					.attr("class", "node")
+		      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+		     	.call(d3.behavior.drag()
+		       	.origin(function(d) { return d; })
+		       	.on("dragstart", function() { this.parentNode.appendChild(this); })
+		       	.on("drag", dragmove));
 
 		 // add the rectangles for the nodes
 		   node.append("rect")
 		       .attr("height", function(d) { return d.dy; })
 		       .attr("width", sankey.nodeWidth())
-		       .style("fill", function(d) {
-		 		  return d.color = color(d.name.replace(/ .*/, "")); })
-		       .style("stroke", function(d) {
-		 		  return d3.rgb(d.color).darker(2); })
-					.on("mouseover", tipSankey.show)
-					.on("mouseout", tipSankey.hide);
+		       .style("fill", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
+		       .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
+					.on("mouseover", tipSegment.show)
+					.on("mouseout", tipSegment.hide);
 
 		 // add in the title for the nodes
 		   node.append("text")

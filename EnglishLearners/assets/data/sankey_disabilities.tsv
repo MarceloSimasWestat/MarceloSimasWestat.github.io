@@ -1,0 +1,15 @@
+source	target	value	pct	source_abbr
+English learners	Specific learning disability	282877	0.497	ELs
+English learners	Speech or language impairment	120380	0.212	ELs
+English learners	Intellectual disability	40079	0.07	ELs
+English learners	Emotional disturbance	11016	0.019	ELs
+English learners	Other health impairment	40954	0.072	ELs
+English learners	Autism	35660	0.063	ELs
+English learners	Other disabilities	37717	0.066	ELs
+Not English learners	Specific learning disability	1949910	0.375	Non-ELs
+Not English learners	Speech or language impairment	893165	0.172	Non-ELs
+Not English learners	Intellectual disability	358528	0.069	Non-ELs
+Not English learners	Emotional disturbance	329316	0.063	Non-ELs
+Not English learners	Other health impairment	798297	0.154	Non-ELs
+Not English learners	Autism	473512	0.091	Non-ELs
+Not English learners	Other disabilities	390576	0.075	Non-ELs

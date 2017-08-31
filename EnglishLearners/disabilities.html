@@ -466,7 +466,7 @@
     				/*var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
             var chart1_1 = dotTwo().data(data1_1).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1").title("More than 75 percent of ELs were Hispanic; in comparison, only 25 percent of all students were Hispanic.").altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.");
             var chart1_2 = colChart().data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("For all students and ELs, the percentage of students with disabilities is about 13 percent.").altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students."); */
-            var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15").title("Nearly 50 percent of ELs with disabilities are categorized as having a specific learning disability, compared to 38 percent of non-ELs with disabilities.").altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.");
+            var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15").title("Nearly 50 percent of ELs with disabilities are categorized as having a specific learning disability, compared to nearly 38 percent of non-ELs with disabilities.").altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.");
             /* var chart2_1 = multiBar().data(data2_1).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").title("Although there are few LEAs with high concentrations of ELs, almost half of all ELs are in those LEAs.").altText("This chart displays the percentage of LEAs, ELs, and all students are within each category of EL concentraion.");
             var chart2_2 = multiBar().data(data2_2).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").title("Similar to the distribution of LEAs, there are few schools with high concentrations of ELs, but those schools enroll 65 percent of the ELs.").altText("This chart displays the percentage of schools, ELs, and all students are within each category of EL concentraion.");
             var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
@@ -488,7 +488,7 @@
 
     <!-- Stacked bar chart -->
 
-  <!--  <script>
+    <!--  <script>
 
       d3.tsv("assets/data/stacked_data.tsv", function (error, data) {
         if (error) { console.log(error); }
@@ -524,26 +524,28 @@
 
     <!-- Sankey chart -->
 
-  <!--  <script>
+    <script>
 
-      d3.tsv("assets/data/sankey_data.tsv", function (error, data) {
+      d3.tsv("assets/data/sankey_disabilities.tsv", function (error, data) {
         if (error) { console.log(error); }
         else {
           data.forEach(function (d) {
             d.source = d.source;
             d.target = d.target;
             d.value = +d.value;
+            d.pct = +d.pct;
+            d.source_abbr = d.source_abbr;
           });
 
-          var sankey1 = sankeyChart().data(data).containerID("four_chart").subcontainerID("four_sections").sectionID("ch4_1").chartID("chart4_1")
-  					.title("Almost all ELs participate in an LIEP, and the majority of those participating are Hispanic.")
-  					.altText("This chart displays the number of English Learners participating in Langauge Instructional Education Programs, and, of those students, the number from each racial/ethnic category.");
+          var sankey1 = sankeyChart().data(data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+  				    .title("Nearly 50 percent of ELs with disabilities are categorized as having a specific learning disability, compared to nearly 38 percent of non-ELs with disabilities.")
+              .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.");
 
-          d3.select("#ch4_1").call(sankey1);
+          d3.select("#ch1_3").call(sankey1);
 
       }});
 
-    </script>-->
+    </script>
 
 	<!-- Map -->
 
