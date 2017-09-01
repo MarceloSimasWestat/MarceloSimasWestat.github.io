@@ -78,7 +78,7 @@ function sankeyChart() {
 			.offset(function() { return [this.getBBox().height / 2, 0] })
 			.html(function(d) {
 
-			return d.source_abbr + ": " + d.target.name + "<br/>" + formatNumber(d.value) + " students (" + formatPercent(d.pct) + ")";
+			return d.source_abbr + ": " + d.target.name + "<br/>" + formatNumber(d.value) + " students (" + formatPercent(d.pct) + ")<br/><br/>" + formatPercent(d.pct_of_dis) + " of " + d.target.name.toLowerCase();
 
 		});
 
@@ -106,6 +106,7 @@ function sankeyChart() {
 					"target": d.target,
 					"value": +d.value,
 					"pct": +d.pct,
+					"pct_of_dis": +d.pct_of_dis,
 					"source_abbr": d.source_abbr
 				});
 			});
