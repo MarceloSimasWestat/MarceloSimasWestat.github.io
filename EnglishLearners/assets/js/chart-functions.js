@@ -78,7 +78,8 @@ function sankeyChart() {
 			.offset(function() { return [this.getBBox().height / 2, 0] })
 			.html(function(d) {
 
-			return d.source_abbr + ": " + d.target.name + "<br/>" + formatNumber(d.value) + " students (" + formatPercent(d.pct) + ")<br/><br/>" + formatPercent(d.pct_of_dis) + " of " + d.target.name.toLowerCase();
+				if (d.source_abbr == "ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); }
+				else if (d.source_abbr == "Non-ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr[0].toLowerCase() + d.source_abbr.substring(1) + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); };
 
 		});
 
