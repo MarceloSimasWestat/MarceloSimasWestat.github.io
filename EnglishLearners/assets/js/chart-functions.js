@@ -62,7 +62,7 @@ function sankeyChart() {
 
 		// tooltips using d3-tip
 
-		var tipSegment = d3.tip()
+		var tipSankey = d3.tip()
 			.attr("class", "d3-tip")
 			.direction("n")
 			.offset([-5, 0])
@@ -72,19 +72,7 @@ function sankeyChart() {
 
 		});
 
-		var tipLink = d3.tip()
-			.attr("class", "d3-tip")
-			.direction("n")
-			.offset(function() { return [this.getBBox().height / 2, 0] })
-			.html(function(d) {
-
-				if (d.source_abbr == "ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); }
-				else if (d.source_abbr == "Non-ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr[0].toLowerCase() + d.source_abbr.substring(1) + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); };
-
-		});
-
-		svg.call(tipSegment);
-		svg.call(tipLink);
+		svg.call(tipSankey);
 
 		// set sankey diagram properties
 
@@ -105,10 +93,7 @@ function sankeyChart() {
 				graph.links.push({
 					"source": d.source,
 					"target": d.target,
-					"value": +d.value,
-					"pct": +d.pct,
-					"pct_of_dis": +d.pct_of_dis,
-					"source_abbr": d.source_abbr
+					"value": +d.value
 				});
 			});
 
@@ -142,9 +127,7 @@ function sankeyChart() {
 		       .attr("class", "link")
 		       .attr("d", path)
 		       .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-		       .sort(function(a, b) { return b.dy - a.dy; })
-					 .on("mouseover", tipLink.show)
-					 .on("mouseout", tipLink.hide);
+		       .sort(function(a, b) { return b.dy - a.dy; });
 
 		 // add the link titles
 		   /*link.append("title")
@@ -154,23 +137,27 @@ function sankeyChart() {
 
 		 // add in the nodes
 		   var node = svg.append("g").selectAll(".node")
-       	.data(graph.nodes)
-				.enter().append("g")
-					.attr("class", "node")
-		      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-		     	.call(d3.behavior.drag()
-		       	.origin(function(d) { return d; })
-		       	.on("dragstart", function() { this.parentNode.appendChild(this); })
-		       	.on("drag", dragmove));
+		       .data(graph.nodes)
+		     .enter().append("g")
+		       .attr("class", "node")
+		       .attr("transform", function(d) {
+		 		  return "translate(" + d.x + "," + d.y + ")"; })
+		     .call(d3.behavior.drag()
+		       .origin(function(d) { return d; })
+		       .on("dragstart", function() {
+		 		  this.parentNode.appendChild(this); })
+		       .on("drag", dragmove));
 
 		 // add the rectangles for the nodes
 		   node.append("rect")
 		       .attr("height", function(d) { return d.dy; })
 		       .attr("width", sankey.nodeWidth())
-		       .style("fill", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
-		       .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
-					.on("mouseover", tipSegment.show)
-					.on("mouseout", tipSegment.hide);
+		       .style("fill", function(d) {
+		 		  return d.color = color(d.name.replace(/ .*/, "")); })
+		       .style("stroke", function(d) {
+		 		  return d3.rgb(d.color).darker(2); })
+					.on("mouseover", tipSankey.show)
+					.on("mouseout", tipSankey.hide);
 
 		 // add in the title for the nodes
 		   node.append("text")
@@ -194,6 +181,18 @@ function sankeyChart() {
 		     link.attr("d", path);
 		   }
 
+			 // add text
+
+			 svg.append("text")
+	 			.attr("class", "x axis")
+	 			.attr("x", widthAdj)
+	 			//.attr("dx", "0.5em")
+	 			.attr("y", heightAdj)
+	 			.attr("dy", "1.5em")
+	 			.attr("text-anchor", "end")
+	 			.attr("aria-hidden", "true")
+	 			.text("% OF STUDENTS WITH DISABILITIES IN 2014-15");
+
 			 // resize
 
 			window.addEventListener("resize", function() {
@@ -210,6 +209,10 @@ function sankeyChart() {
 
 				dom.selectAll(".sankey-chart")
 					.attr("width", width);
+
+				dom.select("text.x.axis")
+					.attr("x", widthAdj)
+					.attr("dx", "0.5em");
 
 				// move nodes
 
