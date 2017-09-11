@@ -60,19 +60,31 @@ function sankeyChart() {
 		svg.append("aria-label")
 			.text(altText);
 
-		// tooltips using d3-tip
+			// tooltips using d3-tip
 
-		var tipSankey = d3.tip()
-			.attr("class", "d3-tip")
-			.direction("n")
-			.offset([-5, 0])
-			.html(function(d) {
+			var tipSegment = d3.tip()
+				.attr("class", "d3-tip")
+				.direction("n")
+				.offset([-5, 0])
+				.html(function(d) {
 
-			return d.name + "<br/>" + formatNumber(d.value) + " students"/*)"*/;
+				return d.name + "<br/>" + formatNumber(d.value) + " students"/*)"*/;
 
-		});
+			});
 
-		svg.call(tipSankey);
+			var tipLink = d3.tip()
+				.attr("class", "d3-tip")
+				.direction("n")
+				.offset(function() { return [this.getBBox().height / 2, 0] })
+				.html(function(d) {
+
+					if (d.source_abbr == "ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); }
+					else if (d.source_abbr == "Non-ELs") { return d.source_abbr + ": " + d.target.name + ", " + formatNumber(d.value) + " students<br/>" + formatPercent(d.pct) + " of " + d.source_abbr[0].toLowerCase() + d.source_abbr.substring(1) + " with disabilities<br/>" + formatPercent(d.pct_of_dis) + " of all students with " + d.target.name.toLowerCase(); };
+
+			});
+
+			svg.call(tipSegment);
+			svg.call(tipLink);
 
 		// set sankey diagram properties
 
@@ -93,7 +105,10 @@ function sankeyChart() {
 				graph.links.push({
 					"source": d.source,
 					"target": d.target,
-					"value": +d.value
+					"value": +d.value,
+					"pct": +d.pct,
+					"pct_of_dis": +d.pct_of_dis,
+					"source_abbr": d.source_abbr
 				});
 			});
 
@@ -127,7 +142,9 @@ function sankeyChart() {
 		       .attr("class", "link")
 		       .attr("d", path)
 		       .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-		       .sort(function(a, b) { return b.dy - a.dy; });
+		       .sort(function(a, b) { return b.dy - a.dy; })
+					 .on("mouseover", tipLink.show)
+					 .on("mouseout", tipLink.hide);;
 
 		 // add the link titles
 		   /*link.append("title")
@@ -156,8 +173,8 @@ function sankeyChart() {
 		 		  return d.color = color(d.name.replace(/ .*/, "")); })
 		       .style("stroke", function(d) {
 		 		  return d3.rgb(d.color).darker(2); })
-					.on("mouseover", tipSankey.show)
-					.on("mouseout", tipSankey.hide);
+					.on("mouseover", tipSegment.show)
+					.on("mouseout", tipSegment.hide);
 
 		 // add in the title for the nodes
 		   node.append("text")
@@ -191,7 +208,7 @@ function sankeyChart() {
 	 			.attr("dy", "1.5em")
 	 			.attr("text-anchor", "end")
 	 			.attr("aria-hidden", "true")
-	 			.text("% OF STUDENTS WITH DISABILITIES IN 2014-15");
+	 			.text("STUDENTS WITH DISABILITIES IN 2014-15");
 
 			 // resize
 
