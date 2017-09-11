@@ -5306,6 +5306,11 @@ button:hover,
   stroke-opacity: .3;
 }
 
+.sankey-chart .x.axis {
+	font: 400 13px Inconsolata;
+	fill: rgba(26, 28, 32, .65);
+}
+
 /* Stacked bar chart styling */
 
 .stackedBar .axis path,
