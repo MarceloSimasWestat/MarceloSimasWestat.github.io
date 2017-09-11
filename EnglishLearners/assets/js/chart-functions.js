@@ -14,6 +14,7 @@ function sankeyChart() {
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -210,6 +211,21 @@ function sankeyChart() {
 	 			.attr("aria-hidden", "true")
 	 			.text("STUDENTS WITH DISABILITIES IN 2014-15");
 
+				// notes
+
+				function writeNotes() {
+					if (!notes) {}
+					else {
+
+						d3.select("#"+ sectionID).append("div")
+								.attr("id", "notes" + chartID)
+								.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+
+					};
+				};
+
+				writeNotes();
+
 			 // resize
 
 			window.addEventListener("resize", function() {
@@ -310,6 +326,14 @@ function sankeyChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
 		return chart;
 
 	};
