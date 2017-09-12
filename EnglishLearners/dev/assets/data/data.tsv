@@ -22,27 +22,27 @@ counter				All students	45498888	0.904324268
 3-1				Chinese	104279	0.021662993						3
 3-1				Vietnamese	85289	0.017717997						4
 3-1				English	83230	0.017290259						5
-2-1		LEAs	LEAs	High (20% or more ELs)	1128	0.07
-2-1		LEAs	ELs	High (20% or more ELs)		0.46
-2-1		LEAs	All students	High (20% or more ELs)		0.15
-2-1		LEAs	LEAs	Medium (5% to <20% ELs)	2965	0.18
-2-1		LEAs	ELs	Medium (5% to <20% ELs)		0.45
-2-1		LEAs	All students	Medium (5% to <20% ELs)		0.39
-2-1		LEAs	LEAs	Low (>0% to <5% ELs)	7833	0.47
-2-1		LEAs	ELs	Low (>0% to <5% ELs)		0.09
-2-1		LEAs	All students	Low (>0% to <5% ELs)		0.42
+2-1		LEAs	LEAs	High	1128	0.07
+2-1		LEAs	ELs	High		0.46
+2-1		LEAs	All students	High		0.15
+2-1		LEAs	LEAs	Medium	2965	0.18
+2-1		LEAs	ELs	Medium		0.45
+2-1		LEAs	All students	Medium		0.39
+2-1		LEAs	LEAs	Low	7833	0.47
+2-1		LEAs	ELs	Low		0.09
+2-1		LEAs	All students	Low		0.42
 2-1		LEAs	LEAs	None	4706	0.28
 2-1		LEAs	ELs	None		0
 2-1		LEAs	All students	None		0.04
-2-2		Schools	Schools	High (20% or more ELs)	14371	0.15
-2-2		Schools	ELs	High (20% or more ELs)		0.61
-2-2		Schools	All students	High (20% or more ELs)		0.16
-2-2		Schools	Schools	Medium (5% to <20% ELs)	21476	0.23
-2-2		Schools	ELs	Medium (5% to <20% ELs)		0.3
-2-2		Schools	All students	Medium (5% to <20% ELs)		0.27
-2-2		Schools	Schools	Low (>0% to <5% ELs)	37981	0.4
-2-2		Schools	ELs	Low (>0% to <5% ELs)		0.09
-2-2		Schools	All students	Low (>0% to <5% ELs)		0.47
+2-2		Schools	Schools	High	14371	0.15
+2-2		Schools	ELs	High		0.61
+2-2		Schools	All students	High		0.16
+2-2		Schools	Schools	Medium	21476	0.23
+2-2		Schools	ELs	Medium		0.3
+2-2		Schools	All students	Medium		0.27
+2-2		Schools	Schools	Low	37981	0.4
+2-2		Schools	ELs	Low		0.09
+2-2		Schools	All students	Low		0.47
 2-2		Schools	Schools	None	21219	0.22
 2-2		Schools	ELs	None		0
-2-2		Schools	All students	None		0.1						
+2-2		Schools	All students	None		0.1

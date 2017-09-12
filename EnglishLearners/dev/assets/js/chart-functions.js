@@ -1099,7 +1099,8 @@ function smBarChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-			.attr("width", width);
+			.attr("width", width)
+			.style("text-align", "center");
 
 		dom.append("p");
 
@@ -1117,6 +1118,16 @@ function smBarChart() {
 			.attr("class", "smTitleDiv")
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) { return d.key; });
+
+		chartDivs.append("div")
+			.attr("class", "smSubTitleDiv")
+			.style("color", function(d) { return color(d.key); })
+			.text(function(d) {
+
+				if (d.key == "All students") { return "% of all students in each concentration category"; }
+				else { return "% of " + d.key + " in each concentration category"; };
+
+			});
 
 		var svg = chartDivs.append("svg")
 			.data(dataNest)
@@ -1242,7 +1253,7 @@ function smBarChart() {
 
 		// add space below charts
 
-		dom.append("p");
+		chartDivs.append("p");
 
 		// resize
 
