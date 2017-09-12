@@ -1124,7 +1124,7 @@ function smBarChart() {
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) {
 
-				if (d.key == "All students") { return "% of all students in each concentration category"; }
+				if ((d.key == "All students") || (d.key == "Schools")) { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
 				else { return "% of " + d.key + " in each concentration category"; };
 
 			});
