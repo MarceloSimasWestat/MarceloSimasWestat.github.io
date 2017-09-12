@@ -1094,8 +1094,6 @@ function smBarChart() {
 			//.domain([function(d) { return d.key; }])
 			.range(["#5D42A6", "#A6426C", "#C07A98"]);
 
-		console.log(dataNest);
-
 		// selections
 
 		var dom = d3.select(this)
