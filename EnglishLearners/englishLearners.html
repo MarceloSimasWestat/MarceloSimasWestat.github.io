@@ -275,18 +275,16 @@
             .scaleExtent([1, 32])
             .on("zoom", move);
 
-    var path = d3.geo.path()
-            .projection(projection);
-
-    var svg = d3.select("#map").append("svg")
+    var canvas = d3.select('#map').append('canvas')
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 " + width + " " + height)
-        .classed("svg-content-responsive", true)
-        .append("g");
+        .attr('width', width)
+        .attr('height', height);
+    var context = canvas.node().getContext('2d');
 
-    var g = svg.append("g");
-
-    svg.call(zoom).call(zoom.event);
+    var path = d3.geo.path()
+        .projection(projection)
+        .context(context);
 
     var tooltip = d3.select("body").append("div")
         .attr("class", "districtTooltip")
@@ -295,20 +293,26 @@
         .style('left', '0px');
 
     queue()
-            .defer(d3.json, "assets/data/states.json")
-            .defer(d3.json, "assets/data/elementary.json")
-            .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/extradistricts.json")
-            .await(ready);
+        .defer(d3.json, "assets/data/states.json")
+        .defer(d3.json, "assets/data/elementary.json")
+        .defer(d3.json, "assets/data/secondary.json")
+        .defer(d3.json, "assets/data/extradistricts.json")
+        .await(ready);
 
-    svg.on("wheel.zoom", null);
-    svg.on("mousewheel.zoom", null);
+    var us, primary, secondary, extra, primaryFeatures;
 
-    function ready(error, us, primary, secondary, extra) {
+    function ready(error, _us, _primary, _secondary, _extra) {
         if (error) {
             console.log(error);
         }
-        g.attr("cursor","pointer");
+
+        us = _us;
+        primary = _primary;
+        secondary = _secondary;
+        extra = _extra;
+        primaryFeatures = topojson.feature(primary, primary.objects.medium_G5420_G5400).features;
+
+        canvas.attr("cursor","pointer");
 
         d3.select('#englishLearnersButton').on('click', function() {
             drawEnglishLearners(primary, extra, us);
@@ -361,6 +365,8 @@
                     });
             }
         });
+
+        canvas.call(zoom).call(zoom.event);
     }
 
     function showLoader(fn) {
@@ -374,8 +380,7 @@
     function drawEnglishLearners(primary, extra, us) {
         $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
         $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-        $('.district').remove();
-        $('.state').remove();
+        context.clearRect(0, 0, width, height);
         $('.legend').hide();
         showLoader(function() {
             drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
@@ -389,8 +394,7 @@
     function drawPercentChange(primary, extra, us) {
         $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
         $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-        $('.district').remove();
-        $('.state').remove();
+        context.clearRect(0, 0, width, height);
         $('.legend').hide();
         showLoader(function() {
             drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
@@ -402,17 +406,20 @@
     }
 
     function drawStates(topology, object) {
-        g.append("g")
+        /*g.append("g")
             .attr("class", "states")
             .selectAll("path")
             .data(topojson.feature(topology, object).features)
             .enter().append("path")
             .attr("class", "state")
-            .attr("d", path);
+            .attr("d", path);*/
+        context.beginPath();
+        path(topojson.mesh(topology));
+        context.stroke();
     }
 
     function drawDistricts(id, topology, object, colorFunc) {
-        g.append("g")
+        /*g.append("g")
             .selectAll("path")
             .data(topojson.feature(topology, object).features)
             .enter().append("path")
@@ -430,7 +437,48 @@
                     .attr("stroke-opacity", .15);
                 d3.select(this).classed("selected", false);
                 tooltip.transition().duration(300).style("opacity", 0);
-            });
+            });*/
+        for(var i = 0; i < primaryFeatures.length; i++) {
+            var feature = primaryFeatures[i];
+            context.fillStyle = colorFunc(feature);
+            context.lineWidth = .2;
+            context.strokeStyle = 'white';
+            drawGeometry(feature.geometry);
+        }
+    }
+
+    function drawGeometry(geom) {
+        if(geom.type === 'MultiPolygon') {
+            for(var i = 0; i < geom.coordinates.length; i++) {
+                var polyCoords = geom.coordinates[i];
+                drawPolygon(polyCoords);
+            }
+        }
+        else if(geom.type === 'Polygon') {
+            drawPolygon(geom.coordinates);
+        }
+    }
+
+    function drawPolygon(polyCoords) {
+        for(var i = 0; i < polyCoords.length; i++) {
+            var coords = polyCoords[i];
+            drawPolyCoords(coords);
+        }
+    }
+
+    function drawPolyCoords(coords) {
+        context.beginPath();
+        var firstCoord = coords[0];
+        var projectedFirstCoord = projection(firstCoord);
+        if(!projectedFirstCoord) return;
+        context.moveTo(projectedFirstCoord[0], projectedFirstCoord[1]);
+        for(var j = 1; j < coords.length; j++) {
+            var coord = coords[j];
+            var projected = projection(coord);
+            context.lineTo(projected[0], projected[1]);
+        }
+        context.fill();
+        context.stroke();
     }
 
     function getMapMode() {
@@ -621,19 +669,19 @@
         return 'gray';
     }
 
-    function interpolateZoom(translate, scale) {
+    /*function interpolateZoom(translate, scale) {
         var self = this;
         return d3.transition().duration(350).tween("zoom", function () {
             var iTranslate = d3.interpolate(zoom.translate(), translate),
                     iScale = d3.interpolate(zoom.scale(), scale);
             return function (t) {
                 zoom
-                        .scale(iScale(t))
-                        .translate(iTranslate(t));
+                    .scale(iScale(t))
+                    .translate(iTranslate(t));
                 move();
             };
         });
-    }
+    }*/
 
     function zoomClick() {
         var clicked = d3.event.target,
@@ -661,13 +709,25 @@
         view.x += center[0] - l[0];
         view.y += center[1] - l[1];
 
-        interpolateZoom([view.x, view.y], view.k);
+        zoom.translate([view.x, view.y]);
+        zoom.scale(view.k);
+        move();
+
+        //interpolateZoom([view.x, view.y], view.k);
     }
 
     function move() {
-        d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
+        /*d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
         g.style("stroke-width", 1 / zoom.scale())
-                .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+                .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");*/
+        var zoomTranslation = zoom.translate();
+        projection
+            .scale(1000 * zoom.scale())
+            .translate([width / 2 + zoomTranslation[0], height / 2 + zoomTranslation[1]]);
+        context.clearRect(0, 0, width, height);
+        drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
+        drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
+        drawStates(us, us.objects.states);
     }
 
     function resizeStateBorder() {
