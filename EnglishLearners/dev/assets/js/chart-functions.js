@@ -1111,7 +1111,7 @@ function smBarChart() {
 			.append("div")
 				.attr("class", "smChartDiv")
 				.attr("width", width)
-				.attr("max-width", width)
+				//.style("max-width", width)
 				.style("display", "inline-block");
 
 		chartDivs.append("div")
