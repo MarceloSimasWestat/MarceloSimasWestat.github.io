@@ -1063,7 +1063,7 @@ function smBarChart() {
 
 		// margins; adjust width and height to account for margins
 
-		var width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+		var width = Math.floor(parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow);
 
 		function checkMinWidth() {
 			if (width < 275) { width = 275; }
@@ -1261,7 +1261,7 @@ function smBarChart() {
 
 			// update width
 
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+			width = Math.floor(parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow);
 
 			checkMinWidth();
 
