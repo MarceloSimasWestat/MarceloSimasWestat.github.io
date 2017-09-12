@@ -1063,7 +1063,7 @@ function smBarChart() {
 
 		// margins; adjust width and height to account for margins
 
-		var width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+		var width = Math.floor(parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow);
 
 		function checkMinWidth() {
 			if (width < 275) { width = 275; }
@@ -1099,7 +1099,8 @@ function smBarChart() {
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID)
-			.attr("width", width);
+			.attr("width", width)
+			.style("text-align", "center");
 
 		dom.append("p");
 
@@ -1110,13 +1111,23 @@ function smBarChart() {
 			.append("div")
 				.attr("class", "smChartDiv")
 				.attr("width", width)
-				.attr("max-width", width)
+				//.style("max-width", width)
 				.style("display", "inline-block");
 
 		chartDivs.append("div")
 			.attr("class", "smTitleDiv")
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) { return d.key; });
+
+		chartDivs.append("div")
+			.attr("class", "smSubTitleDiv")
+			.style("color", function(d) { return color(d.key); })
+			.text(function(d) {
+
+				if (d.key == "All students") { return "% of all students in each concentration category"; }
+				else { return "% of " + d.key + " in each concentration category"; };
+
+			});
 
 		var svg = chartDivs.append("svg")
 			.data(dataNest)
@@ -1242,7 +1253,7 @@ function smBarChart() {
 
 		// add space below charts
 
-		dom.append("p");
+		chartDivs.append("p");
 
 		// resize
 
@@ -1250,7 +1261,7 @@ function smBarChart() {
 
 			// update width
 
-			width = parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow;
+			width = Math.floor(parseInt(d3.select("#" + sectionID).style("width"), 10)/chartsPerRow);
 
 			checkMinWidth();
 
