@@ -5418,6 +5418,12 @@ button:hover,
   text-align: center;
 }
 
+.smChartDiv .smSubTitleDiv {
+  font: normal 13px Karla;
+  /*font-weight: bold;*/
+  text-align: center;
+}
+
 .smBarChart .axis path,
 .smBarChart .axis line {
 	fill: none;
