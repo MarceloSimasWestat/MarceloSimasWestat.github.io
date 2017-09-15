@@ -5477,21 +5477,6 @@ button:hover,
 
 /*D3 Map styling*/
 
-#mapWrapper .state{
-    fill: none;
-    stroke: #fff;
-    stroke-linejoin: round;
- }
-
-#mapWrapper .overlay {
-    fill: none;
-    pointer-events: all;
-}
-
-#mapWrapper h3 {
-    color: black;
-}
-
 .districtTooltip, .phaTooltip {
     position: absolute;
     text-align: left;
@@ -5533,20 +5518,32 @@ button:hover,
     color: #979797;
 }
 
+/* Map Wrapper styleing */
+
+#mapWrapper {
+    height: 100%;
+}
+
+#mapWrapper h3 {
+    color: black;
+}
+
+#mapWrapper .state {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+ }
+
 #mapWrapper .overlay {
     fill: none;
     pointer-events: all;
 }
 
-#mapWrapper h3.name, h3.stateName{
+#mapWrapper h3.name, h3.stateName, h3#legend {
     color: rgba(26,28,32,0.90);
     font-family: Karla, Helvetica, sans-serif;
     text-align: right;
     font-weight: bold;
-}
-
-#mapWrapper{
-    height: 100%;
 }
 
 #mapWrapper .legend {
