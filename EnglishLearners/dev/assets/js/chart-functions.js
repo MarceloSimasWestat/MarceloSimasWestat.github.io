@@ -1124,8 +1124,12 @@ function smBarChart() {
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) {
 
-				if ((d.key == "All students") || (d.key == "Schools")) { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
-				else { return "% of " + d.key + " in each concentration category"; };
+				if (d.key == "LEAs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each concentration category"; }
+				if (d.key == "ELs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each LEA category"; }
+				if (d.key == "All students" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key.toLowerCase() + " in each LEA category"; }
+				if (d.key == "Schools" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
+				if (d.key == "ELs" && d.values[0].chartlevel == "Schools") { return "% of " + d.key + " in each school category"; }
+				if (d.key == "All students" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each school category"; }
 
 			});
 
