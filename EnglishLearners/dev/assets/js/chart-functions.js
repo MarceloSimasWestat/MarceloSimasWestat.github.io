@@ -2492,9 +2492,21 @@ function dotTwo() {
 
 		});
 
+		var tipDefs = d3.tip()
+			.attr("class", "d3-tip")
+			.style("max-width", "300px")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) {
+
+			return d.definition;
+
+		});
+
 		svg.call(tipMale);
 		svg.call(tipFemale);
 		svg.call(tipLine);
+		svg.call(tipDefs);
 
 		// axis scales and axes
 
@@ -2731,6 +2743,11 @@ function dotTwo() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
+
+		svg.selectAll(".y.axis .tick")
+			.data(data)
+			.on("mouseover", tipDefs.show)
+			.on("mouseout", tipDefs.hide);
 
 		// notes
 
