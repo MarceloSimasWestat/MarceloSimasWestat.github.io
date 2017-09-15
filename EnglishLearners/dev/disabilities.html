@@ -469,7 +469,7 @@
     				/*var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
             var chart1_1 = dotTwo().data(data1_1).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1").title("More than 75 percent of ELs were Hispanic; in comparison, only 25 percent of all students were Hispanic.").altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.");
             var chart1_2 = colChart().data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("For all students and ELs, the percentage of students with disabilities is about 13 percent.").altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students."); */
-            var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
+            var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").catdefs(1).xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
               .title("Nearly 50 percent of ELs with disabilities are categorized as having a specific learning disability, compared to nearly 38 percent of non-ELs with disabilities.")
               .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.")
               .notes("Users can hover over the disability category label for the definition for each disability category.");
@@ -530,7 +530,7 @@
 
     <!-- Sankey chart -->
 
-    <script>
+    <!--<script>
 
       d3.tsv("assets/data/sankey_disabilities.tsv", function (error, data) {
         if (error) { console.log(error); }
@@ -553,7 +553,7 @@
 
       }});
 
-    </script>
+    </script>-->
 
 	<!-- Map -->
 

@@ -2403,6 +2403,7 @@ function dotTwo() {
 		marginBottom = 45,
 		dotSize = 4,
 		animateTime = 1000,
+		catdefs = 0,
 		group1 = [],
 		group2 = [],
 		xAxisLabel = [],
@@ -2494,14 +2495,10 @@ function dotTwo() {
 
 		var tipDefs = d3.tip()
 			.attr("class", "d3-tip")
-			.style("max-width", "300px")
-			.direction("n")
-			.offset([-10, 0])
-			.html(function(d) {
-
-			return d.definition;
-
-		});
+			.style("max-width", "400px")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {	return d.definition; });
 
 		svg.call(tipMale);
 		svg.call(tipFemale);
@@ -2744,11 +2741,18 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-		svg.selectAll(".y.axis .tick")
-			.data(data)
-			.on("mouseover", tipDefs.show)
-			.on("mouseout", tipDefs.hide);
+		function catDefTips() {
+			if (catdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.data(data)
+					.on("mouseover", tipDefs.show)
+					.on("mouseout", tipDefs.hide);
+			}
+			else if (catdefs == 0) { };
+		};
 
+		catDefTips();
+		
 		// notes
 
 		function writeNotes() {
@@ -2960,6 +2964,14 @@ function dotTwo() {
 
 		if (!arguments.length) return animateTime;
 		animateTime = value;
+		return chart;
+
+	};
+
+	chart.catdefs = function(value) {
+
+		if (!arguments.length) return catdefs;
+		catdefs = value;
 		return chart;
 
 	};
