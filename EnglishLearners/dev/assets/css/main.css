@@ -5488,6 +5488,10 @@ button:hover,
     pointer-events: all;
 }
 
+#mapWrapper h3 {
+    color: black;
+}
+
 .districtTooltip, .phaTooltip {
     position: absolute;
     text-align: left;
