@@ -1045,8 +1045,10 @@ function smBarChart() {
 		barWidth = 15,
 		chartsPerRow = 3, // Charts per row
 		animateTime = 1000,
+		catdefs = 0,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1124,8 +1126,12 @@ function smBarChart() {
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) {
 
-				if ((d.key == "All students") || (d.key == "Schools")) { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
-				else { return "% of " + d.key + " in each concentration category"; };
+				if (d.key == "LEAs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each concentration category"; }
+				if (d.key == "ELs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each LEA category"; }
+				if (d.key == "All students" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key.toLowerCase() + " in each LEA category"; }
+				if (d.key == "Schools" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
+				if (d.key == "ELs" && d.values[0].chartlevel == "Schools") { return "% of " + d.key + " in each school category"; }
+				if (d.key == "All students" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each school category"; }
 
 			});
 
@@ -1152,7 +1158,15 @@ function smBarChart() {
 
 		});
 
+		var tipDefs = d3.tip()
+			.attr("class", "d3-tip")
+			.style("max-width", "400px")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {	return d.definition; });
+
 		svg.call(tipBar);
+		svg.call(tipDefs);
 
 		// axis scales
 
@@ -1250,6 +1264,33 @@ function smBarChart() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
+
+		function catDefTips() {
+			if (catdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.data(function(d) { return d.values; })
+					.on("mouseover", tipDefs.show)
+					.on("mouseout", tipDefs.hide);
+			}
+			else if (catdefs == 0) { };
+		};
+
+		catDefTips();
+
+		// notes
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
 
 		// add space below charts
 
@@ -1357,6 +1398,14 @@ function smBarChart() {
 
 	};
 
+	chart.catdefs = function(value) {
+
+		if (!arguments.length) return catdefs;
+		catdefs = value;
+		return chart;
+
+	};
+
 	chart.barWidth = function(value) {
 
 		if (!arguments.length) return barWidth;
@@ -1385,6 +1434,14 @@ function smBarChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
 		return chart;
 
 	};
@@ -1425,18 +1482,18 @@ function smBarChart() {
 
 		if (!arguments.length) return sectionID;
 		sectionID = value;
-		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+		//width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 		return chart;
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
+    if (!arguments.length) return data;
+    data = value;
+    return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -2399,6 +2456,7 @@ function dotTwo() {
 		marginBottom = 45,
 		dotSize = 4,
 		animateTime = 1000,
+		catdefs = 0,
 		group1 = [],
 		group2 = [],
 		xAxisLabel = [],
@@ -2488,9 +2546,17 @@ function dotTwo() {
 
 		});
 
+		var tipDefs = d3.tip()
+			.attr("class", "d3-tip")
+			.style("max-width", "400px")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {	return d.definition; });
+
 		svg.call(tipMale);
 		svg.call(tipFemale);
 		svg.call(tipLine);
+		svg.call(tipDefs);
 
 		// axis scales and axes
 
@@ -2728,6 +2794,18 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
+		function catDefTips() {
+			if (catdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.data(data)
+					.on("mouseover", tipDefs.show)
+					.on("mouseout", tipDefs.hide);
+			}
+			else if (catdefs == 0) { };
+		};
+
+		catDefTips();
+
 		// notes
 
 		function writeNotes() {
@@ -2939,6 +3017,14 @@ function dotTwo() {
 
 		if (!arguments.length) return animateTime;
 		animateTime = value;
+		return chart;
+
+	};
+
+	chart.catdefs = function(value) {
+
+		if (!arguments.length) return catdefs;
+		catdefs = value;
 		return chart;
 
 	};

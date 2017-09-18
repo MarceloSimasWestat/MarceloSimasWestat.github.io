@@ -5271,7 +5271,7 @@ button:hover,
 	padding: 13px;
 	background: rgba(26, 28, 32, 0.85);
 	color: #fff;
-	width: auto;
+	/*width: auto;*/
 	/*padding: 10px;*/
 }
 
@@ -5477,17 +5477,6 @@ button:hover,
 
 /*D3 Map styling*/
 
-#mapWrapper .state{
-    fill: none;
-    stroke: #fff;
-    stroke-linejoin: round;
- }
-
-#mapWrapper .overlay {
-    fill: none;
-    pointer-events: all;
-}
-
 .districtTooltip, .phaTooltip {
     position: absolute;
     text-align: left;
@@ -5529,20 +5518,32 @@ button:hover,
     color: #979797;
 }
 
+/* Map Wrapper styleing */
+
+#mapWrapper {
+    height: 100%;
+}
+
+#mapWrapper h3 {
+    color: black;
+}
+
+#mapWrapper .state {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+ }
+
 #mapWrapper .overlay {
     fill: none;
     pointer-events: all;
 }
 
-#mapWrapper h3.name, h3.stateName{
+#mapWrapper h3.name, h3.stateName, h3#legend {
     color: rgba(26,28,32,0.90);
     font-family: Karla, Helvetica, sans-serif;
     text-align: right;
     font-weight: bold;
-}
-
-#mapWrapper{
-    height: 100%;
 }
 
 #mapWrapper .legend {
@@ -5713,8 +5714,34 @@ div.legendButton{
     color: rgba(26,28,32,0.90);
 }
 
+
+#selectElementary {
+    /*font-family: Inconsolata;*/
+    color: white;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #808080;
+    background: #1A1C20;
+}
+
 #selectSecondary {
+    /*font-family: Inconsolata;*/
+    color: rgba(26,28,32,0.90);
+    list-style: none;
     margin: 10px 0 0 0;
+    padding: 4px 0;
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #808080;
 }
 
 .districtButtonSelected{
