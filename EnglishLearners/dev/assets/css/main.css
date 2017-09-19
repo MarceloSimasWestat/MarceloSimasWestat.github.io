@@ -20,6 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
     line-height: 1;
+    -ms-overflow-style: scrollbar;
 }
 
 ol, ul {
@@ -1661,9 +1662,7 @@ body {
     width: device-width;
 }
 
-body {
-    -ms-overflow-style: scrollbar;
-}
+
 
 @media screen and (max-width: 480px) {
 
@@ -5616,6 +5615,14 @@ button:hover,
     align-items: flex-end;
 }
 
+.mapControlsContainer {
+    border: 1px dashed red;
+}
+
+.mapControlsContainer #selectDistrictType {
+    flex-direction: row;
+}
+
 #mapWrapper #legend #selectDistrictType {
     width: 310px;
     float: left;
@@ -5642,6 +5649,10 @@ button:hover,
     vertical-align: top;
     overflow: hidden;
 }
+
+    #map.mapEnglishLearners {
+        padding-bottom: 50%;
+    }
 
 .svg-content-responsive {
     display: inline-block;
