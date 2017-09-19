@@ -1,4 +1,4 @@
-// Sankey chartID
+// Sankey chart
 
 function sankeyChart() {
 
@@ -15,6 +15,7 @@ function sankeyChart() {
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -211,7 +212,7 @@ function sankeyChart() {
 	 			.attr("aria-hidden", "true")
 	 			.text("STUDENTS WITH DISABILITIES IN 2014-15");
 
-				// notes
+				// notes and sources
 
 				function writeNotes() {
 					if (!notes) {}
@@ -219,12 +220,30 @@ function sankeyChart() {
 
 						d3.select("#"+ sectionID).append("div")
 								.attr("id", "notes" + chartID)
-								.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+								.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
 					};
 				};
 
 				writeNotes();
+
+				function writeSource() {
+					if (!source) {}
+					else {
+						if (!notes) {
+								d3.select("#"+ sectionID).append("div")
+									.attr("id", "notes" + chartID)
+									.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+						}
+						else {
+							d3.select("#"+ sectionID).append("div")
+								.attr("id", "notes" + chartID)
+								.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+						};
+					};
+				};
+
+				writeSource();
 
 			 // resize
 
@@ -338,6 +357,14 @@ function sankeyChart() {
 
 	};
 
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
 	chart.caption = function(value) {
 
 		if (!arguments.length) return caption;
@@ -446,10 +473,10 @@ function counter() {
 			.style("width", "70%")
 			.style("height", "200px")
 			.style("display", "inline-block")
-			.style("margin-left", "20px")
+			.style("margin-left", "10px")
 			.append("div")
 				.attr("id", "cd2_right")
-				.style("width", "200px")
+				//.style("width", "600px")
 				.style("height", "200px")
 				.style("display", "table-row");
 
@@ -502,7 +529,7 @@ function counter() {
 				.attr("id", "donutText")
 				.style("display", "table-cell")
 				.style("vertical-align", "middle")
-				.style("margin-left", "20px")
+				.style("margin-left", "0px")
 				.style("width", "70%")
 				.style("height", "200px")
 				.style("text-align", "left")
@@ -510,11 +537,11 @@ function counter() {
 				//.style("display", "inline-block");
 
 		donutText.append("text")
-			.html("<p style='font-size: 19px;'>ELs represent</p><h2></h2>");
+			.html("<p style='font-size: 18px;'>ELs represent</p><h2></h2>");
 
 		donutText.select("h2")
 			.append("text")
-			.text(function(d) { return formatPercent(d.pct) + " of the total student population."});
+			.html(function(d) { return formatPercent(d.pct) + " of the total student population.<sup style='font-size: 13px; vertical-align:top;'>a, b</sup></div>"; })
 
 		// counter function
 
@@ -704,6 +731,8 @@ function barChart() {
 		animateTime = 1000,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -857,6 +886,39 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
+			// notes and sources
+
+			function writeNotes() {
+				if (!notes) {}
+				else {
+
+					d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+				};
+			};
+
+			writeNotes();
+
+			function writeSource() {
+				if (!source) {}
+				else {
+					if (!notes) {
+							d3.select("#"+ sectionID).append("div")
+								.attr("id", "notes" + chartID)
+								.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+					}
+					else {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+					};
+				};
+			};
+
+			writeSource();
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -913,13 +975,13 @@ function barChart() {
 
 	};
 
-    chart.height = function(value) {
+  chart.height = function(value) {
 
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
 
-    };
+  };
 
 	chart.marginTop = function(value) {
 
@@ -977,6 +1039,22 @@ function barChart() {
 
 	};
 
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
 	chart.caption = function(value) {
 
 		if (!arguments.length) return caption;
@@ -1018,13 +1096,13 @@ function barChart() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -1049,6 +1127,7 @@ function smBarChart() {
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1285,12 +1364,30 @@ function smBarChart() {
 
 				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
 			};
 		};
 
 		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
 
 		// add space below charts
 
@@ -1446,6 +1543,14 @@ function smBarChart() {
 
 	};
 
+	chart.source = function(value) {
+
+			if (!arguments.length) return source;
+			source = value;
+			return chart;
+
+		};
+
 	chart.caption = function(value) {
 
 		if (!arguments.length) return caption;
@@ -1515,6 +1620,8 @@ function colChart() {
 		colWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1678,6 +1785,39 @@ function colChart() {
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
 
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -1799,6 +1939,22 @@ function colChart() {
 
 	};
 
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -1864,6 +2020,8 @@ function columnThree() {
 		altText1 = "Fill in alt text for screen readers! Use .altText1().",
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -2103,6 +2261,39 @@ function columnThree() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
 
 		// update functions
 
@@ -2398,6 +2589,22 @@ function columnThree() {
 
 	};
 
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -2463,6 +2670,7 @@ function dotTwo() {
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -2814,12 +3022,30 @@ function dotTwo() {
 
 				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
 			};
 		};
 
 		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
 
 		// resize
 
@@ -3077,6 +3303,14 @@ function dotTwo() {
 
 	};
 
+	chart.source = function(value) {
+
+			if (!arguments.length) return source;
+			source = value;
+			return chart;
+
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -3143,6 +3377,8 @@ function groupedBar() {
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
 		altText4 = "Fill in alt text for screen readers! Use .altText4().",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -3494,6 +3730,39 @@ function groupedBar() {
 			.attr("aria-hidden", "true")
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
 
 		// update functions
 
@@ -3880,6 +4149,22 @@ function groupedBar() {
 
 	};
 
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+		chart.source = function(value) {
+
+			if (!arguments.length) return source;
+			source = value;
+			return chart;
+
+		};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -3941,6 +4226,8 @@ function groupedBarDiv() {
 		barWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -4233,6 +4520,39 @@ function groupedBarDiv() {
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -4418,6 +4738,22 @@ function groupedBarDiv() {
 
 	};
 
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -4479,6 +4815,7 @@ function stackedBar() {
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -4824,12 +5161,30 @@ function stackedBar() {
 
 				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>");
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
 			};
 		};
 
 		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
 
 		// sort by state
 
@@ -5057,6 +5412,14 @@ function stackedBar() {
 
 	};
 
+	chart.source = function(value) {
+
+			if (!arguments.length) return source;
+			source = value;
+			return chart;
+
+	};
+
 	chart.containerID = function(value) {
 
 		if (!arguments.length) return containerID;
@@ -5117,6 +5480,8 @@ function multiBar() {
 		barWidth = 15,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
+		notes = "",
+		source = "",
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -5334,6 +5699,39 @@ function multiBar() {
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				if (!notes) {
+						d3.select("#"+ sectionID).append("div")
+							.attr("id", "notes" + chartID)
+							.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				}
+				else {
+					d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<br/><span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				};
+			};
+		};
+
+		writeSource();
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -5478,6 +5876,22 @@ function multiBar() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
 		return chart;
 
 	};
