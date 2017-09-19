@@ -41,6 +41,8 @@
     <script src="assets/js/graph-scroll.js"></script>
     <script src="assets/js/queue.v1.min.js"></script>
     <script src="assets/js/topojson.v1.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script src="https://unpkg.com/topojson-simplify@3"></script>
 
 </head>
 <body>
@@ -310,7 +312,9 @@
         primary = _primary;
         secondary = _secondary;
         extra = _extra;
-        primaryFeatures = topojson.feature(primary, primary.objects.medium_G5420_G5400).features;
+        var preSimplifiedPrimary = topojson.presimplify(primary);
+        var simplifiedPrimary = topojson.simplify(preSimplifiedPrimary, .1);
+        primaryFeatures = topojson.feature(simplifiedPrimary, primary.objects.medium_G5420_G5400).features;
 
         canvas.attr("cursor","pointer");
 
@@ -438,6 +442,7 @@
                 d3.select(this).classed("selected", false);
                 tooltip.transition().duration(300).style("opacity", 0);
             });*/
+        var start = new Date();
         for(var i = 0; i < primaryFeatures.length; i++) {
             var feature = primaryFeatures[i];
             context.fillStyle = colorFunc(feature);
@@ -445,6 +450,7 @@
             context.strokeStyle = 'white';
             drawGeometry(feature.geometry);
         }
+        console.log(new Date() - start);
     }
 
     function drawGeometry(geom) {
