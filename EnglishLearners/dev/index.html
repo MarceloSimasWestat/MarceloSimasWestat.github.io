@@ -179,6 +179,9 @@
                 <div style="margin-bottom: 1.5em" class="chart"></div>
                 <div></div>
                 <div id="ch1_1"></div>
+                <p style="margin-top:1.5em;">
+                    Hispanic or Latino students represent more than three times the share of ELs, compared to all students.
+                </p>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
                 </p>
@@ -212,12 +215,12 @@
                 </div>
                 <div style="margin-bottom: 1.5em" class="chart"></div>
                 <div></div>
-                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                <p class="title" style="font-size: 24px; margin-top:1.5em;">
                     ELs are more heavily concentrated in schools and districts with their English learner peers.
                 </p>
                 <div id="ch2_1"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    Seventy-two percent of all districts have ELs enrolled. However, in just 25 percent of districts do ELs comprise at least 5 percent of enrollment. These districts enrolled 91 percent of all ELs in 2014-15.
+                    Approximately 72 percent of all districts have ELs enrolled. However, in just 25 percent of districts do ELs comprise at least 5 percent of enrollment. These districts enrolled 91 percent of all ELs in 2014-15.
                 </p>
                 <div id="ch2_2"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
@@ -537,28 +540,28 @@
                 var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
                 var chart1_1 = dotTwo().data(data1_1).marginLeft(120).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .group1("All students").group2("ELs")
-                  .title("Hispanic or Latino students represent more than three times the share of ELs, compared to all students.")
+                  .title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.")
                   .altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017.</br></br>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
+                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
                 var chart1_2 = colChart().data(data1_2).marginBottom(35).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
                   .title("ELs are about as likely to be classified as a student with a disability as all students.")
                   .altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017.</br></br>U.S. Department of Education, Digest of Education Statistics, 2016. Downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp' target='_blank'>https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp</a>");
+                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, Digest of Education Statistics, 2016. Downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp' target='_blank'>https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp</a>");
                 var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").catdefs(1).xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
                   .title("ELs with disabilities are more likely to be classified as having a specific learning disability or speech or language impairment.")
                   .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.")
-                  .notes("Users can hover over the disability category label for the definition for each disability category. The percentages for intellectual disability are 7.0% for ELs (40,079 students) and 6.9% for non-ELs (358,528 students).<br/><br/>Definitions based on 34 CFR §300.8, as they appear in <em>IDEA Part B Child Count and Educational Environments for School Year 2014-2015</em>. Retrieved September 15, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html'>https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html</a>.")
+                  .notes("Users can hover over the disability category label for the definition for each disability category. The percentages for intellectual disability are 7.0% for ELs (40,079 students) and 6.9% for non-ELs (358,528 students). Definitions based on 34 CFR §300.8, as they appear in <em>IDEA Part B Child Count and Educational Environments for School Year 2014-2015</em>. Retrieved September 15, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html'>https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html</a>.")
                   .source("U.S. Department of Education, &quot;Number and percent of children ages 3 through 5 and students ages 6 through 21 served under IDEA, Part B, by LEP status and state.),&quot; 2014-15. Downloaded August 3, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/static-tables/2014-2015/part-b/child-count-and-educational-environment/1415-bchildcountandedenvironment-4.xlsx' target='_blank'>https://www2.ed.gov/programs/osepidea/618-data/static-tables/2014-2015/part-b/child-count-and-educational-environment/1415-bchildcountandedenvironment-4.xlsx</a>.");
                 var chart2_1 = smBarChart().data(data2_1).chartsPerRow(3).marginLeft(80).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").catdefs(1)
                   .title("The 7 percent of LEAs where ELs comprise a high proportion (20 percent or more) of enrollment account for 46 percent of all ELs in the country but only 15 percent of all students.")
                   .altText("These charts display the percentage of school districts, ELs, and all students within each category of EL concentration.")
                   .notes("Users can hover over the concentration category labels for the definition for each concentration category. Because of data quality concerns, this analysis used Rhode Island’s and Vermont’s (non-public) school-level EL enrollment aggregated to the LEA-level. Excludes 11 New Jersey LEAs with more than 100 percent of their students reported as ELs.")
-                  .source("U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;Local Education Agency (School District) Universe Survey Data,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/pubagency.asp' target='_blank'>https://nces.ed.gov/ccd/pubagency.asp</a>.<br/></br/>U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. LEA File C141, LEP Enrolled. Extracted March 31, 2017.");
+                  .source("U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;Local Education Agency (School District) Universe Survey Data,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/pubagency.asp' target='_blank'>https://nces.ed.gov/ccd/pubagency.asp</a>.U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. LEA File C141, LEP Enrolled. Extracted March 31, 2017.");
                 var chart2_2 = smBarChart().data(data2_2).chartsPerRow(3).marginLeft(80).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").catdefs(1)
                   .title("The 15 percent of schools where ELs comprise a high proportions (20 percent or more) of enrollment account for 61 percent of all ELs but only 16 percent of all students.")
                   .altText("These charts display the percentage of schools, ELs, and all students within each category of EL concentration.")
                   .notes("Users can hover over the concentration category labels for the definition for each concentration category. Use caution when interpreting these data. The collection of EL enrollment at the school level is new (introduced in 2013-14).")
-                  .source("U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;Public Elementary/Secondary School Universe Survey Data,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/pubschuniv.asp' target='_blank'>https://nces.ed.gov/ccd/pubschuniv.asp</a>.<br/></br/>U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. School File C141, LEP Enrolled. Extracted March 31, 2017.");
+                  .source("U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;Public Elementary/Secondary School Universe Survey Data,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/pubschuniv.asp' target='_blank'>https://nces.ed.gov/ccd/pubschuniv.asp</a>.U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. School File C141, LEP Enrolled. Extracted March 31, 2017.");
                 //var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1").title("For more than 75 percent of ELs, Spanish is the most commonly spoken language at home.").altText("This chart displays the five languages most commonly spoken at home for ELs.");
 
                 d3.select("#counter").call(counterChart);
