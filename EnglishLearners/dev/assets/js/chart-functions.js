@@ -510,11 +510,11 @@ function counter() {
 				//.style("display", "inline-block");
 
 		donutText.append("text")
-			.html("<p style='font-size: 19px;'>Among those,</p><h2></h2>");
+			.html("<p style='font-size: 19px;'>ELs represent</p><h2></h2>");
 
 		donutText.select("h2")
 			.append("text")
-			.text(function(d) { return formatPercent(d.pct) + " were English learners (ELs)."});
+			.text(function(d) { return formatPercent(d.pct) + " of the total student population."});
 
 		// counter function
 
@@ -524,7 +524,7 @@ function counter() {
 			.append("text")
 				.text(counterValue);
 
-		$("#overCount").append("<br><span>students were enrolled in schools in 2014-15.</span>");
+		$("#overCount").append("<br><span>English Learners (ELs) were enrolled in schools in 2014-15.</span>");
 
 		function countUp(text, duration) {
 			text.transition()
@@ -533,7 +533,7 @@ function counter() {
 				.tween("text", function() {
 
 					var	formatNumber = d3.format(",f");
-					var i = d3.interpolate(counterValue, 50000000);
+					var i = d3.interpolate(counterValue, 4800000);
 
 					return function(t) {
 						d3.select(this).text(formatNumber(i(t)));
@@ -1211,7 +1211,7 @@ function smBarChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF TOTAL IN 2014-15");
+			.text(function(d) { return "% OF " + d.key.toUpperCase() + " IN 2014-15"; });
 
 		// draw bars
 
