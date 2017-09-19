@@ -551,7 +551,7 @@ function counter() {
 			.append("text")
 				.text(counterValue);
 
-		$("#overCount").append("<br><span>English Learners (ELs) were enrolled in schools in 2014-15.</span>");
+		$("#overCount").append("<br><span>English Learners (ELs) were enrolled in schools in 2014-15.<sup>a</sup></span>");
 
 		function countUp(text, duration) {
 			text.transition()
