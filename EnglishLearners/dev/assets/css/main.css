@@ -5619,7 +5619,7 @@ button:hover,
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px dashed aqua;
+    border: 1px dashed green;
 }
 
     .mapControlsContainer .zoomButton {
@@ -5633,6 +5633,10 @@ button:hover,
         margin: 0;
         align-items: center;
     }
+
+        .mapControlsContainer #selectDistrictType #selectSecondary {
+            margin: 0 0 0 15px;
+        }
 
 #mapWrapper #legend #selectDistrictType {
     width: 310px;
@@ -5661,9 +5665,9 @@ button:hover,
     overflow: hidden;
 }
 
-    #map.mapEnglishLearners {
-        padding-bottom: 50%;
-    }
+.mapEnglishLearners #map {
+    padding-bottom: 50%;
+}
 
 .svg-content-responsive {
     display: inline-block;
