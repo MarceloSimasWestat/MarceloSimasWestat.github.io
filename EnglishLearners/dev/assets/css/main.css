@@ -5619,14 +5619,20 @@ button:hover,
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px dashed red;
+    border: 1px dashed aqua;
 }
 
-.mapControlsContainer #selectDistrictType {
-    flex-direction: row;
-    width: unset;
-    margin: 0;
-}
+    .mapControlsContainer .zoomButton {
+        position: static;
+        top: auto;
+    }
+
+    .mapControlsContainer #selectDistrictType {
+        flex-direction: row;
+        width: unset;
+        margin: 0;
+        align-items: center;
+    }
 
 #mapWrapper #legend #selectDistrictType {
     width: 310px;
