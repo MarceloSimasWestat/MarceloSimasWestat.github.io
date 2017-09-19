@@ -5795,6 +5795,7 @@ div.legendButton {
     margin: 0;
     position: relative;
     left: -1px;
+    display: inline-block; 
 }
 
 div.disclaimer .legendExplain {
