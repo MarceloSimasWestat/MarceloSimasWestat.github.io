@@ -5616,11 +5616,16 @@ button:hover,
 }
 
 .mapControlsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border: 1px dashed red;
 }
 
 .mapControlsContainer #selectDistrictType {
     flex-direction: row;
+    width: unset;
+    margin: 0;
 }
 
 #mapWrapper #legend #selectDistrictType {
