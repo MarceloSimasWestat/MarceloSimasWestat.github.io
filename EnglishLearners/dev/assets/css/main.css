@@ -5623,9 +5623,10 @@ button:hover,
 
     .mapControlsContainer #selectDistrictType {
         flex-direction: row;
-        width: unset;
+        width: 100%;
         margin: 0;
         align-items: center;
+        justify-content: flex-end;
     }
 
         .mapControlsContainer #selectDistrictType #selectSecondary {
