@@ -4815,7 +4815,8 @@ button.filterButton {
 }
 
 button:hover,
-.filterButton:hover {
+.filterButton:hover,
+.mapButton:hover {
     border-color: #4E75B7 !important;
 }
 
