@@ -254,59 +254,67 @@
 
                         <div id="legend">
                             <h3>Percentage of students who are English learners (2014-15)</h3>
-                            <div class="legendButtonWrapper">
-                                <div data-value="#9e9ac8" class="legendButton">
-                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
-                                        <hr class="verticalLine">
+
+                            <!-- New for Autumn 2017 Map -->
+                            <div id="multiLegendContainer">
+
+                                <div class="legendButtonWrapper">
+                                    <div data-value="#9e9ac8" class="legendButton">
+                                        <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                            <hr class="verticalLine">
+                                        </div>
+                                        <div class="legendText">
+                                            No EL students
+                                        </div>
                                     </div>
-                                    <div class="legendText">
-                                        No EL students
+                                    <div data-value="#756bb1" class="legendButton">
+                                        <div style="background-color: #756bb1;" class="legendButtonColor">
+                                            <hr class="verticalLine">
+                                        </div>
+                                        <div class="legendText">
+                                            Low
+                                            <br>
+                                            (&gt;0% to &lt;5%)
+                                        </div>
                                     </div>
+                                    <div data-value="#54278f" class="legendButton">
+                                        <div style="background-color: #54278f;" class="legendButtonColor">
+                                            <hr class="verticalLine">
+                                        </div>
+                                        <div class="legendText">
+                                            Medium
+                                            <br>
+                                            (5% to &lt; 20%)
+                                        </div>
+                                    </div>
+                                    <div data-value="#340d67" class="legendButton">
+                                        <div style="background-color: #340d67;" class="legendButtonColor">
+                                            <hr class="verticalLine">
+                                        </div>
+                                        <div class="legendText">
+                                            High
+                                            <br>
+                                            (20% or more)
+                                        </div>
+                                    </div>
+                                    <div style="clear: both;"></div>
                                 </div>
-                                <div data-value="#756bb1" class="legendButton">
-                                    <div style="background-color: #756bb1;" class="legendButtonColor">
-                                        <hr class="verticalLine">
+
+                                <div class="innerLegend">
+                                    <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                        <div style="background-color: gray;" class="legendButtonColor">
+                                            <hr class="verticalLine">
+                                        </div>
+                                        <div class="legendText">
+                                            NULL*
+                                        </div>
                                     </div>
-                                    <div class="legendText">
-                                        Low
-                                        <br>
-                                        (&gt;0% to &lt;5%)
-                                    </div>
+                                    <div style="clear: both;"></div>
                                 </div>
-                                <div data-value="#54278f" class="legendButton">
-                                    <div style="background-color: #54278f;" class="legendButtonColor">
-                                        <hr class="verticalLine">
-                                    </div>
-                                    <div class="legendText">
-                                        Medium
-                                        <br>
-                                        (5% to &lt; 20%)
-                                    </div>
-                                </div>
-                                <div data-value="#340d67" class="legendButton">
-                                    <div style="background-color: #340d67;" class="legendButtonColor">
-                                        <hr class="verticalLine">
-                                    </div>
-                                    <div class="legendText">
-                                        High
-                                        <br>
-                                        (20% or more)
-                                    </div>
-                                </div>
-                                <div style="clear: both;"></div>
                             </div>
-                            <div class="innerLegend">
-                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
-                                    <div style="background-color: gray;" class="legendButtonColor">
-                                        <hr class="verticalLine">
-                                    </div>
-                                    <div class="legendText">
-                                        NULL*
-                                    </div>
-                                </div>
-                                <div style="clear: both;"></div>
-                            </div>
+                            <!-- end multiLegendContainer -->
                         </div>
+                        <!-- end legend -->
 
                         <div id="map">
                             <div>

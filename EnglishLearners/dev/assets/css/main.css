@@ -5790,6 +5790,26 @@ div.disclaimer .legendPointer {
     color: #4E75B7;
 }
 
+#multiLegendContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+#multiLegendContainer #legendButtonWrapper {
+    width: unset;
+    border: 1px dotted blue;
+}
+
+#multiLegendContainer #innerLegend {
+    width: unset;
+    border: 1px dashed orange;
+}
+
+
+/* ************************** */
+/*       MEDIA QUERIES        */
+/* ************************** */
+
 @media screen and (max-width: 1260px) {
 
     .legendButtonWrapper div:nth-child(4) .legendText {
