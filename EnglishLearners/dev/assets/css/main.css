@@ -5615,11 +5615,16 @@ button:hover,
     align-items: flex-end;
 }
 
+.mapControlsParent {
+    float: left;
+    width: 100%;
+}
+
 .mapControlsContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px dashed green;
+    /*border: 1px dashed purple;*/
 }
 
     .mapControlsContainer .zoomButton {
@@ -5675,13 +5680,17 @@ button:hover,
     left: 0;
 }
 
+.mapEnglishLearners .svg-content-responsive {
+    top: 50px;
+}
+
 .legendButtonWrapper{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .innerLegend{
@@ -5816,19 +5825,21 @@ div.disclaimer .legendPointer {
     color: #4E75B7;
 }
 
-#multiLegendContainer {
+.legendContainer {
     display: flex;
     flex-direction: row;
+    /*background-color: lightblue;*/ 
 }
 
-#multiLegendContainer #legendButtonWrapper {
-    width: unset;
-    border: 1px dotted blue;
+.legendContainer .legendButtonWrapper {
+    width: 80%;
+    /*border: 1px dotted blue;*/
 }
 
-#multiLegendContainer #innerLegend {
-    width: unset;
-    border: 1px dashed orange;
+.legendContainer .innerLegend {
+    width: 20%;
+    margin-left: 15px;
+    /*border: 1px dashed orange;*/
 }
 
 
