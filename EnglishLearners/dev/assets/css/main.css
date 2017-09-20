@@ -5507,11 +5507,14 @@ button:hover,
 
 #mapWrapper {
     height: 100%;
+    text-align: center;
 }
 
     #mapWrapper h3 {
-        color: black;
+        padding-bottom: 15px;
+        /*color: rgba(26,28,32,0.90);*/
     }
+
 
     #mapWrapper .state {
         fill: none;
@@ -5535,16 +5538,6 @@ button:hover,
         margin: 0 auto 0 auto;
         font-family: Helvetica, sans-serif;
     }
-
-.legend h3 {
-    padding-bottom: 15px;
-    font-family: Inconsolata;
-    font-size: 13px;
-    color: rgba(26,28,32,0.90);
-    text-align: center;
-    margin-bottom: 0;
-    /*margin-left: 20%;*/
-}
 
 .legend ul {
     font-size: 12px;
@@ -5795,7 +5788,7 @@ div.legendButton {
     margin: 0;
     position: relative;
     left: -1px;
-    display: inline-block; 
+    display: inline-block;
 }
 
 div.disclaimer .legendExplain {
