@@ -4990,11 +4990,11 @@ function stackedBar() {
 
 		// draw bars
 
-		var state = svg.selectAll(".state")
+		var state = svg.selectAll(".stateBar")
 			.data(data)
 			.enter()
 				.append("g")
-					.attr("class", "state")
+					.attr("class", "stateBar")
 					.attr("transform", function(d) { return "translate(0," + yScale(d.state) + ")"; });
 
 		state.selectAll(".bar")
@@ -5137,7 +5137,7 @@ function stackedBar() {
 
 			// move things
 
-			svg.selectAll(".state")
+			svg.selectAll(".stateBar")
 				.transition()
 					.duration(animateTime/3)
 					.style("opacity", 0.85)
@@ -5170,7 +5170,7 @@ function stackedBar() {
 
 			// move things
 
-			svg.selectAll(".state")
+			svg.selectAll(".stateBar")
 				.transition()
 					.duration(animateTime/3)
 					.style("opacity", .85)
