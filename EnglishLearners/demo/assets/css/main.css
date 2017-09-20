@@ -20,6 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
     line-height: 1;
+    -ms-overflow-style: scrollbar;
 }
 
 ol, ul {
@@ -525,20 +526,20 @@ body {
 
     #sidebar .socialmedia {
         display: block;
-		opacity: 0;
+        opacity: 0;
     }
 
-	body.loaded #sidebar .socialmedia {
-		opacity: 1;
-		-moz-transition: opacity 0.75s ease;
-		-webkit-transition: opacity 0.75s ease;
-		-ms-transition: opacity 0.75s ease;
-		transition: opacity 0.75s ease;
-		-moz-transition-delay: 1.45s;
+    body.loaded #sidebar .socialmedia {
+        opacity: 1;
+        -moz-transition: opacity 0.75s ease;
+        -webkit-transition: opacity 0.75s ease;
+        -ms-transition: opacity 0.75s ease;
+        transition: opacity 0.75s ease;
+        -moz-transition-delay: 1.45s;
         -webkit-transition-delay: 1.45s;
-		-ms-transition-delay: 1.45s;
-		transition-delay: 1.45s;
-	}
+        -ms-transition-delay: 1.45s;
+        transition-delay: 1.45s;
+    }
 
     footer .socialmedia {
         display: none;
@@ -765,11 +766,11 @@ body {
         margin-left: 8.33333%;
     }
 
-	#sidebar .nav-wrapper {
-		margin: 0 auto;
-		text-align: center;
-		font-size: 90%;
-	}
+    #sidebar .nav-wrapper {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 90%;
+    }
 
     #sidebar .socialmedia {
         display: none;
@@ -1661,9 +1662,7 @@ body {
     width: device-width;
 }
 
-body {
-    -ms-overflow-style: scrollbar;
-}
+
 
 @media screen and (max-width: 480px) {
 
@@ -1700,97 +1699,97 @@ body, input, select, textarea {
 /* Disclaimer */
 
 div.disclaimer {
-	display: table;
-	width: 100%;
-	overflow: hidden;
-	background: #FFF;
-	border-radius: 5px;
-	margin-bottom: 15px;
-	padding: 0;
-}
-
-  div.disclaimer .right  {
-    /*float: right;*/
-	display: table-cell;
-    width: 90%;
-    padding: 1.3em 1.5em 1.3em 1.5em;
-    background: #4E75B7;
-    border-radius: 0px 4px 4px 0px;
-    border: solid 1px rgba(255, 255, 255, 0.15);
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.80);
-    line-height: 1.75;
-  }
-
-  div.disclaimer .left {
-    /*float: left;*/
-    width: 10%;
-    text-align: center;
-    color: #4E75B7;
-  }
-
-  div.disclaimer .icon {
-	display: table-cell flex;
-	vertical-align: middle;
-	text-align: center;
-    position: relative;
-    margin: 0 auto;
-    font-size: 1.25em;
-  }
-
-ul.disclaimer {
-  overflow: hidden;
-  background: #FFF;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  padding: 0;
-}
-
-  ul.disclaimer .right {
-    /*float: right;*/
-    width: 90%;
-    padding: 1.3em 1.5em 1.3em 1.5em;
-    background: #4E75B7;
-    border-radius: 0px 4px 4px 0px;
-    border: solid 1px rgba(255, 255, 255, 0.15);
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.80);
-    line-height: 1.75;
-  }
-
-  ul.disclaimer .left {
-    /*float: left;*/
-    width: 10%;
-    text-align: center;
-    color: #4E75B7;
-  }
-
-  ul.disclaimer li {
+    display: table;
+    width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    background: #FFF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 0;
+}
 
-  ul.disclaimer a {
-    display: block;
-    text-decoration: none;
-    color: #514439;
-  }
-
-    ul.disclaimer a:hover {
-      text-decoration: underline;
+    div.disclaimer .right {
+        /*float: right;*/
+        display: table-cell;
+        width: 90%;
+        padding: 1.3em 1.5em 1.3em 1.5em;
+        background: #4E75B7;
+        border-radius: 0px 4px 4px 0px;
+        border: solid 1px rgba(255, 255, 255, 0.15);
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.80);
+        line-height: 1.75;
     }
 
-  ul.disclaimer .icon {
-    position: relative;
-    margin: auto;
-    font-size: 1.5em;
-  }
+    div.disclaimer .left {
+        /*float: left;*/
+        width: 10%;
+        text-align: center;
+        color: #4E75B7;
+    }
 
-  ul.disclaimer .first {
-    margin-top: 0 !important;
-  }
+    div.disclaimer .icon {
+        display: table-cell flex;
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+        font-size: 1.25em;
+    }
+
+ul.disclaimer {
+    overflow: hidden;
+    background: #FFF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+    ul.disclaimer .right {
+        /*float: right;*/
+        width: 90%;
+        padding: 1.3em 1.5em 1.3em 1.5em;
+        background: #4E75B7;
+        border-radius: 0px 4px 4px 0px;
+        border: solid 1px rgba(255, 255, 255, 0.15);
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.80);
+        line-height: 1.75;
+    }
+
+    ul.disclaimer .left {
+        /*float: left;*/
+        width: 10%;
+        text-align: center;
+        color: #4E75B7;
+    }
+
+    ul.disclaimer li {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ul.disclaimer a {
+        display: block;
+        text-decoration: none;
+        color: #514439;
+    }
+
+        ul.disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+    ul.disclaimer .icon {
+        position: relative;
+        margin: auto;
+        font-size: 1.5em;
+    }
+
+    ul.disclaimer .first {
+        margin-top: 0 !important;
+    }
 
 
 
@@ -1799,11 +1798,11 @@ ul.disclaimer {
 /* Spacing */
 
 .afterHeader {
-  margin-top: 1.5em;
+    margin-top: 1.5em;
 }
 
 .beforeChart {
-  margin-bottom: 3.5em;
+    margin-bottom: 3.5em;
 }
 
 p {
@@ -1842,9 +1841,10 @@ a {
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     border-bottom: dotted 1px rgba(255, 255, 255, 1);
     color: #fff;
-	opacity: 1;
+    opacity: 1;
     text-decoration: none;
 }
+
     a:hover {
         border-bottom-color: transparent;
         color: #ffffff;
@@ -1880,17 +1880,17 @@ h1, h2, h3, h4, h5 {
         text-decoration: none;
     }
 
-    /* Dept Ed only */
-    .line {
-        padding-bottom: 0.35em;
-        border-bottom: solid 2px rgba(255, 255, 255, 0.125);
-    }
+/* Dept Ed only */
+.line {
+    padding-bottom: 0.35em;
+    border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+}
 
-    div.chart {
-        color: #1A1C20;
-        padding-bottom: 0.35em;
-        border-bottom: solid 2px rgba(26, 28, 32, 0.125);
-    }
+div.chart {
+    color: #1A1C20;
+    padding-bottom: 0.35em;
+    border-bottom: solid 2px rgba(26, 28, 32, 0.125);
+}
 
 .barChart-icon {
     height: 2.75em;
@@ -3467,17 +3467,11 @@ table {
 }
 
 .wrapper.style5 {
-
-padding: 0px;
-
-
+    padding: 0px;
 }
 
 .inner.style5 {
-
-padding: 0px;
-
-
+    padding: 0px;
 }
 
 .wrapper.alt {
@@ -3855,17 +3849,17 @@ body.is-ie #sidebar > .inner {
     #sidebar .nav-image img {
         width: 75%;
         margin: 10% 0 15% 0;
-		opacity: 0;
+        opacity: 0;
     }
 
 
 
 body.loaded #sidebar .nav-image img {
-	opacity: 1;
-	-moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
-	-webkit-transition: opacity 0.15s ease, -webkit-transform 0.75s ease;
-	-ms-transition: opacity 0.15s ease, -ms-transform 0.75s ease;
-	transition: opacity 0.15s ease, transform 0.75s ease;
+    opacity: 1;
+    -moz-transition: opacity 0.15s ease, -moz-transform 0.75s ease;
+    -webkit-transition: opacity 0.15s ease, -webkit-transform 0.75s ease;
+    -ms-transition: opacity 0.15s ease, -ms-transform 0.75s ease;
+    transition: opacity 0.15s ease, transform 0.75s ease;
 }
 
 #sidebar nav > ul {
@@ -4186,9 +4180,8 @@ body.loaded #sidebar nav ul li {
 @media screen and (max-width: 736px) {
 
     #intro {
-      background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center scroll;
-
+        background-attachment: scroll;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center scroll;
     }
 }
 
@@ -4222,12 +4215,9 @@ body.loaded #sidebar nav ul li {
 
 
     .image1 {
-      background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center scroll;
-
-
+        background-attachment: scroll;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center scroll;
     }
-
 }
 
 /* Chair + Counter */
@@ -4240,16 +4230,16 @@ body.loaded #sidebar nav ul li {
 
 
 #counter {
-	margin-top: 35%;
+    margin-top: 35%;
 }
 
-	#counter h2 {
+    #counter h2 {
         font-family: KARLA;
         font-weight: normal;
         font-size: 3.5em;
         margin: 0 0 0 0;
-		color: #fff;
-		opacity: 1;
+        color: #fff;
+        opacity: 1;
         line-height: normal;
     }
 
@@ -4262,34 +4252,34 @@ body.loaded #sidebar nav ul li {
     #counter p {
         font-size: 22px;
         line-height: normal;
-		margin: 0 0 0 0;
-		opacity: 1;
+        margin: 0 0 0 0;
+        opacity: 1;
     }
 
-	#counter hr {
-		border: 1px solid #fff;
-		margin: 1.5em 0;
-	}
+    #counter hr {
+        border: 1px solid #fff;
+        margin: 1.5em 0;
+    }
 
 #overCount {
     line-height: 0.7em !important;
 }
 
 .donutCount {
-	font-size: 3.5em;
-	font-family: KARLA;
-	fill: #fff;
-	opacity: 1;
+    font-size: 3.5em;
+    font-family: KARLA;
+    fill: #fff;
+    opacity: 1;
 }
 
 #donutText h2 {
-        font-family: KARLA;
-        font-weight: normal;
-        font-size: 3.5em;
-        margin: 0 0 0 0;
-		color: #fff;
-		opacity: 1;
-        line-height: normal;
+    font-family: KARLA;
+    font-weight: normal;
+    font-size: 3.5em;
+    margin: 0 0 0 0;
+    color: #fff;
+    opacity: 1;
+    line-height: normal;
 }
 
 @media screen and (max-width: 980px) {
@@ -4305,74 +4295,72 @@ body.loaded #sidebar nav ul li {
         line-height: normal;
     }
 
-	.donutCount {
-		font-size: 2em;
-	}
-
+    .donutCount {
+        font-size: 2em;
+    }
 }
 
 @media screen and (max-width: 736px) {
 
 
     #counter h2 {
-      ont-family: KARLA;
-      font-weight: normal;
-      font-size: 1.5em;
+        ont-family: KARLA;
+        font-weight: normal;
+        font-size: 1.5em;
         margin-top: 5%;
     }
 
-	.donutCount {
-		font-size: 1em;
-	}
+    .donutCount {
+        font-size: 1em;
+    }
 
-  	#counter h2 {
-          font-family: KARLA;
-          font-weight: normal;
-          font-size: 2.5em;
-          margin: 0 0 0 0;
-  		color: #fff;
-  		opacity: 1;
-      }
+    #counter h2 {
+        font-family: KARLA;
+        font-weight: normal;
+        font-size: 2.5em;
+        margin: 0 0 0 0;
+        color: #fff;
+        opacity: 1;
+    }
 
-          #counter h2 span {
-              font-size: 19px;
-              font-family: Muli, Helvetica, sans-serif;
-              margin-top: 10px;
-              display: inline-block;
-          }
+        #counter h2 span {
+            font-size: 19px;
+            font-family: Muli, Helvetica, sans-serif;
+            margin-top: 10px;
+            display: inline-block;
+        }
 
-      #counter p {
-          font-size: 19px;
-  		margin: 0 0 0 0;
-  		opacity: 1;
-      }
+    #counter p {
+        font-size: 19px;
+        margin: 0 0 0 0;
+        opacity: 1;
+    }
 
-  	#counter hr {
-  		border: 1px solid #fff;
-  		margin: 1.5em 0;
-  	}
+    #counter hr {
+        border: 1px solid #fff;
+        margin: 1.5em 0;
+    }
 
-  #overCount {
-      line-height: 0.7em !important;
-  }
+    #overCount {
+        line-height: 0.7em !important;
+    }
 
-  .donutCount {
-  	font-size: 3.5em;
-  	font-family: KARLA;
-  	fill: #fff;
-  	opacity: 1;
-  }
+    .donutCount {
+        font-size: 3.5em;
+        font-family: KARLA;
+        fill: #fff;
+        opacity: 1;
+    }
 
-  #donutText h2 {
-          font-family: KARLA;
-          font-weight: normal;
-          font-size: 2.5em;
-          margin: 0 0 0 0;
-  		color: #fff;
-  		opacity: 1;
-          line-height: normal;
-  }
-
+    #donutText h2 {
+        font-family: KARLA;
+        font-weight: normal;
+        font-size: 2.5em;
+        margin: 0 0 0 0;
+        color: #fff;
+        opacity: 1;
+        line-height: normal;
+    }
 }
 
 /*
@@ -4715,58 +4703,54 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center fixed;
-      background-size: cover;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center fixed;
+        background-size: cover;
     }
 
     .image1 {
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center fixed;
-      background-size: cover;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center fixed;
+        background-size: cover;
     }
 
 
-@media screen and (max-width: 736px) {
+    @media screen and (max-width: 736px) {
 
-  #intro {
-    background-attachment: scroll;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center scroll;
+        #intro {
+            background-attachment: scroll;
+            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center scroll;
+        }
 
-  }
-
-    .image1 {
-      background-attachment: scroll;
-      background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center scroll;
-
-
+        .image1 {
+            background-attachment: scroll;
+            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center scroll;
+        }
     }
-
-}
 }
 
 /* Styling for chart area links */
 
 .chart a {
-	-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    -moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
     -webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
     -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     text-decoration: none;
-	color: #000;
-	opacity: 1;
-	border-bottom: dotted 1px rgba(23, 26, 29, 1);
+    color: #000;
+    opacity: 1;
+    border-bottom: dotted 1px rgba(23, 26, 29, 1);
 }
 
-	.chart a:hover {
+    .chart a:hover {
         border-bottom-color: transparent;
         color: rgba(23, 26, 29, 1);
-	}
+    }
 
 #maplegend {
     max-width: 375px;
     display: inline;
 }
 
-.phaPoints{
+.phaPoints {
     fill: white;
     stroke: black;
 }
@@ -4775,332 +4759,333 @@ ul.callout li {
 /* Lower res images will still show because of classes defined earlier */
 
 footer .socialmedia {
-	display: none;
+    display: none;
 }
 
 footer .footer-image {
-	display: none;
+    display: none;
 }
 
 /* Chart styling */
 
 
 .title {
-	font: 400 18px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
-	font-weight: bold;
+    font: 400 18px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
 }
 
 .filters {
-	text-align: center;
+    text-align: center;
 }
 
 button.filterButton {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: border-color 0.2s ease;
-	-webkit-transition: border-color 0.2s ease;
-	-ms-transition: border-color 0.2s ease;
-	transition: border-color 0.2s ease;
-	background-color: transparent;
-	border: solid 1px !important;
-	border-color: rgba(26, 28, 32, 0.15) !important;
-	border-radius: 3em;
-	color: #1A1C20 /*!important*/;
-	cursor: pointer;
-	display: inline-block;
-	font-family: Karla;
-	font-size: 0.5em;
-	font-weight: bold;
-	height: calc(4.75em + 2px);
-	letter-spacing: 0.25em;
-	line-height: 4.75em;
-	outline: 0;
-	padding: 0 3.75em;
-	position: relative;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	white-space: nowrap;
-	margin-top: 4px;
-	margin-left: 4px;
-	margin-right: 4px;
-	margin-bottom: 4px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: border-color 0.2s ease;
+    -webkit-transition: border-color 0.2s ease;
+    -ms-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease;
+    background-color: transparent;
+    border: solid 1px !important;
+    border-color: rgba(26, 28, 32, 0.15) !important;
+    border-radius: 3em;
+    color: #1A1C20 /*!important*/;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Karla;
+    font-size: 0.5em;
+    font-weight: bold;
+    height: calc(4.75em + 2px);
+    letter-spacing: 0.25em;
+    line-height: 4.75em;
+    outline: 0;
+    padding: 0 3.75em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
 }
 
 button:hover,
-.filterButton:hover {
-	border-color: #4E75B7 !important;
+.filterButton:hover,
+.mapButton:hover {
+    border-color: #4E75B7 !important;
 }
 
 .buttonSelected {
-	background-color: #4E75B7 !important;
-	color: #FFFFFF !important;
+    background-color: #4E75B7 !important;
+    color: #FFFFFF !important;
 }
 
 /* Bar chart styling */
 
 .bar-chart .axis path,
 .bar-chart .axis line {
-	fill: none;
-	stroke: #1A1C20;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
 }
 
 .bar-chart .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.bar-chart .x.axis path {
-	display: none;
-}
+    .bar-chart .x.axis path {
+        display: none;
+    }
 
-.bar-chart .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .bar-chart .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .bar-chart .y.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+    font: normal 13px Karla;
+    color: #1A1C20;
 }
 
-.bar-chart .y.axis path {
-	stroke: #1A1C20;
-	stroke-width: 1.5px;
-}
+    .bar-chart .y.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
 
 .bar-chart .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
-	font-weight: bold;
-	text-align: right;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
 }
 
 .bar {
-	fill: #5D42A6;
+    fill: #5D42A6;
 }
 
 .overallBar {
-	fill: #A6426C;
+    fill: #A6426C;
 }
 
-.bar:hover,
-.overallBar:hover {
-	fill-opacity:.65;
-}
+    .bar:hover,
+    .overallBar:hover {
+        fill-opacity: .65;
+    }
 
 /* Column chart styling */
 
 .col-chart .axis path,
 .col-chart .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .col-chart .x.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+    font: normal 13px Karla;
+    color: #1A1C20;
 }
 
-.col-chart .x.axis path {
-	stroke: #1A1C20;
-	stroke-width: 1.5px;
-}
+    .col-chart .x.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
 
 .col-chart .y.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.col-chart .y.axis path {
-	display: none;
-}
+    .col-chart .y.axis path {
+        display: none;
+    }
 
-.col-chart .y.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .col-chart .y.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .col-chart .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 .column {
-	fill: #A6426C;
+    fill: #A6426C;
 }
 
-.column:hover {
-	fill-opacity: .85;
-}
+    .column:hover {
+        fill-opacity: .85;
+    }
 
 .overallColumn {
-	fill: #5D3EA8;
+    fill: #5D3EA8;
 }
 
-.overallColumn:hover {
-	fill-opacity: .65;
-}
+    .overallColumn:hover {
+        fill-opacity: .65;
+    }
 
 /* Dot plot styling */
 
 .dotPlot .axis path,
 .dotPlot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .dotPlot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, 0.65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, 0.65);
 }
 
-.dotPlot .x.axis path {
-	display: none;
-}
+    .dotPlot .x.axis path {
+        display: none;
+    }
 
-.dotPlot .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
-	stroke-dasharray: 1,1;
-}
+    .dotPlot .x.axis line {
+        stroke: rgba(23, 26, 29, 0.15);
+        stroke-dasharray: 1,1;
+    }
 
 .dotPlot .y.axis {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.dotPlot .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .dotPlot .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .dotPlot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 .dot {
-	fill: #A6426C;
+    fill: #A6426C;
 }
 
-.dot:hover {
-	opacity: .65;
-}
+    .dot:hover {
+        opacity: .65;
+    }
 
 .dotLine {
-	stroke: #5D42A6;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
+    stroke: #5D42A6;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
 }
 
 /* Two-dot dot plot styling */
 
 .dotPlot .axis path,
 .dotPlot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .dotPlot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, 0.65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, 0.65);
 }
 
-.dotPlot .x.axis path {
-	display: none;
-}
+    .dotPlot .x.axis path {
+        display: none;
+    }
 
-.dotPlot .x.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
-	stroke-dasharray: 1,1;
-}
+    .dotPlot .x.axis line {
+        stroke: rgba(23, 26, 29, 0.15);
+        stroke-dasharray: 1,1;
+    }
 
 .dotPlot .y.axis {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.dotPlot .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .dotPlot .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .dotPlot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 .dotM {
-	fill: #A6426C;
+    fill: #A6426C;
 }
 
 .dotF {
-	fill: #5D3EA8;
+    fill: #5D3EA8;
 }
 
 .labelM {
-	font: 400 13px Inconsolata;
-	fill: #A6426C;
+    font: 400 13px Inconsolata;
+    fill: #A6426C;
 }
 
 .labelF {
-	font: 400 13px Inconsolata;
-	fill: #5D3EA8;
+    font: 400 13px Inconsolata;
+    fill: #5D3EA8;
 }
 
 .dotM:hover,
 .dotF:hover {
-	opacity: .65;
+    opacity: .65;
 }
 
 .dotL {
-	stroke: #5D42A6;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
+    stroke: #5D42A6;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
 }
 
 .dotLHit {
-	stroke: #5D42A6;
-	stroke-width: 10px;
-	shape-rendering: crispEdges;
-	opacity: 0;
+    stroke: #5D42A6;
+    stroke-width: 10px;
+    shape-rendering: crispEdges;
+    opacity: 0;
 }
 
 /* Scatter plot styling */
 
 .scatterPlot .axis path,
 .scatterPlot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .scatterPlot .x.axis,
 .scatterPlot .y.axis {
-	font: 400 13px Inconsolata;
-	color: #46484B;
+    font: 400 13px Inconsolata;
+    color: #46484B;
 }
 
-.scatterPlot .x.axis path,
-.scatterPlot .y.axis path {
-	display: none;
-}
+    .scatterPlot .x.axis path,
+    .scatterPlot .y.axis path {
+        display: none;
+    }
 
-.scatterPlot .x.axis line,
-.scatterPlot .y.axis line {
-	stroke: rgba(23, 26, 29, 0.15);
-	stroke-dasharray: 1,1;
-}
+    .scatterPlot .x.axis line,
+    .scatterPlot .y.axis line {
+        stroke: rgba(23, 26, 29, 0.15);
+        stroke-dasharray: 1,1;
+    }
 
 /* .scatterPlot .y.axis {
 	font: normal 13px Karla;
@@ -5113,53 +5098,53 @@ button:hover,
 } */
 
 .scatterPlot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 .mark {
-	fill: rgb(242, 167, 115);
+    fill: rgb(242, 167, 115);
 }
 
 /* Grouped bar chart styling */
 
 .groupedBar .axis path,
 .groupedBar .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .groupedBar .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.groupedBar .x.axis path {
-	display: none;
-}
+    .groupedBar .x.axis path {
+        display: none;
+    }
 
-.groupedBar .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .groupedBar .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .groupedBar .y.axis,
 .groupedBar .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.groupedBar .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .groupedBar .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .groupedBar .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 /* .groupedBar .bar {
@@ -5167,56 +5152,56 @@ button:hover,
 } */
 
 .groupedBar .bar:hover {
-	fill-opacity: 0.75;
+    fill-opacity: 0.75;
 }
 
 .groupedBar .Enrolled {
-	fill: #DBB3C4;
+    fill: #DBB3C4;
 }
 
 .groupedBar .Suspended {
-	fill: #C07A98;
+    fill: #C07A98;
 }
 
 /* Grouped bar chart (diverging) styling */
 
 .groupedBarDiv .axis path,
 .groupedBarDiv .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .groupedBarDiv .x.axis,
 .groupedBarDiv .guide {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.groupedBarDiv .x.axis path {
-	display: none;
-}
+    .groupedBarDiv .x.axis path {
+        display: none;
+    }
 
-.groupedBarDiv .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .groupedBarDiv .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .groupedBarDiv .y.axis,
 .groupedBarDiv .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.groupedBarDiv .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .groupedBarDiv .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .groupedBarDiv .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 /* .groupedBarDiv .bar {
@@ -5224,34 +5209,34 @@ button:hover,
 } */
 
 .groupedBarDiv .bar:hover {
-	fill-opacity: 0.75;
+    fill-opacity: 0.75;
 }
 
 .groupedBarDiv .Female {
-	fill: #5D3EA8;
+    fill: #5D3EA8;
 }
 
 .groupedBarDiv .Male {
-	fill: #A6426C;
+    fill: #A6426C;
 }
 
 .zeroLine {
-	stroke-width: 1px;
-	stroke: #000;
+    stroke-width: 1px;
+    stroke: #000;
 }
 
 /* Donut chart */
 
 .donut .segment0 {
-	stroke-width: 1.5px;
-	stroke-opacity: 0;
-	stroke: #fff;
-	fill: #fff;
+    stroke-width: 1.5px;
+    stroke-opacity: 0;
+    stroke: #fff;
+    fill: #fff;
 }
 
 .donut .segment1 {
-	stroke-opacity: 0;
-	fill: rgba(0,0,0,0);
+    stroke-opacity: 0;
+    fill: rgba(0,0,0,0);
 }
 
 /*.donut .arc{
@@ -5267,139 +5252,139 @@ button:hover,
 /* Styling tooltips for individual graph types */
 
 .d3-tip {
-	font: 13px Inconsolata;
-	padding: 13px;
-	background: rgba(26, 28, 32, 0.85);
-	color: #fff;
-	/*width: auto;*/
-	/*padding: 10px;*/
+    font: 13px Inconsolata;
+    padding: 13px;
+    background: rgba(26, 28, 32, 0.85);
+    color: #fff;
+    /*width: auto;*/
+    /*padding: 10px;*/
 }
 
 /* Notes */
 
 .chartNotes {
-  font: 13px Inconsolata;
-  color: #000;
-  display: block;
+    font: 13px Inconsolata;
+    color: #000;
+    display: block;
 }
 
 /* Sankey chart */
 
 .sankey-chart .node rect {
-  cursor: move;
-  fill-opacity: .9;
-  shape-rendering: crispEdges;
+    cursor: move;
+    fill-opacity: .9;
+    shape-rendering: crispEdges;
 }
 
 .sankey-chart .node text {
-  pointer-events: none;
-  font: 13px Inconsolata;
+    pointer-events: none;
+    font: 13px Inconsolata;
 }
 
 .sankey-chart .link {
-  fill: none;
-  stroke: #000;
-  stroke-opacity: .1;
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .1;
 }
 
-.sankey-chart .link:hover {
-  stroke-opacity: .3;
-}
+    .sankey-chart .link:hover {
+        stroke-opacity: .3;
+    }
 
 .sankey-chart .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
 /* Stacked bar chart styling */
 
 .stackedBar .axis path,
 .stackedBar .axis line {
-	fill: none;
-	stroke: #1A1C20;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
 }
 
 .stackedBar .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.stackedBar .x.axis path {
-	display: none;
-}
+    .stackedBar .x.axis path {
+        display: none;
+    }
 
-.stackedBar .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .stackedBar .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .stackedBar .y.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+    font: normal 13px Karla;
+    color: #1A1C20;
 }
 
-.stackedBar .y.axis path {
-	stroke: #1A1C20;
-	stroke-width: 1.5px;
-}
+    .stackedBar .y.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
 
 .stackedBar .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
-	font-weight: bold;
-	text-align: right;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
 }
 
 .stackedBar .bar:hover {
-  .fill-opacity: 0.65;
+    .fill-opacity: 0.65;
 }
 
 .stackedBar .label {
-  font: normal 13px Karla;
-  /*fill: #FFF;*/
-  pointer-events: none;
-  font-weight: bold;
+    font: normal 13px Karla;
+    /*fill: #FFF;*/
+    pointer-events: none;
+    font-weight: bold;
 }
 
 /* Multi bar chart styling */
 
 .multiBar .axis path,
 .multiBar .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .multiBar .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.multiBar .x.axis path {
-	display: none;
-}
+    .multiBar .x.axis path {
+        display: none;
+    }
 
-.multiBar .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .multiBar .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .multiBar .y.axis,
 .multiBar .legend {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.multiBar .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .multiBar .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .multiBar .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
 /* .multiBar .bar {
@@ -5407,59 +5392,59 @@ button:hover,
 } */
 
 .multiBar .bar:hover {
-	fill-opacity: 0.75;
+    fill-opacity: 0.75;
 }
 
 /* Small multiples */
 
 .smChartDiv .smTitleDiv {
-  font: normal 15px Karla;
-  font-weight: bold;
-  text-align: center;
+    font: normal 15px Karla;
+    font-weight: bold;
+    text-align: center;
 }
 
 .smChartDiv .smSubTitleDiv {
-  font: normal 13px Karla;
-  /*font-weight: bold;*/
-  text-align: center;
+    font: normal 13px Karla;
+    /*font-weight: bold;*/
+    text-align: center;
 }
 
 .smBarChart .axis path,
 .smBarChart .axis line {
-	fill: none;
-	stroke: #1A1C20;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
 }
 
 .smBarChart .x.axis {
-	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
 }
 
-.smBarChart .x.axis path {
-	display: none;
-}
+    .smBarChart .x.axis path {
+        display: none;
+    }
 
-.smBarChart .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
-	stroke-dasharray: 1,1;
-}
+    .smBarChart .x.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
 
 .smBarChart .y.axis {
-	font: normal 13px Karla;
-	color: #1A1C20;
+    font: normal 13px Karla;
+    color: #1A1C20;
 }
 
-.smBarChart .y.axis path {
-	stroke: #1A1C20;
-	stroke-width: 1.5px;
-}
+    .smBarChart .y.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
 
 .smBarChart .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1A1C20;
-	font-weight: bold;
-	text-align: right;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
 }
 
 /* .smBarChart .bar {
@@ -5472,7 +5457,7 @@ button:hover,
 
 .smBarChart .bar:hover,
 .smBarChart .overallBar:hover {
-	fill-opacity:.65;
+    fill-opacity: .65;
 }
 
 /*D3 Map styling*/
@@ -5490,76 +5475,70 @@ button:hover,
     z-index: 900;
 }
 
-.districtTooltip h3, .phaTooltip h3 {
-    text-align: left;
-    font-size: 11px;
-    margin: 0;
-    line-height: 17px;
-}
+    .districtTooltip h3, .phaTooltip h3 {
+        text-align: left;
+        font-size: 11px;
+        margin: 0;
+        line-height: 17px;
+    }
 
-.districtTooltip h4, .phaTooltip h4 {
-    text-align: left;
-    font-size: 11px;
-    margin: 0;
-    line-height: 17px;
-}
+    .districtTooltip h4, .phaTooltip h4 {
+        text-align: left;
+        font-size: 11px;
+        margin: 0;
+        line-height: 17px;
+    }
 
-.districtTooltip div, .phaTooltip div {
-    text-align: right;
-     font-size: 11px;
- }
+    .districtTooltip div, .phaTooltip div {
+        text-align: right;
+        font-size: 11px;
+    }
 
-.districtTooltip b, .phaTooltip b {
-    font-size: 11px;
-}
+    .districtTooltip b, .phaTooltip b {
+        font-size: 11px;
+    }
 
-.districtTooltip hr, .phaTooltip hr {
-    margin: 3px 0 3px 0;
-    color: #979797;
-}
+    .districtTooltip hr, .phaTooltip hr {
+        margin: 3px 0 3px 0;
+        color: #979797;
+    }
 
 /* Map Wrapper styleing */
 
 #mapWrapper {
     height: 100%;
-}
-
-#mapWrapper h3 {
-    color: black;
-}
-
-#mapWrapper .state {
-    fill: none;
-    stroke: #fff;
-    stroke-linejoin: round;
- }
-
-#mapWrapper .overlay {
-    fill: none;
-    pointer-events: all;
-}
-
-#mapWrapper h3.name, h3.stateName, h3#legend {
-    color: rgba(26,28,32,0.90);
-    font-family: Karla, Helvetica, sans-serif;
-    text-align: right;
-    font-weight: bold;
-}
-
-#mapWrapper .legend {
-    margin: 0 auto 0 auto;
-    font-family: Helvetica, sans-serif;
-}
-
-.legend h3 {
-    padding-bottom: 15px;
-    font-family: Inconsolata;
-    font-size: 13px;
-    color: rgba(26,28,32,0.90);
     text-align: center;
-    margin-bottom: 0;
-    /*margin-left: 20%;*/
 }
+
+    #mapWrapper h3 {
+        padding-bottom: 15px;
+        /*color: rgba(26,28,32,0.90);*/
+    }
+
+
+    #mapWrapper .state {
+        fill: none;
+        stroke: #fff;
+        stroke-linejoin: round;
+    }
+
+    #mapWrapper .overlay {
+        fill: none;
+        pointer-events: all;
+    }
+
+    #mapWrapper h3.name, h3.stateName, h3#legend {
+        color: rgba(26,28,32,0.90);
+        font-family: Karla, Helvetica, sans-serif;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    #mapWrapper .legend {
+        margin: 0 auto 0 auto;
+        font-family: Helvetica, sans-serif;
+    }
+
 .legend ul {
     font-size: 12px;
     font-family: Helvetica, sans-serif;
@@ -5585,7 +5564,7 @@ button:hover,
     margin-right: 15px;
 }
 
-.zoomButton{
+.zoomButton {
     z-index: 999;
     float: left;
     background-color: black;
@@ -5603,18 +5582,49 @@ button:hover,
 }
 
 .highlightButton {
-    -webkit-box-shadow:inset 0 0 0 1px black;
-    -moz-box-shadow:inset 0 0 0 1px black;
-    box-shadow:inset 0 0 0 1px black;
+    -webkit-box-shadow: inset 0 0 0 1px black;
+    -moz-box-shadow: inset 0 0 0 1px black;
+    box-shadow: inset 0 0 0 1px black;
 }
 
-#selectDistrictType{
+#selectDistrictType {
     width: 100%;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
+
+.mapControlsParent {
+    float: left;
+    width: 100%;
+    z-index: 10;
+    position: relative;
+}
+
+.mapControlsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*border: 1px dashed purple;*/
+}
+
+    .mapControlsContainer .zoomButton {
+        position: static;
+        top: auto;
+    }
+
+    .mapControlsContainer #selectDistrictType {
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+        .mapControlsContainer #selectDistrictType #selectSecondary {
+            margin: 0 0 0 15px;
+        }
 
 #mapWrapper #legend #selectDistrictType {
     width: 310px;
@@ -5626,10 +5636,11 @@ button:hover,
 #mapWrapper #legend .block-button {
     width: 80px;
     display: block;
-    float:left;
-    clear:both;
+    float: left;
+    clear: both;
 }
-#mapWrapper #legend .selectDistrict{
+
+#mapWrapper #legend .selectDistrict {
     color: rgba(26,28,32,0.90);
     background: yellow;
 }
@@ -5643,22 +5654,31 @@ button:hover,
     overflow: hidden;
 }
 
+.mapEnglishLearners #map {
+    padding-bottom: 50%;
+    z-index: 5;
+}
+
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
     left: 0;
 }
 
-.legendButtonWrapper{
+.mapEnglishLearners .svg-content-responsive {
+    top: 50px;
+}
+
+.legendButtonWrapper {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-.innerLegend{
+.innerLegend {
     text-align: center;
     width: 30%;
     height: 35px;
@@ -5667,7 +5687,7 @@ button:hover,
     cursor: pointer;
 }
 
-div.legendButton{
+div.legendButton {
     text-align: left;
     color: rgba(26,28,32,0.90);
     float: left;
@@ -5717,7 +5737,7 @@ div.legendButton{
 
 #selectElementary {
     /*font-family: Inconsolata;*/
-    color: white;
+    /*color: white;
     list-style: none;
     margin: 0;
     padding: 4px 0;
@@ -5727,29 +5747,29 @@ div.legendButton{
     text-align: center;
     font-size: 11px;
     border: 1px solid #808080;
-    background: #1A1C20;
+    background: #1A1C20;*/
 }
 
 #selectSecondary {
     /*font-family: Inconsolata;*/
-    color: rgba(26,28,32,0.90);
-    list-style: none;
+    /*color: rgba(26,28,32,0.90);
+    list-style: none;*/
     margin: 10px 0 0 0;
-    padding: 4px 0;
+    /*padding: 4px 0;
     display: inline-block;
     width: 300px;
     cursor: pointer;
     text-align: center;
     font-size: 11px;
-    border: 1px solid #808080;
+    border: 1px solid #808080;*/
 }
 
-.districtButtonSelected{
+.districtButtonSelected {
     background: #1A1C20;
     color: white;
 }
 
-.legendText{
+.legendText {
     font-family: Inconsolata;
     font-weight: normal;
     font-size: 13px;
@@ -5759,7 +5779,7 @@ div.legendButton{
     margin-top: 5px;
 }
 
-.verticalLine{
+.verticalLine {
     width: 1px;
     height: 25px;
     color: rgba(26,28,32,0.90);
@@ -5768,9 +5788,10 @@ div.legendButton{
     margin: 0;
     position: relative;
     left: -1px;
+    display: inline-block;
 }
 
-div.disclaimer .legendExplain  {
+div.disclaimer .legendExplain {
     /*float: right;*/
     display: table-cell;
     width: 90%;
@@ -5790,13 +5811,34 @@ div.disclaimer .legendPointer {
     color: #4E75B7;
 }
 
+.legendContainer {
+    display: flex;
+    flex-direction: row;
+    /*background-color: lightblue;*/
+}
+
+    .legendContainer .legendButtonWrapper {
+        width: 80%;
+        /*border: 1px dotted blue;*/
+    }
+
+    .legendContainer .innerLegend {
+        width: 20%;
+        margin-left: 15px;
+        /*border: 1px dashed orange;*/
+    }
+
+
+/* ************************** */
+/*       MEDIA QUERIES        */
+/* ************************** */
+
 @media screen and (max-width: 1260px) {
 
     .legendButtonWrapper div:nth-child(4) .legendText {
         position: relative;
         left: -10px;
     }
-
 }
 
 @media screen and (max-width: 1040px) {
@@ -5805,7 +5847,6 @@ div.disclaimer .legendPointer {
         position: relative;
         left: -15px;
     }
-
 }
 
 @media screen and (max-width: 736px) {
@@ -5817,7 +5858,6 @@ div.disclaimer .legendPointer {
     .dataLinksText {
         text-align: center;
     }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -5826,7 +5866,6 @@ div.disclaimer .legendPointer {
         position: relative;
         left: -25px;
     }
-
 }
 
 @media screen and (max-width: 380px) {
@@ -5835,5 +5874,4 @@ div.disclaimer .legendPointer {
         position: relative;
         left: -30px;
     }
-
 }
