@@ -5468,7 +5468,7 @@ button:hover,
 
 #mapWrapper .state{
     fill: none;
-    stroke: #000;
+    stroke: #fff;
     stroke-linejoin: round;
  }
 

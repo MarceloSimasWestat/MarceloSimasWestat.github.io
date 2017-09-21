@@ -230,6 +230,7 @@
                                 <button class="zoomButton" data-zoom="+1">+</button>
                                 <div style="clear: both; height:5px"></div>
                                 <button class="zoomButton" data-zoom="-1">-</button>
+                                <div id="mapSvg"></div>
                             </div>
                         </div>
                         <div id="selectDistrictType">
@@ -257,6 +258,7 @@
     var center = [width / 2, height / 2];
     var defaultFill = "#E6E6E6";
     var numberFormat = d3.format("0,000");
+    var svg, g;
 
     var projection = d3.geo.albersUsa()
             .translate([width / 2, height / 2])
@@ -268,16 +270,6 @@
     var path = d3.geo.path()
             .projection(projection);
 
-    var svg = d3.select("#map").append("svg")
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 " + width + " " + height)
-        .classed("svg-content-responsive", true)
-        .append("g");
-
-    var g = svg.append("g");
-
-    svg.call(zoom).call(zoom.event);
-
     var tooltip = d3.select("body").append("div")
         .attr("class", "districtTooltip")
         .style("opacity", 0)
@@ -285,30 +277,68 @@
         .style('left', '0px');
 
     queue()
-            .defer(d3.json, "assets/data/states.json")
-            .defer(d3.json, "assets/data/elementary.json")
-            .defer(d3.json, "assets/data/secondary.json")
-            .defer(d3.json, "assets/data/extradistricts.json")
-            .defer(d3.text, "states.svg")
-            .await(ready);
+        .defer(d3.json, "assets/data/states.json")
+        .defer(d3.json, "assets/data/elementary.json")
+        .defer(d3.json, "assets/data/secondary.json")
+        .defer(d3.json, "assets/data/extradistricts.json")
+        .defer(d3.text, "elementary.svg")
+        .defer(d3.text, "states.svg")
+        .await(ready);
 
-    svg.on("wheel.zoom", null);
-    svg.on("mousewheel.zoom", null);
-
-    function ready(error, us, primary, secondary, extra, statesSvg) {
+    function ready(error, us, primary, secondary, extra, elementarySvg, statesSvg) {
         if (error) {
             console.log(error);
         }
-        g.attr("cursor","pointer");
 
-        g.html(statesSvg);
+        var svgStr =
+            '<svg ' +
+                'xmlns="http://www.w3.org/2000/svg" ' +
+                'class="svg-content-responsive" ' +
+                'style="display: none;"' +
+                'viewBox="0 0 960 600" ' +
+                'preserveAspectRatio="xMinYMin meet">' +
+                '<g cursor="pointer">';
+        svgStr += elementarySvg;
+        svgStr += statesSvg;
+        svgStr += '</g></svg>';
+
+        d3.select('#mapSvg').html(svgStr);
+        svg = d3.select('#mapSvg > svg');
+        g = d3.select('#mapSvg > svg > g');
+
+        var geometries = primary.objects.medium_G5420_G5400.geometries;
+        var gidsToGeometries = {};
+        for(var i = 0; i < geometries.length; i++) {
+            var geom = geometries[i];
+            gidsToGeometries[geom.properties.gid] = geom;
+        }
+
+        svg.selectAll('.district').each(function() {
+            var gid = $(this).data('gid');
+            this.properties = gidsToGeometries[gid].properties;
+        });
+
+        svg.selectAll('.district')
+            .on("mouseover", function () {
+                createTooltip(this);
+            })
+            .on("mouseout", function () {
+                d3.select(this).attr("stroke", "#fff")
+                    .attr("stroke-opacity", .15);
+                d3.select(this).classed("selected", false);
+                tooltip.transition().duration(300).style("opacity", 0);
+            });
+
+        svg.call(zoom).call(zoom.event);
+        svg.on("wheel.zoom", null);
+        svg.on("mousewheel.zoom", null);
 
         d3.select('#englishLearnersButton').on('click', function() {
-            drawEnglishLearners(primary, extra, us);
+            drawEnglishLearners();
         });
 
         d3.select('#percentChangeButton').on('click', function() {
-            drawPercentChange(primary, extra, us);
+            drawPercentChange();
         });
 
         d3.select("#selectElementary").on("click", function () {
@@ -325,7 +355,7 @@
             drawStates(us, us.objects.states);
         });
 
-        drawEnglishLearners(primary, extra, us);
+        drawEnglishLearners();
 
         var legendButtons = $('.legendButton');
         legendButtons.on("click", function () {
@@ -364,66 +394,26 @@
         }, 100);
     }
 
-    function drawEnglishLearners(primary, extra, us) {
+    function drawEnglishLearners() {
         $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
         $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-        //$('.district').remove();
-        //$('.state').remove();
-        $('.legend').hide();
-        /*showLoader(function() {
-            drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
-            drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
-            drawStates(us, us.objects.states);
-            $('.legend').show();
-            resizeLegend();
-        });*/
-    }
-
-    function drawPercentChange(primary, extra, us) {
-        $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-        $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-        $('.district').remove();
-        $('.state').remove();
+        svg.style('display', 'none');
         $('.legend').hide();
         showLoader(function() {
-            drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
-            drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
-            drawStates(us, us.objects.states);
-            $('.legend').show();
-            resizeLegend();
+            svg.selectAll('.district').attr('fill', colorByGroup);
+            svg.style('display', null);
         });
     }
 
-    function drawStates(topology, object) {
-        /*g.append("g")
-            .attr("class", "states")
-            .selectAll("path")
-            .data(topojson.feature(topology, object).features)
-            .enter().append("path")
-            .attr("class", "state")
-            .attr("d", path);*/
-    }
-
-    function drawDistricts(id, topology, object, colorFunc) {
-        /*g.append("g")
-            .selectAll("path")
-            .data(topojson.feature(topology, object).features)
-            .enter().append("path")
-            .attr("class", id + " district")
-            .attr("d", path)
-            .attr("stroke", "#fff")
-            .attr("stroke-opacity", .15)
-            .attr("stroke-linejoin", "round")
-            .attr("fill", colorFunc)
-            .on("mouseover", function (d) {
-                createTooltip(this,d);
-            })
-            .on("mouseout", function () {
-                d3.select(this).attr("stroke", "#fff")
-                    .attr("stroke-opacity", .15);
-                d3.select(this).classed("selected", false);
-                tooltip.transition().duration(300).style("opacity", 0);
-            });*/
+    function drawPercentChange() {
+        $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+        $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+        svg.style('display', 'none');
+        $('.legend').hide();
+        showLoader(function() {
+            svg.selectAll('.district').attr('fill', colorByPercentChange);
+            svg.style('display', null);
+        });
     }
 
     function getMapMode() {
@@ -444,7 +434,7 @@
         }
     }
 
-    function createTooltip(currentDistrict,d){
+    function createTooltip(currentDistrict){
         d3.select(currentDistrict).attr("stroke", "#1A1C20")
                 .attr("stroke-opacity", 1);
         d3.select(currentDistrict).classed("selected", true);
@@ -483,9 +473,10 @@
             }
         }
 
-		var state = d.properties['State'];
+        var properties = currentDistrict.properties;
+		var state = properties['State'];
 		if(state === null) state = 'NO DATA';
-		var name = d.properties['District'];
+		var name = properties['District'];
 		if(name === null) name = "NO DATA";
 
         if (name === "School District Not Defined") {
@@ -497,7 +488,7 @@
         }
         else if (name != null) {
             if(getMapMode() === 'percent') {
-                var percentEL = d.properties['Percent'];
+                var percentEL = properties['Percent'];
                 percentEL = formatPercent(percentEL);
 
                 tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
@@ -505,13 +496,13 @@
                     "<div> % of students who are English learners: " + percentEL + "</div>");
             }
             else {
-                var liep09 = d.properties['LIEP09'];
+                var liep09 = properties['LIEP09'];
                 liep09 = formatNumber(liep09);
-                var liep14 = d.properties['LIEP14'];
+                var liep14 = properties['LIEP14'];
                 liep14 = formatNumber(liep14);
-                var change = d.properties['Change from 2009-10 to 2014-15'];
+                var change = properties['Change from 2009-10 to 2014-15'];
                 change = formatNumber(change);
-                var changePercent = d.properties['Change as % of 2014-15'];
+                var changePercent = properties['Change as % of 2014-15'];
                 changePercent = formatPercent(changePercent);
                 if(changePercent === 'NO DATA') {
                     change = 'NO DATA';
@@ -587,8 +578,8 @@
         });
     }
 
-    function colorByGroup(d) {
-        switch (d.properties['Category']){
+    function colorByGroup() {
+        switch (this.properties['Category']){
             case -1: return 'gray';
             case 0: return '#9e9ac8';
             case 1: return '#756bb1';
@@ -598,8 +589,8 @@
         }
     }
 
-    function colorByPercentChange(d) {
-        var percentChange = d.properties['Change as % of 2014-15, categorized'];
+    function colorByPercentChange() {
+        var percentChange = this.properties['Change as % of 2014-15, categorized'];
 
         switch(percentChange) {
             case -4: return '#08519c';
