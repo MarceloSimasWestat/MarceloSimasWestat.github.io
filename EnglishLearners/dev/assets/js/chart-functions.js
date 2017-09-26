@@ -1808,7 +1808,9 @@ function colChart() {
 				.attr("width", width);
 
 			dom.select(".x.axis")
-				.call(xAxis);
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap, xScale.rangeBand());
 
 			dom.select(".y.axis")
 				.call(yAxis);

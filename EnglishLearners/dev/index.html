@@ -66,7 +66,7 @@
                         <li><a href="#intro">Introduction</a></li>
                         <li><a href="#one">Who are ELs?</a></li>
                         <li><a href="#two">Where are ELs?</a></li>
-                        <li><a href="#mapHead">ELs Mapped</a></li>                          
+                        <li><a href="#mapHead">ELs Mapped</a></li>
                         <li><a href="#three">Languages</a></li>
                         <li><a href="#four">Wrap Up</a></li>
                         <!--<li><a href="#five">Conclusion</a></li>-->
@@ -186,6 +186,9 @@
                     <strong style="color: #000;">Hispanic or Latino students represent more than three times the share of ELs, compared to all students.</strong><br/>More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
                 </p>
                 <div id="ch1_2"></div>
+                <p style="margin-top:1.5em;">
+                    Overall, 10 percent of students are ELs. In comparison, ELs represent 14 percent of all homeless children enrolled in public school at any time during the school year, 15 percent of students served by either Public Title I SWP or TAS programs at any time during the regular school year, and 39 percent of eligible migrant children who reside in the state during the performance period (September 1 through August 31).
+                </p>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     Students with disabilities represent 14 percent of the EL population,  compared with 13 percent of the overall student population.
                 </p>
@@ -263,7 +266,7 @@
                     <div class="loader">Loading...</div>
 
                     <div id="percentLegend" class="legend">
-                        
+
                         <div class="legendContainer">
 
                             <div class="legendButtonWrapper">
@@ -547,10 +550,11 @@
                   .title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.")
                   .altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.")
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
-                var chart1_2 = colChart().data(data1_2).marginBottom(35).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
-                  .title("ELs are about as likely to be classified as a student with a disability as all students.")
-                  .altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, Digest of Education Statistics, 2016. Downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp' target='_blank'>https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp</a>");
+                var chart1_2 = colChart().data(data1_2).marginBottom(60).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                  .title("Homeless, Title I, and migrant students are more likely to be ELs than the overall student population.")
+                  .altText("This chart displays the percentage of all students, homeless students, Title I, SWP/TAS students, and migrant eligible children who are ELs.")
+                  .notes("Four states do not have migrant education programs (Connecticut, DC, Rhode Island, and West Virginia). These states are part of the public school enrollment data, but do not contribute to the migrant student counts.")
+                  .source("U.S. Department of Education, ED Data Express, 2014-15. Extracted August 24, 2017.");
                 var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").catdefs(1).xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
                   .title("ELs with disabilities are more likely to be classified as having a specific learning disability or speech or language impairment.")
                   .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.")
