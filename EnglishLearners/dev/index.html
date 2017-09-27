@@ -812,7 +812,10 @@
                 .selectAll("path")
                 .data(topojson.feature(topology, object).features)
                 .enter().append("path")
-                .attr("class", id + " district")
+                .attr("class", function(d) {
+                    var fill = colorFunc(d);
+                    return id + " district " + fill;
+                })
                 .attr("d", path)
                 .attr("stroke", "#fff")
                 .attr("stroke-opacity", .15)
@@ -970,15 +973,14 @@
                 legend = $('#percentChangeLegend');
             }
             legend.show();
-            var districts = $('.district');
-            var totalDistricts = districts.length;
-            var nullDistricts = districts.filter('[fill=gray]').length;
-            var noELDistricts = districts.filter('[fill=#404040]').length;
+            var totalDistricts = document.getElementsByClassName('district').length;
+            var nullDistricts = document.getElementsByClassName('gray').length;
+            var noELDistricts = document.getElementsByClassName('#404040').length;
             totalDistricts -= nullDistricts + noELDistricts;
             var legendButtons = legend.find('.legendButton');
             legendButtons.each(function () {
                 var buttonValue = $(this).attr("data-value");
-                var valueSize = districts.filter('[fill=' + buttonValue + ']').length;
+                var valueSize = document.getElementsByClassName(buttonValue).length;
                 var width = (valueSize / totalDistricts) * 100;
                 if (getMapMode() === 'percent' && $(this).hasClass("null")) {
                     width = width * 6;
