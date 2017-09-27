@@ -183,7 +183,7 @@
                 <div></div>
                 <div id="ch1_1"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    <strong style="color: #000;">Hispanic or Latino students represent more than three times the share of ELs, compared to all students.</strong><br/>More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
+                    <strong style="color: #000;">Hispanic or Latino students represent more than three times the share of ELs, compared to all students.</strong><br />More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
                 </p>
                 <div id="ch1_2"></div>
                 <p style="margin-top:1.5em;">
@@ -257,16 +257,19 @@
         <section class="wrapper chart">
             <div class="inner">
 
-                <div id="mapWrapper" class="mapEnglishLearners">
+                <div id="mapButtonWrapper" class="mapEnglishLearners">
+                    <button id="englishLearnersButton" class="mapHeaderButton selectedMapButton">English learners (2014-15)</button>
+                    <button id="percentChangeButton" class="mapHeaderButton deselectedMapButton">Percent change (2009-10 to 2014-15)</button>
+                </div>
 
-                    <!-- TODO: IF add second map toggle, move into legend div with loader -->
-                    <h3 class="title">Percentage of students who are English learners (2014-15)</h3>
+                <!-- Spinner loader (see loader.css) -->
+                <div class="loader">Loading...</div>
 
-                    <!-- Spinner loader (see loader.css) -->
-                    <div class="loader">Loading...</div>
+                <div id="mapWrapper">
 
-                    <div id="percentLegend" class="legend">
-
+                    <!-- MAP #1 (left toggle) -->
+                    <div id="percentLegend" class="legend" style="display: none;">
+                        <h3 class="title">Percentage of students who are English learners (2014-15) - DRAFT</h3>
                         <div class="legendContainer">
 
                             <div class="legendButtonWrapper">
@@ -295,7 +298,7 @@
                                     <div class="legendText">
                                         Medium
                                         <br>
-                                        (5% to &lt; 20%)
+                                        (5% to &lt;20%)
                                     </div>
                                 </div>
                                 <div data-value="#340d67" class="legendButton">
@@ -325,7 +328,96 @@
                         </div>
                         <!-- end legendContainer -->
                     </div>
-                    <!-- end legend -->
+                    <!-- end legend 1 -->
+                    <!-- MAP #2 (right toggle) -->
+                    <div id="percentChangeLegend" class="legend" style="display: none;">
+                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program, 2009-10 to 2014-15 - DRAFT</h3>
+
+                        <div class="legendContainer">
+
+                            <div class="legendButtonWrapper">
+                                <div data-value="#08519c" class="legendButton">
+                                    <div style="background-color: #08519c;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&gt; 50% decrease)
+                                    </div>
+                                </div>
+                                <div data-value="#6baed6" class="legendButton">
+                                    <div style="background-color: #6baed6;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (20-50% decrease)
+                                    </div>
+                                </div>
+                                <div data-value="#c6dbef" class="legendButton">
+                                    <div style="background-color: #c6dbef;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&lt; 20% decrease)
+                                    </div>
+                                </div>
+                                <div data-value="#9e9ac8" class="legendButton">
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (No change)
+                                    </div>
+                                </div>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&lt; 20%)
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (20-75% increase)
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&gt;=75% increase)
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+
+                            <div class="innerLegend">
+                                <div data-value="#404040" class="legendButton null">
+                                    <div style="background-color: #404040;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (No ELs)
+                                    </div>
+                                </div>
+                                <div data-value="gray" class="legendButton null">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!-- end legendContainer -->
+                    </div>
+                    <!-- end legend 2 -->
 
                     <div id="map">
                         <div class="mapControlsParent">
@@ -351,8 +443,8 @@
                     <br />
                     <p class="dataLinksText">* <a href="#mapnotes">See map notes</a>. <!--<a href="#">Download the district level data</a> used in this map.--></p>
                 </div>
-            </div>
 
+            </div>
             <!-- end innner -->
         </section>
 
@@ -672,15 +764,6 @@
 
         var g = svg.append("g");
 
-        //svg.append("svg:image")
-        //        .attr("xlink:href", "images/progress-anim.gif")
-        //        .attr("id", "progress-image")
-        //        .attr("width", 30)
-        //        .attr("height", 30)
-        //        .attr("x", width / 2)
-        //        .attr("y", height / 2)
-        //        .style("opacity", 1);
-
         svg.call(zoom).call(zoom.event);
 
         var tooltip = d3.select("body").append("div")
@@ -705,14 +788,13 @@
             }
             g.attr("cursor", "pointer");
 
-            // Restore when/if add both charts
-            //d3.select('#englishLearnersButton').on('click', function () {
-            //    drawEnglishLearners(primary, extra, us);
-            //});
-			//
-            //d3.select('#percentChangeButton').on('click', function () {
-            //    drawPercentChange(primary, extra, us);
-            //});
+            d3.select('#englishLearnersButton').on('click', function () {
+                drawEnglishLearners(primary, extra, us);
+            });
+
+            d3.select('#percentChangeButton').on('click', function () {
+                drawPercentChange(primary, extra, us);
+            });
 
             d3.select("#selectElementary").on("click", function () {
                 $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
@@ -768,8 +850,8 @@
         }
 
         function drawEnglishLearners(primary, extra, us) {
-            //$('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-            //$('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
             $('.district').remove();
             $('.state').remove();
             $('.legend').hide();
@@ -782,20 +864,20 @@
             });
         }
 
-        //function drawPercentChange(primary, extra, us) {
-        //    $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-        //    $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-        //    $('.district').remove();
-        //    $('.state').remove();
-        //    $('.legend').hide();
-        //    showLoader(function () {
-        //        drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
-        //        drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
-        //        drawStates(us, us.objects.states);
-        //        $('.legend').show();
-        //        resizeLegend();
-        //    });
-        //}
+        function drawPercentChange(primary, extra, us) {
+            $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('.district').remove();
+            $('.state').remove();
+            $('.legend').hide();
+            showLoader(function () {
+                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
+                drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
+                drawStates(us, us.objects.states);
+                $('.legend').show();
+                resizeLegend();
+            });
+        }
 
         function drawStates(topology, object) {
             g.append("g")
@@ -812,7 +894,7 @@
                 .selectAll("path")
                 .data(topojson.feature(topology, object).features)
                 .enter().append("path")
-                .attr("class", function(d) {
+                .attr("class", function (d) {
                     var fill = colorFunc(d);
                     return id + " district " + fill;
                 })
@@ -833,12 +915,12 @@
         }
 
         function getMapMode() {
-            // if (d3.select('#englishLearnersButton').classed('selectedMapButton')) {
-            return 'percent';
-            //}
-            //else {
-            //    return 'percentChange';
-            //}
+            if (d3.select('#englishLearnersButton').classed('selectedMapButton')) {
+                return 'percent';
+            }
+            else {
+                return 'percentChange';
+            }
         }
 
         function getColorFunc() {

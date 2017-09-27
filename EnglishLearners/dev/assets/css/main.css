@@ -5511,8 +5511,7 @@ button:hover,
 }
 
     #mapWrapper h3 {
-        padding-bottom: 15px;
-        /*color: rgba(26,28,32,0.90);*/
+        padding: 5px 0 20px 0
     }
 
 
@@ -5707,6 +5706,7 @@ div.legendButton {
 
 #mapButtonWrapper {
     margin-bottom: 15px;
+    text-align: center; 
 }
 
 .mapHeaderButton {
