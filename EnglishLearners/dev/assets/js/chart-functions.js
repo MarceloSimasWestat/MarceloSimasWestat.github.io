@@ -1597,6 +1597,7 @@ function colChart() {
 		marginBottom = 25,
 		animateTime = 1000,
 		colWidth = 15,
+		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -1718,7 +1719,7 @@ function colChart() {
 			.attr("y", "-2.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "start")
-			.text("% OF STUDENTS IN 2014-15");
+			.text(yAxisLabel);
 
 		// draw columns
 
@@ -1913,13 +1914,21 @@ function colChart() {
 
 	};
 
+	chart.yAxisLabel = function(value) {
+
+		if (!arguments.length) return yAxisLabel;
+		yAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.notes = function(value) {
 
-			if (!arguments.length) return notes;
-			notes = value;
-			return chart;
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
 
-		};
+	};
 
 	chart.source = function(value) {
 

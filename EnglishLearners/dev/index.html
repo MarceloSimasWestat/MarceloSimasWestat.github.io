@@ -547,15 +547,19 @@
                 var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
                 var chart1_1 = dotTwo().data(data1_1).marginLeft(120).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .group1("All students").group2("ELs")
+                  .xAxisLabel("% OF ALL STUDENTS/ELS IN 2014-15")
                   .title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.")
                   .altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.")
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
                 var chart1_2 = colChart().data(data1_2).marginBottom(60).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                  .yAxisLabel("% WHO ARE ELS IN 2014-15")
                   .title("Homeless, Title I, and migrant students are more likely to be ELs than the overall student population.")
                   .altText("This chart displays the percentage of all students, homeless students, Title I, SWP/TAS students, and migrant eligible children who are ELs.")
                   .notes("Four states do not have migrant education programs (Connecticut, DC, Rhode Island, and West Virginia). These states are part of the public school enrollment data, but do not contribute to the migrant student counts.")
                   .source("U.S. Department of Education, ED Data Express, 2014-15. Extracted August 24, 2017.");
-                var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").catdefs(1).xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
+                var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                  .group1("Non-ELs").group2("ELs").catdefs(1)
+                  .xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
                   .title("ELs with disabilities are more likely to be classified as having a specific learning disability or speech or language impairment.")
                   .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.")
                   .notes("Users can hover over the disability category label for the definition for each disability category. The percentages for intellectual disability are 7.0% for ELs (40,079 students) and 6.9% for non-ELs (358,528 students). Definitions based on 34 CFR §300.8, as they appear in <em>IDEA Part B Child Count and Educational Environments for School Year 2014-2015</em>. Retrieved September 15, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html'>https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html</a>.")
