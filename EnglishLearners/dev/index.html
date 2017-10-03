@@ -811,7 +811,23 @@
                 $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
                 $('.state').remove();
-                drawDistricts('secondary', secondary, secondary.objects.medium_G5410, getColorFunc());
+
+                var colorFunc = getColorFunc();
+                drawDistricts('secondary', secondary, secondary.objects.medium_G5410, colorFunc);
+                var selectedButton = $('.highlightButton');
+                if (selectedButton.length > 0) {
+                    var buttonValue = selectedButton.attr("data-value");
+                    svg.selectAll(".district")
+                        .attr("fill", function (d) {
+                            if (buttonValue === colorFunc(d)) {
+                                return buttonValue;
+                            }
+                            else {
+                                return "#E6E6E6";
+                            }
+                        });
+                }
+
                 drawStates(us, us.objects.states);
             });
 
