@@ -1597,6 +1597,7 @@ function colChart() {
 		marginBottom = 25,
 		animateTime = 1000,
 		colWidth = 15,
+		yMax = 1,
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
@@ -1690,7 +1691,7 @@ function colChart() {
 		// domains
 
 		xScale.domain(data.map(function(d, i) { return d.group; }));
-		yScale.domain([0, 0.5]);
+		yScale.domain([0, yMax]);
 
 		// axes
 
@@ -1886,6 +1887,14 @@ function colChart() {
 
 		if (!arguments.length) return animateTime;
 		animateTime = value;
+		return chart;
+
+	};
+
+	chart.yMax = function(value) {
+
+		if (!arguments.length) return yMax;
+		yMax = value;
 		return chart;
 
 	};
