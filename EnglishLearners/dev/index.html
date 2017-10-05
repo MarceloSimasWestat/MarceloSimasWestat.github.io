@@ -793,45 +793,36 @@
             }
             g.attr("cursor", "pointer");
 
+            showLoader(function() {
+                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400);
+                drawDistricts('extra', extra, extra.objects.extra_districts);
+                drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
+                svg.selectAll('.secondary').attr('opacity', 0);
+                drawStates(us, us.objects.states);
+                $('.legend').show();
+                resizeLegend();
+            });
+
+
             d3.select('#englishLearnersButton').on('click', function () {
-                drawEnglishLearners(primary, extra, us);
+                drawEnglishLearners();
             });
 
             d3.select('#percentChangeButton').on('click', function () {
-                drawPercentChange(primary, extra, us);
+                drawPercentChange();
             });
 
             d3.select("#selectElementary").on("click", function () {
                 $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                $('.secondary').remove();
+                svg.selectAll('.secondary').attr('opacity', 0);
             });
 
             d3.select("#selectSecondary").on("click", function () {
                 $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                $('.state').remove();
-
-                var colorFunc = getColorFunc();
-                drawDistricts('secondary', secondary, secondary.objects.medium_G5410, colorFunc);
-                var selectedButton = $('.highlightButton');
-                if (selectedButton.length > 0) {
-                    var buttonValue = selectedButton.attr("data-value");
-                    svg.selectAll(".district")
-                        .attr("fill", function (d) {
-                            if (buttonValue === colorFunc(d)) {
-                                return buttonValue;
-                            }
-                            else {
-                                return "#E6E6E6";
-                            }
-                        });
-                }
-
-                drawStates(us, us.objects.states);
+                svg.selectAll('.secondary').attr('opacity', 1);
             });
-
-            drawEnglishLearners(primary, extra, us);
 
             var legendButtons = $('.legendButton');
             legendButtons.on("click", function () {
@@ -862,42 +853,28 @@
             });
         }
 
-        function showLoader(fn) {
-            $('.loader').show();
-            setTimeout(function () {
-                fn();
-                $('.loader').hide();
-            }, 100);
-        }
-
-        function drawEnglishLearners(primary, extra, us) {
-            $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-            $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-            $('.district').remove();
-            $('.state').remove();
-            $('.legend').hide();
-            showLoader(function () {
-                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
-                drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
-                drawStates(us, us.objects.states);
-                $('.legend').show();
-                resizeLegend();
-            });
-        }
-
-        function drawPercentChange(primary, extra, us) {
-            $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-            $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-            $('.district').remove();
-            $('.state').remove();
-            $('.legend').hide();
-            showLoader(function () {
-                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
-                drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
-                drawStates(us, us.objects.states);
-                $('.legend').show();
-                resizeLegend();
-            });
+        function drawDistricts(id, topology, object) {
+            g.append("g")
+                .selectAll("path")
+                .data(topojson.feature(topology, object).features)
+                .enter().append("path")
+                .attr("class", function(d) {
+                    return id + " district";
+                })
+                .attr("d", path)
+                .attr("stroke", "#fff")
+                .attr("stroke-opacity", .15)
+                .attr("stroke-linejoin", "round")
+                .attr("fill", colorByGroup)
+                .on("mouseover", function (d) {
+                    createTooltip(this, d);
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("stroke", "#fff")
+                        .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
+                });
         }
 
         function drawStates(topology, object) {
@@ -910,29 +887,35 @@
                 .attr("d", path);
         }
 
-        function drawDistricts(id, topology, object, colorFunc) {
-            g.append("g")
-                .selectAll("path")
-                .data(topojson.feature(topology, object).features)
-                .enter().append("path")
-                .attr("class", function (d) {
-                    var fill = colorFunc(d);
-                    return id + " district " + fill;
-                })
-                .attr("d", path)
-                .attr("stroke", "#fff")
-                .attr("stroke-opacity", .15)
-                .attr("stroke-linejoin", "round")
-                .attr("fill", colorFunc)
-                .on("mouseover", function (d) {
-                    createTooltip(this, d);
-                })
-                .on("mouseout", function () {
-                    d3.select(this).attr("stroke", "#fff")
-                        .attr("stroke-opacity", .15);
-                    d3.select(this).classed("selected", false);
-                    tooltip.transition().duration(300).style("opacity", 0);
-                });
+
+        function showLoader(fn) {
+            $('.loader').show();
+            setTimeout(function () {
+                fn();
+                $('.loader').hide();
+            }, 100);
+        }
+
+        function drawEnglishLearners() {
+            $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('.legend').hide();
+            showLoader(function () {
+                svg.selectAll('.district').attr('fill', colorByGroup);
+                $('.legend').show();
+                resizeLegend();
+            });
+        }
+
+        function drawPercentChange() {
+            $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('.legend').hide();
+            showLoader(function () {
+                svg.selectAll('.district').attr('fill', colorByPercentChange);
+                $('.legend').show();
+                resizeLegend();
+            });
         }
 
         function getMapMode() {
@@ -1076,14 +1059,14 @@
                 legend = $('#percentChangeLegend');
             }
             legend.show();
-            var totalDistricts = document.getElementsByClassName('district').length;
-            var nullDistricts = document.getElementsByClassName('gray').length;
-            var noELDistricts = document.getElementsByClassName('#404040').length;
+            var totalDistricts = svg.selectAll('.district').size();
+            var nullDistricts = svg.selectAll('[fill="gray"]').size();
+            var noELDistricts = svg.selectAll('[fill="#404040"]').size();
             totalDistricts -= nullDistricts + noELDistricts;
             var legendButtons = legend.find('.legendButton');
             legendButtons.each(function () {
                 var buttonValue = $(this).attr("data-value");
-                var valueSize = document.getElementsByClassName(buttonValue).length;
+                var valueSize = svg.selectAll('[fill="' + buttonValue + '"]').size();
                 var width = (valueSize / totalDistricts) * 100;
                 if (getMapMode() === 'percent' && $(this).hasClass("null")) {
                     width = width * 6;
