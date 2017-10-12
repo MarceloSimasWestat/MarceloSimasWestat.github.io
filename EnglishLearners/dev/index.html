@@ -981,7 +981,8 @@
             if (name === null) name = "NO DATA";
 
             if (getMapMode() === 'percent') {
-                if (name === "School District Not Defined") {
+                var category = d.properties['Category'];
+                if (category === 100) {
                     tooltip.html(
                         "<h3>" + state.toUpperCase() + "</h3>" +
                         "<hr>" +
@@ -989,23 +990,24 @@
                     );
                 }
                 else {
-                    var percentEL = d.properties['Percent'];
+                    var numberOfELs = d.properties['Number of ELs'];
+                    numberOfELs = formatNumber(numberOfELs);
+                    var totalNumberOfStudents = d.properties['Total number of students'];
+                    totalNumberOfStudents = formatNumber(totalNumberOfStudents);
+                    var percentEL = d.properties['% of students who are English Learners'];
                     percentEL = formatPercent(percentEL);
 
-                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h4>" + name + "</h4><hr>" +
-                        "<div> % of students who are English learners: " + percentEL + "</div>");
+                        "<div>Number of ELs: " + numberOfELs + "</div>" +
+                        "<div>Total number of students: " + totalNumberOfStudents + "</div>" +
+                        "<div>% of students who are English Learners: " + percentEL + "</div>"
+                    );
                 }
             }
             else {
                 var category = d.properties['Change as % of 2009-10, categorized'];
-
-                var liep09 = d.properties['LIEP09'];
-                liep09 = formatNumber(liep09);
-                var liep14 = d.properties['LIEP14'];
-                liep14 = formatNumber(liep14);
-                var change = d.properties['Change from 2009-10 to 2014-15'];
-                var changePercent = d.properties['Change as % of 2009-10'];
 
                 if(category === 100) {
                     tooltip.html(
@@ -1015,6 +1017,13 @@
                     );
                 }
                 else {
+                    var liep09 = d.properties['LIEP09'];
+                    liep09 = formatNumber(liep09);
+                    var liep14 = d.properties['LIEP14'];
+                    liep14 = formatNumber(liep14);
+                    var change = d.properties['Change from 2009-10 to 2014-15'];
+                    var changePercent = d.properties['Change as % of 2009-10'];
+
                     if (category === 101) {
                         if(change === null) change = 'NO DATA';
                         else change = formatNumber(change);
@@ -1033,7 +1042,7 @@
                         changePercent = changePercent + '%';
                     }
                     else {
-                        changePercent = roundPercent(changePercent);
+                        changePercent = formatPercent(changePercent);
                     }
 
                     tooltip.html(
@@ -1048,21 +1057,6 @@
             }
         }
 
-        function formatPercent(p) {
-            if (p === 0) {
-                return 'N/A';
-            }
-            else if (p === null) {
-                return 'NO DATA';
-            }
-            else if (p > 100) {
-                return '>100%';
-            }
-            else {
-                return p + '%';
-            }
-        }
-
         function formatNumber(n) {
             if (n === null) {
                 return 'NO DATA';
@@ -1072,12 +1066,16 @@
             }
         }
 
-        function roundPercent(p) {
+        function formatPercent(p) {
+            if (p === null) {
+                return 'NO DATA';
+            }
+
             var rounded = Math.round(p * 10) / 10;
-            if(rounded < .1 && p >= 0) {
+            if(p < .1 && p > 0) {
                 return '<0.1%';
             }
-            else if(rounded > -.1 && p <= 0) {
+            else if(p > -.1 && p < 0) {
                 return '>-.1%';
             }
             else {
