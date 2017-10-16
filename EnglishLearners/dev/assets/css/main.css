@@ -5722,7 +5722,7 @@ div.legendButton {
     cursor: pointer;
     text-align: center;
     font-size: 11px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #b1b1b1;
 }
 
 .selectedMapButton {
@@ -5731,7 +5731,8 @@ div.legendButton {
 }
 
 .deselectedMapButton {
-    color: rgba(26,28,32,0.90);
+	color: #1f1f1f;
+    background-color: rgba(255,255,255,0.85);
 }
 
 
