@@ -269,7 +269,7 @@
 
                     <!-- MAP #1 (left toggle) -->
                     <div id="percentLegend" class="legend" style="display: none;">
-                        <h3 class="title">Percentage of students who are English learners (2014-15)</h3>
+                        <h3 class="title">Percentage of students who are English learners <span class="nowrap">(2009-10)</span></h3>
                         <div class="legendContainer">
 
                             <div class="legendButtonWrapper">
@@ -331,7 +331,10 @@
                     <!-- end legend 1 -->
                     <!-- MAP #2 (right toggle) -->
                     <div id="percentChangeLegend" class="legend" style="display: none;">
-                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program, 2009-10 to 2014-15</h3>
+                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program, 
+							<span class="nowrap">2009-10</span> to
+							<span class="nowrap">2014-15</span>
+						</h3>
 
                         <div class="legendContainer">
 
@@ -1038,14 +1041,16 @@
                         if (changePercent === null) changePercent = 'Few or no ELs';
                         else changePercent = changePercent + '%';
                     }
-                    else if (category === 1) {
-                        changePercent = changePercent + '%';
-                    }
-					// For all other categories, still need to format the change and % change values
                     else {
-						if(change != null) change = formatNumber(change);
-                        changePercent = formatPercent(changePercent);
-                    }
+						change = formatNumber(change);
+                    					
+						if (category === 1) {
+							changePercent = changePercent + '%';
+						}
+						else {
+							changePercent = formatPercent(changePercent);
+						}
+					}
 
                     tooltip.html(
                         "<h3>" + state.toUpperCase() + "</h3><hr>" +

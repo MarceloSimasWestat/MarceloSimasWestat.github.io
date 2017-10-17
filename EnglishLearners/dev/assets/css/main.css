@@ -45,6 +45,11 @@ body {
     -webkit-text-size-adjust: none;
 }
 
+.nowrap {
+	white-space: nowrap;
+}
+
+
 /* Box Model */
 
 *, *:before, *:after {
