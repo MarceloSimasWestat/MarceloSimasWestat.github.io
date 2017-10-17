@@ -381,7 +381,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        25-75% increase
+                                        25-50% increase
                                     </div>
                                 </div>
                                 <div data-value="#340d67" class="legendButton">
@@ -389,7 +389,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        &gt;=75% increase
+                                        &gt;=50% increase
                                     </div>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -1041,7 +1041,9 @@
                     else if (category === 1) {
                         changePercent = changePercent + '%';
                     }
+					// For all other categories, still need to format the change and % change values
                     else {
+						if(change != null) change = formatNumber(change);
                         changePercent = formatPercent(changePercent);
                     }
 
