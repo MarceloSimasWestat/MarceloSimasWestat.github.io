@@ -269,7 +269,7 @@
 
                     <!-- MAP #1 (left toggle) -->
                     <div id="percentLegend" class="legend" style="display: none;">
-                        <h3 class="title">Percentage of students who are English learners (2014-15) - DRAFT</h3>
+                        <h3 class="title">Percentage of students who are English learners (2014-15)</h3>
                         <div class="legendContainer">
 
                             <div class="legendButtonWrapper">
@@ -331,7 +331,7 @@
                     <!-- end legend 1 -->
                     <!-- MAP #2 (right toggle) -->
                     <div id="percentChangeLegend" class="legend" style="display: none;">
-                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program, 2009-10 to 2014-15 - DRAFT</h3>
+                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program, 2009-10 to 2014-15</h3>
 
                         <div class="legendContainer">
 
@@ -341,7 +341,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&gt; 50% decrease)
+                                        &gt; 50% decrease
                                     </div>
                                 </div>
                                 <div data-value="#6baed6" class="legendButton">
@@ -349,7 +349,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (20-50% decrease)
+                                        25-50% decrease
                                     </div>
                                 </div>
                                 <div data-value="#c6dbef" class="legendButton">
@@ -357,7 +357,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&lt; 20% decrease)
+                                        &lt; 25% decrease
                                     </div>
                                 </div>
                                 <div data-value="#9e9ac8" class="legendButton">
@@ -365,7 +365,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (No change)
+                                        No change
                                     </div>
                                 </div>
                                 <div data-value="#756bb1" class="legendButton">
@@ -373,7 +373,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&lt; 20%)
+                                        &lt; 25% increase
                                     </div>
                                 </div>
                                 <div data-value="#54278f" class="legendButton">
@@ -381,7 +381,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (20-75% increase)
+                                        25-50% increase
                                     </div>
                                 </div>
                                 <div data-value="#340d67" class="legendButton">
@@ -389,7 +389,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (&gt;=75% increase)
+                                        &gt;=50% increase
                                     </div>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -401,7 +401,7 @@
                                         <hr class="verticalLine">
                                     </div>
                                     <div class="legendText">
-                                        (No ELs)
+                                        No ELs
                                     </div>
                                 </div>
                                 <div data-value="gray" class="legendButton null">
@@ -710,7 +710,7 @@
                 var stacked1 = stackedBar().data(data).marginLeft(130).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
                   .title("Although Spanish is the most commonly spoken language among ELs in most states, there is a wide variety of languages spoken by ELs across the states.")
                   .altText("This chart displays the five most commonly spoken non-English languages among English Learner (EL) students by state.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017.");
+                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. National data from U.S. Department of Education, Digest of Education Statistics, 2016 downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_204.27.asp'>https://nces.ed.gov/programs/digest/d16/tables/dt16_204.27.asp</a>.");
 
                 d3.select("#ch3_2").call(stacked1);
 
@@ -1041,7 +1041,9 @@
                     else if (category === 1) {
                         changePercent = changePercent + '%';
                     }
+					// For all other categories, still need to format the change and % change values
                     else {
+						if(change != null) change = formatNumber(change);
                         changePercent = formatPercent(changePercent);
                     }
 
