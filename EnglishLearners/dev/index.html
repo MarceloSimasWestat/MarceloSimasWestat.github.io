@@ -1072,6 +1072,12 @@
             }
 
             var rounded = Math.round(p * 10) / 10;
+            // JS rounds negative values that have the exact decimal of .5 up instead of down,
+            // i.e. -1.35 rounds to -1.3 instead of -1.4
+            if(p < 0) {
+                rounded = Math.round(Math.abs(p) * 10) / 10 * -1;
+            }
+
             if(p < .1 && p > 0) {
                 return '<0.1%';
             }
