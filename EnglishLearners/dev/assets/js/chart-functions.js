@@ -1739,7 +1739,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.num) + " students, were students with disabilities."; });
+						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were ELs."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
