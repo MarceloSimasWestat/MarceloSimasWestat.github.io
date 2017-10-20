@@ -4991,7 +4991,7 @@ button:hover,
 }
 
 .dotF {
-	fill: #5D3EA8;
+	fill: #240f18;
 }
 
 .labelM {
@@ -5001,7 +5001,7 @@ button:hover,
 
 .labelF {
 	font: 400 13px Inconsolata;
-	fill: #5D3EA8;
+	fill: #240f18;
 }
 
 .dotM:hover,
@@ -5010,13 +5010,13 @@ button:hover,
 }
 
 .dotL {
-	stroke: #5D42A6;
+	stroke: #240f18;
 	stroke-width: 1px;
 	shape-rendering: crispEdges;
 }
 
 .dotLHit {
-	stroke: #5D42A6;
+	stroke: #240f18;
 	stroke-width: 10px;
 	shape-rendering: crispEdges;
 	opacity: 0;
@@ -5245,7 +5245,7 @@ button:hover,
 
 .stackedBar .x.axis {
 	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	fill: black;
 }
 
 .stackedBar .x.axis path {
@@ -5274,6 +5274,11 @@ button:hover,
 	text-align: right;
 }
 
+.stackedBar .bar {
+  stroke: black;
+  stroke-width: 1px;
+}
+
 .stackedBar .bar:hover {
   .fill-opacity: 0.65;
 }
@@ -5296,7 +5301,7 @@ button:hover,
 
 .multiBar .x.axis {
 	font: 400 13px Inconsolata;
-	fill: rgba(26, 28, 32, .65);
+	fill: black;
 }
 
 .multiBar .x.axis path {
@@ -5304,7 +5309,7 @@ button:hover,
 }
 
 .multiBar .x.axis line {
-	stroke: rgba(26, 28, 32, 0.25);
+	stroke: black;
 	stroke-dasharray: 1,1;
 }
 
@@ -5331,6 +5336,71 @@ button:hover,
 
 .multiBar .bar:hover {
 	fill-opacity: 0.75;
+}
+
+/* Small multiples */
+
+.smChartDiv .smTitleDiv {
+    font: normal 15px Karla;
+    font-weight: bold;
+    text-align: center;
+}
+
+.smChartDiv .smSubTitleDiv {
+    font: normal 13px Karla;
+    /*font-weight: bold;*/
+    text-align: center;
+}
+
+.smBarChart .axis path,
+.smBarChart .axis line {
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
+}
+
+.smBarChart .x.axis {
+    font: 400 13px Inconsolata;
+    fill: black;
+}
+
+.smBarChart .x.axis path {
+    display: none;
+}
+
+.smBarChart .x.axis line {
+    stroke: black;
+    stroke-dasharray: 1,1;
+}
+
+.smBarChart .y.axis {
+    font: normal 13px Karla;
+    color: #1A1C20;
+}
+
+    .smBarChart .y.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
+
+.smBarChart .title {
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* .smBarChart .bar {
+	fill: #5D42A6;
+}
+
+.smBarChart .overallBar {
+	fill: #A6426C;
+} */
+
+.smBarChart .bar:hover,
+.smBarChart .overallBar:hover {
+    fill-opacity: .65;
 }
 
 /* Styling tooltips for individual graph types */
