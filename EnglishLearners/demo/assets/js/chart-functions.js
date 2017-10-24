@@ -1597,6 +1597,8 @@ function colChart() {
 		marginBottom = 25,
 		animateTime = 1000,
 		colWidth = 15,
+		yMax = 1,
+		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -1689,7 +1691,7 @@ function colChart() {
 		// domains
 
 		xScale.domain(data.map(function(d, i) { return d.group; }));
-		yScale.domain([0, 0.5]);
+		yScale.domain([0, yMax]);
 
 		// axes
 
@@ -1718,7 +1720,7 @@ function colChart() {
 			.attr("y", "-2.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "start")
-			.text("% OF STUDENTS IN 2014-15");
+			.text(yAxisLabel);
 
 		// draw columns
 
@@ -1737,7 +1739,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.num) + " students, were students with disabilities."; });
+						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were ELs."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1808,7 +1810,9 @@ function colChart() {
 				.attr("width", width);
 
 			dom.select(".x.axis")
-				.call(xAxis);
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap, xScale.rangeBand());
 
 			dom.select(".y.axis")
 				.call(yAxis);
@@ -1887,6 +1891,14 @@ function colChart() {
 
 	};
 
+	chart.yMax = function(value) {
+
+		if (!arguments.length) return yMax;
+		yMax = value;
+		return chart;
+
+	};
+
 	chart.colWidth = function(value) {
 
 		if (!arguments.length) return colWidth;
@@ -1911,13 +1923,21 @@ function colChart() {
 
 	};
 
+	chart.yAxisLabel = function(value) {
+
+		if (!arguments.length) return yAxisLabel;
+		yAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.notes = function(value) {
 
-			if (!arguments.length) return notes;
-			notes = value;
-			return chart;
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
 
-		};
+	};
 
 	chart.source = function(value) {
 

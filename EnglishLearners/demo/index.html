@@ -6,7 +6,7 @@
 -->
 <html lang="en-us">
 <head>
-    <title>English Learners</title>
+    <title>English Learners (DRAFT)</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,7 +66,7 @@
                         <li><a href="#intro">Introduction</a></li>
                         <li><a href="#one">Who are ELs?</a></li>
                         <li><a href="#two">Where are ELs?</a></li>
-                        <li><a href="#mapHead">ELs Mapped</a></li>                          
+                        <li><a href="#mapHead">ELs Mapped</a></li>
                         <li><a href="#three">Languages</a></li>
                         <li><a href="#four">Wrap Up</a></li>
                         <!--<li><a href="#five">Conclusion</a></li>-->
@@ -98,6 +98,7 @@
                 <ul class="actions">
                     <li><span class="buttonInactive">— U.S. Department of Education</span></li>
                 </ul>
+                <h1 style="max-width: 650px;">DRAFT<br></h1>
             </div>
         </section>
 
@@ -127,7 +128,7 @@
                     English learner (EL) students are a growing part  of the K-12 student population. Between the 2009-10 and 2014-15 school years, the EL percentage of students increased in more than half of the states, with increases of over 40 percent in five states.<sup>1</sup> Under the Every Student Succeeds Act, states must annually assess the English language proficiency of ELs, provide reasonable accommodations for them on state assessments, and develop new accountability systems that include long-term goals and measures of progress for ELs. While Spanish is the most common language spoken at home by ELs, in some states there is more variation in the home language rather than the heterogeneity of these students.<sup>2</sup> The need to support less commonly spoken languages could also be different across school districts.
                 </p>
                 <p style="margin-bottom:3.5em;">
-                    Information about the characteristics and location of ELs in the following story map may help inform decisions about the provision of instructional supports and services for these students. These figures represent the latest look at ELs across the country, using data submitted by the states to EDFacts for the 2014-15 school year.
+                    Information about the characteristics and location of ELs in the following story map may help inform decisions about the provision of instructional supports and services for these students. These figures represent the latest look at ELs across the country, primarily using publicly available data for the 2014-15 and 2009-10 school years. See figure notes for specific data source.
                 </p>
                 <div class="disclaimer">
                     <div style="display: table-row; width: 100%;">
@@ -183,9 +184,12 @@
                 <div></div>
                 <div id="ch1_1"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    <strong style="color: #000;">Hispanic or Latino students represent more than three times the share of ELs, compared to all students.</strong><br/>More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
+                    <strong style="color: #000;">Hispanic or Latino students represent more than three times the share of ELs, compared to all students.</strong><br />More than 75 percent of ELs in 2014–15 were Hispanic or Latino, but made up just 25 percent of all students. Asians also comprised a larger percentage of ELs than all students; about 5 percent of all students were Asian, but Asians account for 11 percent of ELs. White students make up the third largest share of ELs at 6 percent.
                 </p>
                 <div id="ch1_2"></div>
+                <p style="margin-top:1.5em;">
+                    Overall, 10 percent of students are ELs. In comparison, ELs represent 14 percent of all homeless children enrolled in public school, 15 percent of students served by either Public Title I SWP or TAS programs, and 39 percent of eligible migrant children who reside in the state.
+                </p>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     Students with disabilities represent 14 percent of the EL population,  compared with 13 percent of the overall student population.
                 </p>
@@ -235,7 +239,7 @@
             <div class="inner">
                 <h2 class="line">English Learners Mapped</h2>
                 <p>
-                    While districts across large sections of the country have low percentages of ELs, districts with the highest concentrations of ELs cluster in the Southwest and in Alaska.
+                    While districts across large sections of the country have low percentages of ELs, districts with the highest concentrations of ELs cluster in the Southwest and in Alaska. In addition, nearly 60 percent of districts with ELs enrolled in language instructional programs in 2009-10 and 2014-15 experienced an increase in these students over time. However, there was no distinct geographic pattern among districts experiencing an increase.
                 </p>
                 <div class="disclaimer">
                     <div style="display: table-row; width: 100%;">
@@ -254,16 +258,19 @@
         <section class="wrapper chart">
             <div class="inner">
 
-                <div id="mapWrapper" class="mapEnglishLearners">
+                <div id="mapButtonWrapper" class="mapEnglishLearners">
+                    <button id="englishLearnersButton" class="mapHeaderButton selectedMapButton">English learners (2014-15)</button>
+                    <button id="percentChangeButton" class="mapHeaderButton deselectedMapButton">Percent change (2009-10 to 2014-15)</button>
+                </div>
 
-                    <!-- TODO: IF add second map toggle, move into legend div with loader -->
-                    <h3 class="title">Percentage of students who are English learners (2014-15)</h3>
+                <!-- Spinner loader (see loader.css) -->
+                <div class="loader">Loading...</div>
 
-                    <!-- Spinner loader (see loader.css) -->
-                    <div class="loader">Loading...</div>
+                <div id="mapWrapper">
 
-                    <div id="percentLegend" class="legend">
-                        
+                    <!-- MAP #1 (left toggle) -->
+                    <div id="percentLegend" class="legend" style="display: none;">
+                        <h3 class="title">Percentage of students who are English learners <span class="nowrap">(2014-15)</span></h3>
                         <div class="legendContainer">
 
                             <div class="legendButtonWrapper">
@@ -292,7 +299,7 @@
                                     <div class="legendText">
                                         Medium
                                         <br>
-                                        (5% to &lt; 20%)
+                                        (5% to &lt;20%)
                                     </div>
                                 </div>
                                 <div data-value="#340d67" class="legendButton">
@@ -322,7 +329,99 @@
                         </div>
                         <!-- end legendContainer -->
                     </div>
-                    <!-- end legend -->
+                    <!-- end legend 1 -->
+                    <!-- MAP #2 (right toggle) -->
+                    <div id="percentChangeLegend" class="legend" style="display: none;">
+                        <h3 class="title">Percentage change in the number of ELs enrolled in an English language instruction educational program,
+							<span class="nowrap">2009-10</span> to
+							<span class="nowrap">2014-15</span>
+						</h3>
+
+                        <div class="legendContainer">
+
+                            <div class="legendButtonWrapper">
+                                <div data-value="#08519c" class="legendButton">
+                                    <div style="background-color: #08519c;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        &gt; 50% decrease
+                                    </div>
+                                </div>
+                                <div data-value="#6baed6" class="legendButton">
+                                    <div style="background-color: #6baed6;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        25-50% decrease
+                                    </div>
+                                </div>
+                                <div data-value="#c6dbef" class="legendButton">
+                                    <div style="background-color: #c6dbef;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        &lt; 25% decrease
+                                    </div>
+                                </div>
+                                <div data-value="#9e9ac8" class="legendButton">
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        No change
+                                    </div>
+                                </div>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        &lt; 25% increase
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        25-50% increase
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        &gt;=50% increase
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+
+                            <div class="innerLegend">
+                                <div data-value="#404040" class="legendButton null">
+                                    <div style="background-color: #404040;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        Few or no ELs
+                                    </div>
+                                </div>
+                                <div data-value="gray" class="legendButton null">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!-- end legendContainer -->
+                    </div>
+                    <!-- end legend 2 -->
 
                     <div id="map">
                         <div class="mapControlsParent">
@@ -348,8 +447,8 @@
                     <br />
                     <p class="dataLinksText">* <a href="#mapnotes">See map notes</a>. <!--<a href="#">Download the district level data</a> used in this map.--></p>
                 </div>
-            </div>
 
+            </div>
             <!-- end innner -->
         </section>
 
@@ -360,7 +459,7 @@
 
                 <h2 class="line">Most Common Non-English Languages Spoken by English Learners</h2>
                 <p>
-                    ELs speak a wide variety of languages at home, including Spanish, Arabic, Chinese, Vietnamese, and Somali. States with more variation in the languages spoken at home may require additional resources for instructional supports and services for ELs.
+                    ELs speak a wide variety of languages at home, including Spanish, Arabic, Chinese, Vietnamese, and Hmong. States with more variation in the languages spoken at home may require additional resources for instructional supports and services for ELs.
                 </p>
             </div>
         </section>
@@ -378,10 +477,10 @@
                 </p>-->
                 <div id="ch3_2"></div>
                 <p style="margin-top:1.5em;">
-                    In total, ELs in U.S. public schools speak over 400 different languages. More than three-quarters of all ELs speak Spanish. The next most commonly spoken languages were Arabic, Chinese, Vietnamese, and English, however, these languages are spoken much less commonly than Spanish, representing about 2 percent each.
+                    In total, ELs in U.S. public schools speak over 400 different languages. More than three-quarters of all ELs speak Spanish. The next most commonly spoken non-English languages were Arabic, Chinese, Vietnamese, and Hmong, however, these languages are spoken much less commonly than Spanish, representing about 2 percent each.
                 </p>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    Spanish is the language most commonly spoken by ELs at home in 45 of states and the District of Columbia, and in all but three of those states, more than 50 percent of the ELs in the state spoke Spanish at home. The states in which Spanish was not the most common language were Alaska (Yupik languages), Hawaii (Iloko), Maine (Somali), Montana (German), and Vermont (Nepali) . The number of unique languages spoken by ELs in each state varies from five in Mississippi to more than 225 in Pennsylvania.
+                    Spanish is the language most commonly spoken by ELs at home in 45 of states and the District of Columbia, and in all but seven of those states, more than 50 percent of the ELs in the state spoke Spanish at home. The states in which Spanish was not the most common language were Alaska (Yupik languages), Hawaii (Iloko), Maine (Somali), Montana (German), and Vermont (Nepali) . The number of unique languages spoken by ELs in each state varies from five in Mississippi to more than 225 in Pennsylvania.
                 </p>
             </div>
         </section>
@@ -443,16 +542,7 @@
             <div class="6u$ 12u$(medium) dataExclusion">
                 <h3 class="line">Overall Notes</h3>
                 <p>
-                    Sources: Unless otherwise noted below, EL enrollment data come from 2014-15 EDFacts LEP Enrolled, file C141/data group 678. LIEP participation data come from 2014-15 EDFacts LEP Students in LEP Program, file C046/data group 123 provided by EDFacts on April 7, 2017. Enrollment data for all students come from the 2014 Common Core of Data (CCD), downloaded April 2017. National data are for the 50 states and DC. EL enrollment was treated as zero for LEAs not reported on the EDFacts EL enrollment file, but have enrollment > 0.
-                </p>
-                <p>
-                    The analysis of the distribution of districts by EL concentration is based on all LEAs included on the CCD membership file with at least one student enrolled. Because of data quality concerns, this analysis uses Rhode Island’s and Vermont’s school-level EL enrollment aggregated to the LEA-level. This analysis excludes 11 New Jersey LEAs with more than 100 percent of their students reported as ELs.
-                </p>
-                <p>
-                    The analysis of the distribution of schools by EL concentration is based on all schools included on the CCD membership file with at least one student enrolled. Because of data quality concerns, this analysis uses Nebraska’s 2013-14 EL enrollment data adjusted for changes to the school’s overall enrollment. For New York, this analysis uses school-level data from the state’s website.
-                </p>
-                <p>
-                    For the analysis of all students and EL students by race/ethnicity, the percentage values for the distribution of all students by race/ethnicity come from Digest of Education Statistics Table 203.70. Percentage distribution of enrollment in public elementary and secondary schools, by race/ethnicity and state or jurisdiction: Fall 2004 and fall 2014. Downloaded June 2017 from: <a href="https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp" target="_blank">https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp</a>.
+                    Data sources are identified in figure notes and source notes.With the exception of some analyses of districts and schools, these data are publicly available. For the district map showing the percentage of students who are English learners, a privacy protection algorithm was applied to EDFacts LEA-level EL enrollment data prior to their use in this storymap.
                 </p>
                 <p>
                     For the languages analysis, the other languages category includes English. Language codes of uncoded and undetermined are always classified in the other languages category. The language code of no linguistic content/not applicable was classified to missing except for Georgia where it was classified as other languages because the state provided explanatory information.
@@ -460,17 +550,21 @@
             </div>
             <div class="6u$ 12u$(medium) dataExclusion">
                 <h3 id="mapnotes" style="font-size: 15px;" class="line">Map Notes</h3>
-                <p>A district might have null/missing data on the map if:</p>
+                <p>A district might have null/missing data on the maps, or may not appear on the maps, if:</p>
                 <ol>
-                    <li>The district has missing EL enrollment or total student membership.</li>
+                    <li>The district has missing EL enrollment, LIEP enrollment, or total student membership.</li>
                     <li>The district has more than 100 percent of their students reported as ELs.</li>
-                    <li>It did not match with the NCES district boundary file.</li>
+                    <li>The district did not match with the NCES district boundary file.</li>
+                    <li>The data were suppressed for privacy protection (fewer than 6 students enrolled).</li>
                 </ol>
                 <p>
-                    Because of data quality concerns, this analysis uses Rhode Island’s school-level EL enrollment aggregated to the LEA-level.
+                    The map showing the percentage of students who are English learners is based on English learner enrollment counts from EDFacts and total student enrollment from the Common Core of Data (CCD). Because of data quality concerns, this map uses Rhode Island’s and Vermont’s school-level EL enrollment aggregated to the LEA-level.
                 </p>
                 <p>
-                    On this map, the label <strong>Elementary</strong> includes all school districts that are financially responsible for providing education only to children in the elementary grades. Some elementary districts share territory with one or more Secondary districts. The label Independent Elementary refers to those Elementary school districts that are geographically independent of other school districts.
+                  The map showing the percentage change in the number of ELs enrolled in an English language instruction educational program (LIEP) uses publicly available data from the Common Core of Data (CCD). Note that not all English learners are enrolled in LIEP.  Illinois and Mississippi have missing data for almost all districts. In addition, because Vermont only reports LIEP enrollment for supervisory unions and it cannot be attributed to districts, the map suggests Vermont has no English learners in LIEP. However, because of the way Vermont reports its data, the percentage change in LIEP cannot be calculated.
+                </p>
+                <p>
+                    On the maps, the label <strong>Elementary</strong> includes all school districts that are financially responsible for providing education only to children in the elementary grades. Some elementary districts share territory with one or more Secondary districts. The label Independent Elementary refers to those Elementary school districts that are geographically independent of other school districts.
                 </p>
                 <p>
                     The label <strong>Secondary</strong> includes all school districts that are financially responsible for providing education only to children in the upper grades. This includes pseudo-secondary school districts created by the Census Bureau.
@@ -544,14 +638,20 @@
                 var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
                 var chart1_1 = dotTwo().data(data1_1).marginLeft(120).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .group1("All students").group2("ELs")
+                  .xAxisLabel("% OF ALL STUDENTS/ELS IN 2014-15")
                   .title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.")
                   .altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.")
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
-                var chart1_2 = colChart().data(data1_2).marginBottom(35).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
-                  .title("ELs are about as likely to be classified as a student with a disability as all students.")
-                  .altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, Digest of Education Statistics, 2016. Downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp' target='_blank'>https://nces.ed.gov/programs/digest/d16/tables/dt16_203.70.asp</a>");
-                var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3").group1("Non-ELs").group2("ELs").catdefs(1).xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
+                var chart1_2 = colChart().data(data1_2).marginBottom(60).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                  //.yMax(.5)
+                  .yAxisLabel("% WHO ARE ELS IN 2014-15")
+                  .title("Homeless, Title I, and migrant students are more likely to be ELs than the overall student population.")
+                  .altText("This chart displays the percentage of all students, homeless students, Title I, SWP/TAS students, and migrant eligible children who are ELs.")
+                  .notes("Title I, SWP/TAS students are enrolled in schools that receive Title I, Part A funds and operate either Schoolwide programs or Targeted Assistance programs. Homeless and Title I counts are for the school  year while the migrant count is of children who reside in the state between September 1 and August 31. Four states do not have migrant education programs (Connecticut, DC, Rhode Island, and West Virginia). These states are part of the public school enrollment data, but do not contribute to the migrant student counts.")
+                  .source("U.S. Department of Education, ED Data Express, 2014-15. Extracted August 24, 2017.");
+                var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                  .group1("Non-ELs").group2("ELs").catdefs(1)
+                  .xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
                   .title("ELs with disabilities are more likely to be classified as having a specific learning disability or speech or language impairment.")
                   .altText("This chart shows the percentage of ELs with disabilities and non-ELs with disabilities by disability category or type in 2014-15.")
                   .notes("Users can hover over the disability category label for the definition for each disability category. The percentages for intellectual disability are 7.0% for ELs (40,079 students) and 6.9% for non-ELs (358,528 students). Definitions based on 34 CFR §300.8, as they appear in <em>IDEA Part B Child Count and Educational Environments for School Year 2014-2015</em>. Retrieved September 15, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html'>https://www2.ed.gov/programs/osepidea/618-data/collection-documentation/index.html</a>.")
@@ -564,7 +664,7 @@
                 var chart2_2 = smBarChart().data(data2_2).chartsPerRow(3).marginLeft(80).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").catdefs(1)
                   .title("The 15 percent of schools where ELs comprise a high proportions (20 percent or more) of enrollment account for 61 percent of all ELs but only 16 percent of all students.")
                   .altText("These charts display the percentage of schools, ELs, and all students within each category of EL concentration.")
-                  .notes("Users can hover over the concentration category labels for the definition for each concentration category. Use caution when interpreting these data. The collection of EL enrollment at the school level is new (introduced in 2013-14).")
+                  .notes("Users can hover over the concentration category labels for the definition for each concentration category. Use caution when interpreting these data. The collection of EL enrollment at the school level is new (introduced in 2013-14). Because of data quality concerns, this analysis uses Nebraska’s 2013-14 EL enrollment data adjusted for changes to the school’s overall enrollment. For New York, this analysis uses school-level data from the state’s website.")
                   .source("U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;Public Elementary/Secondary School Universe Survey Data,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/pubschuniv.asp' target='_blank'>https://nces.ed.gov/ccd/pubschuniv.asp</a>.U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. School File C141, LEP Enrolled. Extracted March 31, 2017.");
                 //var chart3_1 = barChart().marginLeft(125).data(data3_1).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1").title("For more than 75 percent of ELs, Spanish is the most commonly spoken language at home.").altText("This chart displays the five languages most commonly spoken at home for ELs.");
 
@@ -609,7 +709,7 @@
                 var stacked1 = stackedBar().data(data).marginLeft(130).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
                   .title("Although Spanish is the most commonly spoken language among ELs in most states, there is a wide variety of languages spoken by ELs across the states.")
                   .altText("This chart displays the five most commonly spoken non-English languages among English Learner (EL) students by state.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017.");
+                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. National data from U.S. Department of Education, Digest of Education Statistics, 2016 downloaded from <a href='https://nces.ed.gov/programs/digest/d16/tables/dt16_204.27.asp'>https://nces.ed.gov/programs/digest/d16/tables/dt16_204.27.asp</a>.");
 
                 d3.select("#ch3_2").call(stacked1);
 
@@ -668,15 +768,6 @@
 
         var g = svg.append("g");
 
-        //svg.append("svg:image")
-        //        .attr("xlink:href", "images/progress-anim.gif")
-        //        .attr("id", "progress-image")
-        //        .attr("width", 30)
-        //        .attr("height", 30)
-        //        .attr("x", width / 2)
-        //        .attr("y", height / 2)
-        //        .style("opacity", 1);
-
         svg.call(zoom).call(zoom.event);
 
         var tooltip = d3.select("body").append("div")
@@ -701,30 +792,36 @@
             }
             g.attr("cursor", "pointer");
 
-            // Restore when/if add both charts
-            //d3.select('#englishLearnersButton').on('click', function () {
-            //    drawEnglishLearners(primary, extra, us);
-            //});
-			//
-            //d3.select('#percentChangeButton').on('click', function () {
-            //    drawPercentChange(primary, extra, us);
-            //});
+            showLoader(function() {
+                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400);
+                drawDistricts('extra', extra, extra.objects.extra_districts);
+                drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
+                svg.selectAll('.secondary').attr('opacity', 0);
+                drawStates(us, us.objects.states);
+                $('.legend').show();
+                resizeLegend();
+            });
+
+
+            d3.select('#englishLearnersButton').on('click', function () {
+                drawEnglishLearners();
+            });
+
+            d3.select('#percentChangeButton').on('click', function () {
+                drawPercentChange();
+            });
 
             d3.select("#selectElementary").on("click", function () {
                 $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                $('.secondary').remove();
+                svg.selectAll('.secondary').attr('opacity', 0);
             });
 
             d3.select("#selectSecondary").on("click", function () {
                 $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                $('.state').remove();
-                drawDistricts('secondary', secondary, secondary.objects.medium_G5410, getColorFunc());
-                drawStates(us, us.objects.states);
+                svg.selectAll('.secondary').attr('opacity', 1);
             });
-
-            drawEnglishLearners(primary, extra, us);
 
             var legendButtons = $('.legendButton');
             legendButtons.on("click", function () {
@@ -755,65 +852,19 @@
             });
         }
 
-        function showLoader(fn) {
-            $('.loader').show();
-            setTimeout(function () {
-                fn();
-                $('.loader').hide();
-            }, 100);
-        }
-
-        function drawEnglishLearners(primary, extra, us) {
-            //$('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-            //$('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-            $('.district').remove();
-            $('.state').remove();
-            $('.legend').hide();
-            showLoader(function () {
-                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByGroup);
-                drawDistricts('extra', extra, extra.objects.extra_districts, colorByGroup);
-                drawStates(us, us.objects.states);
-                $('.legend').show();
-                resizeLegend();
-            });
-        }
-
-        //function drawPercentChange(primary, extra, us) {
-        //    $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
-        //    $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
-        //    $('.district').remove();
-        //    $('.state').remove();
-        //    $('.legend').hide();
-        //    showLoader(function () {
-        //        drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400, colorByPercentChange);
-        //        drawDistricts('extra', extra, extra.objects.extra_districts, colorByPercentChange);
-        //        drawStates(us, us.objects.states);
-        //        $('.legend').show();
-        //        resizeLegend();
-        //    });
-        //}
-
-        function drawStates(topology, object) {
-            g.append("g")
-                .attr("class", "states")
-                .selectAll("path")
-                .data(topojson.feature(topology, object).features)
-                .enter().append("path")
-                .attr("class", "state")
-                .attr("d", path);
-        }
-
-        function drawDistricts(id, topology, object, colorFunc) {
+        function drawDistricts(id, topology, object) {
             g.append("g")
                 .selectAll("path")
                 .data(topojson.feature(topology, object).features)
                 .enter().append("path")
-                .attr("class", id + " district")
+                .attr("class", function(d) {
+                    return id + " district";
+                })
                 .attr("d", path)
                 .attr("stroke", "#fff")
                 .attr("stroke-opacity", .15)
                 .attr("stroke-linejoin", "round")
-                .attr("fill", colorFunc)
+                .attr("fill", colorByGroup)
                 .on("mouseover", function (d) {
                     createTooltip(this, d);
                 })
@@ -825,13 +876,54 @@
                 });
         }
 
+        function drawStates(topology, object) {
+            g.append("g")
+                .attr("class", "states")
+                .selectAll("path")
+                .data(topojson.feature(topology, object).features)
+                .enter().append("path")
+                .attr("class", "state")
+                .attr("d", path);
+        }
+
+
+        function showLoader(fn) {
+            $('.loader').show();
+            setTimeout(function () {
+                fn();
+                $('.loader').hide();
+            }, 100);
+        }
+
+        function drawEnglishLearners() {
+            $('#englishLearnersButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('.legend').hide();
+            showLoader(function () {
+                svg.selectAll('.district').attr('fill', colorByGroup);
+                $('.legend').show();
+                resizeLegend();
+            });
+        }
+
+        function drawPercentChange() {
+            $('#englishLearnersButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            $('.legend').hide();
+            showLoader(function () {
+                svg.selectAll('.district').attr('fill', colorByPercentChange);
+                $('.legend').show();
+                resizeLegend();
+            });
+        }
+
         function getMapMode() {
-            // if (d3.select('#englishLearnersButton').classed('selectedMapButton')) {
-            return 'percent';
-            //}
-            //else {
-            //    return 'percentChange';
-            //}
+            if (d3.select('#englishLearnersButton').classed('selectedMapButton')) {
+                return 'percent';
+            }
+            else {
+                return 'percentChange';
+            }
         }
 
         function getColorFunc() {
@@ -887,21 +979,41 @@
             var name = d.properties['District'];
             if (name === null) name = "NO DATA";
 
-            if (name === "School District Not Defined") {
-                tooltip.html(
-                    "<h3>" + state.toUpperCase() + "</h3>" +
-                    "<hr>" +
-                    "<h3>No Operating District</h3>"
-                );
-            }
-            else if (name != null) {
-                if (getMapMode() === 'percent') {
-                    var percentEL = d.properties['Percent'];
+            if (getMapMode() === 'percent') {
+                var category = d.properties['Category'];
+                if (category === 100) {
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3>" +
+                        "<hr>" +
+                        "<h3>No Operating District</h3>"
+                    );
+                }
+                else {
+                    var numberOfELs = d.properties['Number of ELs'];
+                    numberOfELs = formatNumber(numberOfELs);
+                    var totalNumberOfStudents = d.properties['Total number of students'];
+                    totalNumberOfStudents = formatNumber(totalNumberOfStudents);
+                    var percentEL = d.properties['% of students who are English Learners'];
                     percentEL = formatPercent(percentEL);
 
-                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h4>" + name + "</h4><hr>" +
-                        "<div> % of students who are English learners: " + percentEL + "</div>");
+                        "<div>Number of ELs: " + numberOfELs + "</div>" +
+                        "<div>Total number of students: " + totalNumberOfStudents + "</div>" +
+                        "<div>% of students who are English Learners: " + percentEL + "</div>"
+                    );
+                }
+            }
+            else {
+                var category = d.properties['Change as % of 2009-10, categorized'];
+
+                if(category === 100) {
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3>" +
+                        "<hr>" +
+                        "<h3>No Operating District</h3>"
+                    );
                 }
                 else {
                     var liep09 = d.properties['LIEP09'];
@@ -909,41 +1021,42 @@
                     var liep14 = d.properties['LIEP14'];
                     liep14 = formatNumber(liep14);
                     var change = d.properties['Change from 2009-10 to 2014-15'];
-                    change = formatNumber(change);
-                    var changePercent = d.properties['Change as % of 2014-15'];
-                    changePercent = formatPercent(changePercent);
-                    if (changePercent === 'NO DATA') {
-                        change = 'NO DATA';
-                    }
+                    var changePercent = d.properties['Change as % of 2009-10'];
 
-                    tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
+                    if (category === 101) {
+                        if(change === null) change = 'NO DATA';
+                        else change = formatNumber(change);
+
+                        if (changePercent === null) changePercent = 'NO DATA';
+                        else changePercent = changePercent + '%';
+                    }
+                    else if (category === 0) {
+                        if(change === null) change = 'Few or no ELs';
+                        else change = formatNumber(change);
+
+                        if (changePercent === null) changePercent = 'Few or no ELs';
+                        else changePercent = changePercent + '%';
+                    }
+                    else {
+						change = formatNumber(change);
+
+						if (category === 1) {
+							changePercent = changePercent + '%';
+						}
+						else {
+							changePercent = formatPercent(changePercent);
+						}
+					}
+
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3><hr>" +
                         "<h4>" + name + "</h4><hr>" +
                         "<div>Number of ELs in LIEP, 2009-10: " + liep09 + "</div>" +
                         "<div>Number of ELs in LIEP, 2014-15: " + liep14 + "</div>" +
                         "<div>Change from 2009-10 to 2014-15: " + change + "</div>" +
-                        "<div>Change as % of 2014-15: " + changePercent + "</div>"
+                        "<div>Change as % of 2009-10: " + changePercent + "</div>"
                     );
                 }
-            }
-            else {
-                tooltip.html("<h3>" + state.toUpperCase() + "</h3><hr>" +
-                        "<h4>" + name + "</h4><hr>" +
-                        "<div> NO DATA </div>");
-            }
-        }
-
-        function formatPercent(p) {
-            if (p === 0) {
-                return 'N/A';
-            }
-            else if (p === null) {
-                return 'NO DATA';
-            }
-            else if (p > 100) {
-                return '>100%';
-            }
-            else {
-                return p + '%';
             }
         }
 
@@ -953,6 +1066,29 @@
             }
             else {
                 return numberFormat(n);
+            }
+        }
+
+        function formatPercent(p) {
+            if (p === null) {
+                return 'NO DATA';
+            }
+
+            var rounded = Math.round(p * 10) / 10;
+            // JS rounds negative values that have the exact decimal of .5 up instead of down,
+            // i.e. -1.35 rounds to -1.3 instead of -1.4
+            if(p < 0) {
+                rounded = Math.round(Math.abs(p) * 10) / 10 * -1;
+            }
+
+            if(rounded === 0 && p < .1 && p > 0) {
+                return '<0.1%';
+            }
+            else if(rounded === 0 && p > -.1 && p < 0) {
+                return '>-.1%';
+            }
+            else {
+                return rounded + '%';
             }
         }
 
@@ -966,15 +1102,14 @@
                 legend = $('#percentChangeLegend');
             }
             legend.show();
-            var districts = $('.district');
-            var totalDistricts = districts.length;
-            var nullDistricts = districts.filter('[fill=gray]').length;
-            var noELDistricts = districts.filter('[fill=#404040]').length;
+            var totalDistricts = svg.selectAll('.district').size();
+            var nullDistricts = svg.selectAll('[fill="gray"]').size();
+            var noELDistricts = svg.selectAll('[fill="#404040"]').size();
             totalDistricts -= nullDistricts + noELDistricts;
             var legendButtons = legend.find('.legendButton');
             legendButtons.each(function () {
                 var buttonValue = $(this).attr("data-value");
-                var valueSize = districts.filter('[fill=' + buttonValue + ']').length;
+                var valueSize = svg.selectAll('[fill="' + buttonValue + '"]').size();
                 var width = (valueSize / totalDistricts) * 100;
                 if (getMapMode() === 'percent' && $(this).hasClass("null")) {
                     width = width * 6;
@@ -988,17 +1123,16 @@
 
         function colorByGroup(d) {
             switch (d.properties['Category']) {
-                case -1: return 'gray';
-                case 0: return '#9e9ac8';
-                case 1: return '#756bb1';
-                case 2: return '#54278f';
-                case 3: return '#340d67';
+                case 1: return '#9e9ac8';
+                case 2: return '#756bb1';
+                case 3: return '#54278f';
+                case 4: return '#340d67';
                 default: return 'gray';
             }
         }
 
         function colorByPercentChange(d) {
-            var percentChange = d.properties['Change as % of 2014-15, categorized'];
+            var percentChange = d.properties['Change as % of 2009-10, categorized'];
 
             switch (percentChange) {
                 case -4: return '#08519c';
