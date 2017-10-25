@@ -399,7 +399,7 @@
 
         // charts
 
-        d3.tsv("assets/data/data.tsv", function (error, data) {
+        d3.tsv("assets/data/data_test.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
                 data.forEach(function (d) {
@@ -429,11 +429,11 @@
     				/* var counterChart = counter().data(dataCounter).containerID("intro_chart").subcontainerID("intro_sections").sectionID("counter").chartID("counter");
             var chart1_1 = dotTwo().data(data1_1).marginLeft(120).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1").title("The vast majority of ELs are Hispanic or Latino compared to one-quarter of all students.").altText("This chart displays the percentage of the overall student population and English Learners from each race/ethnicity.").notes("Less than 1 percent of all students are Pacific Islander.");
             var chart1_2 = colChart().data(data1_2).marginBottom(35).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2").title("For all students and ELs, the percentage of students with disabilities is about 13 percent.").altText("This chart displays the percentage of the overall student population and English Learners who are IDEA students."); */
-            var chart2_1 = smBarChart().data(data2_1).chartsPerRow(3).marginLeft(80).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").catdefs(1)
+            var chart2_1 = smBarChart().data(data2_1).chartsPerRow(3).marginLeft(160).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").catdefs(0)
               .title("Only 7 percent of districts have high concentrations of ELs, but these districts enroll 46 percent of all ELs compared to 15 percent of all students.")
                 .altText("These charts display the percentage of school districts, ELs, and all students within each category of EL concentration.")
                 .notes("Users can hover over the concentration category labels for the definition for each concentration category.<p></p>");
-            var chart2_2 = smBarChart().data(data2_2).chartsPerRow(3).marginLeft(80).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").catdefs(1)
+            var chart2_2 = smBarChart().data(data2_2).chartsPerRow(3).marginLeft(160).height(350).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").catdefs(0)
               .title("Fifteen percent of schools have high concentrations of ELs. These schools enroll 61 percent of all ELs compared to 16 percent of all students.")
               .altText("These charts display the percentage of schools, ELs, and all students within each category of EL concentration.")
               .notes("Users can hover over the concentration category labels for the definition for each concentration category.<p></p>");
