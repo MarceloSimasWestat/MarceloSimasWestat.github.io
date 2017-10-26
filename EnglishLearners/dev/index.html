@@ -795,7 +795,6 @@
             showLoader(function() {
                 drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400);
                 drawDistricts('extra', extra, extra.objects.extra_districts);
-                drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
                 svg.selectAll('.secondary').attr('opacity', 0);
                 drawStates(us, us.objects.states);
                 $('.legend').show();
@@ -812,15 +811,15 @@
             });
 
             d3.select("#selectElementary").on("click", function () {
+                d3.selectAll('.secondary').remove();
                 $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                svg.selectAll('.secondary').attr('opacity', 0);
             });
 
             d3.select("#selectSecondary").on("click", function () {
+                drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
                 $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
-                svg.selectAll('.secondary').attr('opacity', 1);
             });
 
             var legendButtons = $('.legendButton');
