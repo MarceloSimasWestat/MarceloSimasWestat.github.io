@@ -4174,7 +4174,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_bg.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4186,7 +4186,7 @@ body.loaded #sidebar nav ul li {
 
     #intro {
         background-attachment: scroll;
-        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1.jpg") no-repeat center center scroll;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_bg.jpg") no-repeat center center scroll;
     }
 }
 
@@ -4198,7 +4198,7 @@ body.loaded #sidebar nav ul li {
 
 .image1 {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/counter_bg.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4221,7 +4221,7 @@ body.loaded #sidebar nav ul li {
 
     .image1 {
         background-attachment: scroll;
-        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2.jpg") no-repeat center center scroll;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/counter_bg.jpg") no-repeat center center scroll;
     }
 }
 
@@ -4713,7 +4713,7 @@ ul.callout li {
     }
 
     .image1 {
-        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center fixed;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/counter_bg@2x.jpg") no-repeat center center fixed;
         background-size: cover;
     }
 
@@ -4727,7 +4727,7 @@ ul.callout li {
 
         .image1 {
             background-attachment: scroll;
-            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el2@2x.jpg") no-repeat center center scroll;
+            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/counter_bg@2x.jpg") no-repeat center center scroll;
         }
     }
 }
@@ -5711,7 +5711,7 @@ div.legendButton {
 
 #mapButtonWrapper {
     margin-bottom: 15px;
-    text-align: center; 
+    text-align: center;
 }
 
 .mapHeaderButton {
