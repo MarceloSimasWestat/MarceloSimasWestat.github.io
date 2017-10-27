@@ -5579,7 +5579,7 @@ button:hover,
 
 .mapControlsParent {
     float: left;
-    width: 100%;
+    /* width: 100%; */
     z-index: 10;
     position: relative;
 }
@@ -5589,6 +5589,7 @@ button:hover,
     flex-direction: row;
     justify-content: space-between;
     /*border: 1px dashed purple;*/
+    margin-bottom: 1px;
 }
 
     .mapControlsContainer .zoomButton {
@@ -5724,36 +5725,6 @@ div.legendButton{
 .deselectedMapButton {
 	color: #1f1f1f;
     background-color: rgba(255,255,255,0.85);
-}
-
-
-#selectElementary {
-    /*font-family: Inconsolata;*/
-    /*color: white;
-    list-style: none;
-    margin: 0;
-    padding: 4px 0;
-    display: inline-block;
-    width: 300px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 13px;
-    border: 1px solid #e0e0e0;
-    background: #1A1C20;
-}
-
-#selectSecondary {
-    /* font-family: Inconsolata; */
-    /* color: rgb(26,28,32);
-    list-style: none; */
-    margin: 10px 0 0 0;
-    /* padding: 4px 0;
-    display: inline-block;
-    width: 300px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 13px;
-    border: 1px solid #e0e0e0; */
 }
 
 .districtButtonSelected{
