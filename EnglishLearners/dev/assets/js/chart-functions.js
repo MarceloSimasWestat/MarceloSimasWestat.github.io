@@ -1110,6 +1110,7 @@ function smBarChart() {
 		chartsPerRow = 3, // Charts per row
 		animateTime = 1000,
 		catdefs = 0,
+		axisdefs = 0,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -1342,6 +1343,26 @@ function smBarChart() {
 
 		catDefTips();
 
+		function axisDefCheck() {
+			if (axisdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.selectAll("text")
+					.attr("dy", "-0.25em");
+
+				svg.selectAll(".y.axis .tick")
+					.data(function(d) { return d.values; })
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", "0.75em")
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.definition; });
+			}
+			else if (axisdefs == 0) { };
+		}
+
+		axisDefCheck();
+
 		// notes
 
 		function writeNotes() {
@@ -1478,6 +1499,14 @@ function smBarChart() {
 
 		if (!arguments.length) return catdefs;
 		catdefs = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
 		return chart;
 
 	};
