@@ -1630,6 +1630,7 @@ function colChart() {
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		subgroup = "students",
 		notes = "",
 		source = "",
 		containerID = [],
@@ -1706,7 +1707,7 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 
-			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
+			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " " + subgroup + ")";
 
 		});
 
@@ -1960,6 +1961,14 @@ function colChart() {
 
 	};
 
+	chart.subgroup = function(value) {
+
+		if (!arguments.length) return subgroup;
+		subgroup = value;
+		return chart;
+
+	};
+
 	chart.notes = function(value) {
 
 		if (!arguments.length) return notes;
@@ -2008,13 +2017,13 @@ function colChart() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
 
-    };
+  };
 
 	return chart;
 

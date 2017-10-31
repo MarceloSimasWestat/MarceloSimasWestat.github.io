@@ -422,7 +422,7 @@
                         <!-- end legendContainer -->
                     </div>
                     <!-- end legend 2 -->
-					
+
 					<!-- Map sub-filters togle buttons (mapSubFiltersContainer) -->
 					<div class="mapControlsContainer">
 						<div id="selectDistrictType">
@@ -440,7 +440,7 @@
                                     <div style="clear: both; height:5px"></div>
                                     <button class="zoomButton" data-zoom="-1">-</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -649,11 +649,12 @@
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014-15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");
                 var chart1_2 = colChart().data(data1_2).marginBottom(60).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
                   //.yMax(.5)
+                  .subgroup("ELs")
                   .yAxisLabel("% WHO ARE ELS IN 2014-15")
                   .title("Homeless, Title I, and migrant students are more likely to be ELs than the overall student population.")
                   .altText("This chart displays the percentage of all students, homeless students, Title I, SWP/TAS students, and migrant eligible children who are ELs.")
                   .notes("Title I, SWP/TAS students are enrolled in schools that receive Title I, Part A funds and operate either Schoolwide programs or Targeted Assistance programs. Homeless and Title I counts are for the school  year while the migrant count is of children who reside in the state between September 1 and August 31. Four states do not have migrant education programs (Connecticut, DC, Rhode Island, and West Virginia). These states are part of the public school enrollment data, but do not contribute to the migrant student counts.")
-                  .source("U.S. Department of Education, ED Data Express, 2014-15. Extracted August 24, 2017.");
+                  .source("U.S. Department of Education, &quot;Number and percent of children ages 3 through 5 and students ages 6 through 21 served under IDEA, Part B, by LEP status and state.),&quot; 2014-15. Downloaded August 3, 2017 from <a href='https://www2.ed.gov/programs/osepidea/618-data/static-tables/2014-2015/part-b/child-count-and-educational-environment/1415-bchildcountandedenvironment-4.xlsx' target='_blank'>https://www2.ed.gov/programs/osepidea/618-data/static-tables/2014-2015/part-b/child-count-and-educational-environment/1415-bchildcountandedenvironment-4.xlsx</a>. U.S. Department of Education, ED Data Express, 2014-15. Extracted August 24, 2017.");
                 var chart1_3 = dotTwo().data(data1_3).marginLeft(250).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
                   .group1("Non-ELs").group2("ELs").catdefs(1)
                   .xAxisLabel("% OF STUDENTS WITH DISABILITIES IN 2014-15")
