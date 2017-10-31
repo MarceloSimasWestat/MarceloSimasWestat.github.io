@@ -2747,7 +2747,7 @@ function dotTwo() {
 				if (d.all_p > d.el_p) { return "e"; }
 				else { return "w"; }
 			})
-			.offset([0, 10])
+			.offset([0, 0])
 			.html(function(d) {
 
 			return group1 + ": " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
@@ -2760,7 +2760,7 @@ function dotTwo() {
 				if (d.el_p > d.all_p) { return "e"; }
 				else { return "w"; }
 			})
-			.offset([0, -10])
+			.offset([0, 0])
 			.html(function(d) {
 
 			return group2 + ": " + formatPercent(d.el_p) + "<br/>" + formatNumber(d.el_n) + " students";
