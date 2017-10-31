@@ -800,7 +800,6 @@
             showLoader(function() {
                 drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400);
                 drawDistricts('extra', extra, extra.objects.extra_districts);
-                svg.selectAll('.secondary').attr('opacity', 0);
                 drawStates(us, us.objects.states);
                 $('.legend').show();
                 resizeLegend();
@@ -857,6 +856,7 @@
         }
 
         function drawDistricts(id, topology, object) {
+            var colorFunc = getColorFunc();
             g.append("g")
                 .selectAll("path")
                 .data(topojson.feature(topology, object).features)
@@ -868,7 +868,7 @@
                 .attr("stroke", "#fff")
                 .attr("stroke-opacity", .15)
                 .attr("stroke-linejoin", "round")
-                .attr("fill", colorByGroup)
+                .attr("fill", colorFunc)
                 .on("mouseover", function (d) {
                     createTooltip(this, d);
                 })
