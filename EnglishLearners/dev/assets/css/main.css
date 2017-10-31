@@ -5465,6 +5465,11 @@ button:hover,
     fill-opacity: .65;
 }
 
+.smBarChart .def_tick {
+  font: normal 10px Karla;
+  color: #1A1C20;
+}
+
 /*D3 Map styling*/
 
 .districtTooltip, .phaTooltip {
