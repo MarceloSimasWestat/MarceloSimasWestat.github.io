@@ -5432,6 +5432,11 @@ button:hover,
     fill-opacity: .65;
 }
 
+.smBarChart .def_tick {
+  font: normal 10px Karla;
+  color: #000;
+}
+
 /* Styling tooltips for individual graph types */
 
 .d3-tip {
