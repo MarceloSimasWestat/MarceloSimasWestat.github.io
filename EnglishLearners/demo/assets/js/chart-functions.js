@@ -1110,6 +1110,7 @@ function smBarChart() {
 		chartsPerRow = 3, // Charts per row
 		animateTime = 1000,
 		catdefs = 0,
+		axisdefs = 0,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -1342,6 +1343,26 @@ function smBarChart() {
 
 		catDefTips();
 
+		function axisDefCheck() {
+			if (axisdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.selectAll("text")
+					.attr("dy", "-0.25em");
+
+				svg.selectAll(".y.axis .tick")
+					.data(function(d) { return d.values; })
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", "0.75em")
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.definition; });
+			}
+			else if (axisdefs == 0) { };
+		}
+
+		axisDefCheck();
+
 		// notes
 
 		function writeNotes() {
@@ -1482,6 +1503,14 @@ function smBarChart() {
 
 	};
 
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
+		return chart;
+
+	};
+
 	chart.barWidth = function(value) {
 
 		if (!arguments.length) return barWidth;
@@ -1601,6 +1630,7 @@ function colChart() {
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		subgroup = "students",
 		notes = "",
 		source = "",
 		containerID = [],
@@ -1677,7 +1707,7 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 
-			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
+			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " " + subgroup + ")";
 
 		});
 
@@ -1931,6 +1961,14 @@ function colChart() {
 
 	};
 
+	chart.subgroup = function(value) {
+
+		if (!arguments.length) return subgroup;
+		subgroup = value;
+		return chart;
+
+	};
+
 	chart.notes = function(value) {
 
 		if (!arguments.length) return notes;
@@ -1979,13 +2017,13 @@ function colChart() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -2709,7 +2747,7 @@ function dotTwo() {
 				if (d.all_p > d.el_p) { return "e"; }
 				else { return "w"; }
 			})
-			.offset([0, 10])
+			.offset([0, 0])
 			.html(function(d) {
 
 			return group1 + ": " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
@@ -2722,7 +2760,7 @@ function dotTwo() {
 				if (d.el_p > d.all_p) { return "e"; }
 				else { return "w"; }
 			})
-			.offset([0, -10])
+			.offset([0, 0])
 			.html(function(d) {
 
 			return group2 + ": " + formatPercent(d.el_p) + "<br/>" + formatNumber(d.el_n) + " students";
