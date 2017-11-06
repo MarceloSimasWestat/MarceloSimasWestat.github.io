@@ -5647,6 +5647,7 @@ button:hover,
     justify-content: space-between;
     /*border: 1px dashed purple;*/
     margin-bottom: 1px;
+	margin-top: 14px;
 }
 
     .mapControlsContainer .zoomButton {
