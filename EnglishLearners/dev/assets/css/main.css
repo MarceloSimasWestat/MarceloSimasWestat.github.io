@@ -5478,7 +5478,11 @@ button:hover,
   vertical-align: top;
   font: 12px Karla;
   text-align: left;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 25px 0px 25px;
+}
+
+.two_table strong {
+  color: rgba(23, 26, 29, 0.80);
 }
 
 @media screen and (max-width: 736px) {
@@ -5495,9 +5499,10 @@ button:hover,
 }
 
 .two_table .table_title {
-  font: 12px Karla;
+  font: 14px Karla;
   color: #000;
   font-weight: bold;
+  text-align: center;
 }
 
 .two_table .table_center {
