@@ -5440,10 +5440,10 @@ button:hover,
     color: #1A1C20;
 }
 
-    .smBarChart .y.axis path {
-        stroke: #1A1C20;
-        stroke-width: 1.5px;
-    }
+.smBarChart .y.axis path {
+    stroke: #1A1C20;
+    stroke-width: 1.5px;
+}
 
 .smBarChart .title {
     font: 400 15px "Karla", Helvetica, Arial, sans-serif;
@@ -5468,6 +5468,36 @@ button:hover,
 .smBarChart .def_tick {
   font: normal 10px Karla;
   color: #1A1C20;
+}
+
+/* LEA table styling */
+
+.two_table {
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+  font: 12px Karla;
+  text-align: left;
+}
+
+.two_table th {
+  vertical-align: bottom;
+  color: #000;
+  border-bottom: 1px solid black;
+}
+
+.two_table .table_title {
+  font: 12px Karla;
+  color: #000;
+  font-weight: bold;
+}
+
+.two_table .table_center {
+  text-align: center;
+}
+
+.two_table .table_number {
+  text-align: right;
 }
 
 /*D3 Map styling*/
@@ -5617,6 +5647,7 @@ button:hover,
     justify-content: space-between;
     /*border: 1px dashed purple;*/
     margin-bottom: 1px;
+	margin-top: 14px;
 }
 
     .mapControlsContainer .zoomButton {
