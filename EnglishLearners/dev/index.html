@@ -982,13 +982,28 @@
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
             });
 
+            var legendButtons = $('.legendButton');
+
             d3.select("#selectSecondary").on("click", function () {
                 drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
+                var highlightedLegendButton = legendButtons.filter('.highlightButton');
+                if(highlightedLegendButton.length > 0) {
+                    var buttonValue = highlightedLegendButton.attr("data-value");
+                    var colorFunc = getColorFunc();
+                    svg.selectAll(".secondary")
+                        .attr("fill", function (d) {
+                            if (buttonValue === colorFunc(d)) {
+                                return buttonValue;
+                            }
+                            else {
+                                return "#E6E6E6";
+                            }
+                        });
+                }
                 $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
                 $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
             });
 
-            var legendButtons = $('.legendButton');
             legendButtons.on("click", function () {
                 var colorFunc = getColorFunc();
                 if ($(this).hasClass("highlightButton")) {
@@ -1009,7 +1024,8 @@
                         .attr("fill", function (d) {
                             if (buttonValue === colorFunc(d)) {
                                 return buttonValue;
-                            } else {
+                            }
+                            else {
                                 return "#E6E6E6";
                             }
                         });
