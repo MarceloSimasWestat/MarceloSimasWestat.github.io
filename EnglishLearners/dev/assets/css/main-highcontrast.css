@@ -5463,7 +5463,7 @@ button:hover,
   color: #000;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 1024px) {
   .two_table {
     display: block;
     width: 100%;

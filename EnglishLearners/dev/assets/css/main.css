@@ -5485,7 +5485,7 @@ button:hover,
   color: rgba(23, 26, 29, 0.80);
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 1024px) {
   .two_table {
     display: block;
     width: 100%;
