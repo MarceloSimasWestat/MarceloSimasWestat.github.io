@@ -5478,6 +5478,14 @@ button:hover,
   vertical-align: top;
   font: 12px Karla;
   text-align: left;
+  padding: 0px 10px 0px 10px;
+}
+
+@media screen and (max-width: 736px) {
+  .two_table {
+    display: block;
+    width: 100%;
+  }
 }
 
 .two_table th {
@@ -5498,6 +5506,10 @@ button:hover,
 
 .two_table .table_number {
   text-align: right;
+}
+
+.two_table .table_highlight {
+  background-color: #dfdeed;
 }
 
 /*D3 Map styling*/
