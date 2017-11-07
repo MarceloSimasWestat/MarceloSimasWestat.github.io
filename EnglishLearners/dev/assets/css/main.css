@@ -5707,7 +5707,7 @@ button:hover,
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 60%; /* aspect ratio */
+    padding-bottom: 45%; /* aspect ratio (60% left too much padding below) */
     vertical-align: top;
     overflow: hidden;
 }
