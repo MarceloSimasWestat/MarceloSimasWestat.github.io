@@ -5742,6 +5742,7 @@ button:hover,
     height: 35px;
     margin-left: auto;
     margin-right: auto;
+	margin-bottom: 10px;
     cursor: pointer;
 }
 
