@@ -247,7 +247,7 @@
                             <div class="icon"><span class="legendPointer icon fa-mouse-pointer"></span></div>
                         </div>
                         <div class="legendExplain">
-                            Hover over school districts for information, double-click to zoom in, and select a range from the legend to see specific views of the data. Select the buttons above the legend to toggle between the map for the percentage of students who are ELs in 2014-15 and map for the percentage change in the number of ELs enrolled in an English language instruction educational program in 2009-10 and 2014-15. Select the buttons below the map to toggle between percentages for elementary and unified school districts, and independent elementary, and secondary unified districts. 
+                            Hover over school districts for information, double-click to zoom in, and select a range from the legend to see specific views of the data. Select the buttons above the legend to toggle between the map for the percentage of students who are ELs in 2014-15 and map for the percentage change in the number of ELs enrolled in an English language instruction educational program in 2009-10 and 2014-15. Select the buttons below the map to toggle between percentages for elementary and unified school districts, and independent elementary, and secondary unified districts.
                         </div>
                     </div>
                 </div>
@@ -429,13 +429,7 @@
                     </div>
                     <!-- end legend 2 -->
 
-					<!-- Map sub-filters togle buttons (mapSubFiltersContainer) -->
-					<div class="mapControlsContainer">
-						<div id="selectDistrictType">
-							<div id="selectElementary" class="mapButton selectedMapButton">Elementary and Unified</div>
-							<div id="selectSecondary" class="mapButton deselectedMapButton">Independent Elementary, Secondary, and Unified</div>
-						</div>
-					</div>
+
 
                     <div id="map">
                         <div class="mapControlsParent">
@@ -451,6 +445,15 @@
                         </div>
                     </div>
                     <!-- end map -->
+
+					<!-- Map sub-filters togle buttons (mapSubFiltersContainer) -->
+					<div class="mapControlsContainer">
+						<div id="selectDistrictType">
+							<div id="selectElementary" class="mapButton selectedMapButton">Elementary and Unified</div>
+							<div id="selectSecondary" class="mapButton deselectedMapButton">Independent Elementary, Secondary, and Unified</div>
+						</div>
+					</div>
+
                 </div>
                 <!-- end mapWrapper -->
 
@@ -469,69 +472,80 @@
             <div class="two_table">
               <table>
                 <tr>
-                  <td class="table_title" colspan="4">Top 10 high EL concentration LEAs with the most ELs</th>
+                  <td class="table_title" colspan="5">High concentration districts with the most ELs</th>
                 </tr>
                 <tr>
-                  <th style="width: 50%;">LEA Name</th>
-                  <th style="width: 10%;" class="table_center">State</th>
-                  <th style="width: 20%;" class="table_number table_highlight">Number of ELs</th>
-                  <th style="width: 20%;" class="table_number">Percent ELs</th>
+                  <th style="width: 2%;">&nbsp;</th>
+                  <th style="width: 60%;">LEA Name</th>
+                  <th style="width: 8%;" class="table_center">State</th>
+                  <th style="width: 15%;" class="table_number table_highlight"># of ELs</th>
+                  <th style="width: 15%;" class="table_number">% ELs</th>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>1.</strong></td>
                   <td>Los Angeles Unified School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number table_highlight">145,983</td>
                   <td class="table_number">22.6%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>2.</strong></td>
                   <td>Dallas Independent School District</td>
                   <td class="table_center">TX</td>
                   <td class="table_number table_highlight">61,944</td>
                   <td class="table_number">38.7%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>3.</strong></td>
                   <td>Houston Independent School District</td>
                   <td class="table_center">TX</td>
                   <td class="table_number table_highlight">57,172</td>
                   <td class="table_number">26.6%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>4.</strong></td>
                   <td>Fairfax County Public Schools</td>
                   <td class="table_center">VA</td>
                   <td class="table_number table_highlight">37,543</td>
                   <td class="table_number">20.2%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>5.</strong></td>
                   <td>San Diego City Unified School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number table_highlight">31,314</td>
                   <td class="table_number">24.1%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>6.</strong></td>
                   <td>Santa Ana Unified School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number table_highlight">25,713</td>
                   <td class="table_number">45.3%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>7.</strong></td>
                   <td>Fort Worth Independent School District</td>
                   <td class="table_center">TX</td>
                   <td class="table_number table_highlight">24,588</td>
                   <td class="table_number">28.6%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>8.</strong></td>
                   <td>Denver County School District 1</td>
                   <td class="table_center">CO</td>
                   <td class="table_number table_highlight">24,564</td>
                   <td class="table_number">27.7%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>9.</strong></td>
                   <td>Aldine Independent School District</td>
                   <td class="table_center">TX</td>
                   <td class="table_number table_highlight">20,867</td>
                   <td class="table_number">29.9%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>10.</strong></td>
                   <td>Austin Independent School District</td>
                   <td class="table_center">TX</td>
                   <td class="table_number table_highlight">20,790</td>
@@ -542,75 +556,92 @@
             <div class="two_table">
               <table>
                 <tr>
-                  <td class="table_title" colspan="4">Top 10 LEAs with the largest percentage of ELs </th>
+                  <td class="table_title" colspan="5">Districts with the highest concentration of ELs</th>
                 </tr>
                 <tr>
-                  <th style="width: 50%;" >LEA Name</th>
-                  <th style="width: 10%;" class="table_center">State</th>
-                  <th style="width: 20%;" class="table_number">Number of ELs</th>
-                  <th style="width: 20%;" class="table_number table_highlight">Percent ELs</th>
+                  <th style="width: 2%;">&nbsp;</th>
+                  <th style="width: 60%;">LEA Name</th>
+                  <th style="width: 8%;" class="table_center">State</th>
+                  <th style="width: 15%;" class="table_number"># of ELs</th>
+                  <th style="width: 15%;" class="table_number table_highlight">% ELs</th>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>1.</strong></td>
                   <td>San Ardo Union Elementary School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number">86</td>
                   <td class="table_number table_highlight">86.0%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>2.</strong></td>
                   <td>Lower Yukon School District</td>
                   <td class="table_center">AK</td>
                   <td class="table_number">1,735</td>
                   <td class="table_number table_highlight">85.2%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>3.</strong></td>
                   <td>Black Horse Pike Regional School District</td>
                   <td class="table_center">NJ</td>
                   <td class="table_number">25</td>
                   <td class="table_number table_highlight">83.3%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>4.</strong></td>
                   <td>Northern Valley Regional School District</td>
                   <td class="table_center">NJ</td>
                   <td class="table_number">15</td>
                   <td class="table_number table_highlight">83.3%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>5.</strong></td>
                   <td>San Fernando Elementary District</td>
                   <td class="table_center">AZ</td>
                   <td class="table_number">22</td>
                   <td class="table_number table_highlight">81.5%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>6.</strong></td>
                   <td>Roosevelt School District</td>
                   <td class="table_center">WA</td>
                   <td class="table_number">22</td>
                   <td class="table_number table_highlight">81.5%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>7.</strong></td>
                   <td>Yupiit School District</td>
                   <td class="table_center">AK</td>
                   <td class="table_number">370</td>
                   <td class="table_number table_highlight">81.3%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>8.</strong></td>
                   <td>Luther Burbank Elementary School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number">431</td>
                   <td class="table_number table_highlight">78.1%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>9.</strong></td>
                   <td>Chualar Union Elementary School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number">263</td>
                   <td class="table_number table_highlight">78.0%</td>
                 </tr>
                 <tr>
+                  <td class="table_number"><strong>10.</strong></td>
                   <td>Semitropic Elementary School District</td>
                   <td class="table_center">CA</td>
                   <td class="table_number">177</td>
                   <td class="table_number table_highlight">77.0%</td>
                 </tr>
               </table>
+            </div>
+            <div style="text-align: left; padding: 0px 25px 0px 25px;">
+              <span class = "chartNotes"><strong style="color: #000;">Note(s): </strong>High EL concentration districts are districts where ELs represent at least 20 percent of the student population.</span>
+            </div>
+            <div style="text-align: left; padding: 0px 25px 0px 25px;">
+              <span class = "chartNotes"><strong style="color: #000;">Source(s): </strong>U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014-15. LEA File C141, LEP Enrolled. Extracted March 31, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "Local Education Agency (School District) Universe Survey Data," 2014-15. Downloaded April 2017 from <a href="https://nces.ed.gov/ccd/pubagency.asp">https://nces.ed.gov/ccd/pubagency.asp</a>.</span>
             </div>
           </div>
         </section>

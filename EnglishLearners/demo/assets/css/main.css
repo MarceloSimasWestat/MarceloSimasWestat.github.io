@@ -5478,10 +5478,14 @@ button:hover,
   vertical-align: top;
   font: 12px Karla;
   text-align: left;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 25px 0px 25px;
 }
 
-@media screen and (max-width: 736px) {
+.two_table strong {
+  color: rgba(23, 26, 29, 0.80);
+}
+
+@media screen and (max-width: 1024px) {
   .two_table {
     display: block;
     width: 100%;
@@ -5495,9 +5499,10 @@ button:hover,
 }
 
 .two_table .table_title {
-  font: 12px Karla;
+  font: 14px Karla;
   color: #000;
   font-weight: bold;
+  text-align: center;
 }
 
 .two_table .table_center {
@@ -5702,7 +5707,7 @@ button:hover,
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 60%; /* aspect ratio */
+    padding-bottom: 45%; /* aspect ratio (60% left too much padding below) */
     vertical-align: top;
     overflow: hidden;
 }
@@ -5737,6 +5742,7 @@ button:hover,
     height: 35px;
     margin-left: auto;
     margin-right: auto;
+	margin-bottom: 10px;
     cursor: pointer;
 }
 
