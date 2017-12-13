@@ -534,7 +534,7 @@ function counter() {
 
 		donutText.select("h2")
 			.append("text")
-			.html(function(d) { return formatPercent(d.pct) + " of the total student population.<sup style='font-size: 13px; vertical-align:top;'>a, b</sup></div>"; })
+			.html(function(d) { return formatNumber(100*d.pct) + " percent of the total student population.<sup style='font-size: 13px; vertical-align:top;'>a, b</sup></div>"; })
 
 		// counter function
 
@@ -544,7 +544,7 @@ function counter() {
 			.append("text")
 				.text(counterValue);
 
-		$("#overCount").append("<br><span>English Learners (ELs) were enrolled in schools in 2014-15.<sup>a</sup></span>");
+		$("#overCount").append("<br><span>English learners (ELs) were enrolled in schools in 2014-15.<sup>a</sup></span>");
 
 		function countUp(text, duration) {
 			text.transition()
