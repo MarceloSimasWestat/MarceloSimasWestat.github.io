@@ -210,7 +210,7 @@ function sankeyChart() {
 	 			.attr("dy", "1.5em")
 	 			.attr("text-anchor", "end")
 	 			.attr("aria-hidden", "true")
-	 			.text("STUDENTS WITH DISABILITIES IN 2014-15");
+	 			.text("STUDENTS WITH DISABILITIES IN 2014–15");
 
 				// notes and sources
 
@@ -544,7 +544,7 @@ function counter() {
 			.append("text")
 				.text(counterValue);
 
-		$("#overCount").append("<br><span>English learners (ELs) were enrolled in schools in 2014-15.<sup>a</sup></span>");
+		$("#overCount").append("<br><span>English learners (ELs) were enrolled in schools in 2014–15.<sup>a</sup></span>");
 
 		function countUp(text, duration) {
 			text.transition()
@@ -829,7 +829,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF ENGLISH LEARNERS IN 2014-15");
+			.text("% OF ENGLISH LEARNERS IN 2014–15");
 
 		// draw bars
 
@@ -851,7 +851,7 @@ function barChart() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of ELs, spoke " + d.group + " at home."; });
+						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of ELs, spoke " + d.group + " at home."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1192,9 +1192,9 @@ function smBarChart() {
 			.style("color", function(d) { return color(d.key); })
 			.text(function(d) {
 
-				if (d.key == "LEAs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each concentration category"; }
-				if (d.key == "ELs" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key + " in each LEA category"; }
-				if (d.key == "All students" && d.values[0].chartlevel == "LEAs") { return "% of " + d.key.toLowerCase() + " in each LEA category"; }
+				if (d.key == "Districts" && d.values[0].chartlevel == "Districts") { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
+				if (d.key == "ELs" && d.values[0].chartlevel == "Districts") { return "% of " + d.key + " in each district category"; }
+				if (d.key == "All students" && d.values[0].chartlevel == "Districts") { return "% of " + d.key.toLowerCase() + " in each district category"; }
 				if (d.key == "Schools" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each concentration category"; }
 				if (d.key == "ELs" && d.values[0].chartlevel == "Schools") { return "% of " + d.key + " in each school category"; }
 				if (d.key == "All students" && d.values[0].chartlevel == "Schools") { return "% of " + d.key.toLowerCase() + " in each school category"; }
@@ -1277,7 +1277,7 @@ function smBarChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text(function(d) { return "% OF " + d.key.toUpperCase() + " IN 2014-15"; });
+			.text(function(d) { return "% OF " + d.key.toUpperCase() + " IN 2014–15"; });
 
 		// draw bars
 
@@ -1301,8 +1301,8 @@ function smBarChart() {
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
 						.text(function(d) {
-							if (d.level == "LEAs") { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.level + " had " + d.group + " concentrations of ELs."; }
-							else { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.level + " were in " + d.chartlevel + " with " + d.group + " concentrations of ELs."; }
+							if (d.level == "LEAs") { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + " had " + d.group + " concentrations of ELs."; }
+							else { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + " were in " + d.chartlevel + " with " + d.group + " concentrations of ELs."; }
 						});
 
 		var gs = graphScroll()
@@ -1769,7 +1769,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were ELs."; });
+						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were ELs."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -2889,7 +2889,7 @@ function dotTwo() {
 					.on("mouseover", tipMale.show)
 					.on("mouseout", tipMale.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of " + group1 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2014–15, " + formatPercent(d.all_p) + " of " + group1 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
 
 		dotsMale.append("text")
 			.attr("x", function(d) { return xScale(d.all_p); })
@@ -2916,7 +2916,7 @@ function dotTwo() {
 					.on("mouseover", tipFemale.show)
 					.on("mouseout", tipFemale.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014-15, " + formatPercent(d.all_p) + " of " + group2 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2014–15, " + formatPercent(d.all_p) + " of " + group2 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
 
 		dotsFemale.append("text")
 			.attr("x", function(d) { return xScale(d.el_p); })
@@ -5043,7 +5043,7 @@ function stackedBar() {
 			.attr("aria-hidden", "true")
 			.text(function() {
 				if (window.innerWidth <= 736) { return "% OF ENGLISH LEARNERS"; }
-				else { return "% OF ENGLISH LEARNERS IN 2014-15"; }
+				else { return "% OF ENGLISH LEARNERS IN 2014–15"; }
 			});
 
 		// draw bars
@@ -5069,13 +5069,13 @@ function stackedBar() {
 					.on("mouseout", tipStackedBar.hide)
 					.append("aria-label")
 						.text(function(d) {
-							if (d.segment == "lang1_p1") { return "In 2014-15, " + formatPercent(d.lang1_p) + " of ELs, or " + formatNumber(d.lang1_n) + " ELs, in " + d.state + " primarily spoke " + d.lang1_name }
-							if (d.segment == "lang2_p1") { return "In 2014-15, " + formatPercent(d.lang2_p) + " of ELs, or " + formatNumber(d.lang2_n) + " ELs, in " + d.state + " primarily spoke " + d.lang2_name }
-							if (d.segment == "lang3_p1") { return "In 2014-15, " + formatPercent(d.lang3_p) + " of ELs, or " + formatNumber(d.lang3_n) + " ELs, in " + d.state + " primarily spoke " + d.lang3_name }
-							if (d.segment == "lang4_p1") { return "In 2014-15, " + formatPercent(d.lang4_p) + " of ELs, or " + formatNumber(d.lang4_n) + " ELs, in " + d.state + " primarily spoke " + d.lang4_name }
-							if (d.segment == "lang5_p1") { return "In 2014-15, " + formatPercent(d.lang5_p) + " of ELs, or " + formatNumber(d.lang5_n) + " ELs, in " + d.state + " primarily spoke " + d.lang5_name }
-							if (d.segment == "lang6_p1") { return "In 2014-15, " + formatPercent(d.lang6_p) + " of ELs, or " + formatNumber(d.lang6_n) + " ELs, in " + d.state + " primarily spoke " + d.lang6_name }
-							if (d.segment == "lang7_p1") { return "In 2014-15, data on the language spoken by ELs was missing for " + formatPercent(d.lang7_p) + " of ELs, or " + formatNumber(d.lang7_n) + " ELs, in " + d.state };
+							if (d.segment == "lang1_p1") { return "In 2014–15, " + formatPercent(d.lang1_p) + " of ELs, or " + formatNumber(d.lang1_n) + " ELs, in " + d.state + " primarily spoke " + d.lang1_name }
+							if (d.segment == "lang2_p1") { return "In 2014–15, " + formatPercent(d.lang2_p) + " of ELs, or " + formatNumber(d.lang2_n) + " ELs, in " + d.state + " primarily spoke " + d.lang2_name }
+							if (d.segment == "lang3_p1") { return "In 2014–15, " + formatPercent(d.lang3_p) + " of ELs, or " + formatNumber(d.lang3_n) + " ELs, in " + d.state + " primarily spoke " + d.lang3_name }
+							if (d.segment == "lang4_p1") { return "In 2014–15, " + formatPercent(d.lang4_p) + " of ELs, or " + formatNumber(d.lang4_n) + " ELs, in " + d.state + " primarily spoke " + d.lang4_name }
+							if (d.segment == "lang5_p1") { return "In 2014–15, " + formatPercent(d.lang5_p) + " of ELs, or " + formatNumber(d.lang5_n) + " ELs, in " + d.state + " primarily spoke " + d.lang5_name }
+							if (d.segment == "lang6_p1") { return "In 2014–15, " + formatPercent(d.lang6_p) + " of ELs, or " + formatNumber(d.lang6_n) + " ELs, in " + d.state + " primarily spoke " + d.lang6_name }
+							if (d.segment == "lang7_p1") { return "In 2014–15, data on the language spoken by ELs was missing for " + formatPercent(d.lang7_p) + " of ELs, or " + formatNumber(d.lang7_n) + " ELs, in " + d.state };
 						});
 
 		state.selectAll("text")
@@ -5596,7 +5596,7 @@ function multiBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF TOTAL IN 2014-15");
+			.text("% OF TOTAL IN 2014–15");
 
 		/*svg.append("text")
 			.attr("id", "xAxisT_b")
@@ -5637,7 +5637,7 @@ function multiBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2014-15, " + formatPercent(d.pct) + " of " + d.level + "had " + d.group + " concentrations of ELs.";
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + "had " + d.group + " concentrations of ELs.";
 					});
 
 		var gs = graphScroll()

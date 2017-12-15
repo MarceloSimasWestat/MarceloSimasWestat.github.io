@@ -8,11 +8,8 @@ counter				All students	45498888	0.904324268
 1-1				American Indian			0.010370372	0.007913828	-0.245654447	520462	38081	5
 1-1				Two or more races			0.031928793	0.006136173	-2.579261993	1602423	29527	6
 1-1				Pacific Islander*			0.003499942	0.005530806	0.203086344	175653	26614	7
-1-2				All students	4806662	0.1						1
-1-2				Students with disabilities	568683	0.099						2
-1-2				Homeless students	182557	0.141844616						3
-1-2				Title I, SWP/TAS students	3799940	0.153831885						4
-1-2				Migrant eligible children	128321	0.386119428						5
+1-2				All students with disabilities	6541934	0.130025808						1
+1-2				ELs with disabilities 	665427	0.138236277						2
 1-3				Specific learning disability			0.375	0.497	12.2	1949910	282877	1	This refers to a disability in one or more of the basic psychological processes involved in understanding or using language, spoken or written, which may manifest itself in an imperfect ability to listen, think, speak, read, write, spell or do mathematical calculations. This term includes such conditions as perceptual disabilities, brain injury, minimal brain dysfunction, dyslexia and developmental aphasia. The term does not include learning problems that primarily result from visual, hearing or motor disabilities, of intellectual disability, of emotional disturbance or of environmental, cultural or economic disadvantage.
 1-3				Speech or language impairment			0.172	0.212	4	893165	120380	2	This refers to a communication disorder such as stuttering, impaired articulation, a language impairment, or a voice impairment that adversely affects a child’s educational performance.
 1-3				Other health impairment			0.154	0.072	-8.2	798297	40954	3	This refers to having limited strength, vitality or alertness, due to chronic or acute health problems such as a heart condition, tuberculosis, rheumatic fever, nephritis, asthma, sickle cell anemia, hemophilia, epilepsy, lead poisoning, leukemia or diabetes, which adversely affects a child's educational performance.
@@ -25,18 +22,18 @@ counter				All students	45498888	0.904324268
 3-1				Chinese	104279	0.021662993						3
 3-1				Vietnamese	85289	0.017717997						4
 3-1				English	83230	0.017290259						5
-2-1		LEAs	LEAs	High	1128	0.07							20% or more ELs
-2-1		LEAs	ELs	High		0.46							20% or more ELs
-2-1		LEAs	All students	High		0.15							20% or more ELs
-2-1		LEAs	LEAs	Medium	2965	0.18							5% to <20% ELs
-2-1		LEAs	ELs	Medium		0.45							5% to <20% ELs
-2-1		LEAs	All students	Medium		0.39							5% to <20% ELs
-2-1		LEAs	LEAs	Low	7833	0.47							>0% to <5% ELs
-2-1		LEAs	ELs	Low		0.09							>0% to <5% ELs
-2-1		LEAs	All students	Low		0.42							>0% to <5% ELs
-2-1		LEAs	LEAs	None	4706	0.28							No ELs
-2-1		LEAs	ELs	None		0							No ELs
-2-1		LEAs	All students	None		0.04							No ELs
+2-1		Districts	Districts	High	1128	0.07							20% or more ELs
+2-1		Districts	ELs	High		0.46							20% or more ELs
+2-1		Districts	All students	High		0.15							20% or more ELs
+2-1		Districts	Districts	Medium	2965	0.18							5% to <20% ELs
+2-1		Districts	ELs	Medium		0.45							5% to <20% ELs
+2-1		Districts	All students	Medium		0.39							5% to <20% ELs
+2-1		Districts	Districts	Low	7833	0.47							>0% to <5% ELs
+2-1		Districts	ELs	Low		0.09							>0% to <5% ELs
+2-1		Districts	All students	Low		0.42							>0% to <5% ELs
+2-1		Districts	Districts	None	4706	0.28							No ELs
+2-1		Districts	ELs	None		0							No ELs
+2-1		Districts	All students	None		0.04							No ELs
 2-2		Schools	Schools	High	14371	0.15							20% or more ELs
 2-2		Schools	ELs	High		0.61							20% or more ELs
 2-2		Schools	All students	High		0.16							20% or more ELs
