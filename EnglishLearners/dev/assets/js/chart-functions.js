@@ -534,7 +534,7 @@ function counter() {
 
 		donutText.select("h2")
 			.append("text")
-			.html(function(d) { return formatNumber(100*d.pct) + " percent of the total student population.<sup style='font-size: 13px; vertical-align:top;'>a, b</sup></div>"; })
+			.html(function(d) { return formatPercent(d.pct) + " of the total K–12 student population.<sup style='font-size: 13px; vertical-align:top;'>a, b</sup></div>"; })
 
 		// counter function
 
