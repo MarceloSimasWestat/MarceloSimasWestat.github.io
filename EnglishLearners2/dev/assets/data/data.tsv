@@ -1,51 +1,15 @@
-chart	subchart	chartlevel	level	group	num	pct	all_p	el_p	diff_ppt	all_n	el_n	order	definition
-counter				ELs 	4813693	0.095675732
-counter				All students	45498888	0.904324268
-1-1				Hispanic			0.253437312	0.77840388	52.4966568	12719359	3745646	1
-1-1				Asian			0.048799821	0.107354658	5.855483721	2449136	516586	2
-1-1				White			0.496503614	0.058864408	-43.76392063	24918224	283253	3
-1-1				Black			0.155460145	0.035796247	-11.9663898	7802140	172250	4
-1-1				American Indian			0.010370372	0.007913828	-0.245654447	520462	38081	5
-1-1				Two or more races			0.031928793	0.006136173	-2.579261993	1602423	29527	6
-1-1				Pacific Islander*			0.003499942	0.005530806	0.203086344	175653	26614	7
-1-2				All students	4806662	0.1						1
-1-2				Students with disabilities	568683	0.099						2
-1-2				Homeless students	182557	0.141844616						3
-1-2				Title I, SWP/TAS students	3799940	0.153831885						4
-1-2				Migrant eligible children	128321	0.386119428						5
-1-3				Specific learning disability			0.375	0.497	12.2	1949910	282877	1	This refers to a disability in one or more of the basic psychological processes involved in understanding or using language, spoken or written, which may manifest itself in an imperfect ability to listen, think, speak, read, write, spell or do mathematical calculations. This term includes such conditions as perceptual disabilities, brain injury, minimal brain dysfunction, dyslexia and developmental aphasia. The term does not include learning problems that primarily result from visual, hearing or motor disabilities, of intellectual disability, of emotional disturbance or of environmental, cultural or economic disadvantage.
-1-3				Speech or language impairment			0.172	0.212	4	893165	120380	2	This refers to a communication disorder such as stuttering, impaired articulation, a language impairment, or a voice impairment that adversely affects a child’s educational performance.
-1-3				Other health impairment			0.154	0.072	-8.2	798297	40954	3	This refers to having limited strength, vitality or alertness, due to chronic or acute health problems such as a heart condition, tuberculosis, rheumatic fever, nephritis, asthma, sickle cell anemia, hemophilia, epilepsy, lead poisoning, leukemia or diabetes, which adversely affects a child's educational performance.
-1-3				Intellectual disability			0.069	0.07	0.1	358528	40079	4	This refers to significantly subaverage general intellectual functioning, existing concurrently with deficits in adaptive behavior and manifested during the developmental period, which adversely affects a child's educational performance.
-1-3				Other disabilities			0.075	0.066	-0.9	390576	37717	5	The other disabilities category includes deaf-blindness, developmental delay, hearing impairment, multiple disabilities, orthopedic impairment, traumatic brain injury, and visual impairment combined.
-1-3				Autism			0.091	0.063	-2.8	473512	35660	6	This refers to a developmental disability significantly affecting verbal and nonverbal communication and social interaction, generally evident before age 3, which adversely affects educational performance. Other characteristics often associated with autism are engagement in repetitive activities and stereotyped movements, resistance to environmental change or change in daily routines, and unusual responses to sensory experiences. Autism doesn’t apply if a child's educational performance is adversely affected primarily because the child has an emotional disturbance.
-1-3				Emotional disturbance			0.063	0.019	-4.4	329316	11016	7	This refers to a condition exhibiting one or more of the following characteristics over a long period of time and to a marked degree, which adversely affects a child’s educational performance: (1) an inability to learn, which cannot be explained by intellectual, sensory or health factors; (2) an inability to build or maintain satisfactory interpersonal relationships with peers and teachers; (3) inappropriate behavior or feelings under normal circumstances; (4) a general pervasive mood of unhappiness or depression; or (5) a tendency to develop physical symptoms or fears associated with personal or school problems. This term includes schizophrenia. The term does not apply to children who are socially maladjusted, unless it is determined they have an emotional disturbance.
-3-1				Spanish; Castilian	3709828	0.770682302						1
-3-1				Arabic	109165	0.022678015						2
-3-1				Chinese	104279	0.021662993						3
-3-1				Vietnamese	85289	0.017717997						4
-3-1				English	83230	0.017290259						5
-2-1		Districts	Districts	High	1128	0.07							20% or more ELs
-2-1		Districts	ELs	High		0.46							20% or more ELs
-2-1		Districts	All students	High		0.15							20% or more ELs
-2-1		Districts	Districts	Medium	2965	0.18							5% to <20% ELs
-2-1		Districts	ELs	Medium		0.45							5% to <20% ELs
-2-1		Districts	All students	Medium		0.39							5% to <20% ELs
-2-1		Districts	Districts	Low	7833	0.47							>0% to <5% ELs
-2-1		Districts	ELs	Low		0.09							>0% to <5% ELs
-2-1		Districts	All students	Low		0.42							>0% to <5% ELs
-2-1		Districts	Districts	None	4706	0.28							No ELs
-2-1		Districts	ELs	None		0							No ELs
-2-1		Districts	All students	None		0.04							No ELs
-2-2		Schools	Schools	High	14371	0.15							20% or more ELs
-2-2		Schools	ELs	High		0.61							20% or more ELs
-2-2		Schools	All students	High		0.16							20% or more ELs
-2-2		Schools	Schools	Medium	21476	0.23							5% to <20% ELs
-2-2		Schools	ELs	Medium		0.3							5% to <20% ELs
-2-2		Schools	All students	Medium		0.27							5% to <20% ELs
-2-2		Schools	Schools	Low	37981	0.4							>0% to <5% ELs
-2-2		Schools	ELs	Low		0.09							>0% to <5% ELs
-2-2		Schools	All students	Low		0.47							>0% to <5% ELs
-2-2		Schools	Schools	None	21219	0.22							No ELs
-2-2		Schools	ELs	None		0							No ELs
-2-2		Schools	All students	None		0.1							No ELs
+chart	subchart	chartlevel	level	group	num	pct	group1_p	group2_p	diff_ppt	group1_n	group2_n	order	definition
+1-1				Enrolled in districts that provide preschool			0.92553	0.88509		3204768	19118712	1
+1-1				Enrolled in districts that offer free preschool			0.871634	0.805164		3018141	17392304	2
+1-1				Enrolled in districts that offer full-day preschool			0.589334	0.545161		2040641	11775979	3
+1-2				ELs	174057	0.134294
+1-2				Non-ELs	1219798	0.191195
+1-3				Enrolled in districts that offer free preschool			0.958789	0.924192		166884	1127327	1
+1-3				Enrolled in districts that offer full-day preschool			0.63493	0.67664		110514	825364	2
+1-4				Enrolled in districts offering preschool			0.12487	0.87513	75.026	174057	1219798	1
+1-4				Enrolled in districts offering free preschool only			0.12583	0.87417	74.834	113839	790855	2
+1-4				Enrolled in districts offering cost and free preschool			0.13618	0.86382	72.764	53045	336472	3
+1-4				Enrolled in districts offering preschool at cost only			0.03889	0.96111	92.222	2669	65958	4
+1-4				Enrolled in districts offering part day preschool only			0.11495	0.88505	77.01	52346	403033	5
+1-4				Enrolled in districts offering full and part day preschool			0.12106	0.87894	75.788	58168	422331	6
+1-4				Enrolled in districts offering full day preschool only			0.13828	0.86172	72.344	59039	367921	7
