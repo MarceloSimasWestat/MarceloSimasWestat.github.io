@@ -2690,6 +2690,7 @@ function dotTwo() {
 		group1 = [],
 		group2 = [],
 		xAxisLabel = [],
+		xMax = 1,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -2807,7 +2808,7 @@ function dotTwo() {
 
 		function xDomain() {
 			if (window.innerWidth <= 736) { xScale.domain([0, maxValue]).nice() }
-			else { xScale.domain([0, 1]); }
+			else { xScale.domain([0, xMax]); }
 		};
 		xDomain();
 		yScale.domain(data.map(function(d) { return d.group; }));
@@ -3258,6 +3259,14 @@ function dotTwo() {
 
 		if (!arguments.length) return catdefs;
 		catdefs = value;
+		return chart;
+
+	};
+
+	chart.xMax = function(value) {
+
+		if (!arguments.length) return xMax;
+		xMax = value;
 		return chart;
 
 	};
@@ -5909,6 +5918,7 @@ function divergingBar() {
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		xAxisLabel = "",
+		toggles = 0,
 		group1 = "",
 		group2 = "",
 		notes = "",
@@ -5936,11 +5946,68 @@ function divergingBar() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
-		// chart title
+			// add buttons if indicated
 
-		d3.select(this).append("div")
-			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title + "</span>");
+			var button_vals = d3.map(data, function(d) { return d.level; }).keys();
+			var selected_val = button_vals[0];
+			var data_all = data;
+			var titles_all = title;
+
+			if (toggles == 1) {
+
+				// values for buttons
+
+				var buttons = d3.select(this)
+					.append("div")
+					.attr("id", "buttons" + chartID)
+					.attr("class", "filters");
+
+				buttons.selectAll(".filterButton")
+					.data(button_vals)
+					.enter()
+						.append("button")
+							.attr("class", "filterButton")
+							.classed("buttonSelected", function(d) {
+								if (d === selected_val) { return true; }
+								else { return false; };
+							})
+							.attr("value", function(d) { return d; })
+							.attr("title", function(d, i) { return title[i]; })
+							.on("click", function(d) {
+
+								d3.select("#buttons" + chartID)
+									.selectAll(".filterButton")
+										.classed("buttonSelected", false);
+
+								d3.select(this)
+									.classed("buttonSelected", true);
+
+								selected_val = d3.select(this).property("value");
+								title = d3.select(this).property("title");
+								data = data_all.filter(function(d) { return d.level == selected_val; });
+
+								updateData();
+
+							})
+							.append("text")
+								.text(function(d) { return d; });
+
+				d3.select(this).append("br");
+
+				data = data_all.filter(function(d) { return d.level == selected_val; });
+
+			}
+			else {};
+
+			// chart title
+
+			d3.select(this).append("div")
+				.attr("class", "title")
+				.append("text")
+					.text(function() {
+						if (toggles == 1) { return title[0]; }
+						else { return title; };
+					});
 
 		// selections
 
@@ -6282,6 +6349,50 @@ function divergingBar() {
 
 		});
 
+		// update data function
+
+		function updateData() {
+
+			var group1_bars = svg.selectAll(".group1")
+				.data(data);
+
+			var group2_bars = svg.selectAll(".group2")
+				.data(data);
+
+			svg.select(".y.axis")
+				.remove();
+
+			yScale.domain(d3.map(data, function(d) { return d.group; }).keys());
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			svg.selectAll(".bar.group1")
+				.transition()
+					.duration(animateTime)
+					.attr("x", function(d) { return xScale(-1 * d.group1_p); })
+					.attr("width", function(d) { return xScale(d.group1_p) - xScale(0); });
+
+			svg.selectAll(".bar.group2")
+				.transition()
+					.duration(animateTime)
+					.attr("width", function(d) { return xScale(d.group2_p) - xScale(0); });
+
+			svg.selectAll(".bar")
+				.selectAll("aria-label").remove();
+
+			/*svg.selectAll("circle.dot")
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });*/
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
 		});
 
 	};
@@ -6430,6 +6541,14 @@ function divergingBar() {
 
 	};
 
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
   chart.data = function(value) {
 
       if (!arguments.length) return data;
@@ -6462,6 +6581,7 @@ function dotPlot() {
 		xAxisLabel = "DEFINE X AXIS LABEL",
 		notes = "",
 		source = "",
+		toggles = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -6484,17 +6604,76 @@ function dotPlot() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.level; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+
+		if (toggles == 1) {
+
+			// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.attr("title", function(d, i) { return title[i]; })
+						.on("click", function(d) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = d3.select(this).property("title");
+							data = data_all.filter(function(d) { return d.level == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.level == selected_val; });
+
+		}
+		else {};
+
 		// chart title
 
 		d3.select(this).append("div")
 			.attr("class", "title")
-			.text(title);
+			.append("text")
+				.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});
 
 		// selections
 
 		var dom = d3.select(this)
 			.append("div")
 			.attr("id", chartID);
+
+		// add svg
 
 		var svg = dom.append("svg")
 			.attr("class", "dotPlot")
@@ -6592,7 +6771,7 @@ function dotPlot() {
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + " offered " + d.level + "."; });
+						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -6735,6 +6914,51 @@ function dotPlot() {
 
 		});
 
+		// update data function
+
+		function updateData() {
+
+			var lines = svg.selectAll("line.dotLine")
+				.data(data);
+
+			svg.selectAll("line.dotLine")
+				.transition()
+					.duration(animateTime)
+					.attr("x2", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+					});
+
+			var dots = svg.selectAll("circle.dot")
+				.data(data);
+
+			svg.selectAll("circle.dot")
+				.transition()
+					.duration(animateTime)
+					.attr("cx", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("r", dotSize);
+					});
+
+			svg.selectAll("circle.dot")
+				.selectAll("aria-label").remove();
+
+			svg.selectAll("circle.dot")
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
 		});
 
 	};
@@ -6847,6 +7071,14 @@ function dotPlot() {
 
 		if (!arguments.length) return chartID;
 		chartID = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
 		return chart;
 
 	};

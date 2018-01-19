@@ -224,11 +224,15 @@
                 <div></div>
                 <div id="ch2_1"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    More than 60 percent of middle schools offered Algebra 1, while more than 60 percent of high schools offered Physics and Chemistry and slightly less than 50 percent of high schools offered Calculus. Across these subjects, the percentage of schools offering the course decreased as the concentration of ELs in the school increased, indicating that ELs were less likely to be able to access advanced courses. For example, more than 70 percent of middle schools with low concentrations of ELs offered Algebra I, while only 55 percent of middle schools with high concentrations of ELs did so. Similarly, 77 percent of low EL concentration high schools offered physics compared to 41 percent of high EL concentration high schools, while 87 percent of low EL concentration high schools offered chemistry compared to 51 percent of high EL concentration high schools. For Calculus, 66 percent of low EL concentration high schools offered the course, compared to just 28 percent of high EL concentration high schools.
+                  In 2013–14, most ELs and non-ELs in Grades 7 and 8 were enrolled in schools that offered Algebra 1. Similarly, most ELs and non-ELs in Grades 9 through 12 were enrolled in schools that offered Physics, Chemistry, or Calculus. However, looking at actual enrollment in those courses, non-ELs were more likely than ELs to be enrolled. For example, non-ELs were more than twice as likely to be enrolled in Algebra 1 than ELs - 9 percent compared to 4 percent. About 10 percent of non-ELs were enrolled in Physics compared to 6 percent of ELs. Seventeen percent of non-ELs were enrolled in Chemistry in comparison with 11 percent of ELs. While less than four percent of both groups were enrolled in Calculus, only 1 percent of ELs were enrolled in Calculus.
                 </p>
                 <div id="ch2_2"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                  More than 60 percent of middle schools offered Algebra 1, while more than 60 percent of high schools offered Physics and Chemistry and slightly less than 50 percent of high schools offered Calculus. Across these subjects, the percentage of schools offering the course decreased as the concentration of ELs in the school increased, indicating that ELs were less likely to be able to access advanced courses. For example, more than 70 percent of middle schools with low concentrations of ELs offered Algebra I, while only 55 percent of middle schools with high concentrations of ELs did so. Similarly, 77 percent of low EL concentration high schools offered physics compared to 41 percent of high EL concentration high schools, while 87 percent of low EL concentration high schools offered chemistry compared to 51 percent of high EL concentration high schools. For Calculus, 66 percent of low EL concentration high schools offered the course, compared to just 28 percent of high EL concentration high schools.
+                </p>
+                <div id="ch2_3"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  ELs were more than 5 percent of the total students enrolled in schools offering Algebra I, Physics, Chemistry, or Calculus. However, in terms of actual enrollment in those courses, ELs were less represented than expected. For example, although 7 percent of enrollment in schools offering Algebra 1 were ELs, ELs were only 4 percent of the students enrolled in Algebra 1. ELs were about 5 percent of enrollment in schools offering Physics, Chemistry, or Calculus, but comprised 4 percent of enrollment in Physics and Chemistry, and just 1 percent of enrollment in Calculus.
                 </p>
             </div>
         </section>
@@ -407,6 +411,9 @@
                 data1_3 = data.filter(function(d) { return d.chart == "1-3"; });
                 data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
                 data1_5 = data.filter(function(d) { return d.chart == "1-5"; });
+                data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
+                data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
+                data2_3 = data.filter(function(d) { return d.chart == "2-3"; });
                 data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
                 data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 
@@ -418,7 +425,7 @@
                   .yAxisLabel("% OF PRESCHOOL-AGED CHILDREN")
                   .title("Preshool-aged ELs were less likely to be enrolled in preschool than preschool-aged non-ELs.")
                   .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.");
-                var chart1_3 = divergingBar().data(data1_3).marginLeft(300).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                var chart1_3 = divergingBar().data(data1_3).marginLeft(300).height(400).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
                   .title("In 2013–14, similar percentages of EL and non-EL preschoolers were enrolled in districts offering free and full-day preschool.")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.");
@@ -430,6 +437,24 @@
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
                   .title("Regardless of length of preschool offered by the district, about 12 percent of preschoolers enrolled were ELs.")
                   .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");
+                var chart2_1 = divergingBar().data(data2_1).marginLeft(240).height(400).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
+                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
+                  .title(["The majority of ELs and non-ELs were enrolled in schools that offer Algebra 1, but non-ELs were almost twice as likely to be enrolled in Algebra 1 than ELs.",
+                  "About 80 percent of ELs and non-ELs were enrolled in schools that offered Physics, but only 6 percent of ELs were enrolled in Physics compared to 10 percent of non-ELs.",
+                  "While most ELs and non-ELs were enrolled in schools offering Chemistry, 11 percent of ELs enrolled in Chemistry compared to 17 percent of non-ELs.",
+                  "More than 70 percent of ELs and non-ELs were enrolled in schools offering Calculus, but less than 4 percent of both groups were enrolled in Calculus."])
+                  .altText("These charts display the percentage of ELs and non-ELs enrolled in schools offering various advanced courses, and the percentage of ELs enrolled in those advanced courses.");
+                var chart2_2 = dotPlot().data(data2_2).marginLeft(210).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").toggles(1)
+                  .group("schools").xAxisLabel("% OF SCHOOLS OFFERING COURSE IN 2013–14")
+                  .title(["While 61 percent of middle schools offered Algebra I, only 55 percent of high EL concentration middle schools offered the course.",
+                  "More than 60 percent of high schools offered Physics, but only 40 percent of low EL concentration high schools did so.",
+                  "About 87 percent of low EL concentration high schools offered Chemistry, compared to 51 percent of low EL concentration high schools.",
+                  "Two-thirds of low EL concentration high schools offered Calculus, but only 28 percent of low EL concentration high schools did so."])
+                  .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.");
+                var chart2_3 = dotTwo().data(data2_3).marginLeft(80).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
+                  .group1("EL course enrollment").group2("EL school enrollment").xMax(0.20).xAxisLabel("% OF COURSE AND SCHOOL ENROLLMENT IN 2013–14")
+                  .title("ELs are less represented in advanced coursework classes than expected, given their representation in school enrollment.")
+                  .altText("This chart shows the percent of enrollment in schools offering advanced courses and the enrollment in those courses who are ELs.");
                 var chart3_1 = dotPlot().data(data3_1).marginLeft(210).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
                   .group("schools").xAxisLabel("% OF SCHOOLS OFFERING DUAL ENROLLMENT IN 2013–14")
                   .title("The percentage of high schools offering dual enrollment decreased as EL concentration increased.")
@@ -444,8 +469,9 @@
                 d3.select("#ch1_3").call(chart1_3);
                 d3.select("#ch1_4").call(chart1_4);
                 d3.select("#ch1_5").call(chart1_5);
-                /*d3.select("#ch2_1").call(chart2_1);
-                d3.select("#ch2_2").call(chart2_2);*/
+                d3.select("#ch2_1").call(chart2_1);
+                d3.select("#ch2_2").call(chart2_2);
+                d3.select("#ch2_3").call(chart2_3);
                 d3.select("#ch3_1").call(chart3_1);
                 d3.select("#ch3_2").call(chart3_2);
 
