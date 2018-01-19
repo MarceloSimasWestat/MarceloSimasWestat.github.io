@@ -6582,6 +6582,7 @@ function dotPlot() {
 		notes = "",
 		source = "",
 		toggles = 0,
+		axisdefs = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -6819,6 +6820,27 @@ function dotPlot() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
+
+		function axisDefCheck() {
+			if (axisdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.data(data)
+					.selectAll("text")
+					.attr("dy", "-0.25em");
+
+				svg.selectAll(".y.axis .tick")
+					.data(data)
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", "0.75em")
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.definition; });
+			}
+			else if (axisdefs == 0) { };
+		}
+
+		axisDefCheck();
 
 		// notes and sources
 
@@ -7079,6 +7101,14 @@ function dotPlot() {
 
 		if (!arguments.length) return toggles;
 		toggles = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
 		return chart;
 
 	};
