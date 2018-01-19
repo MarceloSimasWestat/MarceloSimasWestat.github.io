@@ -2,14 +2,22 @@ chart	subchart	chartlevel	level	group	num	pct	group1_p	group2_p	diff_ppt	group1_
 1-1				Enrolled in districts that provide preschool			0.92553	0.88509		3204768	19118712	1
 1-1				Enrolled in districts that offer free preschool			0.871634	0.805164		3018141	17392304	2
 1-1				Enrolled in districts that offer full-day preschool			0.589334	0.545161		2040641	11775979	3
-1-2				ELs	174057	0.134294
-1-2				Non-ELs	1219798	0.191195
+1-2			Enrolled in preschool	ELs	174057	0.134294
+1-2			Enrolled in preschool	Non-ELs	1219798	0.191195
 1-3				Enrolled in districts that offer free preschool			0.958789	0.924192		166884	1127327	1
 1-3				Enrolled in districts that offer full-day preschool			0.63493	0.67664		110514	825364	2
-1-4				Enrolled in districts offering preschool			0.12487	0.87513	75.026	174057	1219798	1
-1-4				Enrolled in districts offering free preschool only			0.12583	0.87417	74.834	113839	790855	2
-1-4				Enrolled in districts offering cost and free preschool			0.13618	0.86382	72.764	53045	336472	3
-1-4				Enrolled in districts offering preschool at cost only			0.03889	0.96111	92.222	2669	65958	4
-1-4				Enrolled in districts offering part day preschool only			0.11495	0.88505	77.01	52346	403033	5
-1-4				Enrolled in districts offering full and part day preschool			0.12106	0.87894	75.788	58168	422331	6
-1-4				Enrolled in districts offering full day preschool only			0.13828	0.86172	72.344	59039	367921	7
+1-x				Enrolled in districts offering preschool			0.12487	0.87513	75.026	174057	1219798
+1-4				Enrolled in districts offering free preschool only			0.12583	0.87417	74.834	113839	790855	1
+1-4				Enrolled in districts offering cost and free preschool			0.13618	0.86382	72.764	53045	336472	2
+1-4				Enrolled in districts offering preschool at cost only			0.03889	0.96111	92.222	2669	65958	3
+1-5				Enrolled in districts offering part day preschool only			0.11495	0.88505	77.01	52346	403033	1
+1-5				Enrolled in districts offering full and part day preschool			0.12106	0.87894	75.788	58168	422331	2
+1-5				Enrolled in districts offering full day preschool only			0.13828	0.86172	72.344	59039	367921	3
+3-1			Dual enrollment	All schools	12899	0.492779645
+3-1			Dual enrollment	Low EL concentration schools	6758	0.631175866
+3-1			Dual enrollment	Medium EL concentration schools	1934	0.418252595
+3-1			Dual enrollment	High EL concentration schools	542	0.304323414
+3-1			Dual enrollment	Schools with no ELs	3665	0.404346867
+3-2			Enrolled in schools that offer dual enrollment	All students	10471687	0.63670762
+3-2			Enrolled in schools that offer dual enrollment	ELs	472069	0.529382014
+3-2			Enrolled in schools that offer dual enrollment	Non-ELs	9999618	0.642860422

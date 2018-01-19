@@ -879,31 +879,31 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-			// notes and sources
+		// notes and sources
 
-			function writeNotes() {
-				if (!notes) {}
-				else {
+		function writeNotes() {
+			if (!notes) {}
+			else {
 
-					d3.select("#"+ sectionID).append("div")
-							.attr("id", "notes" + chartID)
-							.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
-
-				};
-			};
-
-			writeNotes();
-
-			function writeSource() {
-				if (!source) {}
-				else {
-					d3.select("#"+ sectionID).append("div")
+				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
-				};
-			};
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
-			writeSource();
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
 
 		// resize
 
@@ -1630,7 +1630,7 @@ function colChart() {
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
-		subgroup = "students",
+		subgroup = "",
 		notes = "",
 		source = "",
 		containerID = [],
@@ -1769,7 +1769,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of preschool-aged " + d.group + ", or " + formatNumber(d.num) + ", were enrolled in preschool."; });
+						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were " + d.level + "."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -6426,6 +6426,451 @@ function divergingBar() {
 
 		if (!arguments.length) return sectionID;
 		sectionID = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+};
+
+// Reusable dot plot function for chronic absenteeism storymap
+
+function dotPlot() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 500,
+		marginTop = 20,
+		marginLeft = 100,
+		marginBottom = 45,
+		dotSize = 5,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		group = "",
+		xAxisLabel = "DEFINE X AXIS LABEL",
+		notes = "",
+		source = "",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.text(title);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		var svg = dom.append("svg")
+			.attr("class", "dotPlot")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {
+			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " " + group + ")";
+		});
+
+		svg.call(tipDot);
+
+		// axis scales and axes
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
+			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1);
+
+		// domains
+
+		function xDomain() {
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice() }
+			else { xScale.domain([0, 1]); }
+		};
+		xDomain();
+		yScale.domain(data.map(function(d) { return d.group; }));
+
+		// axes
+
+		function formatValueAxis(d) {
+
+			var TickValue = formatNumber(d * 100);
+			return TickValue;
+
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
+			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj)
+			.attr("dx", "0.5em")
+			.attr("y", heightAdj)
+			.attr("dy", "3.1em")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "end")
+			.text(xAxisLabel);
+
+		// draw dots and lines
+
+		var lines = svg.selectAll("line.dotLine")
+			.data(data);
+
+		lines.enter()
+			.append("g")
+			.attr("transform", "translate(0,0)")
+			.append("line")
+				.attr("class", "dotLine")
+				.attr("x1", 0)
+				.attr("x2", 0)
+				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); });
+
+		var dots = svg.selectAll("circle.dot")
+			.data(data);
+
+		dots.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("circle")
+					.attr("class", "dot")
+					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
+					.attr("cx", 0)
+					.attr("cy", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+					.attr("r", dotSize/2)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide)
+					.append("aria-label")
+						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + " offered " + d.level + "."; });
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+					svg.selectAll("line.dotLine")
+						.transition()
+							.duration(animateTime)
+							.attr("x2", function(d) { return xScale(d.pct); })
+							.each("end", function(d) {
+								d3.select(this)
+									.transition()
+										.duration(animateTime)
+										.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+							});
+
+					svg.selectAll("circle.dot")
+						.transition()
+							.duration(animateTime)
+							.attr("cx", function(d) { return xScale(d.pct); })
+							.each("end", function(d) {
+								d3.select(this)
+									.transition()
+										.duration(animateTime)
+										.attr("r", dotSize);
+							});
+
+			}});
+
+		// add clip path
+
+		svg.append("defs")
+			.append("clipPath")
+				.attr("id", function() { return "clip" + chartID; })
+					.append("rect")
+						.attr("width", widthAdj + margin.right)
+						.attr("height", heightAdj);
+
+		// draw y-axis above
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.range([0, widthAdj]);
+			xDomain();
+			xAxis.ticks(Math.max(widthAdj/100, 2));
+
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+
+			dom.selectAll(".dotPlot")
+				.attr("width", width);
+
+			dom.select(".x.axis")
+				.call(xAxis);
+
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+
+			dom.selectAll("line.dotLine")
+				.attr("x2", 0);
+
+			dom.selectAll(".dot")
+				.attr("cx", 0)
+				.attr("r", dotSize/2);
+
+			var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+						svg.selectAll("line.dotLine")
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+								});
+
+						svg.selectAll("circle.dot")
+							.transition()
+								.duration(animateTime)
+								.attr("cx", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("r", dotSize);
+								});
+
+				}});
+
+		});
+
+		});
+
+	};
+
+   /* chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+	chart.group = function(value) {
+
+      if (!arguments.length) return group;
+      group = value;
+      return chart;
+
+  };
+
+	chart.xAxisLabel = function(value) {
+
+      if (!arguments.length) return xAxisLabel;
+      xAxisLabel = value;
+      return chart;
+
+  };
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.dotSize = function(value) {
+
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
 		return chart;
 
 	};
