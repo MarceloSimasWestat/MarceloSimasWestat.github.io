@@ -6826,16 +6826,46 @@ function dotPlot() {
 				svg.selectAll(".y.axis .tick")
 					.data(data)
 					.selectAll("text")
-					.attr("dy", "-0.25em");
+					.style("opacity", 0);
+
+				/*svg.selectAll(".y.axis .tick")
+					.data(data)
+					.enter()
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", function(d, i) {
+							if (d.definition == null) { return "0.32em"; }
+							else { return "-0.25em"; };
+						})
+						.attr("text-anchor", "end")
+						.text(function(d, i) { return d.level; });*/
 
 				svg.selectAll(".y.axis .tick")
-					.data(data)
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", function(d) {
+							if (d.definition == null) { return "0.32em"; }
+							else { return "-0.25em"; };
+						})
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.group; });
+
+				svg.selectAll(".y.axis .tick")
 					.append("text")
 						.attr("class", "def_tick")
 						.attr("x", -9)
 						.attr("dy", "0.75em")
 						.attr("text-anchor", "end")
 						.text(function(d) { return d.definition; });
+
+				svg.selectAll(".def_tick")
+					.style("opacity", function(d) {
+						if (d.definition == "") { return 0; }
+						else { return 1; };
+					});
+
 			}
 			else if (axisdefs == 0) { };
 		}
