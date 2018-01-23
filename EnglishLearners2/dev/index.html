@@ -182,23 +182,19 @@
                 <div></div>
                 <div id="ch1_1"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    The analysis in the chart above estimates the percentage of students enrolled in a particular type of district by using the number of students enrolled in schools that offer any of pre-K through Grade 2. In comparison with non-ELs, ELs were slightly more likely to have access to preschool programs in 2013–14. Ninety-three percent of ELs enrolled in schools offering pre-K through Grade 2 were enrolled in districts that provided preschool programs or services, compared to 89 percent of non-ELs. ELs were also more likely to have access to free preschool programs and full-day preschool programs than non-ELs; 87 percent of the ELs enrolled in schools offering pre-K through Grade 2 were enrolled in districts offering free preschool programs compared to 81 percent of non-ELs, while 59 percent of ELs were enrolled in districts that provide full-day preschool programs compared to 55 percent of non-ELs.
+                  The analysis in the chart above estimates the percentage of students enrolled in a particular type of district by using the number of students enrolled in schools that had any of pre-K through Grade 2. In comparison with non-ELs, ELs were slightly more likely to have access to preschool programs in 2013–14. Ninety-three percent of ELs enrolled in schools with pre-K through Grade 2 were enrolled in districts that provided preschool programs or services, compared to 89 percent of non-ELs. ELs were also more likely to have access to free preschool programs and full-day preschool programs than non-ELs; 87 percent of the ELs enrolled in schools with pre-K through Grade 2 were enrolled in districts providing free preschool programs compared to 81 percent of non-ELs, while 59 percent of ELs were enrolled in districts that provide full-day preschool programs compared to 55 percent of non-ELs.
                 </p>
                 <div id="ch1_2"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    Although ELs had greater access to preschool programs in 2013–14, a lower percentage of ELs enrolled in preschool compared to non-ELs. In 2013–14, 13 percent of preschool-aged ELs enrolled in preschool, while 19 percent of preschool-aged non-ELs were enrolled in preschool.
+                  Although ELs had greater access to preschool programs in 2013–14, a lower percentage of ELs enrolled in preschool compared to non-ELs. In 2013–14, 13 percent of preschool-aged ELs enrolled in preschool, while 19 percent of preschool-aged non-ELs were enrolled in preschool.
                 </p>
                 <div id="ch1_3"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    Among the EL and non-EL preschoolers in 2013–14, similar percentages of were enrolled in districts that offer free preschool and full-day preschool. For both groups of students, more than 90 percent were enrolled in districts that offer free preschool, while about two-thirds were enrolled in districts that offer full-day preschool.
+                  Among the EL and non-EL preschoolers in 2013–14, similar percentages of were enrolled in districts that provided free preschool and full-day preschool. For both groups of students, more than 90 percent were enrolled in districts that provided free preschool, while about two-thirds were enrolled in districts that provided full-day preschool.
                 </p>
                 <div id="ch1_4"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    In 2013–14, 12 percent of all preschoolers enrolled were ELs. In districts that offered free preschool options, about 13 percent of the preschoolers enrolled were ELs. However, in districts that only offered preschool at cost, ELs comprised just 4 percent of the total preschoolers enrolled.
-                </p>
-                <div id="ch1_5"></div>
-                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                    The percentage of preschoolers enrolled who were ELs did not vary much based on the length of preschool options provided by the district.
+                  In 2013–14, 12 percent of all preschoolers enrolled were ELs. In districts that provided free preschool options, about 13 percent of the preschoolers enrolled were ELs. However, in districts that only provided preschool at cost, ELs comprised just 4 percent of the total preschoolers enrolled. The percentage of preschoolers enrolled who were ELs did not vary much based on the length of preschool options provided by the district.
                 </p>
                 <div></div>
             </div>
@@ -429,65 +425,82 @@
                 data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
                 data1_3 = data.filter(function(d) { return d.chart == "1-3"; });
                 data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
-                data1_5 = data.filter(function(d) { return d.chart == "1-5"; });
+                /*data1_5 = data.filter(function(d) { return d.chart == "1-5"; });*/
                 data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
                 data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
                 data2_3 = data.filter(function(d) { return d.chart == "2-3"; });
                 data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
                 data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 
-                var chart1_1 = divergingBar().data(data1_1).marginLeft(300).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                var chart1_1 = divergingBar().data(data1_1).marginLeft(320).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
-                  .title("In 2013–14, ELs were more likely to be enrolled in schools in districts offering preschool programs.")
-                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.");
+                  .title("ELs were slightly more likely to have access to preschool programs than non-ELs, and were also somewhat more likely than non-ELs to have access to free preschool programs and full-day preschool programs or services.")
+                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on enrollment in schools with early elementary grades (i.e., any of preschool through grade 2). This is proxy for students who could have attended preschool programs. District that provided free preschool include districts that provided preschool only for free and districts that provided preschool for free or for a cost.");
                 var chart1_2 = colChart().data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
-                  .yAxisLabel("% OF PRESCHOOL-AGED CHILDREN")
-                  .title("Preshool-aged ELs were less likely to be enrolled in preschool than preschool-aged non-ELs.")
-                  .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.");
-                var chart1_3 = divergingBar().data(data1_3).marginLeft(300).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                  .yAxisLabel("% OF PRESCHOOL-AGED CHILDREN IN 2013–14")
+                  .title("EL preschool-aged children were less likely to enroll in preschool than non-ELs. ")
+                  .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.")
+                  .source('"U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "State Nonfiscal Survey of Public Elementary/Secondary Education," 2013–14. Downloaded April 2017 from <a href="https://nces.ed.gov/ccd/stnfis.asp">https://nces.ed.gov/ccd/stnfis.asp</a>. U.S. Department of Education, EDFacts Data Warehouse (EDW), 2013–14. SEA File C141, LEP Enrolled. Extracted August 2017.')
+                  .notes("Percentages are based on an estimate of the number of children aged 3 through 5. Given the available data, this was estimated using the population of children enrolled in grades 1 and 2.");
+                var chart1_3 = divergingBar().data(data1_3).marginLeft(320).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
-                  .title("In 2013–14, similar percentages of EL and non-EL preschoolers were enrolled in districts offering free and full-day preschool.")
-                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.");
-                var chart1_4 = dotTwo().data(data1_4).marginLeft(340).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
-                  .title("In comparison with districts offering free preschool, ELs were a smaller proportion of preschoolers in districts offering preschool at cost only.")
-                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.");
-                var chart1_5 = dotTwo().data(data1_5).marginLeft(340).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5")
+                  .title("Similar percentages of EL and non-EL preschoolers were enrolled in districts that provided free preschool and full-day programs or services.")
+                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on preschool enrollment. District that provided free preschool include districts that provided preschool only for free and districts that provided preschool for free or for a cost.");
+                var chart1_4 = colChart().data(data1_4).marginBottom(70).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
+                  .yAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14 WHO WERE ELS")
+                  .title("Twelve percent of children enrolled in preschool were ELs. The percentage did not vary considerably by the program cost or length, except in districts that only provided preschool at cost.")
+                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.");
+                /*var chart1_5 = dotTwo().data(data1_5).marginLeft(340).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5")
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
                   .title("Regardless of length of preschool offered by the district, about the same percentage of preschoolers were ELs.")
-                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");
+                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");*/
                 var chart2_1 = divergingBar().data(data2_1).marginLeft(240).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
-                  .title(["The majority of ELs and non-ELs were enrolled in schools that offer Algebra 1, but non-ELs were almost twice as likely to be enrolled in Algebra 1 than ELs.",
-                  "Most ELs and non-ELs were enrolled in schools offering Physics, but a greater percentage non-ELs enrolled in Physics than ELs.",
-                  "While most ELs and non-ELs were enrolled in schools offering Chemistry, non-ELs were more likely to be enrolled in Physics than ELs.",
-                  "Although about 70 percent of ELs and non-ELs were enrolled in schools that offered Calculus, non-ELs enrolled in the course at a much higher rate."])
-                  .altText("These charts display the percentage of ELs and non-ELs enrolled in schools offering various advanced courses, and the percentage of ELs enrolled in those advanced courses.");
+                  .title(["While the majority of ELs and non-ELs are in schools that offer Algebra I in Grade 7 or 8, non-ELs are twice as likely as ELs to be enrolled in the course.",
+                  "Most ELs and non-ELs were enrolled in schools with Grades 9 through 12 offering Physics, but a greater percentage non-ELs enrolled in Physics than ELs.",
+                  "While most ELs and non-ELs were enrolled in schools Grades 9 through 12 offering Chemistry, non-ELs were more likely to be enrolled in Physics than ELs.",
+                  "Although about 70 percent of ELs and non-ELs were enrolled in schools Grades 9 through 12 that offered Calculus, non-ELs enrolled in the course at a much higher rate."])
+                  .altText("These charts display the percentage of ELs and non-ELs enrolled in schools offering various advanced courses, and the percentage of ELs enrolled in those advanced courses.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on enrollment in schools with the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses).");
                 var chart2_2 = dotPlot().data(data2_2).marginLeft(210).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").toggles(1)
                   .group("schools").xAxisLabel("% OF SCHOOLS OFFERING COURSE IN 2013–14").axisdefs(1)
-                  .title(["Low EL concentration middle schools were more likely to offer Algebra 1 than high EL concentration high schools.",
-                  "While 60 percent of high schools offered Physics, fewer than half of the high schools with high concentrations of ELs did.",
-                  "The majority of low EL concentration high schools offered Chemistry. However, only slightly more than half of high schools with high concentrations of ELs did so.",
-                  "Two-thirds of low EL concentration high schools offered Calculus, but fewer than one-third of high EL concentration high schools did so."])
-                  .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.");
+                  .title(["As EL concentration increases, the percentage of schools with Grade 7 or 8 offering Algebra I declines.",
+                  "While 60 percent of schools with Grades 9 through 12 offered Physics, fewer than half of those schools with high concentrations of ELs did.",
+                  "The majority of low EL concentration schools with Grades 9 through 12 offered Chemistry. However, only slightly more than half of those schools with high concentrations of ELs did so.",
+                  "Among schools with Grades 9 through 12, two-thirds of those with low EL concentrations offered Calculus, while fewer than one-third of those with high EL concentrations did so."])
+                  .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on all schools that had students in the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses).");
                 var chart2_3 = dotTwo().data(data2_3).marginLeft(80).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
                   .group1("EL course enrollment").group2("EL school enrollment").xMax(0.20).xAxisLabel("% OF COURSE AND SCHOOL ENROLLMENT IN 2013–14")
                   .title("ELs are less represented in advanced coursework classes than expected, given their representation in school enrollment.")
-                  .altText("This chart shows the percent of enrollment in schools offering advanced courses and the enrollment in those courses who are ELs.");
+                  .altText("This chart shows the percent of enrollment in schools offering advanced courses and the enrollment in those courses who are ELs.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages for school enrollment are based on enrollment in schools with the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses) that offered the course.  Percentages for course enrollment are based on students in the relevant grade enrolled in the course.");
                 var chart3_1 = dotPlot().data(data3_1).marginLeft(210).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
                   .group("schools").xAxisLabel("% OF SCHOOLS OFFERING DUAL ENROLLMENT IN 2013–14").axisdefs(1)
                   .title("The percentage of high schools offering dual enrollment decreased as EL concentration increased.")
-                  .altText("This chart displays the percentage of high schools offering dual enrollment by level of EL concentration.");
-                var chart3_2 = colChart().data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
-                  .yAxisLabel("% OF STUDENTS ATTENDING SCHOOLS THAT OFFER DUAL ENROLLMENT")
+                  .altText("This chart displays the percentage of high schools offering dual enrollment by level of EL concentration.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on schools that offered any of grades 9 through 12.");
+                var chart3_2 = colChart().data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
+                  .yAxisLabel("% WHO ATTENDED SCHOOLS THAT OFFER DUAL ENROLLMENT IN 2013–14")
                   .title("ELs were less likely than non-ELs to attend schools that offered dual enrollment.")
-                  .altText("This chart displays the percentage of ELs and non-ELs who attended schools that offered dual enrollment.");
+                  .altText("This chart displays the percentage of ELs and non-ELs who attended schools that offered dual enrollment.")
+                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
+                  .notes("Percentages are based on students enrolled in schools that offered any of grades 9 through 12.");
 
                 d3.select("#ch1_1").call(chart1_1);
                 d3.select("#ch1_2").call(chart1_2);
                 d3.select("#ch1_3").call(chart1_3);
                 d3.select("#ch1_4").call(chart1_4);
-                d3.select("#ch1_5").call(chart1_5);
+                /*d3.select("#ch1_5").call(chart1_5);*/
                 d3.select("#ch2_1").call(chart2_1);
                 d3.select("#ch2_2").call(chart2_2);
                 d3.select("#ch2_3").call(chart2_3);
