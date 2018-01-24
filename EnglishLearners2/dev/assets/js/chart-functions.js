@@ -1623,7 +1623,7 @@ function colChart() {
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
-		marginBottom = 25,
+		marginBottom = 20,
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
@@ -1710,40 +1710,13 @@ function colChart() {
 
 		// draw x-axis above columns
 
-		// this is for wrapping long axis labels
-		// need to examine this for bar charts because it's causing some unintended side effects...
-
-		function wrap2(text, width) {
-		  text.each(function() {
-		    var text = d3.select(this),
-		        words = text.text().split(/\s+/).reverse(),
-		        word,
-		        line = [],
-		        lineNumber = 0,
-		        lineHeight = 1.1, // ems
-		        y = text.attr("y"),
-		        dy = parseFloat(text.attr("dy")),
-		        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-		    while (word = words.pop()) {
-		      line.push(word);
-		      tspan.text(line.join(" "));
-		      if (tspan.node().getComputedTextLength() > width) {
-		        line.pop();
-		        tspan.text(line.join(" "));
-		        line = [word];
-		        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-		      }
-		    }
-		  });
-		};
-
 		svg.append("g")
 			.attr("class", "x axis")
 			/*.attr("transform", "translate(0," + heightAdj + ")")*/
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap2, xScale.rangeBand());
+				.call(wrap, xScale.rangeBand());
 
 		// figure out max number of tspans from wrapping
 
@@ -1773,12 +1746,11 @@ function colChart() {
 
 		function marginBottomAdjustment() {
 			marginBottomAdj = tspanMax * marginBottom;
-
 		};
 
 		marginBottomAdjustment();
 
-		heightAdj = height - marginTop - marginBottomAdj;
+		var heightAdj = height - marginTop - marginBottomAdj;
 
 		svg.selectAll(".x.axis").remove();
 
@@ -1788,12 +1760,12 @@ function colChart() {
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap2, xScale.rangeBand());
+				.call(wrap, xScale.rangeBand());
 
 		// y axis
 
-		yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
-		yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -1834,8 +1806,6 @@ function colChart() {
 			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
-					heightAdj = height - marginTop - marginBottomAdj;
-
 					svg.selectAll("rect.column")
 						.transition()
 							.duration(animateTime)
@@ -1854,7 +1824,7 @@ function colChart() {
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap2, xScale.rangeBand());
+				.call(wrap, xScale.rangeBand());
 
 		// notes and sources
 
@@ -1902,7 +1872,7 @@ function colChart() {
 			svg.select(".x.axis")
 				.call(xAxis)
 				.selectAll(".tick text")
-					.call(wrap2, xScale.rangeBand());
+					.call(wrap, xScale.rangeBand());
 
 			tspanMaxCount();
 			marginBottomAdjustment();
@@ -1911,7 +1881,7 @@ function colChart() {
 
 			heightAdj = height - marginTop - marginBottomAdj;
 
-			svg.select(".x.axis")
+			dom.selectAll(".x.axis")
 				.remove();
 
 			svg.append("g")
@@ -1920,13 +1890,13 @@ function colChart() {
 				.attr("aria-hidden", "true")
 				.call(xAxis)
 				.selectAll(".tick text")
-					.call(wrap2, xScale.rangeBand());
+					.call(wrap, xScale.rangeBand());
 
 			// redraw the y axis
 
 			yScale.range([heightAdj, 0]);
 
-			svg.select(".y.axis")
+			dom.selectAll(".y.axis")
 				.remove();
 
 			svg.append("g")
@@ -1960,13 +1930,13 @@ function colChart() {
 
 	};
 
-    chart.height = function(value) {
+  chart.height = function(value) {
 
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
 
-    };
+  };
 
 	chart.marginTop = function(value) {
 
