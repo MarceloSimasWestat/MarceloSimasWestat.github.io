@@ -1623,7 +1623,7 @@ function colChart() {
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
-		marginBottom = 25,
+		marginBottom = 20,
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
@@ -1652,8 +1652,8 @@ function colChart() {
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 
 		var margin = {right: 20},
-			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - marginTop - marginBottom;
+			widthAdj = width - marginLeft - margin.right;
+			/*heightAdj = height - marginTop - marginBottom;*/
 
 		// chart title
 
@@ -1665,33 +1665,10 @@ function colChart() {
 
 		var dom = d3.select(this)
 			.append("div")
-			.attr("id", chartID)
-				/*.style({
-					"max-width": width + "px",
-					"margin": "0 auto"
-				})
-				.append("div")
-					.style({
-						"width": "100%",
-						"max-width": width + "px",
-						"height": 0,
-						"padding-top": (100*(height/width)) + "%",
-						"position": "relative",
-						"margin": "0 auto"
-					});*/
+			.attr("id", chartID);
 
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			/*.attr("viewBox", "0 0 " + width + " " + height)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style({
-				"max-width": width,
-				"position": "absolute",
-				"top": 0,
-				"left": 0,
-				"width": "100%",
-				"height": "100%"
-			})*/
 			.attr("width", width)
 			.attr("height", height)
 			.append("g")
@@ -1715,28 +1692,80 @@ function colChart() {
 
 		// axis scales
 
-		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5),
-			yScale = d3.scale.linear().range([heightAdj, 0]);
+		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5);
+			/*yScale = d3.scale.linear().range([heightAdj, 0]);*/
 
 		// domains
 
 		xScale.domain(data.map(function(d, i) { return d.group; }));
-		yScale.domain([0, yMax]);
 
 		// axes
 
 		function formatValueAxis(d) {
-
 			var TickValue = formatNumber(d * 100);
-
 			return TickValue;
-
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0);
 
-		// draw y-axis under columns
+		// draw x-axis above columns
+
+		svg.append("g")
+			.attr("class", "x axis")
+			/*.attr("transform", "translate(0," + heightAdj + ")")*/
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+			.selectAll(".tick text")
+				.call(wrap, xScale.rangeBand());
+
+		// figure out max number of tspans from wrapping
+
+		var tspanMax;
+
+		function tspanMaxCount() {
+
+			// find all tspans within the chart
+
+			var tspans = document.getElementById(chartID).getElementsByTagName("tspan");
+
+			// nest the tspans by the label
+
+			var tspanNest = d3.nest()
+				.key(function(d) { return d.__data__; })
+				.entries(tspans);
+
+			// find maximum length of the nested tspans
+
+			tspanMax = d3.max(tspanNest, function(d) { return d.values.length; });
+
+		}
+
+		tspanMaxCount();
+
+		var marginBottomAdj;
+
+		function marginBottomAdjustment() {
+			marginBottomAdj = tspanMax * marginBottom;
+		};
+
+		marginBottomAdjustment();
+
+		heightAdj = height - marginTop - marginBottomAdj;
+
+		svg.selectAll(".x.axis").remove();
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+			.selectAll(".tick text")
+				.call(wrap, xScale.rangeBand());
+
+		// y axis
+
+		yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
+		yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -1786,7 +1815,9 @@ function colChart() {
 
 			}});
 
-		// draw x-axis above columns
+		// redraw x axis above bars
+
+		svg.selectAll(".x.axis").remove();
 
 		svg.append("g")
 			.attr("class", "x axis")
