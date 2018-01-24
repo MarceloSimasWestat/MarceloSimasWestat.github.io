@@ -462,7 +462,7 @@
                   .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");*/
                 var chart2_1 = divergingBar().data(data2_1).marginLeft(240).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
-                  .title(["While the majority of ELs and non-ELs were in schools that offer Algebra I in grade 7 or 8, non-ELs are twice as likely as ELs to be enrolled in the course.",
+                  .title(["While the majority of ELs and non-ELs were in schools that offer Algebra I in grade 7 or 8, non-ELs were twice as likely as ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offer Physics in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offer Chemistry in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offer Calculus in grades 9 through 12, non-ELs were four times more likely than ELs to be enrolled in the course."])
@@ -471,22 +471,22 @@
                   .notes("Percentages are based on enrollment in schools with the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses).");
                 var chart2_2 = dotPlot().data(data2_2).marginLeft(210).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").toggles(1)
                   .group("schools").xAxisLabel("% OF SCHOOLS OFFERING COURSE IN 2013–14").axisdefs(1)
-                  .title(["Algebra 1 was offered in 61 percent of schools that include grade 7 or 8. As EL concentration increased in these schools, the percentage offering Algebra 1 declines.",
-                  "Physics was offered in 60 percent of schools that include grades 9 through 12. Fewer than half the schools with high concentrations of ELs did.",
-                  "Chemistry was offered in 72 percent of schools that include grades 9 through 12. In schools with high EL concentration this percentage was 51 percent.",
-                  "Calculus was offered in 48 percent of schools that include grades 9 through 12. In schools with low EL concentration this percentage is 66 percent."])
+                  .title(["Algebra 1 was offered in 61 percent of schools that include grade 7 or 8. As EL concentration increases in these schools, the percentage offering Algebra 1 declines.",
+                  "Physics was offered in 60 percent of schools that include grades 9 through 12. Fewer than half the schools with high concentrations of ELs offered the course.",
+                  "Chemistry was offered in 72 percent of schools that include grades 9 through 12. In schools with a high EL concentration this percentage was 51 percent.",
+                  "Calculus was offered in 48 percent of schools that include grades 9 through 12. In schools with a low EL concentration this percentage is 66 percent."])
                   .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .notes("Percentages are based on all schools that had students in the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses).");
                 var chart2_3 = dotTwo().data(data2_3).marginLeft(80).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
                   .group1("EL course enrollment").group2("EL school enrollment").xMax(0.20).xAxisLabel("% OF COURSE AND SCHOOL ENROLLMENT IN 2013–14")
-                  .title("ELs are less represented in Algebra 1 and math and science courses than expected given their representation in school enrollment.")
+                  .title("ELs are less represented in Algebra 1 and advanced math and science courses than expected given their representation in school enrollment.")
                   .altText("This chart shows the percent of enrollment in schools offering advanced courses and the enrollment in those courses who are ELs.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .notes("Percentages for school enrollment are based on enrollment in schools with the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses) that offered the course. Percentages for course enrollment are based on students enrolled in the course.");
                 var chart3_1 = dotPlot().data(data3_1).marginLeft(210).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
                   .group("schools").xAxisLabel("% OF SCHOOLS OFFERING DUAL ENROLLMENT IN 2013–14").axisdefs(1)
-                  .title("Dual enrollment was offered in 49 percent of schools that include grades 9 through 12. In these schools the percentage of high schools offering dual enrollment decreased as EL concentration increased.")
+                  .title("Dual enrollment was offered in 49 percent of schools that include grades 9 through 12. In these schools the percentage offering dual enrollment decreased as EL concentration increased.")
                   .altText("This chart displays the percentage of high schools offering dual enrollment by level of EL concentration.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .notes("Percentages are based on schools that offered any of grades 9 through 12.");

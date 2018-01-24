@@ -1623,7 +1623,7 @@ function colChart() {
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
-		marginBottom = 20,
+		marginBottom = 25,
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
@@ -1669,7 +1669,7 @@ function colChart() {
 
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			.attr("width", width)
+			.attr("width", width - margin.right)
 			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
@@ -1710,13 +1710,40 @@ function colChart() {
 
 		// draw x-axis above columns
 
+		// this is for wrapping long axis labels
+		// need to examine this for bar charts because it's causing some unintended side effects...
+
+		function wrap2(text, width) {
+		  text.each(function() {
+		    var text = d3.select(this),
+		        words = text.text().split(/\s+/).reverse(),
+		        word,
+		        line = [],
+		        lineNumber = 0,
+		        lineHeight = 1.1, // ems
+		        y = text.attr("y"),
+		        dy = parseFloat(text.attr("dy")),
+		        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+		    while (word = words.pop()) {
+		      line.push(word);
+		      tspan.text(line.join(" "));
+		      if (tspan.node().getComputedTextLength() > width) {
+		        line.pop();
+		        tspan.text(line.join(" "));
+		        line = [word];
+		        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+		      }
+		    }
+		  });
+		};
+
 		svg.append("g")
 			.attr("class", "x axis")
 			/*.attr("transform", "translate(0," + heightAdj + ")")*/
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap, xScale.rangeBand());
+				.call(wrap2, xScale.rangeBand());
 
 		// figure out max number of tspans from wrapping
 
@@ -1746,6 +1773,7 @@ function colChart() {
 
 		function marginBottomAdjustment() {
 			marginBottomAdj = tspanMax * marginBottom;
+
 		};
 
 		marginBottomAdjustment();
@@ -1760,7 +1788,7 @@ function colChart() {
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap, xScale.rangeBand());
+				.call(wrap2, xScale.rangeBand());
 
 		// y axis
 
@@ -1770,8 +1798,7 @@ function colChart() {
 		svg.append("g")
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
-			.call(yAxis)
-			.selectAll("text")
+			.call(yAxis);
 
 		svg.append("text")
 			.attr("class", "y axis")
@@ -1807,6 +1834,8 @@ function colChart() {
 			.on("active", function() {
 				if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
+					heightAdj = height - marginTop - marginBottomAdj;
+
 					svg.selectAll("rect.column")
 						.transition()
 							.duration(animateTime)
@@ -1825,7 +1854,7 @@ function colChart() {
 			.attr("aria-hidden", "true")
 			.call(xAxis)
 			.selectAll(".tick text")
-				.call(wrap, xScale.rangeBand());
+				.call(wrap2, xScale.rangeBand());
 
 		// notes and sources
 
@@ -1868,17 +1897,44 @@ function colChart() {
 			yAxis.tickSize(-1 * widthAdj);
 
 			dom.selectAll(".col-chart")
-				.attr("width", width);
+				.attr("width", width - margin.right);
 
-			dom.select(".x.axis")
+			svg.select(".x.axis")
 				.call(xAxis)
 				.selectAll(".tick text")
-					.call(wrap, xScale.rangeBand());
+					.call(wrap2, xScale.rangeBand());
 
-			dom.select(".y.axis")
+			tspanMaxCount();
+			marginBottomAdjustment();
+
+			// redraw the x-axis based on new bottom margin
+
+			heightAdj = height - marginTop - marginBottomAdj;
+
+			svg.select(".x.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + heightAdj + ")")
+				.attr("aria-hidden", "true")
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap2, xScale.rangeBand());
+
+			// redraw the y axis
+
+			yScale.range([heightAdj, 0]);
+
+			svg.select(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
 				.call(yAxis);
 
-			dom.selectAll("rect.column")
+			svg.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.group) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("height", 0)
 				.attr("y", heightAdj);
@@ -1903,14 +1959,6 @@ function colChart() {
 		});
 
 	};
-
-    /* chart.width = function(value) {
-
-        if (!arguments.length) return width;
-        width = value;
-        return chart;
-
-    }; */
 
     chart.height = function(value) {
 
