@@ -4956,75 +4956,75 @@ button:hover,
 
 .dotPlot .axis path,
 .dotPlot .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .dotPlot .x.axis {
-	font: 400 13px Inconsolata;
-	fill: black;
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, 0.65);
 }
 
-.dotPlot .x.axis path {
-	display: none;
-}
+    .dotPlot .x.axis path {
+        display: none;
+    }
 
-.dotPlot .x.axis line {
-	stroke: black;
-	stroke-dasharray: 1,1;
-}
+    .dotPlot .x.axis line {
+        stroke: rgba(23, 26, 29, 0.15);
+        stroke-dasharray: 1,1;
+    }
 
 .dotPlot .y.axis {
-	font: normal 13px Karla;
-	color: #1C1E21;
+    font: normal 13px Karla;
+    color: #1C1E21;
 }
 
-.dotPlot .y.axis path {
-	stroke: #1C1E21;
-	stroke-width: 1.5px;
-}
+    .dotPlot .y.axis path {
+        stroke: #1C1E21;
+        stroke-width: 1.5px;
+    }
 
 .dotPlot .title {
-	font: 400 15px "Karla", Helvetica, Arial, sans-serif;
-	color: #1C1E21;
-	font-weight: bold;
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
 }
 
-.dotM {
-	fill: #A6426C;
+.dotGroup1 {
+    fill: #A6426C;
 }
 
-.dotF {
-	fill: #240f18;
+.dotGroup2 {
+    fill: #5D3EA8;
 }
 
-.labelM {
-	font: 400 13px Inconsolata;
-	fill: #A6426C;
+.labelGroup1 {
+    font: 400 13px Inconsolata;
+    fill: #A6426C;
 }
 
-.labelF {
-	font: 400 13px Inconsolata;
-	fill: #240f18;
+.labelGroup2 {
+    font: 400 13px Inconsolata;
+    fill: #5D3EA8;
 }
 
-.dotM:hover,
-.dotF:hover {
-	opacity: .65;
+.dotGroup1:hover,
+.dotGroup2:hover {
+    opacity: .65;
 }
 
 .dotL {
-	stroke: #240f18;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
+    stroke: #5D42A6;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
 }
 
 .dotLHit {
-	stroke: #240f18;
-	stroke-width: 10px;
-	shape-rendering: crispEdges;
-	opacity: 0;
+    stroke: #5D42A6;
+    stroke-width: 10px;
+    shape-rendering: crispEdges;
+    opacity: 0;
 }
 
 /* Scatter plot styling */
@@ -5435,6 +5435,68 @@ button:hover,
 .smBarChart .def_tick {
   font: normal 10px Karla;
   color: #000;
+}
+
+/* Grouped bar chart (diverging) styling */
+
+.divergingBar .axis path,
+.divergingBar .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.divergingBar .x.axis,
+.divergingBar .guide {
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
+}
+
+.divergingBar .x.axis path {
+    display: none;
+}
+
+.divergingBar .x.axis line {
+    stroke: rgba(26, 28, 32, 0.25);
+    stroke-dasharray: 1,1;
+}
+
+.divergingBar .y.axis,
+.divergingBar .legend {
+    font: normal 13px Karla;
+    color: #1C1E21;
+}
+
+.divergingBar .y.axis path {
+    stroke: #1C1E21;
+    stroke-width: 1.5px;
+}
+
+.divergingBar .title {
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
+}
+
+/* .groupedBarDiv .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.divergingBar .bar:hover {
+    fill-opacity: 0.75;
+}
+
+.divergingBar .group1 {
+    fill: #A6426C;
+}
+
+.divergingBar .group2 {
+    fill: #5D3EA8;
+}
+
+.divergingBar .zeroLine {
+    stroke-width: 1px;
+    stroke: #000;
 }
 
 /* Styling tooltips for individual graph types */

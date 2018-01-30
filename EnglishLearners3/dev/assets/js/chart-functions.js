@@ -851,7 +851,7 @@ function barChart() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of ELs, spoke " + d.group + " at home."; });
+						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of preschool-aged " + d.group + " were enrolled in preschool."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -879,31 +879,31 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-			// notes and sources
+		// notes and sources
 
-			function writeNotes() {
-				if (!notes) {}
-				else {
+		function writeNotes() {
+			if (!notes) {}
+			else {
 
-					d3.select("#"+ sectionID).append("div")
-							.attr("id", "notes" + chartID)
-							.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
-
-				};
-			};
-
-			writeNotes();
-
-			function writeSource() {
-				if (!source) {}
-				else {
-					d3.select("#"+ sectionID).append("div")
+				d3.select("#"+ sectionID).append("div")
 						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
-				};
-			};
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
-			writeSource();
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
 
 		// resize
 
@@ -1623,14 +1623,14 @@ function colChart() {
 		height = 500,
 		marginTop = 60,
 		marginLeft = 20,
-		marginBottom = 25,
+		marginBottom = 20,
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
-		subgroup = "students",
+		subgroup = "",
 		notes = "",
 		source = "",
 		containerID = [],
@@ -1652,8 +1652,8 @@ function colChart() {
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 
 		var margin = {right: 20},
-			widthAdj = width - marginLeft - margin.right,
-			heightAdj = height - marginTop - marginBottom;
+			widthAdj = width - marginLeft - margin.right;
+			/*heightAdj = height - marginTop - marginBottom;*/
 
 		// chart title
 
@@ -1665,34 +1665,11 @@ function colChart() {
 
 		var dom = d3.select(this)
 			.append("div")
-			.attr("id", chartID)
-				/*.style({
-					"max-width": width + "px",
-					"margin": "0 auto"
-				})
-				.append("div")
-					.style({
-						"width": "100%",
-						"max-width": width + "px",
-						"height": 0,
-						"padding-top": (100*(height/width)) + "%",
-						"position": "relative",
-						"margin": "0 auto"
-					});*/
+			.attr("id", chartID);
 
 		var svg = dom.append("svg")
 			.attr("class", "col-chart")
-			/*.attr("viewBox", "0 0 " + width + " " + height)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.style({
-				"max-width": width,
-				"position": "absolute",
-				"top": 0,
-				"left": 0,
-				"width": "100%",
-				"height": "100%"
-			})*/
-			.attr("width", width)
+			.attr("width", width - margin.right)
 			.attr("height", height)
 			.append("g")
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
@@ -1707,7 +1684,7 @@ function colChart() {
 			.offset([-10, 0])
 			.html(function(d) {
 
-			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " " + subgroup + ")";
+			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
 
 		});
 
@@ -1715,34 +1692,85 @@ function colChart() {
 
 		// axis scales
 
-		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5),
-			yScale = d3.scale.linear().range([heightAdj, 0]);
+		var xScale = d3.scale.ordinal().rangeRoundBands([0, widthAdj], .5);
+			/*yScale = d3.scale.linear().range([heightAdj, 0]);*/
 
 		// domains
 
 		xScale.domain(data.map(function(d, i) { return d.group; }));
-		yScale.domain([0, yMax]);
 
 		// axes
 
 		function formatValueAxis(d) {
-
 			var TickValue = formatNumber(d * 100);
-
 			return TickValue;
-
 		};
 
-		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
-			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0);
 
-		// draw y-axis under columns
+		// draw x-axis above columns
+
+		svg.append("g")
+			.attr("class", "x axis")
+			/*.attr("transform", "translate(0," + heightAdj + ")")*/
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+			.selectAll(".tick text")
+				.call(wrap, xScale.rangeBand());
+
+		// figure out max number of tspans from wrapping
+
+		var tspanMax;
+
+		function tspanMaxCount() {
+
+			// find all tspans within the chart
+
+			var tspans = document.getElementById(chartID).getElementsByTagName("tspan");
+
+			// nest the tspans by the label
+
+			var tspanNest = d3.nest()
+				.key(function(d) { return d.__data__; })
+				.entries(tspans);
+
+			// find maximum length of the nested tspans
+
+			tspanMax = d3.max(tspanNest, function(d) { return d.values.length; });
+
+		}
+
+		tspanMaxCount();
+
+		var marginBottomAdj;
+
+		function marginBottomAdjustment() {
+			marginBottomAdj = tspanMax * marginBottom;
+		};
+
+		marginBottomAdjustment();
+
+		var heightAdj = height - marginTop - marginBottomAdj;
+
+		svg.selectAll(".x.axis").remove();
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+			.selectAll(".tick text")
+				.call(wrap, xScale.rangeBand());
+
+		// y axis
+
+		var yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
 
 		svg.append("g")
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
-			.call(yAxis)
-			.selectAll("text")
+			.call(yAxis);
 
 		svg.append("text")
 			.attr("class", "y axis")
@@ -1769,7 +1797,7 @@ function colChart() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were ELs."; });
+						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", were " + d.level + "."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1786,7 +1814,9 @@ function colChart() {
 
 			}});
 
-		// draw x-axis above columns
+		// redraw x axis above bars
+
+		svg.selectAll(".x.axis").remove();
 
 		svg.append("g")
 			.attr("class", "x axis")
@@ -1837,17 +1867,44 @@ function colChart() {
 			yAxis.tickSize(-1 * widthAdj);
 
 			dom.selectAll(".col-chart")
-				.attr("width", width);
+				.attr("width", width - margin.right);
 
-			dom.select(".x.axis")
+			svg.select(".x.axis")
 				.call(xAxis)
 				.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());
 
-			dom.select(".y.axis")
+			tspanMaxCount();
+			marginBottomAdjustment();
+
+			// redraw the x-axis based on new bottom margin
+
+			heightAdj = height - marginTop - marginBottomAdj;
+
+			dom.selectAll(".x.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + heightAdj + ")")
+				.attr("aria-hidden", "true")
+				.call(xAxis)
+				.selectAll(".tick text")
+					.call(wrap, xScale.rangeBand());
+
+			// redraw the y axis
+
+			yScale.range([heightAdj, 0]);
+
+			dom.selectAll(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
 				.call(yAxis);
 
-			dom.selectAll("rect.column")
+			svg.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.group) + (xScale.rangeBand() / 2) - (colWidth / 2); })
 				.attr("height", 0)
 				.attr("y", heightAdj);
@@ -1873,21 +1930,13 @@ function colChart() {
 
 	};
 
-    /* chart.width = function(value) {
+  chart.height = function(value) {
 
-        if (!arguments.length) return width;
-        width = value;
-        return chart;
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
 
-    }; */
-
-    chart.height = function(value) {
-
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
-
-    };
+  };
 
 	chart.marginTop = function(value) {
 
@@ -2690,6 +2739,7 @@ function dotTwo() {
 		group1 = [],
 		group2 = [],
 		xAxisLabel = [],
+		xMax = 1,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
@@ -2741,29 +2791,29 @@ function dotTwo() {
 
 		// tooltips using d3-tip
 
-		var tipMale = d3.tip()
+		var tipGroup1 = d3.tip()
 			.attr("class", "d3-tip")
 			.direction(function(d) {
-				if (d.all_p > d.el_p) { return "e"; }
+				if (d.group1_p > d.group2_p) { return "e"; }
 				else { return "w"; }
 			})
 			.offset([0, 0])
 			.html(function(d) {
 
-			return group1 + ": " + formatPercent(d.all_p) + "<br/>" + formatNumber(d.all_n) + " students";
+			return group1 + ": " + formatPercent(d.group1_p) + "<br/>" + formatNumber(d.group1_n) + " students";
 
 		});
 
-		var tipFemale = d3.tip()
+		var tipGroup2 = d3.tip()
 			.attr("class", "d3-tip")
 			.direction(function(d) {
-				if (d.el_p > d.all_p) { return "e"; }
+				if (d.group2_p > d.group1_p) { return "e"; }
 				else { return "w"; }
 			})
 			.offset([0, 0])
 			.html(function(d) {
 
-			return group2 + ": " + formatPercent(d.el_p) + "<br/>" + formatNumber(d.el_n) + " students";
+			return group2 + ": " + formatPercent(d.group2_p) + "<br/>" + formatNumber(d.group2_n) + " students";
 
 		});
 
@@ -2784,8 +2834,8 @@ function dotTwo() {
 			.offset([0, 10])
 			.html(function(d) {	return d.definition; });
 
-		svg.call(tipMale);
-		svg.call(tipFemale);
+		svg.call(tipGroup1);
+		svg.call(tipGroup2);
 		svg.call(tipLine);
 		svg.call(tipDefs);
 
@@ -2798,20 +2848,16 @@ function dotTwo() {
 		// identify maximum value across male and female percentages
 		// variables changed to EL
 
-		var maxMale = d3.max(data, function(d) { return d.all_p; });
-		var maxFemale = d3.max(data, function(d) { return d.el_p; });
+		var maxGroup1 = d3.max(data, function(d) { return d.group1_p; });
+		var maxGroup2 = d3.max(data, function(d) { return d.group2_p; });
 		var maxValue;
 
-		function maxVal() {
-			if (maxMale > maxFemale) { maxValue = maxMale; }
-			else { maxValue = maxFemale; }
-		};
-
-		maxVal();
+		if (maxGroup1 > maxGroup2) { maxValue = maxGroup1; }
+		else { maxValue = maxGroup2; };
 
 		function xDomain() {
 			if (window.innerWidth <= 736) { xScale.domain([0, maxValue]).nice() }
-			else { xScale.domain([0, 1]); }
+			else { xScale.domain([0, xMax]); }
 		};
 		xDomain();
 		yScale.domain(data.map(function(d) { return d.group; }));
@@ -2821,7 +2867,6 @@ function dotTwo() {
 		function formatValueAxis(d) {
 
 			var TickValue = formatNumber(d * 100);
-
 			return TickValue;
 
 		};
@@ -2857,8 +2902,8 @@ function dotTwo() {
 			.attr("transform", "translate(0,0)")
 			.append("line")
 				.attr("class", "dotL")
-				.attr("x1", function(d) { return xScale((d.all_p + d.el_p)/2); })
-				.attr("x2", function(d) { return xScale((d.all_p + d.el_p)/2); })
+				.attr("x1", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
+				.attr("x2", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
 				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); });
 
@@ -2867,64 +2912,64 @@ function dotTwo() {
 			.attr("transform", "translate(0,0)")
 			.append("line")
 				.attr("class", "dotLHit")
-				.attr("x1", function(d) { return xScale((d.all_p + d.el_p)/2); })
-				.attr("x2", function(d) { return xScale((d.all_p + d.el_p)/2); })
+				.attr("x1", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
+				.attr("x2", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
 				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 				.on("mouseover", tipLine.show)
 				.on("mouseout", tipLine.hide);
 
-		var dotsMale = svg.selectAll("circle.dotM")
+		var dotsGroup1 = svg.selectAll("circle.dotGroup1")
 			.data(data);
 
-		dotsMale.enter()
+		dotsGroup1.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("circle")
-					.attr("class", "dotM")
+					.attr("class", "dotGroup1")
 					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 					.attr("r", dotSize/2)
-					.on("mouseover", tipMale.show)
-					.on("mouseout", tipMale.hide)
+					.on("mouseover", tipGroup1.show)
+					.on("mouseout", tipGroup1.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.all_p) + " of " + group1 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2013–14, " + group1 + " comprised " + formatPercent(d.group1_p) + ", or " + formatNumber(d.group1_n) + ", of the total " + d.group; });
 
-		dotsMale.append("text")
-			.attr("x", function(d) { return xScale(d.all_p); })
+		dotsGroup1.append("text")
+			.attr("x", function(d) { return xScale(d.group1_p); })
 			.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 			.attr("dy", (-2.5 * dotSize))
 			.attr("text-anchor", "middle")
-			.attr("class", "labelM")
+			.attr("class", "labelGroup1")
 			.attr("aria-hidden", "true")
 			.style("opacity", 0)
 			.text(group1);
 
-		var dotsFemale = svg.selectAll("circle.dotF")
+		var dotsGroup2 = svg.selectAll("circle.dotGroup2")
 			.data(data);
 
-		dotsFemale.enter()
+		dotsGroup2.enter()
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("circle")
-					.attr("class", "dotF")
+					.attr("class", "dotGroup2")
 					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 					.attr("cx", 0)
 					.attr("cy", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 					.attr("r", dotSize/2)
-					.on("mouseover", tipFemale.show)
-					.on("mouseout", tipFemale.hide)
+					.on("mouseover", tipGroup2.show)
+					.on("mouseout", tipGroup2.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.all_p) + " of " + group2 + ", or " + formatNumber(d.all_n) + ", were " + d.group; });
+						.text(function(d) { return "In 2013–14, " + group2 + " comprised " + formatPercent(d.group2_p) + ", or " + formatNumber(d.group2_n) + ", of the total " + d.group; });
 
-		dotsFemale.append("text")
-			.attr("x", function(d) { return xScale(d.el_p); })
+		dotsGroup2.append("text")
+			.attr("x", function(d) { return xScale(d.group2_p); })
 			.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
 			.attr("dy", (-2.5 * dotSize))
 			.attr("text-anchor", "middle")
 			.attr("aria-hidden", "true")
-			.attr("class", "labelF")
+			.attr("class", "labelGroup2")
 			.style("opacity", 0)
 			.text(group2);
 
@@ -2945,12 +2990,12 @@ function dotTwo() {
 							.duration(animateTime)
 							.delay(animateTime)
 							.attr("x1", function(d) {
-								if (d.el_p > d.all_p) { return xScale(d.all_p) + dotSize; }
-								else { return xScale(d.el_p) + dotSize; }
+								if (d.group2_p > d.group1_p) { return xScale(d.group1_p) + dotSize; }
+								else { return xScale(d.group2_p) + dotSize; }
 							})
 							.attr("x2", function(d) {
-								if (d.el_p > d.all_p) { return xScale(d.el_p) - dotSize; }
-								else { return xScale(d.all_p) - dotSize; }
+								if (d.group2_p > d.group1_p) { return xScale(d.group2_p) - dotSize; }
+								else { return xScale(d.group1_p) - dotSize; }
 							});
 
 					svg.selectAll("line.dotLHit")
@@ -2958,18 +3003,18 @@ function dotTwo() {
 							.duration(animateTime)
 							.delay(animateTime)
 							.attr("x1", function(d) {
-								if (d.el_p > d.all_p) { return xScale(d.all_p) + dotSize; }
-								else { return xScale(d.el_p) + dotSize; }
+								if (d.group2_p > d.group1_p) { return xScale(d.group1_p) + dotSize; }
+								else { return xScale(d.group2_p) + dotSize; }
 							})
 							.attr("x2", function(d) {
-								if (d.el_p > d.all_p) { return xScale(d.el_p) - dotSize; }
-								else { return xScale(d.all_p) - dotSize; }
+								if (d.group2_p > d.group1_p) { return xScale(d.group2_p) - dotSize; }
+								else { return xScale(d.group1_p) - dotSize; }
 							});
 
-					svg.selectAll("circle.dotM")
+					svg.selectAll("circle.dotGroup1")
 						.transition()
 							.duration(animateTime)
-							.attr("cx", function(d) { return xScale(d.all_p); })
+							.attr("cx", function(d) { return xScale(d.group1_p); })
 							.each("end", function(d) {
 								d3.select(this)
 									.transition()
@@ -2977,7 +3022,7 @@ function dotTwo() {
 										.attr("r", dotSize);
 							});
 
-					svg.selectAll("text.labelM")
+					svg.selectAll("text.labelGroup1")
 						.transition()
 							.duration(animateTime)
 							.delay(animateTime)
@@ -2986,10 +3031,10 @@ function dotTwo() {
 								else { return 0; }
 							});
 
-					svg.selectAll("circle.dotF")
+					svg.selectAll("circle.dotGroup2")
 						.transition()
 							.duration(animateTime)
-							.attr("cx", function(d) { return xScale(d.el_p); })
+							.attr("cx", function(d) { return xScale(d.group2_p); })
 							.each("end", function(d) {
 								d3.select(this)
 									.transition()
@@ -2997,7 +3042,7 @@ function dotTwo() {
 										.attr("r", dotSize);
 							});
 
-					svg.selectAll("text.labelF")
+					svg.selectAll("text.labelGroup2")
 						.transition()
 							.duration(animateTime)
 							.delay(animateTime)
@@ -3025,17 +3070,13 @@ function dotTwo() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-		function catDefTips() {
-			if (catdefs == 1) {
-				svg.selectAll(".y.axis .tick")
-					.data(data)
-					.on("mouseover", tipDefs.show)
-					.on("mouseout", tipDefs.hide);
-			}
-			else if (catdefs == 0) { };
-		};
-
-		catDefTips();
+		if (catdefs == 1) {
+			svg.selectAll(".y.axis .tick")
+				.data(data)
+				.on("mouseover", tipDefs.show)
+				.on("mouseout", tipDefs.hide);
+		}
+		else if (catdefs == 0) { };
 
 		// notes
 
@@ -3099,27 +3140,27 @@ function dotTwo() {
 				.attr("dx", "0.5em");
 
 			svg.selectAll("line.dotL")
-				.attr("x1", function(d) { return xScale((d.all_p + d.el_p)/2); })
-				.attr("x2", function(d) { return xScale((d.all_p + d.el_p)/2); });
+				.attr("x1", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
+				.attr("x2", function(d) { return xScale((d.group1_p + d.group2_p)/2); });
 
 			svg.selectAll("line.dotLHit")
-				.attr("x1", function(d) { return xScale((d.all_p + d.el_p)/2); })
-				.attr("x2", function(d) { return xScale((d.all_p + d.el_p)/2); });
+				.attr("x1", function(d) { return xScale((d.group1_p + d.group2_p)/2); })
+				.attr("x2", function(d) { return xScale((d.group1_p + d.group2_p)/2); });
 
-			svg.selectAll("circle.dotM")
+			svg.selectAll("circle.dotGroup1")
 				.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 				.attr("cx", 0);
 
-			svg.selectAll("text.labelM")
-				.attr("x", function(d) { return xScale(d.all_p); })
+			svg.selectAll("text.labelGroup1")
+				.attr("x", function(d) { return xScale(d.group1_p); })
 				.style("opacity", 0);
 
-			svg.selectAll("circle.dotF")
+			svg.selectAll("circle.dotGroup2")
 				.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
 				.attr("cx", 0);
 
-			svg.selectAll("text.labelF")
-				.attr("x", function(d) { return xScale(d.el_p); })
+			svg.selectAll("text.labelGroup2")
+				.attr("x", function(d) { return xScale(d.group2_p); })
 				.style("opacity", 0);
 
 			var gsResize = graphScroll()
@@ -3139,12 +3180,12 @@ function dotTwo() {
 								.duration(animateTime)
 								.delay(animateTime)
 								.attr("x1", function(d) {
-									if (d.el_p > d.all_p) { return xScale(d.all_p) + dotSize; }
-									else { return xScale(d.el_p) + dotSize; }
+									if (d.group2_p > d.group1_p) { return xScale(d.group1_p) + dotSize; }
+									else { return xScale(d.group2_p) + dotSize; }
 								})
 								.attr("x2", function(d) {
-									if (d.el_p > d.all_p) { return xScale(d.el_p) - dotSize; }
-									else { return xScale(d.all_p) - dotSize; }
+									if (d.group2_p > d.group1_p) { return xScale(d.group2_p) - dotSize; }
+									else { return xScale(d.group1_p) - dotSize; }
 								});
 
 						svg.selectAll("line.dotLHit")
@@ -3152,18 +3193,18 @@ function dotTwo() {
 								.duration(animateTime)
 								.delay(animateTime)
 								.attr("x1", function(d) {
-									if (d.el_p > d.all_p) { return xScale(d.all_p) + dotSize; }
-									else { return xScale(d.el_p) + dotSize; }
+									if (d.group2_p > d.group1_p) { return xScale(d.group1_p) + dotSize; }
+									else { return xScale(d.group2_p) + dotSize; }
 								})
 								.attr("x2", function(d) {
-									if (d.el_p > d.all_p) { return xScale(d.el_p) - dotSize; }
-									else { return xScale(d.all_p) - dotSize; }
+									if (d.group2_p > d.group1_p) { return xScale(d.group2_p) - dotSize; }
+									else { return xScale(d.group1_p) - dotSize; }
 								});
 
-						svg.selectAll("circle.dotM")
+						svg.selectAll("circle.dotGroup1")
 							.transition()
 								.duration(animateTime)
-								.attr("cx", function(d) { return xScale(d.all_p); })
+								.attr("cx", function(d) { return xScale(d.group1_p); })
 								.each("end", function(d) {
 									d3.select(this)
 										.transition()
@@ -3171,7 +3212,7 @@ function dotTwo() {
 											.attr("r", dotSize);
 								});
 
-						svg.selectAll("text.labelM")
+						svg.selectAll("text.labelGroup1")
 						.transition()
 							.duration(animateTime)
 							.delay(animateTime)
@@ -3180,10 +3221,10 @@ function dotTwo() {
 								else { return 0; }
 							});
 
-						svg.selectAll("circle.dotF")
+						svg.selectAll("circle.dotGroup2")
 							.transition()
 								.duration(animateTime)
-								.attr("cx", function(d) { return xScale(d.el_p); })
+								.attr("cx", function(d) { return xScale(d.group2_p); })
 								.each("end", function(d) {
 									d3.select(this)
 										.transition()
@@ -3191,7 +3232,7 @@ function dotTwo() {
 											.attr("r", dotSize);
 								});
 
-					svg.selectAll("text.labelF")
+					svg.selectAll("text.labelGroup2")
 						.transition()
 							.duration(animateTime)
 							.delay(animateTime)
@@ -3267,6 +3308,14 @@ function dotTwo() {
 
 		if (!arguments.length) return catdefs;
 		catdefs = value;
+		return chart;
+
+	};
+
+	chart.xMax = function(value) {
+
+		if (!arguments.length) return xMax;
+		xMax = value;
 		return chart;
 
 	};
@@ -4377,29 +4426,6 @@ function groupedBarDiv() {
 			})
 			.text("VS. % OF ENROLLED IN 2013-14");
 
-		// draw national bars
-
-	/*	data_national = dataFiltered.filter(function(d) { return d.level == "Overall"; });
-
-		var nationalBar = svg.selectAll(".national-bar")
-			.data(data_national);
-
-		nationalBar.enter()
-			.append("g")
-				.attr("transform", "translate(0,0)")
-				.append("rect")
-					.attr("class", function(d) { return "national-bar " + d.level; })
-					.attr("x", 0)
-					.attr("width", 0)
-					.attr("y", function(d) { return yScale0(d.group) + (yScale0.rangeBand() / 2) - ((((1.25 * levels.length) * barWidth)) / 2); })
-					.attr("height", ((1.25 * levels.length) * barWidth))
-					.on("mouseover", tipBar.show)
-					.on("mouseout", tipBar.hide)
-					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; }); */
-
-		// draw level bars
-
 		data_nest_noavg = d3.nest()
 			.key(function(d) { return d.group; })
 			.entries(data);
@@ -4439,11 +4465,6 @@ function groupedBarDiv() {
 
 					d3.select("#" + sectionID)
 						.classed("activated", "true");
-
-					/*svg.selectAll(".national-bar")
-						.transition()
-							.duration(animateTime)
-							.attr("width", function(d) { return xScale(d.overall_p); });*/
 
 					svg.selectAll(".bar")
 						.transition()
@@ -5928,6 +5949,1944 @@ function multiBar() {
 	return chart;
 
 };
+
+// divering bars
+
+function divergingBar() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 650,
+		marginTop = 35,
+		marginLeft = 100,
+		marginBottom = 60,
+		animateTime = 1000,
+		barWidth = 15,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers! Use .altText().",
+		xAxisLabel = "",
+		toggles = 0,
+		group1 = "",
+		group2 = "",
+		notes = "",
+		source = "",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatNumberD = d3.format(",.1f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+			// add buttons if indicated
+
+			var button_vals = d3.map(data, function(d) { return d.level; }).keys();
+			var selected_val = button_vals[0];
+			var data_all = data;
+			var titles_all = title;
+
+			if (toggles == 1) {
+
+				// values for buttons
+
+				var buttons = d3.select(this)
+					.append("div")
+					.attr("id", "buttons" + chartID)
+					.attr("class", "filters");
+
+				buttons.selectAll(".filterButton")
+					.data(button_vals)
+					.enter()
+						.append("button")
+							.attr("class", "filterButton")
+							.classed("buttonSelected", function(d) {
+								if (d === selected_val) { return true; }
+								else { return false; };
+							})
+							.attr("value", function(d) { return d; })
+							.attr("title", function(d, i) { return title[i]; })
+							.on("click", function(d) {
+
+								d3.select("#buttons" + chartID)
+									.selectAll(".filterButton")
+										.classed("buttonSelected", false);
+
+								d3.select(this)
+									.classed("buttonSelected", true);
+
+								selected_val = d3.select(this).property("value");
+								title = d3.select(this).property("title");
+								data = data_all.filter(function(d) { return d.level == selected_val; });
+
+								updateData();
+
+							})
+							.append("text")
+								.text(function(d) { return d; });
+
+				d3.select(this).append("br");
+
+				data = data_all.filter(function(d) { return d.level == selected_val; });
+
+			}
+			else {};
+
+			// chart title
+
+			d3.select(this).append("div")
+				.attr("class", "title")
+				.append("text")
+					.text(function() {
+						if (toggles == 1) { return title[0]; }
+						else { return title; };
+					});
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		var svg = dom.append("svg")
+			.attr("class", "divergingBar")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipGroup1 = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) {	return group1 + ": " + formatPercent(d.group1_p) + " (" + formatNumber(d.group1_n) + " students)"; });
+
+		var tipGroup2 = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) {	return group2 + ": " + formatPercent(d.group2_p) + " (" + formatNumber(d.group2_n) + " students)"; });
+
+		svg.call(tipGroup1);
+		svg.call(tipGroup2);
+
+		// axis scales
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
+				yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], 0.15);
+
+		// domains
+		// x domain max depends on max values across both groups
+
+		var	group1_max = d3.max(data, function(d) { return d.group1_p; }),
+				group2_max = d3.max(data, function(d) { return d.group2_p; });
+
+		if (group1_max >= group2_max) { maxVal = group1_max; }
+		else { maxVal = group2_max; };
+
+		function xDomain() {
+			if (window.innerWidth > 736) { xScale.domain([-1, 1]).nice(); }
+			else { xScale.domain([-1 * maxVal, maxVal]); }
+		};
+
+		xDomain();
+
+		yScale.domain(d3.map(data, function(d) { return d.group; }).keys());
+
+		// axes
+
+		function formatValueAxis(d) {
+
+			if (d < 0) { TickValue = formatNumber(d * -100) }
+			else { TickValue = formatNumber(d * 100) };
+			return TickValue;
+
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom")
+			.tickSize(-1 * heightAdj)
+			.ticks(Math.max((widthAdj - 100)/100, 2))
+			.tickFormat(formatValueAxis);
+
+		var	yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis);
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj)
+			.attr("dx", ".5em")
+			.attr("y", heightAdj)
+			.attr("dy", "3.1em")
+			.attr("text-anchor", "end")
+			.attr("aria-hidden", "true")
+			.text(xAxisLabel);
+
+		// group 1 bars go left
+		// group 2 bars go right
+
+		var group1_bars = svg.selectAll(".group1")
+			.data(data);
+
+		group1_bars.enter()
+			.append("rect")
+				.attr("class", "bar group1")
+				.attr("x", xScale(0))
+				.attr("width", 0)
+				.attr("y", function(d) { return yScale(d.group) + yScale.rangeBand()/2 - barWidth/2; })
+				.attr("height", barWidth)
+				.on("mouseover", tipGroup1.show)
+				.on("mouseout", tipGroup1.hide)
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.group1_p) + ", or " + formatNumber(d.group1_n) + ", of " + group1 + " were " + d.group; });
+
+		var group2_bars = svg.selectAll(".group2")
+			.data(data);
+
+		group2_bars.enter()
+			.append("rect")
+				.attr("class", "bar group2")
+				.attr("x", xScale(0))
+				.attr("width", 0)
+				.attr("y", function(d) {return yScale(d.group) + yScale.rangeBand()/2 - barWidth/2; })
+				.attr("height", barWidth)
+				.on("mouseover", tipGroup2.show)
+				.on("mouseout", tipGroup2.hide)
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.group2_p) + ", or " + formatNumber(d.group2_n) + ", of " + group2 + " were " + d.group; });
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll(".bar.group1")
+						.transition()
+							.duration(animateTime)
+							.attr("x", function(d) { return xScale(-1 * d.group1_p); })
+							.attr("width", function(d) { return xScale(d.group1_p) - xScale(0); });
+
+					svg.selectAll(".bar.group2")
+						.transition()
+							.duration(animateTime)
+							.attr("width", function(d) { return xScale(d.group2_p) - xScale(0); });
+
+			}});
+
+		// draw y-axis above bars
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.style("opacity", 0)
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+			.transition()
+				.duration(animateTime)
+				.style("opacity", 1);
+
+		// add 0 line above bars
+
+		svg.append("line")
+			.attr("class", "zeroLine")
+			.attr("x1", xScale(0))
+			.attr("x2", xScale(0))
+			.attr("y1", 0)
+			.attr("y2", heightAdj);
+
+		// add under/overrepresented text
+
+		svg.append("text")
+			.attr("id", "guide1")
+			.attr("x", widthAdj/2)
+			.attr("y", 0)
+			.attr("dx", "-0.75em")
+			.attr("dy", "-0.5em")
+			.attr("class", "guide group1")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "end")
+			.style("font-weight", "bold")
+			.text(group1);
+
+		svg.append("text")
+			.attr("id", "guide2")
+			.attr("x", widthAdj/2)
+			.attr("y", 0)
+			.attr("dx", "0.75em")
+			.attr("dy", "-0.5em")
+			.attr("class", "guide group2")
+			.attr("text-anchor", "start")
+			.attr("aria-hidden", "true")
+			.style("font-weight", "bold")
+			.text(group2);
+
+		// legend
+
+		/*var groups = [group1, group2];
+
+		var legend = svg.selectAll(".legend")
+			.data(groups)
+			.enter()
+			.append("g")
+				.attr("class", "legend")
+				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		legend.append("circle")
+			.attr("class", function(d) { return d; })
+			.attr("cx", widthAdj - 77)
+			.attr("cy", 9)
+			.attr("r", 6.5);
+			//.style("fill", color);
+
+		legend.append("text")
+			.attr("x", widthAdj - 65)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.attr("aria-hidden", "true")
+			.style("text-anchor", "start")
+			.text(function(d) { return d; });*/
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = (parseInt(d3.select("#" + sectionID).style("width"), 10) < 360) ? 360 : parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.range([0, widthAdj]);
+			xDomain();
+			xAxis.ticks(Math.max((widthAdj - 100)/100, 2))
+
+			d3.select("#" + sectionID)
+				.classed("activated", null);
+
+			dom.selectAll(".divergingBar")
+				.attr("width", width);
+
+			svg.select("#guide1")
+				.style("opacity", function() {
+					if (window.innerWidth <= 736) { return 0; }
+					else { return 1; }
+				})
+
+			svg.select("#guide2")
+				.style("opacity", function() {
+					if (window.innerWidth <= 736) { return 0; }
+					else { return 1; }
+				})
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.selectAll("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+
+			svg.select("line.zeroLine")
+				.attr("x1", xScale(0))
+				.attr("x2", xScale(0));
+
+			svg.select("#guide1")
+				.attr("x", widthAdj/2)
+				.attr("dx", "-0.75em");
+
+			svg.select("#guide2")
+				.attr("x", widthAdj/2)
+				.attr("dx", "0.75em");
+
+			svg.selectAll(".bar.group1")
+				.attr("x", xScale(0))
+				.attr("width", 0);
+
+			svg.selectAll(".bar.group2")
+				.attr("x", xScale(0))
+				.attr("width", 0);
+
+			var gsResize = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
+
+						svg.selectAll(".bar.group1")
+							.transition()
+								.duration(animateTime)
+								.attr("x", function(d) { return xScale(-1 * d.group1_p); })
+								.attr("width", function(d) { return xScale(d.group1_p) - xScale(0); });
+
+						svg.selectAll(".bar.group2")
+							.transition()
+								.duration(animateTime)
+								.attr("width", function(d) { return xScale(d.group2_p) - xScale(0); });
+
+				}});
+
+			/*legend.selectAll("circle")
+				.attr("cx", widthAdj - 77);
+
+			legend.selectAll("text")
+				.attr("x", widthAdj - 65);*/
+
+		});
+
+		// update data function
+
+		function updateData() {
+
+			var group1_bars = svg.selectAll(".group1")
+				.data(data);
+
+			var group2_bars = svg.selectAll(".group2")
+				.data(data);
+
+			svg.select(".y.axis")
+				.remove();
+
+			yScale.domain(d3.map(data, function(d) { return d.group; }).keys());
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			svg.selectAll(".bar.group1")
+				.transition()
+					.duration(animateTime)
+					.attr("x", function(d) { return xScale(-1 * d.group1_p); })
+					.attr("width", function(d) { return xScale(d.group1_p) - xScale(0); });
+
+			svg.selectAll(".bar.group2")
+				.transition()
+					.duration(animateTime)
+					.attr("width", function(d) { return xScale(d.group2_p) - xScale(0); });
+
+			svg.selectAll(".bar")
+				.selectAll("aria-label").remove();
+
+			/*svg.selectAll("circle.dot")
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });*/
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
+		});
+
+	};
+
+ /*   chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.barWidth = function(value) {
+
+		if (!arguments.length) return barWidth;
+		barWidth = value;
+		return chart;
+
+	};
+
+	chart.group1 = function(value) {
+
+		if (!arguments.length) return group1;
+		group1 = value;
+		return chart;
+
+	};
+
+	chart.group2 = function(value) {
+
+		if (!arguments.length) return group2;
+		group2 = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+			if (!arguments.length) return notes;
+			notes = value;
+			return chart;
+
+		};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+};
+
+// Reusable dot plot function for chronic absenteeism storymap
+
+function dotPlot() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 500,
+		marginTop = 20,
+		marginLeft = 100,
+		marginBottom = 45,
+		dotSize = 5,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		group = "",
+		xAxisLabel = "DEFINE X AXIS LABEL",
+		notes = "",
+		source = "",
+		toggles = 0,
+		axisdefs = 0,
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.level; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+
+		if (toggles == 1) {
+
+			// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.attr("title", function(d, i) { return title[i]; })
+						.on("click", function(d) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = d3.select(this).property("title");
+							data = data_all.filter(function(d) { return d.level == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.level == selected_val; });
+
+		}
+		else {};
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.append("text")
+				.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		// add svg
+
+		var svg = dom.append("svg")
+			.attr("class", "dotPlot")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("e")
+			.offset([0, 10])
+			.html(function(d) {
+			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " " + group + ")";
+		});
+
+		svg.call(tipDot);
+
+		// axis scales and axes
+
+		var xScale = d3.scale.linear().range([0, widthAdj]),
+			yScale = d3.scale.ordinal().rangeRoundBands([0, heightAdj], .1);
+
+		// domains
+
+		function xDomain() {
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice() }
+			else { xScale.domain([0, 1]); }
+		};
+		xDomain();
+		yScale.domain(data.map(function(d) { return d.group; }));
+
+		// axes
+
+		function formatValueAxis(d) {
+
+			var TickValue = formatNumber(d * 100);
+			return TickValue;
+
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
+			yAxis = d3.svg.axis().scale(yScale).orient("left").outerTickSize(0);
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj)
+			.attr("dx", "0.5em")
+			.attr("y", heightAdj)
+			.attr("dy", "3.1em")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "end")
+			.text(xAxisLabel);
+
+		// draw dots and lines
+
+		var lines = svg.selectAll("line.dotLine")
+			.data(data);
+
+		lines.enter()
+			.append("g")
+			.attr("transform", "translate(0,0)")
+			.append("line")
+				.attr("class", "dotLine")
+				.attr("x1", 0)
+				.attr("x2", 0)
+				.attr("y1", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+				.attr("y2", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); });
+
+		var dots = svg.selectAll("circle.dot")
+			.data(data);
+
+		dots.enter()
+			.append("g")
+				.attr("transform", "translate(0,0)")
+				.append("circle")
+					.attr("class", "dot")
+					.attr("clip-path", function() { return "url(#clip" + chartID + ")"; })
+					.attr("cx", 0)
+					.attr("cy", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2); })
+					.attr("r", dotSize/2)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide)
+					.append("aria-label")
+						.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+					svg.selectAll("line.dotLine")
+						.transition()
+							.duration(animateTime)
+							.attr("x2", function(d) { return xScale(d.pct); })
+							.each("end", function(d) {
+								d3.select(this)
+									.transition()
+										.duration(animateTime)
+										.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+							});
+
+					svg.selectAll("circle.dot")
+						.transition()
+							.duration(animateTime)
+							.attr("cx", function(d) { return xScale(d.pct); })
+							.each("end", function(d) {
+								d3.select(this)
+									.transition()
+										.duration(animateTime)
+										.attr("r", dotSize);
+							});
+
+			}});
+
+		// add clip path
+
+		svg.append("defs")
+			.append("clipPath")
+				.attr("id", function() { return "clip" + chartID; })
+					.append("rect")
+						.attr("width", widthAdj + margin.right)
+						.attr("height", heightAdj);
+
+		// draw y-axis above
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		function axisDefCheck() {
+			if (axisdefs == 1) {
+				svg.selectAll(".y.axis .tick")
+					.data(data)
+					.selectAll("text")
+					.style("opacity", 0);
+
+				/*svg.selectAll(".y.axis .tick")
+					.data(data)
+					.enter()
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", function(d, i) {
+							if (d.definition == null) { return "0.32em"; }
+							else { return "-0.25em"; };
+						})
+						.attr("text-anchor", "end")
+						.text(function(d, i) { return d.level; });*/
+
+				svg.selectAll(".y.axis .tick")
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", function(d) {
+							if (d.definition == null) { return "0.32em"; }
+							else { return "-0.25em"; };
+						})
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.group; });
+
+				svg.selectAll(".y.axis .tick")
+					.append("text")
+						.attr("class", "def_tick")
+						.attr("x", -9)
+						.attr("dy", "0.75em")
+						.attr("text-anchor", "end")
+						.text(function(d) { return d.definition; });
+
+				svg.selectAll(".def_tick")
+					.style("opacity", function(d) {
+						if (d.definition == "") { return 0; }
+						else { return 1; };
+					});
+
+			}
+			else if (axisdefs == 0) { };
+		}
+
+		axisDefCheck();
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.range([0, widthAdj]);
+			xDomain();
+			xAxis.ticks(Math.max(widthAdj/100, 2));
+
+			/*d3.select("#" + chartID)
+				.attr("width", width);*/
+
+			dom.selectAll(".dotPlot")
+				.attr("width", width);
+
+			dom.select(".x.axis")
+				.call(xAxis);
+
+			dom.select("text.x.axis")
+				.attr("x", widthAdj)
+				.attr("dx", "0.5em");
+
+			dom.selectAll("line.dotLine")
+				.attr("x2", 0);
+
+			dom.selectAll(".dot")
+				.attr("cx", 0)
+				.attr("r", dotSize/2);
+
+			var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+						svg.selectAll("line.dotLine")
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+								});
+
+						svg.selectAll("circle.dot")
+							.transition()
+								.duration(animateTime)
+								.attr("cx", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("r", dotSize);
+								});
+
+				}});
+
+		});
+
+		// update data function
+
+		function updateData() {
+
+			var lines = svg.selectAll("line.dotLine")
+				.data(data);
+
+			svg.selectAll("line.dotLine")
+				.transition()
+					.duration(animateTime)
+					.attr("x2", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+					});
+
+			var dots = svg.selectAll("circle.dot")
+				.data(data);
+
+			svg.selectAll("circle.dot")
+				.transition()
+					.duration(animateTime)
+					.attr("cx", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("r", dotSize);
+					});
+
+			svg.selectAll("circle.dot")
+				.selectAll("aria-label").remove();
+
+			svg.selectAll("circle.dot")
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
+		});
+
+	};
+
+   /* chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+	chart.group = function(value) {
+
+      if (!arguments.length) return group;
+      group = value;
+      return chart;
+
+  };
+
+	chart.xAxisLabel = function(value) {
+
+      if (!arguments.length) return xAxisLabel;
+      xAxisLabel = value;
+      return chart;
+
+  };
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.dotSize = function(value) {
+
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
+		return chart;
+
+	};
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+};
+
+// multi-line chart
+
+function multi_line() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 500,
+		marginTop = 45,
+		marginLeft = 30,
+		marginBottom = 45,
+		dotSize = 4,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		group = "",
+		yAxisLabel = "DEFINE Y AXIS LABEL",
+		notes = "",
+		source = "",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// handle suppressed data
+
+		data.forEach(function(d) {
+
+			// remove suppressed data
+
+			if (d.all_p === "†" || d.all_p === "-") { d.all_p === ""; }
+			if (d.el_p === "†" || d.el_p === "-") { d.el_p === ""; }
+
+			// convert percentages to numeric
+
+			d.all_p = +d.all_p;
+			d.el_p = +d.el_p;
+
+		});
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.append("text")
+				/*.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});*/
+				.text(title);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		// add dropdowns
+
+		var state_list = d3.map(data, function(d) { return d.state; }).keys();
+		state_list = state_list.filter(function(d) { return d !== "United States"; });
+
+		var state_dropdown = dom.append("div")
+			.text("Select state to highlight: ")
+			.append("select")
+				.attr("id", "dd" + chartID)
+				.on("change." + chartID, function() {
+					highlight();
+				});
+
+		state_dropdown.append("option")
+			.text("None")
+			.attr("value", "None");
+
+		state_dropdown.selectAll("option.state")
+			.data(state_list)
+			.enter()
+			.append("option")
+				.attr("class", "state")
+				.attr("value", function(d) { return d; })
+				.text(function(d) { return d; });
+
+		// add svg
+
+		var svg = dom.append("svg")
+			.attr("class", "multi_line")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) { return d.state + " (" + d.year + "): " + formatPercent(d.el_p);	});
+
+		svg.call(tipDot);
+
+		// axis scales and axes
+
+		var xScale = d3.scale.ordinal().rangeBands([0, widthAdj]),
+				yScale = d3.scale.linear().range([heightAdj, 0]);
+
+		// domains
+
+		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		yScale.domain([0, 1]);
+
+		// axes
+
+		function formatValueAxis(d) {
+			var TickValue = formatNumber(d * 100);
+			return TickValue;
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
+				yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		// draw y-axis
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		svg.append("text")
+			.attr("class", "y axis")
+			.attr("x", -15)
+			.attr("y", "-2.1em")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "start")
+			.text(yAxisLabel);
+
+		// nest data by state
+
+		var nested_data = d3.nest()
+			.key(function(d) { return d.state; })
+			.entries(data);
+
+		// draw lines
+
+		var line_values = d3.svg.line()
+			.defined(function(d) { return !isNaN(d.el_p); })
+			.x(function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+			.y(function(d) { return yScale(d.el_p); });
+
+		var lines = svg.selectAll(".line")
+			.data(nested_data, function(d) { return d.key; });
+
+		lines.enter()
+			.append("path")
+				.attr("class", "line")
+				.classed("state", function(d) {
+					if (d.key !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("d", function(d) { return line_values(d.values); });
+
+		// add dots, initially only for national
+
+		var dot_data = data.filter(function(d) { return !isNaN(d.el_p); });
+
+		var dots = svg.selectAll(".dot")
+			.data(dot_data);
+
+		dots.enter()
+			.append("circle")
+				.attr("class", "dot")
+				.classed("remove", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; }
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("cy", function(d) { return yScale(d.el_p); })
+				.attr("r", dotSize)
+				.on("mouseover", tipDot.show)
+				.on("mouseout", tipDot.hide);
+
+		var dot_text = svg.selectAll(".dot_text")
+			.data(dot_data);
+
+		dot_text.enter()
+			.append("text")
+				.attr("class", "dot_text")
+				.classed("remove", function(d) {
+					if (d.year !== "2014-15") { return true; }
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; }
+				})
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("dx", "0.75em")
+				.attr("y", function(d) { return yScale(d.el_p); })
+				.attr("dy", "0.35em")
+				.text(function(d) { return d.state; });
+
+		// remove all dots tagged for removal;
+
+		svg.selectAll(".remove")
+			.remove();
+
+		// on change, highlight as needed
+
+		var selected_state = [];
+
+		function highlight() {
+
+			// get selected state
+
+			selected_state = d3.select("#dd" + chartID).property("value");
+
+			svg.selectAll(".dot.state")
+				.remove();
+
+			svg.selectAll(".dot_text.state")
+				.remove();
+
+			// highlight selected state
+
+			svg.selectAll(".line.state")
+				.classed("highlighted", function(d) {
+					if (d.key === selected_state) { return true; }
+					else { return false; };
+				});
+
+			// make dots as needed
+
+			dots.enter()
+				.append("circle")
+					.attr("class", "dot")
+					.classed("remove", function(d) {
+						if (d.state !== selected_state) { return true; }
+						else { return false; }
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === selected_state) { return true; }
+						else { return false; };
+					}) // initially, only national is highlighted
+					.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("cy", function(d) { return yScale(d.el_p); })
+					.attr("r", dotSize)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide);
+
+			dot_text.enter()
+				.append("text")
+					.attr("class", "dot_text")
+					.classed("remove", function(d) {
+						if (d.year !== "2014-15") { return true; }
+						if (d.state !== selected_state) { return true; }
+						else { return false; };
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("dx", "0.75em")
+					.attr("y", function(d) { return yScale(d.el_p); })
+					.attr("dy", "0.35em")
+					.style("opacity", function() {
+						if (width < 736) { return 0; }
+						else { return 1; };
+					})
+					.text(function(d) { return d.state; });
+
+			// remove state dots
+
+			svg.selectAll(".remove")
+				.remove();
+
+		};
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.rangeBands([0, widthAdj]);
+			yAxis.tickSize(-1 * widthAdj);
+
+			dom.selectAll(".multi_line")
+				.attr("width", width);
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.select(".y.axis")
+				.call(yAxis);
+
+			svg.selectAll(".dot")
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; });
+
+			svg.selectAll(".line")
+				.attr("d", function(d) { return line_values(d.values); });
+
+			svg.selectAll(".dot_text")
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", function() {
+					if (width < 736) { return 0; }
+					else { return 1; };
+				});
+
+			/*var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+
+						svg.selectAll("line.dotLine")
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+								});
+
+						svg.selectAll("circle.dot")
+							.transition()
+								.duration(animateTime)
+								.attr("cx", function(d) { return xScale(d.pct); })
+								.each("end", function(d) {
+									d3.select(this)
+										.transition()
+											.duration(animateTime)
+											.attr("r", dotSize);
+								});
+
+				}});*/
+
+		});
+
+		// update data function
+
+		/*function updateData() {
+
+			var lines = svg.selectAll("line.dotLine")
+				.data(data);
+
+			svg.selectAll("line.dotLine")
+				.transition()
+					.duration(animateTime)
+					.attr("x2", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
+					});
+
+			var dots = svg.selectAll("circle.dot")
+				.data(data);
+
+			svg.selectAll("circle.dot")
+				.transition()
+					.duration(animateTime)
+					.attr("cx", function(d) { return xScale(d.pct); })
+					.each("end", function(d) {
+						d3.select(this)
+							.transition()
+								.duration(animateTime)
+								.attr("r", dotSize);
+					});
+
+			svg.selectAll("circle.dot")
+				.selectAll("aria-label").remove();
+
+			svg.selectAll("circle.dot")
+				.append("aria-label")
+					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};*/
+
+		});
+
+	};
+
+   /* chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+	/*chart.group = function(value) {
+
+      if (!arguments.length) return group;
+      group = value;
+      return chart;
+
+  };*/
+
+	chart.yAxisLabel = function(value) {
+
+      if (!arguments.length) return yAxisLabel;
+      yAxisLabel = value;
+      return chart;
+
+  };
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.dotSize = function(value) {
+
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	/*chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
+		return chart;
+
+	};*/
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+}
 
 // this is for wrapping long axis labels
 // need to examine this for bar charts because it's causing some unintended side effects...

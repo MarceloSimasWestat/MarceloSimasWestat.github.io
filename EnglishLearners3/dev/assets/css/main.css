@@ -5030,26 +5030,26 @@ button:hover,
     font-weight: bold;
 }
 
-.dotM {
+.dotGroup1 {
     fill: #A6426C;
 }
 
-.dotF {
+.dotGroup2 {
     fill: #5D3EA8;
 }
 
-.labelM {
+.labelGroup1 {
     font: 400 13px Inconsolata;
     fill: #A6426C;
 }
 
-.labelF {
+.labelGroup2 {
     font: 400 13px Inconsolata;
     fill: #5D3EA8;
 }
 
-.dotM:hover,
-.dotF:hover {
+.dotGroup1:hover,
+.dotGroup2:hover {
     opacity: .65;
 }
 
@@ -5468,6 +5468,161 @@ button:hover,
 .smBarChart .def_tick {
   font: normal 10px Karla;
   color: #1A1C20;
+}
+
+/* Grouped bar chart (diverging) styling */
+
+.divergingBar .axis path,
+.divergingBar .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.divergingBar .x.axis,
+.divergingBar .guide {
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
+}
+
+.divergingBar .x.axis path {
+    display: none;
+}
+
+.divergingBar .x.axis line {
+    stroke: rgba(26, 28, 32, 0.25);
+    stroke-dasharray: 1,1;
+}
+
+.divergingBar .y.axis,
+.divergingBar .legend {
+    font: normal 13px Karla;
+    color: #1C1E21;
+}
+
+.divergingBar .y.axis path {
+    stroke: #1C1E21;
+    stroke-width: 1.5px;
+}
+
+.divergingBar .title {
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1C1E21;
+    font-weight: bold;
+}
+
+/* .groupedBarDiv .bar {
+	fill: rgb(242, 167, 115);
+} */
+
+.divergingBar .bar:hover {
+    fill-opacity: 0.75;
+}
+
+.divergingBar .group1 {
+    fill: #A6426C;
+}
+
+.divergingBar .group2 {
+    fill: #5D3EA8;
+}
+
+.divergingBar .zeroLine {
+    stroke-width: 1px;
+    stroke: #000;
+}
+
+/* Multi line chart styling */
+
+.multi_line path {
+  fill: none;
+}
+
+.multi_line .state {
+  stroke: rgba(119, 136, 153, 0.25);
+  stroke-width: 1;
+  /*transition: stroke 1s, stroke-width 1s;*/
+}
+
+.multi_line .state.highlighted {
+  stroke: #A6426C;
+  stroke-width: 2;
+  opacity: 1;
+  /*transition: stroke-width 1s, stroke 1s, opacity 1s;*/
+}
+
+.multi_line .national {
+  stroke: #5D3EA8;
+  stroke-width: 2;
+}
+
+/*.multi_line .national:hover {
+  opacity: 0.65;
+}*/
+
+.multi_line .dot.national {
+  fill: #5D3EA8;
+}
+
+.multi_line .dot.national:hover {
+  opacity: 0.65;
+}
+
+.multi_line .dot.state:hover {
+  opacity: 0.65;
+}
+
+.multi_line .dot_text {
+  font: normal 13px Karla;
+  stroke-width: 0;
+}
+
+.multi_line .dot_text.national {
+  fill: #5D3EA8;
+  font-weight: bold;
+}
+
+.multi_line .dot_text.state {
+  fill: #A6426C;
+  font-weight: bold;
+}
+
+.multi_line .axis path,
+.multi_line .axis line {
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
+}
+
+.multi_line .y.axis {
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
+}
+
+    .multi_line .y.axis path {
+        display: none;
+    }
+
+    .multi_line .y.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
+
+.multi_line .x.axis {
+    font: normal 13px Karla;
+    color: #1A1C20;
+}
+
+    .multi_line .x.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
+
+.multi_line .title {
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
 }
 
 /* LEA table styling */
