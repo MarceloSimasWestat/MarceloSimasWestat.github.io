@@ -5494,6 +5494,7 @@ function multiBar() {
 		marginBottom = 60,
 		animateTime = 1000,
 		barWidth = 15,
+		xAxisLabel = "DEFINE X AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		notes = "",
@@ -5617,7 +5618,7 @@ function multiBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF TOTAL IN 2014–15");
+			.text(xAxisLabel);
 
 		/*svg.append("text")
 			.attr("id", "xAxisT_b")
@@ -5869,6 +5870,14 @@ function multiBar() {
 
 		if (!arguments.length) return barWidth;
 		barWidth = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
 		return chart;
 
 	};

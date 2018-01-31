@@ -1,11 +1,16 @@
 chart	subchart	chartlevel	level	group	num	pct	group1_p	group2_p	diff_ppt	group1_n	group2_n	order	definition
-1-1				Enrolled in districts that provided preschool			0.92553	0.88509		3204768	19118712	1
-1-1				Enrolled in districts that provided free preschool			0.871634	0.805164		3018141	17392304	2
-1-1				Enrolled in districts that provided full-day preschool			0.589334	0.545161		2040641	11775979	3
+1-1			ELs	Enrolled in districts that provided preschool	3204768	0.92553						1
+1-1			Non-ELs	Enrolled in districts that provided preschool	19118712	0.88509						1
+1-1			ELs	Enrolled in districts that provided free preschool	3018141	0.871634						2
+1-1			Non-ELs	Enrolled in districts that provided free preschool	17392304	0.805164						2
+1-1			ELs	Enrolled in districts that provided full-day preschool	2040641	0.589334						3
+1-1			Non-ELs	Enrolled in districts that provided full-day preschool	11775979	0.545161						3
 1-2			Enrolled in preschool	ELs	174057	0.134294
 1-2			Enrolled in preschool	Non-ELs	1219798	0.191195
-1-3				Enrolled in districts that provided free preschool			0.958789	0.924192		166884	1127327	1
-1-3				Enrolled in districts that provided full-day preschool			0.673382857	0.647854809		117207	790252	2
+1-3			ELs	Enrolled in districts that provided free preschool	166884	0.958789						1
+1-3			Non-ELs	Enrolled in districts that provided free preschool	1127327	0.924192						1
+1-3			ELs	Enrolled in districts that provided full-day preschool	117207	0.673382857						2
+1-3			Non-ELs	Enrolled in districts that provided full-day preschool	790252	0.647854809						2
 1-x				Enrolled in districts that provided preschool			0.12487	0.87513	75.026	174057	1219798
 1-x1				Enrolled in districts that provided free preschool only			0.12583	0.87417	74.834	113839	790855	1
 1-x1				Enrolled in districts that provided cost and free preschool			0.13618	0.86382	72.764	53045	336472	2
@@ -25,35 +30,35 @@ chart	subchart	chartlevel	level	group	num	pct	group1_p	group2_p	diff_ppt	group1_
 2-1			Chemistry	Enrolled in Chemistry			0.112573268	0.172153963		99832	2676943	2
 2-1			Calculus	Enrolled in schools offering Calculus			0.695245005	0.762431435		619975	11859531	1
 2-1			Calculus	Enrolled in Calculus			0.009489849	0.038376096		8447	596935	2
-2-2			Algebra I	All schools	18456	0.608707124						1
-2-2			Algebra I	High EL concentration schools	1728	0.550143266						2	20% or more ELs
-2-2			Algebra I	Medium EL concentration schools	4119	0.656309751						3	5% to <20% ELs
-2-2			Algebra I	Low EL concentration schools	8484	0.715104518						4	>0% to <5% ELs
-2-2			Algebra I	Schools with no ELs	4125	0.456355792						5
-2-2			Physics	All schools	15775	0.602651284						1
-2-2			Physics	High EL concentration schools	727	0.408197642						2	20% or more ELs
-2-2			Physics	Medium EL concentration schools	2678	0.579152249						3	5% to <20% ELs
-2-2			Physics	Low EL concentration schools	8281	0.773419258						4	>0% to <5% ELs
-2-2			Physics	Schools with no ELs	4089	0.451125331						5
-2-2			Chemistry	All schools	18840	0.719743276						1
-2-2			Chemistry	High EL concentration schools	915	0.513756317						2	20% or more ELs
-2-2			Chemistry	Medium EL concentration schools	3144	0.679930796						3	5% to <20% ELs
-2-2			Chemistry	Low EL concentration schools	9296	0.868217054						4	>0% to <5% ELs
-2-2			Chemistry	Schools with no ELs	5485	0.605141218						5
-2-2			Calculus	All schools	12643	0.482999694						1
-2-2			Calculus	High EL concentration schools	506	0.284110051						2	20% or more ELs
-2-2			Calculus	Medium EL concentration schools	2101	0.454368512						3	5% to <20% ELs
-2-2			Calculus	Low EL concentration schools	7104	0.663491174						4	>0% to <5% ELs
-2-2			Calculus	Schools with no ELs	2932	0.323477493						5
+2-2			Algebra I	Low EL concentration schools	8484	0.715104518						1	>0% to <5% ELs
+2-2			Algebra I	Medium EL concentration schools	4119	0.656309751						2	5% to <20% ELs
+2-2			Algebra I	High EL concentration schools	1728	0.550143266						3	20% or more ELs
+2-2			Algebra I	Schools with no ELs	4125	0.456355792						4
+2-2			Algebra I	All schools	18456	0.608707124						5
+2-2			Physics	Low EL concentration schools	8281	0.773419258						1	>0% to <5% ELs
+2-2			Physics	Medium EL concentration schools	2678	0.579152249						2	5% to <20% ELs
+2-2			Physics	High EL concentration schools	727	0.408197642						3	20% or more ELs
+2-2			Physics	Schools with no ELs	4089	0.451125331						4
+2-2			Physics	All schools	15775	0.602651284						5
+2-2			Chemistry	Low EL concentration schools	9296	0.868217054						1	>0% to <5% ELs
+2-2			Chemistry	Medium EL concentration schools	3144	0.679930796						2	5% to <20% ELs
+2-2			Chemistry	High EL concentration schools	915	0.513756317						3	20% or more ELs
+2-2			Chemistry	Schools with no ELs	5485	0.605141218						4
+2-2			Chemistry	All schools	18840	0.719743276						5
+2-2			Calculus	Low EL concentration schools	7104	0.663491174						1	>0% to <5% ELs
+2-2			Calculus	Medium EL concentration schools	2101	0.454368512						2	5% to <20% ELs
+2-2			Calculus	High EL concentration schools	506	0.284110051						3	20% or more ELs
+2-2			Calculus	Schools with no ELs	2932	0.323477493						4
+2-2			Calculus	All schools	12643	0.482999694						5
 2-3				Algebra I			0.03471713	0.072190173	3.747304302	44127	778461	1
 2-3				Physics			0.036435649	0.050151465	1.371581594	56051	691735	2
 2-3				Chemistry			0.035952499	0.050439419	1.448691979	99832	751411	3
 2-3				Calculus			0.013953173	0.049555605	3.560243159	8447	618348	4
-3-1			Dual enrollment	All schools	12899	0.492779645						1
-3-1			Dual enrollment	High EL concentration schools	542	0.304323414						2	20% or more ELs
-3-1			Dual enrollment	Medium EL concentration schools	1934	0.418252595						3	5% to <20% ELs
-3-1			Dual enrollment	Low EL concentration schools	6758	0.631175866						4	>0% to <5% ELs
-3-1			Dual enrollment	Schools with no ELs	3665	0.404346867						5
+3-1			Dual enrollment	Low EL concentration schools	6758	0.631175866						1	>0% to <5% ELs
+3-1			Dual enrollment	Medium EL concentration schools	1934	0.418252595						2	5% to <20% ELs
+3-1			Dual enrollment	High EL concentration schools	542	0.304323414						3	20% or more ELs
+3-1			Dual enrollment	Schools with no ELs	3665	0.404346867						4
+3-1			Dual enrollment	All schools	12899	0.492779645						5
 3-x			Enrolled in schools that offer dual enrollment	All students	10471687	0.63670762						1
 3-2			Enrolled in schools that offer dual enrollment	ELs	472069	0.529382014						2
 3-2			Enrolled in schools that offer dual enrollment	Non-ELs	9999618	0.642860422						3	
