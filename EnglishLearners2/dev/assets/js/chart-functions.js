@@ -5609,7 +5609,7 @@ function multiBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.level + ": " + formatPercent(d.pct);
+				return d.level + ": " + formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
 			});
 
 		svg.call(tipBar);
@@ -5717,8 +5717,7 @@ function multiBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + "had " + d.group + " concentrations of ELs.";
-					});
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -5920,6 +5919,10 @@ function multiBar() {
 						.duration(animateTime)
 						.attr("width", function(d) { return xScale(d.pct); })
 						.attr("height", barWidth);
+
+			svg.selectAll(".bar")
+				.append("aria-label")
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
 
 			svg.select(".y.axis")
 				.remove();
