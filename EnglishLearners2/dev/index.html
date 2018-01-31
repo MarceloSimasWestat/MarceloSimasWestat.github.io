@@ -421,6 +421,7 @@
                 data.forEach(function (d) {
                     d.chart = d.chart;
                     d.subchart = +d.subchart;
+                    d.chartlevel = d.chartlevel;
                     d.level = d.level;
                     d.group = d.group;
                     d.num = +d.num;
@@ -445,7 +446,7 @@
                 data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
                 data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 
-                var chart1_1 = multiBar().data(data1_1).marginLeft(320).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                var chart1_1 = multiBar().data(data1_1).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
                   .title("ELs were slightly more likely to have access to preschool programs than non-ELs. ELs were also somewhat more likely than non-ELs to have access to free preschool programs and full-day preschool programs or services.")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
@@ -457,7 +458,7 @@
                   .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.")
                   .source('U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "State Nonfiscal Survey of Public Elementary/Secondary Education," 2013–14. Downloaded April 2017 from <a href="https://nces.ed.gov/ccd/stnfis.asp">https://nces.ed.gov/ccd/stnfis.asp</a>. U.S. Department of Education, EDFacts Data Warehouse (EDW), 2013–14. SEA File C141, LEP Enrolled. Extracted August 2017.')
                   .notes("Percentages are based on an estimate of the number of children aged 3 through 5. Given the available data, this was estimated using the population of children enrolled in grades 1 and 2.");
-                var chart1_3 = multiBar().data(data1_3).marginLeft(320).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                var chart1_3 = multiBar().data(data1_3).marginLeft(180).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
                   .xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
                   .title("Similar percentages of EL and non-EL preschoolers were enrolled in districts that provided free preschool and full-day preschool programs or services.")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
@@ -472,8 +473,8 @@
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
                   .title("Regardless of length of preschool offered by the district, about the same percentage of preschoolers were ELs.")
                   .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");*/
-                var chart2_1 = divergingBar().data(data2_1).marginLeft(240).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
+                var chart2_1 = multiBar().data(data2_1).marginLeft(140).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
+                  .xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
                   .title(["While the majority of ELs and non-ELs were in schools that offered Algebra I in grade 7 or 8, non-ELs were twice as likely as ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offered Physics in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offered Chemistry in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
