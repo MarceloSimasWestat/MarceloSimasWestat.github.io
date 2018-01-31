@@ -5609,8 +5609,14 @@ button:hover,
 }
 
 .multi_line .dot_text.state {
+  fill: rgba(119, 136, 153, 0.25);
+}
+
+.multi_line .dot_text.state.highlighted {
   fill: #A6426C;
   font-weight: bold;
+  stroke-width: 0;
+  /*stroke: #FFF;*/
 }
 
 .multi_line .axis path,

@@ -7471,7 +7471,6 @@ function multi_line() {
 				.attr("class", "dot_text")
 				.classed("remove", function(d) {
 					if (d.year !== "2014-15") { return true; }
-					if (d.state !== "United States") { return true; }
 					else { return false; };
 				})
 				.classed("state", function(d) {
@@ -7582,7 +7581,7 @@ function multi_line() {
 					.attr("class", "dot_text")
 					.classed("remove", function(d) {
 						if (d.year !== "2014-15") { return true; }
-						if (d.state !== selected_state) { return true; }
+						//if (d.state !== selected_state) { return true; }
 						else { return false; };
 					})
 					.classed("state", function(d) {
@@ -7594,7 +7593,7 @@ function multi_line() {
 						else { return false; };
 					})
 					.classed("highlighted", function(d) {
-						if (d.state === "United States") { return true; }
+						if (d.state === "United States" || d.state === selected_state) { return true; }
 						else { return false; };
 					})
 					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
