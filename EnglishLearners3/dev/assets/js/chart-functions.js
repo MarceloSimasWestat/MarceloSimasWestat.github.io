@@ -7308,8 +7308,13 @@ function multi_line() {
 		var state_list = d3.map(data, function(d) { return d.state; }).keys();
 		state_list = state_list.filter(function(d) { return d !== "United States"; });
 
-		var state_dropdown = dom.append("div")
-			.text("Select state to highlight: ")
+		var state_dropdown_container = dom.append("div")
+			.attr("class", "state_selector");
+
+		state_dropdown_container.append("div")
+			.text("Select a state to highlight: ");
+
+		var state_dropdown = state_dropdown_container.append("div")
 			.append("select")
 				.attr("id", "dd" + chartID)
 				.on("change." + chartID, function() {
@@ -7485,12 +7490,41 @@ function multi_line() {
 				.attr("dx", "0.75em")
 				.attr("y", function(d) { return yScale(d.el_p); })
 				.attr("dy", "0.35em")
-				.text(function(d) { return d.state; });
+				.text(function(d) { return d.st_abbr; });
 
 		// remove all dots tagged for removal;
 
 		svg.selectAll(".remove")
 			.remove();
+
+		// animate "curtain"
+
+		svg.append("rect")
+			.attr("class", "curtain")
+			.attr("x", 0)
+			.attr("y", -1)
+			.attr("width", width)
+			.attr("height", heightAdj)
+			.style("fill", "#FFF")
+			.style("pointer-events", "none");
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll("rect.curtain")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 0);
+
+				}});
 
 		// on change, highlight as needed
 
@@ -7567,11 +7601,11 @@ function multi_line() {
 					.attr("dx", "0.75em")
 					.attr("y", function(d) { return yScale(d.el_p); })
 					.attr("dy", "0.35em")
-					.style("opacity", function() {
+					/*.style("opacity", function() {
 						if (width < 736) { return 0; }
 						else { return 1; };
-					})
-					.text(function(d) { return d.state; });
+					})*/
+					.text(function(d) { return d.st_abbr; });
 
 			// remove state dots
 
@@ -7623,6 +7657,12 @@ function multi_line() {
 			dom.selectAll(".multi_line")
 				.attr("width", width);
 
+			svg.selectAll("rect.curtain")
+				.attr("x", 0)
+				.attr("y", -1)
+				.attr("width", width)
+				.style("opacity", 1);
+
 			svg.select(".x.axis")
 				.call(xAxis);
 
@@ -7630,95 +7670,45 @@ function multi_line() {
 				.call(yAxis);
 
 			svg.selectAll(".dot")
-				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; });
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", 0);
 
 			svg.selectAll(".line")
 				.attr("d", function(d) { return line_values(d.values); });
 
 			svg.selectAll(".dot_text")
 				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
-				.style("opacity", function() {
-					if (width < 736) { return 0; }
-					else { return 1; };
-				});
+				.style("opacity", 0);
 
-			/*var gs2 = graphScroll()
+			var gs2 = graphScroll()
 				.container(d3.select("#" + containerID))
 				.graph(d3.selectAll("#" + chartID))
 				.sections(d3.selectAll("#" + subcontainerID + " > div"))
 				.on("active", function() {
-					if (document.getElementById(sectionID).className == "graph-scroll-active") {
+					/*if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else*/ if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
-						svg.selectAll("line.dotLine")
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
+
+						svg.selectAll("rect.curtain")
 							.transition()
 								.duration(animateTime)
-								.attr("x2", function(d) { return xScale(d.pct); })
-								.each("end", function(d) {
-									d3.select(this)
-										.transition()
-											.duration(animateTime)
-											.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
-								});
+								.style("opacity", 0);
 
-						svg.selectAll("circle.dot")
+						svg.selectAll(".dot")
 							.transition()
 								.duration(animateTime)
-								.attr("cx", function(d) { return xScale(d.pct); })
-								.each("end", function(d) {
-									d3.select(this)
-										.transition()
-											.duration(animateTime)
-											.attr("r", dotSize);
-								});
+								.style("opacity", 1);
 
-				}});*/
+						svg.selectAll(".dot_text")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+
+					}});
 
 		});
-
-		// update data function
-
-		/*function updateData() {
-
-			var lines = svg.selectAll("line.dotLine")
-				.data(data);
-
-			svg.selectAll("line.dotLine")
-				.transition()
-					.duration(animateTime)
-					.attr("x2", function(d) { return xScale(d.pct); })
-					.each("end", function(d) {
-						d3.select(this)
-							.transition()
-								.duration(animateTime)
-								.attr("x2", function(d) { return xScale(d.pct) - dotSize; });
-					});
-
-			var dots = svg.selectAll("circle.dot")
-				.data(data);
-
-			svg.selectAll("circle.dot")
-				.transition()
-					.duration(animateTime)
-					.attr("cx", function(d) { return xScale(d.pct); })
-					.each("end", function(d) {
-						d3.select(this)
-							.transition()
-								.duration(animateTime)
-								.attr("r", dotSize);
-					});
-
-			svg.selectAll("circle.dot")
-				.selectAll("aria-label").remove();
-
-			svg.selectAll("circle.dot")
-				.append("aria-label")
-					.text(function(d) { return "In 2013–14, " + formatPercent(d.pct) + " of " + d.group + ", or " + formatNumber(d.num) + ", offered " + d.level + "."; });
-
-			d3.select("#" + sectionID)
-				.select(".title")
-				.text(title);
-
-		};*/
 
 		});
 

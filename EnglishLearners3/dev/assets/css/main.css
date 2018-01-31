@@ -5534,6 +5534,32 @@ button:hover,
 
 /* Multi line chart styling */
 
+.state_selector {
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.state_selector select {
+  border: 1px solid slategray;
+  height: auto;
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+
+.state_selector > div {
+  width: 200px;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.state_selector option {
+  background: #FFF;
+  color: #000;
+}
+
 .multi_line path {
   fill: none;
 }
