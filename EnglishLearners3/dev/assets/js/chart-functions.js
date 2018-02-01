@@ -7228,7 +7228,8 @@ function dotPlot() {
 
 };
 
-// multi-line chart
+// multi-line chart v1
+// includes state lines and state names
 
 function multi_line() {
 
@@ -7582,6 +7583,1316 @@ function multi_line() {
 					.classed("remove", function(d) {
 						if (d.year !== "2014-15") { return true; }
 						//if (d.state !== selected_state) { return true; }
+						else { return false; };
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === "United States" || d.state === selected_state) { return true; }
+						else { return false; };
+					})
+					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("dx", "0.75em")
+					.attr("y", function(d) { return yScale(d.el_p); })
+					.attr("dy", "0.35em")
+					/*.style("opacity", function() {
+						if (width < 736) { return 0; }
+						else { return 1; };
+					})*/
+					.text(function(d) { return d.st_abbr; });
+
+			// remove state dots
+
+			svg.selectAll(".remove")
+				.remove();
+
+		};
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.rangeBands([0, widthAdj]);
+			yAxis.tickSize(-1 * widthAdj);
+
+			dom.selectAll(".multi_line")
+				.attr("width", width);
+
+			svg.selectAll("rect.curtain")
+				.attr("x", 0)
+				.attr("y", -1)
+				.attr("width", width)
+				.style("opacity", 1);
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.select(".y.axis")
+				.call(yAxis);
+
+			svg.selectAll(".dot")
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", 0);
+
+			svg.selectAll(".line")
+				.attr("d", function(d) { return line_values(d.values); });
+
+			svg.selectAll(".dot_text")
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", 0);
+
+			var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					/*if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else*/ if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
+
+						svg.selectAll("rect.curtain")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 0);
+
+						svg.selectAll(".dot")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+
+						svg.selectAll(".dot_text")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+
+					}});
+
+		});
+
+		});
+
+	};
+
+   /* chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+	/*chart.group = function(value) {
+
+      if (!arguments.length) return group;
+      group = value;
+      return chart;
+
+  };*/
+
+	chart.yAxisLabel = function(value) {
+
+      if (!arguments.length) return yAxisLabel;
+      yAxisLabel = value;
+      return chart;
+
+  };
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.dotSize = function(value) {
+
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	/*chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
+		return chart;
+
+	};*/
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+}
+
+// multi-line chart v2
+// includes state lines, NO state names
+
+function multi_line_v2() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 500,
+		marginTop = 45,
+		marginLeft = 30,
+		marginBottom = 45,
+		dotSize = 4,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		group = "",
+		yAxisLabel = "DEFINE Y AXIS LABEL",
+		notes = "",
+		source = "",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// handle suppressed data
+
+		data.forEach(function(d) {
+
+			// remove suppressed data
+
+			if (d.all_p === "†" || d.all_p === "-") { d.all_p === ""; }
+			if (d.el_p === "†" || d.el_p === "-") { d.el_p === ""; }
+
+			// convert percentages to numeric
+
+			d.all_p = +d.all_p;
+			d.el_p = +d.el_p;
+
+		});
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.append("text")
+				/*.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});*/
+				.text(title);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		// add dropdowns
+
+		var state_list = d3.map(data, function(d) { return d.state; }).keys();
+		state_list = state_list.filter(function(d) { return d !== "United States"; });
+
+		var state_dropdown_container = dom.append("div")
+			.attr("class", "state_selector");
+
+		state_dropdown_container.append("div")
+			.text("Select a state to highlight: ");
+
+		var state_dropdown = state_dropdown_container.append("div")
+			.append("select")
+				.attr("id", "dd" + chartID)
+				.on("change." + chartID, function() {
+					highlight();
+				});
+
+		state_dropdown.append("option")
+			.text("None")
+			.attr("value", "None");
+
+		state_dropdown.selectAll("option.state")
+			.data(state_list)
+			.enter()
+			.append("option")
+				.attr("class", "state")
+				.attr("value", function(d) { return d; })
+				.text(function(d) { return d; });
+
+		// add svg
+
+		var svg = dom.append("svg")
+			.attr("class", "multi_line")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) { return d.state + " (" + d.year + "): " + formatPercent(d.el_p);	});
+
+		svg.call(tipDot);
+
+		// axis scales and axes
+
+		var xScale = d3.scale.ordinal().rangeBands([0, widthAdj]),
+				yScale = d3.scale.linear().range([heightAdj, 0]);
+
+		// domains
+
+		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		yScale.domain([0, 1]);
+
+		// axes
+
+		function formatValueAxis(d) {
+			var TickValue = formatNumber(d * 100);
+			return TickValue;
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
+				yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		// draw y-axis
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		svg.append("text")
+			.attr("class", "y axis")
+			.attr("x", -15)
+			.attr("y", "-2.1em")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "start")
+			.text(yAxisLabel);
+
+		// nest data by state
+
+		var nested_data = d3.nest()
+			.key(function(d) { return d.state; })
+			.entries(data);
+
+		// draw lines
+
+		var line_values = d3.svg.line()
+			.defined(function(d) { return !isNaN(d.el_p); })
+			.x(function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+			.y(function(d) { return yScale(d.el_p); });
+
+		var lines = svg.selectAll(".line")
+			.data(nested_data, function(d) { return d.key; });
+
+		lines.enter()
+			.append("path")
+				.attr("class", "line")
+				.classed("state", function(d) {
+					if (d.key !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("d", function(d) { return line_values(d.values); });
+
+		// add dots, initially only for national
+
+		var dot_data = data.filter(function(d) { return !isNaN(d.el_p); });
+
+		var dots = svg.selectAll(".dot")
+			.data(dot_data);
+
+		dots.enter()
+			.append("circle")
+				.attr("class", "dot")
+				.classed("remove", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; }
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("cy", function(d) { return yScale(d.el_p); })
+				.attr("r", dotSize)
+				.on("mouseover", tipDot.show)
+				.on("mouseout", tipDot.hide);
+
+		var dot_text = svg.selectAll(".dot_text")
+			.data(dot_data);
+
+		dot_text.enter()
+			.append("text")
+				.attr("class", "dot_text")
+				.classed("remove", function(d) {
+					if (d.year !== "2014-15") { return true; }
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; }
+				})
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("dx", "0.75em")
+				.attr("y", function(d) { return yScale(d.el_p); })
+				.attr("dy", "0.35em")
+				.text(function(d) { return d.st_abbr; });
+
+		// remove all dots tagged for removal;
+
+		svg.selectAll(".remove")
+			.remove();
+
+		// animate "curtain"
+
+		svg.append("rect")
+			.attr("class", "curtain")
+			.attr("x", 0)
+			.attr("y", -1)
+			.attr("width", width)
+			.attr("height", heightAdj)
+			.style("fill", "#FFF")
+			.style("pointer-events", "none");
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll("rect.curtain")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 0);
+
+				}});
+
+		// on change, highlight as needed
+
+		var selected_state = [];
+
+		function highlight() {
+
+			// get selected state
+
+			selected_state = d3.select("#dd" + chartID).property("value");
+
+			svg.selectAll(".dot.state")
+				.remove();
+
+			svg.selectAll(".dot_text.state")
+				.remove();
+
+			// highlight selected state
+
+			svg.selectAll(".line.state")
+				.classed("highlighted", function(d) {
+					if (d.key === selected_state) { return true; }
+					else { return false; };
+				});
+
+			// make dots as needed
+
+			dots.enter()
+				.append("circle")
+					.attr("class", "dot")
+					.classed("remove", function(d) {
+						if (d.state !== selected_state) { return true; }
+						else { return false; }
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === selected_state) { return true; }
+						else { return false; };
+					}) // initially, only national is highlighted
+					.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("cy", function(d) { return yScale(d.el_p); })
+					.attr("r", dotSize)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide);
+
+			dot_text.enter()
+				.append("text")
+					.attr("class", "dot_text")
+					.classed("remove", function(d) {
+						if (d.year !== "2014-15") { return true; }
+						if (d.state !== selected_state) { return true; }
+						else { return false; };
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === "United States" || d.state === selected_state) { return true; }
+						else { return false; };
+					})
+					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("dx", "0.75em")
+					.attr("y", function(d) { return yScale(d.el_p); })
+					.attr("dy", "0.35em")
+					/*.style("opacity", function() {
+						if (width < 736) { return 0; }
+						else { return 1; };
+					})*/
+					.text(function(d) { return d.st_abbr; });
+
+			// remove state dots
+
+			svg.selectAll(".remove")
+				.remove();
+
+		};
+
+		// notes and sources
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+						.attr("id", "notes" + chartID)
+						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// update width
+
+			width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+			widthAdj = width - marginLeft - margin.right;
+
+			// resize chart
+
+			xScale.rangeBands([0, widthAdj]);
+			yAxis.tickSize(-1 * widthAdj);
+
+			dom.selectAll(".multi_line")
+				.attr("width", width);
+
+			svg.selectAll("rect.curtain")
+				.attr("x", 0)
+				.attr("y", -1)
+				.attr("width", width)
+				.style("opacity", 1);
+
+			svg.select(".x.axis")
+				.call(xAxis);
+
+			svg.select(".y.axis")
+				.call(yAxis);
+
+			svg.selectAll(".dot")
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", 0);
+
+			svg.selectAll(".line")
+				.attr("d", function(d) { return line_values(d.values); });
+
+			svg.selectAll(".dot_text")
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.style("opacity", 0);
+
+			var gs2 = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
+					/*if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else*/ if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+						d3.select("#" + sectionID)
+							.classed("activated", "true");
+
+						svg.selectAll("rect.curtain")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 0);
+
+						svg.selectAll(".dot")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+
+						svg.selectAll(".dot_text")
+							.transition()
+								.duration(animateTime)
+								.style("opacity", 1);
+
+					}});
+
+		});
+
+		});
+
+	};
+
+   /* chart.width = function(value) {
+
+        if (!arguments.length) return width;
+        width = value;
+        return chart;
+
+    }; */
+
+	/*chart.group = function(value) {
+
+      if (!arguments.length) return group;
+      group = value;
+      return chart;
+
+  };*/
+
+	chart.yAxisLabel = function(value) {
+
+      if (!arguments.length) return yAxisLabel;
+      yAxisLabel = value;
+      return chart;
+
+  };
+
+  chart.height = function(value) {
+
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginLeft = function(value) {
+
+		if (!arguments.length) return marginLeft;
+		marginLeft = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.dotSize = function(value) {
+
+		if (!arguments.length) return dotSize;
+		dotSize = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
+
+	/*chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+	chart.axisdefs = function(value) {
+
+		if (!arguments.length) return axisdefs;
+		axisdefs = value;
+		return chart;
+
+	};*/
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+}
+
+// multi-line chart v3
+// NO state lines, NO state names
+
+function multi_line_v3() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	width = [],
+		height = 500,
+		marginTop = 45,
+		marginLeft = 30,
+		marginBottom = 45,
+		dotSize = 4,
+		animateTime = 1000,
+		title = "Generic chart title. Update me using .title()!",
+		altText = "Fill in alt text for screen readers!",
+		group = "",
+		yAxisLabel = "DEFINE Y AXIS LABEL",
+		notes = "",
+		source = "",
+		containerID = [],
+		subcontainerID = [],
+		chartID = [],
+		sectionID = [],
+		data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// handle suppressed data
+
+		data.forEach(function(d) {
+
+			// remove suppressed data
+
+			if (d.all_p === "†" || d.all_p === "-") { d.all_p === ""; }
+			if (d.el_p === "†" || d.el_p === "-") { d.el_p === ""; }
+
+			// convert percentages to numeric
+
+			d.all_p = +d.all_p;
+			d.el_p = +d.el_p;
+
+		});
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// margins; adjust width and height to account for margins
+
+		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
+
+		var margin = {right: 20},
+			widthAdj = width - marginLeft - margin.right,
+			heightAdj = height - marginTop - marginBottom;
+
+		// chart title
+
+		d3.select(this).append("div")
+			.attr("class", "title")
+			.append("text")
+				/*.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});*/
+				.text(title);
+
+		// selections
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		// add dropdowns
+
+		var state_list = d3.map(data, function(d) { return d.state; }).keys();
+		state_list = state_list.filter(function(d) { return d !== "United States"; });
+
+		var state_dropdown_container = dom.append("div")
+			.attr("class", "state_selector");
+
+		state_dropdown_container.append("div")
+			.text("Select a state to highlight: ");
+
+		var state_dropdown = state_dropdown_container.append("div")
+			.append("select")
+				.attr("id", "dd" + chartID)
+				.on("change." + chartID, function() {
+					highlight();
+				});
+
+		state_dropdown.append("option")
+			.text("None")
+			.attr("value", "None");
+
+		state_dropdown.selectAll("option.state")
+			.data(state_list)
+			.enter()
+			.append("option")
+				.attr("class", "state")
+				.attr("value", function(d) { return d; })
+				.text(function(d) { return d; });
+
+		// add svg
+
+		var svg = dom.append("svg")
+			.attr("class", "multi_line")
+			.attr("width", width)
+			.attr("height", height)
+			.append("g")
+				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+
+		svg.append("aria-label")
+			.text(altText);
+
+		// tooltips using d3-tip
+
+		var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) { return d.state + " (" + d.year + "): " + formatPercent(d.el_p);	});
+
+		svg.call(tipDot);
+
+		// axis scales and axes
+
+		var xScale = d3.scale.ordinal().rangeBands([0, widthAdj]),
+				yScale = d3.scale.linear().range([heightAdj, 0]);
+
+		// domains
+
+		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		yScale.domain([0, 1]);
+
+		// axes
+
+		function formatValueAxis(d) {
+			var TickValue = formatNumber(d * 100);
+			return TickValue;
+		};
+
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").outerTickSize(0),
+				yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+
+		// draw x-axis below bars
+
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + heightAdj + ")")
+			.attr("aria-hidden", "true")
+			.call(xAxis)
+
+		// draw y-axis
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("aria-hidden", "true")
+			.call(yAxis)
+
+		svg.append("text")
+			.attr("class", "y axis")
+			.attr("x", -15)
+			.attr("y", "-2.1em")
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "start")
+			.text(yAxisLabel);
+
+		// nest data by state
+
+		var nested_data = d3.nest()
+			.key(function(d) { return d.state; })
+			.entries(data);
+
+		// draw lines
+
+		var line_values = d3.svg.line()
+			.defined(function(d) { return !isNaN(d.el_p); })
+			.x(function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+			.y(function(d) { return yScale(d.el_p); });
+
+		var lines = svg.selectAll(".line")
+			.data(nested_data, function(d) { return d.key; });
+
+		lines.enter()
+			.append("path")
+				.attr("class", "line")
+				.classed("state", function(d) {
+					if (d.key !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.key === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("d", function(d) { return line_values(d.values); })
+				.style("opacity", function(d) {
+					if (d.key !== "United States") { return 0; }
+					else {};
+				});
+
+		// add dots, initially only for national
+
+		var dot_data = data.filter(function(d) { return !isNaN(d.el_p); });
+
+		var dots = svg.selectAll(".dot")
+			.data(dot_data);
+
+		dots.enter()
+			.append("circle")
+				.attr("class", "dot")
+				.classed("remove", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; }
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				}) // initially, only national is highlighted
+				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("cy", function(d) { return yScale(d.el_p); })
+				.attr("r", dotSize)
+				.on("mouseover", tipDot.show)
+				.on("mouseout", tipDot.hide);
+
+		var dot_text = svg.selectAll(".dot_text")
+			.data(dot_data);
+
+		dot_text.enter()
+			.append("text")
+				.attr("class", "dot_text")
+				.classed("remove", function(d) {
+					if (d.year !== "2014-15") { return true; }
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("state", function(d) {
+					if (d.state !== "United States") { return true; }
+					else { return false; };
+				})
+				.classed("national", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; };
+				})
+				.classed("highlighted", function(d) {
+					if (d.state === "United States") { return true; }
+					else { return false; }
+				})
+				.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+				.attr("dx", "0.75em")
+				.attr("y", function(d) { return yScale(d.el_p); })
+				.attr("dy", "0.35em")
+				.text(function(d) { return d.st_abbr; });
+
+		// remove all dots tagged for removal;
+
+		svg.selectAll(".remove")
+			.remove();
+
+		// animate "curtain"
+
+		svg.append("rect")
+			.attr("class", "curtain")
+			.attr("x", 0)
+			.attr("y", -1)
+			.attr("width", width)
+			.attr("height", heightAdj)
+			.style("fill", "#FFF")
+			.style("pointer-events", "none");
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					svg.selectAll("rect.curtain")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 0);
+
+				}});
+
+		// on change, highlight as needed
+
+		var selected_state = [];
+
+		function highlight() {
+
+			// get selected state
+
+			selected_state = d3.select("#dd" + chartID).property("value");
+
+			svg.selectAll(".dot.state")
+				.remove();
+
+			svg.selectAll(".dot_text.state")
+				.remove();
+
+			// highlight selected state
+
+			svg.selectAll(".line.state")
+				.classed("highlighted", function(d) {
+					if (d.key === selected_state) { return true; }
+					else { return false; };
+				})
+				.style("opacity", function(d) {
+					if (d.key === selected_state) { return 1; }
+					else { return 0; };
+				});
+
+			// make dots as needed
+
+			dots.enter()
+				.append("circle")
+					.attr("class", "dot")
+					.classed("remove", function(d) {
+						if (d.state !== selected_state) { return true; }
+						else { return false; }
+					})
+					.classed("state", function(d) {
+						if (d.state !== "United States") { return true; }
+						else { return false; };
+					})
+					.classed("national", function(d) {
+						if (d.state === "United States") { return true; }
+						else { return false; };
+					})
+					.classed("highlighted", function(d) {
+						if (d.state === selected_state) { return true; }
+						else { return false; };
+					}) // initially, only national is highlighted
+					.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+					.attr("cy", function(d) { return yScale(d.el_p); })
+					.attr("r", dotSize)
+					.on("mouseover", tipDot.show)
+					.on("mouseout", tipDot.hide);
+
+			dot_text.enter()
+				.append("text")
+					.attr("class", "dot_text")
+					.classed("remove", function(d) {
+						if (d.year !== "2014-15") { return true; }
+						if (d.state !== selected_state) { return true; }
 						else { return false; };
 					})
 					.classed("state", function(d) {
