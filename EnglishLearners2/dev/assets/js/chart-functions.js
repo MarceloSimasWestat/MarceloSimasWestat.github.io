@@ -1627,6 +1627,7 @@ function colChart() {
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
+		xAxisLabel = "",
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
@@ -1745,7 +1746,7 @@ function colChart() {
 		var marginBottomAdj;
 
 		function marginBottomAdjustment() {
-			marginBottomAdj = tspanMax * marginBottom;
+			marginBottomAdj = tspanMax * marginBottom*2;
 		};
 
 		marginBottomAdjustment();
@@ -1765,7 +1766,7 @@ function colChart() {
 		// y axis
 
 		var yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
-		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(5);
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -1825,6 +1826,14 @@ function colChart() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj/2)
+			.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "middle")
+			.text(xAxisLabel);
 
 		// notes and sources
 
@@ -1892,9 +1901,17 @@ function colChart() {
 				.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());
 
+			svg.append("text")
+				.attr("class", "x axis")
+				.attr("x", widthAdj/2)
+				.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "middle")
+				.text(xAxisLabel);
+
 			// redraw the y axis
 
-			yScale.range([heightAdj, 0]);
+			yScale.range([heightAdj, 0]).ticks(Math.max(heightAdj/100, 2));
 
 			dom.selectAll(".y.axis")
 				.remove();
@@ -1903,6 +1920,14 @@ function colChart() {
 				.attr("class", "y axis")
 				.attr("aria-hidden", "true")
 				.call(yAxis);
+
+			svg.append("text")
+				.attr("class", "y axis")
+				.attr("x", -15)
+				.attr("y", "-2.1em")
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "start")
+				.text(yAxisLabel);
 
 			svg.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.group) + (xScale.rangeBand() / 2) - (colWidth / 2); })
@@ -1998,6 +2023,14 @@ function colChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
 		return chart;
 
 	};
@@ -5513,7 +5546,7 @@ function multiBar() {
 
 		var	formatNumber = d3.format(",f"),
 			formatNumberD = d3.format(",.1f"),
-			formatPercent = d3.format(",%"); // 6/14/17: Changed to remove rounding because figures were already rounded
+			formatPercent = d3.format(",.1%"); // 6/14/17: Changed to remove rounding because figures were already rounded
 
 		// margins; adjust width and height to account for margins
 
