@@ -1627,6 +1627,7 @@ function colChart() {
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
+		xAxisLabel = "",
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
@@ -1745,7 +1746,7 @@ function colChart() {
 		var marginBottomAdj;
 
 		function marginBottomAdjustment() {
-			marginBottomAdj = tspanMax * marginBottom;
+			marginBottomAdj = tspanMax * marginBottom*2;
 		};
 
 		marginBottomAdjustment();
@@ -1765,7 +1766,7 @@ function colChart() {
 		// y axis
 
 		var yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
-		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(5);
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -1825,6 +1826,14 @@ function colChart() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj/2)
+			.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "middle")
+			.text(xAxisLabel);
 
 		// notes and sources
 
@@ -1892,9 +1901,17 @@ function colChart() {
 				.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());
 
+			svg.append("text")
+				.attr("class", "x axis")
+				.attr("x", widthAdj/2)
+				.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "middle")
+				.text(xAxisLabel);
+
 			// redraw the y axis
 
-			yScale.range([heightAdj, 0]);
+			yScale.range([heightAdj, 0]).ticks(Math.max(heightAdj/100, 2));
 
 			dom.selectAll(".y.axis")
 				.remove();
@@ -1903,6 +1920,14 @@ function colChart() {
 				.attr("class", "y axis")
 				.attr("aria-hidden", "true")
 				.call(yAxis);
+
+			svg.append("text")
+				.attr("class", "y axis")
+				.attr("x", -15)
+				.attr("y", "-2.1em")
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "start")
+				.text(yAxisLabel);
 
 			svg.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.group) + (xScale.rangeBand() / 2) - (colWidth / 2); })
@@ -1998,6 +2023,14 @@ function colChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
 		return chart;
 
 	};
@@ -5494,10 +5527,12 @@ function multiBar() {
 		marginBottom = 60,
 		animateTime = 1000,
 		barWidth = 15,
+		xAxisLabel = "DEFINE X AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		notes = "",
 		source = "",
+		toggles = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -5511,7 +5546,7 @@ function multiBar() {
 
 		var	formatNumber = d3.format(",f"),
 			formatNumberD = d3.format(",.1f"),
-			formatPercent = d3.format(",%"); // 6/14/17: Changed to remove rounding because figures were already rounded
+			formatPercent = d3.format(",.1%"); // 6/14/17: Changed to remove rounding because figures were already rounded
 
 		// margins; adjust width and height to account for margins
 
@@ -5521,11 +5556,68 @@ function multiBar() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.chartlevel; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+
+		if (toggles == 1) {
+
+			// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.attr("title", function(d, i) { return title[i]; })
+						.on("click", function(d) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = d3.select(this).property("title");
+							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+		}
+		else {};
+
 		// chart title
 
 		d3.select(this).append("div")
-			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title + "</span>");
+			.attr("class", "title")
+			.append("text")
+				.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});
 
 		// selections
 
@@ -5550,7 +5642,7 @@ function multiBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.level + ": " + formatPercent(d.pct);
+				return d.level + ": " + formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
 			});
 
 		svg.call(tipBar);
@@ -5617,7 +5709,7 @@ function multiBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF TOTAL IN 2014–15");
+			.text(xAxisLabel);
 
 		/*svg.append("text")
 			.attr("id", "xAxisT_b")
@@ -5658,8 +5750,7 @@ function multiBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + "had " + d.group + " concentrations of ELs.";
-					});
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -5691,6 +5782,10 @@ function multiBar() {
 			.transition()
 				.duration(animateTime)
 				.style("opacity", 1);
+
+		svg.select(".y.axis")
+			.selectAll(".tick text")
+				.call(wrapY, marginLeft);
 
 		// legend
 
@@ -5813,6 +5908,73 @@ function multiBar() {
 
 		});
 
+		// update data function
+
+		function updateData() {
+
+			data_nest = d3.nest()
+				.key(function(d) { return d.group; })
+				.entries(data);
+
+			data_levels = d3.nest()
+				.key(function(d) { return d.level; })
+				.entries(data);
+
+			// update y-axis
+
+			yScale0.domain(data_nest.map(function(d) { return d.key; }));
+
+			svg.selectAll(".group")
+				.remove();
+
+			group = svg.selectAll(".group")
+				.data(data_nest, function(d) { return d.key; });
+
+			group.enter()
+				.append("g")
+					.attr("class", "group")
+					.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
+
+			levelBars = group.selectAll(".bar")
+				.data(function(d) { return d.values; });
+
+			levelBars.enter()
+				.append("rect")
+					.attr("class", function(d) { return "bar" })
+					.attr("x", 0)
+					.attr("width", 0)
+					.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
+					.attr("height", 0)
+					.style("fill", function(d) { return color(d.level); })
+					.on("mouseover", tipBar.show)
+					.on("mouseout", tipBar.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct); })
+						.attr("height", barWidth);
+
+			svg.selectAll(".bar")
+				.append("aria-label")
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
+
+			svg.select(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			svg.select(".y.axis")
+				.selectAll(".tick text")
+					.call(wrapY, marginLeft);
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
 		});
 
 	};
@@ -5873,6 +6035,14 @@ function multiBar() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -5901,6 +6071,14 @@ function multiBar() {
 
 		if (!arguments.length) return source;
 		source = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
 		return chart;
 
 	};
@@ -7254,3 +7432,32 @@ function wrap(text, width) {
     }
   });
 };
+
+// for wrapping long labels on the y-axis
+
+function wrapY(text, width) {
+	text.each(function() {
+		var text = d3.select(this),
+				words = text.text().split(/\s+/).reverse(),
+				word,
+				line = [],
+				lineNumber = 0,
+				lineHeight = 1.1, // ems
+				x = text.attr("x"),
+				y = text.attr("y"),
+				dy = parseFloat(text.attr("dy")),
+				tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+		while (word = words.pop()) {
+			line.push(word);
+			tspan.text(line.join(" "));
+			if (tspan.node().getComputedTextLength() > width) {
+				line.pop();
+				tspan.text(line.join(" "));
+				line = [word];
+				tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+			}
+		}
+		var breaks = text.selectAll("tspan").size();
+		text.selectAll("tspan").attr("y", x * (breaks-1));
+	});
+}

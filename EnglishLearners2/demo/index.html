@@ -376,13 +376,13 @@
                   <sup>3</sup> Phillips, Deborah A., Mark W. Lipsey, Kenneth A. Dodge, Ron Haskins, Daphna Bassok, Margaret R. Burchinal, Greg J. Duncan, Mark Dynarski, Katherine A. Magnuson, and Christina Weiland. April 2017. <em>Puzzling it out: The current state of scientific knowledge on pre-kindergarten effects</em>. Washington, D.C.: Brookings Institute. <a href="https://www.brookings.edu/wp-content/uploads/2017/04/duke_prekstudy_final_4-4-17_hires.pdf" target="_blank">https://www.brookings.edu/wp-content/uploads/2017/04/duke_prekstudy_final_4-4-17_hires.pdf</a>. Retrieved January 19, 2018.
                 </p>
                 <p>
-                  <sup>4</sup> Paul Attewell and Thurston Domina, “Raising the Bar: Curricular Intensity and Academic Performance,” <em>Educational Evaluation and Policy Analysis</em> 30 (2008): 51–71; Mark C. Long, Dylan Conger, and Patrice Iatarola, “Effects of High School Course-Taking on Secondary and Postsecondary Success,” <em>American Educational Research Journal</em> 49 (2012): 285–322.
+                  <sup>4</sup> Attewell, Paul and Thurston Domina. “Raising the Bar: Curricular Intensity and Academic Performance.” Educational Evaluation and Policy Analysis 30 (2008). 51–71; Long, Mark C., Dylan Conger, and Patrice Iatarola. “Effects of High School Course-Taking on Secondary and Postsecondary Success.” <em>American Educational Research Journal</em> 49 (2012). 285–322.
                 </p>
                 <p>
-                  <sup>5</sup> Rebecca M. Callahan, Lindsey Wilkinson, and Chandra Muller, “Academic Achievement and Course Taking Among Language Minority Youth in US Schools: Effects of ESL Placement,” <em>Educational Evaluation and Policy Analysis</em> 32 (2010): 84–117.
+                  <sup>5</sup> Callahan, Rebecca M., Lindsey Wilkinson, and Chandra Muller. “Academic Achievement and Course Taking Among Language Minority Youth in US Schools: Effects of ESL Placement.” <em>Educational Evaluation and Policy Analysis</em> 32 (2010). 84–117.
                 </p>
                 <p>
-                  <sup>6</sup> Laurie Olsen, “Reparable Harm: Fulfilling the Unkept Promise of Educational Opportunity for California’s Long Term English Learners,” <em>Californians Together</em>, <a href="https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/">https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/</a>; Jamal Abedi, “Classification System for English Language Learners: Issues and Recommendations,” <em>Educational Measurement: Issues and Practice</em> 27 (2008): 17–31; Sarah Hooker, Margie McHugh, and Michael Fix, “Critical Choices in Post-recession California: Investing in the Educational and Career Success of Immigrant Youth,” <em>Migration Policy Institute</em> (2014), <a href="http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth">http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth</a>; Rebecca M. Callahan, “Tracking and High School English Learners: Limiting Opportunity to Learn,” <em>American Educational Research Journal</em> 42 (2005): 305–28; Callahan et al. (2010).
+                  <sup>6</sup> Olsen, Laurie. Reparable Harm: <em>Fulfilling the Unkept Promise of Educational Opportunity for California’s Long Term English Learners</em>. Long Beach: Californians Together, 2014. Retrieved January 5, 2018. <a href="https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/" target="_blank">https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/</a>; Abedi, Jamal. “Classification System for English Language Learners: Issues and Recommendations.” <em>Educational Measurement: Issues and Practice</em> 27 (2008). 17–31; Hooker, Sarah, Margie McHugh, and Michael Fix. <em>Critical Choices in Post-recession California: Investing in the Educational and Career Success of Immigrant Youth</em>. Washington, DC: Migration Policy Institute, 2014. Retrieved January 5, 2018. <a href="http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth" target="_blank">http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth</a>; Callahan, Rebecca M. “Tracking and High School English Learners: Limiting Opportunity to Learn.” <em>American Educational Research Journal</em> 42 (2005). 305–28; Callahan et al. (2010).
                 </p>
                 <p>
                   <sup>7</sup> Cowan, James and Dan Goldhaber. September 2013. <em>How Much of a “Running Start” do Dual Enrollment Programs Provide Students?</em>. Washington, D.C.: CALDER, American Institutes for Research. <a href="https://caldercenter.org/sites/default/files/WP92-Final.pdf" target="_blank">https://caldercenter.org/sites/default/files/WP92-Final.pdf</a>. Retrieved January 19, 2018.
@@ -421,6 +421,7 @@
                 data.forEach(function (d) {
                     d.chart = d.chart;
                     d.subchart = +d.subchart;
+                    d.chartlevel = d.chartlevel;
                     d.level = d.level;
                     d.group = d.group;
                     d.num = +d.num;
@@ -445,8 +446,8 @@
                 data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
                 data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
 
-                var chart1_1 = divergingBar().data(data1_1).marginLeft(320).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
+                var chart1_1 = multiBar().data(data1_1).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                  .xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
                   .title("ELs were slightly more likely to have access to preschool programs than non-ELs. ELs were also somewhat more likely than non-ELs to have access to free preschool programs and full-day preschool programs or services.")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
@@ -457,14 +458,15 @@
                   .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.")
                   .source('U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "State Nonfiscal Survey of Public Elementary/Secondary Education," 2013–14. Downloaded April 2017 from <a href="https://nces.ed.gov/ccd/stnfis.asp">https://nces.ed.gov/ccd/stnfis.asp</a>. U.S. Department of Education, EDFacts Data Warehouse (EDW), 2013–14. SEA File C141, LEP Enrolled. Extracted August 2017.')
                   .notes("Percentages are based on an estimate of the number of children aged 3 through 5. Given the available data, this was estimated using the population of children enrolled in grades 1 and 2.");
-                var chart1_3 = divergingBar().data(data1_3).marginLeft(320).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
+                var chart1_3 = multiBar().data(data1_3).marginLeft(180).height(500).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_3").chartID("chart1_3")
+                  .xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
                   .title("Similar percentages of EL and non-EL preschoolers were enrolled in districts that provided free preschool and full-day preschool programs or services.")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .notes("Percentages are based on preschool enrollment. Districts that provided free preschool include districts that provided preschool only for free and districts that provided preschool for free or for a cost.");
                 var chart1_4 = colChart().data(data1_4).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
                   .yAxisLabel("% OF PRESCHOOLERS IN 2013–14 WHO WERE ELS")
+                  .xAxisLabel("Enrolled in districts that provided...")
                   .title("Twelve percent of children enrolled in preschool were ELs. This percentage did not vary considerably by the program cost or length, except in districts that only provided preschool at cost.")
                   .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.")
                   .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.");
@@ -472,8 +474,8 @@
                   .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
                   .title("Regardless of length of preschool offered by the district, about the same percentage of preschoolers were ELs.")
                   .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");*/
-                var chart2_1 = divergingBar().data(data2_1).marginLeft(240).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
+                var chart2_1 = multiBar().data(data2_1).marginLeft(140).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
+                  .xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
                   .title(["While the majority of ELs and non-ELs were in schools that offered Algebra I in grade 7 or 8, non-ELs were twice as likely as ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offered Physics in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
                   "While the majority of ELs and non-ELs were in schools that offered Chemistry in grades 9 through 12, non-ELs were more likely than ELs to be enrolled in the course.",
