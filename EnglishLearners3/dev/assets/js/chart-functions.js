@@ -9318,9 +9318,27 @@ function hex_map() {
 		// create hex map
 		// ref: https://www.visualcinnamon.com/2013/07/self-organizing-maps-creating-hexagonal.html
 
-		var hexRadius = /*d3.min([width/((d3.max(data, function(d) { return d.x; }) + 0.5) * Math.sqrt(3)),height/((d3.max(data, function(d) { return d.y; }) + 1/3) * 1.5)]);*/ 1;
-		var hexagonPoly = [[0,-1],[Math.sqrt(3/2),0.5],[0,1],[-Math.sqrt(3/2),0.5],[-Math.sqrt(3/2),-0.5],[0,-1],[Math.sqrt(3/2),-0.5]];
+		var h = (Math.sqrt(3)/2);
+		var hexRadius = 1;
+		var hexagonPoly = [[0,-1],[Math.sqrt(3)/2,0.5],[0,1],[-Math.sqrt(3)/2,0.5],[-Math.sqrt(3)/2,-0.5],[0,-1],[Math.sqrt(3)/2,-0.5]];
 		var hexagonPath = "m"+hexagonPoly.map(function(p){return [p[0]*hexRadius, p[1]*hexRadius].join(',')}).join('l')+"z";
+
+		var hexagons = [];
+
+		data.forEach(function(d, i) {
+			var hex_coords = [
+				state = d.state,
+				{ "x": hexRadius + d.x, "y": d.y },
+				{ "x": hexRadius/2 + d.x, "y": d.y },
+				{ "x": -hexRadius/2 + d.x, "y": d.y },
+				{ "x": -hexRadius + d.x, "y": d.y },
+				{ "x": -hexRadius/2 + d.x, "y": d.y },
+				{ "x": hexRadius/2 + d.x, "y": d.y },
+			];
+			hexagons.push(hex_coords);
+		});
+
+		console.log(hexagons);
 
 		svg.selectAll(".hexagon")
 			.data(data)
