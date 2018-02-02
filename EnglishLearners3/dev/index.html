@@ -411,10 +411,28 @@
                   .title("")
                   .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
 
-
                 d3.select("#ch1_1").call(grad_rate_chart)
                 d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
                 d3.select("#ch1_1_v3").call(grad_rate_chart_v3);
+
+            };
+        });
+
+        // hex maps
+
+        d3.csv("assets/data/map_data.csv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.x = +d.x;
+                    d.y = +d.y;
+                });
+
+                var hex_map1 = hex_map().data(data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("ch2_1");
+
+                d3.select("#ch2_1").call(hex_map1);
+                /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
+                d3.select("#ch1_1_v3").call(grad_rate_chart_v3);*/
 
             };
         });
