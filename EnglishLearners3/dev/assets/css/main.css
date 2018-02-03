@@ -5657,6 +5657,25 @@ button:hover,
     text-align: right;
 }
 
+/* hex tile map styling */
+
+.hex_map {
+  fill: #FFF;
+}
+
+.hex_map .hexagon {
+  stroke: white;
+}
+
+.hex_map .hex_name {
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.hex_map .hex_pct {
+  font: normal 13px Karla;
+}
+
 /* LEA table styling */
 
 .two_table {

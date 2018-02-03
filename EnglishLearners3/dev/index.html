@@ -424,11 +424,20 @@
             if (error) { console.log(error); }
             else {
                 data.forEach(function (d) {
+                    d.map_id = d.map_id;
                     d.x = +d.x;
                     d.y = +d.y;
+                    d.subgroup = d.subgroup;
+                    d.pct = d.pct; // note that there will be some suppressed cells, which needs to be handled in the code
+                    d.num = d.num; // assuming same suppressed issue, may not be needed in the end
+                    d.notes = d.notes;
                 });
 
-                var hex_map1 = hex_map().data(data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("ch2_1");
+                grad_rate_map = data.filter(function(d) { return d.map_id === "grad_rate"; });
+
+                var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("ch2_1")
+                  .toggles(1)
+                  .title(["This is the first map title.", "This is the second map title."]);
 
                 d3.select("#ch2_1").call(hex_map1);
                 /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
