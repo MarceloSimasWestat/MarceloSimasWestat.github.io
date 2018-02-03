@@ -9385,6 +9385,8 @@ function hex_map() {
 	// These are the default values
 
 	var	hexRadius = 40,
+			minStop = 0.6, // this is the lowest color stop; everything below this will be the first color
+			maxStop = 1, // everything above this will be the second color
 			marginTop = 20,
 			marginBottom = 20,
 			title = "Generic chart title. Update me using .title()!",
@@ -9410,8 +9412,8 @@ function hex_map() {
 
 			// convert suppressed/missing
 
-			if (d.pct === "†") { return d.pct === "-99"; }
-			if (d.pct === "-") { return d.pct === "-99"; }
+			if (d.pct === "†") { d.pct = "-99"; }
+			if (d.pct === "-") { d.pct = "-99"; }
 
 			// convert variable to numeric
 
@@ -9491,8 +9493,7 @@ function hex_map() {
 						.append("text")
 							.text(function(d) { return d; });
 
-			d3.select(this).append("br");
-
+			dom.append("br");
 			data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
 
 		}
@@ -9514,8 +9515,9 @@ function hex_map() {
 			.attr("class", "hex_map")
 			.attr("width", width_div)
 			.attr("height", height_total)
-			.append("g")
-				.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius*1.5) + ")");
+
+		var g = svg.append("g")
+			.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius*1.5) + ")");
 
 		svg.append("aria-label")
 			.text(altText);
@@ -9533,7 +9535,25 @@ function hex_map() {
 
 		var zoom = d3.behavior.zoom()
 			.scaleExtent([1, 1])
-			.on("zoom", function() { svg.attr('transform', 'translate(' + d3.event.translate + ')' + ' scale(' + d3.event.scale + ')'); });
+			.on("zoom", function() {
+        // the "zoom" event populates d3.event with an object that has
+        // a "translate" property (a 2-element Array in the form [x, y])
+        // and a numeric "scale" property
+        var e = d3.event,
+            // now, constrain the x and y components of the translation by the
+            // dimensions of the viewport
+            tx = Math.min(width_div - map_width, Math.max(e.translate[0], map_width - map_width * e.scale)),
+            ty = Math.min(marginTop + marginBottom + hexRadius, Math.max(e.translate[1], map_height - map_height * e.scale));
+        // then, update the zoom behavior's internal translation, so that
+        // it knows how to properly manipulate it on the next movement
+        zoom.translate([tx, ty]);
+        // and finally, update the <g> element's transform attribute with the
+        // correct translation and scale (in reverse order)
+        g.attr("transform", [
+          "translate(" + [tx, ty] + ")",
+          "scale(" + e.scale + ")"
+        ].join(" "));
+      });
 
 		function toggle_zoom() {
 			if (zoom_enabled === 1) { dom.select("svg").call(zoom);	}
@@ -9549,6 +9569,14 @@ function hex_map() {
 
 		xScale.domain(d3.extent(data, function(d) { return d.x; }));
 		yScale.domain(d3.extent(data, function(d) { return d.y; }));
+
+		// create color gradient
+
+		var colors = ["#9e9ac8", "#340d67"];
+
+		var color_scale = d3.scale.linear()
+			.domain([minStop, maxStop])
+			.range(colors);
 
 		// tooltips using d3-tip
 		// needs to be called before the hexagons
@@ -9569,54 +9597,53 @@ function hex_map() {
 		var hexagonPoly = [[0,-1],[Math.sqrt(3)/2,0.5],[0,1],[-Math.sqrt(3)/2,0.5],[-Math.sqrt(3)/2,-0.5],[0,-1],[Math.sqrt(3)/2,-0.5]];
 		var hexagonPath = "m" + hexagonPoly.map(function(p){return [p[0]*hexRadius, p[1]*hexRadius].join(',')}).join('l')+"z";
 
-		svg.selectAll(".hexagon")
+		// establish groups for each hexagon
+
+		var hex_group = g.selectAll(".hex_group")
 			.data(data)
 			.enter()
-				.append("path")
-					.attr("class", "hexagon")
-					.attr("d", function(d) { return "M" + xScale(d.x) + "," + yScale(d.y) + hexagonPath; })
-					.style("fill", function(d) {
+				.append("g")
+					.attr("class", "hex_group");
 
-						// fill depends on the percentage values, colors are borrowed from previous maps
+		// add hexagon shapes
 
-						if (d.pct < 0) { return "gray"; } // suppressed = gray
-						else if (d.pct < 0.7) { return "#9e9ac8"; }
-						else if (d.pct < 0.8) { return "#756bb1"; }
-						else if (d.pct < 0.9) { return "#54278f"; }
-						else { return "#340d67"; };
-
-					})
-					.style("opacity", 0)
-					.append("aria-label")
-						.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
+		hex_group.append("path")
+			.attr("class", "hexagon")
+			.attr("d", function(d) { return "M" + xScale(d.x) + "," + yScale(d.y) + hexagonPath; })
+			.style("fill", function(d) {
+				if (d.pct < 0) { return "gray"; }
+				else if (d.pct < minStop) { return colors[0]; }
+				else if (d.pct > maxStop) { return colors[1]; }
+				else { return color_scale(d.pct); };
+			})
+			.style("opacity", 0)
+			.append("aria-label")
+				.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
 
 		// add state name to hexagons
 
-		svg.selectAll(".hex_name")
-			.data(data)
-			.enter()
-				.append("text")
-					.attr("class", "hex_name")
-					.attr("x", function(d) { return xScale(d.x); })
-					.attr("y", function(d) { return yScale(d.y); })
-					.attr("dy", "-0.25em")
-					.attr("text-anchor", "middle")
-					.style("opacity", 0)
-					.text(function(d) { return d.state; });
+		hex_group.append("text")
+			.attr("class", "hex_name")
+			.attr("x", function(d) { return xScale(d.x); })
+			.attr("y", function(d) { return yScale(d.y); })
+			.attr("dy", "-0.25em")
+			.attr("text-anchor", "middle")
+			.style("opacity", 0)
+			.text(function(d) { return d.state; });
 
 		// add percentages to hexagons
 
-		svg.selectAll(".hex_pct")
-			.data(data)
-			.enter()
-				.append("text")
-					.attr("class", "hex_pct")
-					.attr("x", function(d) { return xScale(d.x); })
-					.attr("y", function(d) { return yScale(d.y); })
-					.attr("dy", "0.85em")
-					.attr("text-anchor", "middle")
-					.style("opacity", 0)
-					.text(function(d) { return formatPercent(d.pct); });
+		hex_group.append("text")
+			.attr("class", "hex_pct")
+			.attr("x", function(d) { return xScale(d.x); })
+			.attr("y", function(d) { return yScale(d.y); })
+			.attr("dy", "0.85em")
+			.attr("text-anchor", "middle")
+			.style("opacity", 0)
+			.text(function(d) {
+				if (d.pct < 0) { return "--"; }
+				else { return formatPercent(d.pct); };
+			});
 
 		// animate on scroll
 
@@ -9631,17 +9658,17 @@ function hex_map() {
 					d3.select("#" + sectionID)
 						.classed("activated", "true");
 
-					svg.selectAll(".hexagon")
+					hex_group.select(".hexagon")
 						.transition()
 							.duration(animateTime)
 							.style("opacity", 1);
 
-					svg.selectAll(".hex_name")
+					hex_group.select(".hex_name")
 						.transition()
 							.duration(animateTime)
 							.style("opacity", 1);
 
-					svg.selectAll(".hex_pct")
+					hex_group.select(".hex_pct")
 						.transition()
 							.duration(animateTime)
 							.style("opacity", 1);
@@ -9681,42 +9708,34 @@ function hex_map() {
 			// rebind data
 			// no need to do enter/exit because the # of states is not changing
 
-			svg.selectAll(".hexagon")
-				.data(data);
-
-			svg.selectAll(".hex_pct")
+			var hex_group = g.selectAll(".hex_group")
 				.data(data);
 
 			// make transitions
 
-			svg.selectAll(".hexagon")
+			hex_group.select(".hexagon")
 				.transition()
 					.duration(animateTime)
 					.style("fill", function(d) {
-
-						// fill depends on the percentage values, colors are borrowed from previous maps
-
-						if (d.pct < 0) { return "gray"; } // suppressed = gray
-						else if (d.pct < 0.7) { return "#9e9ac8"; }
-						else if (d.pct < 0.8) { return "#756bb1"; }
-						else if (d.pct < 0.9) { return "#54278f"; }
-						else { return "#340d67"; };
-
+						if (d.pct < 0) { return "gray"; }
+						else if (d.pct < minStop) { return colors[0]; }
+						else if (d.pct > maxStop) { return colors[1]; }
+						else { return color_scale(d.pct); };
 					});
 
 			// also replace aria labels
 
-			svg.selectAll(".hexagon")
+			hex_group.select(".hexagon")
 				.select("aria-label")
 				.remove();
 
-			svg.selectAll(".hexagon")
+			hex_group.select(".hexagon")
 				.append("aria-label")
 					.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
 
 			// tween percentages
 
-			svg.selectAll(".hex_pct")
+			hex_group.select(".hex_pct")
 				.transition()
 					.duration(animateTime)
 					.tween("text", function(d) {
@@ -9724,17 +9743,25 @@ function hex_map() {
 						// get current value first
 
 						var current_text = d3.select(this).text(),
-								current_value = +current_text.slice(0, -1)/100;
+								current_value;
+
+						if (current_text === "--") { current_value = 0; }
+						else { current_value = +current_text.slice(0, -1)/100; };
 
 						// interpolate and tween
 
 						var i = d3.interpolate(current_value, d.pct);
 
-						return function(t) {
-							d3.select(this).text(formatPercent(i(t)));
-						};
+						if (d.pct >= 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
+						else { d3.select(this).text("--"); };
 
 					});
+
+			// update title
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
 
 		};
 
@@ -9769,6 +9796,22 @@ function hex_map() {
 
       if (!arguments.length) return hexRadius;
       hexRadius = value;
+      return chart;
+
+  };
+
+	chart.minStop = function(value) {
+
+      if (!arguments.length) return minStop;
+      minStop = value;
+      return chart;
+
+  };
+
+	chart.maxStop = function(value) {
+
+      if (!arguments.length) return maxStop;
+      maxStop = value;
       return chart;
 
   };

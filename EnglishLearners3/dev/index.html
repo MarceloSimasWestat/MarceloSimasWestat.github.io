@@ -374,7 +374,7 @@
 
         // charts
 
-        d3.csv("assets/data/data.csv", function (error, data) {
+        d3.tsv("assets/data/data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
                 data.forEach(function (d) {
@@ -420,7 +420,7 @@
 
         // hex maps
 
-        d3.csv("assets/data/map_data.csv", function (error, data) {
+        d3.tsv("assets/data/map_data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
                 data.forEach(function (d) {
@@ -435,9 +435,12 @@
 
                 grad_rate_map = data.filter(function(d) { return d.map_id === "grad_rate"; });
 
-                var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("ch2_1")
+                var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
                   .toggles(1)
-                  .title(["This is the first map title.", "This is the second map title."]);
+                  .title([
+                    "More than 80 percent of ELs graduated within four years in only three states - Arkansas, Iowa, and West Virginia.",
+                    "In most states, more than 80 percent of non-ELs graduated within four years."
+                  ]);
 
                 d3.select("#ch2_1").call(hex_map1);
                 /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
