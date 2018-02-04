@@ -9857,7 +9857,26 @@ function hex_map() {
 			dom.select("svg")
 				.attr("width", width_div)
 
+			// re-center the map
+
 			g.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius) + ")");
+
+			// update zoom function
+
+			dom.select("svg").on(".zoom", null);
+
+			var zoom = d3.behavior.zoom()
+				.scaleExtent([1, 1])
+				.on("zoom", function() {
+
+					// this limits panning to horizontal only
+					// + marginLeft needed to prevent jerkiness on initial pan
+
+					g.attr("transform", "translate(" + (d3.event.translate[0]+marginLeft) + "," + (marginTop + hexRadius) + ")");
+
+					// should eventually explore constraining the panning
+
+				});
 
 			check_zoom();
 			toggle_zoom();
