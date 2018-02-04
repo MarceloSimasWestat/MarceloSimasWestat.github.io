@@ -9422,10 +9422,16 @@ function hex_map() {
 
 			// convert suppressed/missing
 
-			if (d.pct === "†") { d.pct = "-99"; }
-			if (d.pct === "-") { d.pct = "-99"; }
+			if (d.pct === "†") {
+				d.pct = "-99";
+				d.symbol = "†";
+			};
+			if (d.pct === "-") {
+				d.pct = "-99";
+				d.symbol = "-";
+			};
 
-			// convert variable to numeric
+			// convert percentage to numeric
 
 			d.pct = +d.pct;
 
@@ -9713,7 +9719,7 @@ function hex_map() {
 			.attr("text-anchor", "middle")
 			.style("opacity", 0)
 			.text(function(d) {
-				if (d.pct < 0) { return "--"; }
+				if (d.pct < 0) { return d.symbol; }
 				else { return formatPercent(d.pct); };
 			});
 
@@ -9823,15 +9829,15 @@ function hex_map() {
 						var current_text = d3.select(this).text(),
 								current_value;
 
-						if (current_text === "--") { current_value = 0; }
-						else { current_value = +current_text.slice(0, -1)/100; };
+						current_value = +current_text.slice(0, -1)/100;
+						if (isNaN(current_value)) { current_value = 0; };
 
 						// interpolate and tween
 
 						var i = d3.interpolate(current_value, d.pct);
 
 						if (d.pct >= 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
-						else { d3.select(this).text("--"); };
+						else { d3.select(this).text(function(d) { return d.symbol; }); };
 
 					});
 

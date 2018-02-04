@@ -100,4 +100,4 @@ grad_rate	WI	6	2.5	Non-ELs	0.884
 grad_rate	WV	8	4	ELs	0.86
 grad_rate	WV	8	4	Non-ELs	0.865
 grad_rate	WY	3.5	3.25	ELs	0.64
-grad_rate	WY	3.5	3.25	Non-ELs	0.793		
+grad_rate	WY	3.5	3.25	Non-ELs	0.793
