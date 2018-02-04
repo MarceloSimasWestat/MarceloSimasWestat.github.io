@@ -5564,6 +5564,7 @@ function multiBar() {
 		var selected_val = button_vals[0];
 		var data_all = data;
 		var titles_all = title;
+		var altText_all = altText;
 
 		if (toggles == 1) {
 
@@ -5584,8 +5585,7 @@ function multiBar() {
 							else { return false; };
 						})
 						.attr("value", function(d) { return d; })
-						.attr("title", function(d, i) { return title[i]; })
-						.on("click", function(d) {
+						.on("click", function(d, i) {
 
 							d3.select("#buttons" + chartID)
 								.selectAll(".filterButton")
@@ -5595,7 +5595,8 @@ function multiBar() {
 								.classed("buttonSelected", true);
 
 							selected_val = d3.select(this).property("value");
-							title = d3.select(this).property("title");
+							title = titles_all[i];
+							altText = altText_all[i];
 							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
 
 							updateData();
@@ -5635,7 +5636,10 @@ function multiBar() {
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
 		svg.append("aria-label")
-			.text(altText);
+			.text(function() {
+				if (toggles == 1) { return altText[0]; }
+				else { return altText; };
+			});
 
 		// tooltips using d3-tip
 
@@ -5971,6 +5975,12 @@ function multiBar() {
 				.selectAll(".tick text")
 					.call(wrapY, marginLeft);
 
+			svg.select("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
 			d3.select("#" + sectionID)
 				.select(".title")
 				.text(title);
@@ -6117,14 +6127,14 @@ function multiBar() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        if (typeof updateData === 'function') updateData();
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      if (typeof updateData === 'function') updateData();
+      return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -9385,7 +9395,7 @@ function hex_map() {
 	// These are the default values
 
 	var	hexRadius = 40,
-			minStop = 0.6, // this is the lowest color stop; everything below this will be the first color
+			minStop = 0, // this is the lowest color stop; everything below this will be the first color
 			maxStop = 1, // everything above this will be the second color
 			marginTop = 20,
 			marginBottom = 20,
@@ -9440,7 +9450,7 @@ function hex_map() {
 				margin_horizontal = width_div - map_width,
 				marginLeft = margin_horizontal/2,
 				marginRight = margin_horizontal/2,
-				height_total = map_height + marginTop + marginBottom + hexRadius*3;
+				height_total = map_height + marginTop + marginBottom + hexRadius*2;
 
 		// begin construction -- identify container
 
@@ -9454,6 +9464,7 @@ function hex_map() {
 		var subgroup_selected = button_vals[0];
 		var data_all = data;
 		var titles_all = title;
+		var altText_all = altText;
 
 		if (toggles == 1) {
 
@@ -9473,8 +9484,7 @@ function hex_map() {
 							else { return false; };
 						})
 						.attr("value", function(d) { return d; })
-						.attr("title", function(d, i) { return title[i]; })
-						.on("click", function(d) {
+						.on("click", function(d, i) {
 
 							d3.select("#buttons" + chartID)
 								.selectAll(".filterButton")
@@ -9484,7 +9494,8 @@ function hex_map() {
 								.classed("buttonSelected", true);
 
 							subgroup_selected = d3.select(this).property("value");
-							title = d3.select(this).property("title");
+							title = titles_all[i];
+							altText = altText_all[i];
 							data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
 
 							updateData();
@@ -9505,9 +9516,71 @@ function hex_map() {
 			.attr("class", "title")
 			.append("text")
 				.text(function() {
-					if (toggles == 1) { return title[0]; }
+					if (toggles === 1) { return title[0]; }
 					else { return title; };
 				});
+
+		// add legend
+
+		var legend = dom.append("div")
+			.attr("class", "hex_map_legend_container");
+
+		// first append the < minStop div
+		// this div hides if the minStop = 0
+
+		var legend_minStop = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container")
+			.style("display", function() {
+				if (minStop === 0) { return "none"; }
+				else { return "block"; };
+			});
+
+		legend_minStop.append("div")
+			.attr("class", "hex_map_legend_stop")
+			.style("background-color", "#9e9ac8");
+
+		legend_minStop.append("div")
+			.attr("class", "hex_map_legend_text")
+			.text("< " + formatPercent(minStop));
+
+		// then append the gradient div
+
+		var legend_gradient = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container");
+
+		legend_gradient.append("div")
+			.attr("class", "hex_map_legend_gradient")
+			.style("background", "linear-gradient(to right, #9e9ac8, #340d67)");
+
+		var legend_gradient_text = legend_gradient.append("div")
+			.attr("class", "hex_map_legend_gradient_text");
+
+		legend_gradient_text.append("div")
+			.style("text-align", "left")
+			.text(formatPercent(minStop));
+
+		legend_gradient_text.append("div")
+			.style("text-align", "right")
+			.text(formatPercent(maxStop));
+
+		// and finally append the > maxStop div
+		// this div hides if the maxStop = 1
+
+		var legend_maxStop = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container")
+			.style("display", function() {
+				if (maxStop === 1) { return "none"; }
+				else { return "block"; };
+			});
+
+		legend_maxStop.append("div")
+			.attr("class", "hex_map_legend_stop")
+			.style("height", "15px")
+			.style("background-color", "#340d67");
+
+		legend_maxStop.append("div")
+			.attr("class", "hex_map_legend_text")
+			.text("> " + formatPercent(maxStop));
 
 		// add svg and alt-text (aria-label)
 
@@ -9516,13 +9589,17 @@ function hex_map() {
 			.attr("width", width_div)
 			.attr("height", height_total)
 
-		var g = svg.append("g")
-			.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius*1.5) + ")");
-
 		svg.append("aria-label")
-			.text(altText);
+			.text(function() {
+				if (toggles === 1) { return altText[0]; }
+				else { return altText; };
+			});
 
-		// define zoom so that if below a certain screen width zooming (panning) is allowed
+		var g = svg.append("g");
+
+		g.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius) + ")");
+
+		// define zoom so that panning is allowed if screen width is too narrow
 
 		var zoom_enabled = 0;
 
@@ -9536,27 +9613,22 @@ function hex_map() {
 		var zoom = d3.behavior.zoom()
 			.scaleExtent([1, 1])
 			.on("zoom", function() {
-        // the "zoom" event populates d3.event with an object that has
-        // a "translate" property (a 2-element Array in the form [x, y])
-        // and a numeric "scale" property
-        var e = d3.event,
-            // now, constrain the x and y components of the translation by the
-            // dimensions of the viewport
-            tx = Math.min(width_div - map_width, Math.max(e.translate[0], map_width - map_width * e.scale)),
-            ty = Math.min(marginTop + marginBottom + hexRadius, Math.max(e.translate[1], map_height - map_height * e.scale));
-        // then, update the zoom behavior's internal translation, so that
-        // it knows how to properly manipulate it on the next movement
-        zoom.translate([tx, ty]);
-        // and finally, update the <g> element's transform attribute with the
-        // correct translation and scale (in reverse order)
-        g.attr("transform", [
-          "translate(" + [tx, ty] + ")",
-          "scale(" + e.scale + ")"
-        ].join(" "));
-      });
+
+				// this limits panning to horizontal only
+				// + marginLeft needed to prevent jerkiness on initial pan
+
+				g.attr("transform", "translate(" + (d3.event.translate[0]+marginLeft) + "," + (marginTop + hexRadius) + ")");
+
+				// should eventually explore constraining the panning
+
+			});
 
 		function toggle_zoom() {
-			if (zoom_enabled === 1) { dom.select("svg").call(zoom);	}
+			if (zoom_enabled === 1) {
+				dom.select("svg")
+					.call(zoom)
+					.on("wheel.zoom", null); // disable mousewheel zoom
+			}
 			else { dom.select("svg").on(".zoom", null); };
 		};
 
@@ -9725,6 +9797,12 @@ function hex_map() {
 
 			// also replace aria labels
 
+			svg.selectAll("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
 			hex_group.select(".hexagon")
 				.select("aria-label")
 				.remove();
@@ -9779,9 +9857,7 @@ function hex_map() {
 			dom.select("svg")
 				.attr("width", width_div)
 
-			dom.select("svg")
-				.select("g")
-					.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius*1.5) + ")");
+			g.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius) + ")");
 
 			check_zoom();
 			toggle_zoom();

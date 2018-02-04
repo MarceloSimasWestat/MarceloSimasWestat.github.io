@@ -5676,6 +5676,37 @@ button:hover,
   font: normal 13px Karla;
 }
 
+.hex_map_legend_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font: normal 13px Karla;
+}
+
+.hex_map_legend_stop_container {
+}
+
+.hex_map_legend_stop {
+  height: 15px;
+  width: 75px;
+  border: 1px solid white;
+}
+
+.hex_map_legend_gradient {
+  height: 15px;
+  width: 200px;
+  border: 1px solid white;
+}
+
+.hex_map_legend_text {
+  text-align: center;
+}
+
+.hex_map_legend_gradient_text {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* LEA table styling */
 
 .two_table {

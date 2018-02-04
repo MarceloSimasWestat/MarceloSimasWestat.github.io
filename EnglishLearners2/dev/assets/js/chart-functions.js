@@ -5562,6 +5562,7 @@ function multiBar() {
 		var selected_val = button_vals[0];
 		var data_all = data;
 		var titles_all = title;
+		var altText_all = altText;
 
 		if (toggles == 1) {
 
@@ -5582,8 +5583,7 @@ function multiBar() {
 							else { return false; };
 						})
 						.attr("value", function(d) { return d; })
-						.attr("title", function(d, i) { return title[i]; })
-						.on("click", function(d) {
+						.on("click", function(d, i) {
 
 							d3.select("#buttons" + chartID)
 								.selectAll(".filterButton")
@@ -5593,7 +5593,8 @@ function multiBar() {
 								.classed("buttonSelected", true);
 
 							selected_val = d3.select(this).property("value");
-							title = d3.select(this).property("title");
+							title = titles_all[i];
+							altText = altText_all[i];
 							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
 
 							updateData();
@@ -5633,7 +5634,10 @@ function multiBar() {
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
 		svg.append("aria-label")
-			.text(altText);
+			.text(function() {
+				if (toggles == 1) { return altText[0]; }
+				else { return altText; };
+			});
 
 		// tooltips using d3-tip
 
@@ -5969,6 +5973,12 @@ function multiBar() {
 				.selectAll(".tick text")
 					.call(wrapY, marginLeft);
 
+			svg.select("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
 			d3.select("#" + sectionID)
 				.select(".title")
 				.text(title);
@@ -6115,14 +6125,14 @@ function multiBar() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        if (typeof updateData === 'function') updateData();
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      if (typeof updateData === 'function') updateData();
+      return chart;
 
-    };
+  };
 
 	return chart;
 

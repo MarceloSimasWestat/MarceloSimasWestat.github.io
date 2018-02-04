@@ -437,10 +437,17 @@
 
                 var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
                   .toggles(1)
+                  .minStop(0.6).maxStop(0.8)
                   .title([
                     "More than 80 percent of ELs graduated within four years in only three states - Arkansas, Iowa, and West Virginia.",
                     "In most states, more than 80 percent of non-ELs graduated within four years."
-                  ]);
+                  ])
+                  .altText([
+                    "This map displays the percentage of ELs graduating within four years in each state in 2014–15.",
+                    "This map displays the percentage of non-ELs graduating within four years in each state in 2014–15."
+                  ])
+                  .notes("Notes for this map would go here, like missing data, etc.")
+                  .source("The source for these data would go here.");
 
                 d3.select("#ch2_1").call(hex_map1);
                 /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
