@@ -425,6 +425,8 @@
             else {
                 data.forEach(function (d) {
                     d.map_id = d.map_id;
+                    d.st_abbr = d.st_abbr;
+                    d.state = d.state;
                     d.x = +d.x;
                     d.y = +d.y;
                     d.subgroup = d.subgroup;
@@ -436,8 +438,9 @@
                 grad_rate_map = data.filter(function(d) { return d.map_id === "grad_rate"; });
 
                 var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
-                  .toggles(1)
-                  .minStop(0.6).maxStop(0.8)
+                  .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
+                  .minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends
+                  .toggles(1).state_highlight(1) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
                   .title([
                     "More than 80 percent of ELs graduated within four years in only three states - Arkansas, Iowa, and West Virginia.",
                     "In most states, more than 80 percent of non-ELs graduated within four years."

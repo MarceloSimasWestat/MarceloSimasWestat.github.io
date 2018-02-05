@@ -9394,7 +9394,9 @@ function hex_map() {
 	// Options accessible to the caller
 	// These are the default values
 
-	var	hexRadius = 40,
+	var	hexRadius = 40, // default hexagon size
+			width_multiplier = 1.59, // works with the default hexagon size to properly space the hexagons; if hexRadius is not 40, this may need to be tweaked
+			height_multiplier = 1.68, // works with the default hexagon size to properly space the hexagons; if hexRadius is not 40, this may need to be tweaked
 			minStop = 0, // this is the lowest color stop; everything below this will be the first color
 			maxStop = 1, // everything above this will be the second color
 			marginTop = 20,
@@ -9403,7 +9405,8 @@ function hex_map() {
 			altText = "Fill in alt text for screen readers!",
 			notes = "",
 			source = "",
-			toggles = 0,
+			toggles = 0, // set to 1 to enable subgroup button toggles
+			state_highlight = 0, // set to 1 to enable state highlight dropdown
 			animateTime = 1000,
 			containerID = [],
 			subcontainerID = [],
@@ -9447,8 +9450,8 @@ function hex_map() {
 		var map_columns = d3.max(data, function(d) { return d.x; }),
 				map_rows = d3.max(data, function(d) { return d.y; });
 
-		var map_width = map_columns*(hexRadius*1.59), // these specific multipliers were determined by trial and error
-				map_height = map_rows*(hexRadius*1.68);
+		var map_width = map_columns*(hexRadius*width_multiplier),
+				map_height = map_rows*(hexRadius*height_multiplier);
 
 		// calculate width margins, add top and bottom margin to get total height
 
@@ -9526,9 +9529,13 @@ function hex_map() {
 					else { return title; };
 				});
 
+		var legend_dropdown = dom.append("div")
+			.attr("class", "hex_map_legend_dropdown_container")
+			.style("opacity", 0);
+
 		// add legend
 
-		var legend = dom.append("div")
+		var legend = legend_dropdown.append("div")
 			.attr("class", "hex_map_legend_container");
 
 		// first append the < minStop div
@@ -9587,6 +9594,43 @@ function hex_map() {
 		legend_maxStop.append("div")
 			.attr("class", "hex_map_legend_text")
 			.text("> " + formatPercent(maxStop));
+
+		// add state dropdown for highlighting if needed
+
+		if (state_highlight === 1) {
+
+			// define states
+
+			var state_list = d3.map(data, function(d) { return d.state; }).keys();
+
+			// add dropdown menu
+
+			var state_dropdown_container = legend_dropdown.append("div")
+				.attr("class", "hex_map_state_selector");
+
+			state_dropdown_container.append("div")
+				.text("Select a state to highlight: ");
+
+			var state_dropdown = state_dropdown_container.append("div")
+				.append("select")
+					.attr("id", "dd" + chartID)
+					.on("change." + chartID, function() {
+						highlight();
+					});
+
+			state_dropdown.append("option")
+				.text("All states")
+				.attr("value", "All states");
+
+			state_dropdown.selectAll("option.state")
+				.data(state_list)
+				.enter()
+				.append("option")
+					.attr("class", "state")
+					.attr("value", function(d) { return d; })
+					.text(function(d) { return d; });
+
+		};
 
 		// add svg and alt-text (aria-label)
 
@@ -9707,7 +9751,7 @@ function hex_map() {
 			.attr("dy", "-0.25em")
 			.attr("text-anchor", "middle")
 			.style("opacity", 0)
-			.text(function(d) { return d.state; });
+			.text(function(d) { return d.st_abbr; });
 
 		// add percentages to hexagons
 
@@ -9735,6 +9779,11 @@ function hex_map() {
 
 					d3.select("#" + sectionID)
 						.classed("activated", "true");
+
+					dom.select(".hex_map_legend_dropdown_container")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1);
 
 					hex_group.select(".hexagon")
 						.transition()
@@ -9849,6 +9898,33 @@ function hex_map() {
 
 		};
 
+		// highlight
+
+		function highlight() {
+
+			var selected_state = d3.select("#dd" + chartID).property("value");
+
+			hex_group.select(".hexagon")
+				.transition()
+					.duration(animateTime)
+					.style("opacity", function(d) {
+						if (selected_state === "All states") { return 1; }
+						else if (d.state === selected_state) { return 1; }
+						else { return 0.15; };
+					})
+					.style("stroke", function(d) {
+						if (selected_state === "All states") { return "#FFF"; }
+						else if (d.state === selected_state) { return "#160633"; }
+						else { return "#FFF"; };
+					})
+					.style("stroke-width", function(d) {
+						if (selected_state === "All states") { return 1; }
+						else if (d.state === selected_state) { return 2; }
+						else { return 1; };
+					});
+
+		};
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -9897,6 +9973,22 @@ function hex_map() {
 
       if (!arguments.length) return hexRadius;
       hexRadius = value;
+      return chart;
+
+  };
+
+	chart.width_multiplier = function(value) {
+
+      if (!arguments.length) return width_multiplier;
+      width_multiplier = value;
+      return chart;
+
+  };
+
+	chart.height_multiplier = function(value) {
+
+      if (!arguments.length) return height_multiplier;
+      height_multiplier = value;
       return chart;
 
   };
@@ -9961,6 +10053,14 @@ function hex_map() {
 
 		if (!arguments.length) return toggles;
 		toggles = value;
+		return chart;
+
+	};
+
+	chart.state_highlight = function(value) {
+
+		if (!arguments.length) return state_highlight;
+		state_highlight = value;
 		return chart;
 
 	};

@@ -5676,11 +5676,19 @@ button:hover,
   font: normal 13px Karla;
 }
 
+.hex_map_legend_dropdown_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font: normal 13px Karla;
+}
+
 .hex_map_legend_container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  font: normal 13px Karla;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .hex_map_legend_stop_container {
@@ -5705,6 +5713,27 @@ button:hover,
 .hex_map_legend_gradient_text {
   display: flex;
   justify-content: space-between;
+}
+
+.hex_map_state_selector {
+  align-content: space-between;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.hex_map_state_selector select {
+  border: 1px solid slategray;
+  height: 15px;
+  font: 12px "Karla", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.hex_map_state_selector option {
+  background: #FFF;
+  color: #000;
 }
 
 /* LEA table styling */
