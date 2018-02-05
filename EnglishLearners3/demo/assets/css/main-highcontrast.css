@@ -5499,6 +5499,210 @@ button:hover,
     stroke: #000;
 }
 
+/* Multi line chart styling */
+
+.state_selector {
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.state_selector select {
+  border: 1px solid slategray;
+  height: auto;
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+
+.state_selector > div {
+  width: 200px;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.state_selector option {
+  background: #FFF;
+  color: #000;
+}
+
+.multi_line path {
+  fill: none;
+}
+
+.multi_line .state {
+  stroke: rgba(119, 136, 153, 0.25);
+  stroke-width: 1;
+  /*transition: stroke 1s, stroke-width 1s;*/
+}
+
+.multi_line .state.highlighted {
+  stroke: #A6426C;
+  stroke-width: 2;
+  opacity: 1;
+  /*transition: stroke-width 1s, stroke 1s, opacity 1s;*/
+}
+
+.multi_line .national {
+  stroke: #5D3EA8;
+  stroke-width: 2;
+}
+
+/*.multi_line .national:hover {
+  opacity: 0.65;
+}*/
+
+.multi_line .dot.national {
+  fill: #5D3EA8;
+}
+
+.multi_line .dot.national:hover {
+  opacity: 0.65;
+}
+
+.multi_line .dot.state:hover {
+  opacity: 0.65;
+}
+
+.multi_line .dot_text {
+  font: normal 13px Karla;
+  stroke-width: 0;
+}
+
+.multi_line .dot_text.national {
+  fill: #5D3EA8;
+  font-weight: bold;
+}
+
+.multi_line .dot_text.state {
+  fill: rgba(119, 136, 153, 0.25);
+}
+
+.multi_line .dot_text.state.highlighted {
+  fill: #A6426C;
+  font-weight: bold;
+  stroke-width: 0;
+  /*stroke: #FFF;*/
+}
+
+.multi_line .axis path,
+.multi_line .axis line {
+    fill: none;
+    stroke: #1A1C20;
+    shape-rendering: crispEdges;
+}
+
+.multi_line .y.axis {
+    font: 400 13px Inconsolata;
+    fill: rgba(26, 28, 32, .65);
+}
+
+    .multi_line .y.axis path {
+        display: none;
+    }
+
+    .multi_line .y.axis line {
+        stroke: rgba(26, 28, 32, 0.25);
+        stroke-dasharray: 1,1;
+    }
+
+.multi_line .x.axis {
+    font: normal 13px Karla;
+    color: #1A1C20;
+}
+
+    .multi_line .x.axis path {
+        stroke: #1A1C20;
+        stroke-width: 1.5px;
+    }
+
+.multi_line .title {
+    font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+    color: #1A1C20;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* hex tile map styling */
+
+.hex_map {
+  fill: #FFF;
+}
+
+.hex_map .hexagon {
+  stroke: white;
+}
+
+.hex_map .hex_name {
+  font: 400 15px "Karla", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.hex_map .hex_pct {
+  font: normal 13px Karla;
+}
+
+.hex_map_legend_dropdown_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font: normal 13px Karla;
+}
+
+.hex_map_legend_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.hex_map_legend_stop_container {
+}
+
+.hex_map_legend_stop {
+  height: 15px;
+  width: 75px;
+  border: 1px solid white;
+}
+
+.hex_map_legend_gradient {
+  height: 15px;
+  width: 200px;
+  border: 1px solid white;
+}
+
+.hex_map_legend_text {
+  text-align: center;
+}
+
+.hex_map_legend_gradient_text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hex_map_state_selector {
+  align-content: space-between;
+  display: flex;
+  margin-top: 20px;
+  /*margin-left: 10px;*/
+  margin-right: 10px;
+}
+
+.hex_map_state_selector select {
+  border: 1px solid slategray;
+  height: 16px;
+  font: 12px "Karla", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.hex_map_state_selector option {
+  background: #FFF;
+  color: #000;
+}
+
 /* Styling tooltips for individual graph types */
 
 .d3-tip {

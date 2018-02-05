@@ -179,8 +179,12 @@
                 <div style="margin-bottom: 1.5em" class="chart"></div>
                 <div></div>
                 <div id="ch1_1"></div>
-                <div id="ch1_1_v2"></div>
-                <div id="ch1_1_v3"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
+                <div id="ch1_2"></div>
+                <div id="ch1_2_v2"></div>
+                <div id="ch1_2_v3"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
                 </p>
@@ -396,24 +400,24 @@
 
                 grad_rate_data = data.filter(function(d) { return d.chart === "grad_rate"; });
 
-                var grad_rate_chart = multi_line().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                var grad_rate_chart = multi_line().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
                   .yAxisLabel("% OF ELS GRADUATING")
                   .title("The graduation rate for ELs has risen since 2010–11.")
                   .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
                   /*.notes("Less than 1 percent of all students are Pacific Islander.")
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
-                var grad_rate_chart_v2 = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1_v2").chartID("chart1_1_v2")
+                var grad_rate_chart_v2 = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2_v2").chartID("chart1_2_v2")
                   .yAxisLabel("% OF ELS GRADUATING")
                   .title("")
                   .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
-                var grad_rate_chart_v3 = multi_line_v3().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1_v3").chartID("chart1_1_v3")
+                var grad_rate_chart_v3 = multi_line_v3().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2_v3").chartID("chart1_2_v3")
                   .yAxisLabel("% OF ELS GRADUATING")
                   .title("")
                   .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
 
-                d3.select("#ch1_1").call(grad_rate_chart)
-                d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
-                d3.select("#ch1_1_v3").call(grad_rate_chart_v3);
+                d3.select("#ch1_2").call(grad_rate_chart)
+                d3.select("#ch1_2_v2").call(grad_rate_chart_v2);
+                d3.select("#ch1_2_v3").call(grad_rate_chart_v3);
 
             };
         });
@@ -437,7 +441,7 @@
 
                 grad_rate_map = data.filter(function(d) { return d.map_id === "grad_rate"; });
 
-                var hex_map1 = hex_map().data(grad_rate_map).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
+                var hex_map1 = hex_map().data(grad_rate_map).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
                   .minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends
                   .toggles(1).state_highlight(1) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
@@ -455,7 +459,7 @@
                   ])
                   .source("The source for these data would go here.");
 
-                d3.select("#ch2_1").call(hex_map1);
+                d3.select("#ch1_1").call(hex_map1);
                 /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
                 d3.select("#ch1_1_v3").call(grad_rate_chart_v3);*/
 

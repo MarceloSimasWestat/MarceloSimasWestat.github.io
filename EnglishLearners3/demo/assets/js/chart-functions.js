@@ -1614,6 +1614,8 @@ function smBarChart() {
 
 // Column chart function
 
+// Column chart function
+
 function colChart() {
 
 	// Options accessible to the caller
@@ -1627,6 +1629,7 @@ function colChart() {
 		animateTime = 1000,
 		colWidth = 15,
 		yMax = 1,
+		xAxisLabel = "",
 		yAxisLabel = "",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
@@ -1745,7 +1748,7 @@ function colChart() {
 		var marginBottomAdj;
 
 		function marginBottomAdjustment() {
-			marginBottomAdj = tspanMax * marginBottom;
+			marginBottomAdj = tspanMax * marginBottom*2;
 		};
 
 		marginBottomAdjustment();
@@ -1765,7 +1768,7 @@ function colChart() {
 		// y axis
 
 		var yScale = d3.scale.linear().range([heightAdj, 0]).domain([0, yMax]);
-		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(Math.max(heightAdj/100, 2));
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(formatValueAxis).tickSize(-1 * widthAdj).ticks(5);
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -1825,6 +1828,14 @@ function colChart() {
 			.call(xAxis)
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
+
+		svg.append("text")
+			.attr("class", "x axis")
+			.attr("x", widthAdj/2)
+			.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+			.attr("aria-hidden", "true")
+			.attr("text-anchor", "middle")
+			.text(xAxisLabel);
 
 		// notes and sources
 
@@ -1892,9 +1903,17 @@ function colChart() {
 				.selectAll(".tick text")
 					.call(wrap, xScale.rangeBand());
 
+			svg.append("text")
+				.attr("class", "x axis")
+				.attr("x", widthAdj/2)
+				.attr("y", heightAdj + (tspanMax*marginBottom) + marginBottom)
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "middle")
+				.text(xAxisLabel);
+
 			// redraw the y axis
 
-			yScale.range([heightAdj, 0]);
+			yScale.range([heightAdj, 0]).ticks(Math.max(heightAdj/100, 2));
 
 			dom.selectAll(".y.axis")
 				.remove();
@@ -1903,6 +1922,14 @@ function colChart() {
 				.attr("class", "y axis")
 				.attr("aria-hidden", "true")
 				.call(yAxis);
+
+			svg.append("text")
+				.attr("class", "y axis")
+				.attr("x", -15)
+				.attr("y", "-2.1em")
+				.attr("aria-hidden", "true")
+				.attr("text-anchor", "start")
+				.text(yAxisLabel);
 
 			svg.selectAll("rect.column")
 				.attr("x", function(d, i) { return xScale(d.group) + (xScale.rangeBand() / 2) - (colWidth / 2); })
@@ -1998,6 +2025,14 @@ function colChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
 		return chart;
 
 	};
@@ -5494,10 +5529,12 @@ function multiBar() {
 		marginBottom = 60,
 		animateTime = 1000,
 		barWidth = 15,
+		xAxisLabel = "DEFINE X AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		notes = "",
 		source = "",
+		toggles = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -5511,7 +5548,7 @@ function multiBar() {
 
 		var	formatNumber = d3.format(",f"),
 			formatNumberD = d3.format(",.1f"),
-			formatPercent = d3.format(",%"); // 6/14/17: Changed to remove rounding because figures were already rounded
+			formatPercent = d3.format(",.1%"); // 6/14/17: Changed to remove rounding because figures were already rounded
 
 		// margins; adjust width and height to account for margins
 
@@ -5521,11 +5558,69 @@ function multiBar() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.chartlevel; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+		var altText_all = altText;
+
+		if (toggles == 1) {
+
+			// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.on("click", function(d, i) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = titles_all[i];
+							altText = altText_all[i];
+							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+		}
+		else {};
+
 		// chart title
 
 		d3.select(this).append("div")
-			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title + "</span>");
+			.attr("class", "title")
+			.append("text")
+				.text(function() {
+					if (toggles == 1) { return title[0]; }
+					else { return title; };
+				});
 
 		// selections
 
@@ -5541,7 +5636,10 @@ function multiBar() {
 				.attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
 		svg.append("aria-label")
-			.text(altText);
+			.text(function() {
+				if (toggles == 1) { return altText[0]; }
+				else { return altText; };
+			});
 
 		// tooltips using d3-tip
 
@@ -5550,7 +5648,7 @@ function multiBar() {
 			.direction("e")
 			.offset([0, 10])
 			.html(function(d) {
-				return d.level + ": " + formatPercent(d.pct);
+				return d.level + ": " + formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
 			});
 
 		svg.call(tipBar);
@@ -5617,7 +5715,7 @@ function multiBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF TOTAL IN 2014–15");
+			.text(xAxisLabel);
 
 		/*svg.append("text")
 			.attr("id", "xAxisT_b")
@@ -5658,8 +5756,7 @@ function multiBar() {
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + "had " + d.group + " concentrations of ELs.";
-					});
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -5691,6 +5788,10 @@ function multiBar() {
 			.transition()
 				.duration(animateTime)
 				.style("opacity", 1);
+
+		svg.select(".y.axis")
+			.selectAll(".tick text")
+				.call(wrapY, marginLeft);
 
 		// legend
 
@@ -5813,6 +5914,79 @@ function multiBar() {
 
 		});
 
+		// update data function
+
+		function updateData() {
+
+			data_nest = d3.nest()
+				.key(function(d) { return d.group; })
+				.entries(data);
+
+			data_levels = d3.nest()
+				.key(function(d) { return d.level; })
+				.entries(data);
+
+			// update y-axis
+
+			yScale0.domain(data_nest.map(function(d) { return d.key; }));
+
+			svg.selectAll(".group")
+				.remove();
+
+			group = svg.selectAll(".group")
+				.data(data_nest, function(d) { return d.key; });
+
+			group.enter()
+				.append("g")
+					.attr("class", "group")
+					.attr("transform", function(d) { return "translate(0," + yScale0(d.key) + ")"; });
+
+			levelBars = group.selectAll(".bar")
+				.data(function(d) { return d.values; });
+
+			levelBars.enter()
+				.append("rect")
+					.attr("class", function(d) { return "bar" })
+					.attr("x", 0)
+					.attr("width", 0)
+					.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
+					.attr("height", 0)
+					.style("fill", function(d) { return color(d.level); })
+					.on("mouseover", tipBar.show)
+					.on("mouseout", tipBar.hide)
+					.transition()
+						.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct); })
+						.attr("height", barWidth);
+
+			svg.selectAll(".bar")
+				.append("aria-label")
+					.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + " of " + d.level + ", or " + formatNumber(d.num) + " " + d.level + ", were " + d.group;	});
+
+			svg.select(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			svg.select(".y.axis")
+				.selectAll(".tick text")
+					.call(wrapY, marginLeft);
+
+			svg.select("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
+
 		});
 
 	};
@@ -5873,6 +6047,14 @@ function multiBar() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -5901,6 +6083,14 @@ function multiBar() {
 
 		if (!arguments.length) return source;
 		source = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
 		return chart;
 
 	};
@@ -5937,14 +6127,14 @@ function multiBar() {
 
 	};
 
-    chart.data = function(value) {
+  chart.data = function(value) {
 
-        if (!arguments.length) return data;
-        data = value;
-        if (typeof updateData === 'function') updateData();
-        return chart;
+      if (!arguments.length) return data;
+      data = value;
+      if (typeof updateData === 'function') updateData();
+      return chart;
 
-    };
+  };
 
 	return chart;
 
@@ -7363,7 +7553,10 @@ function multi_line() {
 
 		// domains
 
-		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		var years = d3.map(data, function(d) { return d.year; }).keys();
+		var years_latest = years[years.length - 1];
+
+		xScale.domain(years);
 		yScale.domain([0, 1]);
 
 		// axes
@@ -7471,7 +7664,7 @@ function multi_line() {
 			.append("text")
 				.attr("class", "dot_text")
 				.classed("remove", function(d) {
-					if (d.year !== "2014-15") { return true; }
+					if (d.year !== years_latest) { return true; }
 					else { return false; };
 				})
 				.classed("state", function(d) {
@@ -7581,7 +7774,7 @@ function multi_line() {
 				.append("text")
 					.attr("class", "dot_text")
 					.classed("remove", function(d) {
-						if (d.year !== "2014-15") { return true; }
+						if (d.year !== years_latest) { return true; }
 						//if (d.state !== selected_state) { return true; }
 						else { return false; };
 					})
@@ -8013,7 +8206,10 @@ function multi_line_v2() {
 
 		// domains
 
-		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		var years = d3.map(data, function(d) { return d.year; }).keys();
+		var years_latest = years[years.length - 1];
+
+		xScale.domain(years);
 		yScale.domain([0, 1]);
 
 		// axes
@@ -8121,7 +8317,7 @@ function multi_line_v2() {
 			.append("text")
 				.attr("class", "dot_text")
 				.classed("remove", function(d) {
-					if (d.year !== "2014-15") { return true; }
+					if (d.year !== years_latest) { return true; }
 					if (d.state !== "United States") { return true; }
 					else { return false; };
 				})
@@ -8232,7 +8428,7 @@ function multi_line_v2() {
 				.append("text")
 					.attr("class", "dot_text")
 					.classed("remove", function(d) {
-						if (d.year !== "2014-15") { return true; }
+						if (d.year !== years_latest) { return true; }
 						if (d.state !== selected_state) { return true; }
 						else { return false; };
 					})
@@ -8664,7 +8860,10 @@ function multi_line_v3() {
 
 		// domains
 
-		xScale.domain(d3.map(data, function(d) { return d.year; }).keys());
+		var years = d3.map(data, function(d) { return d.year; }).keys();
+		var years_latest = years[years.length - 1];
+
+		xScale.domain(years);
 		yScale.domain([0, 1]);
 
 		// axes
@@ -8776,7 +8975,7 @@ function multi_line_v3() {
 			.append("text")
 				.attr("class", "dot_text")
 				.classed("remove", function(d) {
-					if (d.year !== "2014-15") { return true; }
+					if (d.year !== years_latest) { return true; }
 					if (d.state !== "United States") { return true; }
 					else { return false; };
 				})
@@ -8891,7 +9090,7 @@ function multi_line_v3() {
 				.append("text")
 					.attr("class", "dot_text")
 					.classed("remove", function(d) {
-						if (d.year !== "2014-15") { return true; }
+						if (d.year !== years_latest) { return true; }
 						if (d.state !== selected_state) { return true; }
 						else { return false; };
 					})
@@ -9151,6 +9350,763 @@ function multi_line_v3() {
 		return chart;
 
 	};*/
+
+	chart.sectionID = function(value) {
+
+		if (!arguments.length) return sectionID;
+		sectionID = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+  chart.data = function(value) {
+
+      if (!arguments.length) return data;
+      data = value;
+      return chart;
+
+  };
+
+	return chart;
+
+}
+
+// hexagon maps
+
+function hex_map() {
+
+	// Options accessible to the caller
+	// These are the default values
+
+	var	hexRadius = 40, // default hexagon size
+			width_multiplier = 1.59, // works with the default hexagon size to properly space the hexagons; if hexRadius is not 40, this may need to be tweaked
+			height_multiplier = 1.68, // works with the default hexagon size to properly space the hexagons; if hexRadius is not 40, this may need to be tweaked
+			minStop = 0, // this is the lowest color stop; everything below this will be the first color
+			maxStop = 1, // everything above this will be the second color
+			marginTop = 20,
+			marginBottom = 20,
+			title = "Generic chart title. Update me using .title()!",
+			altText = "Fill in alt text for screen readers!",
+			notes = "",
+			source = "",
+			toggles = 0, // set to 1 to enable subgroup button toggles
+			state_highlight = 0, // set to 1 to enable state highlight dropdown
+			animateTime = 1000,
+			containerID = [],
+			subcontainerID = [],
+			chartID = [],
+			sectionID = [],
+			data = [];
+
+	function chart(selection) {
+		selection.each(function() {
+
+		// in the data, convert missing/suppressed data to -99
+		// not sure what the symbols used for NAEP are, if there are diferent symbols just add them in as other if statements
+		// in general these may need to be tweaked; if the actual numbers are needed apply the same kind of transformations
+
+		data.forEach(function(d) {
+
+			// convert suppressed/missing
+
+			if (d.pct === "†") {
+				d.pct = "-99";
+				d.symbol = "†";
+			};
+			if (d.pct === "-") {
+				d.pct = "-99";
+				d.symbol = "-";
+			};
+
+			// convert percentage to numeric
+
+			d.pct = +d.pct;
+
+		});
+
+		// formats
+
+		var	formatNumber = d3.format(",f"),
+			formatPercent = d3.format(",.1%");
+
+		// width and height of map
+
+		var map_columns = d3.max(data, function(d) { return d.x; }),
+				map_rows = d3.max(data, function(d) { return d.y; });
+
+		var map_width = map_columns*(hexRadius*width_multiplier),
+				map_height = map_rows*(hexRadius*height_multiplier);
+
+		// calculate width margins, add top and bottom margin to get total height
+
+		var width_div = parseInt(d3.select("#" + sectionID).style("width"), 10),
+				margin_horizontal = width_div - map_width,
+				marginLeft = margin_horizontal/2,
+				marginRight = margin_horizontal/2,
+				height_total = map_height + marginTop + marginBottom + hexRadius*2;
+
+		// begin construction -- identify container
+
+		var dom = d3.select(this)
+			.append("div")
+			.attr("id", chartID);
+
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.subgroup; }).keys();
+		var subgroup_selected = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+		var altText_all = altText;
+		var notes_all = notes;
+
+		if (toggles == 1) {
+
+			// values for buttons
+
+			var buttons = dom.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === subgroup_selected) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.on("click", function(d, i) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							subgroup_selected = d3.select(this).property("value");
+							title = titles_all[i];
+							altText = altText_all[i];
+							notes = notes_all[i];
+							data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			dom.append("br");
+			data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
+
+		}
+		else {};
+
+		// add chart title
+
+		dom.append("div")
+			.attr("class", "title")
+			.append("text")
+				.text(function() {
+					if (toggles === 1) { return title[0]; }
+					else { return title; };
+				});
+
+		var legend_dropdown = dom.append("div")
+			.attr("class", "hex_map_legend_dropdown_container")
+			.style("opacity", 0);
+
+		// add legend
+
+		var legend = legend_dropdown.append("div")
+			.attr("class", "hex_map_legend_container");
+
+		// first append the < minStop div
+		// this div hides if the minStop = 0
+
+		var legend_minStop = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container")
+			.style("display", function() {
+				if (minStop === 0) { return "none"; }
+				else { return "block"; };
+			});
+
+		legend_minStop.append("div")
+			.attr("class", "hex_map_legend_stop")
+			.style("background-color", "#9e9ac8");
+
+		legend_minStop.append("div")
+			.attr("class", "hex_map_legend_text")
+			.text("< " + formatPercent(minStop));
+
+		// then append the gradient div
+
+		var legend_gradient = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container");
+
+		legend_gradient.append("div")
+			.attr("class", "hex_map_legend_gradient")
+			.style("background", "linear-gradient(to right, #9e9ac8, #340d67)");
+
+		var legend_gradient_text = legend_gradient.append("div")
+			.attr("class", "hex_map_legend_gradient_text");
+
+		legend_gradient_text.append("div")
+			.style("text-align", "left")
+			.text(formatPercent(minStop));
+
+		legend_gradient_text.append("div")
+			.style("text-align", "right")
+			.text(formatPercent(maxStop));
+
+		// and finally append the > maxStop div
+		// this div hides if the maxStop = 1
+
+		var legend_maxStop = legend.append("div")
+			.attr("class", "hex_map_legend_stop_container")
+			.style("display", function() {
+				if (maxStop === 1) { return "none"; }
+				else { return "block"; };
+			});
+
+		legend_maxStop.append("div")
+			.attr("class", "hex_map_legend_stop")
+			.style("height", "15px")
+			.style("background-color", "#340d67");
+
+		legend_maxStop.append("div")
+			.attr("class", "hex_map_legend_text")
+			.text("> " + formatPercent(maxStop));
+
+		// add state dropdown for highlighting if needed
+
+		if (state_highlight === 1) {
+
+			// define states
+
+			var state_list = d3.map(data, function(d) { return d.state; }).keys();
+
+			// add dropdown menu
+
+			var state_dropdown_container = legend_dropdown.append("div")
+				.attr("class", "hex_map_state_selector");
+
+			state_dropdown_container.append("div")
+				.text("Select a state to highlight: ");
+
+			var state_dropdown = state_dropdown_container.append("div")
+				.append("select")
+					.attr("id", "dd" + chartID)
+					.on("change." + chartID, function() {
+						highlight();
+					});
+
+			state_dropdown.append("option")
+				.text("All states")
+				.attr("value", "All states");
+
+			state_dropdown.selectAll("option.state")
+				.data(state_list)
+				.enter()
+				.append("option")
+					.attr("class", "state")
+					.attr("value", function(d) { return d; })
+					.text(function(d) { return d; });
+
+		};
+
+		// add svg and alt-text (aria-label)
+
+		var svg = dom.append("svg")
+			.attr("class", "hex_map")
+			.attr("width", width_div)
+			.attr("height", height_total)
+
+		svg.append("aria-label")
+			.text(function() {
+				if (toggles === 1) { return altText[0]; }
+				else { return altText; };
+			});
+
+		var g = svg.append("g");
+
+		g.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius) + ")");
+
+		// define zoom so that panning is allowed if screen width is too narrow
+
+		var zoom_enabled = 0;
+
+		function check_zoom() {
+			if (width_div < (map_width + hexRadius*2)) { zoom_enabled = 1; }
+			else { zoom_enabled = 0; };
+		};
+
+		check_zoom();
+
+		var zoom = d3.behavior.zoom()
+			.scaleExtent([1, 1])
+			.on("zoom", function() {
+
+				// this limits panning to horizontal only
+				// + marginLeft needed to prevent jerkiness on initial pan
+
+				g.attr("transform", "translate(" + (d3.event.translate[0]+marginLeft) + "," + (marginTop + hexRadius) + ")");
+
+				// should eventually explore constraining the panning
+
+			});
+
+		function toggle_zoom() {
+			if (zoom_enabled === 1) {
+				dom.select("svg")
+					.call(zoom)
+					.on("wheel.zoom", null); // disable mousewheel zoom
+			}
+			else { dom.select("svg").on(".zoom", null); };
+		};
+
+		toggle_zoom();
+
+		// axis scales
+
+		var xScale = d3.scale.linear().range([0, map_width]),
+				yScale = d3.scale.linear().range([0, map_height]);
+
+		xScale.domain(d3.extent(data, function(d) { return d.x; }));
+		yScale.domain(d3.extent(data, function(d) { return d.y; }));
+
+		// create color gradient
+
+		var colors = ["#9e9ac8", "#340d67"];
+
+		var color_scale = d3.scale.linear()
+			.domain([minStop, maxStop])
+			.range(colors);
+
+		// tooltips using d3-tip
+		// needs to be called before the hexagons
+
+		/*var tipDot = d3.tip()
+			.attr("class", "d3-tip")
+			.direction("n")
+			.offset([-10, 0])
+			.html(function(d) { return d.state + " (" + d.year + "): " + formatPercent(d.el_p);	});
+
+		svg.call(tipDot);*/
+
+		// create hex map
+		// ref: https://www.visualcinnamon.com/2013/07/self-organizing-maps-creating-hexagonal.html
+
+		// hexagons
+
+		var hexagonPoly = [[0,-1],[Math.sqrt(3)/2,0.5],[0,1],[-Math.sqrt(3)/2,0.5],[-Math.sqrt(3)/2,-0.5],[0,-1],[Math.sqrt(3)/2,-0.5]];
+		var hexagonPath = "m" + hexagonPoly.map(function(p){return [p[0]*hexRadius, p[1]*hexRadius].join(',')}).join('l')+"z";
+
+		// establish groups for each hexagon
+
+		var hex_group = g.selectAll(".hex_group")
+			.data(data)
+			.enter()
+				.append("g")
+					.attr("class", "hex_group");
+
+		// add hexagon shapes
+
+		hex_group.append("path")
+			.attr("class", "hexagon")
+			.attr("d", function(d) { return "M" + xScale(d.x) + "," + yScale(d.y) + hexagonPath; })
+			.style("fill", function(d) {
+				if (d.pct < 0) { return "gray"; }
+				else if (d.pct < minStop) { return colors[0]; }
+				else if (d.pct > maxStop) { return colors[1]; }
+				else { return color_scale(d.pct); };
+			})
+			.style("opacity", 0)
+			.append("aria-label")
+				.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
+
+		// add state name to hexagons
+
+		hex_group.append("text")
+			.attr("class", "hex_name")
+			.attr("x", function(d) { return xScale(d.x); })
+			.attr("y", function(d) { return yScale(d.y); })
+			.attr("dy", "-0.25em")
+			.attr("text-anchor", "middle")
+			.style("opacity", 0)
+			.text(function(d) { return d.st_abbr; });
+
+		// add percentages to hexagons
+
+		hex_group.append("text")
+			.attr("class", "hex_pct")
+			.attr("x", function(d) { return xScale(d.x); })
+			.attr("y", function(d) { return yScale(d.y); })
+			.attr("dy", "0.85em")
+			.attr("text-anchor", "middle")
+			.style("opacity", 0)
+			.text(function(d) {
+				if (d.pct < 0) { return d.symbol; }
+				else { return formatPercent(d.pct); };
+			});
+
+		// animate on scroll
+
+		var gs = graphScroll()
+			.container(d3.select("#" + containerID))
+			.graph(d3.selectAll("#" + chartID))
+			.sections(d3.selectAll("#" + subcontainerID + " > div"))
+			.on("active", function() {
+				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+
+					d3.select("#" + sectionID)
+						.classed("activated", "true");
+
+					dom.select(".hex_map_legend_dropdown_container")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1);
+
+					hex_group.select(".hexagon")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1);
+
+					hex_group.select(".hex_name")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1);
+
+					hex_group.select(".hex_pct")
+						.transition()
+							.duration(animateTime)
+							.style("opacity", 1);
+
+				}});
+
+		// add notes and sources if defined
+		// for notes, if toggles enabled, initially write first note
+
+		function writeNotes() {
+			if (!notes) {}
+			else {
+
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html(function() {
+						if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes[0] + "</span>"; }
+						else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>"; };
+					});
+
+			};
+		};
+
+		writeNotes();
+
+		function writeSource() {
+			if (!source) {}
+			else {
+				d3.select("#"+ sectionID).append("div")
+					.attr("id", "notes" + chartID)
+					.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+			};
+		};
+
+		writeSource();
+
+		// function to update data
+
+		function updateData() {
+
+			// rebind data
+			// no need to do enter/exit because the # of states is not changing
+
+			var hex_group = g.selectAll(".hex_group")
+				.data(data);
+
+			// make transitions
+
+			hex_group.select(".hexagon")
+				.transition()
+					.duration(animateTime)
+					.style("fill", function(d) {
+						if (d.pct < 0) { return "gray"; }
+						else if (d.pct < minStop) { return colors[0]; }
+						else if (d.pct > maxStop) { return colors[1]; }
+						else { return color_scale(d.pct); };
+					});
+
+			// also replace aria labels
+
+			svg.selectAll("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
+			hex_group.select(".hexagon")
+				.select("aria-label")
+				.remove();
+
+			hex_group.select(".hexagon")
+				.append("aria-label")
+					.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
+
+			// tween percentages
+
+			hex_group.select(".hex_pct")
+				.transition()
+					.duration(animateTime)
+					.tween("text", function(d) {
+
+						// get current value first
+
+						var current_text = d3.select(this).text(),
+								current_value;
+
+						current_value = +current_text.slice(0, -1)/100;
+						if (isNaN(current_value)) { current_value = 0; };
+
+						// interpolate and tween
+
+						var i = d3.interpolate(current_value, d.pct);
+
+						if (d.pct >= 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
+						else { d3.select(this).text(function(d) { return d.symbol; }); };
+
+					});
+
+			// update title
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+			// update notes
+
+			d3.select("#notes" + chartID)
+				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+		};
+
+		// highlight
+
+		function highlight() {
+
+			var selected_state = d3.select("#dd" + chartID).property("value");
+
+			hex_group.select(".hexagon")
+				.transition()
+					.duration(animateTime)
+					.style("opacity", function(d) {
+						if (selected_state === "All states") { return 1; }
+						else if (d.state === selected_state) { return 1; }
+						else { return 0.15; };
+					})
+					.style("stroke", function(d) {
+						if (selected_state === "All states") { return "#FFF"; }
+						else if (d.state === selected_state) { return "#160633"; }
+						else { return "#FFF"; };
+					})
+					.style("stroke-width", function(d) {
+						if (selected_state === "All states") { return 1; }
+						else if (d.state === selected_state) { return 2; }
+						else { return 1; };
+					});
+
+		};
+
+		// resize
+
+		window.addEventListener("resize", function() {
+
+			// reassess widths and margins
+
+			width_div = parseInt(d3.select("#" + sectionID).style("width"), 10),
+			margin_horizontal = width_div - map_width,
+			marginLeft = margin_horizontal/2,
+			marginRight = margin_horizontal/2;
+
+			dom.select("svg")
+				.attr("width", width_div)
+
+			// re-center the map
+
+			g.attr("transform", "translate(" + marginLeft + "," + (marginTop + hexRadius) + ")");
+
+			// update zoom function
+
+			dom.select("svg").on(".zoom", null);
+
+			var zoom = d3.behavior.zoom()
+				.scaleExtent([1, 1])
+				.on("zoom", function() {
+
+					// this limits panning to horizontal only
+					// + marginLeft needed to prevent jerkiness on initial pan
+
+					g.attr("transform", "translate(" + (d3.event.translate[0]+marginLeft) + "," + (marginTop + hexRadius) + ")");
+
+					// should eventually explore constraining the panning
+
+				});
+
+			check_zoom();
+			toggle_zoom();
+
+		});
+
+		});
+
+	};
+
+  chart.hexRadius = function(value) {
+
+      if (!arguments.length) return hexRadius;
+      hexRadius = value;
+      return chart;
+
+  };
+
+	chart.width_multiplier = function(value) {
+
+      if (!arguments.length) return width_multiplier;
+      width_multiplier = value;
+      return chart;
+
+  };
+
+	chart.height_multiplier = function(value) {
+
+      if (!arguments.length) return height_multiplier;
+      height_multiplier = value;
+      return chart;
+
+  };
+
+	chart.minStop = function(value) {
+
+      if (!arguments.length) return minStop;
+      minStop = value;
+      return chart;
+
+  };
+
+	chart.maxStop = function(value) {
+
+      if (!arguments.length) return maxStop;
+      maxStop = value;
+      return chart;
+
+  };
+
+	chart.marginTop = function(value) {
+
+		if (!arguments.length) return marginTop;
+		marginTop = value;
+		return chart;
+
+	};
+
+	chart.marginBottom = function(value) {
+
+		if (!arguments.length) return marginBottom;
+		marginBottom = value;
+		return chart;
+
+	};
+
+	chart.animateTime = function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.title = function(value) {
+
+		if (!arguments.length) return title;
+		title = value;
+		return chart;
+
+	};
+
+	chart.altText = function(value) {
+
+		if (!arguments.length) return altText;
+		altText = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
+		return chart;
+
+	};
+
+	chart.state_highlight = function(value) {
+
+		if (!arguments.length) return state_highlight;
+		state_highlight = value;
+		return chart;
+
+	};
+
+	chart.animateTime= function(value) {
+
+		if (!arguments.length) return animateTime;
+		animateTime = value;
+		return chart;
+
+	};
+
+	chart.containerID = function(value) {
+
+		if (!arguments.length) return containerID;
+		containerID = value;
+		return chart;
+
+	};
+
+	chart.subcontainerID = function(value) {
+
+		if (!arguments.length) return subcontainerID;
+		subcontainerID = value;
+		return chart;
+
+	};
+
+	chart.chartID = function(value) {
+
+		if (!arguments.length) return chartID;
+		chartID = value;
+		return chart;
+
+	};
 
 	chart.sectionID = function(value) {
 
