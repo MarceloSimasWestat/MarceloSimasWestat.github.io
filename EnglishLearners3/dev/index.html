@@ -225,6 +225,14 @@
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
                 </p>
+                <div id="ch2_3"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
+                <div id="ch2_4"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
             </div>
         </section>
 
@@ -400,24 +408,14 @@
 
                 grad_rate_data = data.filter(function(d) { return d.chart === "grad_rate"; });
 
-                var grad_rate_chart = multi_line().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                var grad_rate_chart = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
                   .yAxisLabel("% OF ELS GRADUATING")
                   .title("The graduation rate for ELs has risen since 2010–11.")
                   .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
                   /*.notes("Less than 1 percent of all students are Pacific Islander.")
                   .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
-                var grad_rate_chart_v2 = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2_v2").chartID("chart1_2_v2")
-                  .yAxisLabel("% OF ELS GRADUATING")
-                  .title("")
-                  .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
-                var grad_rate_chart_v3 = multi_line_v3().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2_v3").chartID("chart1_2_v3")
-                  .yAxisLabel("% OF ELS GRADUATING")
-                  .title("")
-                  .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
 
-                d3.select("#ch1_2").call(grad_rate_chart)
-                d3.select("#ch1_2_v2").call(grad_rate_chart_v2);
-                d3.select("#ch1_2_v3").call(grad_rate_chart_v3);
+                d3.select("#ch1_2").call(grad_rate_chart);
 
             };
         });
@@ -439,12 +437,16 @@
                     d.notes = d.notes;
                 });
 
-                grad_rate_map = data.filter(function(d) { return d.map_id === "grad_rate"; });
+                grad_rate_map_data = data.filter(function(d) { return d.map_id === "grad_rate"; });
+                naep_math_4_data = data.filter(function(d) { return d.map_id === "naep_math_4"; });
+                naep_math_8_data = data.filter(function(d) { return d.map_id === "naep_math_8"; });
+                naep_reading_4_map_data = data.filter(function(d) { return d.map_id === "naep_reading_4"; });
+                naep_reading_8_map_data = data.filter(function(d) { return d.map_id === "naep_reading_8"; });
 
-                var hex_map1 = hex_map().data(grad_rate_map).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                var grad_rate_map = hex_map().data(grad_rate_map_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
-                  .minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends
-                  .toggles(1).state_highlight(1) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
+                  .minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  .toggles(1).state_highlight(0) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
                   .title([
                     "More than 80 percent of ELs graduated within four years in only three states - Arkansas, Iowa, and West Virginia.",
                     "In most states, more than 80 percent of non-ELs graduated within four years."
@@ -459,9 +461,107 @@
                   ])
                   .source("The source for these data would go here.");
 
-                d3.select("#ch1_1").call(hex_map1);
-                /*d3.select("#ch1_1_v2").call(grad_rate_chart_v2);
-                d3.select("#ch1_1_v3").call(grad_rate_chart_v3);*/
+                var naep_math_4_map = hex_map().data(naep_math_4_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
+                  .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
+                  .minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  .toggles(1).state_highlight(0) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
+                  .title([
+                    "More than a quarter of ELs in four states scored at or above Proficient on grade 4 NAEP mathematics in 2009.",
+                    "More than a quarter of ELs in three states scored at or above Proficient on grade 4 NAEP mathematics in 2011.",
+                    "More than a quarter of ELs in five states scored at or above Proficient on grade 4 NAEP mathematics in 2013.",
+                    "More than a quarter of ELs in four states scored at or above Proficient on grade 4 NAEP mathematics in 2015."
+                  ])
+                  .altText([
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP mathematics in 2009.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP mathematics in 2011.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP mathematics in 2013.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP mathematics in 2015.",
+                  ])
+                  .notes([
+                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
+                    "This is the note for the second subgroup map.",
+                    "This is the note for the third subgroup map.",
+                    "This is the note for the fourth subgroup map."
+                  ])
+                  .source("The source for these data would go here.");
+
+                var naep_math_8_map = hex_map().data(naep_math_8_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2")
+                  .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
+                  .minStop(0).maxStop(0.10) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  .toggles(1).state_highlight(0) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
+                  .title([
+                    "In 2009, more than 10 percent of ELs in eight states scored at or above Proficient on grade 8 NAEP mathematics.",
+                    "In 2011, more than 10 percent of ELs in five states scored at or above Proficient on grade 8 NAEP mathematics.",
+                    "In 2013, more than 10 percent of ELs in three states scored at or above Proficient on grade 8 NAEP mathematics.",
+                    "In 2013, more than 10 percent of ELs in five states scored at or above Proficient on grade 8 NAEP mathematics."
+                  ])
+                  .altText([
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP mathematics in 2009.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP mathematics in 2011.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP mathematics in 2013.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP mathematics in 2015.",
+                  ])
+                  .notes([
+                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
+                    "This is the note for the second subgroup map.",
+                    "This is the note for the third subgroup map.",
+                    "This is the note for the fourth subgroup map."
+                  ])
+                  .source("The source for these data would go here.");
+
+                var naep_reading_4_map = hex_map().data(naep_reading_4_map_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
+                  .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
+                  .minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  .toggles(1).state_highlight(0) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
+                  .title([
+                    "In 2009, no state had more than quarter of ELs scoring at or above Proficient on grade 4 NAEP reading.",
+                    "In 2011, no state had more than quarter of ELs scoring at or above Proficient on grade 4 NAEP reading.",
+                    "In 2013, no state had more than quarter of ELs scoring at or above Proficient on grade 4 NAEP reading.",
+                    "In 2015, no state had more than quarter of ELs scoring at or above Proficient on grade 4 NAEP reading."
+                  ])
+                  .altText([
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP reading in 2009.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP reading in 2011.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP reading in 2013.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 4 NAEP reading in 2015.",
+                  ])
+                  .notes([
+                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
+                    "This is the note for the second subgroup map.",
+                    "This is the note for the third subgroup map.",
+                    "This is the note for the fourth subgroup map."
+                  ])
+                  .source("The source for these data would go here.");
+
+                var naep_reading_8_map = hex_map().data(naep_reading_8_map_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_4").chartID("chart2_4")
+                  .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
+                  .minStop(0).maxStop(0.10) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  .toggles(1).state_highlight(0) // toggles enables subgroup toggle buttons, state_highlight enables state dropdown to highlight a state
+                  .title([
+                    "In 2009, one state had more than 10 percent of ELs at or above Proficient on grade 8 NAEP reading.",
+                    "In 2011, two states had more than 10 percent of ELs at or above Proficient on grade 8 NAEP reading.",
+                    "In 2013, three states had more than 10 percent of ELs at or above Proficient on grade 8 NAEP reading.",
+                    "In 2013, five states had more than 10 percent of ELs at or above Proficient on grade 8 NAEP reading."
+                  ])
+                  .altText([
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP reading in 2009.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP reading in 2011.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP reading in 2013.",
+                    "This map displays the percentage of ELs at or above Proficient on grade 8 NAEP reading in 2015.",
+                  ])
+                  .notes([
+                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
+                    "This is the note for the second subgroup map.",
+                    "This is the note for the third subgroup map.",
+                    "This is the note for the fourth subgroup map."
+                  ])
+                  .source("The source for these data would go here.");
+
+                d3.select("#ch1_1").call(grad_rate_map);
+                d3.select("#ch2_1").call(naep_math_4_map);
+                d3.select("#ch2_2").call(naep_math_8_map);
+                d3.select("#ch2_3").call(naep_reading_4_map);
+                d3.select("#ch2_4").call(naep_reading_8_map);
 
             };
         });

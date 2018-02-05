@@ -8162,7 +8162,15 @@ function multi_line_v2() {
 			.append("select")
 				.attr("id", "dd" + chartID)
 				.on("change." + chartID, function() {
-					highlight();
+
+					if (d3.select(this).property("value") === "None") { line_highlighted = 0;
+						highlight();
+					}
+					else {
+						line_highlighted = 1;
+						highlight();
+					};
+
 				});
 
 		state_dropdown.append("option")
@@ -8344,6 +8352,57 @@ function multi_line_v2() {
 		svg.selectAll(".remove")
 			.remove();
 
+		// enable hover for state lines
+
+		/*var line_highlighted = 0;
+
+		svg.selectAll(".line.state")
+			.on("mouseover", function() {
+
+				// highlight the line
+
+				d3.select(this)
+					.classed("highlighted", true);
+
+				d3.select(this).style("cursor", "pointer");
+
+				// add the state abbreviation
+
+			})
+			.on("mouseout", function() {
+
+				// unhighlight
+
+				d3.select(this).classed("highlighted", false);
+
+				// remove state abbreviation
+
+			})
+			.on("click", function(d) {
+
+				if (line_highlighted === 0) {
+
+					line_highlighted = 1;
+
+					// change the dropdown
+
+					d3.select("#dd" + chartID).property("value", d.key);
+					highlight();
+
+				}
+				else if (line_highlighted === 1) {
+
+					line_highlighted = 0;
+
+					// set dropdown to none
+
+					d3.select("#dd" + chartID).property("value", "None");
+					highlight();
+
+				};
+
+			});*/
+
 		// animate "curtain"
 
 		svg.append("rect")
@@ -8379,85 +8438,98 @@ function multi_line_v2() {
 
 		function highlight() {
 
-			// get selected state
+			/*if (line_highlighted === 0) {
 
-			selected_state = d3.select("#dd" + chartID).property("value");
+				svg.selectAll(".line.state")
+					.classed("highlighted", false);
 
-			svg.selectAll(".dot.state")
-				.remove();
+				svg.selectAll(".dot.state").remove();
+				svg.selectAll(".dot_text.state").remove();
 
-			svg.selectAll(".dot_text.state")
-				.remove();
+			}*/
+			//else if (line_highlighted === 1) {
 
-			// highlight selected state
+				// get selected state
 
-			svg.selectAll(".line.state")
-				.classed("highlighted", function(d) {
-					if (d.key === selected_state) { return true; }
-					else { return false; };
-				});
+				selected_state = d3.select("#dd" + chartID).property("value");
 
-			// make dots as needed
+				svg.selectAll(".dot.state")
+					.remove();
 
-			dots.enter()
-				.append("circle")
-					.attr("class", "dot")
-					.classed("remove", function(d) {
-						if (d.state !== selected_state) { return true; }
-						else { return false; }
-					})
-					.classed("state", function(d) {
-						if (d.state !== "United States") { return true; }
-						else { return false; };
-					})
-					.classed("national", function(d) {
-						if (d.state === "United States") { return true; }
-						else { return false; };
-					})
+				svg.selectAll(".dot_text.state")
+					.remove();
+
+				// highlight selected state
+
+				svg.selectAll(".line.state")
 					.classed("highlighted", function(d) {
-						if (d.state === selected_state) { return true; }
+						if (d.key === selected_state) { return true; }
 						else { return false; };
-					}) // initially, only national is highlighted
-					.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
-					.attr("cy", function(d) { return yScale(d.el_p); })
-					.attr("r", dotSize)
-					.on("mouseover", tipDot.show)
-					.on("mouseout", tipDot.hide);
+					});
 
-			dot_text.enter()
-				.append("text")
-					.attr("class", "dot_text")
-					.classed("remove", function(d) {
-						if (d.year !== years_latest) { return true; }
-						if (d.state !== selected_state) { return true; }
-						else { return false; };
-					})
-					.classed("state", function(d) {
-						if (d.state !== "United States") { return true; }
-						else { return false; };
-					})
-					.classed("national", function(d) {
-						if (d.state === "United States") { return true; }
-						else { return false; };
-					})
-					.classed("highlighted", function(d) {
-						if (d.state === "United States" || d.state === selected_state) { return true; }
-						else { return false; };
-					})
-					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
-					.attr("dx", "0.75em")
-					.attr("y", function(d) { return yScale(d.el_p); })
-					.attr("dy", "0.35em")
-					/*.style("opacity", function() {
-						if (width < 736) { return 0; }
-						else { return 1; };
-					})*/
-					.text(function(d) { return d.st_abbr; });
+				// make dots as needed
 
-			// remove state dots
+				dots.enter()
+					.append("circle")
+						.attr("class", "dot")
+						.classed("remove", function(d) {
+							if (d.state !== selected_state) { return true; }
+							else { return false; }
+						})
+						.classed("state", function(d) {
+							if (d.state !== "United States") { return true; }
+							else { return false; };
+						})
+						.classed("national", function(d) {
+							if (d.state === "United States") { return true; }
+							else { return false; };
+						})
+						.classed("highlighted", function(d) {
+							if (d.state === selected_state) { return true; }
+							else { return false; };
+						}) // initially, only national is highlighted
+						.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+						.attr("cy", function(d) { return yScale(d.el_p); })
+						.attr("r", dotSize)
+						.on("mouseover", tipDot.show)
+						.on("mouseout", tipDot.hide);
 
-			svg.selectAll(".remove")
-				.remove();
+				dot_text.enter()
+					.append("text")
+						.attr("class", "dot_text")
+						.classed("remove", function(d) {
+							if (d.year !== years_latest) { return true; }
+							if (d.state !== selected_state) { return true; }
+							else { return false; };
+						})
+						.classed("state", function(d) {
+							if (d.state !== "United States") { return true; }
+							else { return false; };
+						})
+						.classed("national", function(d) {
+							if (d.state === "United States") { return true; }
+							else { return false; };
+						})
+						.classed("highlighted", function(d) {
+							if (d.state === "United States" || d.state === selected_state) { return true; }
+							else { return false; };
+						})
+						.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
+						.attr("dx", "0.75em")
+						.attr("y", function(d) { return yScale(d.el_p); })
+						.attr("dy", "0.35em")
+						/*.style("opacity", function() {
+							if (width < 736) { return 0; }
+							else { return 1; };
+						})*/
+						.text(function(d) { return d.st_abbr; });
+
+				// remove state dots
+
+				svg.selectAll(".remove")
+					.remove();
+
+			//};
 
 		};
 
@@ -9433,6 +9505,14 @@ function hex_map() {
 				d.pct = "-99";
 				d.symbol = "-";
 			};
+			if (d.pct === "‡") {
+				d.pct = "-99";
+				d.symbol = "‡";
+			};
+			if (d.pct === "#") {
+				d.pct = "-99";
+				d.symbol = "#";
+			};
 
 			// convert percentage to numeric
 
@@ -9537,6 +9617,10 @@ function hex_map() {
 
 		// add legend
 
+		var highlight_minStop_selected = 0;
+				highlight_gradient_selected = 0,
+				highlight_maxStop_selected = 0;
+
 		var legend = legend_dropdown.append("div")
 			.attr("class", "hex_map_legend_container");
 
@@ -9552,7 +9636,47 @@ function hex_map() {
 
 		legend_minStop.append("div")
 			.attr("class", "hex_map_legend_stop")
-			.style("background-color", "#9e9ac8");
+			.style("background-color", "#9e9ac8")
+			.on("click", function() {
+
+				if (highlight_minStop_selected === 0) {
+
+					highlight_minStop_selected = 1;
+
+					// reset other borders
+
+					legend.selectAll(".hex_map_legend_stop")
+						.style("border", "1px solid #FFF");
+
+					legend.selectAll(".hex_map_legend_gradient")
+						.style("border", "1px solid #FFF");
+
+					// set border for this legend
+
+					d3.select(this)
+						.style("border", "1px solid #160633");
+
+					// run highlight function
+
+					highlight_minStop();
+
+				}
+				else if (highlight_minStop_selected === 1) {
+
+					highlight_minStop_selected = 0;
+
+					// reset border for this
+
+					d3.select(this)
+						.style("border", "1px solid #FFF");
+
+					// run highlight function
+
+					highlight_minStop();
+
+				};
+			})
+			.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });
 
 		legend_minStop.append("div")
 			.attr("class", "hex_map_legend_text")
@@ -9565,7 +9689,52 @@ function hex_map() {
 
 		legend_gradient.append("div")
 			.attr("class", "hex_map_legend_gradient")
-			.style("background", "linear-gradient(to right, #9e9ac8, #340d67)");
+			.style("background", "linear-gradient(to right, #9e9ac8, #340d67)")
+
+		if (minStop > 0 || maxStop < 1) {
+			legend_gradient.select(".hex_map_legend_gradient")
+				.on("click", function() {
+
+					if (highlight_gradient_selected === 0) {
+
+						highlight_gradient_selected = 1;
+
+						// reset other borders
+
+						legend.selectAll(".hex_map_legend_stop")
+							.style("border", "1px solid #FFF");
+
+						legend.selectAll(".hex_map_legend_gradient")
+							.style("border", "1px solid #FFF");
+
+						// set border for this legend
+
+						d3.select(this)
+							.style("border", "1px solid #160633");
+
+						// run highlight function
+
+						highlight_gradient();
+
+					}
+					else if (highlight_gradient_selected === 1) {
+
+						highlight_gradient_selected = 0;
+
+						// reset border for this
+
+						d3.select(this)
+							.style("border", "1px solid #FFF");
+
+						// run highlight function
+
+						highlight_gradient();
+
+					};
+				})
+				.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });
+		}
+		else if (minStop === 0 && maxStop === 1) {};
 
 		var legend_gradient_text = legend_gradient.append("div")
 			.attr("class", "hex_map_legend_gradient_text");
@@ -9590,8 +9759,47 @@ function hex_map() {
 
 		legend_maxStop.append("div")
 			.attr("class", "hex_map_legend_stop")
-			.style("height", "15px")
-			.style("background-color", "#340d67");
+			.style("background-color", "#340d67")
+			.on("click", function() {
+
+				if (highlight_maxStop_selected === 0) {
+
+					highlight_maxStop_selected = 1;
+
+					// reset other borders
+
+					legend.selectAll(".hex_map_legend_stop")
+						.style("border", "1px solid #FFF");
+
+					legend.selectAll(".hex_map_legend_gradient")
+						.style("border", "1px solid #FFF");
+
+					// set border for this legend
+
+					d3.select(this)
+						.style("border", "1px solid #160633");
+
+					// run highlight function
+
+					highlight_maxStop();
+
+				}
+				else if (highlight_maxStop_selected === 1) {
+
+					highlight_maxStop_selected = 0;
+
+					// reset border for this
+
+					d3.select(this)
+						.style("border", "1px solid #FFF");
+
+					// run highlight function
+
+					highlight_maxStop();
+
+				};
+			})
+			.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });;
 
 		legend_maxStop.append("div")
 			.attr("class", "hex_map_legend_text")
@@ -9617,7 +9825,7 @@ function hex_map() {
 				.append("select")
 					.attr("id", "dd" + chartID)
 					.on("change." + chartID, function() {
-						highlight();
+						state_highlight();
 					});
 
 			state_dropdown.append("option")
@@ -9844,11 +10052,22 @@ function hex_map() {
 			var hex_group = g.selectAll(".hex_group")
 				.data(data);
 
+			// reset legend selection
+
+			legend.selectAll(".hex_map_legend_stop")
+				.style("border", "1px solid #FFF");
+
+			legend.selectAll(".hex_map_legend_gradient")
+				.style("border", "1px solid #FFF");
+
 			// make transitions
 
 			hex_group.select(".hexagon")
 				.transition()
 					.duration(animateTime)
+					.style("opacity", 1)
+					.style("stroke", "#FFF")
+					.style("stroke-width", 1)
 					.style("fill", function(d) {
 						if (d.pct < 0) { return "gray"; }
 						else if (d.pct < minStop) { return colors[0]; }
@@ -9909,9 +10128,9 @@ function hex_map() {
 
 		};
 
-		// highlight
+		// state highlight
 
-		function highlight() {
+		function state_highlight() {
 
 			var selected_state = d3.select("#dd" + chartID).property("value");
 
@@ -9933,6 +10152,107 @@ function hex_map() {
 						else if (d.state === selected_state) { return 2; }
 						else { return 1; };
 					});
+
+		};
+
+		// legend highlight
+
+		function highlight_minStop() {
+
+			highlight_gradient_selected = 0;
+			highlight_maxStop_selected = 0;
+
+			if (highlight_minStop_selected === 1) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", function(d) {
+							if (d.pct < minStop) { return 1; }
+							else { return 0.15; };
+						})
+						.style("stroke", function(d) {
+							if (d.pct < minStop) { return "#160633"; }
+							else { return "#FFF"; };
+						})
+						.style("stroke-width", function(d) {
+							if (d.pct < minStop) { return 2; }
+							else { return 1; };
+						});
+			}
+			else if (highlight_minStop_selected === 0) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", 1)
+						.style("stroke", "#FFF")
+						.style("stroke-width", 1);
+			};
+
+		};
+
+		function highlight_gradient() {
+
+			highlight_minStop_selected = 0;
+			highlight_maxStop_selected = 0;
+
+			if (highlight_gradient_selected === 1 ) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", function(d) {
+							if (d.pct >= minStop && d.pct <= maxStop) { return 1; }
+							else { return 0.15; };
+						})
+						.style("stroke", function(d) {
+							if (d.pct >= minStop && d.pct <= maxStop) { return "#160633"; }
+							else { return "#FFF"; };
+						})
+						.style("stroke-width", function(d) {
+							if (d.pct >= minStop && d.pct <= maxStop) { return 2; }
+							else { return 1; };
+						});
+			}
+			else if (highlight_gradient_selected === 0) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", 1)
+						.style("stroke", "#FFF")
+						.style("stroke-width", 1);
+			};
+
+		};
+
+		function highlight_maxStop() {
+
+			highlight_gradient_selected = 0;
+			highlight_minStop_selected = 0;
+
+			if (highlight_maxStop_selected === 1) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", function(d) {
+							if (d.pct > maxStop) { return 1; }
+							else { return 0.15; };
+						})
+						.style("stroke", function(d) {
+							if (d.pct > maxStop) { return "#160633"; }
+							else { return "#FFF"; };
+						})
+						.style("stroke-width", function(d) {
+							if (d.pct > maxStop) { return 2; }
+							else { return 1; };
+						});
+			}
+			else if (highlight_maxStop_selected === 0) {
+				hex_group.select(".hexagon")
+					.transition()
+						.duration(animateTime)
+						.style("opacity", 1)
+						.style("stroke", "#FFF")
+						.style("stroke-width", 1);
+			};
 
 		};
 
