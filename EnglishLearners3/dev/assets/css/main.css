@@ -5719,13 +5719,13 @@ button:hover,
   align-content: space-between;
   display: flex;
   margin-top: 20px;
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   margin-right: 10px;
 }
 
 .hex_map_state_selector select {
   border: 1px solid slategray;
-  height: 15px;
+  height: 16px;
   font: 12px "Karla", Helvetica, Arial, sans-serif;
   width: 100%;
   margin-left: 10px;
