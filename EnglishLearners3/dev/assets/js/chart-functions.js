@@ -10170,10 +10170,10 @@ function hex_map() {
 							if (d.pct < minStop) { return 1; }
 							else { return 0.15; };
 						})
-						.style("stroke", function(d) {
+						/*.style("stroke", function(d) {
 							if (d.pct < minStop) { return "#160633"; }
 							else { return "#FFF"; };
-						})
+						})*/
 						.style("stroke-width", function(d) {
 							if (d.pct < minStop) { return 2; }
 							else { return 1; };
@@ -10203,10 +10203,10 @@ function hex_map() {
 							if (d.pct >= minStop && d.pct <= maxStop) { return 1; }
 							else { return 0.15; };
 						})
-						.style("stroke", function(d) {
+						/*.style("stroke", function(d) {
 							if (d.pct >= minStop && d.pct <= maxStop) { return "#160633"; }
 							else { return "#FFF"; };
-						})
+						})*/
 						.style("stroke-width", function(d) {
 							if (d.pct >= minStop && d.pct <= maxStop) { return 2; }
 							else { return 1; };
@@ -10236,10 +10236,10 @@ function hex_map() {
 							if (d.pct > maxStop) { return 1; }
 							else { return 0.15; };
 						})
-						.style("stroke", function(d) {
+						/*.style("stroke", function(d) {
 							if (d.pct > maxStop) { return "#160633"; }
 							else { return "#FFF"; };
-						})
+						})*/
 						.style("stroke-width", function(d) {
 							if (d.pct > maxStop) { return 2; }
 							else { return 1; };
