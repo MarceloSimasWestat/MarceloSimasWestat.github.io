@@ -8302,8 +8302,37 @@ function multi_line_v2() {
 			})
 			.on("click", function(d) {
 
-				d3.select("#dd" + chartID).property("value", d.key);
-				highlight();
+				if (d3.select(this).classed("clicked") === true) {
+
+					// reset clicked indicator to off
+
+					line_group.select(".line.state")
+						.classed("clicked", false);
+
+					line_group.selectAll(".dot.state")
+						.classed("clicked", false);
+
+					// set dropdown to none and rerun highlight
+
+					d3.select("#dd" + chartID).property("value", "None");
+					highlight();
+				}
+				else {
+
+					// set clicked indicator to on
+
+					d3.select(this).classed("clicked", true);
+
+					line_group.selectAll(".dot.state")
+						.classed("clicked", function(d) {
+							if (d.state === d.key) { return true; }
+						});
+
+					// set dropdown to this state and run highlight
+
+					d3.select("#dd" + chartID).property("value", d.key);
+					highlight();
+				};
 
 			});
 
@@ -8468,6 +8497,10 @@ function multi_line_v2() {
 						if (d.key === selected_state) { return true; }
 						else { return false; };
 					})
+					.classed("clicked", function(d) {
+						if (d.key === selected_state) { return true; }
+						else { return false; };
+					})
 					.transition()
 						.duration(animateTime)
 						.style("stroke", function(d) {
@@ -8488,9 +8521,29 @@ function multi_line_v2() {
 						if (d.state === selected_state) { return true; }
 						else { return false; };
 					})
+					.classed("clicked", function(d) {
+						if (d.state === selected_state) { return true; }
+						else { return false; };
+					})
 					.style("pointer-events", function(d) {
 						if (d.state === selected_state) { return "auto"; }
 						else { return "none"; };
+					})
+					.on("click", function(d) {
+
+						// reset clicked indicator to off
+
+						line_group.select(".line.state")
+							.classed("clicked", false);
+
+						line_group.selectAll(".dot.state")
+							.classed("clicked", false);
+
+						// set dropdown to none and rerun highlight
+
+						d3.select("#dd" + chartID).property("value", "None");
+						highlight();
+
 					})
 					.transition()
 						.duration(animateTime)
