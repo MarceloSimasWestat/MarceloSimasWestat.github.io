@@ -5505,8 +5505,8 @@ button:hover,
   font: 400 15px "Karla", Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .state_selector select {
@@ -5531,18 +5531,18 @@ button:hover,
   fill: none;
 }
 
-.multi_line .state {
+/*.multi_line .state {
   stroke: rgba(119, 136, 153, 0.25);
   stroke-width: 1;
-  /*transition: stroke 1s, stroke-width 1s;*/
-}
+  transition: stroke 1s, stroke-width 1s;
+}*/
 
-.multi_line .state.highlighted {
+/*.multi_line .state.highlighted {
   stroke: #A6426C;
   stroke-width: 2;
   opacity: 1;
-  /*transition: stroke-width 1s, stroke 1s, opacity 1s;*/
-}
+  transition: stroke-width 1s, stroke 1s, opacity 1s;
+}*/
 
 .multi_line .national {
   stroke: #5D3EA8;
@@ -5575,16 +5575,17 @@ button:hover,
   font-weight: bold;
 }
 
-.multi_line .dot_text.state {
+/*.multi_line .dot_text.state {
   fill: rgba(119, 136, 153, 0.25);
-}
+}*/
 
-.multi_line .dot_text.state.highlighted {
+/*.multi_line .dot_text.state.highlighted {
   fill: #A6426C;
   font-weight: bold;
   stroke-width: 0;
-  /*stroke: #FFF;*/
-}
+  stroke: #FFF;
+  transition: fill 1s;
+}*/
 
 .multi_line .axis path,
 .multi_line .axis line {
