@@ -4894,7 +4894,7 @@ function stackedBar() {
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
-
+/*
 		// sorter buttons
 
 		var sorter = d3.select(this)
@@ -4938,7 +4938,7 @@ function stackedBar() {
 			});
 
 		sorter.append("p")
-
+*/
 		// chart title
 
 		d3.select(this).append("div")
