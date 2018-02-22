@@ -415,19 +415,6 @@
 
         // charts
 
-        d3.tsv("assets/data/preschool.tsv", function (error, data) {
-        
-            var chart1_4 = stackedBar().data(data).marginLeft(180)
-            .height(200)
-            .containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
-                //var chart1_4 = multiBar().data(data1_4).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
-                  //.xAxisLabel("% of preschoolers IN 2013–14 who were enrolled in districts that provided...")
-                  .title("Twelve percent of children enrolled in preschool were ELs. This percentage did not vary considerably by the program cost or length, except in districts that only provided preschool at cost.")
-                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.")
-                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.");
-            d3.select("#ch1_4").call(chart1_4);
-        });
-        
         d3.tsv("assets/data/data.tsv", function (error, data) {
             if (error) { console.log(error); }
             else {
@@ -532,6 +519,22 @@
                 d3.select("#ch3_2").call(chart3_2);
 
             };
+        });
+
+
+        d3.tsv("assets/data/preschool.tsv", function (error, data) {
+
+            var chart1_4 = stackedBar().data(data).marginLeft(160)
+              .height(200)
+              .containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
+                  //var chart1_4 = multiBar().data(data1_4).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
+                    //.xAxisLabel("% of preschoolers IN 2013–14 who were enrolled in districts that provided...")
+              .title("Twelve percent of children enrolled in preschool were ELs. This percentage did not vary considerably by the program cost or length, except in districts that only provided preschool at cost.")
+              .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.")
+              .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.");
+
+            d3.select("#ch1_4").call(chart1_4);
+
         });
 
     </script>

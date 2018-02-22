@@ -4968,13 +4968,13 @@ function stackedBar() {
 			.direction("n")
 			.offset([-5, 0])
 			.html(function(d) {
-				if (d.segment == "lang1_p1") { return d.lang1_name + ": " + formatPercent(d.lang1_p) + " (" + formatNumber(d.lang1_n) + " ELs)"; }
-				if (d.segment == "lang2_p1") { return d.lang2_name + ": " + formatPercent(d.lang2_p) + " (" + formatNumber(d.lang2_n) + " ELs)"; }
-				if (d.segment == "lang3_p1") { return d.lang3_name + ": " + formatPercent(d.lang3_p) + " (" + formatNumber(d.lang3_n) + " ELs)"; }
-				if (d.segment == "lang4_p1") { return d.lang4_name + ": " + formatPercent(d.lang4_p) + " (" + formatNumber(d.lang4_n) + " ELs)"; }
-				if (d.segment == "lang5_p1") { return d.lang5_name + ": " + formatPercent(d.lang5_p) + " (" + formatNumber(d.lang5_n) + " ELs)"; }
-				if (d.segment == "lang6_p1") { return d.lang6_name + ": " + formatPercent(d.lang6_p) + " (" + formatNumber(d.lang6_n) + " ELs)"; }
-				if (d.segment == "lang7_p1") { return d.lang7_name + ": " + formatPercent(d.lang7_p) + " (" + formatNumber(d.lang7_n) + " ELs)"; };
+				if (d.segment == "lang1_p1") { return d.lang1_name + ": " + formatPercent(d.lang1_p) + " (" + formatNumber(d.lang1_n) + " students)"; }
+				if (d.segment == "lang2_p1") { return d.lang2_name + ": " + formatPercent(d.lang2_p) + " (" + formatNumber(d.lang2_n) + " students)"; }
+				if (d.segment == "lang3_p1") { return d.lang3_name + ": " + formatPercent(d.lang3_p) + " (" + formatNumber(d.lang3_n) + " students)"; }
+				if (d.segment == "lang4_p1") { return d.lang4_name + ": " + formatPercent(d.lang4_p) + " (" + formatNumber(d.lang4_n) + " students)"; }
+				if (d.segment == "lang5_p1") { return d.lang5_name + ": " + formatPercent(d.lang5_p) + " (" + formatNumber(d.lang5_n) + " students)"; }
+				if (d.segment == "lang6_p1") { return d.lang6_name + ": " + formatPercent(d.lang6_p) + " (" + formatNumber(d.lang6_n) + " students)"; }
+				if (d.segment == "lang7_p1") { return d.lang7_name + ": " + formatPercent(d.lang7_p) + " (" + formatNumber(d.lang7_n) + " students)"; };
 			});
 
 		svg.call(tipStackedBar);
@@ -5096,8 +5096,8 @@ function stackedBar() {
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
 			.text(function() {
-				if (window.innerWidth <= 736) { return "% OF ENGLISH LEARNERS"; }
-				else { return "% OF ENGLISH LEARNERS IN 2014–15"; }
+				if (window.innerWidth <= 736) { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
+				else { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
 			});
 
 		// draw bars
@@ -5123,13 +5123,13 @@ function stackedBar() {
 					.on("mouseout", tipStackedBar.hide)
 					.append("aria-label")
 						.text(function(d) {
-							if (d.segment == "lang1_p1") { return "In 2014–15, " + formatPercent(d.lang1_p) + " of ELs, or " + formatNumber(d.lang1_n) + " ELs, in " + d.state + " primarily spoke " + d.lang1_name }
-							if (d.segment == "lang2_p1") { return "In 2014–15, " + formatPercent(d.lang2_p) + " of ELs, or " + formatNumber(d.lang2_n) + " ELs, in " + d.state + " primarily spoke " + d.lang2_name }
-							if (d.segment == "lang3_p1") { return "In 2014–15, " + formatPercent(d.lang3_p) + " of ELs, or " + formatNumber(d.lang3_n) + " ELs, in " + d.state + " primarily spoke " + d.lang3_name }
-							if (d.segment == "lang4_p1") { return "In 2014–15, " + formatPercent(d.lang4_p) + " of ELs, or " + formatNumber(d.lang4_n) + " ELs, in " + d.state + " primarily spoke " + d.lang4_name }
-							if (d.segment == "lang5_p1") { return "In 2014–15, " + formatPercent(d.lang5_p) + " of ELs, or " + formatNumber(d.lang5_n) + " ELs, in " + d.state + " primarily spoke " + d.lang5_name }
-							if (d.segment == "lang6_p1") { return "In 2014–15, " + formatPercent(d.lang6_p) + " of ELs, or " + formatNumber(d.lang6_n) + " ELs, in " + d.state + " primarily spoke " + d.lang6_name }
-							if (d.segment == "lang7_p1") { return "In 2014–15, data on the language spoken by ELs was missing for " + formatPercent(d.lang7_p) + " of ELs, or " + formatNumber(d.lang7_n) + " ELs, in " + d.state };
+							if (d.segment == "lang1_p1") { return "In 2014–15, " + formatPercent(d.lang1_p) + ", or " + formatNumber(d.lang1_n) + ", of preschoolers were " + d.lang1_name + "."; }
+							if (d.segment == "lang2_p1") { return "In 2014–15, " + formatPercent(d.lang2_p) + ", or " + formatNumber(d.lang2_n) + ", of preschoolers were " + d.lang2_name + "."; }
+							if (d.segment == "lang3_p1") { return "In 2014–15, " + formatPercent(d.lang3_p) + ", or " + formatNumber(d.lang3_n) + ", of preschoolers were " + d.lang3_name + "."; }
+							if (d.segment == "lang4_p1") { return "In 2014–15, " + formatPercent(d.lang4_p) + ", or " + formatNumber(d.lang4_n) + ", of preschoolers were " + d.lang4_name + "."; }
+							if (d.segment == "lang5_p1") { return "In 2014–15, " + formatPercent(d.lang5_p) + ", or " + formatNumber(d.lang5_n) + ", of preschoolers were " + d.lang5_name + "."; }
+							if (d.segment == "lang6_p1") { return "In 2014–15, " + formatPercent(d.lang6_p) + ", or " + formatNumber(d.lang6_n) + ", of preschoolers were " + d.lang6_name + "."; }
+							if (d.segment == "lang7_p1") { return "In 2014–15, " + formatPercent(d.lang7_p) + ", or " + formatNumber(d.lang7_n) + ", of preschoolers were " + d.lang7_name + "."; };
 						});
 
 		state.selectAll("text")
@@ -5153,14 +5153,14 @@ function stackedBar() {
 						if (d.segment == "lang7_p1") { return d.lang7_code; };
 					});
 
-		var gs = graphScroll()
-			.container(d3.select("#" + containerID))
-			.graph(d3.selectAll("#" + chartID))
-			.sections(d3.selectAll("#" + subcontainerID + " > div"))
-			.on("active", function() {
+			var gs = graphScroll()
+				.container(d3.select("#" + containerID))
+				.graph(d3.selectAll("#" + chartID))
+				.sections(d3.selectAll("#" + subcontainerID + " > div"))
+				.on("active", function() {
 
-				if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
-				else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
+					if (document.getElementById(sectionID).className.indexOf("activated") >= 0) { return; }
+					else if (document.getElementById(sectionID).className.indexOf("graph-scroll") >= 0) {
 
 					d3.select("#" + sectionID)
 						.classed("activated", "true");
