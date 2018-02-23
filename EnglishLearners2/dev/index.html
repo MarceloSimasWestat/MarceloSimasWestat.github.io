@@ -218,10 +218,6 @@
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                   Thirteen percent of preschool-aged ELs were in preschool compared with 19 percent of non-EL preschool-aged children.
                 </p>
-                <div id="ch1_3"></div>
-                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
-                  Over 90 percent of EL and non-EL preschoolers were enrolled in districts that provided free preschool and about two-thirds of EL and non-EL preschoolers were enrolled in districts that provided full-day preschool.
-                </p>
                 <div id="ch1_4"></div>
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                   Overall, 12 percent of children enrolled in preschool were ELs. However, less than 5 percent of preschoolers in districts that only provided preschool at cost were ELs. Turning to program length, 13 percent of preschoolers enrolled in districts that provided full-day preschool were ELs.
@@ -466,9 +462,7 @@ Camilli, Gregory, Sadako Vargas, Sharon Ryan, and W. Steven Barnett. 2010. “Me
 
                 data1_1 = data.filter(function(d) { return d.chart == "1-1"; });
                 data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
-                data1_3 = data.filter(function(d) { return d.chart == "1-3"; });
                 data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
-                /*data1_5 = data.filter(function(d) { return d.chart == "1-5"; });*/
                 data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
                 data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
                 data2_3 = data.filter(function(d) { return d.chart == "2-3"; });
@@ -487,16 +481,6 @@ Camilli, Gregory, Sadako Vargas, Sharon Ryan, and W. Steven Barnett. 2010. “Me
                   .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.")
                   .source('U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "State Nonfiscal Survey of Public Elementary/Secondary Education," 2013–14. Downloaded April 2017 from <a href="https://nces.ed.gov/ccd/stnfis.asp">https://nces.ed.gov/ccd/stnfis.asp</a>. U.S. Department of Education, EDFacts Data Warehouse (EDW), 2013–14. SEA File C141, LEP Enrolled. Extracted August 2017.')
                   .notes("Percentages are based on an estimate of the number of children aged 3 through 5. Given the available data, this was estimated using the population of children enrolled in grades 1 and 2.");
-                var chart1_3 = multiBar().data(data1_3).marginLeft(180).height(500).containerID("one2_chart").subcontainerID("one2_sections").sectionID("ch1_3").chartID("chart1_3")
-                  .xAxisLabel("% OF EL AND NON-EL PRESCHOOLERS IN 2013–14")
-                  .title("Similar percentages of EL and non-EL preschoolers were enrolled in districts that provided free preschool and full-day preschool programs or services.")
-                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
-                  .source("U.S. Department of Education, Office of Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
-                  .notes("Percentages are based on preschool enrollment. Districts that provided free preschool include districts that provided preschool only for free and districts that provided preschool for free or for a cost.");
-                /*var chart1_5 = dotTwo().data(data1_5).marginLeft(340).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_5").chartID("chart1_5")
-                  .group1("ELs").group2("Non-ELs").xAxisLabel("% OF PRESCHOOLERS ENROLLED IN 2013–14")
-                  .title("Regardless of length of preschool offered by the district, about the same percentage of preschoolers were ELs.")
-                  .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by length of preschool programs offered by the district.");*/
                 var chart2_1 = multiBar().data(data2_1).marginLeft(140).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
                   .xAxisLabel("% OF ELS AND NON-ELS IN 2013–14")
                   .title(["While the majority of ELs and non-ELs had access to Algebra I in grade 7 or 8, less than 10 percent of students enrolled in the course. Moreover, ELs were less likely than non-ELs to enroll in the course.",
@@ -539,8 +523,6 @@ Camilli, Gregory, Sadako Vargas, Sharon Ryan, and W. Steven Barnett. 2010. “Me
 
                 d3.select("#ch1_1").call(chart1_1);
                 d3.select("#ch1_2").call(chart1_2);
-                d3.select("#ch1_3").call(chart1_3);
-                /*d3.select("#ch1_5").call(chart1_5);*/
                 d3.select("#ch2_1").call(chart2_1);
                 d3.select("#ch2_2").call(chart2_2);
                 d3.select("#ch2_3").call(chart2_3);
