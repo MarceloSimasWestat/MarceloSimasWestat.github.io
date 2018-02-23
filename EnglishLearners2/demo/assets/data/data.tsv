@@ -15,10 +15,12 @@ chart	subchart	chartlevel	level	group	num	pct	group1_p	group2_p	diff_ppt	group1_
 1-x1				Enrolled in districts that provided free preschool only			0.12583	0.87417	74.834	113839	790855	1
 1-x1				Enrolled in districts that provided cost and free preschool			0.13618	0.86382	72.764	53045	336472	2
 1-x1				Enrolled in districts that provided preschool at cost only			0.03889	0.96111	92.222	2669	65958	3
-1-4				Preschool	174057	0.124874539						1
-1-4				Free preschool only	113839	0.12583						2
-1-4				Cost and free preschool	53045	0.13618						3
-1-4				Preschool at cost only	2669	0.03889						4
+1-4			ELs	Preschool	174057	0.125						1
+1-4			Non-ELs	Preschool	1219798	0.875						1
+1-4			ELs	Free preschool	166884	0.129						2
+1-4			Non-ELs	Free preschool	1127327	0.871						2
+1-4			ELs	Preschool at cost only	2669	0.039						3
+1-4			Non-ELs	Preschool at cost only	65958	0.961						3
 1-x2				Enrolled in districts that provided part day preschool only			0.11495	0.88505	77.01	52346	403033	1
 1-x2				Enrolled in districts that provided full and part day preschool			0.12106	0.87894	75.788	58168	422331	2
 1-x2				Enrolled in districts that provided full day preschool only			0.13828	0.86172	72.344	59039	367921	3
