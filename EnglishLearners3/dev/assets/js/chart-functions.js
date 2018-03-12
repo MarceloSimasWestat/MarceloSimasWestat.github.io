@@ -8409,7 +8409,7 @@ function multi_line_v2() {
 
 			line_group.select(".line.state:not(.highlighted)")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("stroke", function(d) {
 						if (d.key === highlighted_state) { return "#A6426C"; }
 						else { return "#778899"; };
@@ -8445,7 +8445,7 @@ function multi_line_v2() {
 					else { return "none"; };
 				})
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("fill", function(d) {
 						if (d.state === highlighted_state) { return "#A6426C"; }
 						else { return "#778899"; };
@@ -8463,7 +8463,7 @@ function multi_line_v2() {
 
 			line_group.select(".line.state:not(.highlighted)")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("stroke", "#778899")
 					.style("stroke-width", 1)
 					.style("opacity", 0.25);
@@ -8478,7 +8478,7 @@ function multi_line_v2() {
 			line_group.selectAll(".dot_text.state:not(.highlighted)")
 				.style("pointer-events", "none")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("fill", "#778899")
 					.style("opacity", 0);
 
@@ -8502,7 +8502,7 @@ function multi_line_v2() {
 						else { return false; };
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("stroke", function(d) {
 							if (d.key === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
@@ -8546,7 +8546,7 @@ function multi_line_v2() {
 
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("fill", function(d) {
 							if (d.state === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
@@ -8562,7 +8562,7 @@ function multi_line_v2() {
 						else { return false; };
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("fill", function(d) {
 							if (d.state === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
