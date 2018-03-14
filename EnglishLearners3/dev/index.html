@@ -445,8 +445,8 @@
                     "This map displays the percentage point change in the percent at or above Proficient on grade 8 NAEP mathematics between 2009 and 2015."
                   ])
                   .notes([
-                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
-                    "This is the note for the second subgroup map."
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero.",
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero."
                   ])
                   .source("The source for these data would go here.");
 
@@ -460,18 +460,18 @@
                            {color: "#9e9ac8", text: "≥ -1 to ≤ 1 pt", category: 3},
                            {color: "#54278f", text: "> 1 to ≤ 3 pts", category: 4},
                            {color: "#340d67", text: "> 3 pts", category: 5}])
-                           .title([
-                             "Between 2009 and 2015, eight states had an increase in the percent at or above Proficient of more than three percentage points on grade 4 NAEP reading.",
-                             "Between 2009 and 2015, three states had an increase in the percent at or above Proficient of more than three percentage points on grade 8 NAEP reading."
-                           ])
-                           .altText([
-                             "This map displays the percentage point change in the percent at or above Proficient on grade 4 NAEP reading between 2009 and 2015.",
-                             "This map displays the percentage point change in the percent at or above Proficient on grade 8 NAEP reading between 2009 and 2015."
-                           ])
-                  .notes([
-                    "Notes for this map would go here, like missing data, etc. This is the note for the first subgroup map.",
-                    "This is the note for the second subgroup map."
-                  ])
+                 .title([
+                   "Between 2009 and 2015, eight states had an increase in the percent at or above Proficient of more than three percentage points on grade 4 NAEP reading.",
+                   "Between 2009 and 2015, three states had an increase in the percent at or above Proficient of more than three percentage points on grade 8 NAEP reading."
+                 ])
+                 .altText([
+                   "This map displays the percentage point change in the percent at or above Proficient on grade 4 NAEP reading between 2009 and 2015.",
+                   "This map displays the percentage point change in the percent at or above Proficient on grade 8 NAEP reading between 2009 and 2015."
+                 ])
+                 .notes([
+                   "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero.",
+                   "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero."
+                 ])
                   .source("The source for these data would go here.");
 
                 d3.select("#ch1_1").call(grad_rate_map);
@@ -528,7 +528,10 @@
                     "This chart displays the percent at or above Proficient on grade 4 mathematics in TUDA districts in 2015.",
                     "This chart displays the percent at or above Proficient on grade 8 mathematics in TUDA districts in 2015.",
                   ])
-                  .notes("— Not available. † Not applicable. ‡ Reporting standards not met.")
+                  .notes([
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero.",
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero."
+                  ])
                   /*.source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
 
                 var naep_reading_chart = barChart().data(naep_reading_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_4").chartID("chart2_4")
@@ -543,7 +546,10 @@
                     "This chart displays the percent at or above Proficient on grade 4 reading in TUDA districts in 2015.",
                     "This chart displays the percent at or above Proficient on grade 8 reading in TUDA districts in 2015.",
                   ])
-                  .notes("— Not available. † Not applicable. ‡ Reporting standards not met.")
+                  .notes([
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero.",
+                    "— Not available. † Not applicable. ‡ Reporting standards not met. # Rounds to zero."
+                  ])
                   /*.source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
 
                 d3.select("#ch1_2").call(grad_rate_chart);

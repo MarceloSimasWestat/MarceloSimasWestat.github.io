@@ -775,6 +775,7 @@ function barChart() {
 		var data_all = data;
 		var titles_all = title;
 		var altText_all = altText;
+		var notes_all = notes;
 
 		if (toggles == 1) {
 
@@ -807,6 +808,7 @@ function barChart() {
 							selected_val = d3.select(this).property("value");
 							title = titles_all[i];
 							altText = altText_all[i];
+							notes = notes_all[i];
 							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
 
 							updateData();
@@ -945,15 +947,19 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-		// notes and sources
+		// add notes and sources if defined
+		// for notes, if toggles enabled, initially write first note
 
 		function writeNotes() {
 			if (!notes) {}
 			else {
 
 				d3.select("#"+ sectionID).append("div")
-						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+					.attr("id", "notes" + chartID)
+					.html(function() {
+						if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes[0] + "</span>"; }
+						else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>"; };
+					});
 
 			};
 		};
@@ -1078,6 +1084,11 @@ function barChart() {
 			d3.select("#" + sectionID)
 				.select(".title")
 				.text(title);
+
+			// update notes
+
+			d3.select("#notes" + chartID)
+				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 
 		};
 
