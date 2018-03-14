@@ -225,6 +225,14 @@
                 <p style="margin-top:1.5em; margin-bottom: 3.5em;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
                 </p>
+                <div id="ch2_3"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
+                <div id="ch2_4"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
             </div>
         </section>
 
@@ -376,42 +384,6 @@
 
     <script>
 
-        // charts
-
-        d3.tsv("assets/data/data.tsv", function (error, data) {
-            if (error) { console.log(error); }
-            else {
-                data.forEach(function (d) {
-                    d.chart = d.chart;
-                    d.st_abbr = d.st_abbr;
-                    d.state = d.state;
-                    d.year = d.year;
-                    d.all_p = d.all_p; /* there may be suppressed data so address in the function */
-                    d.el_p = d.el_p;
-                    d.all_n = d.all_n;
-                    d.el_n = d.el_n;
-                    d.all_cohort = d.all_cohort;
-                    d.el_cohort = d.el_cohort;
-                    d.all_p_notes = d.all_p_notes;
-                    d.el_p_notes = d.el_p_notes;
-                    d.all_cohort_notes = d.all_cohort_notes;
-                    d.el_cohort_notes = d.el_cohort_notes;
-                });
-
-                grad_rate_data = data.filter(function(d) { return d.chart === "grad_rate"; });
-
-                var grad_rate_chart = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
-                  .yAxisLabel("% OF ELS GRADUATING")
-                  .title("The graduation rate for ELs has risen since 2010–11.")
-                  .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
-                  /*.notes("Less than 1 percent of all students are Pacific Islander.")
-                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
-
-                d3.select("#ch1_2").call(grad_rate_chart);
-
-            };
-        });
-
         // hex maps
 
         d3.tsv("assets/data/map_data.tsv", function (error, data) {
@@ -505,6 +477,78 @@
                 d3.select("#ch1_1").call(grad_rate_map);
                 d3.select("#ch2_1").call(naep_math_map);
                 d3.select("#ch2_2").call(naep_reading_map);
+
+            };
+        });
+
+        // charts
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.chart = d.chart;
+                    d.subchart = d.chartlevel;
+                    d.st_abbr = d.st_abbr;
+                    d.state = d.state;
+                    d.year = d.year;
+                    d.all_p = d.all_p; /* there may be suppressed data so address in the function */
+                    d.el_p = d.el_p;
+                    d.all_n = d.all_n;
+                    d.el_n = d.el_n;
+                    d.all_cohort = d.all_cohort;
+                    d.el_cohort = d.el_cohort;
+                    d.all_p_notes = d.all_p_notes;
+                    d.el_p_notes = d.el_p_notes;
+                    d.all_cohort_notes = d.all_cohort_notes;
+                    d.el_cohort_notes = d.el_cohort_notes;
+                    d.pct = d.pct;
+                });
+
+                grad_rate_data = data.filter(function(d) { return d.chart === "grad_rate"; });
+                naep_math_data = data.filter(function(d) { return d.chart === "naep_math"; });
+                naep_reading_data = data.filter(function(d) { return d.chart === "naep_reading"; });
+
+                var grad_rate_chart = multi_line_v2().data(grad_rate_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                  .yAxisLabel("% OF ELS GRADUATING")
+                  .title("The graduation rate for ELs has risen since 2010–11.")
+                  .altText("This chart displays the graduation rates for ELs, nationally and by state, from 2010–11 to 2014–15.");
+                  /*.notes("Less than 1 percent of all students are Pacific Islander.")
+                  .source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
+
+                var naep_math_chart = barChart().data(naep_math_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
+                  .marginLeft(200)
+                  .xAxisLabel("% AT OR ABOVE PROFICIENT")
+                  .toggles(1)
+                  .title([
+                    "In most TUDA districts, fewer than 25 percent of ELs were at or above Proficient on grade 4 mathematics.",
+                    "In all TUDA districts, fewer than 10 percent of ELs were at or above Proficient on grade 8 mathematics."
+                  ])
+                  .altText([
+                    "This chart displays the percent at or above Proficient on grade 4 mathematics in TUDA districts in 2015.",
+                    "This chart displays the percent at or above Proficient on grade 8 mathematics in TUDA districts in 2015.",
+                  ])
+                  .notes("— Not available. † Not applicable. ‡ Reporting standards not met.")
+                  /*.source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
+
+                var naep_reading_chart = barChart().data(naep_reading_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_4").chartID("chart2_4")
+                  .marginLeft(200)
+                  .xAxisLabel("% AT OR ABOVE PROFICIENT")
+                  .toggles(1)
+                  .title([
+                    "In all TUDA districts, fewer than 20 percent of ELs were at or above Proficient on grade 4 reading.",
+                    "In all TUDA districts, fewer than 10 percent of ELs were at or above Proficient on grade 8 reading."
+                  ])
+                  .altText([
+                    "This chart displays the percent at or above Proficient on grade 4 reading in TUDA districts in 2015.",
+                    "This chart displays the percent at or above Proficient on grade 8 reading in TUDA districts in 2015.",
+                  ])
+                  .notes("— Not available. † Not applicable. ‡ Reporting standards not met.")
+                  /*.source("U.S. Department of Education, EDFacts Data Warehouse (EDW), 2014–15. SEA File C141, LEP Enrolled. Extracted April 3, 2017. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), &quot;State Nonfiscal Survey of Public Elementary/Secondary Education,&quot; 2014–15. Downloaded April 10, 2017 from <a href='https://nces.ed.gov/ccd/stnfis.asp' target='_blank'>https://nces.ed.gov/ccd/stnfis.asp</a>.");*/
+
+                d3.select("#ch1_2").call(grad_rate_chart);
+                d3.select("#ch2_3").call(naep_math_chart);
+                d3.select("#ch2_4").call(naep_reading_chart);
 
             };
         });

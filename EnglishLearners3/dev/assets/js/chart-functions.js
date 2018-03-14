@@ -722,10 +722,12 @@ function barChart() {
 		marginBottom = 45,
 		barWidth = 15,
 		animateTime = 1000,
+		xAxisLabel = "FILL IN X-AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
 		source = "",
+		toggles = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -734,6 +736,24 @@ function barChart() {
 
 	function chart(selection) {
 		selection.each(function() {
+
+		// make data fixes
+
+		data.forEach(function(d) {
+
+			// set 0 width for suppressed
+			// also fix district names
+
+			if (d.pct === "‡" || d.pct === "—" || d.pct === "#") {
+				d.pct_fixed = 0;
+				d.state_fixed = d.state + " (" + d.pct + ")";
+			}
+			else {
+				d.pct_fixed = d.pct;
+				d.state_fixed = d.state;
+			};
+
+		});
 
 		// formats
 
@@ -748,11 +768,68 @@ function barChart() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.chartlevel; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+		var altText_all = altText;
+
+		if (toggles == 1) {
+
+		// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.on("click", function(d, i) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = titles_all[i];
+							altText = altText_all[i];
+							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+		}
+		else {};
+
 		// chart title
 
 		d3.select(this).append("div")
 			.attr("class", "title")
-			.text(title);
+			.text(function() {
+				if (toggles === 1) { return title[0]; }
+				else { return title; };
+			});
 
 		// selections
 
@@ -777,12 +854,7 @@ function barChart() {
 			.attr("class", "d3-tip")
 			.direction("e")
 			.offset([0, 10])
-			.html(function(d) {
-
-			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
-
-
-		});
+			.html(function(d) {	return formatPercent(d.pct); });
 
 		svg.call(tipBar);
 
@@ -794,20 +866,17 @@ function barChart() {
 		// domains
 
 		function xDomain() {
-			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice() }
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct_fixed; })]).nice() }
 			else { xScale.domain([0, 1]); }
 		};
 		xDomain();
-		yScale.domain(data.map(function(d) { return d.group; }));
+		yScale.domain(data.map(function(d) { return d.state_fixed; }));
 
 		// axes
 
 		function formatValueAxis(d) {
-
 			var TickValue = formatNumber(d * 100);
-
 			return TickValue;
-
 		};
 
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
@@ -829,7 +898,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF ENGLISH LEARNERS IN 2014–15");
+			.text(xAxisLabel);
 
 		// draw bars
 
@@ -840,18 +909,15 @@ function barChart() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class", function(d) {
-						if (d.group == "Overall") { return "overallBar"; }
-						else { return "bar"; }
-					})
+					.attr("class", "bar")
 					.attr("x", 0)
 					.attr("width", 0)
-					.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2) - (barWidth/2); })
+					.attr("y", function(d) { return yScale(d.state_fixed) + (yScale.rangeBand() / 2) - (barWidth/2); })
 					.attr("height", barWidth)
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of preschool-aged " + d.group + " were enrolled in preschool."; });
+						.text(function(d) { return "In 2015, the percentage was " + formatPercent(d.pct) + "."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -868,7 +934,7 @@ function barChart() {
 					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.pct); });
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
 
 			}});
 
@@ -951,11 +1017,69 @@ function barChart() {
 					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.pct); });
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
 
 			}});
 
 		});
+
+		// update data function
+
+		function updateData() {
+
+			// transition x-axis if needed
+
+			xDomain();
+
+			svg.selectAll(".x.axis")
+				.transition()
+					.call(xAxis);
+
+			// adjust widths
+
+			svg.selectAll("rect.bar")
+				.data(data)
+				.transition()
+					.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
+
+			// update alt-text labels
+
+			svg.selectAll("rect.bar")
+				.selectAll("aria-label")
+					.remove();
+
+			svg.selectAll("rect.bar")
+				.append("aria-label")
+					.text(function(d) { return "In 2015, the percentage was " + formatPercent(d.pct) + "."; });
+
+			// redraw y-axis
+
+			yScale.domain(data.map(function(d) { return d.state_fixed; }));
+
+			svg.select(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			// update overall figure alt-text
+
+			svg.select("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
+			// update title
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+		};
 
 		});
 
@@ -1009,6 +1133,14 @@ function barChart() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -1045,6 +1177,14 @@ function barChart() {
 
 		if (!arguments.length) return caption;
 		caption = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
 		return chart;
 
 	};
@@ -9924,7 +10064,10 @@ function hex_map() {
 			.on("mouseover", tipHex.show)
 			.on("mouseout", tipHex.hide)
 			.append("aria-label")
-				.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; });
+				.text(function(d) {
+					if (pct_point === 0) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; }
+					else if (pct_point === 1) { return "In " + d.state + ", the percentage point change was " + formatNumber(d.dispval) + "."; };
+				});
 
 		// add state name to hexagons
 
@@ -10067,7 +10210,10 @@ function hex_map() {
 
 			hex_group.select(".hexagon")
 				.append("aria-label")
-					.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; });
+					.text(function(d) {
+						if (pct_point === 0) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; }
+						else if (pct_point === 1) { return "In " + d.state + ", the percentage point change was " + formatNumber(d.dispval) + "."; };
+					});
 
 			// tween values
 

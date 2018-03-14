@@ -1,313 +1,401 @@
-chart	st_abbr	state	year	all_p	el_p	all_n	el_n	all_cohort	el_cohort	all_p_notes	el_p_notes	all_cohort_notes	el_cohort_notes
-grad_rate	AL	Alabama	2010-11	0.72	0.36					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
-grad_rate	AK	Alaska	2010-11	0.68	0.41
-grad_rate	AZ	Arizona	2010-11	0.78	0.25
-grad_rate	AR	Arkansas	2010-11	0.81	0.76
-grad_rate	CA	California	2010-11	0.76	0.6
-grad_rate	CO	Colorado	2010-11	0.74	0.53
-grad_rate	CT	Connecticut	2010-11	0.83	0.59
-grad_rate	DE	Delaware	2010-11	0.78	0.65
-grad_rate	DC	District of Columbia	2010-11	0.59	0.53
-grad_rate	FL	Florida	2010-11	0.71	0.53
-grad_rate	GA	Georgia	2010-11	0.67	0.32
-grad_rate	HI	Hawaii	2010-11	0.8	0.6
-grad_rate	ID	Idaho	2010-11	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2010-11: Idaho has received a "timeline extensions" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2010-11: Idaho has received a "timeline extension" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.
-grad_rate	IL	Illinois	2010-11	0.84	0.68
-grad_rate	IN	Indiana	2010-11	0.86	0.73
-grad_rate	IA	Iowa	2010-11	0.88	0.7
-grad_rate	KS	Kansas	2010-11	0.83	0.7
-grad_rate	KY	Kentucky	2010-11	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2010-11: Kentucky has received a "timeline extension" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.
-grad_rate	LA	Louisiana	2010-11	0.71	0.43
-grad_rate	ME	Maine	2010-11	0.84	0.78
-grad_rate	MD	Maryland	2010-11	0.83	0.54
-grad_rate	MA	Massachusetts	2010-11	0.83	0.56
-grad_rate	MI	Michigan	2010-11	0.74	0.62
-grad_rate	MN	Minnesota	2010-11	0.77	0.52
-grad_rate	MS	Mississippi	2010-11	0.75	0.67
-grad_rate	MO	Missouri	2010-11	0.81	0.62
-grad_rate	MT	Montana	2010-11	0.82	0.57
-grad_rate	NE	Nebraska	2010-11	0.86	0.52
-grad_rate	NV	Nevada	2010-11	0.62	0.29
-grad_rate	NH	New Hampshire	2010-11	0.86	0.73
-grad_rate	NJ	New Jersey	2010-11	0.83	0.68
-grad_rate	NM	New Mexico	2010-11	0.63	0.56
-grad_rate	NY	New York	2010-11	0.77	0.46
-grad_rate	NC	North Carolina	2010-11	0.78	0.48
-grad_rate	ND	North Dakota	2010-11	0.86	0.61
-grad_rate	OH	Ohio	2010-11	0.8	0.53
-grad_rate	OK	Oklahoma	2010-11	†	†
-grad_rate	OR	Oregon	2010-11	0.68	0.52
-grad_rate	PA	Pennsylvania	2010-11	0.83	0.63
-grad_rate	RI	Rhode Island	2010-11	0.77	0.68
-grad_rate	SC	South Carolina	2010-11	0.74	0.62
-grad_rate	SD	South Dakota	2010-11	0.83	0.6
-grad_rate	TN	Tennessee	2010-11	0.86	0.71
-grad_rate	TX	Texas	2010-11	0.86	0.58
-grad_rate	UT	Utah	2010-11	0.76	0.45
-grad_rate	VT	Vermont	2010-11	0.87	0.82
-grad_rate	VA	Virginia	2010-11	0.82	0.55
-grad_rate	WA	Washington	2010-11	0.76	0.51
-grad_rate	WV	West Virginia	2010-11	0.78	0.84
-grad_rate	WI	Wisconsin	2010-11	0.87	0.66
-grad_rate	WY	Wyoming	2010-11	0.8	0.62
-grad_rate	US 	United States	2010-11	0.79	0.57
-grad_rate	AL	Alabama	2011-12	0.75	0.36
-grad_rate	AK	Alaska	2011-12	0.7	0.47
-grad_rate	AZ	Arizona	2011-12	0.76	0.24
-grad_rate	AR	Arkansas	2011-12	0.84	0.77
-grad_rate	CA	California	2011-12	0.79	0.62
-grad_rate	CO	Colorado	2011-12	0.75	0.53
-grad_rate	CT	Connecticut	2011-12	0.85	0.63
-grad_rate	DE	Delaware	2011-12	0.8	0.71
-grad_rate	DC	District of Columbia	2011-12	0.59	0.52
-grad_rate	FL	Florida	2011-12	0.75	0.57
-grad_rate	GA	Georgia	2011-12	0.7	0.44
-grad_rate	HI	Hawaii	2011-12	0.81	0.52
-grad_rate	ID	Idaho	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
-grad_rate	IL	Illinois	2011-12	0.82	0.66
-grad_rate	IN	Indiana	2011-12	0.86	0.78
-grad_rate	IA	Iowa	2011-12	0.89	0.74
-grad_rate	KS	Kansas	2011-12	0.85	0.74
-grad_rate	KY	Kentucky	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
-grad_rate	LA	Louisiana	2011-12	0.72	0.49
-grad_rate	ME	Maine	2011-12	0.85	0.74
-grad_rate	MD	Maryland	2011-12	0.84	0.55
-grad_rate	MA	Massachusetts	2011-12	0.85	0.61
-grad_rate	MI	Michigan	2011-12	0.76	0.63
-grad_rate	MN	Minnesota	2011-12	0.78	0.51
-grad_rate	MS	Mississippi	2011-12	0.75	0.54
-grad_rate	MO	Missouri	2011-12	0.84	0.65
-grad_rate	MT	Montana	2011-12	0.84	0.53
-grad_rate	NE	Nebraska	2011-12	0.88	0.64
-grad_rate	NV	Nevada	2011-12	0.63	0.23
-grad_rate	NH	New Hampshire	2011-12	0.86	0.68
-grad_rate	NJ	New Jersey	2011-12	0.86	0.73
-grad_rate	NM	New Mexico	2011-12	0.7	0.66					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: Growth in New Mexico's graduation rate from the 2010-11 to 2011-12 school year is the response of a policy issue that was resolved in 2012.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: Growth in New Mexico's graduation rate from the 2010-11 to 2011-12 school year is the response of a policy issue that was resolved in 2012.
-grad_rate	NY	New York	2011-12	0.77	0.44
-grad_rate	NC	North Carolina	2011-12	0.8	0.5
-grad_rate	ND	North Dakota	2011-12	0.87	0.68
-grad_rate	OH	Ohio	2011-12	0.81	0.62
-grad_rate	OK	Oklahoma	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
-grad_rate	OR	Oregon	2011-12	0.68	0.49
-grad_rate	PA	Pennsylvania	2011-12	0.84	0.64
-grad_rate	RI	Rhode Island	2011-12	0.77	0.69
-grad_rate	SC	South Carolina	2011-12	0.75	0.64
-grad_rate	SD	South Dakota	2011-12	0.83	0.6
-grad_rate	TN	Tennessee	2011-12	0.87	0.72
-grad_rate	TX	Texas	2011-12	0.88	0.59
-grad_rate	UT	Utah	2011-12	0.8	0.51
-grad_rate	VT	Vermont	2011-12	0.88	0.75
-grad_rate	VA	Virginia	2011-12	0.83	0.55
-grad_rate	WA	Washington	2011-12	0.77	0.54
-grad_rate	WV	West Virginia	2011-12	0.79	0.83
-grad_rate	WI	Wisconsin	2011-12	0.88	0.66
-grad_rate	WY	Wyoming	2011-12	0.79	0.56
-grad_rate	US 	United States	2011-12	0.8	0.59
-grad_rate	AL	Alabama	2012-13	0.8	0.44
-grad_rate	AK	Alaska	2012-13	0.718	0.4
-grad_rate	AZ	Arizona	2012-13	0.751	0.2
-grad_rate	AR	Arkansas	2012-13	0.849	0.81
-grad_rate	CA	California	2012-13	0.804	0.631
-grad_rate	CO	Colorado	2012-13	0.769	0.585
-grad_rate	CT	Connecticut	2012-13	0.855	0.64
-grad_rate	DE	Delaware	2012-13	0.804	0.71
-grad_rate	DC	District of Columbia	2012-13	0.623	0.52
-grad_rate	FL	Florida	2012-13	0.756	0.575
-grad_rate	GA	Georgia	2012-13	0.717	0.438
-grad_rate	HI	Hawaii	2012-13	0.824	0.57
-grad_rate	ID	Idaho	2012-13	-	-					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: Idaho has an approved timeline extension request, and will not report an adjusted cohort graduation rate until SY 2013-14.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: Idaho has an approved timeline extension request, and will not report an adjusted cohort graduation rate until SY 2013-14.
-grad_rate	IL	Illinois	2012-13	0.832	0.637
-grad_rate	IN	Indiana	2012-13	0.87	0.78
-grad_rate	IA	Iowa	2012-13	0.897	0.76
-grad_rate	KS	Kansas	2012-13	0.857	0.75
-grad_rate	KY	Kentucky	2012-13	0.861	0.64
-grad_rate	LA	Louisiana	2012-13	0.735	0.48					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
-grad_rate	ME	Maine	2012-13	0.864	0.73
-grad_rate	MD	Maryland	2012-13	0.85	0.57
-grad_rate	MA	Massachusetts	2012-13	0.85	0.635
-grad_rate	MI	Michigan	2012-13	0.77	0.654
-grad_rate	MN	Minnesota	2012-13	0.798	0.593
-grad_rate	MS	Mississippi	2012-13	0.755	0.57
-grad_rate	MO	Missouri	2012-13	0.857	0.69
-grad_rate	MT	Montana	2012-13	0.844	0.57
-grad_rate	NE	Nebraska	2012-13	0.885	0.6
-grad_rate	NV	Nevada	2012-13	0.707	0.24
-grad_rate	NH	New Hampshire	2012-13	0.873	0.7
-grad_rate	NJ	New Jersey	2012-13	0.875	0.705
-grad_rate	NM	New Mexico	2012-13	0.703	0.654
-grad_rate	NY	New York	2012-13	0.768	0.391
-grad_rate	NC	North Carolina	2012-13	0.825	0.49
-grad_rate	ND	North Dakota	2012-13	0.875	0.61
-grad_rate	OH	Ohio	2012-13	0.822	0.67
-grad_rate	OK	Oklahoma	2012-13	0.848	0.64					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
-grad_rate	OR	Oregon	2012-13	0.687	0.491
-grad_rate	PA	Pennsylvania	2012-13	0.855	0.67
-grad_rate	RI	Rhode Island	2012-13	0.797	0.73
-grad_rate	SC	South Carolina	2012-13	0.776	0.69
-grad_rate	SD	South Dakota	2012-13	0.827	0.59
-grad_rate	TN	Tennessee	2012-13	0.863	0.73
-grad_rate	TX	Texas	2012-13	0.88	0.713					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
-grad_rate	UT	Utah	2012-13	0.83	0.6
-grad_rate	VT	Vermont	2012-13	0.866	0.63
-grad_rate	VA	Virginia	2012-13	0.845	0.518
-grad_rate	WA	Washington	2012-13	0.764	0.506
-grad_rate	WV	West Virginia	2012-13	0.814	0.83
-grad_rate	WI	Wisconsin	2012-13	0.88	0.62
-grad_rate	WY	Wyoming	2012-13	0.77	0.68
-grad_rate	US 	United States	2012-13	0.814	0.611
-grad_rate	AL	Alabama	2013-14	0.863	0.67			54391	391
-grad_rate	AK	Alaska	2013-14	0.711	0.32			9871	767
-grad_rate	AZ	Arizona	2013-14	0.757	0.18			79259	905
-grad_rate	AR	Arkansas	2013-14	0.869	0.84			34422	1571
-grad_rate	CA	California	2013-14	0.81	0.65			492971	93608
-grad_rate	CO	Colorado	2013-14	0.773	0.587			61440	6654
-grad_rate	CT	Connecticut	2013-14	0.87	0.63			43050	1586
-grad_rate	DE	Delaware	2013-14	0.87	0.77			9423	317
-grad_rate	DC	District of Columbia	2013-14	0.614	0.64			5100	357
-grad_rate	FL	Florida	2013-14	0.761	0.558			196234	14726
-grad_rate	GA	Georgia	2013-14	0.725	0.439			123392	4165
-grad_rate	HI	Hawaii	2013-14	0.818	0.53			13062	658
-grad_rate	ID	Idaho	2013-14	0.773	0.75			22840	1717
-grad_rate	IL	Illinois	2013-14	0.86	0.717			153112	5940
-grad_rate	IN	Indiana	2013-14	0.879	0.8			75858	1744
-grad_rate	IA	Iowa	2013-14	0.905	0.83			33969	1126
-grad_rate	KS	Kansas	2013-14	0.857	0.75			35304	2519
-grad_rate	KY	Kentucky	2013-14	0.875	0.66			48312	500
-grad_rate	LA	Louisiana	2013-14	0.746	0.5			50690	492
-grad_rate	ME	Maine	2013-14	0.865	0.72			14293	308
-grad_rate	MD	Maryland	2013-14	0.864	0.54			64897	1219
-grad_rate	MA	Massachusetts	2013-14	0.861	0.634			73168	5131
-grad_rate	MI	Michigan	2013-14	0.786	0.682			124279	3823
-grad_rate	MN	Minnesota	2013-14	0.812	0.637			65937	4239
-grad_rate	MS	Mississippi	2013-14	0.776	0.67			33391	224
-grad_rate	MO	Missouri	2013-14	0.873	0.64			67473	792
-grad_rate	MT	Montana	2013-14	0.854	0.59			10855	386
-grad_rate	NE	Nebraska	2013-14	0.897	0.6			21744	744
-grad_rate	NV	Nevada	2013-14	0.7	0.29			34201	2505
-grad_rate	NH	New Hampshire	2013-14	0.881	0.75			15193	394
-grad_rate	NJ	New Jersey	2013-14	0.886	0.711			106162	3831
-grad_rate	NM	New Mexico	2013-14	0.685	0.639			25416	7132
-grad_rate	NY	New York	2013-14	0.778	0.371			218181	12276
-grad_rate	NC	North Carolina	2013-14	0.839	0.52			109714	2603
-grad_rate	ND	North Dakota	2013-14	0.872	0.64			7549	171
-grad_rate	OH	Ohio	2013-14	0.818	0.66			138806	2290
-grad_rate	OK	Oklahoma	2013-14	0.827	0.59			43821	1094
-grad_rate	OR	Oregon	2013-14	0.72	0.52			45674	2704
-grad_rate	PA	Pennsylvania	2013-14	0.855	0.648			141467	3045
-grad_rate	RI	Rhode Island	2013-14	0.808	0.72			11333	1140
-grad_rate	SC	South Carolina	2013-14	0.801	0.73			51891	1760
-grad_rate	SD	South Dakota	2013-14	0.827	0.57			9385	221
-grad_rate	TN	Tennessee	2013-14	0.872	0.73			69503	1614
-grad_rate	TX	Texas	2013-14	0.883	0.715			333286	25382
-grad_rate	UT	Utah	2013-14	0.839	0.62			42580	1914
-grad_rate	VT	Vermont	2013-14	0.878	0.69			6206	91
-grad_rate	VA	Virginia	2013-14	0.853	0.482			94658	3985
-grad_rate	WA	Washington	2013-14	0.782	0.538			84793	4337
-grad_rate	WV	West Virginia	2013-14	0.845	0.89			19793	133
-grad_rate	WI	Wisconsin	2013-14	0.886	0.64			66098	1471
-grad_rate	WY	Wyoming	2013-14	0.786	0.65			6906	161
-grad_rate	US 	United States	2013-14	0.823	0.626			3701353	236863
-grad_rate	AL	Alabama	2014-15	0.893	0.75			54493	414
-grad_rate	AK	Alaska	2014-15	0.756	0.56			9676	642
-grad_rate	AZ	Arizona	2014-15	0.774	0.34			80292	1040
-grad_rate	AR	Arkansas	2014-15	0.849	0.86			35783	1608
-grad_rate	CA	California	2014-15	0.82	0.69			488612	93384
-grad_rate	CO	Colorado	2014-15	0.773	0.611			61790	6981
-grad_rate	CT	Connecticut	2014-15	0.872	0.67			42396	2253
-grad_rate	DE	Delaware	2014-15	0.856	0.69			9683	366
-grad_rate	DC	District of Columbia	2014-15	0.685	0.62			4440	358
-grad_rate	FL	Florida	2014-15	0.779	0.595			199988	14872
-grad_rate	GA	Georgia	2014-15	0.788	0.564			124892	4151
-grad_rate	HI	Hawaii	2014-15	0.816	0.46			12749	592
-grad_rate	ID	Idaho	2014-15	0.789	0.72			21446	1671
-grad_rate	IL	Illinois	2014-15	0.856	0.72			153246	6639
-grad_rate	IN	Indiana	2014-15	0.871	0.75			75786	1967
-grad_rate	IA	Iowa	2014-15	0.908	0.83			33934	1159
-grad_rate	KS	Kansas	2014-15	0.857	0.77			34828	2780
-grad_rate	KY	Kentucky	2014-15	0.88	0.67			48236	543
-grad_rate	LA	Louisiana	2014-15	0.775	0.5			47968	534
-grad_rate	ME	Maine	2014-15	0.875	0.77			14124	244
-grad_rate	MD	Maryland	2014-15	0.87	0.49			63775	1192
-grad_rate	MA	Massachusetts	2014-15	0.873	0.64			72474	4905
-grad_rate	MI	Michigan	2014-15	0.798	0.721			122544	3973
-grad_rate	MN	Minnesota	2014-15	0.819	0.631			66258	4314
-grad_rate	MS	Mississippi	2014-15	0.754	0.53			35730	288	Regulatory Adjusted Cohort Graduation Rate, All Students: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Cohort Count for Regulatory Adjusted Cohort Graduation Rate, All Students: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Cohort Count for Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.
-grad_rate	MO	Missouri	2014-15	0.878	0.71			66536	723
-grad_rate	MT	Montana	2014-15	0.86	0.62			10647	381
-grad_rate	NE	Nebraska	2014-15	0.889	0.55			21858	750
-grad_rate	NV	Nevada	2014-15	0.713	0.32			33992	2833
-grad_rate	NH	New Hampshire	2014-15	0.881	0.77			14776	374
-grad_rate	NJ	New Jersey	2014-15	0.897	0.74			106113	3882
-grad_rate	NM	New Mexico	2014-15	0.686	0.64			25863	6850
-grad_rate	NY	New York	2014-15	0.792	0.36			211837	11343
-grad_rate	NC	North Carolina	2014-15	0.856	0.58			110473	2572
-grad_rate	ND	North Dakota	2014-15	0.866	0.62			7571	177
-grad_rate	OH	Ohio	2014-15	0.807	0.5			137131	1571
-grad_rate	OK	Oklahoma	2014-15	0.825	0.6			45266	1011
-grad_rate	OR	Oregon	2014-15	0.738	0.51			45171	2262
-grad_rate	PA	Pennsylvania	2014-15	0.848	0.626			138309	3035
-grad_rate	RI	Rhode Island	2014-15	0.832	0.77			10905	1240
-grad_rate	SC	South Carolina	2014-15	0.803	0.76			54020	1748
-grad_rate	SD	South Dakota	2014-15	0.839	0.56			9298	190
-grad_rate	TN	Tennessee	2014-15	0.879	0.75			69944	1644
-grad_rate	TX	Texas	2014-15	0.89	0.733			339626	24513
-grad_rate	UT	Utah	2014-15	0.848	0.66			43470	1752
-grad_rate	VT	Vermont	2014-15	0.877	0.69			6167	140
-grad_rate	VA	Virginia	2014-15	0.857	0.446			93416	3818
-grad_rate	WA	Washington	2014-15	0.782	0.558			80003	4547
-grad_rate	WV	West Virginia	2014-15	0.865	0.86			19660	154
-grad_rate	WI	Wisconsin	2014-15	0.884	0.62			65239	1373
-grad_rate	WY	Wyoming	2014-15	0.793	0.64			6868	176
-grad_rate	US 	United States	2014-15	0.832	0.651			3689302	235929
-grad_rate	AL	Alabama	2015-16	0.871192387	0.644067797	49164	266	56433	413
-grad_rate	AK	Alaska	2015-16	0.761128982	0.546649146	7335	416	9637	761
-grad_rate	AZ	Arizona	2015-16	0.79528637	0.321548822	64485	382	81084	1188
-grad_rate	AR	Arkansas	2015-16	0.870170407	0.857064321	30945	1559	35562	1819
-grad_rate	CA	California	2015-16	0.831991919	0.720606551	406874	65960	489036	91534
-grad_rate	CO	Colorado	2015-16	0.789063737	0.613516081	49842	4521	63166	7369
-grad_rate	CT	Connecticut	2015-16	0.873878529	0.67316209	37208	1520	42578	2258
-grad_rate	DE	Delaware	2015-16	0.85513923	0.725848564	8353	278	9768	383
-grad_rate	DC	District of Columbia	2015-16	0.692008197	0.635135135	3377	282	4880	444
-grad_rate	FL	Florida	2015-16	0.806888815	0.619874959	159672	9419	197886	15195
-grad_rate	GA	Georgia	2015-16	0.794365644	0.564635603	101087	2363	127255	4185
-grad_rate	HI	Hawaii	2015-16	0.827441535	0.69379015	10650	972	12871	1401
-grad_rate	ID	Idaho	2015-16	0.796645798	0.733455882	17433	1197	21883	1632
-grad_rate	IL	Illinois	2015-16	0.854744796	0.718541748	131676	5499	154053	7653
-grad_rate	IN	Indiana	2015-16	0.867973908	0.708673091	65999	956	76038	1349
-grad_rate	IA	Iowa	2015-16	0.91262164	0.807909605	31511	1001	34528	1239
-grad_rate	KS	Kansas	2015-16	0.856641115	0.77345679	30732	2506	35875	3240
-grad_rate	KY	Kentucky	2015-16	0.886252717	0.683006536	43219	418	48766	612
-grad_rate	LA	Louisiana	2015-16	0.785769545	0.427797834	36565	237	46534	554
-grad_rate	ME	Maine	2015-16	0.869885606	0.779582367	12395	336	14249	431
-grad_rate	MD	Maryland	2015-16	0.876115122	0.475440806	55586	755	63446	1588
-grad_rate	MA	Massachusetts	2015-16	0.8754136	0.640654739	64820	3366	74045	5254
-grad_rate	MI	Michigan	2015-16	0.796481073	0.721060683	97146	2828	121969	3922
-grad_rate	MN	Minnesota	2015-16	0.821657795	0.631455399	54024	2690	65750	4260
-grad_rate	MS	Mississippi	2015-16	0.822675617	0.653710247	27943	185	33966	283
-grad_rate	MO	Missouri	2015-16	0.889945368	0.679577465	59621	579	66994	852
-grad_rate	MT	Montana	2015-16	0.856391965	0.587467363	9124	225	10654	383
-grad_rate	NE	Nebraska	2015-16	0.892661008	0.545454545	19668	348	22033	638
-grad_rate	NV	Nevada	2015-16	0.735540313	0.425789978	25307	1334	34406	3133
-grad_rate	NH	New Hampshire	2015-16	0.882316865	0.716937355	12948	309	14675	431
-grad_rate	NJ	New Jersey	2015-16	0.900637829	0.746500382	95736	2933	106298	3929
-grad_rate	NM	New Mexico	2015-16	0.710445113	0.674361564	18419	4674	25926	6931
-grad_rate	NY	New York	2015-16	0.803564488	0.377920158	167454	3834	208389	10145
-grad_rate	NC	North Carolina	2015-16	0.85860753	0.571872572	97646	1472	113726	2574
-grad_rate	ND	North Dakota	2015-16	0.875246743	0.686746988	6651	114	7599	166
-grad_rate	OH	Ohio	2015-16	0.834474189	0.502452316	114837	922	137616	1835
-grad_rate	OK	Oklahoma	2015-16	0.816207849	0.578992314	39018	678	47804	1171
-grad_rate	OR	Oregon	2015-16	0.748289925	0.529006883	34678	1076	46343	2034
-grad_rate	PA	Pennsylvania	2015-16	0.860933406	0.627013631	117619	2024	136618	3228
-grad_rate	RI	Rhode Island	2015-16	0.827549002	0.736636245	9204	565	11122	767
-grad_rate	SC	South Carolina	2015-16	0.826002944	0.760299625	44885	1421	54340	1869
-grad_rate	SD	South Dakota	2015-16	0.838798415	0.572115385	7623	119	9088	208
-grad_rate	TN	Tennessee	2015-16	0.885404845	0.756378189	63194	1512	71373	1999
-grad_rate	TX	Texas	2015-16	0.891415063	0.736776097	312605	19974	350684	27110
-grad_rate	UT	Utah	2015-16	0.852431252	0.657249467	38252	1233	44874	1876
-grad_rate	VT	Vermont	2015-16	0.877268228	0.6796875	5318	87	6062	128
-grad_rate	VA	Virginia	2015-16	0.866728318	0.4544406	82477	1970	95159	4335
-grad_rate	WA	Washington	2015-16	0.79721185	0.578223871	64048	2650	80340	4583
-grad_rate	WV	West Virginia	2015-16	0.898105151	0.926605505	16826	101	18735	109
-grad_rate	WI	Wisconsin	2015-16	0.882345503	0.655328798	55826	867	63270	1323
-grad_rate	WY	Wyoming	2015-16	0.799658022	0.698492462	5612	139	7018	199
-grad_rate	US 	United States	2015-16	0.841136094	0.668562155	3122637	161072	3712404	240923				
+chart	chartlevel	st_abbr	state	year	all_p	el_p	all_n	el_n	all_cohort	el_cohort	all_p_notes	el_p_notes	all_cohort_notes	el_cohort_notes	pct
+grad_rate		AL	Alabama	2010-11	0.72	0.36					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
+grad_rate		AK	Alaska	2010-11	0.68	0.41
+grad_rate		AZ	Arizona	2010-11	0.78	0.25
+grad_rate		AR	Arkansas	2010-11	0.81	0.76
+grad_rate		CA	California	2010-11	0.76	0.6
+grad_rate		CO	Colorado	2010-11	0.74	0.53
+grad_rate		CT	Connecticut	2010-11	0.83	0.59
+grad_rate		DE	Delaware	2010-11	0.78	0.65
+grad_rate		DC	District of Columbia	2010-11	0.59	0.53
+grad_rate		FL	Florida	2010-11	0.71	0.53
+grad_rate		GA	Georgia	2010-11	0.67	0.32
+grad_rate		HI	Hawaii	2010-11	0.8	0.6
+grad_rate		ID	Idaho	2010-11	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2010-11: Idaho has received a "timeline extensions" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2010-11: Idaho has received a "timeline extension" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.
+grad_rate		IL	Illinois	2010-11	0.84	0.68
+grad_rate		IN	Indiana	2010-11	0.86	0.73
+grad_rate		IA	Iowa	2010-11	0.88	0.7
+grad_rate		KS	Kansas	2010-11	0.83	0.7
+grad_rate		KY	Kentucky	2010-11	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2010-11: Kentucky has received a "timeline extension" from the Department, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2010-11. Accordingly, they did not submit data based on the regulatory requirements for 2010-11. Instead, they submitted data based on their previously approved methodology.
+grad_rate		LA	Louisiana	2010-11	0.71	0.43
+grad_rate		ME	Maine	2010-11	0.84	0.78
+grad_rate		MD	Maryland	2010-11	0.83	0.54
+grad_rate		MA	Massachusetts	2010-11	0.83	0.56
+grad_rate		MI	Michigan	2010-11	0.74	0.62
+grad_rate		MN	Minnesota	2010-11	0.77	0.52
+grad_rate		MS	Mississippi	2010-11	0.75	0.67
+grad_rate		MO	Missouri	2010-11	0.81	0.62
+grad_rate		MT	Montana	2010-11	0.82	0.57
+grad_rate		NE	Nebraska	2010-11	0.86	0.52
+grad_rate		NV	Nevada	2010-11	0.62	0.29
+grad_rate		NH	New Hampshire	2010-11	0.86	0.73
+grad_rate		NJ	New Jersey	2010-11	0.83	0.68
+grad_rate		NM	New Mexico	2010-11	0.63	0.56
+grad_rate		NY	New York	2010-11	0.77	0.46
+grad_rate		NC	North Carolina	2010-11	0.78	0.48
+grad_rate		ND	North Dakota	2010-11	0.86	0.61
+grad_rate		OH	Ohio	2010-11	0.8	0.53
+grad_rate		OK	Oklahoma	2010-11	†	†
+grad_rate		OR	Oregon	2010-11	0.68	0.52
+grad_rate		PA	Pennsylvania	2010-11	0.83	0.63
+grad_rate		RI	Rhode Island	2010-11	0.77	0.68
+grad_rate		SC	South Carolina	2010-11	0.74	0.62
+grad_rate		SD	South Dakota	2010-11	0.83	0.6
+grad_rate		TN	Tennessee	2010-11	0.86	0.71
+grad_rate		TX	Texas	2010-11	0.86	0.58
+grad_rate		UT	Utah	2010-11	0.76	0.45
+grad_rate		VT	Vermont	2010-11	0.87	0.82
+grad_rate		VA	Virginia	2010-11	0.82	0.55
+grad_rate		WA	Washington	2010-11	0.76	0.51
+grad_rate		WV	West Virginia	2010-11	0.78	0.84
+grad_rate		WI	Wisconsin	2010-11	0.87	0.66
+grad_rate		WY	Wyoming	2010-11	0.8	0.62
+grad_rate		US 	United States	2010-11	0.79	0.57
+grad_rate		AL	Alabama	2011-12	0.75	0.36
+grad_rate		AK	Alaska	2011-12	0.7	0.47
+grad_rate		AZ	Arizona	2011-12	0.76	0.24
+grad_rate		AR	Arkansas	2011-12	0.84	0.77
+grad_rate		CA	California	2011-12	0.79	0.62
+grad_rate		CO	Colorado	2011-12	0.75	0.53
+grad_rate		CT	Connecticut	2011-12	0.85	0.63
+grad_rate		DE	Delaware	2011-12	0.8	0.71
+grad_rate		DC	District of Columbia	2011-12	0.59	0.52
+grad_rate		FL	Florida	2011-12	0.75	0.57
+grad_rate		GA	Georgia	2011-12	0.7	0.44
+grad_rate		HI	Hawaii	2011-12	0.81	0.52
+grad_rate		ID	Idaho	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
+grad_rate		IL	Illinois	2011-12	0.82	0.66
+grad_rate		IN	Indiana	2011-12	0.86	0.78
+grad_rate		IA	Iowa	2011-12	0.89	0.74
+grad_rate		KS	Kansas	2011-12	0.85	0.74
+grad_rate		KY	Kentucky	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
+grad_rate		LA	Louisiana	2011-12	0.72	0.49
+grad_rate		ME	Maine	2011-12	0.85	0.74
+grad_rate		MD	Maryland	2011-12	0.84	0.55
+grad_rate		MA	Massachusetts	2011-12	0.85	0.61
+grad_rate		MI	Michigan	2011-12	0.76	0.63
+grad_rate		MN	Minnesota	2011-12	0.78	0.51
+grad_rate		MS	Mississippi	2011-12	0.75	0.54
+grad_rate		MO	Missouri	2011-12	0.84	0.65
+grad_rate		MT	Montana	2011-12	0.84	0.53
+grad_rate		NE	Nebraska	2011-12	0.88	0.64
+grad_rate		NV	Nevada	2011-12	0.63	0.23
+grad_rate		NH	New Hampshire	2011-12	0.86	0.68
+grad_rate		NJ	New Jersey	2011-12	0.86	0.73
+grad_rate		NM	New Mexico	2011-12	0.7	0.66					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: Growth in New Mexico's graduation rate from the 2010-11 to 2011-12 school year is the response of a policy issue that was resolved in 2012.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: Growth in New Mexico's graduation rate from the 2010-11 to 2011-12 school year is the response of a policy issue that was resolved in 2012.
+grad_rate		NY	New York	2011-12	0.77	0.44
+grad_rate		NC	North Carolina	2011-12	0.8	0.5
+grad_rate		ND	North Dakota	2011-12	0.87	0.68
+grad_rate		OH	Ohio	2011-12	0.81	0.62
+grad_rate		OK	Oklahoma	2011-12	†	†					Regulatory Adjusted Cohort Graduation Rate, All Students: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2011-12: This state has received a "timeline extension" from the Department of Education, pursuant to which it was not yet required to use an adjusted cohort graduation rate that meets the regulatory requirements for 2011-12. Accordingly, the state did not submit data based on the regulatory requirements for 2011-12. Instead, they submitted data based on their previously approved methodology.
+grad_rate		OR	Oregon	2011-12	0.68	0.49
+grad_rate		PA	Pennsylvania	2011-12	0.84	0.64
+grad_rate		RI	Rhode Island	2011-12	0.77	0.69
+grad_rate		SC	South Carolina	2011-12	0.75	0.64
+grad_rate		SD	South Dakota	2011-12	0.83	0.6
+grad_rate		TN	Tennessee	2011-12	0.87	0.72
+grad_rate		TX	Texas	2011-12	0.88	0.59
+grad_rate		UT	Utah	2011-12	0.8	0.51
+grad_rate		VT	Vermont	2011-12	0.88	0.75
+grad_rate		VA	Virginia	2011-12	0.83	0.55
+grad_rate		WA	Washington	2011-12	0.77	0.54
+grad_rate		WV	West Virginia	2011-12	0.79	0.83
+grad_rate		WI	Wisconsin	2011-12	0.88	0.66
+grad_rate		WY	Wyoming	2011-12	0.79	0.56
+grad_rate		US 	United States	2011-12	0.8	0.59
+grad_rate		AL	Alabama	2012-13	0.8	0.44
+grad_rate		AK	Alaska	2012-13	0.718	0.4
+grad_rate		AZ	Arizona	2012-13	0.751	0.2
+grad_rate		AR	Arkansas	2012-13	0.849	0.81
+grad_rate		CA	California	2012-13	0.804	0.631
+grad_rate		CO	Colorado	2012-13	0.769	0.585
+grad_rate		CT	Connecticut	2012-13	0.855	0.64
+grad_rate		DE	Delaware	2012-13	0.804	0.71
+grad_rate		DC	District of Columbia	2012-13	0.623	0.52
+grad_rate		FL	Florida	2012-13	0.756	0.575
+grad_rate		GA	Georgia	2012-13	0.717	0.438
+grad_rate		HI	Hawaii	2012-13	0.824	0.57
+grad_rate		ID	Idaho	2012-13	-	-					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: Idaho has an approved timeline extension request, and will not report an adjusted cohort graduation rate until SY 2013-14.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: Idaho has an approved timeline extension request, and will not report an adjusted cohort graduation rate until SY 2013-14.
+grad_rate		IL	Illinois	2012-13	0.832	0.637
+grad_rate		IN	Indiana	2012-13	0.87	0.78
+grad_rate		IA	Iowa	2012-13	0.897	0.76
+grad_rate		KS	Kansas	2012-13	0.857	0.75
+grad_rate		KY	Kentucky	2012-13	0.861	0.64
+grad_rate		LA	Louisiana	2012-13	0.735	0.48					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
+grad_rate		ME	Maine	2012-13	0.864	0.73
+grad_rate		MD	Maryland	2012-13	0.85	0.57
+grad_rate		MA	Massachusetts	2012-13	0.85	0.635
+grad_rate		MI	Michigan	2012-13	0.77	0.654
+grad_rate		MN	Minnesota	2012-13	0.798	0.593
+grad_rate		MS	Mississippi	2012-13	0.755	0.57
+grad_rate		MO	Missouri	2012-13	0.857	0.69
+grad_rate		MT	Montana	2012-13	0.844	0.57
+grad_rate		NE	Nebraska	2012-13	0.885	0.6
+grad_rate		NV	Nevada	2012-13	0.707	0.24
+grad_rate		NH	New Hampshire	2012-13	0.873	0.7
+grad_rate		NJ	New Jersey	2012-13	0.875	0.705
+grad_rate		NM	New Mexico	2012-13	0.703	0.654
+grad_rate		NY	New York	2012-13	0.768	0.391
+grad_rate		NC	North Carolina	2012-13	0.825	0.49
+grad_rate		ND	North Dakota	2012-13	0.875	0.61
+grad_rate		OH	Ohio	2012-13	0.822	0.67
+grad_rate		OK	Oklahoma	2012-13	0.848	0.64					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
+grad_rate		OR	Oregon	2012-13	0.687	0.491
+grad_rate		PA	Pennsylvania	2012-13	0.855	0.67
+grad_rate		RI	Rhode Island	2012-13	0.797	0.73
+grad_rate		SC	South Carolina	2012-13	0.776	0.69
+grad_rate		SD	South Dakota	2012-13	0.827	0.59
+grad_rate		TN	Tennessee	2012-13	0.863	0.73
+grad_rate		TX	Texas	2012-13	0.88	0.713					Regulatory Adjusted Cohort Graduation Rate, All Students: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2012-13: The state submitted its data late; therefore, its data have not gone through ED"s standard data quality review
+grad_rate		UT	Utah	2012-13	0.83	0.6
+grad_rate		VT	Vermont	2012-13	0.866	0.63
+grad_rate		VA	Virginia	2012-13	0.845	0.518
+grad_rate		WA	Washington	2012-13	0.764	0.506
+grad_rate		WV	West Virginia	2012-13	0.814	0.83
+grad_rate		WI	Wisconsin	2012-13	0.88	0.62
+grad_rate		WY	Wyoming	2012-13	0.77	0.68
+grad_rate		US 	United States	2012-13	0.814	0.611
+grad_rate		AL	Alabama	2013-14	0.863	0.67			54391	391
+grad_rate		AK	Alaska	2013-14	0.711	0.32			9871	767
+grad_rate		AZ	Arizona	2013-14	0.757	0.18			79259	905
+grad_rate		AR	Arkansas	2013-14	0.869	0.84			34422	1571
+grad_rate		CA	California	2013-14	0.81	0.65			492971	93608
+grad_rate		CO	Colorado	2013-14	0.773	0.587			61440	6654
+grad_rate		CT	Connecticut	2013-14	0.87	0.63			43050	1586
+grad_rate		DE	Delaware	2013-14	0.87	0.77			9423	317
+grad_rate		DC	District of Columbia	2013-14	0.614	0.64			5100	357
+grad_rate		FL	Florida	2013-14	0.761	0.558			196234	14726
+grad_rate		GA	Georgia	2013-14	0.725	0.439			123392	4165
+grad_rate		HI	Hawaii	2013-14	0.818	0.53			13062	658
+grad_rate		ID	Idaho	2013-14	0.773	0.75			22840	1717
+grad_rate		IL	Illinois	2013-14	0.86	0.717			153112	5940
+grad_rate		IN	Indiana	2013-14	0.879	0.8			75858	1744
+grad_rate		IA	Iowa	2013-14	0.905	0.83			33969	1126
+grad_rate		KS	Kansas	2013-14	0.857	0.75			35304	2519
+grad_rate		KY	Kentucky	2013-14	0.875	0.66			48312	500
+grad_rate		LA	Louisiana	2013-14	0.746	0.5			50690	492
+grad_rate		ME	Maine	2013-14	0.865	0.72			14293	308
+grad_rate		MD	Maryland	2013-14	0.864	0.54			64897	1219
+grad_rate		MA	Massachusetts	2013-14	0.861	0.634			73168	5131
+grad_rate		MI	Michigan	2013-14	0.786	0.682			124279	3823
+grad_rate		MN	Minnesota	2013-14	0.812	0.637			65937	4239
+grad_rate		MS	Mississippi	2013-14	0.776	0.67			33391	224
+grad_rate		MO	Missouri	2013-14	0.873	0.64			67473	792
+grad_rate		MT	Montana	2013-14	0.854	0.59			10855	386
+grad_rate		NE	Nebraska	2013-14	0.897	0.6			21744	744
+grad_rate		NV	Nevada	2013-14	0.7	0.29			34201	2505
+grad_rate		NH	New Hampshire	2013-14	0.881	0.75			15193	394
+grad_rate		NJ	New Jersey	2013-14	0.886	0.711			106162	3831
+grad_rate		NM	New Mexico	2013-14	0.685	0.639			25416	7132
+grad_rate		NY	New York	2013-14	0.778	0.371			218181	12276
+grad_rate		NC	North Carolina	2013-14	0.839	0.52			109714	2603
+grad_rate		ND	North Dakota	2013-14	0.872	0.64			7549	171
+grad_rate		OH	Ohio	2013-14	0.818	0.66			138806	2290
+grad_rate		OK	Oklahoma	2013-14	0.827	0.59			43821	1094
+grad_rate		OR	Oregon	2013-14	0.72	0.52			45674	2704
+grad_rate		PA	Pennsylvania	2013-14	0.855	0.648			141467	3045
+grad_rate		RI	Rhode Island	2013-14	0.808	0.72			11333	1140
+grad_rate		SC	South Carolina	2013-14	0.801	0.73			51891	1760
+grad_rate		SD	South Dakota	2013-14	0.827	0.57			9385	221
+grad_rate		TN	Tennessee	2013-14	0.872	0.73			69503	1614
+grad_rate		TX	Texas	2013-14	0.883	0.715			333286	25382
+grad_rate		UT	Utah	2013-14	0.839	0.62			42580	1914
+grad_rate		VT	Vermont	2013-14	0.878	0.69			6206	91
+grad_rate		VA	Virginia	2013-14	0.853	0.482			94658	3985
+grad_rate		WA	Washington	2013-14	0.782	0.538			84793	4337
+grad_rate		WV	West Virginia	2013-14	0.845	0.89			19793	133
+grad_rate		WI	Wisconsin	2013-14	0.886	0.64			66098	1471
+grad_rate		WY	Wyoming	2013-14	0.786	0.65			6906	161
+grad_rate		US 	United States	2013-14	0.823	0.626			3701353	236863
+grad_rate		AL	Alabama	2014-15	0.893	0.75			54493	414
+grad_rate		AK	Alaska	2014-15	0.756	0.56			9676	642
+grad_rate		AZ	Arizona	2014-15	0.774	0.34			80292	1040
+grad_rate		AR	Arkansas	2014-15	0.849	0.86			35783	1608
+grad_rate		CA	California	2014-15	0.82	0.69			488612	93384
+grad_rate		CO	Colorado	2014-15	0.773	0.611			61790	6981
+grad_rate		CT	Connecticut	2014-15	0.872	0.67			42396	2253
+grad_rate		DE	Delaware	2014-15	0.856	0.69			9683	366
+grad_rate		DC	District of Columbia	2014-15	0.685	0.62			4440	358
+grad_rate		FL	Florida	2014-15	0.779	0.595			199988	14872
+grad_rate		GA	Georgia	2014-15	0.788	0.564			124892	4151
+grad_rate		HI	Hawaii	2014-15	0.816	0.46			12749	592
+grad_rate		ID	Idaho	2014-15	0.789	0.72			21446	1671
+grad_rate		IL	Illinois	2014-15	0.856	0.72			153246	6639
+grad_rate		IN	Indiana	2014-15	0.871	0.75			75786	1967
+grad_rate		IA	Iowa	2014-15	0.908	0.83			33934	1159
+grad_rate		KS	Kansas	2014-15	0.857	0.77			34828	2780
+grad_rate		KY	Kentucky	2014-15	0.88	0.67			48236	543
+grad_rate		LA	Louisiana	2014-15	0.775	0.5			47968	534
+grad_rate		ME	Maine	2014-15	0.875	0.77			14124	244
+grad_rate		MD	Maryland	2014-15	0.87	0.49			63775	1192
+grad_rate		MA	Massachusetts	2014-15	0.873	0.64			72474	4905
+grad_rate		MI	Michigan	2014-15	0.798	0.721			122544	3973
+grad_rate		MN	Minnesota	2014-15	0.819	0.631			66258	4314
+grad_rate		MS	Mississippi	2014-15	0.754	0.53			35730	288	Regulatory Adjusted Cohort Graduation Rate, All Students: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Cohort Count for Regulatory Adjusted Cohort Graduation Rate, All Students: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.	Cohort Count for Regulatory Adjusted Cohort Graduation Rate, Limited English Proficient: 2014-15: Mississippi"s adjusted cohort graduation rate data displayed in the table above reflect submissions as of May 7, 2016 and subsequently certified in the state"s Consolidated State Performance Report. The state resubmitted their adjusted cohort graduation rate data on July 20, 2016. These data are currently under review by ED and, upon completion of the data quality review, these tables will be updated to include any accepted revisions for Mississippi"s data.
+grad_rate		MO	Missouri	2014-15	0.878	0.71			66536	723
+grad_rate		MT	Montana	2014-15	0.86	0.62			10647	381
+grad_rate		NE	Nebraska	2014-15	0.889	0.55			21858	750
+grad_rate		NV	Nevada	2014-15	0.713	0.32			33992	2833
+grad_rate		NH	New Hampshire	2014-15	0.881	0.77			14776	374
+grad_rate		NJ	New Jersey	2014-15	0.897	0.74			106113	3882
+grad_rate		NM	New Mexico	2014-15	0.686	0.64			25863	6850
+grad_rate		NY	New York	2014-15	0.792	0.36			211837	11343
+grad_rate		NC	North Carolina	2014-15	0.856	0.58			110473	2572
+grad_rate		ND	North Dakota	2014-15	0.866	0.62			7571	177
+grad_rate		OH	Ohio	2014-15	0.807	0.5			137131	1571
+grad_rate		OK	Oklahoma	2014-15	0.825	0.6			45266	1011
+grad_rate		OR	Oregon	2014-15	0.738	0.51			45171	2262
+grad_rate		PA	Pennsylvania	2014-15	0.848	0.626			138309	3035
+grad_rate		RI	Rhode Island	2014-15	0.832	0.77			10905	1240
+grad_rate		SC	South Carolina	2014-15	0.803	0.76			54020	1748
+grad_rate		SD	South Dakota	2014-15	0.839	0.56			9298	190
+grad_rate		TN	Tennessee	2014-15	0.879	0.75			69944	1644
+grad_rate		TX	Texas	2014-15	0.89	0.733			339626	24513
+grad_rate		UT	Utah	2014-15	0.848	0.66			43470	1752
+grad_rate		VT	Vermont	2014-15	0.877	0.69			6167	140
+grad_rate		VA	Virginia	2014-15	0.857	0.446			93416	3818
+grad_rate		WA	Washington	2014-15	0.782	0.558			80003	4547
+grad_rate		WV	West Virginia	2014-15	0.865	0.86			19660	154
+grad_rate		WI	Wisconsin	2014-15	0.884	0.62			65239	1373
+grad_rate		WY	Wyoming	2014-15	0.793	0.64			6868	176
+grad_rate		US 	United States	2014-15	0.832	0.651			3689302	235929
+grad_rate		AL	Alabama	2015-16	0.871192387	0.644067797	49164	266	56433	413
+grad_rate		AK	Alaska	2015-16	0.761128982	0.546649146	7335	416	9637	761
+grad_rate		AZ	Arizona	2015-16	0.79528637	0.321548822	64485	382	81084	1188
+grad_rate		AR	Arkansas	2015-16	0.870170407	0.857064321	30945	1559	35562	1819
+grad_rate		CA	California	2015-16	0.831991919	0.720606551	406874	65960	489036	91534
+grad_rate		CO	Colorado	2015-16	0.789063737	0.613516081	49842	4521	63166	7369
+grad_rate		CT	Connecticut	2015-16	0.873878529	0.67316209	37208	1520	42578	2258
+grad_rate		DE	Delaware	2015-16	0.85513923	0.725848564	8353	278	9768	383
+grad_rate		DC	District of Columbia	2015-16	0.692008197	0.635135135	3377	282	4880	444
+grad_rate		FL	Florida	2015-16	0.806888815	0.619874959	159672	9419	197886	15195
+grad_rate		GA	Georgia	2015-16	0.794365644	0.564635603	101087	2363	127255	4185
+grad_rate		HI	Hawaii	2015-16	0.827441535	0.69379015	10650	972	12871	1401
+grad_rate		ID	Idaho	2015-16	0.796645798	0.733455882	17433	1197	21883	1632
+grad_rate		IL	Illinois	2015-16	0.854744796	0.718541748	131676	5499	154053	7653
+grad_rate		IN	Indiana	2015-16	0.867973908	0.708673091	65999	956	76038	1349
+grad_rate		IA	Iowa	2015-16	0.91262164	0.807909605	31511	1001	34528	1239
+grad_rate		KS	Kansas	2015-16	0.856641115	0.77345679	30732	2506	35875	3240
+grad_rate		KY	Kentucky	2015-16	0.886252717	0.683006536	43219	418	48766	612
+grad_rate		LA	Louisiana	2015-16	0.785769545	0.427797834	36565	237	46534	554
+grad_rate		ME	Maine	2015-16	0.869885606	0.779582367	12395	336	14249	431
+grad_rate		MD	Maryland	2015-16	0.876115122	0.475440806	55586	755	63446	1588
+grad_rate		MA	Massachusetts	2015-16	0.8754136	0.640654739	64820	3366	74045	5254
+grad_rate		MI	Michigan	2015-16	0.796481073	0.721060683	97146	2828	121969	3922
+grad_rate		MN	Minnesota	2015-16	0.821657795	0.631455399	54024	2690	65750	4260
+grad_rate		MS	Mississippi	2015-16	0.822675617	0.653710247	27943	185	33966	283
+grad_rate		MO	Missouri	2015-16	0.889945368	0.679577465	59621	579	66994	852
+grad_rate		MT	Montana	2015-16	0.856391965	0.587467363	9124	225	10654	383
+grad_rate		NE	Nebraska	2015-16	0.892661008	0.545454545	19668	348	22033	638
+grad_rate		NV	Nevada	2015-16	0.735540313	0.425789978	25307	1334	34406	3133
+grad_rate		NH	New Hampshire	2015-16	0.882316865	0.716937355	12948	309	14675	431
+grad_rate		NJ	New Jersey	2015-16	0.900637829	0.746500382	95736	2933	106298	3929
+grad_rate		NM	New Mexico	2015-16	0.710445113	0.674361564	18419	4674	25926	6931
+grad_rate		NY	New York	2015-16	0.803564488	0.377920158	167454	3834	208389	10145
+grad_rate		NC	North Carolina	2015-16	0.85860753	0.571872572	97646	1472	113726	2574
+grad_rate		ND	North Dakota	2015-16	0.875246743	0.686746988	6651	114	7599	166
+grad_rate		OH	Ohio	2015-16	0.834474189	0.502452316	114837	922	137616	1835
+grad_rate		OK	Oklahoma	2015-16	0.816207849	0.578992314	39018	678	47804	1171
+grad_rate		OR	Oregon	2015-16	0.748289925	0.529006883	34678	1076	46343	2034
+grad_rate		PA	Pennsylvania	2015-16	0.860933406	0.627013631	117619	2024	136618	3228
+grad_rate		RI	Rhode Island	2015-16	0.827549002	0.736636245	9204	565	11122	767
+grad_rate		SC	South Carolina	2015-16	0.826002944	0.760299625	44885	1421	54340	1869
+grad_rate		SD	South Dakota	2015-16	0.838798415	0.572115385	7623	119	9088	208
+grad_rate		TN	Tennessee	2015-16	0.885404845	0.756378189	63194	1512	71373	1999
+grad_rate		TX	Texas	2015-16	0.891415063	0.736776097	312605	19974	350684	27110
+grad_rate		UT	Utah	2015-16	0.852431252	0.657249467	38252	1233	44874	1876
+grad_rate		VT	Vermont	2015-16	0.877268228	0.6796875	5318	87	6062	128
+grad_rate		VA	Virginia	2015-16	0.866728318	0.4544406	82477	1970	95159	4335
+grad_rate		WA	Washington	2015-16	0.79721185	0.578223871	64048	2650	80340	4583
+grad_rate		WV	West Virginia	2015-16	0.898105151	0.926605505	16826	101	18735	109
+grad_rate		WI	Wisconsin	2015-16	0.882345503	0.655328798	55826	867	63270	1323
+grad_rate		WY	Wyoming	2015-16	0.799658022	0.698492462	5612	139	7018	199
+grad_rate		US 	United States	2015-16	0.841136094	0.668562155	3122637	161072	3712404	240923
+naep_math	Grade 4		Albuquerque												0.074490162
+naep_math	Grade 4		Atlanta												‡
+naep_math	Grade 4		Austin												0.251416131
+naep_math	Grade 4		Baltimore City												‡
+naep_math	Grade 4		Boston												0.209945428
+naep_math	Grade 4		Charlotte												0.184216426
+naep_math	Grade 4		Chicago												0.088974022
+naep_math	Grade 4		Cleveland												0.074404635
+naep_math	Grade 4		Dallas												0.301285506
+naep_math	Grade 4		Detroit												0.040031288
+naep_math	Grade 4		District of Columbia (DCPS)												0.084555995
+naep_math	Grade 4		Duval County (FL)												‡
+naep_math	Grade 4		Fresno												0.027371268
+naep_math	Grade 4		Hillsborough County (FL)												0.087714657
+naep_math	Grade 4		Houston												0.216374558
+naep_math	Grade 4		Jefferson County (KY)												0.109380791
+naep_math	Grade 4		Los Angeles												0.025804477
+naep_math	Grade 4		Miami-Dade												0.119404645
+naep_math	Grade 4		Milwaukee												—
+naep_math	Grade 4		New York City												0.08413647
+naep_math	Grade 4		Philadelphia												0.046107838
+naep_math	Grade 4		San Diego												0.0912005
+naep_math	Grade 8		Albuquerque												0.022947239
+naep_math	Grade 8		Atlanta												‡
+naep_math	Grade 8		Austin												0.034854323
+naep_math	Grade 8		Baltimore City												‡
+naep_math	Grade 8		Boston												0.068125163
+naep_math	Grade 8		Charlotte												0.03053824
+naep_math	Grade 8		Chicago												0.037506119
+naep_math	Grade 8		Cleveland												0.010669123
+naep_math	Grade 8		Dallas												0.069228076
+naep_math	Grade 8		Detroit												0.047092711
+naep_math	Grade 8		District of Columbia (DCPS)												‡
+naep_math	Grade 8		Duval County (FL)												‡
+naep_math	Grade 8		Fresno												#
+naep_math	Grade 8		Hillsborough County (FL)												0.027923102
+naep_math	Grade 8		Houston												0.037946898
+naep_math	Grade 8		Jefferson County (KY)												‡
+naep_math	Grade 8		Los Angeles												0.007750068
+naep_math	Grade 8		Miami-Dade												0.02511309
+naep_math	Grade 8		Milwaukee												—
+naep_math	Grade 8		New York City												0.069735163
+naep_math	Grade 8		Philadelphia												0.009204295
+naep_math	Grade 8		San Diego												0.027942627
+naep_reading	Grade 4		Albuquerque												0.034898883
+naep_reading	Grade 4		Atlanta												‡
+naep_reading	Grade 4		Austin												0.097359427
+naep_reading	Grade 4		Baltimore City												‡
+naep_reading	Grade 4		Boston												0.127625245
+naep_reading	Grade 4		Charlotte												0.032513732
+naep_reading	Grade 4		Chicago												0.03847672
+naep_reading	Grade 4		Cleveland												0.03946439
+naep_reading	Grade 4		Dallas												0.081567815
+naep_reading	Grade 4		Detroit												0.061074138
+naep_reading	Grade 4		District of Columbia (DCPS)												0.042593196
+naep_reading	Grade 4		Duval County (FL)												‡
+naep_reading	Grade 4		Fresno												0.009539454
+naep_reading	Grade 4		Hillsborough County (FL)												0.071199455
+naep_reading	Grade 4		Houston												0.083488217
+naep_reading	Grade 4		Jefferson County (KY)												0.172173479
+naep_reading	Grade 4		Los Angeles												0.014589717
+naep_reading	Grade 4		Miami-Dade												0.08411532
+naep_reading	Grade 4		Milwaukee												—
+naep_reading	Grade 4		New York City												0.05365803
+naep_reading	Grade 4		Philadelphia												0.006327554
+naep_reading	Grade 4		San Diego												0.075650542
+naep_reading	Grade 8		Albuquerque												0.012319089
+naep_reading	Grade 8		Atlanta												‡
+naep_reading	Grade 8		Austin												0.017149403
+naep_reading	Grade 8		Baltimore City												‡
+naep_reading	Grade 8		Boston												0.040907287
+naep_reading	Grade 8		Charlotte												#
+naep_reading	Grade 8		Chicago												0.018387892
+naep_reading	Grade 8		Cleveland												0.021904307
+naep_reading	Grade 8		Dallas												0.050227213
+naep_reading	Grade 8		Detroit												0.085974894
+naep_reading	Grade 8		District of Columbia (DCPS)												‡
+naep_reading	Grade 8		Duval County (FL)												‡
+naep_reading	Grade 8		Fresno												#
+naep_reading	Grade 8		Hillsborough County (FL)												0.02662224
+naep_reading	Grade 8		Houston												#
+naep_reading	Grade 8		Jefferson County (KY)												‡
+naep_reading	Grade 8		Los Angeles												#
+naep_reading	Grade 8		Miami-Dade												0.037578005
+naep_reading	Grade 8		Milwaukee												—
+naep_reading	Grade 8		New York City												0.012851554
+naep_reading	Grade 8		Philadelphia												‡
+naep_reading	Grade 8		San Diego												#
