@@ -1,919 +1,256 @@
-map_id	st_abbr	state	x	y	subgroup	pct	num	notes
-grad_rate	AK	Alaska	1.5	1	ELs	0.56
-grad_rate	AK	Alaska	1.5	1	Non-ELs	0.756
-grad_rate	AL	Alabama	8	5.5	ELs	0.75
-grad_rate	AL	Alabama	8	5.5	Non-ELs	0.893
-grad_rate	AR	Arkansas	6.5	4.75	ELs	0.86
-grad_rate	AR	Arkansas	6.5	4.75	Non-ELs	0.849
-grad_rate	AZ	Arizona	3.5	4.75	ELs	0.34
-grad_rate	AZ	Arizona	3.5	4.75	Non-ELs	0.774
-grad_rate	CA	California	2.5	4.75	ELs	0.69
-grad_rate	CA	California	2.5	4.75	Non-ELs	0.82
-grad_rate	CO	Colorado	4.5	4.75	ELs	0.611
-grad_rate	CO	Colorado	4.5	4.75	Non-ELs	0.773
-grad_rate	CT	Connecticut	11.5	3.25	ELs	0.67
-grad_rate	CT	Connecticut	11.5	3.25	Non-ELs	0.872
-grad_rate	DC	District of Columbia	12.5	4.75	ELs	0.62
-grad_rate	DC	District of Columbia	12.5	4.75	Non-ELs	0.685
-grad_rate	DE	Delaware	10	4	ELs	0.69
-grad_rate	DE	Delaware	10	4	Non-ELs	0.856
-grad_rate	FL	Florida	9	7	ELs	0.595
-grad_rate	FL	Florida	9	7	Non-ELs	0.779
-grad_rate	GA	Georgia	8.5	6.25	ELs	0.564
-grad_rate	GA	Georgia	8.5	6.25	Non-ELs	0.788
-grad_rate	HI	Hawaii	1	7	ELs	0.46
-grad_rate	HI	Hawaii	1	7	Non-ELs	0.816
-grad_rate	IA	Iowa	5.5	3.25	ELs	0.83
-grad_rate	IA	Iowa	5.5	3.25	Non-ELs	0.908
-grad_rate	ID	Idaho	2.5	3.25	ELs	0.72
-grad_rate	ID	Idaho	2.5	3.25	Non-ELs	0.789
-grad_rate	IL	Illinois	6.5	3.25	ELs	0.72
-grad_rate	IL	Illinois	6.5	3.25	Non-ELs	0.856
-grad_rate	IN	Indiana	7.5	3.25	ELs	0.75
-grad_rate	IN	Indiana	7.5	3.25	Non-ELs	0.871
-grad_rate	KS	Kansas	5.5	4.75	ELs	0.77
-grad_rate	KS	Kansas	5.5	4.75	Non-ELs	0.857
-grad_rate	KY	Kentucky	7	4	ELs	0.67
-grad_rate	KY	Kentucky	7	4	Non-ELs	0.88
-grad_rate	LA	Louisiana	6	5.5	ELs	0.5
-grad_rate	LA	Louisiana	6	5.5	Non-ELs	0.775
-grad_rate	MA	Massachusetts	11	2.5	ELs	0.64
-grad_rate	MA	Massachusetts	11	2.5	Non-ELs	0.873
-grad_rate	MD	Maryland	9	4	ELs	0.49
-grad_rate	MD	Maryland	9	4	Non-ELs	0.87
-grad_rate	ME	Maine	12	1	ELs	0.77
-grad_rate	ME	Maine	12	1	Non-ELs	0.875
-grad_rate	MI	Michigan	8	2.5	ELs	0.721
-grad_rate	MI	Michigan	8	2.5	Non-ELs	0.798
-grad_rate	MN	Minnesota	5	2.5	ELs	0.631
-grad_rate	MN	Minnesota	5	2.5	Non-ELs	0.819
-grad_rate	MO	Missouri	6	4	ELs	0.71
-grad_rate	MO	Missouri	6	4	Non-ELs	0.878
-grad_rate	MS	Mississippi	7	5.5	ELs	0.53
-grad_rate	MS	Mississippi	7	5.5	Non-ELs	0.754
-grad_rate	MT	Montana	3	2.5	ELs	0.62
-grad_rate	MT	Montana	3	2.5	Non-ELs	0.86
-grad_rate	NC	North Carolina	9.5	4.75	ELs	0.58
-grad_rate	NC	North Carolina	9.5	4.75	Non-ELs	0.856
-grad_rate	ND	North Dakota	4	2.5	ELs	0.62
-grad_rate	ND	North Dakota	4	2.5	Non-ELs	0.866
-grad_rate	NE	Nebraska	5	4	ELs	0.55
-grad_rate	NE	Nebraska	5	4	Non-ELs	0.889
-grad_rate	NH	New Hampshire	11.5	1.75	ELs	0.77
-grad_rate	NH	New Hampshire	11.5	1.75	Non-ELs	0.881
-grad_rate	NJ	New Jersey	10.5	3.25	ELs	0.74
-grad_rate	NJ	New Jersey	10.5	3.25	Non-ELs	0.897
-grad_rate	NM	New Mexico	4	5.5	ELs	0.64
-grad_rate	NM	New Mexico	4	5.5	Non-ELs	0.686
-grad_rate	NV	Nevada	3	4	ELs	0.32
-grad_rate	NV	Nevada	3	4	Non-ELs	0.713
-grad_rate	NY	New York	10	2.5	ELs	0.36
-grad_rate	NY	New York	10	2.5	Non-ELs	0.792
-grad_rate	OH	Ohio	8.5	3.25	ELs	0.5
-grad_rate	OH	Ohio	8.5	3.25	Non-ELs	0.807
-grad_rate	OK	Oklahoma	5	5.5	ELs	0.6
-grad_rate	OK	Oklahoma	5	5.5	Non-ELs	0.825
-grad_rate	OR	Oregon	2	4	ELs	0.51
-grad_rate	OR	Oregon	2	4	Non-ELs	0.738
-grad_rate	PA	Pennsylvania	9.5	3.25	ELs	0.626
-grad_rate	PA	Pennsylvania	9.5	3.25	Non-ELs	0.848
-grad_rate	RI	Rhode Island	12	2.5	ELs	0.77
-grad_rate	RI	Rhode Island	12	2.5	Non-ELs	0.832
-grad_rate	SC	South Carolina	9	5.5	ELs	0.76
-grad_rate	SC	South Carolina	9	5.5	Non-ELs	0.803
-grad_rate	SD	South Dakota	4.5	3.25	ELs	0.56
-grad_rate	SD	South Dakota	4.5	3.25	Non-ELs	0.839
-grad_rate	TN	Tennessee	7.5	4.75	ELs	0.75
-grad_rate	TN	Tennessee	7.5	4.75	Non-ELs	0.879
-grad_rate	TX	Texas	4.5	6.25	ELs	0.733
-grad_rate	TX	Texas	4.5	6.25	Non-ELs	0.89
-grad_rate	UT	Utah	4	4	ELs	0.66
-grad_rate	UT	Utah	4	4	Non-ELs	0.848
-grad_rate	VA	Virginia	8.5	4.75	ELs	0.446
-grad_rate	VA	Virginia	8.5	4.75	Non-ELs	0.857
-grad_rate	VT	Vermont	10.5	1.75	ELs	0.69
-grad_rate	VT	Vermont	10.5	1.75	Non-ELs	0.877
-grad_rate	WA	Washington	2	2.5	ELs	0.558
-grad_rate	WA	Washington	2	2.5	Non-ELs	0.782
-grad_rate	WI	Wisconsin	6	2.5	ELs	0.62
-grad_rate	WI	Wisconsin	6	2.5	Non-ELs	0.884
-grad_rate	WV	West Virginia	8	4	ELs	0.86
-grad_rate	WV	West Virginia	8	4	Non-ELs	0.865
-grad_rate	WY	Wyoming	3.5	3.25	ELs	0.64
-grad_rate	WY	Wyoming	3.5	3.25	Non-ELs	0.793
-naep_math_4	AL	Alabama	8	5.5	2009	‡
-naep_math_4	AK	Alaska	1.5	1	2009	0.035640388
-naep_math_4	AZ	Arizona	3.5	4.75	2009	0.024512201
-naep_math_4	AR	Arkansas	6.5	4.75	2009	0.210598163
-naep_math_4	CA	California	2.5	4.75	2009	0.064039905
-naep_math_4	CO	Colorado	4.5	4.75	2009	0.089820817
-naep_math_4	CT	Connecticut	11.5	3.25	2009	0.092537388
-naep_math_4	DE	Delaware	10	4	2009	0.105429785
-naep_math_4	DC	District of Columbia	12.5	4.75	2009	0.14310415
-naep_math_4	FL	Florida	9	7	2009	0.187482116
-naep_math_4	GA	Georgia	8.5	6.25	2009	0.140920962
-naep_math_4	HI	Hawaii	1	7	2009	0.118331743
-naep_math_4	ID	Idaho	2.5	3.25	2009	0.066312335
-naep_math_4	IL	Illinois	6.5	3.25	2009	0.106232873
-naep_math_4	IN	Indiana	7.5	3.25	2009	0.188965086
-naep_math_4	IA	Iowa	5.5	3.25	2009	0.142276337
-naep_math_4	KS	Kansas	5.5	4.75	2009	0.214739201
-naep_math_4	KY	Kentucky	7	4	2009	0.278463049
-naep_math_4	LA	Louisiana	6	5.5	2009	0.147802416
-naep_math_4	ME	Maine	12	1	2009	‡
-naep_math_4	MD	Maryland	9	4	2009	0.168110481
-naep_math_4	MA	Massachusetts	11	2.5	2009	0.152244
-naep_math_4	MI	Michigan	8	2.5	2009	0.117755769
-naep_math_4	MN	Minnesota	5	2.5	2009	0.154128909
-naep_math_4	MS	Mississippi	7	5.5	2009	‡
-naep_math_4	MO	Missouri	6	4	2009	‡
-naep_math_4	MT	Montana	3	2.5	2009	0.096190127
-naep_math_4	NE	Nebraska	5	4	2009	0.058166884
-naep_math_4	NV	Nevada	3	4	2009	0.123791798
-naep_math_4	NH	New Hampshire	11.5	1.75	2009	0.281244683
-naep_math_4	NJ	New Jersey	10.5	3.25	2009	0.10082974
-naep_math_4	NM	New Mexico	4	5.5	2009	0.048106203
-naep_math_4	NY	New York	10	2.5	2009	0.131042694
-naep_math_4	NC	North Carolina	9.5	4.75	2009	0.181706237
-naep_math_4	ND	North Dakota	4	2.5	2009	‡
-naep_math_4	OH	Ohio	8.5	3.25	2009	0.361883384
-naep_math_4	OK	Oklahoma	5	5.5	2009	0.089672945
-naep_math_4	OR	Oregon	2	4	2009	0.064087419
-naep_math_4	PA	Pennsylvania	9.5	3.25	2009	0.123539693
-naep_math_4	RI	Rhode Island	12	2.5	2009	0.100536806
-naep_math_4	SC	South Carolina	9	5.5	2009	0.281974388
-naep_math_4	SD	South Dakota	4.5	3.25	2009	‡
-naep_math_4	TN	Tennessee	7.5	4.75	2009	0.134552071
-naep_math_4	TX	Texas	4.5	6.25	2009	0.199240474
-naep_math_4	UT	Utah	4	4	2009	0.064017668
-naep_math_4	VT	Vermont	10.5	1.75	2009	‡
-naep_math_4	VA	Virginia	8.5	4.75	2009	0.189667344
-naep_math_4	WA	Washington	2	2.5	2009	0.083000171
-naep_math_4	WV	West Virginia	8	4	2009	‡
-naep_math_4	WI	Wisconsin	6	2.5	2009	0.152118196
-naep_math_4	WY	Wyoming	3.5	3.25	2009	‡
-naep_math_4	AL	Alabama	8	5.5	2011	‡
-naep_math_4	AK	Alaska	1.5	1	2011	0.034290046
-naep_math_4	AZ	Arizona	3.5	4.75	2011	0.072180238
-naep_math_4	AR	Arkansas	6.5	4.75	2011	0.232230201
-naep_math_4	CA	California	2.5	4.75	2011	0.108977789
-naep_math_4	CO	Colorado	4.5	4.75	2011	0.117080134
-naep_math_4	CT	Connecticut	11.5	3.25	2011	0.059913647
-naep_math_4	DE	Delaware	10	4	2011	0.080928119
-naep_math_4	DC	District of Columbia	12.5	4.75	2011	0.123648764
-naep_math_4	FL	Florida	9	7	2011	0.129140577
-naep_math_4	GA	Georgia	8.5	6.25	2011	0.131937759
-naep_math_4	HI	Hawaii	1	7	2011	0.1159335
-naep_math_4	ID	Idaho	2.5	3.25	2011	0.023910542
-naep_math_4	IL	Illinois	6.5	3.25	2011	0.120174502
-naep_math_4	IN	Indiana	7.5	3.25	2011	0.244137597
-naep_math_4	IA	Iowa	5.5	3.25	2011	0.119076881
-naep_math_4	KS	Kansas	5.5	4.75	2011	0.233396264
-naep_math_4	KY	Kentucky	7	4	2011	0.1058098
-naep_math_4	LA	Louisiana	6	5.5	2011	0.189142828
-naep_math_4	ME	Maine	12	1	2011	0.11835183
-naep_math_4	MD	Maryland	9	4	2011	0.241500949
-naep_math_4	MA	Massachusetts	11	2.5	2011	0.204374035
-naep_math_4	MI	Michigan	8	2.5	2011	0.122484233
-naep_math_4	MN	Minnesota	5	2.5	2011	0.253824478
-naep_math_4	MS	Mississippi	7	5.5	2011	‡
-naep_math_4	MO	Missouri	6	4	2011	0.138024151
-naep_math_4	MT	Montana	3	2.5	2011	‡
-naep_math_4	NE	Nebraska	5	4	2011	0.067799209
-naep_math_4	NV	Nevada	3	4	2011	0.176361256
-naep_math_4	NH	New Hampshire	11.5	1.75	2011	0.194802234
-naep_math_4	NJ	New Jersey	10.5	3.25	2011	0.083951803
-naep_math_4	NM	New Mexico	4	5.5	2011	0.048033516
-naep_math_4	NY	New York	10	2.5	2011	0.080657301
-naep_math_4	NC	North Carolina	9.5	4.75	2011	0.164287499
-naep_math_4	ND	North Dakota	4	2.5	2011	0.062283194
-naep_math_4	OH	Ohio	8.5	3.25	2011	0.257935961
-naep_math_4	OK	Oklahoma	5	5.5	2011	0.081173662
-naep_math_4	OR	Oregon	2	4	2011	0.050761144
-naep_math_4	PA	Pennsylvania	9.5	3.25	2011	0.111516753
-naep_math_4	RI	Rhode Island	12	2.5	2011	0.082491706
-naep_math_4	SC	South Carolina	9	5.5	2011	0.291972961
-naep_math_4	SD	South Dakota	4.5	3.25	2011	0.057344082
-naep_math_4	TN	Tennessee	7.5	4.75	2011	0.10246622
-naep_math_4	TX	Texas	4.5	6.25	2011	0.198125653
-naep_math_4	UT	Utah	4	4	2011	0.046545828
-naep_math_4	VT	Vermont	10.5	1.75	2011	‡
-naep_math_4	VA	Virginia	8.5	4.75	2011	0.18771818
-naep_math_4	WA	Washington	2	2.5	2011	0.085839386
-naep_math_4	WV	West Virginia	8	4	2011	‡
-naep_math_4	WI	Wisconsin	6	2.5	2011	0.17218507
-naep_math_4	WY	Wyoming	3.5	3.25	2011	0.130742199
-naep_math_4	AL	Alabama	8	5.5	2013	0.06939344
-naep_math_4	AK	Alaska	1.5	1	2013	0.079620176
-naep_math_4	AZ	Arizona	3.5	4.75	2013	0.035141139
-naep_math_4	AR	Arkansas	6.5	4.75	2013	0.266363873
-naep_math_4	CA	California	2.5	4.75	2013	0.084449726
-naep_math_4	CO	Colorado	4.5	4.75	2013	0.140073567
-naep_math_4	CT	Connecticut	11.5	3.25	2013	0.066463447
-naep_math_4	DE	Delaware	10	4	2013	0.082875193
-naep_math_4	DC	District of Columbia	12.5	4.75	2013	0.090985096
-naep_math_4	FL	Florida	9	7	2013	0.111662529
-naep_math_4	GA	Georgia	8.5	6.25	2013	0.110626879
-naep_math_4	HI	Hawaii	1	7	2013	0.083190773
-naep_math_4	ID	Idaho	2.5	3.25	2013	0.060617084
-naep_math_4	IL	Illinois	6.5	3.25	2013	0.073547951
-naep_math_4	IN	Indiana	7.5	3.25	2013	0.300677594
-naep_math_4	IA	Iowa	5.5	3.25	2013	0.195993828
-naep_math_4	KS	Kansas	5.5	4.75	2013	0.276298947
-naep_math_4	KY	Kentucky	7	4	2013	0.191321168
-naep_math_4	LA	Louisiana	6	5.5	2013	0.13981107
-naep_math_4	ME	Maine	12	1	2013	0.127830312
-naep_math_4	MD	Maryland	9	4	2013	0.139940488
-naep_math_4	MA	Massachusetts	11	2.5	2013	0.193347181
-naep_math_4	MI	Michigan	8	2.5	2013	0.133664139
-naep_math_4	MN	Minnesota	5	2.5	2013	0.169165867
-naep_math_4	MS	Mississippi	7	5.5	2013	‡
-naep_math_4	MO	Missouri	6	4	2013	‡
-naep_math_4	MT	Montana	3	2.5	2013	0.078470493
-naep_math_4	NE	Nebraska	5	4	2013	0.08902542
-naep_math_4	NV	Nevada	3	4	2013	0.140752379
-naep_math_4	NH	New Hampshire	11.5	1.75	2013	0.199826113
-naep_math_4	NJ	New Jersey	10.5	3.25	2013	0.123100768
-naep_math_4	NM	New Mexico	4	5.5	2013	0.085075442
-naep_math_4	NY	New York	10	2.5	2013	0.09654046
-naep_math_4	NC	North Carolina	9.5	4.75	2013	0.147333426
-naep_math_4	ND	North Dakota	4	2.5	2013	‡
-naep_math_4	OH	Ohio	8.5	3.25	2013	0.299525606
-naep_math_4	OK	Oklahoma	5	5.5	2013	0.150591598
-naep_math_4	OR	Oregon	2	4	2013	0.103582763
-naep_math_4	PA	Pennsylvania	9.5	3.25	2013	0.112477626
-naep_math_4	RI	Rhode Island	12	2.5	2013	0.067474776
-naep_math_4	SC	South Carolina	9	5.5	2013	0.273261167
-naep_math_4	SD	South Dakota	4.5	3.25	2013	0.096945791
-naep_math_4	TN	Tennessee	7.5	4.75	2013	0.088601691
-naep_math_4	TX	Texas	4.5	6.25	2013	0.230135953
-naep_math_4	UT	Utah	4	4	2013	0.019967437
-naep_math_4	VT	Vermont	10.5	1.75	2013	‡
-naep_math_4	VA	Virginia	8.5	4.75	2013	0.140207334
-naep_math_4	WA	Washington	2	2.5	2013	0.08761088
-naep_math_4	WV	West Virginia	8	4	2013	‡
-naep_math_4	WI	Wisconsin	6	2.5	2013	0.190630072
-naep_math_4	WY	Wyoming	3.5	3.25	2013	0.082381034
-naep_math_4	AL	Alabama	8	5.5	2015	‡
-naep_math_4	AK	Alaska	1.5	1	2015	0.063376698
-naep_math_4	AZ	Arizona	3.5	4.75	2015	0.050468459
-naep_math_4	AR	Arkansas	6.5	4.75	2015	0.196545558
-naep_math_4	CA	California	2.5	4.75	2015	0.083645191
-naep_math_4	CO	Colorado	4.5	4.75	2015	0.100205416
-naep_math_4	CT	Connecticut	11.5	3.25	2015	0.11769929
-naep_math_4	DE	Delaware	10	4	2015	0.084743512
-naep_math_4	DC	District of Columbia	12.5	4.75	2015	0.08917709
-naep_math_4	FL	Florida	9	7	2015	0.1326831
-naep_math_4	GA	Georgia	8.5	6.25	2015	0.061432263
-naep_math_4	HI	Hawaii	1	7	2015	0.06104992
-naep_math_4	ID	Idaho	2.5	3.25	2015	0.00756504
-naep_math_4	IL	Illinois	6.5	3.25	2015	0.07565445
-naep_math_4	IN	Indiana	7.5	3.25	2015	0.257331615
-naep_math_4	IA	Iowa	5.5	3.25	2015	0.166638138
-naep_math_4	KS	Kansas	5.5	4.75	2015	0.18836776
-naep_math_4	KY	Kentucky	7	4	2015	0.156376537
-naep_math_4	LA	Louisiana	6	5.5	2015	‡
-naep_math_4	ME	Maine	12	1	2015	0.093668843
-naep_math_4	MD	Maryland	9	4	2015	0.154688218
-naep_math_4	MA	Massachusetts	11	2.5	2015	0.173657648
-naep_math_4	MI	Michigan	8	2.5	2015	0.157157584
-naep_math_4	MN	Minnesota	5	2.5	2015	0.185991226
-naep_math_4	MS	Mississippi	7	5.5	2015	‡
-naep_math_4	MO	Missouri	6	4	2015	‡
-naep_math_4	MT	Montana	3	2.5	2015	0.029699958
-naep_math_4	NE	Nebraska	5	4	2015	0.083681458
-naep_math_4	NV	Nevada	3	4	2015	0.134261343
-naep_math_4	NH	New Hampshire	11.5	1.75	2015	0.243484603
-naep_math_4	NJ	New Jersey	10.5	3.25	2015	‡
-naep_math_4	NM	New Mexico	4	5.5	2015	0.089454869
-naep_math_4	NY	New York	10	2.5	2015	0.08889021
-naep_math_4	NC	North Carolina	9.5	4.75	2015	0.105433953
-naep_math_4	ND	North Dakota	4	2.5	2015	‡
-naep_math_4	OH	Ohio	8.5	3.25	2015	0.17095755
-naep_math_4	OK	Oklahoma	5	5.5	2015	0.117158677
-naep_math_4	OR	Oregon	2	4	2015	0.077111002
-naep_math_4	PA	Pennsylvania	9.5	3.25	2015	0.16337345
-naep_math_4	RI	Rhode Island	12	2.5	2015	0.078773263
-naep_math_4	SC	South Carolina	9	5.5	2015	0.347425313
-naep_math_4	SD	South Dakota	4.5	3.25	2015	‡
-naep_math_4	TN	Tennessee	7.5	4.75	2015	0.283186831
-naep_math_4	TX	Texas	4.5	6.25	2015	0.284200936
-naep_math_4	UT	Utah	4	4	2015	0.059094444
-naep_math_4	VT	Vermont	10.5	1.75	2015	‡
-naep_math_4	VA	Virginia	8.5	4.75	2015	0.11684614
-naep_math_4	WA	Washington	2	2.5	2015	0.108083292
-naep_math_4	WV	West Virginia	8	4	2015	‡
-naep_math_4	WI	Wisconsin	6	2.5	2015	0.187089739
-naep_math_4	WY	Wyoming	3.5	3.25	2015	0.10300892
-naep_math_8	AL	Alabama	8	5.5	2009	‡
-naep_math_8	AK	Alaska	1.5	1	2009	0.023975745
-naep_math_8	AZ	Arizona	3.5	4.75	2009	0.023448572
-naep_math_8	AR	Arkansas	6.5	4.75	2009	0.080533948
-naep_math_8	CA	California	2.5	4.75	2009	0.027412169
-naep_math_8	CO	Colorado	4.5	4.75	2009	0.038199956
-naep_math_8	CT	Connecticut	11.5	3.25	2009	0.063272867
-naep_math_8	DE	Delaware	10	4	2009	‡
-naep_math_8	DC	District of Columbia	12.5	4.75	2009	‡
-naep_math_8	FL	Florida	9	7	2009	0.041709401
-naep_math_8	GA	Georgia	8.5	6.25	2009	‡
-naep_math_8	HI	Hawaii	1	7	2009	0.023246001
-naep_math_8	ID	Idaho	2.5	3.25	2009	0.011971754
-naep_math_8	IL	Illinois	6.5	3.25	2009	0.073926436
-naep_math_8	IN	Indiana	7.5	3.25	2009	0.185245993
-naep_math_8	IA	Iowa	5.5	3.25	2009	‡
-naep_math_8	KS	Kansas	5.5	4.75	2009	0.098582523
-naep_math_8	KY	Kentucky	7	4	2009	‡
-naep_math_8	LA	Louisiana	6	5.5	2009	‡
-naep_math_8	ME	Maine	12	1	2009	‡
-naep_math_8	MD	Maryland	9	4	2009	0.081169825
-naep_math_8	MA	Massachusetts	11	2.5	2009	0.08414894
-naep_math_8	MI	Michigan	8	2.5	2009	0.104775528
-naep_math_8	MN	Minnesota	5	2.5	2009	0.085887048
-naep_math_8	MS	Mississippi	7	5.5	2009	‡
-naep_math_8	MO	Missouri	6	4	2009	‡
-naep_math_8	MT	Montana	3	2.5	2009	0.008641747
-naep_math_8	NE	Nebraska	5	4	2009	0.033787877
-naep_math_8	NV	Nevada	3	4	2009	0.024379394
-naep_math_8	NH	New Hampshire	11.5	1.75	2009	‡
-naep_math_8	NJ	New Jersey	10.5	3.25	2009	0.105963467
-naep_math_8	NM	New Mexico	4	5.5	2009	0.025413351
-naep_math_8	NY	New York	10	2.5	2009	0.039537177
-naep_math_8	NC	North Carolina	9.5	4.75	2009	0.10875054
-naep_math_8	ND	North Dakota	4	2.5	2009	‡
-naep_math_8	OH	Ohio	8.5	3.25	2009	0.107965776
-naep_math_8	OK	Oklahoma	5	5.5	2009	0.012788548
-naep_math_8	OR	Oregon	2	4	2009	0.028940763
-naep_math_8	PA	Pennsylvania	9.5	3.25	2009	0.114387789
-naep_math_8	RI	Rhode Island	12	2.5	2009	0.084714561
-naep_math_8	SC	South Carolina	9	5.5	2009	0.17219801
-naep_math_8	SD	South Dakota	4.5	3.25	2009	‡
-naep_math_8	TN	Tennessee	7.5	4.75	2009	‡
-naep_math_8	TX	Texas	4.5	6.25	2009	0.05756159
-naep_math_8	UT	Utah	4	4	2009	0.0235086
-naep_math_8	VT	Vermont	10.5	1.75	2009	‡
-naep_math_8	VA	Virginia	8.5	4.75	2009	0.134851592
-naep_math_8	WA	Washington	2	2.5	2009	0.033125756
-naep_math_8	WV	West Virginia	8	4	2009	‡
-naep_math_8	WI	Wisconsin	6	2.5	2009	0.092845983
-naep_math_8	WY	Wyoming	3.5	3.25	2009	‡
-naep_math_8	AL	Alabama	8	5.5	2011	‡
-naep_math_8	AK	Alaska	1.5	1	2011	0.020426092
-naep_math_8	AZ	Arizona	3.5	4.75	2011	‡
-naep_math_8	AR	Arkansas	6.5	4.75	2011	0.087284186
-naep_math_8	CA	California	2.5	4.75	2011	0.024877467
-naep_math_8	CO	Colorado	4.5	4.75	2011	0.033111904
-naep_math_8	CT	Connecticut	11.5	3.25	2011	#
-naep_math_8	DE	Delaware	10	4	2011	‡
-naep_math_8	DC	District of Columbia	12.5	4.75	2011	0.056429516
-naep_math_8	FL	Florida	9	7	2011	0.045769269
-naep_math_8	GA	Georgia	8.5	6.25	2011	0.055494161
-naep_math_8	HI	Hawaii	1	7	2011	0.051212083
-naep_math_8	ID	Idaho	2.5	3.25	2011	0.024357103
-naep_math_8	IL	Illinois	6.5	3.25	2011	0.03502321
-naep_math_8	IN	Indiana	7.5	3.25	2011	0.094168774
-naep_math_8	IA	Iowa	5.5	3.25	2011	0.027369753
-naep_math_8	KS	Kansas	5.5	4.75	2011	0.091216198
-naep_math_8	KY	Kentucky	7	4	2011	0.016182509
-naep_math_8	LA	Louisiana	6	5.5	2011	‡
-naep_math_8	ME	Maine	12	1	2011	0.269509861
-naep_math_8	MD	Maryland	9	4	2011	0.08041012
-naep_math_8	MA	Massachusetts	11	2.5	2011	0.076379495
-naep_math_8	MI	Michigan	8	2.5	2011	0.165254467
-naep_math_8	MN	Minnesota	5	2.5	2011	0.08412961
-naep_math_8	MS	Mississippi	7	5.5	2011	‡
-naep_math_8	MO	Missouri	6	4	2011	‡
-naep_math_8	MT	Montana	3	2.5	2011	‡
-naep_math_8	NE	Nebraska	5	4	2011	0.027497996
-naep_math_8	NV	Nevada	3	4	2011	0.040513653
-naep_math_8	NH	New Hampshire	11.5	1.75	2011	‡
-naep_math_8	NJ	New Jersey	10.5	3.25	2011	0.119346508
-naep_math_8	NM	New Mexico	4	5.5	2011	0.016584262
-naep_math_8	NY	New York	10	2.5	2011	0.014976932
-naep_math_8	NC	North Carolina	9.5	4.75	2011	0.069790604
-naep_math_8	ND	North Dakota	4	2.5	2011	‡
-naep_math_8	OH	Ohio	8.5	3.25	2011	0.03628474
-naep_math_8	OK	Oklahoma	5	5.5	2011	0.035705931
-naep_math_8	OR	Oregon	2	4	2011	0.045879201
-naep_math_8	PA	Pennsylvania	9.5	3.25	2011	0.060216967
-naep_math_8	RI	Rhode Island	12	2.5	2011	0.038407695
-naep_math_8	SC	South Carolina	9	5.5	2011	0.190752446
-naep_math_8	SD	South Dakota	4.5	3.25	2011	‡
-naep_math_8	TN	Tennessee	7.5	4.75	2011	‡
-naep_math_8	TX	Texas	4.5	6.25	2011	0.100020295
-naep_math_8	UT	Utah	4	4	2011	0.013998037
-naep_math_8	VT	Vermont	10.5	1.75	2011	‡
-naep_math_8	VA	Virginia	8.5	4.75	2011	0.053494454
-naep_math_8	WA	Washington	2	2.5	2011	0.026917926
-naep_math_8	WV	West Virginia	8	4	2011	‡
-naep_math_8	WI	Wisconsin	6	2.5	2011	0.07803746
-naep_math_8	WY	Wyoming	3.5	3.25	2011	‡
-naep_math_8	AL	Alabama	8	5.5	2013	‡
-naep_math_8	AK	Alaska	1.5	1	2013	0.015513499
-naep_math_8	AZ	Arizona	3.5	4.75	2013	‡
-naep_math_8	AR	Arkansas	6.5	4.75	2013	0.121141565
-naep_math_8	CA	California	2.5	4.75	2013	0.029084499
-naep_math_8	CO	Colorado	4.5	4.75	2013	0.0454978
-naep_math_8	CT	Connecticut	11.5	3.25	2013	0.014038865
-naep_math_8	DE	Delaware	10	4	2013	‡
-naep_math_8	DC	District of Columbia	12.5	4.75	2013	0.034345142
-naep_math_8	FL	Florida	9	7	2013	0.049373307
-naep_math_8	GA	Georgia	8.5	6.25	2013	0.039571334
-naep_math_8	HI	Hawaii	1	7	2013	0.06532422
-naep_math_8	ID	Idaho	2.5	3.25	2013	0.006085525
-naep_math_8	IL	Illinois	6.5	3.25	2013	0.031157845
-naep_math_8	IN	Indiana	7.5	3.25	2013	‡
-naep_math_8	IA	Iowa	5.5	3.25	2013	0.052366547
-naep_math_8	KS	Kansas	5.5	4.75	2013	0.106934866
-naep_math_8	KY	Kentucky	7	4	2013	0.009700192
-naep_math_8	LA	Louisiana	6	5.5	2013	‡
-naep_math_8	ME	Maine	12	1	2013	‡
-naep_math_8	MD	Maryland	9	4	2013	0.055593444
-naep_math_8	MA	Massachusetts	11	2.5	2013	0.080493114
-naep_math_8	MI	Michigan	8	2.5	2013	0.019290653
-naep_math_8	MN	Minnesota	5	2.5	2013	0.088782888
-naep_math_8	MS	Mississippi	7	5.5	2013	‡
-naep_math_8	MO	Missouri	6	4	2013	‡
-naep_math_8	MT	Montana	3	2.5	2013	‡
-naep_math_8	NE	Nebraska	5	4	2013	0.045215823
-naep_math_8	NV	Nevada	3	4	2013	0.023353971
-naep_math_8	NH	New Hampshire	11.5	1.75	2013	‡
-naep_math_8	NJ	New Jersey	10.5	3.25	2013	‡
-naep_math_8	NM	New Mexico	4	5.5	2013	0.029887288
-naep_math_8	NY	New York	10	2.5	2013	0.042409581
-naep_math_8	NC	North Carolina	9.5	4.75	2013	0.061615956
-naep_math_8	ND	North Dakota	4	2.5	2013	‡
-naep_math_8	OH	Ohio	8.5	3.25	2013	0.083907673
-naep_math_8	OK	Oklahoma	5	5.5	2013	0.058694386
-naep_math_8	OR	Oregon	2	4	2013	#
-naep_math_8	PA	Pennsylvania	9.5	3.25	2013	0.048550505
-naep_math_8	RI	Rhode Island	12	2.5	2013	0.019051043
-naep_math_8	SC	South Carolina	9	5.5	2013	0.230013355
-naep_math_8	SD	South Dakota	4.5	3.25	2013	0.021100767
-naep_math_8	TN	Tennessee	7.5	4.75	2013	‡
-naep_math_8	TX	Texas	4.5	6.25	2013	0.070281133
-naep_math_8	UT	Utah	4	4	2013	0.01052413
-naep_math_8	VT	Vermont	10.5	1.75	2013	‡
-naep_math_8	VA	Virginia	8.5	4.75	2013	0.068350903
-naep_math_8	WA	Washington	2	2.5	2013	0.049080549
-naep_math_8	WV	West Virginia	8	4	2013	‡
-naep_math_8	WI	Wisconsin	6	2.5	2013	0.078040492
-naep_math_8	WY	Wyoming	3.5	3.25	2013	‡
-naep_math_8	AL	Alabama	8	5.5	2015	‡
-naep_math_8	AK	Alaska	1.5	1	2015	0.018575171
-naep_math_8	AZ	Arizona	3.5	4.75	2015	0.054781748
-naep_math_8	AR	Arkansas	6.5	4.75	2015	0.074118245
-naep_math_8	CA	California	2.5	4.75	2015	0.021048474
-naep_math_8	CO	Colorado	4.5	4.75	2015	0.053267347
-naep_math_8	CT	Connecticut	11.5	3.25	2015	0.010182806
-naep_math_8	DE	Delaware	10	4	2015	‡
-naep_math_8	DC	District of Columbia	12.5	4.75	2015	0.034722302
-naep_math_8	FL	Florida	9	7	2015	0.035584324
-naep_math_8	GA	Georgia	8.5	6.25	2015	0.044711169
-naep_math_8	HI	Hawaii	1	7	2015	0.026977982
-naep_math_8	ID	Idaho	2.5	3.25	2015	‡
-naep_math_8	IL	Illinois	6.5	3.25	2015	0.074695391
-naep_math_8	IN	Indiana	7.5	3.25	2015	0.152581194
-naep_math_8	IA	Iowa	5.5	3.25	2015	0.078032749
-naep_math_8	KS	Kansas	5.5	4.75	2015	0.148348268
-naep_math_8	KY	Kentucky	7	4	2015	‡
-naep_math_8	LA	Louisiana	6	5.5	2015	‡
-naep_math_8	ME	Maine	12	1	2015	‡
-naep_math_8	MD	Maryland	9	4	2015	0.082092189
-naep_math_8	MA	Massachusetts	11	2.5	2015	0.09881222
-naep_math_8	MI	Michigan	8	2.5	2015	0.122925434
-naep_math_8	MN	Minnesota	5	2.5	2015	0.088365281
-naep_math_8	MS	Mississippi	7	5.5	2015	‡
-naep_math_8	MO	Missouri	6	4	2015	‡
-naep_math_8	MT	Montana	3	2.5	2015	‡
-naep_math_8	NE	Nebraska	5	4	2015	‡
-naep_math_8	NV	Nevada	3	4	2015	0.052119418
-naep_math_8	NH	New Hampshire	11.5	1.75	2015	‡
-naep_math_8	NJ	New Jersey	10.5	3.25	2015	‡
-naep_math_8	NM	New Mexico	4	5.5	2015	0.019952693
-naep_math_8	NY	New York	10	2.5	2015	0.069988841
-naep_math_8	NC	North Carolina	9.5	4.75	2015	0.05462728
-naep_math_8	ND	North Dakota	4	2.5	2015	‡
-naep_math_8	OH	Ohio	8.5	3.25	2015	0.029037441
-naep_math_8	OK	Oklahoma	5	5.5	2015	0.036925384
-naep_math_8	OR	Oregon	2	4	2015	‡
-naep_math_8	PA	Pennsylvania	9.5	3.25	2015	0.052637779
-naep_math_8	RI	Rhode Island	12	2.5	2015	0.046031313
-naep_math_8	SC	South Carolina	9	5.5	2015	0.152869834
-naep_math_8	SD	South Dakota	4.5	3.25	2015	‡
-naep_math_8	TN	Tennessee	7.5	4.75	2015	‡
-naep_math_8	TX	Texas	4.5	6.25	2015	0.064086286
-naep_math_8	UT	Utah	4	4	2015	0.005882848
-naep_math_8	VT	Vermont	10.5	1.75	2015	‡
-naep_math_8	VA	Virginia	8.5	4.75	2015	0.099267233
-naep_math_8	WA	Washington	2	2.5	2015	0.050554492
-naep_math_8	WV	West Virginia	8	4	2015	‡
-naep_math_8	WI	Wisconsin	6	2.5	2015	0.099861051
-naep_math_8	WY	Wyoming	3.5	3.25	2015	‡
-naep_reading_4	AL	Alabama	8	5.5	2009	‡
-naep_reading_4	AK	Alaska	1.5	1	2009	0.040288582
-naep_reading_4	AZ	Arizona	3.5	4.75	2009	0.015033844
-naep_reading_4	AR	Arkansas	6.5	4.75	2009	0.090816264
-naep_reading_4	CA	California	2.5	4.75	2009	0.039419293
-naep_reading_4	CO	Colorado	4.5	4.75	2009	0.03903702
-naep_reading_4	CT	Connecticut	11.5	3.25	2009	0.06031455
-naep_reading_4	DE	Delaware	10	4	2009	0.085507564
-naep_reading_4	DC	District of Columbia	12.5	4.75	2009	0.059003774
-naep_reading_4	FL	Florida	9	7	2009	0.133698046
-naep_reading_4	GA	Georgia	8.5	6.25	2009	0.056099655
-naep_reading_4	HI	Hawaii	1	7	2009	0.046900055
-naep_reading_4	ID	Idaho	2.5	3.25	2009	0.025765879
-naep_reading_4	IL	Illinois	6.5	3.25	2009	0.073743702
-naep_reading_4	IN	Indiana	7.5	3.25	2009	0.062898634
-naep_reading_4	IA	Iowa	5.5	3.25	2009	0.094381119
-naep_reading_4	KS	Kansas	5.5	4.75	2009	0.165333128
-naep_reading_4	KY	Kentucky	7	4	2009	‡
-naep_reading_4	LA	Louisiana	6	5.5	2009	0.103545497
-naep_reading_4	ME	Maine	12	1	2009	‡
-naep_reading_4	MD	Maryland	9	4	2009	0.165057518
-naep_reading_4	MA	Massachusetts	11	2.5	2009	0.120853909
-naep_reading_4	MI	Michigan	8	2.5	2009	0.094095027
-naep_reading_4	MN	Minnesota	5	2.5	2009	0.073630745
-naep_reading_4	MS	Mississippi	7	5.5	2009	‡
-naep_reading_4	MO	Missouri	6	4	2009	‡
-naep_reading_4	MT	Montana	3	2.5	2009	0.053141912
-naep_reading_4	NE	Nebraska	5	4	2009	0.042295596
-naep_reading_4	NV	Nevada	3	4	2009	0.04844761
-naep_reading_4	NH	New Hampshire	11.5	1.75	2009	0.152354868
-naep_reading_4	NJ	New Jersey	10.5	3.25	2009	‡
-naep_reading_4	NM	New Mexico	4	5.5	2009	0.028859866
-naep_reading_4	NY	New York	10	2.5	2009	0.057554048
-naep_reading_4	NC	North Carolina	9.5	4.75	2009	0.111637423
-naep_reading_4	ND	North Dakota	4	2.5	2009	‡
-naep_reading_4	OH	Ohio	8.5	3.25	2009	0.078856933
-naep_reading_4	OK	Oklahoma	5	5.5	2009	0.085758119
-naep_reading_4	OR	Oregon	2	4	2009	0.033727469
-naep_reading_4	PA	Pennsylvania	9.5	3.25	2009	0.035364936
-naep_reading_4	RI	Rhode Island	12	2.5	2009	0.056847651
-naep_reading_4	SC	South Carolina	9	5.5	2009	0.198630168
-naep_reading_4	SD	South Dakota	4.5	3.25	2009	‡
-naep_reading_4	TN	Tennessee	7.5	4.75	2009	0.043267445
-naep_reading_4	TX	Texas	4.5	6.25	2009	0.080656127
-naep_reading_4	UT	Utah	4	4	2009	0.054304961
-naep_reading_4	VT	Vermont	10.5	1.75	2009	‡
-naep_reading_4	VA	Virginia	8.5	4.75	2009	0.122928279
-naep_reading_4	WA	Washington	2	2.5	2009	0.031646795
-naep_reading_4	WV	West Virginia	8	4	2009	‡
-naep_reading_4	WI	Wisconsin	6	2.5	2009	0.084454183
-naep_reading_4	WY	Wyoming	3.5	3.25	2009	‡
-naep_reading_4	AL	Alabama	8	5.5	2011	0.051937188
-naep_reading_4	AK	Alaska	1.5	1	2011	0.015281573
-naep_reading_4	AZ	Arizona	3.5	4.75	2011	0.014530546
-naep_reading_4	AR	Arkansas	6.5	4.75	2011	0.138691597
-naep_reading_4	CA	California	2.5	4.75	2011	0.054117129
-naep_reading_4	CO	Colorado	4.5	4.75	2011	0.053831919
-naep_reading_4	CT	Connecticut	11.5	3.25	2011	0.033976989
-naep_reading_4	DE	Delaware	10	4	2011	0.042575601
-naep_reading_4	DC	District of Columbia	12.5	4.75	2011	0.048461619
-naep_reading_4	FL	Florida	9	7	2011	0.074987713
-naep_reading_4	GA	Georgia	8.5	6.25	2011	0.051731881
-naep_reading_4	HI	Hawaii	1	7	2011	0.029376484
-naep_reading_4	ID	Idaho	2.5	3.25	2011	0.015846828
-naep_reading_4	IL	Illinois	6.5	3.25	2011	0.045316905
-naep_reading_4	IN	Indiana	7.5	3.25	2011	0.138535212
-naep_reading_4	IA	Iowa	5.5	3.25	2011	0.074483446
-naep_reading_4	KS	Kansas	5.5	4.75	2011	0.159927974
-naep_reading_4	KY	Kentucky	7	4	2011	‡
-naep_reading_4	LA	Louisiana	6	5.5	2011	0.08941274
-naep_reading_4	ME	Maine	12	1	2011	0.073374458
-naep_reading_4	MD	Maryland	9	4	2011	0.151752242
-naep_reading_4	MA	Massachusetts	11	2.5	2011	0.115290827
-naep_reading_4	MI	Michigan	8	2.5	2011	0.072461795
-naep_reading_4	MN	Minnesota	5	2.5	2011	0.046004747
-naep_reading_4	MS	Mississippi	7	5.5	2011	‡
-naep_reading_4	MO	Missouri	6	4	2011	0.111937245
-naep_reading_4	MT	Montana	3	2.5	2011	0.042494544
-naep_reading_4	NE	Nebraska	5	4	2011	0.072324312
-naep_reading_4	NV	Nevada	3	4	2011	0.102253528
-naep_reading_4	NH	New Hampshire	11.5	1.75	2011	0.143758018
-naep_reading_4	NJ	New Jersey	10.5	3.25	2011	‡
-naep_reading_4	NM	New Mexico	4	5.5	2011	0.020140383
-naep_reading_4	NY	New York	10	2.5	2011	0.046492558
-naep_reading_4	NC	North Carolina	9.5	4.75	2011	0.06705365
-naep_reading_4	ND	North Dakota	4	2.5	2011	0.094501279
-naep_reading_4	OH	Ohio	8.5	3.25	2011	0.139647186
-naep_reading_4	OK	Oklahoma	5	5.5	2011	0.07193795
-naep_reading_4	OR	Oregon	2	4	2011	0.041248702
-naep_reading_4	PA	Pennsylvania	9.5	3.25	2011	0.104949947
-naep_reading_4	RI	Rhode Island	12	2.5	2011	0.031168671
-naep_reading_4	SC	South Carolina	9	5.5	2011	0.196380067
-naep_reading_4	SD	South Dakota	4.5	3.25	2011	0.022386832
-naep_reading_4	TN	Tennessee	7.5	4.75	2011	0.045964651
-naep_reading_4	TX	Texas	4.5	6.25	2011	0.085471588
-naep_reading_4	UT	Utah	4	4	2011	0.020077795
-naep_reading_4	VT	Vermont	10.5	1.75	2011	0.160800446
-naep_reading_4	VA	Virginia	8.5	4.75	2011	0.072905492
-naep_reading_4	WA	Washington	2	2.5	2011	0.015247763
-naep_reading_4	WV	West Virginia	8	4	2011	‡
-naep_reading_4	WI	Wisconsin	6	2.5	2011	0.096629618
-naep_reading_4	WY	Wyoming	3.5	3.25	2011	0.053871118
-naep_reading_4	AL	Alabama	8	5.5	2013	‡
-naep_reading_4	AK	Alaska	1.5	1	2013	0.014455528
-naep_reading_4	AZ	Arizona	3.5	4.75	2013	0.006087515
-naep_reading_4	AR	Arkansas	6.5	4.75	2013	0.165828982
-naep_reading_4	CA	California	2.5	4.75	2013	0.047466427
-naep_reading_4	CO	Colorado	4.5	4.75	2013	0.082086996
-naep_reading_4	CT	Connecticut	11.5	3.25	2013	0.036243221
-naep_reading_4	DE	Delaware	10	4	2013	0.044932831
-naep_reading_4	DC	District of Columbia	12.5	4.75	2013	0.053006695
-naep_reading_4	FL	Florida	9	7	2013	0.101672362
-naep_reading_4	GA	Georgia	8.5	6.25	2013	0.077391094
-naep_reading_4	HI	Hawaii	1	7	2013	0.029555677
-naep_reading_4	ID	Idaho	2.5	3.25	2013	0.031048794
-naep_reading_4	IL	Illinois	6.5	3.25	2013	0.032910857
-naep_reading_4	IN	Indiana	7.5	3.25	2013	0.127766663
-naep_reading_4	IA	Iowa	5.5	3.25	2013	0.107527494
-naep_reading_4	KS	Kansas	5.5	4.75	2013	0.169816892
-naep_reading_4	KY	Kentucky	7	4	2013	0.11090718
-naep_reading_4	LA	Louisiana	6	5.5	2013	0.09583752
-naep_reading_4	ME	Maine	12	1	2013	0.092308832
-naep_reading_4	MD	Maryland	9	4	2013	0.175373274
-naep_reading_4	MA	Massachusetts	11	2.5	2013	0.116081772
-naep_reading_4	MI	Michigan	8	2.5	2013	0.09069716
-naep_reading_4	MN	Minnesota	5	2.5	2013	0.076612096
-naep_reading_4	MS	Mississippi	7	5.5	2013	‡
-naep_reading_4	MO	Missouri	6	4	2013	0.064954704
-naep_reading_4	MT	Montana	3	2.5	2013	0.023437015
-naep_reading_4	NE	Nebraska	5	4	2013	0.070095411
-naep_reading_4	NV	Nevada	3	4	2013	0.061344853
-naep_reading_4	NH	New Hampshire	11.5	1.75	2013	0.100640751
-naep_reading_4	NJ	New Jersey	10.5	3.25	2013	0.09318756
-naep_reading_4	NM	New Mexico	4	5.5	2013	0.031932051
-naep_reading_4	NY	New York	10	2.5	2013	0.043214406
-naep_reading_4	NC	North Carolina	9.5	4.75	2013	0.038867259
-naep_reading_4	ND	North Dakota	4	2.5	2013	‡
-naep_reading_4	OH	Ohio	8.5	3.25	2013	0.192099209
-naep_reading_4	OK	Oklahoma	5	5.5	2013	0.055970882
-naep_reading_4	OR	Oregon	2	4	2013	0.058644923
-naep_reading_4	PA	Pennsylvania	9.5	3.25	2013	0.05406084
-naep_reading_4	RI	Rhode Island	12	2.5	2013	0.03722171
-naep_reading_4	SC	South Carolina	9	5.5	2013	0.183309866
-naep_reading_4	SD	South Dakota	4.5	3.25	2013	0.049326359
-naep_reading_4	TN	Tennessee	7.5	4.75	2013	0.017166683
-naep_reading_4	TX	Texas	4.5	6.25	2013	0.086560535
-naep_reading_4	UT	Utah	4	4	2013	0.020591847
-naep_reading_4	VT	Vermont	10.5	1.75	2013	‡
-naep_reading_4	VA	Virginia	8.5	4.75	2013	0.052460282
-naep_reading_4	WA	Washington	2	2.5	2013	0.034086697
-naep_reading_4	WV	West Virginia	8	4	2013	‡
-naep_reading_4	WI	Wisconsin	6	2.5	2013	0.087005504
-naep_reading_4	WY	Wyoming	3.5	3.25	2013	0.090755183
-naep_reading_4	AL	Alabama	8	5.5	2015	‡
-naep_reading_4	AK	Alaska	1.5	1	2015	0.035522941
-naep_reading_4	AZ	Arizona	3.5	4.75	2015	0.007257777
-naep_reading_4	AR	Arkansas	6.5	4.75	2015	0.160457477
-naep_reading_4	CA	California	2.5	4.75	2015	0.055971072
-naep_reading_4	CO	Colorado	4.5	4.75	2015	0.048842858
-naep_reading_4	CT	Connecticut	11.5	3.25	2015	0.066858298
-naep_reading_4	DE	Delaware	10	4	2015	0.036716666
-naep_reading_4	DC	District of Columbia	12.5	4.75	2015	0.033341041
-naep_reading_4	FL	Florida	9	7	2015	0.087030663
-naep_reading_4	GA	Georgia	8.5	6.25	2015	0.04594177
-naep_reading_4	HI	Hawaii	1	7	2015	0.016815689
-naep_reading_4	ID	Idaho	2.5	3.25	2015	#
-naep_reading_4	IL	Illinois	6.5	3.25	2015	0.043615129
-naep_reading_4	IN	Indiana	7.5	3.25	2015	0.140286721
-naep_reading_4	IA	Iowa	5.5	3.25	2015	0.109527934
-naep_reading_4	KS	Kansas	5.5	4.75	2015	0.149281082
-naep_reading_4	KY	Kentucky	7	4	2015	0.128069147
-naep_reading_4	LA	Louisiana	6	5.5	2015	‡
-naep_reading_4	ME	Maine	12	1	2015	0.062019242
-naep_reading_4	MD	Maryland	9	4	2015	0.074877588
-naep_reading_4	MA	Massachusetts	11	2.5	2015	0.120335627
-naep_reading_4	MI	Michigan	8	2.5	2015	0.155977624
-naep_reading_4	MN	Minnesota	5	2.5	2015	0.06310004
-naep_reading_4	MS	Mississippi	7	5.5	2015	‡
-naep_reading_4	MO	Missouri	6	4	2015	0.136260226
-naep_reading_4	MT	Montana	3	2.5	2015	0.014309483
-naep_reading_4	NE	Nebraska	5	4	2015	0.071314592
-naep_reading_4	NV	Nevada	3	4	2015	0.083007714
-naep_reading_4	NH	New Hampshire	11.5	1.75	2015	0.18655794
-naep_reading_4	NJ	New Jersey	10.5	3.25	2015	‡
-naep_reading_4	NM	New Mexico	4	5.5	2015	0.036442632
-naep_reading_4	NY	New York	10	2.5	2015	0.053776843
-naep_reading_4	NC	North Carolina	9.5	4.75	2015	0.051530412
-naep_reading_4	ND	North Dakota	4	2.5	2015	‡
-naep_reading_4	OH	Ohio	8.5	3.25	2015	0.117577416
-naep_reading_4	OK	Oklahoma	5	5.5	2015	0.085016449
-naep_reading_4	OR	Oregon	2	4	2015	0.031189811
-naep_reading_4	PA	Pennsylvania	9.5	3.25	2015	0.033921973
-naep_reading_4	RI	Rhode Island	12	2.5	2015	0.047690414
-naep_reading_4	SC	South Carolina	9	5.5	2015	0.209540701
-naep_reading_4	SD	South Dakota	4.5	3.25	2015	0.053009369
-naep_reading_4	TN	Tennessee	7.5	4.75	2015	0.164396856
-naep_reading_4	TX	Texas	4.5	6.25	2015	0.122854878
-naep_reading_4	UT	Utah	4	4	2015	0.076610599
-naep_reading_4	VT	Vermont	10.5	1.75	2015	‡
-naep_reading_4	VA	Virginia	8.5	4.75	2015	0.073731983
-naep_reading_4	WA	Washington	2	2.5	2015	0.052357588
-naep_reading_4	WV	West Virginia	8	4	2015	‡
-naep_reading_4	WI	Wisconsin	6	2.5	2015	0.093389495
-naep_reading_4	WY	Wyoming	3.5	3.25	2015	‡
-naep_reading_8	AL	Alabama	8	5.5	2009	‡
-naep_reading_8	AK	Alaska	1.5	1	2009	0.022
-naep_reading_8	AZ	Arizona	3.5	4.75	2009	0.005
-naep_reading_8	AR	Arkansas	6.5	4.75	2009	0.067
-naep_reading_8	CA	California	2.5	4.75	2009	0.02
-naep_reading_8	CO	Colorado	4.5	4.75	2009	0.026
-naep_reading_8	CT	Connecticut	11.5	3.25	2009	‡
-naep_reading_8	DE	Delaware	10	4	2009	‡
-naep_reading_8	DC	District of Columbia	12.5	4.75	2009	‡
-naep_reading_8	FL	Florida	9	7	2009	0.066
-naep_reading_8	GA	Georgia	8.5	6.25	2009	‡
-naep_reading_8	HI	Hawaii	1	7	2009	0.03
-naep_reading_8	ID	Idaho	2.5	3.25	2009	0.03
-naep_reading_8	IL	Illinois	6.5	3.25	2009	0.045
-naep_reading_8	IN	Indiana	7.5	3.25	2009	‡
-naep_reading_8	IA	Iowa	5.5	3.25	2009	‡
-naep_reading_8	KS	Kansas	5.5	4.75	2009	0.053
-naep_reading_8	KY	Kentucky	7	4	2009	‡
-naep_reading_8	LA	Louisiana	6	5.5	2009	‡
-naep_reading_8	ME	Maine	12	1	2009	‡
-naep_reading_8	MD	Maryland	9	4	2009	‡
-naep_reading_8	MA	Massachusetts	11	2.5	2009	0.031
-naep_reading_8	MI	Michigan	8	2.5	2009	0.077
-naep_reading_8	MN	Minnesota	5	2.5	2009	0.03
-naep_reading_8	MS	Mississippi	7	5.5	2009	‡
-naep_reading_8	MO	Missouri	6	4	2009	‡
-naep_reading_8	MT	Montana	3	2.5	2009	‡
-naep_reading_8	NE	Nebraska	5	4	2009	‡
-naep_reading_8	NV	Nevada	3	4	2009	0.008
-naep_reading_8	NH	New Hampshire	11.5	1.75	2009	‡
-naep_reading_8	NJ	New Jersey	10.5	3.25	2009	‡
-naep_reading_8	NM	New Mexico	4	5.5	2009	0.007
-naep_reading_8	NY	New York	10	2.5	2009	0.019
-naep_reading_8	NC	North Carolina	9.5	4.75	2009	0.052
-naep_reading_8	ND	North Dakota	4	2.5	2009	‡
-naep_reading_8	OH	Ohio	8.5	3.25	2009	‡
-naep_reading_8	OK	Oklahoma	5	5.5	2009	0.035
-naep_reading_8	OR	Oregon	2	4	2009	0.01
-naep_reading_8	PA	Pennsylvania	9.5	3.25	2009	0.048
-naep_reading_8	RI	Rhode Island	12	2.5	2009	0.008
-naep_reading_8	SC	South Carolina	9	5.5	2009	0.183
-naep_reading_8	SD	South Dakota	4.5	3.25	2009	‡
-naep_reading_8	TN	Tennessee	7.5	4.75	2009	‡
-naep_reading_8	TX	Texas	4.5	6.25	2009	0.008
-naep_reading_8	UT	Utah	4	4	2009	0.031
-naep_reading_8	VT	Vermont	10.5	1.75	2009	‡
-naep_reading_8	VA	Virginia	8.5	4.75	2009	0.088
-naep_reading_8	WA	Washington	2	2.5	2009	0.019
-naep_reading_8	WV	West Virginia	8	4	2009	‡
-naep_reading_8	WI	Wisconsin	6	2.5	2009	0.074
-naep_reading_8	WY	Wyoming	3.5	3.25	2009	‡
-naep_reading_8	AL	Alabama	8	5.5	2011	‡
-naep_reading_8	AK	Alaska	1.5	1	2011	0.046
-naep_reading_8	AZ	Arizona	3.5	4.75	2011	‡
-naep_reading_8	AR	Arkansas	6.5	4.75	2011	0.076
-naep_reading_8	CA	California	2.5	4.75	2011	0.026
-naep_reading_8	CO	Colorado	4.5	4.75	2011	0.022
-naep_reading_8	CT	Connecticut	11.5	3.25	2011	0.025
-naep_reading_8	DE	Delaware	10	4	2011	‡
-naep_reading_8	DC	District of Columbia	12.5	4.75	2011	0.029
-naep_reading_8	FL	Florida	9	7	2011	0.041
-naep_reading_8	GA	Georgia	8.5	6.25	2011	‡
-naep_reading_8	HI	Hawaii	1	7	2011	0.025
-naep_reading_8	ID	Idaho	2.5	3.25	2011	0.024
-naep_reading_8	IL	Illinois	6.5	3.25	2011	0.022
-naep_reading_8	IN	Indiana	7.5	3.25	2011	0.06
-naep_reading_8	IA	Iowa	5.5	3.25	2011	0.061
-naep_reading_8	KS	Kansas	5.5	4.75	2011	0.106
-naep_reading_8	KY	Kentucky	7	4	2011	‡
-naep_reading_8	LA	Louisiana	6	5.5	2011	‡
-naep_reading_8	ME	Maine	12	1	2011	‡
-naep_reading_8	MD	Maryland	9	4	2011	‡
-naep_reading_8	MA	Massachusetts	11	2.5	2011	0.009
-naep_reading_8	MI	Michigan	8	2.5	2011	0.077
-naep_reading_8	MN	Minnesota	5	2.5	2011	0.064
-naep_reading_8	MS	Mississippi	7	5.5	2011	‡
-naep_reading_8	MO	Missouri	6	4	2011	‡
-naep_reading_8	MT	Montana	3	2.5	2011	‡
-naep_reading_8	NE	Nebraska	5	4	2011	‡
-naep_reading_8	NV	Nevada	3	4	2011	0.016
-naep_reading_8	NH	New Hampshire	11.5	1.75	2011	‡
-naep_reading_8	NJ	New Jersey	10.5	3.25	2011	‡
-naep_reading_8	NM	New Mexico	4	5.5	2011	0.011
-naep_reading_8	NY	New York	10	2.5	2011	0.011
-naep_reading_8	NC	North Carolina	9.5	4.75	2011	0.029
-naep_reading_8	ND	North Dakota	4	2.5	2011	‡
-naep_reading_8	OH	Ohio	8.5	3.25	2011	0.05
-naep_reading_8	OK	Oklahoma	5	5.5	2011	‡
-naep_reading_8	OR	Oregon	2	4	2011	0.01
-naep_reading_8	PA	Pennsylvania	9.5	3.25	2011	0.018
-naep_reading_8	RI	Rhode Island	12	2.5	2011	0.027
-naep_reading_8	SC	South Carolina	9	5.5	2011	0.183
-naep_reading_8	SD	South Dakota	4.5	3.25	2011	‡
-naep_reading_8	TN	Tennessee	7.5	4.75	2011	‡
-naep_reading_8	TX	Texas	4.5	6.25	2011	0.012
-naep_reading_8	UT	Utah	4	4	2011	0.019
-naep_reading_8	VT	Vermont	10.5	1.75	2011	‡
-naep_reading_8	VA	Virginia	8.5	4.75	2011	0.074
-naep_reading_8	WA	Washington	2	2.5	2011	0.039
-naep_reading_8	WV	West Virginia	8	4	2011	‡
-naep_reading_8	WI	Wisconsin	6	2.5	2011	0.09
-naep_reading_8	WY	Wyoming	3.5	3.25	2011	‡
-naep_reading_8	AL	Alabama	8	5.5	2013	‡
-naep_reading_8	AK	Alaska	1.5	1	2013	0.005
-naep_reading_8	AZ	Arizona	3.5	4.75	2013	‡
-naep_reading_8	AR	Arkansas	6.5	4.75	2013	0.123
-naep_reading_8	CA	California	2.5	4.75	2013	0.022
-naep_reading_8	CO	Colorado	4.5	4.75	2013	0.031
-naep_reading_8	CT	Connecticut	11.5	3.25	2013	0.01
-naep_reading_8	DE	Delaware	10	4	2013	‡
-naep_reading_8	DC	District of Columbia	12.5	4.75	2013	0.02
-naep_reading_8	FL	Florida	9	7	2013	0.033
-naep_reading_8	GA	Georgia	8.5	6.25	2013	0.037
-naep_reading_8	HI	Hawaii	1	7	2013	0.025
-naep_reading_8	ID	Idaho	2.5	3.25	2013	0.018
-naep_reading_8	IL	Illinois	6.5	3.25	2013	0.012
-naep_reading_8	IN	Indiana	7.5	3.25	2013	0.059
-naep_reading_8	IA	Iowa	5.5	3.25	2013	0.016
-naep_reading_8	KS	Kansas	5.5	4.75	2013	0.13
-naep_reading_8	KY	Kentucky	7	4	2013	0.049
-naep_reading_8	LA	Louisiana	6	5.5	2013	‡
-naep_reading_8	ME	Maine	12	1	2013	‡
-naep_reading_8	MD	Maryland	9	4	2013	‡
-naep_reading_8	MA	Massachusetts	11	2.5	2013	0.038
-naep_reading_8	MI	Michigan	8	2.5	2013	0.08
-naep_reading_8	MN	Minnesota	5	2.5	2013	0.064
-naep_reading_8	MS	Mississippi	7	5.5	2013	‡
-naep_reading_8	MO	Missouri	6	4	2013	‡
-naep_reading_8	MT	Montana	3	2.5	2013	‡
-naep_reading_8	NE	Nebraska	5	4	2013	‡
-naep_reading_8	NV	Nevada	3	4	2013	0.021
-naep_reading_8	NH	New Hampshire	11.5	1.75	2013	‡
-naep_reading_8	NJ	New Jersey	10.5	3.25	2013	‡
-naep_reading_8	NM	New Mexico	4	5.5	2013	0.02
-naep_reading_8	NY	New York	10	2.5	2013	0.011
-naep_reading_8	NC	North Carolina	9.5	4.75	2013	0.071
-naep_reading_8	ND	North Dakota	4	2.5	2013	‡
-naep_reading_8	OH	Ohio	8.5	3.25	2013	0.195
-naep_reading_8	OK	Oklahoma	5	5.5	2013	0.064
-naep_reading_8	OR	Oregon	2	4	2013	0.013
-naep_reading_8	PA	Pennsylvania	9.5	3.25	2013	0.03
-naep_reading_8	RI	Rhode Island	12	2.5	2013	0.031
-naep_reading_8	SC	South Carolina	9	5.5	2013	0.098
-naep_reading_8	SD	South Dakota	4.5	3.25	2013	‡
-naep_reading_8	TN	Tennessee	7.5	4.75	2013	‡
-naep_reading_8	TX	Texas	4.5	6.25	2013	0.021
-naep_reading_8	UT	Utah	4	4	2013	0.03
-naep_reading_8	VT	Vermont	10.5	1.75	2013	‡
-naep_reading_8	VA	Virginia	8.5	4.75	2013	0.071
-naep_reading_8	WA	Washington	2	2.5	2013	0.031
-naep_reading_8	WV	West Virginia	8	4	2013	‡
-naep_reading_8	WI	Wisconsin	6	2.5	2013	0.086
-naep_reading_8	WY	Wyoming	3.5	3.25	2013	‡
-naep_reading_8	AL	Alabama	8	5.5	2015	‡
-naep_reading_8	AK	Alaska	1.5	1	2015	0.013
-naep_reading_8	AZ	Arizona	3.5	4.75	2015	#
-naep_reading_8	AR	Arkansas	6.5	4.75	2015	0.113
-naep_reading_8	CA	California	2.5	4.75	2015	0.018
-naep_reading_8	CO	Colorado	4.5	4.75	2015	0.029
-naep_reading_8	CT	Connecticut	11.5	3.25	2015	0.015
-naep_reading_8	DE	Delaware	10	4	2015	‡
-naep_reading_8	DC	District of Columbia	12.5	4.75	2015	0.028
-naep_reading_8	FL	Florida	9	7	2015	0.023
-naep_reading_8	GA	Georgia	8.5	6.25	2015	0.061
-naep_reading_8	HI	Hawaii	1	7	2015	0.008
-naep_reading_8	ID	Idaho	2.5	3.25	2015	‡
-naep_reading_8	IL	Illinois	6.5	3.25	2015	0.028
-naep_reading_8	IN	Indiana	7.5	3.25	2015	0.132
-naep_reading_8	IA	Iowa	5.5	3.25	2015	0.056
-naep_reading_8	KS	Kansas	5.5	4.75	2015	0.175
-naep_reading_8	KY	Kentucky	7	4	2015	0.055
-naep_reading_8	LA	Louisiana	6	5.5	2015	‡
-naep_reading_8	ME	Maine	12	1	2015	0.111
-naep_reading_8	MD	Maryland	9	4	2015	0.067
-naep_reading_8	MA	Massachusetts	11	2.5	2015	0.059
-naep_reading_8	MI	Michigan	8	2.5	2015	0.062
-naep_reading_8	MN	Minnesota	5	2.5	2015	0.056
-naep_reading_8	MS	Mississippi	7	5.5	2015	‡
-naep_reading_8	MO	Missouri	6	4	2015	‡
-naep_reading_8	MT	Montana	3	2.5	2015	‡
-naep_reading_8	NE	Nebraska	5	4	2015	‡
-naep_reading_8	NV	Nevada	3	4	2015	0.032
-naep_reading_8	NH	New Hampshire	11.5	1.75	2015	‡
-naep_reading_8	NJ	New Jersey	10.5	3.25	2015	‡
-naep_reading_8	NM	New Mexico	4	5.5	2015	0.016
-naep_reading_8	NY	New York	10	2.5	2015	0.029
-naep_reading_8	NC	North Carolina	9.5	4.75	2015	0.011
-naep_reading_8	ND	North Dakota	4	2.5	2015	‡
-naep_reading_8	OH	Ohio	8.5	3.25	2015	0.071
-naep_reading_8	OK	Oklahoma	5	5.5	2015	0.072
-naep_reading_8	OR	Oregon	2	4	2015	0.006
-naep_reading_8	PA	Pennsylvania	9.5	3.25	2015	0.058
-naep_reading_8	RI	Rhode Island	12	2.5	2015	0.01
-naep_reading_8	SC	South Carolina	9	5.5	2015	0.111
-naep_reading_8	SD	South Dakota	4.5	3.25	2015	‡
-naep_reading_8	TN	Tennessee	7.5	4.75	2015	‡
-naep_reading_8	TX	Texas	4.5	6.25	2015	0.022
-naep_reading_8	UT	Utah	4	4	2015	0.012
-naep_reading_8	VT	Vermont	10.5	1.75	2015	‡
-naep_reading_8	VA	Virginia	8.5	4.75	2015	0.032
-naep_reading_8	WA	Washington	2	2.5	2015	0.029
-naep_reading_8	WV	West Virginia	8	4	2015	‡
-naep_reading_8	WI	Wisconsin	6	2.5	2015	0.058
-naep_reading_8	WY	Wyoming	3.5	3.25	2015	‡		
+map_id	sub_map	st_abbr	state	x	y	dispval	dispcat	dispnotes	subgroup1	val1	notes1	subgroup2	val2	notes2
+grad_rate		AK	Alaska	1.5	1	0.546649146	2		ELs	0.546649146		Non-ELs	0.779517801
+grad_rate		AL	Alabama	8	5.5	0.644067797	3		ELs	0.644067797		Non-ELs	0.872866833
+grad_rate		AR	Arkansas	6.5	4.75	0.857064321	5		ELs	0.857064321		Non-ELs	0.870876923
+grad_rate		AZ	Arizona	3.5	4.75	0.321548822	1		ELs	0.321548822		Non-ELs	0.80233053
+grad_rate		CA	California	2.5	4.75	0.720606551	4		ELs	0.720606551		Non-ELs	0.857640968
+grad_rate		CO	Colorado	4.5	4.75	0.613516081	3		ELs	0.613516081		Non-ELs	0.81224797
+grad_rate		CT	Connecticut	11.5	3.25	0.67316209	3		ELs	0.67316209		Non-ELs	0.885119048
+grad_rate		DC	District of Columbia	12.5	4.75	0.635135135	3		ELs	0.635135135		Non-ELs	0.697700631
+grad_rate		DE	Delaware	10	4	0.725848564	4		ELs	0.725848564		Non-ELs	0.860415557
+grad_rate		FL	Florida	9	7	0.619874959	3		ELs	0.619874959		Non-ELs	0.822443361
+grad_rate		GA	Georgia	8.5	6.25	0.564635603	2		ELs	0.564635603		Non-ELs	0.802177622
+grad_rate		HI	Hawaii	1	7	0.69379015	3		ELs	0.69379015		Non-ELs	0.843766347
+grad_rate		IA	Iowa	5.5	3.25	0.807909605	5		ELs	0.807909605		Non-ELs	0.91651897
+grad_rate		ID	Idaho	2.5	3.25	0.733455882	4		ELs	0.733455882		Non-ELs	0.801738186
+grad_rate		IL	Illinois	6.5	3.25	0.718541748	4		ELs	0.718541748		Non-ELs	0.861864754
+grad_rate		IN	Indiana	7.5	3.25	0.708673091	4		ELs	0.708673091		Non-ELs	0.870851129
+grad_rate		KS	Kansas	5.5	4.75	0.77345679	4		ELs	0.77345679		Non-ELs	0.864899648
+grad_rate		KY	Kentucky	7	4	0.683006536	3		ELs	0.683006536		Non-ELs	0.888835818
+grad_rate		LA	Louisiana	6	5.5	0.427797834	1		ELs	0.427797834		Non-ELs	0.790082645
+grad_rate		MA	Massachusetts	11	2.5	0.640654739	3		ELs	0.640654739		Non-ELs	0.893343606
+grad_rate		MD	Maryland	9	4	0.475440806	1		ELs	0.475440806		Non-ELs	0.886401112
+grad_rate		ME	Maine	12	1	0.779582367	4		ELs	0.779582367		Non-ELs	0.872702272
+grad_rate		MI	Michigan	8	2.5	0.721060683	4		ELs	0.721060683		Non-ELs	0.798986844
+grad_rate		MN	Minnesota	5	2.5	0.631455399	3		ELs	0.631455399		Non-ELs	0.834834933
+grad_rate		MO	Missouri	6	4	0.679577465	3		ELs	0.679577465		Non-ELs	0.892655196
+grad_rate		MS	Mississippi	7	5.5	0.653710247	3		ELs	0.653710247		Non-ELs	0.824095241
+grad_rate		MT	Montana	3	2.5	0.587467363	2		ELs	0.587467363		Non-ELs	0.866420018
+grad_rate		NC	North Carolina	9.5	4.75	0.571872572	2		ELs	0.571872572		Non-ELs	0.865247589
+grad_rate		ND	North Dakota	4	2.5	0.686746988	3		ELs	0.686746988		Non-ELs	0.879456478
+grad_rate		NE	Nebraska	5	4	0.545454545	2		ELs	0.545454545		Non-ELs	0.903014723
+grad_rate		NH	New Hampshire	11.5	1.75	0.716937355	4		ELs	0.716937355		Non-ELs	0.887320977
+grad_rate		NJ	New Jersey	10.5	3.25	0.746500382	4		ELs	0.746500382		Non-ELs	0.906553742
+grad_rate		NM	New Mexico	4	5.5	0.674361564	3		ELs	0.674361564		Non-ELs	0.723611477
+grad_rate		NV	Nevada	3	4	0.425789978	1		ELs	0.425789978		Non-ELs	0.766571803
+grad_rate		NY	New York	10	2.5	0.377920158	1		ELs	0.377920158		Non-ELs	0.825346543
+grad_rate		OH	Ohio	8.5	3.25	0.502452316	2		ELs	0.502452316		Non-ELs	0.838961269
+grad_rate		OK	Oklahoma	5	5.5	0.578992314	2		ELs	0.578992314		Non-ELs	0.822164562
+grad_rate		OR	Oregon	2	4	0.529006883	2		ELs	0.529006883		Non-ELs	0.75835609
+grad_rate		PA	Pennsylvania	9.5	3.25	0.627013631	3		ELs	0.627013631		Non-ELs	0.866594197
+grad_rate		RI	Rhode Island	12	2.5	0.736636245	4		ELs	0.736636245		Non-ELs	0.834282955
+grad_rate		SC	South Carolina	9	5.5	0.760299625	4		ELs	0.760299625		Non-ELs	0.828343275
+grad_rate		SD	South Dakota	4.5	3.25	0.572115385	2		ELs	0.572115385		Non-ELs	0.845045045
+grad_rate		TN	Tennessee	7.5	4.75	0.756378189	4		ELs	0.756378189		Non-ELs	0.889122726
+grad_rate		TX	Texas	4.5	6.25	0.736776097	4		ELs	0.736776097		Non-ELs	0.904371179
+grad_rate		UT	Utah	4	4	0.657249467	3		ELs	0.657249467		Non-ELs	0.860947021
+grad_rate		VA	Virginia	8.5	4.75	0.4544406	1		ELs	0.4544406		Non-ELs	0.886406677
+grad_rate		VT	Vermont	10.5	1.75	0.6796875	3		ELs	0.6796875		Non-ELs	0.881530165
+grad_rate		WA	Washington	2	2.5	0.578223871	2		ELs	0.578223871		Non-ELs	0.810459759
+grad_rate		WI	Wisconsin	6	2.5	0.655328798	3		ELs	0.655328798		Non-ELs	0.887193892
+grad_rate		WV	West Virginia	8	4	0.926605505	5		ELs	0.926605505		Non-ELs	0.897938366
+grad_rate		WY	Wyoming	3.5	3.25	0.698492462	3		ELs	0.698492462		Non-ELs	0.802610353
+naep_math	Grade 4 Math	AL	Alabama	8	5.5	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	AK	Alaska	1.5	1	2.773631	4		2009	0.035640388		2015	0.063376698
+naep_math	Grade 4 Math	AZ	Arizona	3.5	4.75	2.5956258	4		2009	0.024512201		2015	0.050468459
+naep_math	Grade 4 Math	AR	Arkansas	6.5	4.75	-1.4052605	2		2009	0.210598163		2015	0.196545558
+naep_math	Grade 4 Math	CA	California	2.5	4.75	1.9605286	4		2009	0.064039905		2015	0.083645191
+naep_math	Grade 4 Math	CO	Colorado	4.5	4.75	1.0384599	4		2009	0.089820817		2015	0.100205416
+naep_math	Grade 4 Math	CT	Connecticut	11.5	3.25	2.5161902	4		2009	0.092537388		2015	0.11769929
+naep_math	Grade 4 Math	DE	Delaware	10	4	-2.0686273	2		2009	0.105429785		2015	0.084743512
+naep_math	Grade 4 Math	DC	District of Columbia	12.5	4.75	-5.392706	1		2009	0.14310415		2015	0.08917709
+naep_math	Grade 4 Math	FL	Florida	9	7	-5.4799016	1		2009	0.187482116		2015	0.1326831
+naep_math	Grade 4 Math	GA	Georgia	8.5	6.25	-7.9488699	1		2009	0.140920962		2015	0.061432263
+naep_math	Grade 4 Math	HI	Hawaii	1	7	-5.7281823	1		2009	0.118331743		2015	0.06104992
+naep_math	Grade 4 Math	ID	Idaho	2.5	3.25	-5.8747295	1		2009	0.066312335		2015	0.00756504
+naep_math	Grade 4 Math	IL	Illinois	6.5	3.25	-3.0578423	2		2009	0.106232873		2015	0.07565445
+naep_math	Grade 4 Math	IN	Indiana	7.5	3.25	6.8366529	5		2009	0.188965086		2015	0.257331615
+naep_math	Grade 4 Math	IA	Iowa	5.5	3.25	2.4361801	4		2009	0.142276337		2015	0.166638138
+naep_math	Grade 4 Math	KS	Kansas	5.5	4.75	-2.6371441	2		2009	0.214739201		2015	0.18836776
+naep_math	Grade 4 Math	KY	Kentucky	7	4	-12.2086512	1		2009	0.278463049		2015	0.156376537
+naep_math	Grade 4 Math	LA	Louisiana	6	5.5	‡			2009	0.147802416		2015	‡
+naep_math	Grade 4 Math	ME	Maine	12	1	‡			2009	‡		2015	0.093668843
+naep_math	Grade 4 Math	MD	Maryland	9	4	-1.3422263	2		2009	0.168110481		2015	0.154688218
+naep_math	Grade 4 Math	MA	Massachusetts	11	2.5	2.1413648	4		2009	0.152244		2015	0.173657648
+naep_math	Grade 4 Math	MI	Michigan	8	2.5	3.9401815	5		2009	0.117755769		2015	0.157157584
+naep_math	Grade 4 Math	MN	Minnesota	5	2.5	3.1862317	5		2009	0.154128909		2015	0.185991226
+naep_math	Grade 4 Math	MS	Mississippi	7	5.5	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	MO	Missouri	6	4	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	MT	Montana	3	2.5	-6.6490169	1		2009	0.096190127		2015	0.029699958
+naep_math	Grade 4 Math	NE	Nebraska	5	4	2.5514574	4		2009	0.058166884		2015	0.083681458
+naep_math	Grade 4 Math	NV	Nevada	3	4	1.0469545	4		2009	0.123791798		2015	0.134261343
+naep_math	Grade 4 Math	NH	New Hampshire	11.5	1.75	-3.776008	2		2009	0.281244683		2015	0.243484603
+naep_math	Grade 4 Math	NJ	New Jersey	10.5	3.25	‡			2009	0.10082974		2015	‡
+naep_math	Grade 4 Math	NM	New Mexico	4	5.5	4.1348666	5		2009	0.048106203		2015	0.089454869
+naep_math	Grade 4 Math	NY	New York	10	2.5	-4.2152484	2		2009	0.131042694		2015	0.08889021
+naep_math	Grade 4 Math	NC	North Carolina	9.5	4.75	-7.6272284	1		2009	0.181706237		2015	0.105433953
+naep_math	Grade 4 Math	ND	North Dakota	4	2.5	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	OH	Ohio	8.5	3.25	-19.0925834	1		2009	0.361883384		2015	0.17095755
+naep_math	Grade 4 Math	OK	Oklahoma	5	5.5	2.7485732	4		2009	0.089672945		2015	0.117158677
+naep_math	Grade 4 Math	OR	Oregon	2	4	1.3023583	4		2009	0.064087419		2015	0.077111002
+naep_math	Grade 4 Math	PA	Pennsylvania	9.5	3.25	3.9833757	5		2009	0.123539693		2015	0.16337345
+naep_math	Grade 4 Math	RI	Rhode Island	12	2.5	-2.1763543	2		2009	0.100536806		2015	0.078773263
+naep_math	Grade 4 Math	SC	South Carolina	9	5.5	6.5450925	5		2009	0.281974388		2015	0.347425313
+naep_math	Grade 4 Math	SD	South Dakota	4.5	3.25	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	TN	Tennessee	7.5	4.75	14.863476	5		2009	0.134552071		2015	0.283186831
+naep_math	Grade 4 Math	TX	Texas	4.5	6.25	8.4960462	5		2009	0.199240474		2015	0.284200936
+naep_math	Grade 4 Math	UT	Utah	4	4	-0.4923224	3		2009	0.064017668		2015	0.059094444
+naep_math	Grade 4 Math	VT	Vermont	10.5	1.75	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	VA	Virginia	8.5	4.75	-7.2821204	1		2009	0.189667344		2015	0.11684614
+naep_math	Grade 4 Math	WA	Washington	2	2.5	2.5083121	4		2009	0.083000171		2015	0.108083292
+naep_math	Grade 4 Math	WV	West Virginia	8	4	‡			2009	‡		2015	‡
+naep_math	Grade 4 Math	WI	Wisconsin	6	2.5	3.4971543	5		2009	0.152118196		2015	0.187089739
+naep_math	Grade 4 Math	WY	Wyoming	3.5	3.25	‡			2009	‡		2015	0.10300892
+naep_math	Grade 8 Math	AL	Alabama	8	5.5	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	AK	Alaska	1.5	1	-0.5400574	3		2009	0.023975745		2015	0.018575171
+naep_math	Grade 8 Math	AZ	Arizona	3.5	4.75	3.1333176	5		2009	0.023448572		2015	0.054781748
+naep_math	Grade 8 Math	AR	Arkansas	6.5	4.75	-0.6415703	3		2009	0.080533948		2015	0.074118245
+naep_math	Grade 8 Math	CA	California	2.5	4.75	-0.6363695	3		2009	0.027412169		2015	0.021048474
+naep_math	Grade 8 Math	CO	Colorado	4.5	4.75	1.5067391	4		2009	0.038199956		2015	0.053267347
+naep_math	Grade 8 Math	CT	Connecticut	11.5	3.25	-5.3090061	1		2009	0.063272867		2015	0.010182806
+naep_math	Grade 8 Math	DE	Delaware	10	4	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	DC	District of Columbia	12.5	4.75	‡			2009	‡		2015	0.034722302
+naep_math	Grade 8 Math	FL	Florida	9	7	-0.6125077	3		2009	0.041709401		2015	0.035584324
+naep_math	Grade 8 Math	GA	Georgia	8.5	6.25	‡			2009	‡		2015	0.044711169
+naep_math	Grade 8 Math	HI	Hawaii	1	7	0.3731981	3		2009	0.023246001		2015	0.026977982
+naep_math	Grade 8 Math	ID	Idaho	2.5	3.25	‡			2009	0.011971754		2015	‡
+naep_math	Grade 8 Math	IL	Illinois	6.5	3.25	0.0768955	3		2009	0.073926436		2015	0.074695391
+naep_math	Grade 8 Math	IN	Indiana	7.5	3.25	-3.2664799	2		2009	0.185245993		2015	0.152581194
+naep_math	Grade 8 Math	IA	Iowa	5.5	3.25	‡			2009	‡		2015	0.078032749
+naep_math	Grade 8 Math	KS	Kansas	5.5	4.75	4.9765745	5		2009	0.098582523		2015	0.148348268
+naep_math	Grade 8 Math	KY	Kentucky	7	4	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	LA	Louisiana	6	5.5	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	ME	Maine	12	1	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	MD	Maryland	9	4	0.0922364	3		2009	0.081169825		2015	0.082092189
+naep_math	Grade 8 Math	MA	Massachusetts	11	2.5	1.466328	4		2009	0.08414894		2015	0.09881222
+naep_math	Grade 8 Math	MI	Michigan	8	2.5	1.8149906	4		2009	0.104775528		2015	0.122925434
+naep_math	Grade 8 Math	MN	Minnesota	5	2.5	0.2478233	3		2009	0.085887048		2015	0.088365281
+naep_math	Grade 8 Math	MS	Mississippi	7	5.5	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	MO	Missouri	6	4	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	MT	Montana	3	2.5	‡			2009	0.008641747		2015	‡
+naep_math	Grade 8 Math	NE	Nebraska	5	4	‡			2009	0.033787877		2015	‡
+naep_math	Grade 8 Math	NV	Nevada	3	4	2.7740024	4		2009	0.024379394		2015	0.052119418
+naep_math	Grade 8 Math	NH	New Hampshire	11.5	1.75	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	NJ	New Jersey	10.5	3.25	‡			2009	0.105963467		2015	‡
+naep_math	Grade 8 Math	NM	New Mexico	4	5.5	-0.5460658	3		2009	0.025413351		2015	0.019952693
+naep_math	Grade 8 Math	NY	New York	10	2.5	3.0451664	5		2009	0.039537177		2015	0.069988841
+naep_math	Grade 8 Math	NC	North Carolina	9.5	4.75	-5.412326	1		2009	0.10875054		2015	0.05462728
+naep_math	Grade 8 Math	ND	North Dakota	4	2.5	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	OH	Ohio	8.5	3.25	-7.8928335	1		2009	0.107965776		2015	0.029037441
+naep_math	Grade 8 Math	OK	Oklahoma	5	5.5	2.4136836	4		2009	0.012788548		2015	0.036925384
+naep_math	Grade 8 Math	OR	Oregon	2	4	‡			2009	0.028940763		2015	‡
+naep_math	Grade 8 Math	PA	Pennsylvania	9.5	3.25	-6.175001	1		2009	0.114387789		2015	0.052637779
+naep_math	Grade 8 Math	RI	Rhode Island	12	2.5	-3.8683248	2		2009	0.084714561		2015	0.046031313
+naep_math	Grade 8 Math	SC	South Carolina	9	5.5	-1.9328176	2		2009	0.17219801		2015	0.152869834
+naep_math	Grade 8 Math	SD	South Dakota	4.5	3.25	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	TN	Tennessee	7.5	4.75	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	TX	Texas	4.5	6.25	0.6524696	3		2009	0.05756159		2015	0.064086286
+naep_math	Grade 8 Math	UT	Utah	4	4	-1.7625752	2		2009	0.0235086		2015	0.005882848
+naep_math	Grade 8 Math	VT	Vermont	10.5	1.75	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	VA	Virginia	8.5	4.75	-3.5584359	2		2009	0.134851592		2015	0.099267233
+naep_math	Grade 8 Math	WA	Washington	2	2.5	1.7428736	4		2009	0.033125756		2015	0.050554492
+naep_math	Grade 8 Math	WV	West Virginia	8	4	‡			2009	‡		2015	‡
+naep_math	Grade 8 Math	WI	Wisconsin	6	2.5	0.7015068	3		2009	0.092845983		2015	0.099861051
+naep_math	Grade 8 Math	WY	Wyoming	3.5	3.25	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	AL	Alabama	8	5.5	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	AK	Alaska	1.5	1	-0.4765641	3		2009	0.040288582		2015	0.035522941
+naep_reading	Grade 4 Reading	AZ	Arizona	3.5	4.75	-0.7776067	3		2009	0.015033844		2015	0.007257777
+naep_reading	Grade 4 Reading	AR	Arkansas	6.5	4.75	6.9641213	5		2009	0.090816264		2015	0.160457477
+naep_reading	Grade 4 Reading	CA	California	2.5	4.75	1.6551779	4		2009	0.039419293		2015	0.055971072
+naep_reading	Grade 4 Reading	CO	Colorado	4.5	4.75	0.9805838	3		2009	0.03903702		2015	0.048842858
+naep_reading	Grade 4 Reading	CT	Connecticut	11.5	3.25	0.6543748	3		2009	0.06031455		2015	0.066858298
+naep_reading	Grade 4 Reading	DE	Delaware	10	4	-4.8790898	2		2009	0.085507564		2015	0.036716666
+naep_reading	Grade 4 Reading	DC	District of Columbia	12.5	4.75	-2.5662733	2		2009	0.059003774		2015	0.033341041
+naep_reading	Grade 4 Reading	FL	Florida	9	7	-4.6667383	2		2009	0.133698046		2015	0.087030663
+naep_reading	Grade 4 Reading	GA	Georgia	8.5	6.25	-1.0157885	2		2009	0.056099655		2015	0.04594177
+naep_reading	Grade 4 Reading	HI	Hawaii	1	7	-3.0084366	2		2009	0.046900055		2015	0.016815689
+naep_reading	Grade 4 Reading	ID	Idaho	2.5	3.25	#			2009	0.025765879		2015	#
+naep_reading	Grade 4 Reading	IL	Illinois	6.5	3.25	-3.0128573	2		2009	0.073743702		2015	0.043615129
+naep_reading	Grade 4 Reading	IN	Indiana	7.5	3.25	7.7388087	5		2009	0.062898634		2015	0.140286721
+naep_reading	Grade 4 Reading	IA	Iowa	5.5	3.25	1.5146815	4		2009	0.094381119		2015	0.109527934
+naep_reading	Grade 4 Reading	KS	Kansas	5.5	4.75	-1.6052046	2		2009	0.165333128		2015	0.149281082
+naep_reading	Grade 4 Reading	KY	Kentucky	7	4	‡			2009	‡		2015	0.128069147
+naep_reading	Grade 4 Reading	LA	Louisiana	6	5.5	‡			2009	0.103545497		2015	‡
+naep_reading	Grade 4 Reading	ME	Maine	12	1	‡			2009	‡		2015	0.062019242
+naep_reading	Grade 4 Reading	MD	Maryland	9	4	-9.017993	1		2009	0.165057518		2015	0.074877588
+naep_reading	Grade 4 Reading	MA	Massachusetts	11	2.5	-0.0518282	3		2009	0.120853909		2015	0.120335627
+naep_reading	Grade 4 Reading	MI	Michigan	8	2.5	6.1882597	5		2009	0.094095027		2015	0.155977624
+naep_reading	Grade 4 Reading	MN	Minnesota	5	2.5	-1.0530705	2		2009	0.073630745		2015	0.06310004
+naep_reading	Grade 4 Reading	MS	Mississippi	7	5.5	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	MO	Missouri	6	4	‡			2009	‡		2015	0.136260226
+naep_reading	Grade 4 Reading	MT	Montana	3	2.5	-3.8832429	2		2009	0.053141912		2015	0.014309483
+naep_reading	Grade 4 Reading	NE	Nebraska	5	4	2.9018996	4		2009	0.042295596		2015	0.071314592
+naep_reading	Grade 4 Reading	NV	Nevada	3	4	3.4560104	5		2009	0.04844761		2015	0.083007714
+naep_reading	Grade 4 Reading	NH	New Hampshire	11.5	1.75	3.4203072	5		2009	0.152354868		2015	0.18655794
+naep_reading	Grade 4 Reading	NJ	New Jersey	10.5	3.25	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	NM	New Mexico	4	5.5	0.7582766	3		2009	0.028859866		2015	0.036442632
+naep_reading	Grade 4 Reading	NY	New York	10	2.5	-0.3777205	3		2009	0.057554048		2015	0.053776843
+naep_reading	Grade 4 Reading	NC	North Carolina	9.5	4.75	-6.0107011	1		2009	0.111637423		2015	0.051530412
+naep_reading	Grade 4 Reading	ND	North Dakota	4	2.5	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	OH	Ohio	8.5	3.25	3.8720483	5		2009	0.078856933		2015	0.117577416
+naep_reading	Grade 4 Reading	OK	Oklahoma	5	5.5	-0.074167	3		2009	0.085758119		2015	0.085016449
+naep_reading	Grade 4 Reading	OR	Oregon	2	4	-0.2537658	3		2009	0.033727469		2015	0.031189811
+naep_reading	Grade 4 Reading	PA	Pennsylvania	9.5	3.25	-0.1442963	3		2009	0.035364936		2015	0.033921973
+naep_reading	Grade 4 Reading	RI	Rhode Island	12	2.5	-0.9157237	3		2009	0.056847651		2015	0.047690414
+naep_reading	Grade 4 Reading	SC	South Carolina	9	5.5	1.0910533	4		2009	0.198630168		2015	0.209540701
+naep_reading	Grade 4 Reading	SD	South Dakota	4.5	3.25	‡			2009	‡		2015	0.053009369
+naep_reading	Grade 4 Reading	TN	Tennessee	7.5	4.75	12.1129411	5		2009	0.043267445		2015	0.164396856
+naep_reading	Grade 4 Reading	TX	Texas	4.5	6.25	4.2198751	5		2009	0.080656127		2015	0.122854878
+naep_reading	Grade 4 Reading	UT	Utah	4	4	2.2305638	4		2009	0.054304961		2015	0.076610599
+naep_reading	Grade 4 Reading	VT	Vermont	10.5	1.75	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	VA	Virginia	8.5	4.75	-4.9196296	2		2009	0.122928279		2015	0.073731983
+naep_reading	Grade 4 Reading	WA	Washington	2	2.5	2.0710793	4		2009	0.031646795		2015	0.052357588
+naep_reading	Grade 4 Reading	WV	West Virginia	8	4	‡			2009	‡		2015	‡
+naep_reading	Grade 4 Reading	WI	Wisconsin	6	2.5	0.8935312	3		2009	0.084454183		2015	0.093389495
+naep_reading	Grade 4 Reading	WY	Wyoming	3.5	3.25	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	AL	Alabama	8	5.5	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	AK	Alaska	1.5	1	-0.9	3		2009	0.022		2015	0.013
+naep_reading	Grade 8 Reading	AZ	Arizona	3.5	4.75	#			2009	0.005		2015	#
+naep_reading	Grade 8 Reading	AR	Arkansas	6.5	4.75	4.6	5		2009	0.067		2015	0.113
+naep_reading	Grade 8 Reading	CA	California	2.5	4.75	-0.2	3		2009	0.02		2015	0.018
+naep_reading	Grade 8 Reading	CO	Colorado	4.5	4.75	0.3	3		2009	0.026		2015	0.029
+naep_reading	Grade 8 Reading	CT	Connecticut	11.5	3.25	‡			2009	‡		2015	0.015
+naep_reading	Grade 8 Reading	DE	Delaware	10	4	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	DC	District of Columbia	12.5	4.75	‡			2009	‡		2015	0.028
+naep_reading	Grade 8 Reading	FL	Florida	9	7	-4.3	2		2009	0.066		2015	0.023
+naep_reading	Grade 8 Reading	GA	Georgia	8.5	6.25	‡			2009	‡		2015	0.061
+naep_reading	Grade 8 Reading	HI	Hawaii	1	7	-2.2	2		2009	0.03		2015	0.008
+naep_reading	Grade 8 Reading	ID	Idaho	2.5	3.25	‡			2009	0.03		2015	‡
+naep_reading	Grade 8 Reading	IL	Illinois	6.5	3.25	-1.7	2		2009	0.045		2015	0.028
+naep_reading	Grade 8 Reading	IN	Indiana	7.5	3.25	‡			2009	‡		2015	0.132
+naep_reading	Grade 8 Reading	IA	Iowa	5.5	3.25	‡			2009	‡		2015	0.056
+naep_reading	Grade 8 Reading	KS	Kansas	5.5	4.75	12.2	5		2009	0.053		2015	0.175
+naep_reading	Grade 8 Reading	KY	Kentucky	7	4	‡			2009	‡		2015	0.055
+naep_reading	Grade 8 Reading	LA	Louisiana	6	5.5	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	ME	Maine	12	1	‡			2009	‡		2015	0.111
+naep_reading	Grade 8 Reading	MD	Maryland	9	4	‡			2009	‡		2015	0.067
+naep_reading	Grade 8 Reading	MA	Massachusetts	11	2.5	2.8	4		2009	0.031		2015	0.059
+naep_reading	Grade 8 Reading	MI	Michigan	8	2.5	-1.5	2		2009	0.077		2015	0.062
+naep_reading	Grade 8 Reading	MN	Minnesota	5	2.5	2.6	4		2009	0.03		2015	0.056
+naep_reading	Grade 8 Reading	MS	Mississippi	7	5.5	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	MO	Missouri	6	4	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	MT	Montana	3	2.5	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	NE	Nebraska	5	4	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	NV	Nevada	3	4	2.4	4		2009	0.008		2015	0.032
+naep_reading	Grade 8 Reading	NH	New Hampshire	11.5	1.75	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	NJ	New Jersey	10.5	3.25	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	NM	New Mexico	4	5.5	0.9	3		2009	0.007		2015	0.016
+naep_reading	Grade 8 Reading	NY	New York	10	2.5	1	3		2009	0.019		2015	0.029
+naep_reading	Grade 8 Reading	NC	North Carolina	9.5	4.75	-4.1	2		2009	0.052		2015	0.011
+naep_reading	Grade 8 Reading	ND	North Dakota	4	2.5	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	OH	Ohio	8.5	3.25	‡			2009	‡		2015	0.071
+naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	3.7	5		2009	0.035		2015	0.072
+naep_reading	Grade 8 Reading	OR	Oregon	2	4	-0.4	3		2009	0.01		2015	0.006
+naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	1	3		2009	0.048		2015	0.058
+naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.2	3		2009	0.008		2015	0.01
+naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	-7.2	1		2009	0.183		2015	0.111
+naep_reading	Grade 8 Reading	SD	South Dakota	4.5	3.25	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	TN	Tennessee	7.5	4.75	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	TX	Texas	4.5	6.25	1.4	4		2009	0.008		2015	0.022
+naep_reading	Grade 8 Reading	UT	Utah	4	4	-1.9	2		2009	0.031		2015	0.012
+naep_reading	Grade 8 Reading	VT	Vermont	10.5	1.75	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	VA	Virginia	8.5	4.75	-5.6	1		2009	0.088		2015	0.032
+naep_reading	Grade 8 Reading	WA	Washington	2	2.5	1	3		2009	0.019		2015	0.029
+naep_reading	Grade 8 Reading	WV	West Virginia	8	4	‡			2009	‡		2015	‡
+naep_reading	Grade 8 Reading	WI	Wisconsin	6	2.5	-1.6	2		2009	0.074		2015	0.058
+naep_reading	Grade 8 Reading	WY	Wyoming	3.5	3.25	‡			2009	‡		2015	‡	

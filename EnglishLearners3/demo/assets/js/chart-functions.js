@@ -722,10 +722,12 @@ function barChart() {
 		marginBottom = 45,
 		barWidth = 15,
 		animateTime = 1000,
+		xAxisLabel = "FILL IN X-AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
 		notes = "",
 		source = "",
+		toggles = 0,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -734,6 +736,24 @@ function barChart() {
 
 	function chart(selection) {
 		selection.each(function() {
+
+		// make data fixes
+
+		data.forEach(function(d) {
+
+			// set 0 width for suppressed
+			// also fix district names
+
+			if (d.pct === "‡" || d.pct === "—" || d.pct === "#") {
+				d.pct_fixed = 0;
+				d.state_fixed = d.state + " (" + d.pct + ")";
+			}
+			else {
+				d.pct_fixed = d.pct;
+				d.state_fixed = d.state;
+			};
+
+		});
 
 		// formats
 
@@ -748,11 +768,70 @@ function barChart() {
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
+		// add buttons if indicated
+
+		var button_vals = d3.map(data, function(d) { return d.chartlevel; }).keys();
+		var selected_val = button_vals[0];
+		var data_all = data;
+		var titles_all = title;
+		var altText_all = altText;
+		var notes_all = notes;
+
+		if (toggles == 1) {
+
+		// values for buttons
+
+			var buttons = d3.select(this)
+				.append("div")
+				.attr("id", "buttons" + chartID)
+				.attr("class", "filters");
+
+			buttons.selectAll(".filterButton")
+				.data(button_vals)
+				.enter()
+					.append("button")
+						.attr("class", "filterButton")
+						.classed("buttonSelected", function(d) {
+							if (d === selected_val) { return true; }
+							else { return false; };
+						})
+						.attr("value", function(d) { return d; })
+						.on("click", function(d, i) {
+
+							d3.select("#buttons" + chartID)
+								.selectAll(".filterButton")
+									.classed("buttonSelected", false);
+
+							d3.select(this)
+								.classed("buttonSelected", true);
+
+							selected_val = d3.select(this).property("value");
+							title = titles_all[i];
+							altText = altText_all[i];
+							notes = notes_all[i];
+							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+							updateData();
+
+						})
+						.append("text")
+							.text(function(d) { return d; });
+
+			d3.select(this).append("br");
+
+			data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
+
+		}
+		else {};
+
 		// chart title
 
 		d3.select(this).append("div")
 			.attr("class", "title")
-			.text(title);
+			.text(function() {
+				if (toggles === 1) { return title[0]; }
+				else { return title; };
+			});
 
 		// selections
 
@@ -777,12 +856,7 @@ function barChart() {
 			.attr("class", "d3-tip")
 			.direction("e")
 			.offset([0, 10])
-			.html(function(d) {
-
-			return formatPercent(d.pct) + " (" + formatNumber(d.num) + " students)";
-
-
-		});
+			.html(function(d) {	return formatPercent(d.pct); });
 
 		svg.call(tipBar);
 
@@ -794,20 +868,17 @@ function barChart() {
 		// domains
 
 		function xDomain() {
-			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice() }
+			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.pct_fixed; })]).nice() }
 			else { xScale.domain([0, 1]); }
 		};
 		xDomain();
-		yScale.domain(data.map(function(d) { return d.group; }));
+		yScale.domain(data.map(function(d) { return d.state_fixed; }));
 
 		// axes
 
 		function formatValueAxis(d) {
-
 			var TickValue = formatNumber(d * 100);
-
 			return TickValue;
-
 		};
 
 		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(formatValueAxis).tickSize(-1 * heightAdj).ticks(Math.max(widthAdj/100, 2)),
@@ -829,7 +900,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% OF ENGLISH LEARNERS IN 2014–15");
+			.text(xAxisLabel);
 
 		// draw bars
 
@@ -840,18 +911,15 @@ function barChart() {
 			.append("g")
 				.attr("transform", "translate(0,0)")
 				.append("rect")
-					.attr("class", function(d) {
-						if (d.group == "Overall") { return "overallBar"; }
-						else { return "bar"; }
-					})
+					.attr("class", "bar")
 					.attr("x", 0)
 					.attr("width", 0)
-					.attr("y", function(d) { return yScale(d.group) + (yScale.rangeBand() / 2) - (barWidth/2); })
+					.attr("y", function(d) { return yScale(d.state_fixed) + (yScale.rangeBand() / 2) - (barWidth/2); })
 					.attr("height", barWidth)
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2014–15, " + formatPercent(d.pct) + ", or " + formatNumber(d.num) + " of preschool-aged " + d.group + " were enrolled in preschool."; });
+						.text(function(d) { return "In 2015, the percentage was " + formatPercent(d.pct) + "."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -868,7 +936,7 @@ function barChart() {
 					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.pct); });
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
 
 			}});
 
@@ -879,15 +947,19 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
-		// notes and sources
+		// add notes and sources if defined
+		// for notes, if toggles enabled, initially write first note
 
 		function writeNotes() {
 			if (!notes) {}
 			else {
 
 				d3.select("#"+ sectionID).append("div")
-						.attr("id", "notes" + chartID)
-						.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+					.attr("id", "notes" + chartID)
+					.html(function() {
+						if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes[0] + "</span>"; }
+						else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>"; };
+					});
 
 			};
 		};
@@ -951,11 +1023,74 @@ function barChart() {
 					svg.selectAll("rect")
 						.transition()
 						.duration(animateTime)
-						.attr("width", function(d) { return xScale(d.pct); });
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
 
 			}});
 
 		});
+
+		// update data function
+
+		function updateData() {
+
+			// transition x-axis if needed
+
+			xDomain();
+
+			svg.selectAll(".x.axis")
+				.transition()
+					.call(xAxis);
+
+			// adjust widths
+
+			svg.selectAll("rect.bar")
+				.data(data)
+				.transition()
+					.duration(animateTime)
+						.attr("width", function(d) { return xScale(d.pct_fixed); });
+
+			// update alt-text labels
+
+			svg.selectAll("rect.bar")
+				.selectAll("aria-label")
+					.remove();
+
+			svg.selectAll("rect.bar")
+				.append("aria-label")
+					.text(function(d) { return "In 2015, the percentage was " + formatPercent(d.pct) + "."; });
+
+			// redraw y-axis
+
+			yScale.domain(data.map(function(d) { return d.state_fixed; }));
+
+			svg.select(".y.axis")
+				.remove();
+
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("aria-hidden", "true")
+				.call(yAxis);
+
+			// update overall figure alt-text
+
+			svg.select("aria-label")
+				.remove();
+
+			svg.append("aria-label")
+				.text(altText);
+
+			// update title
+
+			d3.select("#" + sectionID)
+				.select(".title")
+				.text(title);
+
+			// update notes
+
+			d3.select("#notes" + chartID)
+				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+		};
 
 		});
 
@@ -1009,6 +1144,14 @@ function barChart() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -1045,6 +1188,14 @@ function barChart() {
 
 		if (!arguments.length) return caption;
 		caption = value;
+		return chart;
+
+	};
+
+	chart.toggles = function(value) {
+
+		if (!arguments.length) return toggles;
+		toggles = value;
 		return chart;
 
 	};
@@ -8409,7 +8560,7 @@ function multi_line_v2() {
 
 			line_group.select(".line.state:not(.highlighted)")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("stroke", function(d) {
 						if (d.key === highlighted_state) { return "#A6426C"; }
 						else { return "#778899"; };
@@ -8445,7 +8596,7 @@ function multi_line_v2() {
 					else { return "none"; };
 				})
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("fill", function(d) {
 						if (d.state === highlighted_state) { return "#A6426C"; }
 						else { return "#778899"; };
@@ -8463,7 +8614,7 @@ function multi_line_v2() {
 
 			line_group.select(".line.state:not(.highlighted)")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("stroke", "#778899")
 					.style("stroke-width", 1)
 					.style("opacity", 0.25);
@@ -8478,7 +8629,7 @@ function multi_line_v2() {
 			line_group.selectAll(".dot_text.state:not(.highlighted)")
 				.style("pointer-events", "none")
 				.transition()
-					.duration(animateTime)
+					.duration(animateTime/3)
 					.style("fill", "#778899")
 					.style("opacity", 0);
 
@@ -8502,7 +8653,7 @@ function multi_line_v2() {
 						else { return false; };
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("stroke", function(d) {
 							if (d.key === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
@@ -8546,7 +8697,7 @@ function multi_line_v2() {
 
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("fill", function(d) {
 							if (d.state === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
@@ -8562,7 +8713,7 @@ function multi_line_v2() {
 						else { return false; };
 					})
 					.transition()
-						.duration(animateTime)
+						.duration(animateTime/3)
 						.style("fill", function(d) {
 							if (d.state === selected_state) { return "#A6426C"; }
 							else { return "#778899"; };
@@ -9548,7 +9699,15 @@ function hex_map() {
 			notes = "",
 			source = "",
 			toggles = 0, // set to 1 to enable subgroup button toggles
-			state_highlight = 0, // set to 1 to enable state highlight dropdown
+			/* state_highlight = 0, // set to 1 to enable state highlight dropdown */
+			pct_point = 0, // set to 0 to display percentages; 1 to display percentage points
+			colors = [{color: "#bbb8d8", text: "< 50%", category: 1},
+								{color: "#9e9ac8", text: "50% - < 60%", category: 2},
+								{color: "#756bb1", text: "60 - < 70%", category: 3},
+								{color: "#54278f", text: "70% - 80%", category: 4},
+								{color: "#340d67", text: "> 80%", category: 5}], // default color set - 5 categories
+			//legend_vals = [0.5, 0.6, 0.7, 0.8 , 1],
+			//legend_text = ["< 50%", "50% - < 60%", "60 - < 70%", "70% - 80%", "> 80%"],
 			animateTime = 1000,
 			containerID = [],
 			subcontainerID = [],
@@ -9559,6 +9718,11 @@ function hex_map() {
 	function chart(selection) {
 		selection.each(function() {
 
+		// formats
+
+		var	formatNumber = d3.format(",.1f"),
+			formatPercent = d3.format(",.1%");
+
 		// in the data, convert missing/suppressed data to -99
 		// not sure what the symbols used for NAEP are, if there are diferent symbols just add them in as other if statements
 		// in general these may need to be tweaked; if the actual numbers are needed apply the same kind of transformations
@@ -9567,33 +9731,52 @@ function hex_map() {
 
 			// convert suppressed/missing
 
-			if (d.pct === "†") {
-				d.pct = "-99";
+			if (d.dispval === "†") {
+				d.dispval = "-99";
 				d.symbol = "†";
 			};
-			if (d.pct === "-") {
-				d.pct = "-99";
+			if (d.dispval === "-") {
+				d.dispval = "-99";
 				d.symbol = "-";
 			};
-			if (d.pct === "‡") {
-				d.pct = "-99";
+			if (d.dispval === "‡") {
+				d.dispval = "-99";
 				d.symbol = "‡";
 			};
-			if (d.pct === "#") {
-				d.pct = "-99";
+			if (d.dispval === "#") {
+				d.dispval = "-99";
 				d.symbol = "#";
 			};
 
 			// convert percentage to numeric
 
-			d.pct = +d.pct;
+			d.dispval = +d.dispval;
 
 		});
 
-		// formats
+		// merge in colors based on categories
 
-		var	formatNumber = d3.format(",f"),
-			formatPercent = d3.format(",.1%");
+		data.forEach(function(datum) {
+
+			var match = colors.filter(function(col) {
+				return col.category === datum.dispcat;
+			});
+
+			datum.color = (match[0] !== undefined) ? match[0].color : null;
+
+		});
+
+		// convert values for tooltips to text
+
+		data.forEach(function(d) {
+
+			if (d.val1 === "†" || d.val1 === "-" || d.val1 === "‡" || d.val1 === "#") { d.tooltip1 = d.val1; }
+			else {d.tooltip1 = formatPercent(d.val1); };
+
+			if (d.val2 === "†" || d.val2 === "-" || d.val2 === "‡" || d.val2 === "#") { d.tooltip2 = d.val2; }
+			else {d.tooltip2 = formatPercent(d.val2); };
+
+		});
 
 		// width and height of map
 
@@ -9619,7 +9802,7 @@ function hex_map() {
 
 		// add buttons if indicated
 
-		var button_vals = d3.map(data, function(d) { return d.subgroup; }).keys();
+		var button_vals = d3.map(data, function(d) { return d.sub_map; }).keys();
 		var subgroup_selected = button_vals[0];
 		var data_all = data;
 		var titles_all = title;
@@ -9657,7 +9840,7 @@ function hex_map() {
 							title = titles_all[i];
 							altText = altText_all[i];
 							notes = notes_all[i];
-							data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
+							data = data_all.filter(function(d) { return d.sub_map == subgroup_selected; });
 
 							updateData();
 
@@ -9666,7 +9849,7 @@ function hex_map() {
 							.text(function(d) { return d; });
 
 			dom.append("br");
-			data = data_all.filter(function(d) { return d.subgroup == subgroup_selected; });
+			data = data_all.filter(function(d) { return d.sub_map == subgroup_selected; });
 
 		}
 		else {};
@@ -9681,201 +9864,79 @@ function hex_map() {
 					else { return title; };
 				});
 
+		// add legend
+
+		highlight_status = 0;
+		selected_category = null;
+
 		var legend_dropdown = dom.append("div")
 			.attr("class", "hex_map_legend_dropdown_container")
 			.style("opacity", 0);
 
-		// add legend
-
-		var highlight_minStop_selected = 0;
-				highlight_gradient_selected = 0,
-				highlight_maxStop_selected = 0;
-
 		var legend = legend_dropdown.append("div")
 			.attr("class", "hex_map_legend_container");
 
-		// first append the < minStop div
-		// this div hides if the minStop = 0
+		var legend_stop = legend.selectAll(".hex_map_legend_stop_container")
+			.data(colors)
+			.enter()
+				.append("div")
+					.attr("class", "hex_map_legend_stop_container");
 
-		var legend_minStop = legend.append("div")
-			.attr("class", "hex_map_legend_stop_container")
-			.style("display", function() {
-				if (minStop === 0) { return "none"; }
-				else { return "block"; };
-			});
-
-		legend_minStop.append("div")
+		legend_stop.append("div")
 			.attr("class", "hex_map_legend_stop")
-			.style("background-color", "#9e9ac8")
-			.on("click", function() {
+			.style("background-color", function(d) { return d.color; })
+			.style("cursor", "pointer")
+			.on("click", function(d, i) {
 
-				if (highlight_minStop_selected === 0) {
+				// if this one is selected, do full reset
+				// otherwise do individual selections
 
-					highlight_minStop_selected = 1;
+				if (d3.select(this).classed("selected") === true) {
 
-					// reset other borders
+					highlight_status = 0;
 
 					legend.selectAll(".hex_map_legend_stop")
+						.classed("selected", false)
 						.style("border", "1px solid #FFF");
 
-					legend.selectAll(".hex_map_legend_gradient")
-						.style("border", "1px solid #FFF");
-
-					// set border for this legend
-
-					d3.select(this)
-						.style("border", "1px solid #160633");
-
-					// run highlight function
-
-					highlight_minStop();
+					selected_category = null;
 
 				}
-				else if (highlight_minStop_selected === 1) {
+				else {
 
-					highlight_minStop_selected = 0;
-
-					// reset border for this
-
-					d3.select(this)
-						.style("border", "1px solid #FFF");
-
-					// run highlight function
-
-					highlight_minStop();
-
-				};
-			})
-			.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });
-
-		legend_minStop.append("div")
-			.attr("class", "hex_map_legend_text")
-			.text("< " + formatPercent(minStop));
-
-		// then append the gradient div
-
-		var legend_gradient = legend.append("div")
-			.attr("class", "hex_map_legend_stop_container");
-
-		legend_gradient.append("div")
-			.attr("class", "hex_map_legend_gradient")
-			.style("background", "linear-gradient(to right, #9e9ac8, #340d67)")
-
-		if (minStop > 0 || maxStop < 1) {
-			legend_gradient.select(".hex_map_legend_gradient")
-				.on("click", function() {
-
-					if (highlight_gradient_selected === 0) {
-
-						highlight_gradient_selected = 1;
-
-						// reset other borders
-
-						legend.selectAll(".hex_map_legend_stop")
-							.style("border", "1px solid #FFF");
-
-						legend.selectAll(".hex_map_legend_gradient")
-							.style("border", "1px solid #FFF");
-
-						// set border for this legend
-
-						d3.select(this)
-							.style("border", "1px solid #160633");
-
-						// run highlight function
-
-						highlight_gradient();
-
-					}
-					else if (highlight_gradient_selected === 1) {
-
-						highlight_gradient_selected = 0;
-
-						// reset border for this
-
-						d3.select(this)
-							.style("border", "1px solid #FFF");
-
-						// run highlight function
-
-						highlight_gradient();
-
-					};
-				})
-				.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });
-		}
-		else if (minStop === 0 && maxStop === 1) {};
-
-		var legend_gradient_text = legend_gradient.append("div")
-			.attr("class", "hex_map_legend_gradient_text");
-
-		legend_gradient_text.append("div")
-			.style("text-align", "left")
-			.text(formatPercent(minStop));
-
-		legend_gradient_text.append("div")
-			.style("text-align", "right")
-			.text(formatPercent(maxStop));
-
-		// and finally append the > maxStop div
-		// this div hides if the maxStop = 1
-
-		var legend_maxStop = legend.append("div")
-			.attr("class", "hex_map_legend_stop_container")
-			.style("display", function() {
-				if (maxStop === 1) { return "none"; }
-				else { return "block"; };
-			});
-
-		legend_maxStop.append("div")
-			.attr("class", "hex_map_legend_stop")
-			.style("background-color", "#340d67")
-			.on("click", function() {
-
-				if (highlight_maxStop_selected === 0) {
-
-					highlight_maxStop_selected = 1;
-
-					// reset other borders
+					// reset selected status for all
 
 					legend.selectAll(".hex_map_legend_stop")
+						.classed("selected", false)
 						.style("border", "1px solid #FFF");
 
-					legend.selectAll(".hex_map_legend_gradient")
-						.style("border", "1px solid #FFF");
-
-					// set border for this legend
+					// apply selected status for selected category
 
 					d3.select(this)
+						.classed("selected", true)
 						.style("border", "1px solid #160633");
 
-					// run highlight function
+					// identify selected category
 
-					highlight_maxStop();
+					selected_category = i + 1;
 
-				}
-				else if (highlight_maxStop_selected === 1) {
+					// toggle highlight status
 
-					highlight_maxStop_selected = 0;
-
-					// reset border for this
-
-					d3.select(this)
-						.style("border", "1px solid #FFF");
-
-					// run highlight function
-
-					highlight_maxStop();
+					highlight_status = 1;
 
 				};
-			})
-			.on("mouseover", function() { d3.select(this).style("cursor", "pointer"); });;
 
-		legend_maxStop.append("div")
+				// run highlight function
+
+				highlight();
+
+			});
+
+		legend_stop.append("div")
 			.attr("class", "hex_map_legend_text")
-			.text("> " + formatPercent(maxStop));
+			.text(function(d) { return d.text; });
 
-		// add state dropdown for highlighting if needed
+		/* // NOT NEEDED: add state dropdown for highlighting if needed
 
 		if (state_highlight === 1) {
 
@@ -9910,7 +9971,7 @@ function hex_map() {
 					.attr("value", function(d) { return d; })
 					.text(function(d) { return d; });
 
-		};
+		}; */
 
 		// add svg and alt-text (aria-label)
 
@@ -9972,24 +10033,18 @@ function hex_map() {
 		xScale.domain(d3.extent(data, function(d) { return d.x; }));
 		yScale.domain(d3.extent(data, function(d) { return d.y; }));
 
-		// create color gradient
-
-		var colors = ["#9e9ac8", "#340d67"];
-
-		var color_scale = d3.scale.linear()
-			.domain([minStop, maxStop])
-			.range(colors);
-
 		// tooltips using d3-tip
 		// needs to be called before the hexagons
 
-		/*var tipDot = d3.tip()
-			.attr("class", "d3-tip")
+		var tipHex = d3.tip()
+			.attr("class", "d3-tip-hex")
 			.direction("n")
 			.offset([-10, 0])
-			.html(function(d) { return d.state + " (" + d.year + "): " + formatPercent(d.el_p);	});
+			.html(function(d) {
+				return "<strong>" + d.state + "</strong><hr class='hex_tooltip_hr'>" + d.subgroup1 + ": " + d.tooltip1 + "<br/>" + d.subgroup2 + ": " + d.tooltip2;
+			});
 
-		svg.call(tipDot);*/
+		svg.call(tipHex);
 
 		// create hex map
 		// ref: https://www.visualcinnamon.com/2013/07/self-organizing-maps-creating-hexagonal.html
@@ -10013,14 +10068,17 @@ function hex_map() {
 			.attr("class", "hexagon")
 			.attr("d", function(d) { return "M" + xScale(d.x) + "," + yScale(d.y) + hexagonPath; })
 			.style("fill", function(d) {
-				if (d.pct < 0) { return "gray"; }
-				else if (d.pct < minStop) { return colors[0]; }
-				else if (d.pct > maxStop) { return colors[1]; }
-				else { return color_scale(d.pct); };
+				if (d.dispval === -99) { return "gray"; }
+				else { return d.color; };
 			})
 			.style("opacity", 0)
+			.on("mouseover", tipHex.show)
+			.on("mouseout", tipHex.hide)
 			.append("aria-label")
-				.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
+				.text(function(d) {
+					if (pct_point === 0) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; }
+					else if (pct_point === 1) { return "In " + d.state + ", the percentage point change was " + formatNumber(d.dispval) + "."; };
+				});
 
 		// add state name to hexagons
 
@@ -10031,6 +10089,7 @@ function hex_map() {
 			.attr("dy", "-0.25em")
 			.attr("text-anchor", "middle")
 			.style("opacity", 0)
+			.style("pointer-events", "none")
 			.text(function(d) { return d.st_abbr; });
 
 		// add percentages to hexagons
@@ -10042,9 +10101,11 @@ function hex_map() {
 			.attr("dy", "0.85em")
 			.attr("text-anchor", "middle")
 			.style("opacity", 0)
+			.style("pointer-events", "none")
 			.text(function(d) {
-				if (d.pct < 0) { return d.symbol; }
-				else { return formatPercent(d.pct); };
+				if (d.dispval === -99) { return d.symbol; }
+				else if (pct_point === 0) { return formatPercent(d.dispval); }
+				else if (pct_point === 1) { return formatNumber(d.dispval); };
 			});
 
 		// animate on scroll
@@ -10125,25 +10186,26 @@ function hex_map() {
 			// reset legend selection
 
 			legend.selectAll(".hex_map_legend_stop")
-				.style("border", "1px solid #FFF");
+				.style("border", "1px solid #FFF")
+				.classed("selected", false);
 
-			legend.selectAll(".hex_map_legend_gradient")
-				.style("border", "1px solid #FFF");
+			highlight_status = 0;
+			selected_category = null;
 
 			// make transitions
 
 			hex_group.select(".hexagon")
+				.on("mouseover", tipHex.show)
+				.on("mouseout", tipHex.hide)
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 1)
 					.style("stroke", "#FFF")
 					.style("stroke-width", 1)
 					.style("fill", function(d) {
-						if (d.pct < 0) { return "gray"; }
-						else if (d.pct < minStop) { return colors[0]; }
-						else if (d.pct > maxStop) { return colors[1]; }
-						else { return color_scale(d.pct); };
-					});
+						if (d.dispval === -99) { return "gray"; }
+						else { return d.color; };
+					})
 
 			// also replace aria labels
 
@@ -10159,9 +10221,12 @@ function hex_map() {
 
 			hex_group.select(".hexagon")
 				.append("aria-label")
-					.text(function(d) { return "In " + d.state + ", the percentage was " + formatPercent(d.pct) + "."; });
+					.text(function(d) {
+						if (pct_point === 0) { return "In " + d.state + ", the percentage was " + formatPercent(d.dispval) + "."; }
+						else if (pct_point === 1) { return "In " + d.state + ", the percentage point change was " + formatNumber(d.dispval) + "."; };
+					});
 
-			// tween percentages
+			// tween values
 
 			hex_group.select(".hex_pct")
 				.transition()
@@ -10173,15 +10238,18 @@ function hex_map() {
 						var current_text = d3.select(this).text(),
 								current_value;
 
-						current_value = +current_text.slice(0, -1)/100;
+						if (pct_point === 0) { current_value = +current_text.slice(0, -1)/100; }
+						else if (pct_point === 1) { current_value = +current_text.slice(0, -1); };
+
 						if (isNaN(current_value)) { current_value = 0; };
 
 						// interpolate and tween
 
-						var i = d3.interpolate(current_value, d.pct);
+						var i = d3.interpolate(current_value, d.dispval);
 
-						if (d.pct >= 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
-						else { d3.select(this).text(function(d) { return d.symbol; }); };
+						if (d.dispval === -99) { d3.select(this).text(function(d) { return d.symbol; }); }
+						else if (pct_point === 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
+						else if (pct_point === 1) { return function(t) { d3.select(this).text(formatNumber(i(t)))}; };
 
 					});
 
@@ -10198,7 +10266,7 @@ function hex_map() {
 
 		};
 
-		// state highlight
+		/* NOT NEEDED // state highlight
 
 		function state_highlight() {
 
@@ -10223,107 +10291,28 @@ function hex_map() {
 						else { return 1; };
 					});
 
-		};
+		}; */
 
 		// legend highlight
 
-		function highlight_minStop() {
-
-			highlight_gradient_selected = 0;
-			highlight_maxStop_selected = 0;
-
-			if (highlight_minStop_selected === 1) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", function(d) {
-							if (d.pct < minStop) { return 1; }
+		function highlight() {
+			hex_group.select(".hexagon")
+				.transition()
+					.duration(animateTime)
+					.style("opacity", function(d) {
+						if (highlight_status === 1) {
+							if (d.dispcat === selected_category) { return 1; }
 							else { return 0.15; };
-						})
-						/*.style("stroke", function(d) {
-							if (d.pct < minStop) { return "#160633"; }
-							else { return "#FFF"; };
-						})*/
-						.style("stroke-width", function(d) {
-							if (d.pct < minStop) { return 2; }
+						}
+						else if (highlight_status === 0) { return 1; };
+					})
+					.style("stroke-width", function(d) {
+						if (highlight_status === 1) {
+							if (d.dispcat === selected_category) { return 2; }
 							else { return 1; };
-						});
-			}
-			else if (highlight_minStop_selected === 0) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", 1)
-						.style("stroke", "#FFF")
-						.style("stroke-width", 1);
-			};
-
-		};
-
-		function highlight_gradient() {
-
-			highlight_minStop_selected = 0;
-			highlight_maxStop_selected = 0;
-
-			if (highlight_gradient_selected === 1 ) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", function(d) {
-							if (d.pct >= minStop && d.pct <= maxStop) { return 1; }
-							else { return 0.15; };
-						})
-						/*.style("stroke", function(d) {
-							if (d.pct >= minStop && d.pct <= maxStop) { return "#160633"; }
-							else { return "#FFF"; };
-						})*/
-						.style("stroke-width", function(d) {
-							if (d.pct >= minStop && d.pct <= maxStop) { return 2; }
-							else { return 1; };
-						});
-			}
-			else if (highlight_gradient_selected === 0) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", 1)
-						.style("stroke", "#FFF")
-						.style("stroke-width", 1);
-			};
-
-		};
-
-		function highlight_maxStop() {
-
-			highlight_gradient_selected = 0;
-			highlight_minStop_selected = 0;
-
-			if (highlight_maxStop_selected === 1) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", function(d) {
-							if (d.pct > maxStop) { return 1; }
-							else { return 0.15; };
-						})
-						/*.style("stroke", function(d) {
-							if (d.pct > maxStop) { return "#160633"; }
-							else { return "#FFF"; };
-						})*/
-						.style("stroke-width", function(d) {
-							if (d.pct > maxStop) { return 2; }
-							else { return 1; };
-						});
-			}
-			else if (highlight_maxStop_selected === 0) {
-				hex_group.select(".hexagon")
-					.transition()
-						.duration(animateTime)
-						.style("opacity", 1)
-						.style("stroke", "#FFF")
-						.style("stroke-width", 1);
-			};
-
+						}
+						else if (highlight_status === 0) { return 1; };
+					});
 		};
 
 		// resize
@@ -10458,10 +10447,42 @@ function hex_map() {
 
 	};
 
-	chart.state_highlight = function(value) {
+	/* chart.state_highlight = function(value) {
 
 		if (!arguments.length) return state_highlight;
 		state_highlight = value;
+		return chart;
+
+	}; */
+
+	chart.pct_point = function(value) {
+
+		if (!arguments.length) return pct_point;
+		pct_point = value;
+		return chart;
+
+	};
+
+	chart.colors = function(value) {
+
+		if (!arguments.length) return colors;
+		colors = value;
+		return chart;
+
+	};
+
+	chart.legend_vals = function(value) {
+
+		if (!arguments.length) return legend_vals;
+		legend_vals = value;
+		return chart;
+
+	};
+
+	chart.legend_text = function(value) {
+
+		if (!arguments.length) return legend_text;
+		legend_text = value;
 		return chart;
 
 	};
