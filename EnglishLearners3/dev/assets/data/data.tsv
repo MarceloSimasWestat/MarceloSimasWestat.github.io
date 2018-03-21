@@ -311,6 +311,7 @@ grad_rate		WV	West Virginia	2015-16	0.898105151	0.926605505	16826	101	18735	109
 grad_rate		WI	Wisconsin	2015-16	0.882345503	0.655328798	55826	867	63270	1323
 grad_rate		WY	Wyoming	2015-16	0.799658022	0.698492462	5612	139	7018	199
 grad_rate		US 	United States	2015-16	0.841136094	0.668562155	3122637	161072	3712404	240923
+naep_math	Grade 4 Math		National												0.400489125
 naep_math	Grade 4 Math		Albuquerque (NM)												0.074490162
 naep_math	Grade 4 Math		Atlanta (GA)												‡
 naep_math	Grade 4 Math		Austin (TX)												0.251416131
@@ -333,6 +334,7 @@ naep_math	Grade 4 Math		Milwaukee (WI)												—
 naep_math	Grade 4 Math		New York City (NY)												0.08413647
 naep_math	Grade 4 Math		Philadelphia (PA)												0.046107838
 naep_math	Grade 4 Math		San Diego (CA)												0.0912005
+naep_math	Grade 8 Math		National												0.331420951
 naep_math	Grade 8 Math		Albuquerque (NM)												0.022947239
 naep_math	Grade 8 Math		Atlanta (GA)												‡
 naep_math	Grade 8 Math		Austin (TX)												0.034854323
@@ -355,6 +357,7 @@ naep_math	Grade 8 Math		Milwaukee (WI)												—
 naep_math	Grade 8 Math		New York City (NY)												0.069735163
 naep_math	Grade 8 Math		Philadelphia (PA)												0.009204295
 naep_math	Grade 8 Math		San Diego (CA)												0.027942627
+naep_reading	Grade 4 Reading		National												0.361076372
 naep_reading	Grade 4 Reading		Albuquerque (NM)												0.034898883
 naep_reading	Grade 4 Reading		Atlanta (GA)												‡
 naep_reading	Grade 4 Reading		Austin (TX)												0.097359427
@@ -377,6 +380,7 @@ naep_reading	Grade 4 Reading		Milwaukee (WI)												—
 naep_reading	Grade 4 Reading		New York City (NY)												0.05365803
 naep_reading	Grade 4 Reading		Philadelphia (PA)												0.006327554
 naep_reading	Grade 4 Reading		San Diego (CA)												0.075650542
+naep_reading	Grade 8 Reading		National												0.343138628
 naep_reading	Grade 8 Reading		Albuquerque (NM)												0.012319089
 naep_reading	Grade 8 Reading		Atlanta (GA)												‡
 naep_reading	Grade 8 Reading		Austin (TX)												0.017149403
