@@ -4943,7 +4943,8 @@ function stackedBar() {
 
 		d3.select(this).append("div")
 			.attr("id", "title" + chartID)
-			.html("<span class = 'title'>" + title + "</span>");
+			.attr("class", "title")
+			.html(title);
 
 		// selections
 
