@@ -4708,7 +4708,7 @@ ul.callout li {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
 
     #intro {
-        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center fixed;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/redd-angelo-12845-unsplash_bright.jpg@2x.jpg") no-repeat center center fixed;
         background-size: cover;
     }
 
@@ -4722,7 +4722,7 @@ ul.callout li {
 
         #intro {
             background-attachment: scroll;
-            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/intro_el1@2x.jpg") no-repeat center center scroll;
+            background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/redd-angelo-12845-unsplash_bright.jpg@2x.jpg") no-repeat center center scroll;
         }
 
         .image1 {
