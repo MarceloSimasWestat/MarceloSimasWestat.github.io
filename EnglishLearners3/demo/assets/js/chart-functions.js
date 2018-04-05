@@ -947,6 +947,14 @@ function barChart() {
 			.attr("aria-hidden", "true")
 			.call(yAxis)
 
+		// bold national
+
+		svg.select(".y.axis")
+			.selectAll("text")
+				.each(function() {
+					if (this.textContent == "National") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+				});
+
 		// add notes and sources if defined
 		// for notes, if toggles enabled, initially write first note
 
@@ -1070,6 +1078,12 @@ function barChart() {
 				.attr("class", "y axis")
 				.attr("aria-hidden", "true")
 				.call(yAxis);
+
+			svg.select(".y.axis")
+				.selectAll("text")
+					.each(function() {
+						if (this.textContent == "National") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+					});
 
 			// update overall figure alt-text
 
@@ -10067,10 +10081,7 @@ function hex_map() {
 		hex_group.append("path")
 			.attr("class", "hexagon")
 			.attr("d", function(d) { return "M" + xScale(d.x) + "," + yScale(d.y) + hexagonPath; })
-			.style("fill", function(d) {
-				if (d.dispval === -99) { return "gray"; }
-				else { return d.color; };
-			})
+			.style("fill", function(d) { return d.color; })
 			.style("opacity", 0)
 			.on("mouseover", tipHex.show)
 			.on("mouseout", tipHex.hide)
@@ -10202,10 +10213,7 @@ function hex_map() {
 					.style("opacity", 1)
 					.style("stroke", "#FFF")
 					.style("stroke-width", 1)
-					.style("fill", function(d) {
-						if (d.dispval === -99) { return "gray"; }
-						else { return d.color; };
-					})
+					.style("fill", function(d) { return d.color; });
 
 			// also replace aria labels
 
