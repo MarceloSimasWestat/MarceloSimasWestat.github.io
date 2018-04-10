@@ -1,4 +1,4 @@
-map_id	sub_map	st_abbr	state	x	y	dispval	dispcat	dispnotes	subgroup1	val1	notes1	subgroup2	val2	notes2
+map_id	sub_map	st_abbr	state	x	y	dispval	dispcat	dispnotes	subgroup1	val1	notes1	subgroup2	val2
 grad_rate		AK	Alaska	1.5	1	0.546649146	2		Graduation rate for ELs	0.546649146		Graduation rate for non-ELs	0.779517801
 grad_rate		AL	Alabama	8	5.5	0.644067797	3		Graduation rate for ELs	0.644067797		Graduation rate for non-ELs	0.872866833
 grad_rate		AR	Arkansas	6.5	4.75	0.857064321	5		Graduation rate for ELs	0.857064321		Graduation rate for non-ELs	0.870876923
@@ -50,207 +50,207 @@ grad_rate		WA	Washington	2	2.5	0.578223871	2		Graduation rate for ELs	0.57822387
 grad_rate		WI	Wisconsin	6	2.5	0.655328798	3		Graduation rate for ELs	0.655328798		Graduation rate for non-ELs	0.887193892
 grad_rate		WV	West Virginia	8	4	0.926605505	5		Graduation rate for ELs	0.926605505		Graduation rate for non-ELs	0.897938366
 grad_rate		WY	Wyoming	3.5	3.25	0.698492462	3		Graduation rate for ELs	0.698492462		Graduation rate for non-ELs	0.802610353
-naep_math	Grade 4 Math	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	AK	Alaska	1.5	1	2.773631	4		Percent at or above Proficient in 2009	0.035640388		Percent at or above Proficient in 2015	0.063376698
-naep_math	Grade 4 Math	AZ	Arizona	3.5	4.75	2.5956258	4		Percent at or above Proficient in 2009	0.024512201		Percent at or above Proficient in 2015	0.050468459
-naep_math	Grade 4 Math	AR	Arkansas	6.5	4.75	-1.4052605	2		Percent at or above Proficient in 2009	0.210598163		Percent at or above Proficient in 2015	0.196545558
-naep_math	Grade 4 Math	CA	California	2.5	4.75	1.9605286	4		Percent at or above Proficient in 2009	0.064039905		Percent at or above Proficient in 2015	0.083645191
-naep_math	Grade 4 Math	CO	Colorado	4.5	4.75	1.0384599	4		Percent at or above Proficient in 2009	0.089820817		Percent at or above Proficient in 2015	0.100205416
-naep_math	Grade 4 Math	CT	Connecticut	11.5	3.25	2.5161902	4		Percent at or above Proficient in 2009	0.092537388		Percent at or above Proficient in 2015	0.11769929
-naep_math	Grade 4 Math	DE	Delaware	10	4	-2.0686273	2		Percent at or above Proficient in 2009	0.105429785		Percent at or above Proficient in 2015	0.084743512
-naep_math	Grade 4 Math	DC	District of Columbia	12.5	4.75	-5.392706	1		Percent at or above Proficient in 2009	0.14310415		Percent at or above Proficient in 2015	0.08917709
-naep_math	Grade 4 Math	FL	Florida	9	7	-5.4799016	1		Percent at or above Proficient in 2009	0.187482116		Percent at or above Proficient in 2015	0.1326831
-naep_math	Grade 4 Math	GA	Georgia	8.5	6.25	-7.9488699	1		Percent at or above Proficient in 2009	0.140920962		Percent at or above Proficient in 2015	0.061432263
-naep_math	Grade 4 Math	HI	Hawaii	1	7	-5.7281823	1		Percent at or above Proficient in 2009	0.118331743		Percent at or above Proficient in 2015	0.06104992
-naep_math	Grade 4 Math	ID	Idaho	2.5	3.25	-5.8747295	1		Percent at or above Proficient in 2009	0.066312335		Percent at or above Proficient in 2015	0.00756504
-naep_math	Grade 4 Math	IL	Illinois	6.5	3.25	-3.0578423	2		Percent at or above Proficient in 2009	0.106232873		Percent at or above Proficient in 2015	0.07565445
-naep_math	Grade 4 Math	IN	Indiana	7.5	3.25	6.8366529	5		Percent at or above Proficient in 2009	0.188965086		Percent at or above Proficient in 2015	0.257331615
-naep_math	Grade 4 Math	IA	Iowa	5.5	3.25	2.4361801	4		Percent at or above Proficient in 2009	0.142276337		Percent at or above Proficient in 2015	0.166638138
-naep_math	Grade 4 Math	KS	Kansas	5.5	4.75	-2.6371441	2		Percent at or above Proficient in 2009	0.214739201		Percent at or above Proficient in 2015	0.18836776
-naep_math	Grade 4 Math	KY	Kentucky	7	4	-12.2086512	1		Percent at or above Proficient in 2009	0.278463049		Percent at or above Proficient in 2015	0.156376537
-naep_math	Grade 4 Math	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	0.147802416		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.093668843
-naep_math	Grade 4 Math	MD	Maryland	9	4	-1.3422263	2		Percent at or above Proficient in 2009	0.168110481		Percent at or above Proficient in 2015	0.154688218
-naep_math	Grade 4 Math	MA	Massachusetts	11	2.5	2.1413648	4		Percent at or above Proficient in 2009	0.152244		Percent at or above Proficient in 2015	0.173657648
-naep_math	Grade 4 Math	MI	Michigan	8	2.5	3.9401815	5		Percent at or above Proficient in 2009	0.117755769		Percent at or above Proficient in 2015	0.157157584
-naep_math	Grade 4 Math	MN	Minnesota	5	2.5	3.1862317	5		Percent at or above Proficient in 2009	0.154128909		Percent at or above Proficient in 2015	0.185991226
-naep_math	Grade 4 Math	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	MT	Montana	3	2.5	-6.6490169	1		Percent at or above Proficient in 2009	0.096190127		Percent at or above Proficient in 2015	0.029699958
-naep_math	Grade 4 Math	NE	Nebraska	5	4	2.5514574	4		Percent at or above Proficient in 2009	0.058166884		Percent at or above Proficient in 2015	0.083681458
-naep_math	Grade 4 Math	NV	Nevada	3	4	1.0469545	4		Percent at or above Proficient in 2009	0.123791798		Percent at or above Proficient in 2015	0.134261343
-naep_math	Grade 4 Math	NH	New Hampshire	11.5	1.75	-3.776008	2		Percent at or above Proficient in 2009	0.281244683		Percent at or above Proficient in 2015	0.243484603
-naep_math	Grade 4 Math	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	0.10082974		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	NM	New Mexico	4	5.5	4.1348666	5		Percent at or above Proficient in 2009	0.048106203		Percent at or above Proficient in 2015	0.089454869
-naep_math	Grade 4 Math	NY	New York	10	2.5	-4.2152484	2		Percent at or above Proficient in 2009	0.131042694		Percent at or above Proficient in 2015	0.08889021
-naep_math	Grade 4 Math	NC	North Carolina	9.5	4.75	-7.6272284	1		Percent at or above Proficient in 2009	0.181706237		Percent at or above Proficient in 2015	0.105433953
-naep_math	Grade 4 Math	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	OH	Ohio	8.5	3.25	-19.0925834	1		Percent at or above Proficient in 2009	0.361883384		Percent at or above Proficient in 2015	0.17095755
-naep_math	Grade 4 Math	OK	Oklahoma	5	5.5	2.7485732	4		Percent at or above Proficient in 2009	0.089672945		Percent at or above Proficient in 2015	0.117158677
-naep_math	Grade 4 Math	OR	Oregon	2	4	1.3023583	4		Percent at or above Proficient in 2009	0.064087419		Percent at or above Proficient in 2015	0.077111002
-naep_math	Grade 4 Math	PA	Pennsylvania	9.5	3.25	3.9833757	5		Percent at or above Proficient in 2009	0.123539693		Percent at or above Proficient in 2015	0.16337345
-naep_math	Grade 4 Math	RI	Rhode Island	12	2.5	-2.1763543	2		Percent at or above Proficient in 2009	0.100536806		Percent at or above Proficient in 2015	0.078773263
-naep_math	Grade 4 Math	SC	South Carolina	9	5.5	6.5450925	5		Percent at or above Proficient in 2009	0.281974388		Percent at or above Proficient in 2015	0.347425313
-naep_math	Grade 4 Math	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	TN	Tennessee	7.5	4.75	14.863476	5		Percent at or above Proficient in 2009	0.134552071		Percent at or above Proficient in 2015	0.283186831
-naep_math	Grade 4 Math	TX	Texas	4.5	6.25	8.4960462	5		Percent at or above Proficient in 2009	0.199240474		Percent at or above Proficient in 2015	0.284200936
-naep_math	Grade 4 Math	UT	Utah	4	4	-0.4923224	3		Percent at or above Proficient in 2009	0.064017668		Percent at or above Proficient in 2015	0.059094444
-naep_math	Grade 4 Math	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	VA	Virginia	8.5	4.75	-7.2821204	1		Percent at or above Proficient in 2009	0.189667344		Percent at or above Proficient in 2015	0.11684614
-naep_math	Grade 4 Math	WA	Washington	2	2.5	2.5083121	4		Percent at or above Proficient in 2009	0.083000171		Percent at or above Proficient in 2015	0.108083292
-naep_math	Grade 4 Math	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 4 Math	WI	Wisconsin	6	2.5	3.4971543	5		Percent at or above Proficient in 2009	0.152118196		Percent at or above Proficient in 2015	0.187089739
-naep_math	Grade 4 Math	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.10300892
-naep_math	Grade 8 Math	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	AK	Alaska	1.5	1	-0.5400574	3		Percent at or above Proficient in 2009	0.023975745		Percent at or above Proficient in 2015	0.018575171
-naep_math	Grade 8 Math	AZ	Arizona	3.5	4.75	3.1333176	5		Percent at or above Proficient in 2009	0.023448572		Percent at or above Proficient in 2015	0.054781748
-naep_math	Grade 8 Math	AR	Arkansas	6.5	4.75	-0.6415703	3		Percent at or above Proficient in 2009	0.080533948		Percent at or above Proficient in 2015	0.074118245
-naep_math	Grade 8 Math	CA	California	2.5	4.75	-0.6363695	3		Percent at or above Proficient in 2009	0.027412169		Percent at or above Proficient in 2015	0.021048474
-naep_math	Grade 8 Math	CO	Colorado	4.5	4.75	1.5067391	4		Percent at or above Proficient in 2009	0.038199956		Percent at or above Proficient in 2015	0.053267347
-naep_math	Grade 8 Math	CT	Connecticut	11.5	3.25	-5.3090061	1		Percent at or above Proficient in 2009	0.063272867		Percent at or above Proficient in 2015	0.010182806
-naep_math	Grade 8 Math	DE	Delaware	10	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	DC	District of Columbia	12.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.034722302
-naep_math	Grade 8 Math	FL	Florida	9	7	-0.6125077	3		Percent at or above Proficient in 2009	0.041709401		Percent at or above Proficient in 2015	0.035584324
-naep_math	Grade 8 Math	GA	Georgia	8.5	6.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.044711169
-naep_math	Grade 8 Math	HI	Hawaii	1	7	0.3731981	3		Percent at or above Proficient in 2009	0.023246001		Percent at or above Proficient in 2015	0.026977982
-naep_math	Grade 8 Math	ID	Idaho	2.5	3.25	‡	6		Percent at or above Proficient in 2009	0.011971754		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	IL	Illinois	6.5	3.25	0.0768955	3		Percent at or above Proficient in 2009	0.073926436		Percent at or above Proficient in 2015	0.074695391
-naep_math	Grade 8 Math	IN	Indiana	7.5	3.25	-3.2664799	2		Percent at or above Proficient in 2009	0.185245993		Percent at or above Proficient in 2015	0.152581194
-naep_math	Grade 8 Math	IA	Iowa	5.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.078032749
-naep_math	Grade 8 Math	KS	Kansas	5.5	4.75	4.9765745	5		Percent at or above Proficient in 2009	0.098582523		Percent at or above Proficient in 2015	0.148348268
-naep_math	Grade 8 Math	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	MD	Maryland	9	4	0.0922364	3		Percent at or above Proficient in 2009	0.081169825		Percent at or above Proficient in 2015	0.082092189
-naep_math	Grade 8 Math	MA	Massachusetts	11	2.5	1.466328	4		Percent at or above Proficient in 2009	0.08414894		Percent at or above Proficient in 2015	0.09881222
-naep_math	Grade 8 Math	MI	Michigan	8	2.5	1.8149906	4		Percent at or above Proficient in 2009	0.104775528		Percent at or above Proficient in 2015	0.122925434
-naep_math	Grade 8 Math	MN	Minnesota	5	2.5	0.2478233	3		Percent at or above Proficient in 2009	0.085887048		Percent at or above Proficient in 2015	0.088365281
-naep_math	Grade 8 Math	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	MT	Montana	3	2.5	‡	6		Percent at or above Proficient in 2009	0.008641747		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	NE	Nebraska	5	4	‡	6		Percent at or above Proficient in 2009	0.033787877		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	NV	Nevada	3	4	2.7740024	4		Percent at or above Proficient in 2009	0.024379394		Percent at or above Proficient in 2015	0.052119418
-naep_math	Grade 8 Math	NH	New Hampshire	11.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	0.105963467		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	NM	New Mexico	4	5.5	-0.5460658	3		Percent at or above Proficient in 2009	0.025413351		Percent at or above Proficient in 2015	0.019952693
-naep_math	Grade 8 Math	NY	New York	10	2.5	3.0451664	5		Percent at or above Proficient in 2009	0.039537177		Percent at or above Proficient in 2015	0.069988841
-naep_math	Grade 8 Math	NC	North Carolina	9.5	4.75	-5.412326	1		Percent at or above Proficient in 2009	0.10875054		Percent at or above Proficient in 2015	0.05462728
-naep_math	Grade 8 Math	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	OH	Ohio	8.5	3.25	-7.8928335	1		Percent at or above Proficient in 2009	0.107965776		Percent at or above Proficient in 2015	0.029037441
-naep_math	Grade 8 Math	OK	Oklahoma	5	5.5	2.4136836	4		Percent at or above Proficient in 2009	0.012788548		Percent at or above Proficient in 2015	0.036925384
-naep_math	Grade 8 Math	OR	Oregon	2	4	‡	6		Percent at or above Proficient in 2009	0.028940763		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	PA	Pennsylvania	9.5	3.25	-6.175001	1		Percent at or above Proficient in 2009	0.114387789		Percent at or above Proficient in 2015	0.052637779
-naep_math	Grade 8 Math	RI	Rhode Island	12	2.5	-3.8683248	2		Percent at or above Proficient in 2009	0.084714561		Percent at or above Proficient in 2015	0.046031313
-naep_math	Grade 8 Math	SC	South Carolina	9	5.5	-1.9328176	2		Percent at or above Proficient in 2009	0.17219801		Percent at or above Proficient in 2015	0.152869834
-naep_math	Grade 8 Math	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	TN	Tennessee	7.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	TX	Texas	4.5	6.25	0.6524696	3		Percent at or above Proficient in 2009	0.05756159		Percent at or above Proficient in 2015	0.064086286
-naep_math	Grade 8 Math	UT	Utah	4	4	-1.7625752	2		Percent at or above Proficient in 2009	0.0235086		Percent at or above Proficient in 2015	0.005882848
-naep_math	Grade 8 Math	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	VA	Virginia	8.5	4.75	-3.5584359	2		Percent at or above Proficient in 2009	0.134851592		Percent at or above Proficient in 2015	0.099267233
-naep_math	Grade 8 Math	WA	Washington	2	2.5	1.7428736	4		Percent at or above Proficient in 2009	0.033125756		Percent at or above Proficient in 2015	0.050554492
-naep_math	Grade 8 Math	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_math	Grade 8 Math	WI	Wisconsin	6	2.5	0.7015068	3		Percent at or above Proficient in 2009	0.092845983		Percent at or above Proficient in 2015	0.099861051
-naep_math	Grade 8 Math	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	AK	Alaska	1.5	1	-0.4765641	3		Percent at or above Proficient in 2009	0.040288582		Percent at or above Proficient in 2015	0.035522941
-naep_reading	Grade 4 Reading	AZ	Arizona	3.5	4.75	-0.7776067	3		Percent at or above Proficient in 2009	0.015033844		Percent at or above Proficient in 2015	0.007257777
-naep_reading	Grade 4 Reading	AR	Arkansas	6.5	4.75	6.9641213	5		Percent at or above Proficient in 2009	0.090816264		Percent at or above Proficient in 2015	0.160457477
-naep_reading	Grade 4 Reading	CA	California	2.5	4.75	1.6551779	4		Percent at or above Proficient in 2009	0.039419293		Percent at or above Proficient in 2015	0.055971072
-naep_reading	Grade 4 Reading	CO	Colorado	4.5	4.75	0.9805838	3		Percent at or above Proficient in 2009	0.03903702		Percent at or above Proficient in 2015	0.048842858
-naep_reading	Grade 4 Reading	CT	Connecticut	11.5	3.25	0.6543748	3		Percent at or above Proficient in 2009	0.06031455		Percent at or above Proficient in 2015	0.066858298
-naep_reading	Grade 4 Reading	DE	Delaware	10	4	-4.8790898	2		Percent at or above Proficient in 2009	0.085507564		Percent at or above Proficient in 2015	0.036716666
-naep_reading	Grade 4 Reading	DC	District of Columbia	12.5	4.75	-2.5662733	2		Percent at or above Proficient in 2009	0.059003774		Percent at or above Proficient in 2015	0.033341041
-naep_reading	Grade 4 Reading	FL	Florida	9	7	-4.6667383	2		Percent at or above Proficient in 2009	0.133698046		Percent at or above Proficient in 2015	0.087030663
-naep_reading	Grade 4 Reading	GA	Georgia	8.5	6.25	-1.0157885	2		Percent at or above Proficient in 2009	0.056099655		Percent at or above Proficient in 2015	0.04594177
-naep_reading	Grade 4 Reading	HI	Hawaii	1	7	-3.0084366	2		Percent at or above Proficient in 2009	0.046900055		Percent at or above Proficient in 2015	0.016815689
-naep_reading	Grade 4 Reading	ID	Idaho	2.5	3.25	#	6		Percent at or above Proficient in 2009	0.025765879		Percent at or above Proficient in 2015	#
-naep_reading	Grade 4 Reading	IL	Illinois	6.5	3.25	-3.0128573	2		Percent at or above Proficient in 2009	0.073743702		Percent at or above Proficient in 2015	0.043615129
-naep_reading	Grade 4 Reading	IN	Indiana	7.5	3.25	7.7388087	5		Percent at or above Proficient in 2009	0.062898634		Percent at or above Proficient in 2015	0.140286721
-naep_reading	Grade 4 Reading	IA	Iowa	5.5	3.25	1.5146815	4		Percent at or above Proficient in 2009	0.094381119		Percent at or above Proficient in 2015	0.109527934
-naep_reading	Grade 4 Reading	KS	Kansas	5.5	4.75	-1.6052046	2		Percent at or above Proficient in 2009	0.165333128		Percent at or above Proficient in 2015	0.149281082
-naep_reading	Grade 4 Reading	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.128069147
-naep_reading	Grade 4 Reading	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	0.103545497		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.062019242
-naep_reading	Grade 4 Reading	MD	Maryland	9	4	-9.017993	1		Percent at or above Proficient in 2009	0.165057518		Percent at or above Proficient in 2015	0.074877588
-naep_reading	Grade 4 Reading	MA	Massachusetts	11	2.5	-0.0518282	3		Percent at or above Proficient in 2009	0.120853909		Percent at or above Proficient in 2015	0.120335627
-naep_reading	Grade 4 Reading	MI	Michigan	8	2.5	6.1882597	5		Percent at or above Proficient in 2009	0.094095027		Percent at or above Proficient in 2015	0.155977624
-naep_reading	Grade 4 Reading	MN	Minnesota	5	2.5	-1.0530705	2		Percent at or above Proficient in 2009	0.073630745		Percent at or above Proficient in 2015	0.06310004
-naep_reading	Grade 4 Reading	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.136260226
-naep_reading	Grade 4 Reading	MT	Montana	3	2.5	-3.8832429	2		Percent at or above Proficient in 2009	0.053141912		Percent at or above Proficient in 2015	0.014309483
-naep_reading	Grade 4 Reading	NE	Nebraska	5	4	2.9018996	4		Percent at or above Proficient in 2009	0.042295596		Percent at or above Proficient in 2015	0.071314592
-naep_reading	Grade 4 Reading	NV	Nevada	3	4	3.4560104	5		Percent at or above Proficient in 2009	0.04844761		Percent at or above Proficient in 2015	0.083007714
-naep_reading	Grade 4 Reading	NH	New Hampshire	11.5	1.75	3.4203072	5		Percent at or above Proficient in 2009	0.152354868		Percent at or above Proficient in 2015	0.18655794
-naep_reading	Grade 4 Reading	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	NM	New Mexico	4	5.5	0.7582766	3		Percent at or above Proficient in 2009	0.028859866		Percent at or above Proficient in 2015	0.036442632
-naep_reading	Grade 4 Reading	NY	New York	10	2.5	-0.3777205	3		Percent at or above Proficient in 2009	0.057554048		Percent at or above Proficient in 2015	0.053776843
-naep_reading	Grade 4 Reading	NC	North Carolina	9.5	4.75	-6.0107011	1		Percent at or above Proficient in 2009	0.111637423		Percent at or above Proficient in 2015	0.051530412
-naep_reading	Grade 4 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	OH	Ohio	8.5	3.25	3.8720483	5		Percent at or above Proficient in 2009	0.078856933		Percent at or above Proficient in 2015	0.117577416
-naep_reading	Grade 4 Reading	OK	Oklahoma	5	5.5	-0.074167	3		Percent at or above Proficient in 2009	0.085758119		Percent at or above Proficient in 2015	0.085016449
-naep_reading	Grade 4 Reading	OR	Oregon	2	4	-0.2537658	3		Percent at or above Proficient in 2009	0.033727469		Percent at or above Proficient in 2015	0.031189811
-naep_reading	Grade 4 Reading	PA	Pennsylvania	9.5	3.25	-0.1442963	3		Percent at or above Proficient in 2009	0.035364936		Percent at or above Proficient in 2015	0.033921973
-naep_reading	Grade 4 Reading	RI	Rhode Island	12	2.5	-0.9157237	3		Percent at or above Proficient in 2009	0.056847651		Percent at or above Proficient in 2015	0.047690414
-naep_reading	Grade 4 Reading	SC	South Carolina	9	5.5	1.0910533	4		Percent at or above Proficient in 2009	0.198630168		Percent at or above Proficient in 2015	0.209540701
-naep_reading	Grade 4 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.053009369
-naep_reading	Grade 4 Reading	TN	Tennessee	7.5	4.75	12.1129411	5		Percent at or above Proficient in 2009	0.043267445		Percent at or above Proficient in 2015	0.164396856
-naep_reading	Grade 4 Reading	TX	Texas	4.5	6.25	4.2198751	5		Percent at or above Proficient in 2009	0.080656127		Percent at or above Proficient in 2015	0.122854878
-naep_reading	Grade 4 Reading	UT	Utah	4	4	2.2305638	4		Percent at or above Proficient in 2009	0.054304961		Percent at or above Proficient in 2015	0.076610599
-naep_reading	Grade 4 Reading	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	VA	Virginia	8.5	4.75	-4.9196296	2		Percent at or above Proficient in 2009	0.122928279		Percent at or above Proficient in 2015	0.073731983
-naep_reading	Grade 4 Reading	WA	Washington	2	2.5	2.0710793	4		Percent at or above Proficient in 2009	0.031646795		Percent at or above Proficient in 2015	0.052357588
-naep_reading	Grade 4 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 4 Reading	WI	Wisconsin	6	2.5	0.8935312	3		Percent at or above Proficient in 2009	0.084454183		Percent at or above Proficient in 2015	0.093389495
-naep_reading	Grade 4 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	AK	Alaska	1.5	1	-0.9	3		Percent at or above Proficient in 2009	0.022		Percent at or above Proficient in 2015	0.013
-naep_reading	Grade 8 Reading	AZ	Arizona	3.5	4.75	#	6		Percent at or above Proficient in 2009	0.005		Percent at or above Proficient in 2015	#
-naep_reading	Grade 8 Reading	AR	Arkansas	6.5	4.75	4.6	5		Percent at or above Proficient in 2009	0.067		Percent at or above Proficient in 2015	0.113
-naep_reading	Grade 8 Reading	CA	California	2.5	4.75	-0.2	3		Percent at or above Proficient in 2009	0.02		Percent at or above Proficient in 2015	0.018
-naep_reading	Grade 8 Reading	CO	Colorado	4.5	4.75	0.3	3		Percent at or above Proficient in 2009	0.026		Percent at or above Proficient in 2015	0.029
-naep_reading	Grade 8 Reading	CT	Connecticut	11.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.015
-naep_reading	Grade 8 Reading	DE	Delaware	10	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	DC	District of Columbia	12.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.028
-naep_reading	Grade 8 Reading	FL	Florida	9	7	-4.3	2		Percent at or above Proficient in 2009	0.066		Percent at or above Proficient in 2015	0.023
-naep_reading	Grade 8 Reading	GA	Georgia	8.5	6.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.061
-naep_reading	Grade 8 Reading	HI	Hawaii	1	7	-2.2	2		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2015	0.008
-naep_reading	Grade 8 Reading	ID	Idaho	2.5	3.25	‡	6		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	IL	Illinois	6.5	3.25	-1.7	2		Percent at or above Proficient in 2009	0.045		Percent at or above Proficient in 2015	0.028
-naep_reading	Grade 8 Reading	IN	Indiana	7.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.132
-naep_reading	Grade 8 Reading	IA	Iowa	5.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.056
-naep_reading	Grade 8 Reading	KS	Kansas	5.5	4.75	12.2	5		Percent at or above Proficient in 2009	0.053		Percent at or above Proficient in 2015	0.175
-naep_reading	Grade 8 Reading	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.055
-naep_reading	Grade 8 Reading	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.111
-naep_reading	Grade 8 Reading	MD	Maryland	9	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.067
-naep_reading	Grade 8 Reading	MA	Massachusetts	11	2.5	2.8	4		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2015	0.059
-naep_reading	Grade 8 Reading	MI	Michigan	8	2.5	-1.5	2		Percent at or above Proficient in 2009	0.077		Percent at or above Proficient in 2015	0.062
-naep_reading	Grade 8 Reading	MN	Minnesota	5	2.5	2.6	4		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2015	0.056
-naep_reading	Grade 8 Reading	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	MT	Montana	3	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	NE	Nebraska	5	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	NV	Nevada	3	4	2.4	4		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2015	0.032
-naep_reading	Grade 8 Reading	NH	New Hampshire	11.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	NM	New Mexico	4	5.5	0.9	3		Percent at or above Proficient in 2009	0.007		Percent at or above Proficient in 2015	0.016
-naep_reading	Grade 8 Reading	NY	New York	10	2.5	1	3		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2015	0.029
-naep_reading	Grade 8 Reading	NC	North Carolina	9.5	4.75	-4.1	2		Percent at or above Proficient in 2009	0.052		Percent at or above Proficient in 2015	0.011
-naep_reading	Grade 8 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	OH	Ohio	8.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	0.071
-naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	3.7	5		Percent at or above Proficient in 2009	0.035		Percent at or above Proficient in 2015	0.072
-naep_reading	Grade 8 Reading	OR	Oregon	2	4	-0.4	3		Percent at or above Proficient in 2009	0.01		Percent at or above Proficient in 2015	0.006
-naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	1	3		Percent at or above Proficient in 2009	0.048		Percent at or above Proficient in 2015	0.058
-naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.2	3		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2015	0.01
-naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	-7.2	1		Percent at or above Proficient in 2009	0.183		Percent at or above Proficient in 2015	0.111
-naep_reading	Grade 8 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	TN	Tennessee	7.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	TX	Texas	4.5	6.25	1.4	4		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2015	0.022
-naep_reading	Grade 8 Reading	UT	Utah	4	4	-1.9	2		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2015	0.012
-naep_reading	Grade 8 Reading	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	VA	Virginia	8.5	4.75	-5.6	1		Percent at or above Proficient in 2009	0.088		Percent at or above Proficient in 2015	0.032
-naep_reading	Grade 8 Reading	WA	Washington	2	2.5	1	3		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2015	0.029
-naep_reading	Grade 8 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
-naep_reading	Grade 8 Reading	WI	Wisconsin	6	2.5	-1.6	2		Percent at or above Proficient in 2009	0.074		Percent at or above Proficient in 2015	0.058
-naep_reading	Grade 8 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2015	‡
+naep_math	Grade 4 Math	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.015151936
+naep_math	Grade 4 Math	AK	Alaska	1.5	1	2.89791138	4		Percent at or above Proficient in 2009	0.035640388		Percent at or above Proficient in 2017	0.064619502
+naep_math	Grade 4 Math	AZ	Arizona	3.5	4.75	3.782362069	5		Percent at or above Proficient in 2009	0.024512201		Percent at or above Proficient in 2017	0.062335822
+naep_math	Grade 4 Math	AR	Arkansas	6.5	4.75	-3.358935012	2		Percent at or above Proficient in 2009	0.210598163		Percent at or above Proficient in 2017	0.177008813
+naep_math	Grade 4 Math	CA	California	2.5	4.75	2.224442166	4		Percent at or above Proficient in 2009	0.064039905		Percent at or above Proficient in 2017	0.086284327
+naep_math	Grade 4 Math	CO	Colorado	4.5	4.75	0.976194021	3		Percent at or above Proficient in 2009	0.089820817		Percent at or above Proficient in 2017	0.099582757
+naep_math	Grade 4 Math	CT	Connecticut	11.5	3.25	-1.236047171	2		Percent at or above Proficient in 2009	0.092537388		Percent at or above Proficient in 2017	0.080176916
+naep_math	Grade 4 Math	DE	Delaware	10	4	1.663134712	4		Percent at or above Proficient in 2009	0.105429785		Percent at or above Proficient in 2017	0.122061132
+naep_math	Grade 4 Math	DC	District of Columbia	12.5	4.75	-7.566078705	1		Percent at or above Proficient in 2009	0.14310415		Percent at or above Proficient in 2017	0.067443363
+naep_math	Grade 4 Math	FL	Florida	9	7	-3.077964018	2		Percent at or above Proficient in 2009	0.187482116		Percent at or above Proficient in 2017	0.156702476
+naep_math	Grade 4 Math	GA	Georgia	8.5	6.25	-7.97451088	1		Percent at or above Proficient in 2009	0.140920962		Percent at or above Proficient in 2017	0.061175853
+naep_math	Grade 4 Math	HI	Hawaii	1	7	-3.391500766	2		Percent at or above Proficient in 2009	0.118331743		Percent at or above Proficient in 2017	0.084416735
+naep_math	Grade 4 Math	ID	Idaho	2.5	3.25	0.138460216	3		Percent at or above Proficient in 2009	0.066312335		Percent at or above Proficient in 2017	0.067696937
+naep_math	Grade 4 Math	IL	Illinois	6.5	3.25	-2.910912751	2		Percent at or above Proficient in 2009	0.106232873		Percent at or above Proficient in 2017	0.077123745
+naep_math	Grade 4 Math	IN	Indiana	7.5	3.25	11.69902179	5		Percent at or above Proficient in 2009	0.188965086		Percent at or above Proficient in 2017	0.305955304
+naep_math	Grade 4 Math	IA	Iowa	5.5	3.25	-2.679046889	2		Percent at or above Proficient in 2009	0.142276337		Percent at or above Proficient in 2017	0.115485868
+naep_math	Grade 4 Math	KS	Kansas	5.5	4.75	3.437106125	5		Percent at or above Proficient in 2009	0.214739201		Percent at or above Proficient in 2017	0.249110262
+naep_math	Grade 4 Math	KY	Kentucky	7	4	-16.47332618	1		Percent at or above Proficient in 2009	0.278463049		Percent at or above Proficient in 2017	0.113729787
+naep_math	Grade 4 Math	LA	Louisiana	6	5.5	-5.34069088	1		Percent at or above Proficient in 2009	0.147802416		Percent at or above Proficient in 2017	0.094395507
+naep_math	Grade 4 Math	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.135564575
+naep_math	Grade 4 Math	MD	Maryland	9	4	-4.166536586	2		Percent at or above Proficient in 2009	0.168110481		Percent at or above Proficient in 2017	0.126445115
+naep_math	Grade 4 Math	MA	Massachusetts	11	2.5	1.379637533	4		Percent at or above Proficient in 2009	0.152244		Percent at or above Proficient in 2017	0.166040375
+naep_math	Grade 4 Math	MI	Michigan	8	2.5	7.235786883	5		Percent at or above Proficient in 2009	0.117755769		Percent at or above Proficient in 2017	0.190113638
+naep_math	Grade 4 Math	MN	Minnesota	5	2.5	-5.407618975	1		Percent at or above Proficient in 2009	0.154128909		Percent at or above Proficient in 2017	0.100052719
+naep_math	Grade 4 Math	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 4 Math	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.127062746
+naep_math	Grade 4 Math	MT	Montana	3	2.5	-5.819737739	1		Percent at or above Proficient in 2009	0.096190127		Percent at or above Proficient in 2017	0.03799275
+naep_math	Grade 4 Math	NE	Nebraska	5	4	8.913174844	5		Percent at or above Proficient in 2009	0.058166884		Percent at or above Proficient in 2017	0.147298632
+naep_math	Grade 4 Math	NV	Nevada	3	4	-6.048754964	1		Percent at or above Proficient in 2009	0.123791798		Percent at or above Proficient in 2017	0.063304248
+naep_math	Grade 4 Math	NH	New Hampshire	11.5	1.75	2.527874444	4		Percent at or above Proficient in 2009	0.281244683		Percent at or above Proficient in 2017	0.306523427
+naep_math	Grade 4 Math	NJ	New Jersey	10.5	3.25	-1.166113804	2		Percent at or above Proficient in 2009	0.10082974		Percent at or above Proficient in 2017	0.089168602
+naep_math	Grade 4 Math	NM	New Mexico	4	5.5	-1.711345446	2		Percent at or above Proficient in 2009	0.048106203		Percent at or above Proficient in 2017	0.030992749
+naep_math	Grade 4 Math	NY	New York	10	2.5	-10.22550558	1		Percent at or above Proficient in 2009	0.131042694		Percent at or above Proficient in 2017	0.028787638
+naep_math	Grade 4 Math	NC	North Carolina	9.5	4.75	-11.41896481	1		Percent at or above Proficient in 2009	0.181706237		Percent at or above Proficient in 2017	0.067516589
+naep_math	Grade 4 Math	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 4 Math	OH	Ohio	8.5	3.25	-12.88106333	1		Percent at or above Proficient in 2009	0.361883384		Percent at or above Proficient in 2017	0.233072751
+naep_math	Grade 4 Math	OK	Oklahoma	5	5.5	1.523704465	4		Percent at or above Proficient in 2009	0.089672945		Percent at or above Proficient in 2017	0.10490999
+naep_math	Grade 4 Math	OR	Oregon	2	4	-1.242635581	2		Percent at or above Proficient in 2009	0.064087419		Percent at or above Proficient in 2017	0.051661063
+naep_math	Grade 4 Math	PA	Pennsylvania	9.5	3.25	-6.660715121	1		Percent at or above Proficient in 2009	0.123539693		Percent at or above Proficient in 2017	0.056932542
+naep_math	Grade 4 Math	RI	Rhode Island	12	2.5	-2.908379586	2		Percent at or above Proficient in 2009	0.100536806		Percent at or above Proficient in 2017	0.07145301
+naep_math	Grade 4 Math	SC	South Carolina	9	5.5	-8.709695802	1		Percent at or above Proficient in 2009	0.281974388		Percent at or above Proficient in 2017	0.19487743
+naep_math	Grade 4 Math	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 4 Math	TN	Tennessee	7.5	4.75	-6.924509563	1		Percent at or above Proficient in 2009	0.134552071		Percent at or above Proficient in 2017	0.065306975
+naep_math	Grade 4 Math	TX	Texas	4.5	6.25	7.403352557	5		Percent at or above Proficient in 2009	0.199240474		Percent at or above Proficient in 2017	0.273274
+naep_math	Grade 4 Math	UT	Utah	4	4	3.539825317	5		Percent at or above Proficient in 2009	0.064017668		Percent at or above Proficient in 2017	0.099415921
+naep_math	Grade 4 Math	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 4 Math	VA	Virginia	8.5	4.75	-11.31611263	1		Percent at or above Proficient in 2009	0.189667344		Percent at or above Proficient in 2017	0.076506218
+naep_math	Grade 4 Math	WA	Washington	2	2.5	1.131942013	4		Percent at or above Proficient in 2009	0.083000171		Percent at or above Proficient in 2017	0.094319591
+naep_math	Grade 4 Math	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 4 Math	WI	Wisconsin	6	2.5	1.891656776	4		Percent at or above Proficient in 2009	0.152118196		Percent at or above Proficient in 2017	0.171034764
+naep_math	Grade 4 Math	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.077720561
+naep_math	Grade 8 Math	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	AK	Alaska	1.5	1	-0.940816942	3		Percent at or above Proficient in 2009	0.023975745		Percent at or above Proficient in 2017	0.014567576
+naep_math	Grade 8 Math	AZ	Arizona	3.5	4.75	4.683163267	5		Percent at or above Proficient in 2009	0.023448572		Percent at or above Proficient in 2017	0.070280205
+naep_math	Grade 8 Math	AR	Arkansas	6.5	4.75	1.389079927	4		Percent at or above Proficient in 2009	0.080533948		Percent at or above Proficient in 2017	0.094424747
+naep_math	Grade 8 Math	CA	California	2.5	4.75	2.702146523	4		Percent at or above Proficient in 2009	0.027412169		Percent at or above Proficient in 2017	0.054433634
+naep_math	Grade 8 Math	CO	Colorado	4.5	4.75	-1.70627421	2		Percent at or above Proficient in 2009	0.038199956		Percent at or above Proficient in 2017	0.021137214
+naep_math	Grade 8 Math	CT	Connecticut	11.5	3.25	-2.505160677	2		Percent at or above Proficient in 2009	0.063272867		Percent at or above Proficient in 2017	0.03822126
+naep_math	Grade 8 Math	DE	Delaware	10	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	DC	District of Columbia	12.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.037436143
+naep_math	Grade 8 Math	FL	Florida	9	7	0.467638314	3		Percent at or above Proficient in 2009	0.041709401		Percent at or above Proficient in 2017	0.046385784
+naep_math	Grade 8 Math	GA	Georgia	8.5	6.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.038306491
+naep_math	Grade 8 Math	HI	Hawaii	1	7	0.584046259	3		Percent at or above Proficient in 2009	0.023246001		Percent at or above Proficient in 2017	0.029086464
+naep_math	Grade 8 Math	ID	Idaho	2.5	3.25	1.052997292	4		Percent at or above Proficient in 2009	0.011971754		Percent at or above Proficient in 2017	0.022501727
+naep_math	Grade 8 Math	IL	Illinois	6.5	3.25	-1.47039805	2		Percent at or above Proficient in 2009	0.073926436		Percent at or above Proficient in 2017	0.059222456
+naep_math	Grade 8 Math	IN	Indiana	7.5	3.25	5.24955995	5		Percent at or above Proficient in 2009	0.185245993		Percent at or above Proficient in 2017	0.237741593
+naep_math	Grade 8 Math	IA	Iowa	5.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.0499067
+naep_math	Grade 8 Math	KS	Kansas	5.5	4.75	2.384510877	4		Percent at or above Proficient in 2009	0.098582523		Percent at or above Proficient in 2017	0.122427632
+naep_math	Grade 8 Math	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.03480084
+naep_math	Grade 8 Math	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	MD	Maryland	9	4	-0.932197286	3		Percent at or above Proficient in 2009	0.081169825		Percent at or above Proficient in 2017	0.071847852
+naep_math	Grade 8 Math	MA	Massachusetts	11	2.5	0.62893471	3		Percent at or above Proficient in 2009	0.08414894		Percent at or above Proficient in 2017	0.090438287
+naep_math	Grade 8 Math	MI	Michigan	8	2.5	-8.220086811	1		Percent at or above Proficient in 2009	0.104775528		Percent at or above Proficient in 2017	0.02257466
+naep_math	Grade 8 Math	MN	Minnesota	5	2.5	-3.610356814	2		Percent at or above Proficient in 2009	0.085887048		Percent at or above Proficient in 2017	0.04978348
+naep_math	Grade 8 Math	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	MT	Montana	3	2.5	‡	6		Percent at or above Proficient in 2009	0.008641747		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	NE	Nebraska	5	4	#	6		Percent at or above Proficient in 2009	0.033787877		Percent at or above Proficient in 2017	#
+naep_math	Grade 8 Math	NV	Nevada	3	4	0.708489368	3		Percent at or above Proficient in 2009	0.024379394		Percent at or above Proficient in 2017	0.031464288
+naep_math	Grade 8 Math	NH	New Hampshire	11.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	0.105963467		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	NM	New Mexico	4	5.5	-0.09976901	3		Percent at or above Proficient in 2009	0.025413351		Percent at or above Proficient in 2017	0.024415661
+naep_math	Grade 8 Math	NY	New York	10	2.5	0.62622755	3		Percent at or above Proficient in 2009	0.039537177		Percent at or above Proficient in 2017	0.045799453
+naep_math	Grade 8 Math	NC	North Carolina	9.5	4.75	-7.828842881	1		Percent at or above Proficient in 2009	0.10875054		Percent at or above Proficient in 2017	0.030462111
+naep_math	Grade 8 Math	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	OH	Ohio	8.5	3.25	-3.950296369	2		Percent at or above Proficient in 2009	0.107965776		Percent at or above Proficient in 2017	0.068462812
+naep_math	Grade 8 Math	OK	Oklahoma	5	5.5	0.035493459	3		Percent at or above Proficient in 2009	0.012788548		Percent at or above Proficient in 2017	0.013143483
+naep_math	Grade 8 Math	OR	Oregon	2	4	-0.569740587	3		Percent at or above Proficient in 2009	0.028940763		Percent at or above Proficient in 2017	0.023243357
+naep_math	Grade 8 Math	PA	Pennsylvania	9.5	3.25	-6.549268207	1		Percent at or above Proficient in 2009	0.114387789		Percent at or above Proficient in 2017	0.048895107
+naep_math	Grade 8 Math	RI	Rhode Island	12	2.5	-6.752393239	1		Percent at or above Proficient in 2009	0.084714561		Percent at or above Proficient in 2017	0.017190629
+naep_math	Grade 8 Math	SC	South Carolina	9	5.5	1.663845916	4		Percent at or above Proficient in 2009	0.17219801		Percent at or above Proficient in 2017	0.188836469
+naep_math	Grade 8 Math	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	TN	Tennessee	7.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.048305684
+naep_math	Grade 8 Math	TX	Texas	4.5	6.25	1.26983876	4		Percent at or above Proficient in 2009	0.05756159		Percent at or above Proficient in 2017	0.070259978
+naep_math	Grade 8 Math	UT	Utah	4	4	-1.440461295	2		Percent at or above Proficient in 2009	0.0235086		Percent at or above Proficient in 2017	0.009103987
+naep_math	Grade 8 Math	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	VA	Virginia	8.5	4.75	-7.595478345	1		Percent at or above Proficient in 2009	0.134851592		Percent at or above Proficient in 2017	0.058896809
+naep_math	Grade 8 Math	WA	Washington	2	2.5	1.537409443	4		Percent at or above Proficient in 2009	0.033125756		Percent at or above Proficient in 2017	0.04849985
+naep_math	Grade 8 Math	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_math	Grade 8 Math	WI	Wisconsin	6	2.5	-3.291821429	2		Percent at or above Proficient in 2009	0.092845983		Percent at or above Proficient in 2017	0.059927769
+naep_math	Grade 8 Math	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	AK	Alaska	1.5	1	-1.722634419	2		Percent at or above Proficient in 2009	0.040288582		Percent at or above Proficient in 2017	0.023062238
+naep_reading	Grade 4 Reading	AZ	Arizona	3.5	4.75	0.028511521	3		Percent at or above Proficient in 2009	0.015033844		Percent at or above Proficient in 2017	0.015318959
+naep_reading	Grade 4 Reading	AR	Arkansas	6.5	4.75	5.080642795	5		Percent at or above Proficient in 2009	0.090816264		Percent at or above Proficient in 2017	0.141622692
+naep_reading	Grade 4 Reading	CA	California	2.5	4.75	3.780703141	5		Percent at or above Proficient in 2009	0.039419293		Percent at or above Proficient in 2017	0.077226324
+naep_reading	Grade 4 Reading	CO	Colorado	4.5	4.75	4.578358136	5		Percent at or above Proficient in 2009	0.03903702		Percent at or above Proficient in 2017	0.084820601
+naep_reading	Grade 4 Reading	CT	Connecticut	11.5	3.25	3.88644901	5		Percent at or above Proficient in 2009	0.06031455		Percent at or above Proficient in 2017	0.09917904
+naep_reading	Grade 4 Reading	DE	Delaware	10	4	2.301735534	4		Percent at or above Proficient in 2009	0.085507564		Percent at or above Proficient in 2017	0.108524919
+naep_reading	Grade 4 Reading	DC	District of Columbia	12.5	4.75	-4.669552539	2		Percent at or above Proficient in 2009	0.059003774		Percent at or above Proficient in 2017	0.012308249
+naep_reading	Grade 4 Reading	FL	Florida	9	7	-6.825275949	1		Percent at or above Proficient in 2009	0.133698046		Percent at or above Proficient in 2017	0.065445287
+naep_reading	Grade 4 Reading	GA	Georgia	8.5	6.25	4.176344292	5		Percent at or above Proficient in 2009	0.056099655		Percent at or above Proficient in 2017	0.097863098
+naep_reading	Grade 4 Reading	HI	Hawaii	1	7	-2.667654996	2		Percent at or above Proficient in 2009	0.046900055		Percent at or above Proficient in 2017	0.020223505
+naep_reading	Grade 4 Reading	ID	Idaho	2.5	3.25	0.765758915	3		Percent at or above Proficient in 2009	0.025765879		Percent at or above Proficient in 2017	0.033423468
+naep_reading	Grade 4 Reading	IL	Illinois	6.5	3.25	-1.686696885	2		Percent at or above Proficient in 2009	0.073743702		Percent at or above Proficient in 2017	0.056876733
+naep_reading	Grade 4 Reading	IN	Indiana	7.5	3.25	9.461770969	5		Percent at or above Proficient in 2009	0.062898634		Percent at or above Proficient in 2017	0.157516344
+naep_reading	Grade 4 Reading	IA	Iowa	5.5	3.25	-4.337319068	2		Percent at or above Proficient in 2009	0.094381119		Percent at or above Proficient in 2017	0.051007928
+naep_reading	Grade 4 Reading	KS	Kansas	5.5	4.75	3.104584749	5		Percent at or above Proficient in 2009	0.165333128		Percent at or above Proficient in 2017	0.196378975
+naep_reading	Grade 4 Reading	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.051899763
+naep_reading	Grade 4 Reading	LA	Louisiana	6	5.5	-1.843115007	2		Percent at or above Proficient in 2009	0.103545497		Percent at or above Proficient in 2017	0.085114347
+naep_reading	Grade 4 Reading	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.094034199
+naep_reading	Grade 4 Reading	MD	Maryland	9	4	-7.629037199	1		Percent at or above Proficient in 2009	0.165057518		Percent at or above Proficient in 2017	0.088767146
+naep_reading	Grade 4 Reading	MA	Massachusetts	11	2.5	2.395643437	4		Percent at or above Proficient in 2009	0.120853909		Percent at or above Proficient in 2017	0.144810343
+naep_reading	Grade 4 Reading	MI	Michigan	8	2.5	2.448845009	4		Percent at or above Proficient in 2009	0.094095027		Percent at or above Proficient in 2017	0.118583477
+naep_reading	Grade 4 Reading	MN	Minnesota	5	2.5	-2.707505424	2		Percent at or above Proficient in 2009	0.073630745		Percent at or above Proficient in 2017	0.046555691
+naep_reading	Grade 4 Reading	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.155454643
+naep_reading	Grade 4 Reading	MT	Montana	3	2.5	1.997240723	4		Percent at or above Proficient in 2009	0.053141912		Percent at or above Proficient in 2017	0.073114319
+naep_reading	Grade 4 Reading	NE	Nebraska	5	4	3.399301734	5		Percent at or above Proficient in 2009	0.042295596		Percent at or above Proficient in 2017	0.076288613
+naep_reading	Grade 4 Reading	NV	Nevada	3	4	-1.379120209	2		Percent at or above Proficient in 2009	0.04844761		Percent at or above Proficient in 2017	0.034656408
+naep_reading	Grade 4 Reading	NH	New Hampshire	11.5	1.75	9.359624536	5		Percent at or above Proficient in 2009	0.152354868		Percent at or above Proficient in 2017	0.245951113
+naep_reading	Grade 4 Reading	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.05506321
+naep_reading	Grade 4 Reading	NM	New Mexico	4	5.5	0.113878521	3		Percent at or above Proficient in 2009	0.028859866		Percent at or above Proficient in 2017	0.029998651
+naep_reading	Grade 4 Reading	NY	New York	10	2.5	-0.79557899	3		Percent at or above Proficient in 2009	0.057554048		Percent at or above Proficient in 2017	0.049598258
+naep_reading	Grade 4 Reading	NC	North Carolina	9.5	4.75	-7.956352665	1		Percent at or above Proficient in 2009	0.111637423		Percent at or above Proficient in 2017	0.032073896
+naep_reading	Grade 4 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	OH	Ohio	8.5	3.25	16.47735865	5		Percent at or above Proficient in 2009	0.078856933		Percent at or above Proficient in 2017	0.24363052
+naep_reading	Grade 4 Reading	OK	Oklahoma	5	5.5	-3.737417128	2		Percent at or above Proficient in 2009	0.085758119		Percent at or above Proficient in 2017	0.048383948
+naep_reading	Grade 4 Reading	OR	Oregon	2	4	0.768695587	3		Percent at or above Proficient in 2009	0.033727469		Percent at or above Proficient in 2017	0.041414425
+naep_reading	Grade 4 Reading	PA	Pennsylvania	9.5	3.25	1.724218857	4		Percent at or above Proficient in 2009	0.035364936		Percent at or above Proficient in 2017	0.052607125
+naep_reading	Grade 4 Reading	RI	Rhode Island	12	2.5	-2.081025784	2		Percent at or above Proficient in 2009	0.056847651		Percent at or above Proficient in 2017	0.036037393
+naep_reading	Grade 4 Reading	SC	South Carolina	9	5.5	-5.265274558	1		Percent at or above Proficient in 2009	0.198630168		Percent at or above Proficient in 2017	0.145977422
+naep_reading	Grade 4 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	TN	Tennessee	7.5	4.75	-0.681761902	3		Percent at or above Proficient in 2009	0.043267445		Percent at or above Proficient in 2017	0.036449826
+naep_reading	Grade 4 Reading	TX	Texas	4.5	6.25	3.690881758	5		Percent at or above Proficient in 2009	0.080656127		Percent at or above Proficient in 2017	0.117564945
+naep_reading	Grade 4 Reading	UT	Utah	4	4	0.396896055	3		Percent at or above Proficient in 2009	0.054304961		Percent at or above Proficient in 2017	0.058273922
+naep_reading	Grade 4 Reading	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	VA	Virginia	8.5	4.75	-4.763944227	2		Percent at or above Proficient in 2009	0.122928279		Percent at or above Proficient in 2017	0.075288837
+naep_reading	Grade 4 Reading	WA	Washington	2	2.5	0.949342836	3		Percent at or above Proficient in 2009	0.031646795		Percent at or above Proficient in 2017	0.041140223
+naep_reading	Grade 4 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 4 Reading	WI	Wisconsin	6	2.5	0.487154451	3		Percent at or above Proficient in 2009	0.084454183		Percent at or above Proficient in 2017	0.089325728
+naep_reading	Grade 4 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.024598842
+naep_reading	Grade 8 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	AK	Alaska	1.5	1	-0.960229439	3		Percent at or above Proficient in 2009	0.022		Percent at or above Proficient in 2017	0.012397706
+naep_reading	Grade 8 Reading	AZ	Arizona	3.5	4.75	0.880727049	3		Percent at or above Proficient in 2009	0.005		Percent at or above Proficient in 2017	0.01380727
+naep_reading	Grade 8 Reading	AR	Arkansas	6.5	4.75	5.102779387	5		Percent at or above Proficient in 2009	0.067		Percent at or above Proficient in 2017	0.118027794
+naep_reading	Grade 8 Reading	CA	California	2.5	4.75	2.310483813	4		Percent at or above Proficient in 2009	0.02		Percent at or above Proficient in 2017	0.043104838
+naep_reading	Grade 8 Reading	CO	Colorado	4.5	4.75	2.353927846	4		Percent at or above Proficient in 2009	0.026		Percent at or above Proficient in 2017	0.049539278
+naep_reading	Grade 8 Reading	CT	Connecticut	11.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.018052582
+naep_reading	Grade 8 Reading	DE	Delaware	10	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.032287028
+naep_reading	Grade 8 Reading	DC	District of Columbia	12.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.033913975
+naep_reading	Grade 8 Reading	FL	Florida	9	7	-2.050497442	2		Percent at or above Proficient in 2009	0.066		Percent at or above Proficient in 2017	0.045495026
+naep_reading	Grade 8 Reading	GA	Georgia	8.5	6.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.042246634
+naep_reading	Grade 8 Reading	HI	Hawaii	1	7	-2.278371349	2		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.007216287
+naep_reading	Grade 8 Reading	ID	Idaho	2.5	3.25	-0.267285705	3		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.027327143
+naep_reading	Grade 8 Reading	IL	Illinois	6.5	3.25	-2.399454684	2		Percent at or above Proficient in 2009	0.045		Percent at or above Proficient in 2017	0.021005453
+naep_reading	Grade 8 Reading	IN	Indiana	7.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.203972624
+naep_reading	Grade 8 Reading	IA	Iowa	5.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.02878695
+naep_reading	Grade 8 Reading	KS	Kansas	5.5	4.75	10.89131041	5		Percent at or above Proficient in 2009	0.053		Percent at or above Proficient in 2017	0.161913104
+naep_reading	Grade 8 Reading	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	MD	Maryland	9	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.023669143
+naep_reading	Grade 8 Reading	MA	Massachusetts	11	2.5	3.179501842	5		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2017	0.062795018
+naep_reading	Grade 8 Reading	MI	Michigan	8	2.5	-0.905237671	3		Percent at or above Proficient in 2009	0.077		Percent at or above Proficient in 2017	0.067947623
+naep_reading	Grade 8 Reading	MN	Minnesota	5	2.5	-0.740079722	3		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.022599203
+naep_reading	Grade 8 Reading	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	MT	Montana	3	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	NE	Nebraska	5	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	NV	Nevada	3	4	1.236940803	4		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.020369408
+naep_reading	Grade 8 Reading	NH	New Hampshire	11.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	NM	New Mexico	4	5.5	1.182502714	4		Percent at or above Proficient in 2009	0.007		Percent at or above Proficient in 2017	0.018825027
+naep_reading	Grade 8 Reading	NY	New York	10	2.5	1.598252143	4		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2017	0.034982521
+naep_reading	Grade 8 Reading	NC	North Carolina	9.5	4.75	-2.30087501	2		Percent at or above Proficient in 2009	0.052		Percent at or above Proficient in 2017	0.02899125
+naep_reading	Grade 8 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	OH	Ohio	8.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.082533518
+naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	-1.66848446	2		Percent at or above Proficient in 2009	0.035		Percent at or above Proficient in 2017	0.018315155
+naep_reading	Grade 8 Reading	OR	Oregon	2	4	0.404054772	3		Percent at or above Proficient in 2009	0.01		Percent at or above Proficient in 2017	0.014040548
+naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	-0.076370254	3		Percent at or above Proficient in 2009	0.048		Percent at or above Proficient in 2017	0.047236297
+naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.622769903	3		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.014227699
+naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	0.80946662	3		Percent at or above Proficient in 2009	0.183		Percent at or above Proficient in 2017	0.191094666
+naep_reading	Grade 8 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	TN	Tennessee	7.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	#
+naep_reading	Grade 8 Reading	TX	Texas	4.5	6.25	3.842834391	5		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.046428344
+naep_reading	Grade 8 Reading	UT	Utah	4	4	-0.029388007	3		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2017	0.03070612
+naep_reading	Grade 8 Reading	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	VA	Virginia	8.5	4.75	-6.140810284	1		Percent at or above Proficient in 2009	0.088		Percent at or above Proficient in 2017	0.026591897
+naep_reading	Grade 8 Reading	WA	Washington	2	2.5	1.050546978	4		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2017	0.02950547
+naep_reading	Grade 8 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
+naep_reading	Grade 8 Reading	WI	Wisconsin	6	2.5	-2.872218583	2		Percent at or above Proficient in 2009	0.074		Percent at or above Proficient in 2017	0.045277814
+naep_reading	Grade 8 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡

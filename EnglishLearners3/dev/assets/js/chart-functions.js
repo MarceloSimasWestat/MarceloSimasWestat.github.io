@@ -952,7 +952,7 @@ function barChart() {
 		svg.select(".y.axis")
 			.selectAll("text")
 				.each(function() {
-					if (this.textContent == "National") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+					if (this.textContent == "50 states and DC") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
 				});
 
 		// add notes and sources if defined
@@ -1082,7 +1082,7 @@ function barChart() {
 			svg.select(".y.axis")
 				.selectAll("text")
 					.each(function() {
-						if (this.textContent == "National") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+						if (this.textContent == "50 states and DC") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
 					});
 
 			// update overall figure alt-text
@@ -8289,7 +8289,7 @@ function multi_line_v2() {
 
 		width = parseInt(d3.select("#" + sectionID).style("width"), 10);
 
-		var margin = {right: 20},
+		var margin = {right: 30},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
 
@@ -8313,7 +8313,7 @@ function multi_line_v2() {
 		// add dropdowns
 
 		var state_list = d3.map(data, function(d) { return d.state; }).keys();
-		state_list = state_list.filter(function(d) { return d !== "United States"; });
+		state_list = state_list.filter(function(d) { return d !== "50 states and DC"; });
 
 		var state_dropdown_container = dom.append("div")
 			.attr("class", "state_selector");
@@ -8437,11 +8437,11 @@ function multi_line_v2() {
 		line_group.append("path")
 			.attr("class", "line")
 			.classed("state", function(d) {
-				if (d.key !== "United States") { return true; }
+				if (d.key !== "50 states and DC") { return true; }
 				else { return false; };
 			})
 			.classed("national", function(d) {
-				if (d.key === "United States") { return true; }
+				if (d.key === "50 states and DC") { return true; }
 				else { return false; };
 			})
 			.attr("d", function(d) { return line_values(d.values); })
@@ -8509,22 +8509,22 @@ function multi_line_v2() {
 				.append("circle")
 				.attr("class", "dot")
 				.classed("state", function(d) {
-					if (d.state !== "United States") { return true; }
+					if (d.state !== "50 states and DC") { return true; }
 					else { return false; };
 				})
 				.classed("national", function(d) {
-					if (d.state === "United States") { return true; }
+					if (d.state === "50 states and DC") { return true; }
 					else { return false; };
 				})
 				.attr("cx", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
 				.attr("cy", function(d) { return yScale(d.el_p); })
 				.attr("r", dotSize)
 				.style("opacity", function(d) {
-					if (d.state === "United States") { return 1; }
+					if (d.state === "50 states and DC") { return 1; }
 					else { return 0; };
 				})
 				.style("pointer-events", function(d) {
-					if (d.state === "United States") { return "auto"; }
+					if (d.state === "50 states and DC") { return "auto"; }
 					else { return "none"; };
 				})
 				.on("mouseover", tipDot.show)
@@ -8541,11 +8541,11 @@ function multi_line_v2() {
 				.append("text")
 					.attr("class", "dot_text")
 					.classed("state", function(d) {
-						if (d.state !== "United States") { return true; }
+						if (d.state !== "50 states and DC") { return true; }
 						else { return false; };
 					})
 					.classed("national", function(d) {
-						if (d.state === "United States") { return true; }
+						if (d.state === "50 states and DC") { return true; }
 						else { return false; };
 					})
 					.attr("x", function(d) { return xScale(d.year) + xScale.rangeBand()/2; })
@@ -8553,11 +8553,11 @@ function multi_line_v2() {
 					.attr("y", function(d) { return yScale(d.el_p); })
 					.attr("dy", "0.35em")
 					.style("pointer-events", function(d) {
-						if (d.state === "United States") { return "auto"; }
+						if (d.state === "50 states and DC") { return "auto"; }
 						else { return "none"; };
 					})
 					.style("opacity", function(d) {
-						if (d.state === "United States") { return 1; }
+						if (d.state === "50 states and DC") { return 1; }
 						else { return 0; };
 					})
 					.text(function(d) { return d.st_abbr; });
