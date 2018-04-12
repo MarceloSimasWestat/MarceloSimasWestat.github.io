@@ -5097,8 +5097,8 @@ function stackedBar() {
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
 			.text(function() {
-				if (window.innerWidth <= 736) { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
-				else { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
+				if (window.innerWidth <= 736) { return "PERCENTAGE"; }
+				else { return "PERCENTAGE"; }
 			});
 
 		// draw bars
