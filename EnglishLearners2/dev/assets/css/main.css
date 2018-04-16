@@ -4830,6 +4830,12 @@ button:hover,
     color: #FFFFFF !important;
 }
 
+/* Chart styles */
+.figTitle {
+  font: 400 13px Inconsolata;
+  fill: rgba(26, 28, 32, .65);
+}
+
 /* Bar chart styling */
 
 .bar-chart .axis path,
