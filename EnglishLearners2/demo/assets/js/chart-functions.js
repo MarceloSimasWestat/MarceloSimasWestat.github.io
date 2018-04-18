@@ -5097,8 +5097,8 @@ function stackedBar() {
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
 			.text(function() {
-				if (window.innerWidth <= 736) { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
-				else { return "% OF PRESCHOOLERS IN 2013-14 WHO WERE ELS"; }
+				if (window.innerWidth <= 736) { return "PERCENTAGE"; }
+				else { return "PERCENTAGE"; }
 			});
 
 		// draw bars
@@ -5530,6 +5530,7 @@ function multiBar() {
 		barWidth = 15,
 		xAxisLabel = "DEFINE X AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
+		figTitle,
 		altText = "Fill in alt text for screen readers! Use .altText().",
 		notes = "",
 		source = "",
@@ -5620,6 +5621,15 @@ function multiBar() {
 					if (toggles == 1) { return title[0]; }
 					else { return title; };
 				});
+
+		// figure title
+
+		if (figTitle) {
+			d3.select(this).append("div")
+				.attr("class", "figTitle")
+				.append("text")
+					.text(figTitle);
+		};
 
 		// selections
 
@@ -6058,6 +6068,14 @@ function multiBar() {
 
 		if (!arguments.length) return title;
 		title = value;
+		return chart;
+
+	};
+
+	chart.figTitle = function(value) {
+
+		if (!arguments.length) return figTitle;
+		figTitle = value;
 		return chart;
 
 	};
@@ -6901,7 +6919,7 @@ function dotPlot() {
 		d3.select(this).append("div")
 			.attr("class", "title")
 			.append("text")
-				.text(function() {
+				.html(function() {
 					if (toggles == 1) { return title[0]; }
 					else { return title; };
 				});
