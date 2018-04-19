@@ -776,6 +776,7 @@ function barChart() {
 		var titles_all = title;
 		var altText_all = altText;
 		var notes_all = notes;
+		var source_all = source;
 
 		if (toggles == 1) {
 
@@ -809,6 +810,7 @@ function barChart() {
 							title = titles_all[i];
 							altText = altText_all[i];
 							notes = notes_all[i];
+							source = source_all[i]
 							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
 
 							updateData();
@@ -968,8 +970,11 @@ function barChart() {
 
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
-				.attr("id", "notes" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				.attr("id", "source" + chartID)
+				.html(function() {
+					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source + "</span>"; };
+				});
 		};
 
 		// resize
@@ -1090,6 +1095,9 @@ function barChart() {
 
 			d3.select("#notes" + chartID)
 				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			d3.select("#source" + chartID)
+				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source + "</span>");
 
 		};
 
@@ -8053,7 +8061,7 @@ function multi_line_v2() {
 					.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
 		};
 
-		if (!source) {
+		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
 				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
@@ -8342,6 +8350,7 @@ function hex_map() {
 		var titles_all = title;
 		var altText_all = altText;
 		var notes_all = notes;
+		var source_all = source;
 
 		if (toggles == 1) {
 
@@ -8374,6 +8383,7 @@ function hex_map() {
 							title = titles_all[i];
 							altText = altText_all[i];
 							notes = notes_all[i];
+							source = source_all[i];
 							data = data_all.filter(function(d) { return d.sub_map == subgroup_selected; });
 
 							updateData();
@@ -8687,8 +8697,11 @@ function hex_map() {
 
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
-				.attr("id", "notes" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				.attr("id", "sources" + chartID)
+				.html(function() {
+					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>"; };
+				});
 		};
 
 		// function to update data
@@ -8778,6 +8791,9 @@ function hex_map() {
 
 			d3.select("#notes" + chartID)
 				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+
+			d3.select("#sources" + chartID)
+				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
 
 		};
 
