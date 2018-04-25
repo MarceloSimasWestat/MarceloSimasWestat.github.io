@@ -1851,7 +1851,7 @@ function colChart() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html(() => {
+				.html(function() {
 					if (notesCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note: </strong>" + notes + "</span>" }
 					else if (notesCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>" }
 				});
@@ -1860,7 +1860,7 @@ function colChart() {
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
-				.html(() => {
+				.html(function() {
 					if (sourceCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source: </strong>" + source + "</span>" }
 					else if (sourceCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Sources: </strong>" + source + "</span>" }
 				});
@@ -3147,7 +3147,7 @@ function dotTwo() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html(() => {
+				.html(function() {
 					if (notesCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note: </strong>" + notes + "</span>" }
 					else if (notesCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>" }
 				});
@@ -3156,7 +3156,7 @@ function dotTwo() {
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
-				.html(() => {
+				.html(function() {
 					if (sourceCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source: </strong>" + source + "</span>" }
 					else if (sourceCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Sources: </strong>" + source + "</span>" }
 				});
@@ -5206,7 +5206,7 @@ function stackedBar() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html(() => {
+				.html(function() {
 					if (notesCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note: </strong>" + notes + "</span>" }
 					else if (notesCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>" }
 				});
@@ -5215,7 +5215,7 @@ function stackedBar() {
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
-				.html(() => {
+				.html(function() {
 					if (sourceCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source: </strong>" + source + "</span>" }
 					else if (sourceCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Sources: </strong>" + source + "</span>" }
 				});
@@ -5789,7 +5789,7 @@ function multiBar() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html(() => {
+				.html(function() {
 					if (notesCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note: </strong>" + notes + "</span>" }
 					else if (notesCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>" }
 				});
@@ -5798,7 +5798,7 @@ function multiBar() {
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
-				.html(() => {
+				.html(function() {
 					if (sourceCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source: </strong>" + source + "</span>" }
 					else if (sourceCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Sources: </strong>" + source + "</span>" }
 				});
@@ -7104,7 +7104,7 @@ function dotPlot() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html(() => {
+				.html(function() {
 					if (notesCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note: </strong>" + notes + "</span>" }
 					else if (notesCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Notes: </strong>" + notes + "</span>" }
 				});
@@ -7113,7 +7113,7 @@ function dotPlot() {
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
-				.html(() => {
+				.html(function() {
 					if (sourceCount === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source: </strong>" + source + "</span>" }
 					else if (sourceCount > 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Sources: </strong>" + source + "</span>" }
 				});
