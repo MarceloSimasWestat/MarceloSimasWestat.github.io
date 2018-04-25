@@ -1,4 +1,4 @@
 state	order	lang1_p	lang2_p	lang3_p	lang4_p	lang5_p	lang6_p	lang7_p	lang1_n	lang2_n	lang3_n	lang4_n	lang5_n	lang6_n	lang7_n	lang1_code	lang2_code	lang3_code	lang4_code	lang5_code	lang6_code	lang7_code	lang1_name	lang2_name	lang3_name	lang4_name	lang5_name	lang6_name	lang7_name
-Preschool	1	0.875	0.125	0	0	0	0	0	1219798	174057	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs					
-Free preschool	2	0.871	0.129	0	0	0	0	0	1127327	166884	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs					
-Preschool at cost only	3	0.961	0.039	0	0	0	0	0	65958	2669	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs					
+Preschool	1	0.875	0.125	0	0	0	0	0	1219798	174057	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs
+Free preschool	2	0.871	0.129	0	0	0	0	0	1127327	166884	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs
+Preschool for fee only	3	0.961	0.039	0	0	0	0	0	65958	2669	0	0	0	0	0	Non-ELs	ELs						Non-ELs	ELs					
