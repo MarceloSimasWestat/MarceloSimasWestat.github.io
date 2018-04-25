@@ -963,8 +963,8 @@ function barChart() {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
 				.html(function() {
-					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes[0] + "</span>"; }
-					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>"; };
+					if (toggles === 1) { return "<span class = 'chartNotes'>" + notes[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'>" + notes + "</span>"; };
 				});
 		};
 
@@ -972,8 +972,8 @@ function barChart() {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "source" + chartID)
 				.html(function() {
-					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source[0] + "</span>"; }
-					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source + "</span>"; };
+					if (toggles === 1) { return "<span class = 'chartNotes'>" + source[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'>" + source + "</span>"; };
 				});
 		};
 
@@ -1094,10 +1094,10 @@ function barChart() {
 			// update notes
 
 			d3.select("#notes" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+				.html("<span class = 'chartNotes'>" + notes + "</span>");
 
 			d3.select("#source" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + source + "</span>");
+				.html("<span class = 'chartNotes'>" + source + "</span>");
 
 		};
 
@@ -8058,13 +8058,13 @@ function multi_line_v2() {
 		if (notes) {
 			d3.select("#"+ sectionID).append("div")
 					.attr("id", "notes" + chartID)
-					.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+					.html("<span class = 'chartNotes'>" + notes + "</span>");
 		};
 
 		if (source) {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				.html("<span class = 'chartNotes'>" + source + "</span>");
 		};
 
 		// resize
@@ -8690,8 +8690,8 @@ function hex_map() {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "notes" + chartID)
 				.html(function() {
-					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes[0] + "</span>"; }
-					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>"; };
+					if (toggles === 1) { return "<span class = 'chartNotes'>" + notes[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'>" + notes + "</span>"; };
 				});
 		};
 
@@ -8699,8 +8699,8 @@ function hex_map() {
 			d3.select("#"+ sectionID).append("div")
 				.attr("id", "sources" + chartID)
 				.html(function() {
-					if (toggles === 1) { return "<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source[0] + "</span>"; }
-					else { return "<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>"; };
+					if (toggles === 1) { return "<span class = 'chartNotes'>" + source[0] + "</span>"; }
+					else { return "<span class = 'chartNotes'>" + source + "</span>"; };
 				});
 		};
 
@@ -8790,10 +8790,10 @@ function hex_map() {
 			// update notes
 
 			d3.select("#notes" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Note(s): </strong>" + notes + "</span>");
+				.html("<span class = 'chartNotes'>" + notes + "</span>");
 
 			d3.select("#sources" + chartID)
-				.html("<span class = 'chartNotes'><strong style='color: #000;''>Source(s): </strong>" + source + "</span>");
+				.html("<span class = 'chartNotes'>" + source + "</span>");
 
 		};
 
