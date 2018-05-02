@@ -7228,7 +7228,7 @@ function dotPlot() {
 
 			d3.select("#" + sectionID)
 				.select(".title")
-				.text(title);
+				.html(title);
 
 		};
 
