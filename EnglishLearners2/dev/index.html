@@ -352,7 +352,7 @@
                   <sup>a</sup> Additional factors may affect the academic success of ELs (e.g., enrollment in dual language programs, access to linguistically simplified and culturally relevant instructional materials), but they are not examined in this analysis.
                 </p>
                 <p>
-                  <sup>b</sup> Schools with no ELs did not follow this pattern. The difference is likely attributable to the different composition of schools in this category (e.g. they have fewer students enrolled than other schools).
+                  <sup>b</sup> Schools with no ELs are smaller (lower mean enrollment and FTE counts) and more rural than schools with other levels of EL concentration. These and other differences may explain why this group of schools breaks with the pattern of less access to advanced courses for students in schools with higher concentrations of ELs.
                 </p>
             </div>
             <div class="6u$ 12u$(medium) dataExclusion">
@@ -467,7 +467,7 @@
 
                 var chart1_1 = multiBar().data(data1_1).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .xAxisLabel("PERCENTAGE")
-                  .title("ELs were slightly more likely than non-ELs to have access to preschool overall (including free preschool and full-day preschool).")
+                  .title("Overall, ELs were slightly more likely than non-ELs to have access to preschools (including free preschool and full-day preschool).")
                   // .figTitle("Percentage of enrolled in districts that provided preschool, by type of preschool offered: 2013-14")
                   .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
                   .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
@@ -499,14 +499,14 @@
                   .notesCount(1);
                 var chart2_2 = dotPlot().data(data2_2).marginLeft(210).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").toggles(1)
                   .group("schools").xAxisLabel("PERCENTAGE").axisdefs(1)
-                  .title(["Algebra I was offered in 61 percent of schools with grades 7 and 8. Fifty-five percent of schools with high concentrations of ELs offered the course compared with 72 percent of schools with low concentrations of EL students.",
-                  "Physics was offered in 60 percent of high schools. However, 41 percent of high schools with high concentrations of ELs offered physics compared with 77 percent of those with low concentrations of ELs.",
-                  "Chemistry was offered in 72 percent of high schools. While 51 percent of high schools with high concentrations of ELs offered chemistry, 87 percent of schools with low concentrations of EL students offered the course.",
-                  "Calculus was offered in 48 percent of high schools. Only 28 percent of high schools with high concentrations of ELs offered calculus compared with two-thirds of those with low concentrations of EL students."])
+                  .title(["Algebra I was offered in 61 percent of schools with grades 7 and 8. Fifty-five percent of schools with high concentrations of ELs offered the course compared with 72 percent of schools with low concentrations of EL students.<sup>b</sup>",
+                  "Physics was offered in 60 percent of high schools. However, 41 percent of high schools with high concentrations of ELs offered physics compared with 77 percent of those with low concentrations of ELs.<sup>b</sup>",
+                  "Chemistry was offered in 72 percent of high schools. While 51 percent of high schools with high concentrations of ELs offered chemistry, 87 percent of schools with low concentrations of EL students offered the course.<sup>b</sup>",
+                  "Calculus was offered in 48 percent of high schools. Only 28 percent of high schools with high concentrations of ELs offered calculus compared with two-thirds of those with low concentrations of EL students.<sup>b</sup>"])
                   .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.")
                   .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .sourceCount(1)
-                  .notes("Percentages are based on all schools that had students in the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses). Schools with no ELs are smaller (lower mean enrollment and FTE counts) and more rural than schools with other levels of EL concentration. These and other differences may explain why this group of schools breaks with the pattern of less access to advanced courses for students in schools with higher concentrations of ELs.")
+                  .notes("Percentages are based on all schools that had students in the relevant grades (grades 7 or 8 for Algebra; any of grades 9 through 12 for other courses).")
                   .notesCount(2);
                 var chart2_3 = dotTwo().data(data2_3).marginLeft(80).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
                   .group1("EL course enrollment").group2("EL school enrollment").xMax(0.10).xAxisLabel("PERCENTAGE")
@@ -522,7 +522,7 @@
                   .altText("This chart displays the percentage of high schools offering dual credit programs by level of EL concentration.")
                   .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2013–14.")
                   .sourceCount(1)
-                  .notes("Percentages are based on schools that offered any of grades 9 through 12. Schools with no ELs are smaller (lower mean enrollment and FTE counts) and more rural than schools with other levels of EL concentration. These and other differences may explain why this group of schools breaks with the pattern of less access to advanced courses for students in schools with higher concentrations of ELs.")
+                  .notes("Percentages are based on schools that offered any of grades 9 through 12.")
                   .notesCount(2);
                 var chart3_2 = colChart().data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
                   .yAxisLabel("PERCENTAGE")
