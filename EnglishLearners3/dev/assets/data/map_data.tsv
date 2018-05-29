@@ -204,53 +204,53 @@ naep_reading	Grade 4 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Pro
 naep_reading	Grade 4 Reading	WI	Wisconsin	6	2.5	0.487154451	3		Percent at or above Proficient in 2009	0.084454183		Percent at or above Proficient in 2017	0.089325728
 naep_reading	Grade 4 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.024598842
 naep_reading	Grade 8 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
-naep_reading	Grade 8 Reading	AK	Alaska	1.5	1	-0.960229439	3		Percent at or above Proficient in 2009	0.022		Percent at or above Proficient in 2017	0.012397706
-naep_reading	Grade 8 Reading	AZ	Arizona	3.5	4.75	0.880727049	3		Percent at or above Proficient in 2009	0.005		Percent at or above Proficient in 2017	0.01380727
-naep_reading	Grade 8 Reading	AR	Arkansas	6.5	4.75	5.102779387	5		Percent at or above Proficient in 2009	0.067		Percent at or above Proficient in 2017	0.118027794
-naep_reading	Grade 8 Reading	CA	California	2.5	4.75	2.310483813	4		Percent at or above Proficient in 2009	0.02		Percent at or above Proficient in 2017	0.043104838
-naep_reading	Grade 8 Reading	CO	Colorado	4.5	4.75	2.353927846	4		Percent at or above Proficient in 2009	0.026		Percent at or above Proficient in 2017	0.049539278
+naep_reading	Grade 8 Reading	AK	Alaska	1.5	1	-0.971878141	3		Percent at or above Proficient in 2009	0.022116487		Percent at or above Proficient in 2017	0.012397706
+naep_reading	Grade 8 Reading	AZ	Arizona	3.5	4.75	0.839914925	3		Percent at or above Proficient in 2009	0.005408121		Percent at or above Proficient in 2017	0.01380727
+naep_reading	Grade 8 Reading	AR	Arkansas	6.5	4.75	5.125707366	5		Percent at or above Proficient in 2009	0.06677072		Percent at or above Proficient in 2017	0.118027794
+naep_reading	Grade 8 Reading	CA	California	2.5	4.75	2.301885758	4		Percent at or above Proficient in 2009	0.02008598		Percent at or above Proficient in 2017	0.043104838
+naep_reading	Grade 8 Reading	CO	Colorado	4.5	4.75	2.332735486	4		Percent at or above Proficient in 2009	0.026211923		Percent at or above Proficient in 2017	0.049539278
 naep_reading	Grade 8 Reading	CT	Connecticut	11.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.018052582
 naep_reading	Grade 8 Reading	DE	Delaware	10	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.032287028
 naep_reading	Grade 8 Reading	DC	District of Columbia	12.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.033913975
-naep_reading	Grade 8 Reading	FL	Florida	9	7	-2.050497442	2		Percent at or above Proficient in 2009	0.066		Percent at or above Proficient in 2017	0.045495026
+naep_reading	Grade 8 Reading	FL	Florida	9	7	-2.080873138	2		Percent at or above Proficient in 2009	0.066303757		Percent at or above Proficient in 2017	0.045495026
 naep_reading	Grade 8 Reading	GA	Georgia	8.5	6.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.042246634
-naep_reading	Grade 8 Reading	HI	Hawaii	1	7	-2.278371349	2		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.007216287
-naep_reading	Grade 8 Reading	ID	Idaho	2.5	3.25	-0.267285705	3		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.027327143
-naep_reading	Grade 8 Reading	IL	Illinois	6.5	3.25	-2.399454684	2		Percent at or above Proficient in 2009	0.045		Percent at or above Proficient in 2017	0.021005453
+naep_reading	Grade 8 Reading	HI	Hawaii	1	7	-2.297504435	2		Percent at or above Proficient in 2009	0.030191331		Percent at or above Proficient in 2017	0.007216287
+naep_reading	Grade 8 Reading	ID	Idaho	2.5	3.25	-0.261688227	3		Percent at or above Proficient in 2009	0.029944025		Percent at or above Proficient in 2017	0.027327143
+naep_reading	Grade 8 Reading	IL	Illinois	6.5	3.25	-2.388626515	2		Percent at or above Proficient in 2009	0.044891718		Percent at or above Proficient in 2017	0.021005453
 naep_reading	Grade 8 Reading	IN	Indiana	7.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.203972624
 naep_reading	Grade 8 Reading	IA	Iowa	5.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.02878695
-naep_reading	Grade 8 Reading	KS	Kansas	5.5	4.75	10.89131041	5		Percent at or above Proficient in 2009	0.053		Percent at or above Proficient in 2017	0.161913104
+naep_reading	Grade 8 Reading	KS	Kansas	5.5	4.75	10.84892373	5		Percent at or above Proficient in 2009	0.053423867		Percent at or above Proficient in 2017	0.161913104
 naep_reading	Grade 8 Reading	KY	Kentucky	7	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	LA	Louisiana	6	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	ME	Maine	12	1	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	MD	Maryland	9	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.023669143
-naep_reading	Grade 8 Reading	MA	Massachusetts	11	2.5	3.179501842	5		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2017	0.062795018
-naep_reading	Grade 8 Reading	MI	Michigan	8	2.5	-0.905237671	3		Percent at or above Proficient in 2009	0.077		Percent at or above Proficient in 2017	0.067947623
-naep_reading	Grade 8 Reading	MN	Minnesota	5	2.5	-0.740079722	3		Percent at or above Proficient in 2009	0.03		Percent at or above Proficient in 2017	0.022599203
+naep_reading	Grade 8 Reading	MA	Massachusetts	11	2.5	3.213914203	5		Percent at or above Proficient in 2009	0.030655876		Percent at or above Proficient in 2017	0.062795018
+naep_reading	Grade 8 Reading	MI	Michigan	8	2.5	-0.907825022	3		Percent at or above Proficient in 2009	0.077025873		Percent at or above Proficient in 2017	0.067947623
+naep_reading	Grade 8 Reading	MN	Minnesota	5	2.5	-0.729434702	3		Percent at or above Proficient in 2009	0.02989355		Percent at or above Proficient in 2017	0.022599203
 naep_reading	Grade 8 Reading	MS	Mississippi	7	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	MO	Missouri	6	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	MT	Montana	3	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	NE	Nebraska	5	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
-naep_reading	Grade 8 Reading	NV	Nevada	3	4	1.236940803	4		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.020369408
+naep_reading	Grade 8 Reading	NV	Nevada	3	4	1.261608477	4		Percent at or above Proficient in 2009	0.007753323		Percent at or above Proficient in 2017	0.020369408
 naep_reading	Grade 8 Reading	NH	New Hampshire	11.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	NJ	New Jersey	10.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
-naep_reading	Grade 8 Reading	NM	New Mexico	4	5.5	1.182502714	4		Percent at or above Proficient in 2009	0.007		Percent at or above Proficient in 2017	0.018825027
-naep_reading	Grade 8 Reading	NY	New York	10	2.5	1.598252143	4		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2017	0.034982521
-naep_reading	Grade 8 Reading	NC	North Carolina	9.5	4.75	-2.30087501	2		Percent at or above Proficient in 2009	0.052		Percent at or above Proficient in 2017	0.02899125
+naep_reading	Grade 8 Reading	NM	New Mexico	4	5.5	1.189065005	4		Percent at or above Proficient in 2009	0.006934377		Percent at or above Proficient in 2017	0.018825027
+naep_reading	Grade 8 Reading	NY	New York	10	2.5	1.636927672	4		Percent at or above Proficient in 2009	0.018613244		Percent at or above Proficient in 2017	0.034982521
+naep_reading	Grade 8 Reading	NC	North Carolina	9.5	4.75	-2.316551859	2		Percent at or above Proficient in 2009	0.052156769		Percent at or above Proficient in 2017	0.02899125
 naep_reading	Grade 8 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	OH	Ohio	8.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.082533518
-naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	-1.66848446	2		Percent at or above Proficient in 2009	0.035		Percent at or above Proficient in 2017	0.018315155
-naep_reading	Grade 8 Reading	OR	Oregon	2	4	0.404054772	3		Percent at or above Proficient in 2009	0.01		Percent at or above Proficient in 2017	0.014040548
-naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	-0.076370254	3		Percent at or above Proficient in 2009	0.048		Percent at or above Proficient in 2017	0.047236297
-naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.622769903	3		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.014227699
-naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	0.80946662	3		Percent at or above Proficient in 2009	0.183		Percent at or above Proficient in 2017	0.191094666
+naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	-1.6228387	2		Percent at or above Proficient in 2009	0.034543542		Percent at or above Proficient in 2017	0.018315155
+naep_reading	Grade 8 Reading	OR	Oregon	2	4	0.379251754	3		Percent at or above Proficient in 2009	0.01024803		Percent at or above Proficient in 2017	0.014040548
+naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	-0.046933172	3		Percent at or above Proficient in 2009	0.047705629		Percent at or above Proficient in 2017	0.047236297
+naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.659629261	3		Percent at or above Proficient in 2009	0.007631406		Percent at or above Proficient in 2017	0.014227699
+naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	0.761070853	3		Percent at or above Proficient in 2009	0.183483957		Percent at or above Proficient in 2017	0.191094666
 naep_reading	Grade 8 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 8 Reading	TN	Tennessee	7.5	4.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	#
-naep_reading	Grade 8 Reading	TX	Texas	4.5	6.25	3.842834391	5		Percent at or above Proficient in 2009	0.008		Percent at or above Proficient in 2017	0.046428344
-naep_reading	Grade 8 Reading	UT	Utah	4	4	-0.029388007	3		Percent at or above Proficient in 2009	0.031		Percent at or above Proficient in 2017	0.03070612
+naep_reading	Grade 8 Reading	TX	Texas	4.5	6.25	3.844623465	5		Percent at or above Proficient in 2009	0.007982109		Percent at or above Proficient in 2017	0.046428344
+naep_reading	Grade 8 Reading	UT	Utah	4	4	-0.068097032	3		Percent at or above Proficient in 2009	0.03138709		Percent at or above Proficient in 2017	0.03070612
 naep_reading	Grade 8 Reading	VT	Vermont	10.5	1.75	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
-naep_reading	Grade 8 Reading	VA	Virginia	8.5	4.75	-6.140810284	1		Percent at or above Proficient in 2009	0.088		Percent at or above Proficient in 2017	0.026591897
-naep_reading	Grade 8 Reading	WA	Washington	2	2.5	1.050546978	4		Percent at or above Proficient in 2009	0.019		Percent at or above Proficient in 2017	0.02950547
+naep_reading	Grade 8 Reading	VA	Virginia	8.5	4.75	-6.181307046	1		Percent at or above Proficient in 2009	0.088404967		Percent at or above Proficient in 2017	0.026591897
+naep_reading	Grade 8 Reading	WA	Washington	2	2.5	1.079633259	4		Percent at or above Proficient in 2009	0.018709137		Percent at or above Proficient in 2017	0.02950547
 naep_reading	Grade 8 Reading	WV	West Virginia	8	4	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
-naep_reading	Grade 8 Reading	WI	Wisconsin	6	2.5	-2.872218583	2		Percent at or above Proficient in 2009	0.074		Percent at or above Proficient in 2017	0.045277814
+naep_reading	Grade 8 Reading	WI	Wisconsin	6	2.5	-2.883936896	2		Percent at or above Proficient in 2009	0.074117183		Percent at or above Proficient in 2017	0.045277814
 naep_reading	Grade 8 Reading	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
