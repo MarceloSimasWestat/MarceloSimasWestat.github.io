@@ -5235,6 +5235,10 @@ button:hover,
     display: block;
 }
 
+.chartNotes strong {
+  color: #000;
+}
+
 /* Sankey chart */
 
 .sankey-chart .node rect {
