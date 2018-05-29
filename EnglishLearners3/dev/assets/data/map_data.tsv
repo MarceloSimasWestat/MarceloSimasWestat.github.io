@@ -137,7 +137,7 @@ naep_math	Grade 8 Math	NY	New York	10	2.5	0.62622755	3		Percent at or above Prof
 naep_math	Grade 8 Math	NC	North Carolina	9.5	4.75	-7.828842881	1		Percent at or above Proficient in 2009	0.10875054		Percent at or above Proficient in 2017	0.030462111
 naep_math	Grade 8 Math	ND	North Dakota	4	2.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_math	Grade 8 Math	OH	Ohio	8.5	3.25	-3.950296369	2		Percent at or above Proficient in 2009	0.107965776		Percent at or above Proficient in 2017	0.068462812
-naep_math	Grade 8 Math	OK	Oklahoma	5	5.5	0.035493459	3		Percent at or above Proficient in 2009	0.012788548		Percent at or above Proficient in 2017	0.013143483
+naep_math	Grade 8 Math	OK	Oklahoma	5	5.5	#	3		Percent at or above Proficient in 2009	0.012788548		Percent at or above Proficient in 2017	0.013143483
 naep_math	Grade 8 Math	OR	Oregon	2	4	-0.569740587	3		Percent at or above Proficient in 2009	0.028940763		Percent at or above Proficient in 2017	0.023243357
 naep_math	Grade 8 Math	PA	Pennsylvania	9.5	3.25	-6.549268207	1		Percent at or above Proficient in 2009	0.114387789		Percent at or above Proficient in 2017	0.048895107
 naep_math	Grade 8 Math	RI	Rhode Island	12	2.5	-6.752393239	1		Percent at or above Proficient in 2009	0.084714561		Percent at or above Proficient in 2017	0.017190629
@@ -154,7 +154,7 @@ naep_math	Grade 8 Math	WI	Wisconsin	6	2.5	-3.291821429	2		Percent at or above Pr
 naep_math	Grade 8 Math	WY	Wyoming	3.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 4 Reading	AL	Alabama	8	5.5	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
 naep_reading	Grade 4 Reading	AK	Alaska	1.5	1	-1.722634419	2		Percent at or above Proficient in 2009	0.040288582		Percent at or above Proficient in 2017	0.023062238
-naep_reading	Grade 4 Reading	AZ	Arizona	3.5	4.75	0.028511521	3		Percent at or above Proficient in 2009	0.015033844		Percent at or above Proficient in 2017	0.015318959
+naep_reading	Grade 4 Reading	AZ	Arizona	3.5	4.75	#	3		Percent at or above Proficient in 2009	0.015033844		Percent at or above Proficient in 2017	0.015318959
 naep_reading	Grade 4 Reading	AR	Arkansas	6.5	4.75	5.080642795	5		Percent at or above Proficient in 2009	0.090816264		Percent at or above Proficient in 2017	0.141622692
 naep_reading	Grade 4 Reading	CA	California	2.5	4.75	3.780703141	5		Percent at or above Proficient in 2009	0.039419293		Percent at or above Proficient in 2017	0.077226324
 naep_reading	Grade 4 Reading	CO	Colorado	4.5	4.75	4.578358136	5		Percent at or above Proficient in 2009	0.03903702		Percent at or above Proficient in 2017	0.084820601
@@ -241,7 +241,7 @@ naep_reading	Grade 8 Reading	ND	North Dakota	4	2.5	‡	6		Percent at or above Pr
 naep_reading	Grade 8 Reading	OH	Ohio	8.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	0.082533518
 naep_reading	Grade 8 Reading	OK	Oklahoma	5	5.5	-1.6228387	2		Percent at or above Proficient in 2009	0.034543542		Percent at or above Proficient in 2017	0.018315155
 naep_reading	Grade 8 Reading	OR	Oregon	2	4	0.379251754	3		Percent at or above Proficient in 2009	0.01024803		Percent at or above Proficient in 2017	0.014040548
-naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	-0.046933172	3		Percent at or above Proficient in 2009	0.047705629		Percent at or above Proficient in 2017	0.047236297
+naep_reading	Grade 8 Reading	PA	Pennsylvania	9.5	3.25	#	3		Percent at or above Proficient in 2009	0.047705629		Percent at or above Proficient in 2017	0.047236297
 naep_reading	Grade 8 Reading	RI	Rhode Island	12	2.5	0.659629261	3		Percent at or above Proficient in 2009	0.007631406		Percent at or above Proficient in 2017	0.014227699
 naep_reading	Grade 8 Reading	SC	South Carolina	9	5.5	0.761070853	3		Percent at or above Proficient in 2009	0.183483957		Percent at or above Proficient in 2017	0.191094666
 naep_reading	Grade 8 Reading	SD	South Dakota	4.5	3.25	‡	6		Percent at or above Proficient in 2009	‡		Percent at or above Proficient in 2017	‡
