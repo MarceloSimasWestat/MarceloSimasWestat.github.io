@@ -8626,7 +8626,10 @@ function hex_map() {
 			.attr("class", "hex_name")
 			.attr("x", function(d) { return xScale(d.x); })
 			.attr("y", function(d) { return yScale(d.y); })
-			.attr("dy", "-0.25em")
+			.attr("dy", function(d) {
+				if (d.dispval === -99 && d.symbol === "‡") { return "0.35em"; };
+				return "-0.25em";
+			})
 			.attr("text-anchor", "middle")
 			.style("opacity", 0)
 			.style("pointer-events", "none")
@@ -8643,7 +8646,10 @@ function hex_map() {
 			.style("opacity", 0)
 			.style("pointer-events", "none")
 			.text(function(d) {
-				if (d.dispval === -99) { return d.symbol; }
+				if (d.dispval === -99) {
+					if (d.symbol === "‡") { return ""; }
+					return d.symbol;
+				}
 				else if (pct_point === 0) { return formatPercent(d.dispval); }
 				else if (pct_point === 1) { return formatNumber(d.dispval); };
 			});
@@ -8756,8 +8762,17 @@ function hex_map() {
 
 			// tween values
 
+			hex_group.select(".hex_name")
+				.transition()
+					.duration(animateTime/2)
+					.attr("dy", function(d) {
+						if (d.dispval === -99 && d.symbol === "‡") { return "0.35em"; };
+						return "-0.25em";
+					});
+
 			hex_group.select(".hex_pct")
 				.transition()
+					.delay(animateTime/2)
 					.duration(animateTime)
 					.tween("text", function(d) {
 
@@ -8775,7 +8790,10 @@ function hex_map() {
 
 						var i = d3.interpolate(current_value, d.dispval);
 
-						if (d.dispval === -99) { d3.select(this).text(function(d) { return d.symbol; }); }
+						if (d.dispval === -99) {
+							if (d.symbol === "‡") { d3.select(this).text("") }
+							else { d3.select(this).text(function(d) { return d.symbol; }) };
+						}
 						else if (pct_point === 0) { return function(t) { d3.select(this).text(formatPercent(i(t)))}; }
 						else if (pct_point === 1) { return function(t) { d3.select(this).text(formatNumber(i(t)))}; };
 
