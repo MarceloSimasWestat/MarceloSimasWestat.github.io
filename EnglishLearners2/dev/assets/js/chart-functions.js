@@ -7162,7 +7162,7 @@ function dotPlot() {
 					if (document.getElementById(sectionID).className == "graph-scroll-active") {
 
 						svg.selectAll("line.dotLine")
-							.transition()
+							.transition("extendLine")
 								.duration(animateTime)
 								.attr("x2", function(d) { return xScale(d.pct); })
 								.each("end", function(d) {
@@ -7173,7 +7173,7 @@ function dotPlot() {
 								});
 
 						svg.selectAll("circle.dot")
-							.transition()
+							.transition("growDot")
 								.duration(animateTime)
 								.attr("cx", function(d) { return xScale(d.pct); })
 								.each("end", function(d) {
@@ -7195,7 +7195,7 @@ function dotPlot() {
 				.data(data);
 
 			svg.selectAll("line.dotLine")
-				.transition()
+				.transition("extendLine")
 					.duration(animateTime)
 					.attr("x2", function(d) { return xScale(d.pct); })
 					.each("end", function(d) {
@@ -7209,7 +7209,7 @@ function dotPlot() {
 				.data(data);
 
 			svg.selectAll("circle.dot")
-				.transition()
+				.transition("moveDot")
 					.duration(animateTime)
 					.attr("cx", function(d) { return xScale(d.pct); })
 					.each("end", function(d) {
