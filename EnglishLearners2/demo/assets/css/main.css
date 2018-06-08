@@ -21,6 +21,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
     line-height: 1;
     -ms-overflow-style: scrollbar;
+    overflow-y: scroll;
 }
 
 ol, ul {
@@ -4835,7 +4836,7 @@ button:hover,
   font: 400 13px Inconsolata;
   fill: rgba(26, 28, 32, .65);
   margin-top: 1em;
-  text-align: center; 
+  text-align: center;
 }
 
 /* Bar chart styling */
