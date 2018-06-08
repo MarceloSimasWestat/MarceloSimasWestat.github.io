@@ -21,6 +21,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
     line-height: 1;
     -ms-overflow-style: scrollbar;
+    overflow-y: scroll;
 }
 
 ol, ul {
