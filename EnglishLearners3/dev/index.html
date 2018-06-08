@@ -371,7 +371,7 @@
 
                 var naep_math_map = hex_map().data(naep_math_map_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
                   .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
-                  .minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  //.minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
                   .toggles(1) // toggles enables subgroup toggle buttons
                   .pct_point(1) // 1 = percentage point, 0 = percentage
                   .colors([{color: "#08519c", text: "≤ -5 pts", category: 1},
@@ -400,7 +400,7 @@
 
                 var naep_reading_map = hex_map().data(naep_reading_map_data).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
                   .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
-                  .minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                  //.minStop(0).maxStop(0.25) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
                   .toggles(1) // toggles enables subgroup toggle buttons
                   .pct_point(1) // 1 = percentage point, 0 = percentage
                   .colors([{color: "#08519c", text: "≤ -5 pts", category: 1},
@@ -533,7 +533,7 @@
 
                  var grad_rate_map = hex_map().data(grad_rate_map_data).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1")
                    .hexRadius(40).width_multiplier(1.59).height_multiplier(1.68) // these are the default values; they work in tandem to ensure proper sizing and spacing
-                   .minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
+                   //.minStop(0.6).maxStop(0.8) // these define where the gradient starts and ends; if minStop = 0 or maxStop = 1 then the legend portion doesn't show up
                    .toggles(0) // toggles enables subgroup toggle buttons
                    .pct_point(0) // 1 = percentage point, 0 = percentage
                    .colors([{color: "#bbb8d8", text: "< 50%", category: 1},
