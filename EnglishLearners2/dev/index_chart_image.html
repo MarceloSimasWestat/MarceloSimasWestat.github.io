@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<!--
+    Hyperspace by Pixelarity
+    pixelarity.com @pixelarity
+    License: pixelarity.com/license
+-->
+<html lang="en-us">
+<head>
+    <title>Educational Experiences of English Learners - DRAFT</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Social media sharing properties -->
+    <!-- OG tags cannot use relative URLs -->
+    <meta name="twitter:card" content="summary">
+    <meta property="og:title" content="Educational Experiences of English Learners" />
+    <meta property="og:url" content="http://westat-transportation.github.io/EnglishLearners2/dev/" />
+    <meta property="og:description" content="The achievement gap between English learners (ELs) and their English proficient peers is well documented, including both their lower scores on standardized tests and their lower graduation rates. Because the early years are critical for children’s later academic success, this story begins with an examination of ELs’ access to and enrollment in preschool. Next, because research has shown positive relationships between advanced coursework in high school and such outcomes as high school graduation and postsecondary participation and completion, the story examines ELs’ access to college preparatory courses and dual credit programs." />
+    <meta property="og:image" content="http://westat-transportation.github.io/EnglishLearners2/dev/assets/css/images/social_media_image.png" />
+
+    <!-- Stylesheets -->
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--<link rel="stylesheet" href="widgets.css" />-->
+    <!-- <link rel="stylesheet" href="assets/css/chart-styles.css" /> -->
+    <link rel="stylesheet" href="assets/css/loader.css" />
+
+    <!-- browser tab icon (aka favicon) -->
+    <link rel="icon" href="images/doelogo_rev.png" />
+
+    <!-- Scripts -->
+    <!--<script src="widgets.js"></script>-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Substitutes high-res images for Retina displays (html file only) -->
+    <script type="text/javascript" src="assets/js/retina.js"></script>
+
+    <script src="assets/js/d3.v3.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script src="assets/js/graph-scroll.js"></script>
+
+    <script src="assets/js/chart-functions.js"></script>
+    <script src="assets/js/sankey.js"></script>
+
+    <script src="assets/js/queue.v1.min.js"></script>
+    <script src="assets/js/topojson.v1.min.js"></script>
+
+</head>
+<body>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <section id="sidebar">
+        <div class="inner">
+
+            <div class="nav-image">
+                <img src="images/edsealbw.svg" alt="U.S. Department of Education" />
+            </div>
+
+            <div class="nav-wrapper">
+                <nav>
+                    <ul style="margin-bottom: 1.5em;">
+                        <li><a href="#introText">Introduction</a></li>
+                        <li><a href="#preschool">Preschool</a></li>
+                        <!--<li><a href="#one">Access to Preschool</a></li>
+                        <li><a href="#one2">Enrollment in Preschool</a></li>-->
+                        <li><a href="#two">Advanced Coursework</a></li>
+                        <li><a href="#three">Dual Credit Programs</a></li>
+                        <li><a href="#five">Wrap Up</a></li>
+                        <li><a href="#datanotes">Notes</a></li>
+                    </ul>
+                </nav>
+                <ul class="icons socialmedia" style="margin-bottom: 0;">
+                    <li><a href="#" target="_blank" title="Tweet" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" target="_blank" title="Share on Facebook" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" target="_blank" title="Share on LinkedIn" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="#" target="_blank" title="Email" class="fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Given Flex, this allows the social media icons to be paired with the navigation links without hugging the bottom -->
+            <div>
+                &nbsp;
+            </div>
+        </div>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Intro 1 -->
+        <section id="intro" class="wrapper style1 fullscreen fade-up">
+            <div class="inner">
+                <h1 style="max-width: 650px;">Educational Experiences of English Learners<br></h1>
+                <p style="font-size:15pt">Access to and Enrollment in Early Learning Programs, Advanced Coursework, and Dual Credit Programs</p>
+                <p style="font-size:15pt">DRAFT</p>
+                <ul class="actions">
+                    <li><span class="buttonInactive">— U.S. Department of Education</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- InformED Shouout -->
+        <!--<section class="wrapper style5">
+            <div class="inner align-center" style="padding-top: 40px; padding-bottom: 20px;">
+                <div>
+                    <i class="fa fa-bolt fa-lg" style="margin-bottom: 1em; color: rgba(255,255,255,1);"></i>
+                </div>
+                <p>Powered by InformED and the <a href="http://www2.ed.gov/about/offices/list/ocr/docs/crdc-2013-14.html" target="_blank">2013-14 Civil Rights Data Collection.</a></p>
+            </div>
+        </section>-->
+        <!-- Intro 2 -->
+
+        <section id="introText" class="wrapper style3">
+            <div class="inner">
+                <div class="align-right">
+                    <div style="margin-bottom: 2.5em;">
+                        <input type="checkbox" id="highContrast" name="highContrast">
+                        <label for="highContrast">Enable High Contrast (508)</label>
+                    </div>
+                </div>
+
+                <h2 class="line">Introduction</h2>
+                <p class="afterHeader">
+                    The achievement gap between English learners (ELs) and their English proficient peers is well documented, including both their lower scores on standardized tests and their lower graduation rates.<sup>1</sup> Because the early years are critical for children’s later academic success, this story begins with an examination of ELs’ access to and enrollment in preschool.<sup>2</sup> Next, because research has shown positive relationships between advanced coursework in high school and such outcomes as high school graduation and postsecondary participation and completion, the story examines ELs’ access to college preparatory courses and dual credit programs.<sup>3, a</sup>
+                </p>
+
+                <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="left icon fa-mouse-pointer"></span></div>
+                        </div>
+                        <div class="right">
+                            The charts are interactive. Hover over or click on chart elements to learn more about specific data points and, where they appear, use buttons to filter charts by course.
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="left icon fa-bar-chart-o"></span></div>
+                        </div>
+                        <div class="right">
+                            Note: Data included in this story may differ slightly from that in other published reports due to certain data decisions. <a href="#datanotes">More information</a>.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="preschool" class="wrapper style1">
+            <div class="inner">
+                <h2 class="line">Preschool</h2>
+                <p class="afterHeader">
+                    Participation in high-quality early learning programs, such as center-based preschool, improves school readiness and may have long-term educational benefits.<sup>4</sup> Studies have found that ELs gain more from their preschool experiences than their non-EL peers.<sup>5</sup> Participation in preschool also provides early exposure to English, which in turn may lower the age at which full proficiency is achieved. Reaching proficiency prior to first grade has been shown to reduce or eliminate reading and math achievement gaps between ELs and non-ELs.<sup>6</sup>
+                </p>
+                <p class="afterHeader">
+                    In these analyses, “access to preschool” is defined as going to school (enrollment) in a district that provided preschool programs or services. Given the available national-level data, the analysis is limited to students in schools with preschool or early elementary grades (any of grades preschool through grade 2). It does not include students in schools that include only upper elementary, middle, or high school grades.
+                </p>
+                <p class="afterHeader">
+                    The analyses below primarily use data from the 2015–16 Civil Rights Data Collection (CRDC) to explore ELs’ access to and enrollment in fee-based or free public preschool, including access to and enrollment in full-day and part-day preschool.<sup>7</sup>
+                </p>
+
+            </div>
+        </section>
+
+        <!--<section id="intro_chart" class="wrapper image1">
+            <div id="intro_sections" class="inner align-center">
+                <div></div>
+                <div id="counter_pre"></div>
+                <div id="counter" style="max-width: 825px; margin-bottom: 50px;"></div>
+            </div>
+        </section>-->
+
+        <!-- One -->
+
+        <!--<section id="one" class="wrapper style3">
+            <div class="inner">
+                <h2 class="line">Access to Preschool</h2>
+            </div>
+        </section>-->
+
+        <section id="one_chart" class="wrapper chart">
+            <div id="one_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div></div>
+                <h2 style="color: #000;">Access to Preschool</h2><br/>
+                <div id="ch1_1"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Ninety-three percent of ELs were enrolled in districts that provided preschool compared with 89 percent of non-ELs. Eighty-nine percent of ELs were in districts that provided free preschool and 63 percent were in districts that provided full-day preschool compared with 82 percent and 58 percent of non-ELs, respectively.
+                </p>
+                <h2 style="color: #000;">Enrollment in Preschool</h2><br/>
+                <div id="ch1_2"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                </p>
+                <div id="ch1_4"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Overall, 13 percent of children enrolled in preschool were ELs. However, less than 5 percent of preschoolers in districts that provided preschool only for a fee were ELs. Only 13 percent of preschoolers enrolled in districts that provided full-day preschool were ELs.
+                </p>
+                <div></div>
+            </div>
+        </section>
+
+        <!-- Two -->
+
+        <section id="two" class="wrapper style3">
+            <div class="inner">
+                <h2 class="line">Advanced Coursework</h2>
+                <p>
+                  Students who participate in more rigorous courses are more likely to experience positive academic outcomes, such as attending and graduating from college, than students who do not participate in them.<sup>8</sup> However, research has demonstrated unequal participation by ELs in such courses.<sup>9</sup> They may not attend schools that offer these courses or may enroll in less academically rigorous courses due to their lower levels of proficiency in English or performance on state assessments. Other factors that may inhibit ELs’ enrollment in rigorous courses are the lack of course prerequisites (e.g., Algebra I) and equitable learning opportunities through appropriately trained teachers and developmentally suitable instructional materials, texts, and curricula in their native languages.<sup>10</sup>
+                </p>
+                <p>
+                  The analyses below use the 2015–16 Civil Rights Data Collection (CRDC) to explore ELs’ access to and enrollment in Algebra I and advanced math and science courses.
+                </p>
+            </div>
+        </section>
+
+        <section id="two_chart" class="wrapper chart">
+            <div id="two_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div></div>
+                <div id="ch2_1"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Algebra I is a “gatekeeper” math course that students must pass to be prepared for higher-level math courses. Sixty-five percent of ELs had access to Algebra I in grade 8 (defined as attending a school that offered the course in grade 8). However, only 2 percent of ELs enrolled in Algebra I. In comparison, 72 percent  of non-ELs were in schools that offered Algebra I in grade 8, and 7 percent enrolled in the course. A similar pattern was found for advanced math and science courses. A majority of ELs and non-ELs were in high schools that offered physics (81 and 85 percent), chemistry (88 and 92 percent), or calculus (75 and 79 percent). However, low percentages of each group enrolled in the courses, with ELs at lower rates than their non-EL peers.
+                </p>
+                <div id="ch2_2"></div>
+                <p style="margin-top:1.5em;">
+                  Students in schools that do not offer Algebra I or advanced math or science courses do not have the opportunity to take these courses. Schools with high concentrations of EL students were less likely than schools with low concentrations to offer these courses.<sup>b</sup> For example, 48 percent of schools with grade 8 and a high concentration of ELs offered Algebra I compared with 70 percent of schools with a low concentration of ELs. About 58 percent of all schools with those grades offered this subject.
+                </p>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  The pattern was the same for high schools offering physics, chemistry, or calculus.
+                </p>
+                <div id="ch2_3"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Although ELs accounted for 7 percent of students enrolled in schools that offered Algebra I in grade 8, they accounted for only 3 percent of students enrolled in the course. The pattern was similar for advanced math and science courses. For example, in high schools that offered calculus, ELs accounted for 5 percent of school enrollment but 1 percent of students enrolled in the course.
+                </p>
+            </div>
+        </section>
+
+        <!-- Three -->
+
+        <section id="three" class="wrapper style1">
+            <div class="inner">
+                <h2 class="line">Dual Credit Programs</h2>
+                <p>
+                  Dual credit programs provide opportunities for students still in high school to take college-level courses and earn concurrent credit toward a high school diploma and a college degree, resulting in college tuition savings. As noted in the Civil Rights Data Collection, these programs are for students who are academically prepared to enroll in college and are interested in taking additional coursework, for example, a subject not offered at their high school. Students in dual credit programs may be more likely to attend college after graduating.<sup>11</sup> They may also experience other academic benefits, such as attaining higher grades in college and accumulating credits toward college graduation at a faster pace than those who did not participate in dual enrollment.<sup>12</sup>
+                </p>
+            </div>
+        </section>
+
+        <section id="three_chart" class="wrapper chart">
+            <div id="three_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div id="ch3_1">
+                </div>
+                <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
+                  Thirty-five percent of high schools with high EL concentrations offered dual credit programs. In contrast, 69 percent of high schools with low EL concentrations offered dual credit programs.
+                </p>
+                <div id="ch3_2"></div>
+                <p style="margin-top:1.5em; margin-bottom: 3.5em;">
+                  Although somewhat more than half  of all high schools offered dual credit programs, ELs were somewhat less likely than non-ELs to attend these schools. Sixty percent of ELs were in high schools that offered dual credit programs, compared with 70 percent of non-ELs.
+                </p>
+            </div>
+        </section>
+
+        <!-- Four -->
+
+        <!--<section id="four" class="wrapper style3">
+            <div class="inner">
+
+                <h2 class="line">Section 4</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquam mattis nulla, a semper lectus laoreet ut. Sed faucibus nisi eu mauris dapibus tincidunt. Sed a nulla at orci sagittis ultricies et mattis augue. Vivamus sagittis gravida ultrices. Nulla consectetur vestibulum tellus, ut semper sem iaculis sit amet. Mauris auctor viverra congue. Curabitur viverra sem nec accumsan convallis. Aliquam erat volutpat. Curabitur blandit felis nec porta scelerisque. Quisque massa erat, elementum nec laoreet a, auctor sit amet nunc. Donec posuere, odio sit amet semper tincidunt, nulla arcu tincidunt diam, sit amet tempor eros dui a diam. Duis at dignissim ante. Aliquam erat volutpat. Nulla facilisi.
+                </p>
+            </div>
+        </section>-->
+
+        <!--<section id="four_chart" class="wrapper chart">
+            <div id="four_sections" class="inner">
+                <div class="align-center">
+                    <img class="barChart-icon" src="images/barIcon_chartArea.svg" alt="Bar Chart Icon" />
+                </div>
+                <div style="margin-bottom: 1.5em" class="chart"></div>
+                <div id="ch4_1">
+                </div>
+                <p style="margin-top: 1.5em; margin-bottom: 3.5em;">
+                  Almost all ELs in 2014–15 participated in an LIEP. Out of the 4.8 million ELs in 2014–15, 97 percent, or more than 4.6 million, participated in an LIEP. Of those particiating in an LIEP, the vast majority - 78 percent, or 3.6 million, were Hispanic; 11 percent, or about 500,000 were Asian; and 6 percent, or about 270,000 were White. The high percentage of ELs participating in an LIEP suggests that these programs are reaching the intended population.
+                </p>
+        </section-->
+        <!-- Five -->
+
+        <section id="five" class="wrapper style3">
+            <div class="inner">
+                <h2 class="line">Wrap Up</h2>
+                <p>
+                  Preschool, rigorous coursework, and dual credit programs may improve the readiness of students for key phases of the education pipeline. While public preschool programs were widely available to ELs through their school districts, preschool-aged EL children enrolled in preschool at a lower rate than their non-EL peers. ELs were underrepresented in districts that provided preschool only for a fee, which may suggest that cost is a barrier to preschool.
+                </p>
+                <p>
+                  EL high school students had broad access to Algebra I and advanced math and science courses, but were less likely to enroll in these courses than non-ELs. ELs also were less represented among students enrolled in these courses than expected given their representation in school as a whole. This analysis did not explore whether such factors as lack of course prerequisites contributed to ELs’ lower enrollment in these courses. Yet, we do know that access to Algebra I and advanced math and science courses was uneven across high schools. High schools with high percentages of ELs offered these courses at lower rates than high schools with lower EL percentages. Access to dual credit programs across high schools followed a similar pattern.
+                </p>
+
+                <div class="socialmedia">
+                    <ul class="align-center icons fa-2x" style="margin-bottom:1em;">
+                        <li><a href="#" target="_blank" title="Tweet" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" target="_blank" title="Share on Facebook" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" target="_blank" title="Share on LinkedIn" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                        <li><a href="#" target="_blank" title="Email" class="fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <!-- end wrapper -->
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner align-center">
+            <h2 id="datanotes" style="font-size:15px; font-weight:bold; margin-top:3.5em;">NOTES</h2>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 class="line">Overall Notes</h3>
+                <p>
+                  Data in this story represent the 50 states and the District of Columbia.
+                </p>
+                <p>
+                  The charts are interactive. Hover over or click on chart elements to learn more about specific data points and, where they appear, use buttons to filter charts by course.
+                </p>
+                <p>
+                  Figure and source notes throughout the story identify the data sources used. With the exception of the EDFacts data used to estimate the EL preschool-age population, all data used in this story are publicly available.
+                </p>
+                <p>
+                  Data used in this story may differ slightly from that in other published reports due to the removal of data from schools with data-quality concerns. This includes schools with missing, partial, and internally inconsistent data (e.g., more ELs than total students or more students enrolled in a course than enrolled in a school).
+                </p>
+            </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 class="line">Section Notes</h3>
+                <p>
+                  <sup>a</sup> Additional factors may affect the academic success of ELs (e.g., enrollment in dual language programs, access to linguistically simplified and culturally relevant instructional materials), but they are not examined in this analysis.
+                </p>
+                <p>
+                  <sup>b</sup> Schools with no ELs are smaller (lower mean enrollment and FTE counts) and more rural than schools with other levels of EL concentration. These and other differences may explain why this group of schools breaks with the pattern of less access to advanced courses for students in schools with higher concentrations of ELs.
+                </p>
+            </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 id="mapnotes" style="font-size: 15px;" class="line">Definitions</h3>
+                <p>
+                  <strong>Preschool</strong>, as defined in the Civil Rights Data Collection, includes preschool programs and services for children ages 3 through 5.
+                </p>
+                <p>
+                  <strong>Full-day preschool</strong> is a program that a child attends each weekday for approximately six hours or more.
+                </p>
+                <p>
+                  <strong>Preschool-aged children</strong> include children enrolled in preschool as well as children not enrolled in preschool. This story estimates the size of this population using the number of children enrolled in grades 1 or 2.
+                </p>
+                <p>
+                  <strong>High school</strong>, as used in this story, is a school that includes any of grades 9 through 12. For some of these schools, enrollment may include students in lower grades.
+                </p>
+                <p>
+                  <strong>Algebra I</strong>, as defined in the Civil Rights Data Collection, is a (college-preparatory) course that includes the study of properties and operations of the real number system; evaluating rational algebraic expressions; solving and graphing first-degree equations and inequalities; translating word problems into equations; operations with and factoring of polynomials; and solving simple quadratic equations. Algebra I is a foundation course leading to higher-level mathematics courses, including geometry and Algebra II. The analyses in the story include only Algebra I courses for middle school students and Algebra I enrollment for students in grade 8. Algebra I enrollment for students in grade 7 is not available disaggregated by EL status.
+                </p>
+                <p>
+                  <strong>Calculus</strong>, as defined in the Civil Rights Data Collection, is a (college-preparatory) course that includes the study of derivatives, differentiation, integration, the definite and indefinite integral, and applications of calculus. Typically, students have previously attained knowledge of precalculus topics (some combination of trigonometry, elementary functions, analytic geometry, and math analysis). The CRDC data for calculus courses are for students in grades 9 through 12.
+                </p>
+                <p>
+                  <strong>Chemistry</strong>, as defined in the Civil Rights Data Collection, is a (college-preparatory) course that includes studying the composition, properties, and reactions of substances. These courses typically explore such concepts as the behaviors of solids, liquids, and gases; acid/base and oxidation/reduction reactions; and atomic structure. Chemical formulas and equations and nuclear reactions are also studied. The CRDC data for chemistry courses are for students in grades 9 through 12.
+                </p>
+                <p>
+                  <strong>Physics</strong>, as defined in the Civil Rights Data Collection, is a (college-preparatory) course that involves the study of the forces and laws of nature affecting matter, such as equilibrium, motion, momentum, and the relationships between matter and energy. The study of physics includes examination of sound, light, and magnetic and electric phenomena. The CRDC data for physics courses are for students in grades 9 through 12.
+                </p>
+                <p>
+                  <strong>Enrollment in schools with the relevant grades</strong> includes all students enrolled in the school, excluding those enrolled in preschool.
+                </p>
+                <p>
+                  <strong>Dual credit programs</strong>, as defined in the Civil Rights Data Collection, provide opportunities for students still in high school to take college-level courses offered by colleges and earn concurrent credit toward a high school diploma and a college degree. These programs are for high school-enrolled students who are academically prepared to enroll in college and are interested in taking on additional coursework. For example, students who want to study subjects not offered at their high school may seek supplemental education at colleges nearby. Dual credit programs do not include the Advanced Placement (AP) program or the International Baccalaureate Diploma Programme. The collection of these data was new for 2013–14. It includes only those schools with students in grades 9 through 12.
+                </p>
+            </div>
+            <div class="6u$ 12u$(medium) dataExclusion">
+                <h3 style="font-size: 15px;" class="line">Endnotes</h3>
+                <p>
+                  <sup>1</sup> U.S. Department of Education, ED Data Express, 2015–16 state-level data for Percent Proficient on the State Assessment in Math (grades 4, 8, high school) and Regulatory Adjusted Cohort Graduation Rate. Retrieved May 2018. <a href="https://eddataexpress.ed.gov/index.cfm" target="_blank">https://eddataexpress.ed.gov/index.cfm</a>. State-level 2017 NAEP data for NAEP Percent Proficient: Math (grades 4 and 8). Retrieved May 2018. <a href="https://www.nationsreportcard.gov/ndecore/xplore/nde" target="_blank">https://www.nationsreportcard.gov/ndecore/xplore/nde</a>.
+                </p>
+                <p>
+                  <sup>2</sup> McCoy, Dana Charles, Hirokazu Yoshikawa, Kathleen M. Ziol-Guest, Greg J. Duncan, Holly S. Schindler, Katherine Magnuson, Rui Yang, Andrew Koepp, and Jack P. Shonkoff. 2017. “Impacts of Early Childhood Education on Medium- and Long-Term Educational Outcomes.” <em>Educational Researcher</em> 46, no. 8: 474-487. Cannon, Jill S., M. Rebecca Kilburn, Lynn A. Karoly, Teryn Mattox, Ashley N. Muchow, and Maya Buenaventura. 2017. <em>Research Brief: Decades of Evidence Demonstrate That Early Childhood Programs Can Benefit Children and Provide Economic Returns</em>. Santa Monica, CA: RAND Corporation. Retrieved February 2018. <a href="https://www.rand.org/pubs/research_briefs/RB9993.html" target="_blank">https://www.rand.org/pubs/research_briefs/RB9993.html</a>. Camilli, Gregory, Sadako Vargas, Sharon Ryan, and W. Steven Barnett. 2010. “Meta-Analysis of the Effects of Early Education Interventions on Cognitive and Social Development.” <em>Teachers College Record</em> 112, no. 3: 579-620. Retrieved April 10, 2018. <a href="http://www.tcrecord.org/library/Abstract.asp?ContentId=15440" target="_blank">http://www.tcrecord.org/library/Abstract.asp?ContentId=15440</a>.
+                <p>
+                  <sup>3</sup> Attewell, Paul and Thurston Domina. 2008. “Raising the Bar: Curricular Intensity and Academic Performance.” <em>Educational Evaluation and Policy Analysis</em> 30, no. 1: 51–71. Long, Mark C., Dylan Conger, and Patrice Iatarola. 2012. “Effects of High School Course-Taking on Secondary and Postsecondary Success.” <em>American Educational Research Journal</em> 49, no. 2: 285–322. Retrieved April 10, 2018. <a href="http://journals.sagepub.com/doi/pdf/10.3102/0002831211431952/" target="_blank">http://journals.sagepub.com/doi/pdf/10.3102/0002831211431952/</a>. Cowan, James and Dan Goldhaber. September 2013. <em>How Much of a “Running Start” Do Dual Enrollment Programs Provide Students?</em> Washington, D.C.: CALDER, American Institutes for Research. Retrieved January 19, 2018. <a href="https://caldercenter.org/sites/default/files/WP92-Final.pdf" target="_blank">https://caldercenter.org/sites/default/files/WP92-Final.pdf</a>. Karp, Melinda Mechur and Katherine L. Hughes. October 2008. <em>Study: Dual Enrollment Can Benefit a Broad Range of Students</em>. Retrieved January 19, 2018. <a href="https://files.eric.ed.gov/fulltext/EJ815413.pdf" target="_blank">https://files.eric.ed.gov/fulltext/EJ815413.pdf</a>.
+                </p>
+                <p>
+                  <sup>4</sup> See note 2 above for the sources.
+                </p>
+                <p>
+                  <sup>5</sup> Phillips, Deborah A., Mark W. Lipsey, Kenneth A. Dodge, Ron Haskins, Daphna Bassok, Margaret R. Burchinal, Greg J. Duncan, Mark Dynarski, Katherine A. Magnuson, and Christina Weiland. April 2017. “Puzzling It Out: The Current State of Scientific Knowledge on Pre-Kindergarten Effects” in <em>The Current State of Scientific Knowledge on Pre-Kindergarten Effects</em>. Washington, D.C.: Brookings Institute. Retrieved January 19, 2018. <a href="https://www.brookings.edu/wp-content/uploads/2017/04/duke_prekstudy_final_4-4-17_hires.pdf" target="_blank">https://www.brookings.edu/wp-content/uploads/2017/04/duke_prekstudy_final_4-4-17_hires.pdf</a>. (Note: Research into the benefits of preschool for ELs frequently uses the term “dual language learner” to refer to young children learning two (or more) languages at the same time, as well as those learning a second language while continuing to develop their first (or home) language.)
+                </p>
+                <p>
+                  <sup>6</sup> Halle, Tamara, Elizabeth Hair, Laura Wandner, Michelle McNamara, and Nina Chien. 2012. “Predictors and Outcomes of Early Versus Later English Language Proficiency Among English Language Learners.” <em>Early Childhood Research Quarterly</em> 27, no. 1: 1–20. Retrieved April 10, 2018. <a href="https://www.sciencedirect.com/science/article/pii/S0885200611000603?via%3Dihub" target="_blank">https://www.sciencedirect.com/science/article/pii/S0885200611000603?via%3Dihub</a>.
+                </p>
+                <p>
+                  <sup>7</sup> Reynolds, Arthur J., Brandt A. Richardson, Momoko Hayakawa, Erin M. Lease, Mallory Warner-Richter, Michelle M. Englund, Suh-Ruu Ou, and Molly Sullivan. 2014. “Association of a Full-Day vs Part-Day Preschool Intervention With School Readiness, Attendance, and Parent Involvement.” <em>JAMA</em> 312: 2126–2134.
+                </p>
+                <p>
+                  <sup>8</sup> Attewell, Paul and Thurston Domina. 2008. “Raising the Bar: Curricular Intensity and Academic Performance.” Educational Evaluation and Policy Analysis 30, no. 1: 51–71. Long, Mark C., Dylan Conger, and Patrice Iatarola. 2012. “Effects of High School Course-Taking on Secondary and Postsecondary Success.” <em>American Educational Research Journal</em> 49, no. 2: 285–322. Retrieved April 10, 2018. <a href="http://journals.sagepub.com/doi/pdf/10.3102/0002831211431952/" target="_blank">http://journals.sagepub.com/doi/pdf/10.3102/0002831211431952/</a>.
+                </p>
+                <p>
+                  <sup>9</sup> Callahan, Rebecca M., Lindsey Wilkinson, and Chandra Muller. 2010. “Academic Achievement and Course Taking Among Language Minority Youth in U.S. Schools: Effects of ESL Placement.” <em>Educational Evaluation and Policy Analysis</em> 32, no. 1: 84–117. Retrieved April 10, 2018. <a href="http://journals.sagepub.com/doi/pdf/10.3102/0162373709359805" target="_blank">http://journals.sagepub.com/doi/pdf/10.3102/0162373709359805</a>.
+                </p>
+                <p>
+                  <sup>10</sup> Olsen, Laurie. 2015. <em>Reparable Harm: Fulfilling the Unkept Promise of Educational Opportunity for California’s Long Term English Learners</em>. Long Beach: Californians Together. Retrieved January 5, 2018. <a href="https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/" target="_blank">https://www.californianstogether.org/reparable-harm-fulfilling-the-unkept-promise-of-educational-opportunity-for-californias-long-term-english-learners/</a>. Note that this source is based on studies of California students and may not be applicable for long-term English learners in all states and districts. Abedi, Jamal. 2008. “Classification System for English Language Learners: Issues and Recommendations.” <em>Educational Measurement: Issues and Practice</em> 27, no. 3: 17–31. Hooker, Sarah, Margie McHugh, and Michael Fix. 2014. <em>Critical Choices in Post-Recession California: Investing in the Educational and Career Success of Immigrant Youth</em>. Washington, DC: Migration Policy Institute. Retrieved January 5, 2018. <a href="http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth" target="_blank">http://www.migrationpolicy.org/research/critical-choices-post-recession-california-educational-career-success-immigrant-youth</a>. Callahan, Rebecca M. 2005. “Tracking and High School English Learners: Limiting Opportunity to Learn.” <em>American Educational Research Journal</em> 42, no. 2: 305–28. See also note 9 above, Callahan et al. (2010).
+                </p>
+                <p>
+                  <sup>11</sup> Cowan, James and Dan Goldhaber. September 2013. <em>How Much of a “Running Start” Do Dual Enrollment Programs Provide Students?</em> Washington, D.C.: CALDER, American Institutes for Research. Retrieved January 19, 2018. <a href="https://caldercenter.org/sites/default/files/WP92-Final.pdf" target="_blank">https://caldercenter.org/sites/default/files/WP92-Final.pdf</a>.
+                </p>
+                <p>
+                  <sup>12</sup> Karp, Melinda Mechur and Katherine L. Hughes. October 2008. <em>Study: Dual Enrollment Can Benefit a Broad Range of Students</em>. Retrieved January 19, 2018. <a href="https://files.eric.ed.gov/fulltext/EJ815413.pdf" target="_blank">https://files.eric.ed.gov/fulltext/EJ815413.pdf</a>.
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Charts -->
+
+    <script>
+
+        // charts
+
+        d3.tsv("assets/data/data.tsv", function (error, data) {
+            if (error) { console.log(error); }
+            else {
+                data.forEach(function (d) {
+                    d.chart = d.chart;
+                    d.subchart = +d.subchart;
+                    d.chartlevel = d.chartlevel;
+                    d.level = d.level;
+                    d.group = d.group;
+                    d.num = +d.num;
+                    d.pct = +d.pct;
+                    d.group1_p = +d.group1_p;
+                    d.group2_p = +d.group2_p;
+                    d.diff_ppt = +d.diff_ppt;
+                    d.group1_n = +d.group1_n;
+                    d.group2_n = +d.group2_n;
+                    d.order = +d.order;
+                    d.definition = d.definition;
+                });
+
+                data1_1 = data.filter(function(d) { return d.chart == "1-1"; });
+                data1_2 = data.filter(function(d) { return d.chart == "1-2"; });
+                data1_4 = data.filter(function(d) { return d.chart == "1-4"; });
+                data2_1 = data.filter(function(d) { return d.chart == "2-1"; });
+                data2_2 = data.filter(function(d) { return d.chart == "2-2"; });
+                data2_3 = data.filter(function(d) { return d.chart == "2-3"; });
+                data3_1 = data.filter(function(d) { return d.chart == "3-1"; });
+                data3_2 = data.filter(function(d) { return d.chart == "3-2"; });
+
+                var chart1_1 = multiBar().data(data1_1).marginLeft(180).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_1").chartID("chart1_1")
+                  .xAxisLabel("PERCENTAGE")
+                  .title("Overall, ELs were slightly more likely than non-ELs to have access to preschools (including free preschool and full-day preschool).")
+                  // .figTitle("Percentage of enrolled in districts that provided preschool, by type of preschool offered: 2013-14")
+                  .altText("This chart displays the percentage of English Learners and non-English learners enrolled in districts by type of preschool offered by the district.")
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes('“Access to preschool” is defined as going to school (enrollment) in a district that provided preschool programs or services. Given the available national-level data, the analysis is limited to students in schools with preschool or early elementary grades (any of grades preschool through grade 2). It does not include students in schools that include only upper elementary, middle, or high school grades. Districts that provided free preschool include districts that provided preschool only for free and districts that provided preschool for free or for a fee. In this figure, 2 percent of ELs and non-ELs were in districts that provided preschool programs or services but that did not respond to questions about preschool cost or length.')
+                  .notesCount(2);
+                var chart1_2 = colChart().data(data1_2).containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_2").chartID("chart1_2")
+                  .yAxisLabel("PERCENTAGE")
+                  .title("Despite access to preschool, ELs were somewhat less likely than non-EL preschool-aged children to enroll. Only 16 percent of preschool-aged ELs enrolled in preschool compared with 21 percent of non-EL children.")
+                  // .figTitle("Percentage of ELs and non-ELs enrolled in preschool: 2013-14")
+                  .altText("This chart displays the percentage of preschool-aged English Learners and non-English Learners enrolled in preschool.")
+                  .source('U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16. U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD), "State Nonfiscal Survey of Public Elementary/Secondary Education," 2015–16. Downloaded May 2018 from <a href="https://nces.ed.gov/ccd/stnfis.asp" target="_blank">https://nces.ed.gov/ccd/stnfis.asp</a>. U.S. Department of Education, EDFacts Data Warehouse (EDW), 2015–16. SEA File C141, LEP Enrolled. Extracted May 2018.')
+                  .sourceCount(3)
+                  .notes("Percentages are based on an estimate of the number of children ages 3 through 5. Given the available data, this was estimated using the population of children enrolled in grades 1 and 2.")
+                  .notesCount(1);
+                var chart2_1 = multiBar().data(data2_1).marginLeft(140).height(500).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_1").chartID("chart2_1").toggles(1)
+                  .xAxisLabel("PERCENTAGE")
+                  .title(["While the majority of ELs and non-ELs had access to Algebra I in grade 8 — 65 and 72 percent respectively — only 2 percent of ELs and 7 percent of non-ELs enrolled in the course.",
+                  "While the majority of ELs and non-ELs in high school had access to physics, only 7 percent of ELs and 10 percent of non-ELs enrolled in the course.",
+                  "While the majority of ELs and non-ELs in high school had access to chemistry, only 12 percent of ELs and 18 percent of non-ELs enrolled in the course.",
+                  "While the majority of ELs and non-ELs in high school had access to calculus, only 1 percent of ELs and 4 percent of non-ELs enrolled in the course."])
+                  .altText(["This chart displays the percentage of ELs and non-ELs enrolled in schools offering Algebra I in grade 7 or 8, and the percentage of ELs and non-ELs enrolled in Algebra I.",
+                  "This chart displays the percentage of ELs and non-ELs enrolled in schools offering Physics in grades 9 through 12, and the percentage of ELs and non-ELs enrolled in Physics.",
+                  "This chart displays the percentage of ELs and non-ELs enrolled in schools offering Chemistry in grades 9 through 12, and the percentage of ELs and non-ELs enrolled in Chemistry.",
+                  "This chart displays the percentage of ELs and non-ELs enrolled in schools offering Calculus in grades 9 through 12, and the percentage of ELs and non-ELs enrolled in Calculus."])
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes("Percentages are based on enrollment in schools with the relevant grades (grade 8 for Algebra and any of grades 9 through 12 for other courses).")
+                  .notesCount(1);
+                var chart2_2 = dotPlot().data(data2_2).marginLeft(210).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_2").chartID("chart2_2").toggles(1)
+                  .group("schools").xAxisLabel("PERCENTAGE").axisdefs(1)
+                  .title(["Algebra I was offered in 58 percent of schools with grade 8. Forty-eight percent of schools with high concentrations of ELs offered the course compared with 70 percent of schools with low concentrations of EL students.<sup>b</sup>",
+                  "Physics was offered in 61 percent of high schools. However, 45 percent of high schools with high concentrations of ELs offered physics compared with 76 percent of those with low concentrations of ELs.<sup>b</sup>",
+                  "Chemistry was offered in 73 percent of high schools. While 56 percent of high schools with high concentrations of ELs offered chemistry, 88 percent of schools with low concentrations of EL students offered the course.<sup>b</sup>",
+                  "Calculus was offered in 50 percent of high schools. Only 33 percent of high schools with high concentrations of ELs offered calculus compared with two-thirds of those with low concentrations of EL students.<sup>b</sup>"])
+                  .altText("These charts display the percentage of high schools offering various advanced courses by level of EL concentration.")
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes("Percentages are based on all schools that had students in the relevant grades (grade 8 for Algebra; any of grades 9 through 12 for other courses).")
+                  .notesCount(2);
+                var chart2_3 = dotTwo().data(data2_3).marginLeft(80).containerID("two_chart").subcontainerID("two_sections").sectionID("ch2_3").chartID("chart2_3")
+                  .group1("EL course enrollment").group2("EL school enrollment").xMax(0.10).xAxisLabel("PERCENTAGE")
+                  .title("ELs were less represented in Algebra I and advanced math and science courses than expected given their representation in school enrollment.")
+                  .altText("This chart shows the percent of enrollment in schools offering advanced courses and the enrollment in those courses who are ELs.")
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes("Percentages for school enrollment are based on enrollment in schools with the relevant grades (grade 8 for Algebra I; any of grades 9 through 12 for the other courses) that offered the course. Percentages for course enrollment are based on students enrolled in the course.")
+                  .notesCount(2);
+                var chart3_1 = dotPlot().data(data3_1).marginLeft(210).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_1").chartID("chart3_1")
+                  .group("schools").xAxisLabel("PERCENTAGE").axisdefs(1)
+                  .title("Dual credit programs were offered in 55 percent of high schools. The percentage of high schools offering dual credit programs decreased as the percentage of ELs in the school increased.<sup>b</sup>")
+                  .altText("This chart displays the percentage of high schools offering dual credit programs by level of EL concentration.")
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes("Percentages are based on schools that offered any of grades 9 through 12.")
+                  .notesCount(2);
+                var chart3_2 = colChart().data(data3_2).containerID("three_chart").subcontainerID("three_sections").sectionID("ch3_2").chartID("chart3_2")
+                  .yAxisLabel("PERCENTAGE")
+                  .title("ELs had somewhat less access than non-ELs to dual credit programs, defined as enrolling in schools that offered the program.")
+                  .altText("This chart displays the percentage of ELs and non-ELs who attended schools that offered dual credit programs.")
+                  .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+                  .sourceCount(1)
+                  .notes("Percentages are based on students enrolled in schools that offered any of grades 9 through 12.")
+                  .notesCount(1);
+
+                d3.select("#ch1_1").call(chart1_1);
+                d3.select("#ch1_2").call(chart1_2);
+                d3.select("#ch2_1").call(chart2_1);
+                d3.select("#ch2_2").call(chart2_2);
+                d3.select("#ch2_3").call(chart2_3);
+                d3.select("#ch3_1").call(chart3_1);
+                d3.select("#ch3_2").call(chart3_2);
+
+            };
+        });
+
+
+        d3.tsv("assets/data/preschool.tsv", function (error, data) {
+
+            var chart1_4 = stackedBar().data(data).marginLeft(145)
+              .height(200)
+              .containerID("one_chart").subcontainerID("one_sections").sectionID("ch1_4").chartID("chart1_4")
+              .title("Among children enrolled in preschool, 13 percent were ELs. ELs were underrepresented in districts that only provided preschool for a fee.")
+              .altText("This chart displays the percentage of preschoolers enrolled who were English Learners and non-English learners by cost of preschool programs offered by the district.")
+              .source("U.S. Department of Education, Office for Civil Rights, Civil Rights Data Collection (CRDC), 2015–16.")
+              .sourceCount(1)
+              .notes("Percentages are based on total preschool enrollment. Percentages by type of program are based on preschoolers enrolled in districts that provided the type of program. Free preschool includes districts that provided preschool only for free and districts that provided preschool for free or for a fee.")
+              .notesCount(3);
+
+            d3.select("#ch1_4").call(chart1_4);
+
+        });
+
+    </script>
+
+</body>
+</html>
