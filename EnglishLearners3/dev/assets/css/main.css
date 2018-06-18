@@ -5703,7 +5703,7 @@ button:hover,
 
 .hex_map_legend_stop {
   height: 15px;
-  width: 100px;
+  width: 100%;
   border: 1px solid white;
 }
 
@@ -5715,6 +5715,7 @@ button:hover,
 
 .hex_map_legend_text {
   text-align: center;
+  transform: translateX(50%);
 }
 
 .hex_map_legend_gradient_text {
