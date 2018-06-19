@@ -8448,7 +8448,7 @@ function hex_map() {
 				.append("div")
 					.attr("class", "hex_map_legend_stop_container")
 					.classed("no_data", function(d) { if (d.text === "No data") { return true }; })
-					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width) + "px"; });
+					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
 
 		if (colors.filter(function(d) { return d.text === "No data"; }).length > 0) {
 			legend.insert("p", ".no_data");
@@ -8471,7 +8471,7 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid #FFF");
+						.style("border", "1px solid");
 
 					selected_category = null;
 
@@ -8482,13 +8482,13 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid #FFF");
+						.style("border", "1px solid");
 
 					// apply selected status for selected category
 
 					d3.select(this)
 						.classed("selected", true)
-						.style("border", "1px solid #160633");
+						.style("border", "2px solid");
 
 					// identify selected category
 
@@ -8759,7 +8759,7 @@ function hex_map() {
 			// reset legend selection
 
 			legend.selectAll(".hex_map_legend_stop")
-				.style("border", "1px solid #FFF")
+				.style("border", "1px solid")
 				.classed("selected", false);
 
 			highlight_status = 0;
@@ -8775,7 +8775,7 @@ function hex_map() {
 			legend.selectAll(".hex_map_legend_stop_container")
 				.transition()
 					.duration(animateTime)
-						.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width) + "px"; });
+						.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
 
 			// make transitions
 
@@ -8785,7 +8785,7 @@ function hex_map() {
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 1)
-					.style("stroke", "#FFF")
+					// .style("stroke", "#FFF")
 					.style("stroke-width", 1)
 					.style("fill", function(d) { return d.color; });
 

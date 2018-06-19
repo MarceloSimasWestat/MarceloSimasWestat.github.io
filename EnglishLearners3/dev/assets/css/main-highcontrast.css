@@ -5637,7 +5637,7 @@ button:hover,
 }
 
 .hex_map .hexagon {
-  stroke: white;
+  stroke: rgba(0, 0, 0, 0.5);
 }
 
 .hex_map .hex_name {
@@ -5666,12 +5666,14 @@ button:hover,
 }
 
 .hex_map_legend_stop_container {
+  margin: 0px 1px;
 }
 
 .hex_map_legend_stop {
   height: 15px;
   width: 75px;
-  border: 1px solid white;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.5);
 }
 
 .hex_map_legend_gradient {
