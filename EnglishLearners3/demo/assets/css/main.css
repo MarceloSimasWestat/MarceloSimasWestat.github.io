@@ -21,6 +21,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
     line-height: 1;
     -ms-overflow-style: scrollbar;
+    overflow-y: scroll;
 }
 
 ol, ul {
@@ -5669,7 +5670,7 @@ button:hover,
 }
 
 .hex_map .hexagon {
-  stroke: white;
+  stroke: rgba(0, 0, 0, 0.5);
 }
 
 .hex_map .hex_name {
@@ -5698,12 +5699,14 @@ button:hover,
 }
 
 .hex_map_legend_stop_container {
+  margin: 0px 1px;
 }
 
 .hex_map_legend_stop {
   height: 15px;
-  width: 100px;
-  border: 1px solid white;
+  width: 100%;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.5);
 }
 
 .hex_map_legend_gradient {
@@ -5714,6 +5717,7 @@ button:hover,
 
 .hex_map_legend_text {
   text-align: center;
+  transform: translateX(50%);
 }
 
 .hex_map_legend_gradient_text {

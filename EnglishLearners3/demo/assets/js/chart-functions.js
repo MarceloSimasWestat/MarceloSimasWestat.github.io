@@ -745,11 +745,11 @@ function barChart() {
 			// also fix district names
 
 			if (d.pct === "‡" || d.pct === "—" || d.pct === "#") {
-				d.pct_fixed = 0;
+				d.pct_fixed = +0;
 				d.state_fixed = d.state + " (" + d.pct + ")";
 			}
 			else {
-				d.pct_fixed = d.pct;
+				d.pct_fixed = +d.pct;
 				d.state_fixed = d.state;
 			};
 
@@ -813,6 +813,12 @@ function barChart() {
 							source = source_all[i]
 							data = data_all.filter(function(d) { return d.chartlevel == selected_val; });
 
+							// sort data
+							data_national = data.filter(function(d) { return d.state === "50 states and DC"; });
+							data_states = data.filter(function(d) { return d.state !== "50 states and DC"; });
+							data_states.sort(function(a, b) { return d3.descending(a.pct_fixed, b.pct_fixed) || d3.ascending(a.state, b.state); });
+							data = data_national.concat(data_states);
+
 							updateData();
 
 						})
@@ -852,7 +858,6 @@ function barChart() {
 			.text(altText);
 
 		// tooltips using d3-tip
-
 		var tipBar = d3.tip()
 			.attr("class", "d3-tip")
 			.direction("e")
@@ -860,6 +865,12 @@ function barChart() {
 			.html(function(d) {	return formatPercent(d.pct); });
 
 		svg.call(tipBar);
+
+		// sort data
+		data_national = data.filter(function(d) { return d.state === "50 states and DC"; });
+		data_states = data.filter(function(d) { return d.state !== "50 states and DC"; });
+		data_states.sort(function(a, b) { return d3.descending(a.pct_fixed, b.pct_fixed) || d3.ascending(a.state, b.state); });
+		data = data_national.concat(data_states);
 
 		// axis scales
 
@@ -904,7 +915,6 @@ function barChart() {
 			.text(xAxisLabel);
 
 		// draw bars
-
 		var bars = svg.selectAll("rect.bar")
 			.data(data);
 
@@ -1063,13 +1073,15 @@ function barChart() {
 
 			yScale.domain(data.map(function(d) { return d.state_fixed; }));
 
-			svg.select(".y.axis")
-				.remove();
+			/*svg.select(".y.axis")
+				.remove();*/
 
-			svg.append("g")
+			svg.select(".y.axis")
 				.attr("class", "y axis")
 				.attr("aria-hidden", "true")
-				.call(yAxis);
+				.transition()
+					.duration(animateTime)
+					.call(yAxis);
 
 			svg.select(".y.axis")
 				.selectAll("text")
@@ -8257,6 +8269,7 @@ function hex_map() {
 								{color: "#340d67", text: "> 80%", category: 5}], // default color set - 5 categories
 			//legend_vals = [0.5, 0.6, 0.7, 0.8 , 1],
 			//legend_text = ["< 50%", "50% - < 60%", "60 - < 70%", "70% - 80%", "> 80%"],
+			legend_width_multiplier = 100,
 			animateTime = 1000,
 			containerID = [],
 			subcontainerID = [],
@@ -8309,6 +8322,7 @@ function hex_map() {
 				return col.category === datum.dispcat;
 			});
 			datum.color = (match[0] !== undefined) ? match[0].color : null;
+			datum.font = (match[0] !== undefined) ? match[0].font : null;
 		});
 
 		// convert values for tooltips to text
@@ -8414,18 +8428,33 @@ function hex_map() {
 		highlight_status = 0;
 		selected_category = null;
 
+		var legend_total_width = colors.length * legend_width_multiplier; /* determine total legend width */
+		var legend_total_hex = data.length; /* determine number of hexes */
+		colors.forEach(function(d) {
+			d.hex_count = data.filter(function(e) { return e.dispcat === d.category }).length;
+		}); /* determine number of hexes in each color category */
+
 		var legend_dropdown = dom.append("div")
 			.attr("class", "hex_map_legend_dropdown_container")
 			.style("opacity", 0);
 
 		var legend = legend_dropdown.append("div")
-			.attr("class", "hex_map_legend_container");
+			.attr("class", "hex_map_legend_container")
+			.style("width", legend_total_width + "px");
 
 		var legend_stop = legend.selectAll(".hex_map_legend_stop_container")
 			.data(colors)
 			.enter()
 				.append("div")
-					.attr("class", "hex_map_legend_stop_container");
+					.attr("class", "hex_map_legend_stop_container")
+					.classed("no_data", function(d) { if (d.text === "No data") { return true }; })
+					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
+
+		if (colors.filter(function(d) { return d.text === "No data"; }).length > 0) {
+			legend.insert("p", ".no_data");
+			legend.select("p")
+				.html("&nbsp;");
+		};
 
 		legend_stop.append("div")
 			.attr("class", "hex_map_legend_stop")
@@ -8442,7 +8471,7 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid #FFF");
+						.style("border", "1px solid");
 
 					selected_category = null;
 
@@ -8453,13 +8482,13 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid #FFF");
+						.style("border", "1px solid");
 
 					// apply selected status for selected category
 
 					d3.select(this)
 						.classed("selected", true)
-						.style("border", "1px solid #160633");
+						.style("border", "2px solid");
 
 					// identify selected category
 
@@ -8479,6 +8508,9 @@ function hex_map() {
 
 		legend_stop.append("div")
 			.attr("class", "hex_map_legend_text")
+			.style("transform", function(d) {
+				if (d.text === "No data") { return "translateX(0)"; };
+			})
 			.text(function(d) { return d.text; });
 
 		/* // NOT NEEDED: add state dropdown for highlighting if needed
@@ -8633,6 +8665,7 @@ function hex_map() {
 				return "-0.25em";
 			})
 			.attr("text-anchor", "middle")
+			.style("fill", function(d) { return d.font; })
 			.style("opacity", 0)
 			.style("pointer-events", "none")
 			.text(function(d) { return d.st_abbr; });
@@ -8645,6 +8678,7 @@ function hex_map() {
 			.attr("y", function(d) { return yScale(d.y); })
 			.attr("dy", "0.85em")
 			.attr("text-anchor", "middle")
+			.style("fill", function(d) { return d.font; })
 			.style("opacity", 0)
 			.style("pointer-events", "none")
 			.text(function(d) {
@@ -8725,11 +8759,23 @@ function hex_map() {
 			// reset legend selection
 
 			legend.selectAll(".hex_map_legend_stop")
-				.style("border", "1px solid #FFF")
+				.style("border", "1px solid")
 				.classed("selected", false);
 
 			highlight_status = 0;
 			selected_category = null;
+
+			colors.forEach(function(d) {
+				d.hex_count = data.filter(function(e) { return e.dispcat === d.category }).length;
+			}); /* recalculate number of hexes in each color category */
+
+			legend_total_width = colors.length * legend_width_multiplier;
+			legend_total_hex = data.length;
+
+			legend.selectAll(".hex_map_legend_stop_container")
+				.transition()
+					.duration(animateTime)
+						.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
 
 			// make transitions
 
@@ -8739,7 +8785,7 @@ function hex_map() {
 				.transition()
 					.duration(animateTime)
 					.style("opacity", 1)
-					.style("stroke", "#FFF")
+					// .style("stroke", "#FFF")
 					.style("stroke-width", 1)
 					.style("fill", function(d) { return d.color; });
 
@@ -8766,16 +8812,20 @@ function hex_map() {
 
 			hex_group.select(".hex_name")
 				.transition()
-					.duration(animateTime/2)
+					.duration(animateTime)
 					.attr("dy", function(d) {
 						if (d.dispval === -99 && d.symbol === "‡") { return "0.35em"; };
 						return "-0.25em";
-					});
+					})
+					.style("fill", function(d) { return d.font; })
+					.style("opacity", 1);
 
 			hex_group.select(".hex_pct")
 				.transition()
-					.delay(animateTime/2)
+					// .delay(animateTime/2)
 					.duration(animateTime)
+					.style("fill", function(d) { return d.font; })
+					.style("opacity", 1)
 					.tween("text", function(d) {
 
 						// get current value first
@@ -8820,7 +8870,7 @@ function hex_map() {
 		// legend highlight
 
 		function highlight() {
-			hex_group.select(".hexagon")
+			hex_group.selectAll(".hexagon, .hex_name, .hex_pct")
 				.transition()
 					.duration(animateTime)
 					.style("opacity", function(d) {
@@ -8978,6 +9028,12 @@ function hex_map() {
 	chart.legend_text = function(value) {
 		if (!arguments.length) return legend_text;
 		legend_text = value;
+		return chart;
+	};
+
+	chart.legend_width_multiplier = function(value) {
+		if (!arguments.length) return legend_width_multiplier;
+		legend_width_multiplier = value;
 		return chart;
 	};
 
