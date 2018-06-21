@@ -8448,7 +8448,7 @@ function hex_map() {
 				.append("div")
 					.attr("class", "hex_map_legend_stop_container")
 					.classed("no_data", function(d) { if (d.text === "No data") { return true }; })
-					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
+					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width) + "px"; });
 
 		if (colors.filter(function(d) { return d.text === "No data"; }).length > 0) {
 			legend.insert("p", ".no_data");
@@ -8471,7 +8471,7 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid");
+						.style("border", "1px solid #fff");
 
 					selected_category = null;
 
@@ -8482,13 +8482,13 @@ function hex_map() {
 
 					legend.selectAll(".hex_map_legend_stop")
 						.classed("selected", false)
-						.style("border", "1px solid");
+						.style("border", "1px solid #fff");
 
 					// apply selected status for selected category
 
 					d3.select(this)
 						.classed("selected", true)
-						.style("border", "2px solid");
+						.style("border", "1px solid #000");
 
 					// identify selected category
 
@@ -8759,7 +8759,7 @@ function hex_map() {
 			// reset legend selection
 
 			legend.selectAll(".hex_map_legend_stop")
-				.style("border", "1px solid")
+				.style("border", "1px solid #fff")
 				.classed("selected", false);
 
 			highlight_status = 0;
@@ -8775,7 +8775,7 @@ function hex_map() {
 			legend.selectAll(".hex_map_legend_stop_container")
 				.transition()
 					.duration(animateTime)
-						.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width-2) + "px"; });
+						.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width) + "px"; });
 
 			// make transitions
 
