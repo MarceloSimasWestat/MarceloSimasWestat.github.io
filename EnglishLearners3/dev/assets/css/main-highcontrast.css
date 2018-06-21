@@ -5671,7 +5671,7 @@ button:hover,
 
 .hex_map_legend_stop {
   height: 15px;
-  width: 75px;
+  width: 100%;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.5);
 }
