@@ -5637,7 +5637,7 @@ button:hover,
 }
 
 .hex_map .hexagon {
-  stroke: rgba(0, 0, 0, 0.5);
+  stroke: #fff;
 }
 
 .hex_map .hex_name {
@@ -5666,14 +5666,13 @@ button:hover,
 }
 
 .hex_map_legend_stop_container {
-  margin: 0px 1px;
+  margin: 0px 0px;
 }
 
 .hex_map_legend_stop {
   height: 15px;
   width: 100%;
-  border: 1px solid;
-  border-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #fff;
 }
 
 .hex_map_legend_gradient {
@@ -6137,6 +6136,9 @@ div.disclaimer .legendPointer {
         /*border: 1px dashed orange;*/
     }
 
+.subheading {
+  font-weight: bold;
+}
 
 /* ************************** */
 /*       MEDIA QUERIES        */
