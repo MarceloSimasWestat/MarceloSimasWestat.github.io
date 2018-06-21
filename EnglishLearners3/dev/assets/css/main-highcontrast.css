@@ -6136,6 +6136,9 @@ div.disclaimer .legendPointer {
         /*border: 1px dashed orange;*/
     }
 
+.subheading {
+  font-weight: bold;
+}
 
 /* ************************** */
 /*       MEDIA QUERIES        */
