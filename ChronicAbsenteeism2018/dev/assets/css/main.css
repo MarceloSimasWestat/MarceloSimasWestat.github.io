@@ -3751,7 +3751,7 @@ body.is-ie .wrapper.fullscreen {
 }
 
 footer .dataExclusion {
-    text-align: left; 
+    text-align: left;
     margin-top: 3.5em;
     display: inline-block;
 }
@@ -4659,7 +4659,7 @@ ul.callout li {
 	}
 
 #maplegend {
-    max-width: 375px; 
+    max-width: 375px;
     display: inline;
 }
 
@@ -4675,7 +4675,15 @@ footer .footer-image {
 }
 
 /* Chart styling */
+.chartNotes {
+    font: 13px Inconsolata;
+    color: #000;
+    display: block;
+}
 
+.chartNotes strong {
+  color: #000;
+}
 
 .title {
 	font: 400 18px "Karla", Helvetica, Arial, sans-serif;

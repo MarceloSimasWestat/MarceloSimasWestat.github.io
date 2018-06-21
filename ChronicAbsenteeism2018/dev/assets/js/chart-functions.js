@@ -12,8 +12,11 @@ function barChart() {
 		marginBottom = 45,
 		barWidth = 15,
 		animateTime = 1000,
+		xAxisLabel,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes,
+		source,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -31,7 +34,7 @@ function barChart() {
 		// margins; adjust width and height to account for margins
 
 		var width = parseInt(d3.select("#" + sectionID).style("width"), 10);
-		
+
 		var margin = {right: 20},
 			widthAdj = width - marginLeft - margin.right,
 			heightAdj = height - marginTop - marginBottom;
@@ -106,13 +109,13 @@ function barChart() {
 
 		// domains
 
-		function xDomain() { 
+		function xDomain() {
 			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice() }
 			else { xScale.domain([0, 0.5]); }
 		};
 		xDomain();
 		yScale.domain(data.map(function(d) { return d.var1; }));
-		
+
 		// axes
 
 		function formatValueAxis(d) {
@@ -142,7 +145,7 @@ function barChart() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14")
+			.text(xAxisLabel);
 
 		// draw bars
 
@@ -164,7 +167,7 @@ function barChart() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -191,7 +194,21 @@ function barChart() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
-			
+
+		// add notes and sources if defined
+
+		if (notes) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "notes" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + notes + "</span>"; });
+		};
+
+		if (source) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "source" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + source + "</span>"; });
+		};
+
 		// resize
 
 		window.addEventListener("resize", function() {
@@ -302,6 +319,14 @@ function barChart() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -314,6 +339,22 @@ function barChart() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
 		return chart;
 
 	};
@@ -722,8 +763,11 @@ function dotPlot() {
 		marginBottom = 45,
 		dotSize = 5,
 		animateTime = 1000,
+		xAxisLabel,
 		title = "Generic chart title. Update me using .title()!",
 		altText = "Fill in alt text for screen readers!",
+		notes,
+		source,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -812,7 +856,7 @@ function dotPlot() {
 
 		// domains
 
-		function xDomain() { 
+		function xDomain() {
 			if (window.innerWidth <= 736) { xScale.domain([0, d3.max(data, function(d) { return d.var3; })]).nice() }
 			else { xScale.domain([0, 0.5]); }
 		};
@@ -848,7 +892,7 @@ function dotPlot() {
 			.attr("dy", "3.1em")
 			.attr("aria-hidden", "true")
 			.attr("text-anchor", "end")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text(xAxisLabel);
 
 		// draw dots and lines
 
@@ -880,7 +924,7 @@ function dotPlot() {
 					.on("mouseover", tipDot.show)
 					.on("mouseout", tipDot.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -928,6 +972,20 @@ function dotPlot() {
 			.attr("class", "y axis")
 			.attr("aria-hidden", "true")
 			.call(yAxis)
+
+		// add notes and sources if defined
+
+		if (notes) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "notes" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + notes + "</span>"; });
+		};
+
+		if (source) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "source" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + source + "</span>"; });
+		};
 
 		// resize
 
@@ -1009,13 +1067,13 @@ function dotPlot() {
 
     }; */
 
-    chart.height = function(value) {
+  chart.height = function(value) {
 
-        if (!arguments.length) return height;
-        height = value;
-        return chart;
+      if (!arguments.length) return height;
+      height = value;
+      return chart;
 
-    };
+  };
 
 	chart.marginTop = function(value) {
 
@@ -1057,6 +1115,14 @@ function dotPlot() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title = function(value) {
 
 		if (!arguments.length) return title;
@@ -1069,6 +1135,22 @@ function dotPlot() {
 
 		if (!arguments.length) return altText;
 		altText = value;
+		return chart;
+
+	};
+
+	chart.notes = function(value) {
+
+		if (!arguments.length) return notes;
+		notes = value;
+		return chart;
+
+	};
+
+	chart.source = function(value) {
+
+		if (!arguments.length) return source;
+		source = value;
 		return chart;
 
 	};
@@ -1132,12 +1214,19 @@ function groupedCol() {
 		marginBottom = 45,
 		animateTime = 1000,
 		colWidth = 15,
+		yAxisLabel,
 		title1 = "Generic chart title. Update me using .title1()!",
 		title2 = "Generic chart title. Update me using .title2()!",
 		title3 = "Generic chart title. Update me using .title3()!",
 		altText1 = "Fill in alt text for screen readers! Use .altText1().",
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
+		notes1,
+		notes2,
+		notes3,
+		source1,
+		source2,
+		source3,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
@@ -1194,6 +1283,8 @@ function groupedCol() {
 				updateData("1-5");
 				updateTitle(1);
 				updateAltText(1);
+				updateNotes(1);
+				updateSource(1);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -1213,6 +1304,8 @@ function groupedCol() {
 				updateData("1-4");
 				updateTitle(2);
 				updateAltText(2);
+				updateNotes(2);
+				updateSource(2);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -1232,6 +1325,8 @@ function groupedCol() {
 				updateData("1-3");
 				updateTitle(3);
 				updateAltText(3);
+				updateNotes(3);
+				updateSource(3);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -1352,7 +1447,7 @@ function groupedCol() {
 			.attr("y", "-2.1em")
 			.attr("text-anchor", "start")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text(yAxisLabel);
 
 		// draw columns
 
@@ -1374,7 +1469,7 @@ function groupedCol() {
 					.on("mouseover", tipCol.show)
 					.on("mouseout", tipCol.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+						.text(function(d) { return formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -1407,6 +1502,20 @@ function groupedCol() {
 			.selectAll(".tick text")
 				.call(wrap, xScale.rangeBand());
 
+		// add notes and sources if defined
+
+		if (notes1) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "notes" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + notes1 + "</span>"; });
+		};
+
+		if (source1) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "source" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + source1 + "</span>"; });
+		};
+
 		// update functions
 
 		function updateTitle(titleID) {
@@ -1427,6 +1536,28 @@ function groupedCol() {
 					if (altTextID == 1) { return altText1; }
 					if (altTextID == 2) { return altText2; }
 					if (altTextID == 3) { return altText3; }
+				})
+
+		};
+
+		function updateNotes(noteID) {
+
+			d3.select("#notes" + chartID)
+				.html(function() {
+					if (noteID == 1) { return "<span class = 'chartNotes'>" + notes1 + "</span>"; }
+					if (noteID == 2) { return "<span class = 'chartNotes'>" + notes2 + "</span>"; }
+					if (noteID == 3) { return "<span class = 'chartNotes'>" + notes3 + "</span>"; }
+				})
+
+		};
+
+		function updateSource(sourceID) {
+
+			d3.select("#source" + chartID)
+				.html(function() {
+					if (sourceID == 1) { return "<span class = 'chartNotes'>" + source1 + "</span>"; }
+					if (sourceID == 2) { return "<span class = 'chartNotes'>" + source2 + "</span>"; }
+					if (sourceID == 3) { return "<span class = 'chartNotes'>" + source3 + "</span>"; }
 				})
 
 		};
@@ -1455,7 +1586,7 @@ function groupedCol() {
 				.attr("y", function(d) { return yScale(d.var3); });
 
 			updateCols.select("aria-label")
-				.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+				.text(function(d) { return formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 			updateCols.enter()
 				.append("g")
@@ -1478,7 +1609,7 @@ function groupedCol() {
 
 			updateCols.select("rect")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
+					.text(function(d) { return formatPercent(d.var3) + " of " + d.var1 + " students, or " + formatNumber(d.var2) + " students, were chronically absent."; });
 
 			updateCols.exit()
 				.transition()
@@ -1666,6 +1797,14 @@ function groupedCol() {
 
 	};
 
+	chart.yAxisLabel = function(value) {
+
+		if (!arguments.length) return yAxisLabel;
+		yAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title1 = function(value) {
 
 		if (!arguments.length) return title1;
@@ -1710,6 +1849,54 @@ function groupedCol() {
 
 		if (!arguments.length) return altText3;
 		altText3 = value;
+		return chart;
+
+	};
+
+	chart.notes1 = function(value) {
+
+		if (!arguments.length) return notes1;
+		notes1 = value;
+		return chart;
+
+	};
+
+	chart.notes2 = function(value) {
+
+		if (!arguments.length) return notes2;
+		notes2 = value;
+		return chart;
+
+	};
+
+	chart.notes3 = function(value) {
+
+		if (!arguments.length) return notes3;
+		notes3 = value;
+		return chart;
+
+	};
+
+	chart.source1 = function(value) {
+
+		if (!arguments.length) return source1;
+		source1 = value;
+		return chart;
+
+	};
+
+	chart.source2 = function(value) {
+
+		if (!arguments.length) return source2;
+		source2 = value;
+		return chart;
+
+	};
+
+	chart.source3 = function(value) {
+
+		if (!arguments.length) return source3;
+		source3 = value;
 		return chart;
 
 	};
@@ -2606,6 +2793,7 @@ function groupedBar() {
 		marginBottom = 45,
 		animateTime = 1000,
 		barWidth = 15,
+		xAxisLabel,
 		title1 = "Generic chart title #1. Update me using .title1()!",
 		title2 = "Generic chart title #2. Update me using .title2()!",
 		title3 = "Generic chart title #3. Update me using .title3()!",
@@ -2614,15 +2802,19 @@ function groupedBar() {
 		altText2 = "Fill in alt text for screen readers! Use .altText2().",
 		altText3 = "Fill in alt text for screen readers! Use .altText3().",
 		altText4 = "Fill in alt text for screen readers! Use .altText4().",
+		notes1,
+		notes2,
+		notes3,
+		notes4,
+		source1,
+		source2,
+		source3,
+		source4,
 		containerID = [],
 		subcontainerID = [],
 		chartID = [],
 		sectionID = [],
 		data = [];
-
-	var updateTitle,
-		updateAltText,
-		updateData;
 
 	function chart(selection) {
 		selection.each(function() {
@@ -2665,6 +2857,8 @@ function groupedBar() {
 				updateData(1);
 				updateTitle(1);
 				updateAltText(1);
+				updateNotes(1);
+				updateSource(1);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -2684,6 +2878,8 @@ function groupedBar() {
 				updateData(2);
 				updateTitle(2);
 				updateAltText(2);
+				updateNotes(2);
+				updateSource(2);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -2703,6 +2899,8 @@ function groupedBar() {
 				updateData(3);
 				updateTitle(3);
 				updateAltText(3);
+				updateNotes(3);
+				updateSource(3);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -2722,6 +2920,8 @@ function groupedBar() {
 				updateData(4);
 				updateTitle(4);
 				updateAltText(4);
+				updateNotes(4);
+				updateSource(4);
 
 				d3.select("#buttons" + chartID)
 					.selectAll("button")
@@ -2811,14 +3011,14 @@ function groupedBar() {
 		data_levels = d3.nest()
 			.key(function(d) { return d.level; })
 			.entries(dataFiltered);
-			
+
 		var levels = ["Elementary","Middle","High","Other"];
 
-		function xDomain() { 
-			if (window.innerWidth <= 736) { 
-			
+		function xDomain() {
+			if (window.innerWidth <= 736) {
+
 				xScale.domain([0, d3.max(data, function(d) { return d.pct; })]).nice()
-				
+
 			}
 			else { xScale.domain([0, 0.5]); }
 		};
@@ -2855,7 +3055,7 @@ function groupedBar() {
 			.attr("dy", "3.1em")
 			.attr("text-anchor", "end")
 			.attr("aria-hidden", "true")
-			.text("% CHRONICALLY ABSENT IN 2013-14");
+			.text(xAxisLabel);
 
 		// draw national bars
 
@@ -2876,7 +3076,7 @@ function groupedBar() {
 					.on("mouseover", tipBar.show)
 					.on("mouseout", tipBar.hide)
 					.append("aria-label")
-						.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+						.text(function(d) { return d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 		// draw level bars
 
@@ -2904,11 +3104,11 @@ function groupedBar() {
 				.attr("width", 0)
 				.attr("y", function(d, i) { return (yScale0.rangeBand() / 2) - ((.85 * (((1.25 * levels.length) * barWidth)) / 2)) + (1.09 * barWidth * i); })
 				.attr("height", 0)
-				//.style("fill", function(d) { return color(d.level); }) 
+				//.style("fill", function(d) { return color(d.level); })
 				.on("mouseover", tipBar.show)
 				.on("mouseout", tipBar.hide)
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 		var gs = graphScroll()
 			.container(d3.select("#" + containerID))
@@ -2966,10 +3166,23 @@ function groupedBar() {
 			.style("text-anchor", "start")
 			.text(function(d) { return d; });
 
+		// add notes and sources if defined
+
+		if (notes1) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "notes" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + notes1 + "</span>"; });
+		};
+
+		if (source1) {
+			d3.select("#"+ sectionID).append("div")
+				.attr("id", "source" + chartID)
+				.html(function() { return "<span class = 'chartNotes'>" + source1 + "</span>"; });
+		};
+
 		// update functions
 
 		function updateTitle(titleID) {
-
 			d3.select("#title" + chartID)
 				.html(function() {
 					if (titleID == 1) { return "<span class = 'title'>" + title1 + "</span>"; }
@@ -2977,11 +3190,9 @@ function groupedBar() {
 					if (titleID == 3) { return "<span class = 'title'>" + title3 + "</span>"; }
 					if (titleID == 4) { return "<span class = 'title'>" + title4 + "</span>"; }
 				})
-
 		};
 
 		function updateAltText(altTextID) {
-
 			svg.select("aria-label")
 				.text(function() {
 					if (altTextID == 1) { return altText1; }
@@ -2989,7 +3200,26 @@ function groupedBar() {
 					if (altTextID == 3) { return altText3; }
 					if (altTextID == 4) { return altText4; }
 				})
+		};
 
+		function updateNotes(noteID) {
+			d3.select("#notes" + chartID)
+				.html(function() {
+					if (noteID == 1) { return "<span class = 'chartNotes'>" + notes1 + "</span>"; }
+					if (noteID == 2) { return "<span class = 'chartNotes'>" + notes2 + "</span>"; }
+					if (noteID == 3) { return "<span class = 'chartNotes'>" + notes3 + "</span>"; }
+					if (noteID == 4) { return "<span class = 'chartNotes'>" + notes4 + "</span>"; }
+				})
+		};
+
+		function updateSource(sourceID) {
+			d3.select("#source" + chartID)
+				.html(function() {
+					if (sourceID == 1) { return "<span class = 'chartNotes'>" + source1 + "</span>"; }
+					if (sourceID == 2) { return "<span class = 'chartNotes'>" + source2 + "</span>"; }
+					if (sourceID == 3) { return "<span class = 'chartNotes'>" + source3 + "</span>"; }
+					if (sourceID == 4) { return "<span class = 'chartNotes'>" + source4 + "</span>"; }
+				})
 		};
 
 		function updateData(subChartID) {
@@ -3042,7 +3272,7 @@ function groupedBar() {
 
 			updateNational.selectAll(".national-bar")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateNational.exit()
 				.transition()
@@ -3098,7 +3328,7 @@ function groupedBar() {
 				.attr("height", barWidth);
 
 			updateGroups.selectAll("aria-label")
-				.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+				.text(function(d) { return formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateBars.enter()
 				.append("rect")
@@ -3118,7 +3348,7 @@ function groupedBar() {
 
 			updateGroups.selectAll("rect.bar")
 				.append("aria-label")
-					.text(function(d) { return "In 2013-14, " + formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+					.text(function(d) { return formatPercent(d.pct) + " of " + d.level + " school " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateBars.exit()
 				.transition()
@@ -3265,6 +3495,14 @@ function groupedBar() {
 
 	};
 
+	chart.xAxisLabel = function(value) {
+
+		if (!arguments.length) return xAxisLabel;
+		xAxisLabel = value;
+		return chart;
+
+	};
+
 	chart.title1 = function(value) {
 
 		if (!arguments.length) return title1;
@@ -3325,6 +3563,70 @@ function groupedBar() {
 
 		if (!arguments.length) return altText4;
 		altText4 = value;
+		return chart;
+
+	};
+
+	chart.notes1 = function(value) {
+
+		if (!arguments.length) return notes1;
+		notes1 = value;
+		return chart;
+
+	};
+
+	chart.notes2 = function(value) {
+
+		if (!arguments.length) return notes2;
+		notes2 = value;
+		return chart;
+
+	};
+
+	chart.notes3 = function(value) {
+
+		if (!arguments.length) return notes3;
+		notes3 = value;
+		return chart;
+
+	};
+
+	chart.notes4 = function(value) {
+
+		if (!arguments.length) return notes4;
+		notes4 = value;
+		return chart;
+
+	};
+
+	chart.source1 = function(value) {
+
+		if (!arguments.length) return source1;
+		source1 = value;
+		return chart;
+
+	};
+
+	chart.source2 = function(value) {
+
+		if (!arguments.length) return source2;
+		source2 = value;
+		return chart;
+
+	};
+
+	chart.source3 = function(value) {
+
+		if (!arguments.length) return source3;
+		source3 = value;
+		return chart;
+
+	};
+
+	chart.source4 = function(value) {
+
+		if (!arguments.length) return source4;
+		source4 = value;
 		return chart;
 
 	};
