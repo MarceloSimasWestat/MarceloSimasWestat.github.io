@@ -721,6 +721,7 @@ function barChart() {
 		marginLeft = 100,
 		marginBottom = 45,
 		barWidth = 15,
+		highlightBar = [],
 		animateTime = 1000,
 		xAxisLabel = "FILL IN X-AXIS LABEL",
 		title = "Generic chart title. Update me using .title()!",
@@ -923,6 +924,7 @@ function barChart() {
 				.attr("transform", "translate(0,0)")
 				.append("rect")
 					.attr("class", "bar")
+					.classed("highlighted", function(d) { if (highlightBar.indexOf(d.state) > -1) { return "true"; }})
 					.attr("x", 0)
 					.attr("width", 0)
 					.attr("y", function(d) { return yScale(d.state_fixed) + (yScale.rangeBand() / 2) - (barWidth/2); })
@@ -963,7 +965,7 @@ function barChart() {
 		svg.select(".y.axis")
 			.selectAll("text")
 				.each(function() {
-					if (this.textContent == "50 states and DC") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+					if (highlightBar.indexOf(this.textContent) > -1) { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
 				});
 
 		// add notes and sources if defined
@@ -1086,7 +1088,7 @@ function barChart() {
 			svg.select(".y.axis")
 				.selectAll("text")
 					.each(function() {
-						if (this.textContent == "50 states and DC") { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
+						if (this.textContent == highlightBar) { this.setAttribute("style", "font-weight: bold; text-anchor: end;") };
 					});
 
 			// update overall figure alt-text
@@ -1150,6 +1152,12 @@ function barChart() {
 	chart.barWidth = function(value) {
 		if (!arguments.length) return barWidth;
 		barWidth = value;
+		return chart;
+	};
+
+	chart.highlightBar = function(value) {
+		if (!arguments.length) return highlightBar;
+		highlightBar = value;
 		return chart;
 	};
 

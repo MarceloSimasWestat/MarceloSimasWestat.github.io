@@ -4828,6 +4828,10 @@ button:hover,
 	text-align: right;
 }
 
+.bar-chart .bar.highlighted {
+  fill: #A6426C;
+}
+
 .bar {
 	fill: #A6426C;
 }
