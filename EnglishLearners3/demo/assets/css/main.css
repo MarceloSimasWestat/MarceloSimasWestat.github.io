@@ -4871,6 +4871,10 @@ button:hover,
     text-align: right;
 }
 
+.bar-chart .bar.highlighted {
+  fill: #A6426C;
+}
+
 .bar {
     fill: #5D42A6;
 }
@@ -4879,10 +4883,10 @@ button:hover,
     fill: #A6426C;
 }
 
-    .bar:hover,
-    .overallBar:hover {
-        fill-opacity: .65;
-    }
+.bar:hover,
+.overallBar:hover {
+    fill-opacity: .65;
+}
 
 /* Column chart styling */
 
