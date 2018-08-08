@@ -4175,7 +4175,7 @@ body.loaded #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/charles-deloye-660433-unsplash.jpg") no-repeat center center fixed;
+    background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/iStock-939112186.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -4187,7 +4187,7 @@ body.loaded #sidebar nav ul li {
 
     #intro {
         background-attachment: scroll;
-        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/charles-deloye-660433-unsplash.jpg") no-repeat center center scroll;
+        background: url("images/intro.svg"), linear-gradient(to bottom right, rgba(30, 46, 73, 0.70), rgba(30, 46, 73, 0.70)), url("images/iStock-939112186.jpg") no-repeat center center scroll;
     }
 }
 
