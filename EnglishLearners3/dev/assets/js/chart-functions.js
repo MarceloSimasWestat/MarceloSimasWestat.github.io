@@ -8345,10 +8345,10 @@ function hex_map() {
 
 		data.forEach(function(d) {
 			if (d.val1 === "†" || d.val1 === "-" || d.val1 === "‡" || d.val1 === "*") { d.tooltip1 = d.val1; }
-			else if (d.val1 === "*") { d.tooltip1 = "Rounds to zero" }
+			else if (d.val1 === "**") { d.tooltip1 = "Rounds to zero" }
 			else {d.tooltip1 = formatPercent(d.val1); };
 			if (d.val2 === "†" || d.val2 === "-" || d.val2 === "‡" || d.val2 === "*") { d.tooltip2 = d.val2; }
-			else if (d.val2 === "*") { d.tooltip2 = "Rounds to zero" }
+			else if (d.val2 === "**") { d.tooltip2 = "Rounds to zero" }
 			else {d.tooltip2 = formatPercent(d.val2); };
 		});
 
