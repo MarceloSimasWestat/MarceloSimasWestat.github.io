@@ -745,7 +745,7 @@ function barChart() {
 			// set 0 width for suppressed
 			// also fix district names
 
-			if (d.pct === "‡" || d.pct === "—" || d.pct === "#") {
+			if (d.pct === "‡" || d.pct === "—" || d.pct === "#" || d.pct === "*" || d.pct === "**") {
 				d.pct_fixed = +0;
 				d.state_fixed = d.state + " (" + d.pct + ")";
 			}
@@ -8316,6 +8316,14 @@ function hex_map() {
 				d.dispval = "-99";
 				d.symbol = "#";
 			};
+			if (d.dispval === "*") {
+				d.dispval = "-99";
+				d.symbol = "*";
+			};
+			if (d.dispval === "**") {
+				d.dispval = "-99";
+				d.symbol = "**";
+			};
 
 			// convert percentage to numeric
 
@@ -8336,11 +8344,11 @@ function hex_map() {
 		// convert values for tooltips to text
 
 		data.forEach(function(d) {
-			if (d.val1 === "†" || d.val1 === "-" || d.val1 === "‡") { d.tooltip1 = d.val1; }
-			else if (d.val1 === "#") { d.tooltip1 = "Rounds to zero" }
+			if (d.val1 === "†" || d.val1 === "-" || d.val1 === "‡" || d.val1 === "*" || d.val1 === "**") { d.tooltip1 = d.val1; }
+			// else if (d.val1 === "**") { d.tooltip1 = "Rounds to zero" } // changed per e-mail 8/16
 			else {d.tooltip1 = formatPercent(d.val1); };
-			if (d.val2 === "†" || d.val2 === "-" || d.val2 === "‡") { d.tooltip2 = d.val2; }
-			else if (d.val2 === "#") { d.tooltip2 = "Rounds to zero" }
+			if (d.val2 === "†" || d.val2 === "-" || d.val2 === "‡" || d.val2 === "*" || d.val2 === "**") { d.tooltip2 = d.val2; }
+			// else if (d.val2 === "**") { d.tooltip2 = "Rounds to zero" }
 			else {d.tooltip2 = formatPercent(d.val2); };
 		});
 
@@ -8455,10 +8463,10 @@ function hex_map() {
 			.enter()
 				.append("div")
 					.attr("class", "hex_map_legend_stop_container")
-					.classed("no_data", function(d) { if (d.text === "No data") { return true }; })
+					.classed("no_data", function(d) { if (d.text === "Change not available") { return true }; })
 					.style("width", function(d) { return ((d.hex_count/legend_total_hex)*legend_total_width) + "px"; });
 
-		if (colors.filter(function(d) { return d.text === "No data"; }).length > 0) {
+		if (colors.filter(function(d) { return d.text === "Change not available"; }).length > 0) {
 			legend.insert("p", ".no_data");
 			legend.select("p")
 				.html("&nbsp;");
@@ -8517,7 +8525,7 @@ function hex_map() {
 		legend_stop.append("div")
 			.attr("class", "hex_map_legend_text")
 			.style("transform", function(d) {
-				if (d.text === "No data") { return "translateX(0)"; };
+				if (d.text === "Change not available") { return "translateX(0)"; };
 			})
 			.text(function(d) { return d.text; });
 

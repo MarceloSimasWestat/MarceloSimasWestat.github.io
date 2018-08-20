@@ -313,7 +313,7 @@ grad_rate		WY	Wyoming	2015-16	0.799658022	0.698492462	5612	139	7018	199
 grad_rate		50 states and DC	50 states and DC	2015-16	0.841136094	0.668562155	3122637	161072	3712404	240923
 naep_math	Grade 4 Math		50 states and DC												0.141985162
 naep_math	Grade 4 Math		Albuquerque (NM)												0.040182914
-naep_math	Grade 4 Math		Atlanta (GA)												‡
+naep_math	Grade 4 Math		Atlanta (GA)												*
 naep_math	Grade 4 Math		Austin (TX)												0.244529724
 naep_math	Grade 4 Math		Baltimore City (MD)												0.018355458
 naep_math	Grade 4 Math		Boston (MA)												0.183578939
@@ -325,7 +325,7 @@ naep_math	Grade 4 Math		Dallas (TX)												0.322230474
 naep_math	Grade 4 Math		Denver (CO)												0.090791227
 naep_math	Grade 4 Math		Detroit (MI)												0.054149855
 naep_math	Grade 4 Math		District of Columbia (DC)												0.066983913
-naep_math	Grade 4 Math		Duval County (FL)												‡
+naep_math	Grade 4 Math		Duval County (FL)												*
 naep_math	Grade 4 Math		Fort Worth (TX)												0.223002351
 naep_math	Grade 4 Math		Fresno (CA)												0.037187114
 naep_math	Grade 4 Math		Guilford County (NC)												0.043572104
@@ -341,9 +341,9 @@ naep_math	Grade 4 Math		San Diego (CA)												0.129997501
 naep_math	Grade 4 Math		Shelby County (TN)												0.058869818
 naep_math	Grade 8 Math		50 states and DC												0.059344978
 naep_math	Grade 8 Math		Albuquerque (NM)												0.037965966
-naep_math	Grade 8 Math		Atlanta (GA)												‡
+naep_math	Grade 8 Math		Atlanta (GA)												*
 naep_math	Grade 8 Math		Austin (TX)												0.02440291
-naep_math	Grade 8 Math		Baltimore City (MD)												‡
+naep_math	Grade 8 Math		Baltimore City (MD)												*
 naep_math	Grade 8 Math		Boston (MA)												0.056936068
 naep_math	Grade 8 Math		Charlotte (NC)												0.026931854
 naep_math	Grade 8 Math		Chicago (IL)												0.058046427
@@ -353,25 +353,25 @@ naep_math	Grade 8 Math		Dallas (TX)												0.111865876
 naep_math	Grade 8 Math		Denver (CO)												0.021639153
 naep_math	Grade 8 Math		Detroit (MI)												0.039043495
 naep_math	Grade 8 Math		District of Columbia (DC)												0.018954772
-naep_math	Grade 8 Math		Duval County (FL)												‡
+naep_math	Grade 8 Math		Duval County (FL)												*
 naep_math	Grade 8 Math		Fort Worth (TX)												0.020368065
-naep_math	Grade 8 Math		Fresno (CA)												#
-naep_math	Grade 8 Math		Guilford County (NC)												‡
+naep_math	Grade 8 Math		Fresno (CA)												**
+naep_math	Grade 8 Math		Guilford County (NC)												*
 naep_math	Grade 8 Math		Hillsborough County (FL)												0.031756179
 naep_math	Grade 8 Math		Houston (TX)												0.03851454
-naep_math	Grade 8 Math		Jefferson County (KY)												‡
+naep_math	Grade 8 Math		Jefferson County (KY)												*
 naep_math	Grade 8 Math		Los Angeles (CA)												0.010449119
 naep_math	Grade 8 Math		Miami-Dade (FL)												0.048124289
 naep_math	Grade 8 Math		Milwaukee (WI)												0.038064965
 naep_math	Grade 8 Math		New York City (NY)												0.0558865
 naep_math	Grade 8 Math		Philadelphia (PA)												0.005448197
 naep_math	Grade 8 Math		San Diego (CA)												0.018404104
-naep_math	Grade 8 Math		Shelby County (TN)												‡
+naep_math	Grade 8 Math		Shelby County (TN)												*
 naep_reading	Grade 4 Reading		50 states and DC												0.086120835
 naep_reading	Grade 4 Reading		Albuquerque (NM)												0.01991889
-naep_reading	Grade 4 Reading		Atlanta (GA)												‡
+naep_reading	Grade 4 Reading		Atlanta (GA)												*
 naep_reading	Grade 4 Reading		Austin (TX)												0.105541393
-naep_reading	Grade 4 Reading		Baltimore City (MD)												‡
+naep_reading	Grade 4 Reading		Baltimore City (MD)												*
 naep_reading	Grade 4 Reading		Boston (MA)												0.119175252
 naep_reading	Grade 4 Reading		Charlotte (NC)												0.044120956
 naep_reading	Grade 4 Reading		Chicago (IL)												0.055375253
@@ -381,7 +381,7 @@ naep_reading	Grade 4 Reading		Dallas (TX)												0.088500159
 naep_reading	Grade 4 Reading		Denver (CO)												0.093303214
 naep_reading	Grade 4 Reading		Detroit (MI)												0.026722633
 naep_reading	Grade 4 Reading		District of Columbia (DC)												0.015383519
-naep_reading	Grade 4 Reading		Duval County (FL)												‡
+naep_reading	Grade 4 Reading		Duval County (FL)												*
 naep_reading	Grade 4 Reading		Fort Worth (TX)												0.104963871
 naep_reading	Grade 4 Reading		Fresno (CA)												0.0251247
 naep_reading	Grade 4 Reading		Guilford County (NC)												0.034017366
@@ -397,29 +397,29 @@ naep_reading	Grade 4 Reading		San Diego (CA)												0.092631941
 naep_reading	Grade 4 Reading		Shelby County (TN)												0.044524784
 naep_reading	Grade 8 Reading		50 states and DC												0.047775398
 naep_reading	Grade 8 Reading		Albuquerque (NM)												0.01734875
-naep_reading	Grade 8 Reading		Atlanta (GA)												‡
+naep_reading	Grade 8 Reading		Atlanta (GA)												*
 naep_reading	Grade 8 Reading		Austin (TX)												0.026211769
-naep_reading	Grade 8 Reading		Baltimore City (MD)												‡
+naep_reading	Grade 8 Reading		Baltimore City (MD)												*
 naep_reading	Grade 8 Reading		Boston (MA)												0.043373849
 naep_reading	Grade 8 Reading		Charlotte (NC)												0.015156873
 naep_reading	Grade 8 Reading		Chicago (IL)												0.029488716
 naep_reading	Grade 8 Reading		Clark County (NV)												0.015564731
-naep_reading	Grade 8 Reading		Cleveland (OH)												‡
+naep_reading	Grade 8 Reading		Cleveland (OH)												*
 naep_reading	Grade 8 Reading		Dallas (TX)												0.074913137
 naep_reading	Grade 8 Reading		Denver (CO)												0.073978466
 naep_reading	Grade 8 Reading		Detroit (MI)												0.076016303
-naep_reading	Grade 8 Reading		District of Columbia (DC)												‡
-naep_reading	Grade 8 Reading		Duval County (FL)												‡
+naep_reading	Grade 8 Reading		District of Columbia (DC)												*
+naep_reading	Grade 8 Reading		Duval County (FL)												*
 naep_reading	Grade 8 Reading		Fort Worth (TX)												0.014060187
-naep_reading	Grade 8 Reading		Fresno (CA)												#
-naep_reading	Grade 8 Reading		Guilford County (NC)												‡
+naep_reading	Grade 8 Reading		Fresno (CA)												**
+naep_reading	Grade 8 Reading		Guilford County (NC)												*
 naep_reading	Grade 8 Reading		Hillsborough County (FL)												0.056078362
 naep_reading	Grade 8 Reading		Houston (TX)												0.009653068
-naep_reading	Grade 8 Reading		Jefferson County (KY)												‡
+naep_reading	Grade 8 Reading		Jefferson County (KY)												*
 naep_reading	Grade 8 Reading		Los Angeles (CA)												0.00727926
 naep_reading	Grade 8 Reading		Miami-Dade (FL)												0.041161757
 naep_reading	Grade 8 Reading		Milwaukee (WI)												0.022998074
 naep_reading	Grade 8 Reading		New York City (NY)												0.010956603
 naep_reading	Grade 8 Reading		Philadelphia (PA)												0.015838914
 naep_reading	Grade 8 Reading		San Diego (CA)												0.015732643
-naep_reading	Grade 8 Reading		Shelby County (TN)												‡
+naep_reading	Grade 8 Reading		Shelby County (TN)												*
