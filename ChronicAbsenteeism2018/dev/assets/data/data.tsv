@@ -1,89 +1,89 @@
 chart	subchart	level	group	number	pct
-1-1		Overall	Not chronically absent	40963990	0.86267
-1-1		Overall	Chronically absent	6520948	0.13733
-1-2		Overall	Overall	6520948	0.13733
-1-2		Overall	White	3065289	0.1271
-1-2		Overall	Black	1247172	0.17284
-1-2		Overall	Hispanic	1640116	0.141
-1-2		Overall	Asian	165814	0.07118
-1-2		Overall	American Indian	119916	0.2252
-1-2		Overall	Pacific Islander	45284	0.21391
-1-2		Overall	Two or more races	237357	0.16407
-1-3		Overall	Overall	6520948	0.13733
-1-3		Overall	Female	3196458	0.13821
-1-3		Overall	Male	3324490	0.13648
-1-4		Overall	Overall	6520948	0.13733
-1-4		Overall	With Disabilities	1057498	0.18916
-1-4		Overall	Without Disabilities	5198899	0.12898
-1-5		Overall	Overall	6520948	0.13733
-1-5		Overall	English Learners	522547	0.11287
-1-5		Overall	Non-English Learners	5981919	0.13979
-2-1		Elementary	All Students	2405502	0.10901
-2-1		Middle	All Students	1189930	0.12491
-2-1		High	All Students	2624357	0.18933
-2-1		Other	All Students	301159	0.14831
-2-2	1	Elementary	White	1029485	0.0966
-2-2	1	Middle	White	614989	0.12263
-2-2	1	High	White	1273607	0.1726
-2-2	1	Other	White	147208	0.13814
-2-2	1	Overall	White	3065289	0.1271
-2-2	1	Elementary	Black	486911	0.14586
-2-2	1	Middle	Black	200883	0.14342
-2-2	1	High	Black	491264	0.23437
-2-2	1	Other	Black	68114	0.17896
-2-2	1	Overall	Black	1247172	0.17284
-2-2	1	Elementary	Hispanic	636880	0.10893
-2-2	1	Middle	Hispanic	278506	0.12434
-2-2	1	High	Hispanic	663584	0.21192
-2-2	1	Other	Hispanic	61146	0.14744
-2-2	1	Overall	Hispanic	1640116	0.141
-2-2	1	Elementary	Asian	73264	0.0665
-2-2	1	Middle	Asian	22026	0.04784
-2-2	1	High	Asian	65157	0.09308
-2-2	1	Other	Asian	5367	0.0796
-2-2	1	Overall	Asian	165814	0.07118
-2-2	1	Elementary	American Indian	46607	0.19434
-2-2	1	Middle	American Indian	22071	0.22164
-2-2	1	High	American Indian	42629	0.27573
-2-2	1	Other	American Indian	8609	0.22367
-2-2	1	Overall	American Indian	119916	0.2252
-2-2	1	Elementary	Pacific Islander	21132	0.19982
-2-2	1	Middle	Pacific Islander	7298	0.19223
-2-2	1	High	Pacific Islander	15060	0.25732
-2-2	1	Other	Pacific Islander	1794	0.18982
-2-2	1	Overall	Pacific Islander	45284	0.21391
-2-2	1	Elementary	Two or more races	111223	0.14295
-2-2	1	Middle	Two or more races	44157	0.1621
-2-2	1	High	Two or more races	73056	0.21369
-2-2	1	Other	Two or more races	8921	0.16428
-2-2	1	Overall	Two or more races	237357	0.16407
-2-2	2	Elementary	Female	1147754	0.10694
-2-2	2	Middle	Female	570572	0.12302
-2-2	2	High	Female	1332298	0.19667
-2-2	2	Other	Female	145834	0.14844
-2-2	2	Overall	Female	3196458	0.13821
-2-2	2	Elementary	Male	1257748	0.11097
-2-2	2	Middle	Male	619358	0.12671
-2-2	2	High	Male	1292059	0.18231
-2-2	2	Other	Male	155325	0.14818
-2-2	2	Overall	Male	3324490	0.13648
-2-2	3	Elementary	With Disabilities	395297	0.15637
-2-2	3	Middle	With Disabilities	210359	0.17854
-2-2	3	High	With Disabilities	387789	0.24595
-2-2	3	Other	With Disabilities	64053	0.20819
-2-2	3	Overall	With Disabilities	1057498	0.18916
-2-2	3	Elementary	Without Disabilities	1904800	0.10103
-2-2	3	Middle	Without Disabilities	956338	0.11754
-2-2	3	High	Without Disabilities	2127081	0.18068
-2-2	3	Other	Without Disabilities	210680	0.13651
-2-2	3	Overall	Without Disabilities	5198899	0.12898
-2-2	4	Elementary	English Learners	271875	0.08746
-2-2	4	Middle	English Learners	77050	0.11453
-2-2	4	High	English Learners	154208	0.21222
-2-2	4	Other	English Learners	19414	0.1596
-2-2	4	Overall	English Learners	522547	0.11287
-2-2	4	Elementary	Non-English Learners	2124158	0.11232
-2-2	4	Middle	Non-English Learners	1112119	0.12566
-2-2	4	High	Non-English Learners	2467358	0.18795
-2-2	4	Other	Non-English Learners	278284	0.14638
-2-2	4	Overall	Non-English Learners	5981919	0.13979
+1-1		Overall	Not chronically absent	40141088	0.841637333
+1-1		Overall	Chronically absent	7552956	0.158362667
+1-2		Overall	Overall	7552956	0.158362667
+1-2		Overall	White	3380946	0.14370298
+1-2		Overall	Black	1446476	0.201252811
+1-2		Overall	Hispanic	2040133	0.167530419
+1-2		Overall	Asian	205509	0.085026514
+1-2		Overall	American Indian	134240	0.256768776
+1-2		Overall	Pacific Islander	46287	0.222854006
+1-2		Overall	Two or more races	299365	0.18097552
+1-3		Overall	Overall	7552956	0.158362667
+1-3		Overall	Female	3703652	0.159458246
+1-3		Overall	Male	3849304	0.157322661
+1-4		Overall	Overall	7552956	0.158362667
+1-4		Overall	With Disabilities	1279071	0.222017922
+1-4		Overall	Without Disabilities	5947256	0.147213814
+1-5		Overall	Overall	7552956	0.158362667
+1-5		Overall	English Learners	647591	0.136854447
+1-5		Overall	Non-English Learners	6880864	0.16045909
+2-1		Elementary	All Students	2866415	0.130447761
+2-1		Middle	All Students	1333376	0.141061582
+2-1		High	All Students	2982704	0.211391616
+2-1		Other	All Students	370461	0.171661277
+2-2	1	Elementary	White	1167072	0.113236249
+2-2	1	Middle	White	662525	0.136245007
+2-2	1	High	White	1385020	0.190088112
+2-2	1	Other	White	166329	0.155179363
+2-2	1	Overall	White	3380946	0.14370298
+2-2	1	Elementary	Black	584422	0.175266361
+2-2	1	Middle	Black	220770	0.165150339
+2-2	1	High	Black	558774	0.263679979
+2-2	1	Other	Black	82510	0.207854696
+2-2	1	Overall	Black	1446476	0.201252811
+2-2	1	Elementary	Hispanic	806459	0.134668532
+2-2	1	Middle	Hispanic	336370	0.144586278
+2-2	1	High	Hispanic	807530	0.239686232
+2-2	1	Other	Hispanic	89774	0.181850592
+2-2	1	Overall	Hispanic	2040133	0.167530419
+2-2	1	Elementary	Asian	94655	0.083961049
+2-2	1	Middle	Asian	27423	0.056776398
+2-2	1	High	Asian	75529	0.103636448
+2-2	1	Other	Asian	7902	0.101512018
+2-2	1	Overall	Asian	205509	0.085026514
+2-2	1	Elementary	American Indian	53467	0.226655927
+2-2	1	Middle	American Indian	24821	0.256534546
+2-2	1	High	American Indian	46564	0.308342273
+2-2	1	Other	American Indian	9388	0.239850796
+2-2	1	Overall	American Indian	134240	0.256768776
+2-2	1	Elementary	Pacific Islander	20515	0.205924275
+2-2	1	Middle	Pacific Islander	7598	0.198760039
+2-2	1	High	Pacific Islander	16161	0.272075287
+2-2	1	Other	Pacific Islander	2013	0.192613147
+2-2	1	Overall	Pacific Islander	46287	0.222854006
+2-2	1	Elementary	Two or more races	139825	0.158657845
+2-2	1	Middle	Two or more races	53869	0.174617581
+2-2	1	High	Two or more races	93126	0.235048549
+2-2	1	Other	Two or more races	12545	0.184000939
+2-2	1	Overall	Two or more races	299365	0.18097552
+2-2	2	Elementary	Female	1372117	0.128399994
+2-2	2	Middle	Female	642096	0.139580595
+2-2	2	High	Female	1511178	0.219328313
+2-2	2	Other	Female	178261	0.169773836
+2-2	2	Overall	Female	3703652	0.159458246
+2-2	2	Elementary	Male	1494298	0.132386472
+2-2	2	Middle	Male	691280	0.142465631
+2-2	2	High	Male	1471526	0.203817462
+2-2	2	Other	Male	192200	0.173449737
+2-2	2	Overall	Male	3849304	0.157322661
+2-2	3	Elementary	With Disabilities	493734	0.190736124
+2-2	3	Middle	With Disabilities	248637	0.205178543
+2-2	3	High	With Disabilities	453673	0.277964617
+2-2	3	Other	With Disabilities	83027	0.252659672
+2-2	3	Overall	With Disabilities	1279071	0.222017922
+2-2	3	Elementary	Without Disabilities	2239243	0.119434631
+2-2	3	Middle	Without Disabilities	1056360	0.131037534
+2-2	3	High	Without Disabilities	2398156	0.200800285
+2-2	3	Other	Without Disabilities	253497	0.154047767
+2-2	3	Overall	Without Disabilities	5947256	0.147213814
+2-2	4	Elementary	English Learners	333354	0.107283336
+2-2	4	Middle	English Learners	95467	0.133706534
+2-2	4	High	English Learners	193803	0.250913724
+2-2	4	Other	English Learners	24967	0.180467813
+2-2	4	Overall	English Learners	647591	0.136854447
+2-2	4	Elementary	Non-English Learners	2522859	0.134046784
+2-2	4	Middle	Non-English Learners	1237896	0.141661275
+2-2	4	High	Non-English Learners	2782453	0.208833996
+2-2	4	Other	Non-English Learners	337656	0.168874863
+2-2	4	Overall	Non-English Learners	6880864	0.16045909

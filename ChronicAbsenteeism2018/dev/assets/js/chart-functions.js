@@ -3253,7 +3253,7 @@ function groupedBar() {
 				.attr("height", ((1.25 * levels.length) * barWidth));
 
 			updateNational.select("aria-label")
-				.text(function(d) { return "In 2013-14, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
+				.text(function(d) { return "In 2015-16, " + d.level + ", " + formatPercent(d.pct) + " of " + d.group + " students, or " + formatNumber(d.number) + " students, were chronically absent."; });
 
 			updateNational.enter()
 				.append("g")
