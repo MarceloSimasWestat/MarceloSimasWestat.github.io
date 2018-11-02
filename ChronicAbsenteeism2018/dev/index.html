@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/map.css" />
 	    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
@@ -34,7 +35,11 @@
     <!-- Substitutes high-res images for Retina displays (html file only) -->
     <script type="text/javascript" src="assets/js/retina.js"></script>
 
-
+    <script src="assets/js/d3.v3.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script src="assets/js/queue.v1.min.js"></script>
+    <script src="assets/js/topojson.v1.min.js"></script>
+	
 </head>
 <body>
 
@@ -239,29 +244,130 @@
                 <p>
                     Students experience chronic absenteeism from coast to coast. Disturbingly, approximately 750 school districts reported that more than 30 percent of their students missed at least three weeks of school in 2015-16.
                 </p>
-            </div>
-        </section>
-
-        <!-- THIS IS WHERE THE MAP SHOULD GO -->
-        <section id="three_chart" class="wrapper chart">
-            <div class="inner">
-                <div>
-                    <div class="align-center">
-                        <div id="maplegend">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 695 216" style="max-width: 375px;">
-                                <image x="0" y="0" width="100%" height="100%" xlink:href="images/maplegend.jpg" />
-                            </svg>
+                <div class="disclaimer">
+                    <div style="display: table-row; width: 100%;">
+                        <div style="display: table-cell; vertical-align: middle; width: 10%;">
+                            <div class="icon"><span class="legendPointer icon fa-mouse-pointer"></span></div>
                         </div>
-                        <img style="width: 100%" src="images/Absenteeism_20161014_withoutborder_StateBorder2.jpg" alt="U.S. map showing percentage of students chronically absent in 2013-14"/>
+                        <div class="legendExplain">
+                            Hover over school districts for information, double-click to zoom in, and select a range from the legend to see specific views of the data. Select the buttons above the legend to toggle between the map for the percentage of students who are ELs in 2014–15 and the map for the percentage change in the number of ELs enrolled in an English language instruction educational program in 2009–10 and 2014–15. Select the buttons below the map to toggle between percentages for elementary and unified school districts, and independent elementary, secondary, and unified districts.
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <br/>
-                    <p>* <a href="#datanotes">See data notes</a>.</p>
-                </div>
             </div>
         </section>
 
+        <!-- Map -->
+        <section class="wrapper chart">
+            <div class="inner" style="padding-bottom: 0em;">
+
+                <!-- Spinner loader (see loader.css) -->
+                <div class="loader">Loading...</div>
+
+                <div id="mapWrapper">
+
+                    <!-- MAP #1 (left toggle) -->
+                    <div id="percentLegend" class="legend" style="display: none;">
+                        <h3 class="title">% of students who were chronically absent in <span class="nowrap">(2015–16)</span></h3>
+                        <div class="legendContainer">
+
+                            <div class="legendButtonWrapper">
+                                <div data-value="#9e9ac8" class="legendButton">
+                                    <div style="background-color: #9e9ac8;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        None
+                                    </div>
+                                </div>
+                                <div data-value="#756bb1" class="legendButton">
+                                    <div style="background-color: #756bb1;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&gt;0% to &lt;5%)
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #54278f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (5% to &lt;15%)
+                                    </div>
+                                </div>
+                                <div data-value="#54278f" class="legendButton">
+                                    <div style="background-color: #44177f;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (15% to &lt;30%)
+                                    </div>
+                                </div>
+                                <div data-value="#340d67" class="legendButton">
+                                    <div style="background-color: #340d67;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        (&gt;=30%)
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+
+
+                        </div>
+
+						   <div class="innerLegend">
+                                <div data-value="gray" class="legendButton null" style="float: none; margin: auto;">
+                                    <div style="background-color: gray;" class="legendButtonColor">
+                                        <hr class="verticalLine">
+                                    </div>
+                                    <div class="legendText">
+                                        NULL*
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+
+                        <!-- end legendContainer -->
+                    </div>
+                    <!-- end legend 1 -->
+
+                    <div id="map">
+                        <div class="mapControlsParent">
+                            <div class="mapControlsContainer">
+                                <div class="mapZoomContainer">
+                                    <!--<div style="clear: both; height:5px"></div>-->
+                                    <button class="zoomButton" data-zoom="+1">+</button>
+                                    <div style="clear: both; height:5px"></div>
+                                    <button class="zoomButton" data-zoom="-1">-</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end map -->
+
+					<!-- Map sub-filters togle buttons (mapSubFiltersContainer) -->
+					<div class="mapControlsContainer">
+						<div id="selectDistrictType">
+							<div id="selectElementary" class="mapButton selectedMapButton">Elementary and Unified</div>
+							<div id="selectSecondary" class="mapButton deselectedMapButton">Independent Elementary, Secondary, and Unified</div>
+						</div>
+					</div>
+
+                </div>
+                <!-- end mapWrapper -->
+
+                <div>
+                  <p class="dataLinksText" style="margin-bottom: 0em;">* <a href="#mapnotes">See map notes</a>. <!--<a href="#">Download the district level data</a> used in this map.--></p>
+                </div>
+
+            </div>
+            <!-- end innner -->
+        </section>
+		
         <!-- Four -->
         <section id="four" class="wrapper style1">
             <div class="inner">
@@ -495,6 +601,489 @@
 
     </script>
 
+    <!-- Map scripts -->
+    <script>
+        $(".legend").css("display", "none");
+
+        //  D3 MAP
+        var width = 960;
+        var height = 500;
+        var center = [width / 2, height / 2];
+        var defaultFill = "#E6E6E6";
+        var numberFormat = d3.format("0,000");
+
+        var projection = d3.geo.albersUsa()
+                .translate([width / 2, height / 2])
+                .scale(1000);
+        var zoom = d3.behavior.zoom()
+                .scaleExtent([1, 32])
+                .on("zoom", move);
+
+        var path = d3.geo.path()
+                .projection(projection);
+
+        var svg = d3.select("#map").append("svg")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 " + width + " " + height)
+            .classed("svg-content-responsive", true)
+            .append("g");
+
+        var g = svg.append("g");
+
+        d3.select("#map > svg").call(zoom).call(zoom.event);
+
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "districtTooltip")
+            .style("opacity", 0)
+            .style('top', '0px')
+            .style('left', '0px');
+
+        queue()
+                .defer(d3.json, "assets/data/states.json")
+                .defer(d3.json, "assets/data/elementary.json")
+                .defer(d3.json, "assets/data/secondary.json")
+                .defer(d3.json, "assets/data/extradistricts.json")
+                .await(ready);
+
+        svg.on("wheel.zoom", null);
+        svg.on("mousewheel.zoom", null);
+
+        function ready(error, us, primary, secondary, extra) {
+            if (error) {
+                console.log(error);
+            }
+            g.attr("cursor", "pointer");
+
+            showLoader(function() {
+                drawDistricts('elementary', primary, primary.objects.medium_G5420_G5400);
+                drawDistricts('extra', extra, extra.objects.extra_districts);
+                drawStates(us, us.objects.states);
+                $('.legend').show();
+                resizeLegend();
+            });
+
+
+            //d3.select('#englishLearnersButton').on('click', function () {
+            //    drawEnglishLearners();
+            //});
+
+            //d3.select('#percentChangeButton').on('click', function () {
+            //    drawPercentChange();
+            //});
+
+            d3.select("#selectElementary").on("click", function () {
+                d3.selectAll('.secondary').remove();
+                $("#selectSecondary").removeClass('selectedMapButton').addClass('deselectedMapButton');
+                $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
+            });
+
+            var legendButtons = $('.legendButton');
+
+            d3.select("#selectSecondary").on("click", function () {
+                drawDistricts('secondary', secondary, secondary.objects.medium_G5410);
+                var highlightedLegendButton = legendButtons.filter('.highlightButton');
+                if(highlightedLegendButton.length > 0) {
+                    var buttonValue = highlightedLegendButton.attr("data-value");
+                    var colorFunc = getColorFunc();
+                    svg.selectAll(".secondary")
+                        .attr("fill", function (d) {
+                            if (buttonValue === colorFunc(d)) {
+                                return buttonValue;
+                            }
+                            else {
+                                return "#E6E6E6";
+                            }
+                        });
+                }
+                $("#selectElementary").removeClass('selectedMapButton').addClass('deselectedMapButton');
+                $(this).removeClass('deselectedMapButton').addClass('selectedMapButton');
+            });
+
+            legendButtons.on("click", function () {
+                var colorFunc = getColorFunc();
+                if ($(this).hasClass("highlightButton")) {
+                    legendButtons.each(function () {
+                        $(this).css("border", 0);
+                        $(this).removeClass("highlightButton");
+                    });
+                    svg.selectAll('.district').attr('fill', colorFunc);
+                }
+                else {
+                    legendButtons.each(function () {
+                        $(this).css("border", 0);
+                        $(this).removeClass("highlightButton");
+                    });
+                    $(this).addClass("highlightButton");
+                    var buttonValue = $(this).attr("data-value");
+                    svg.selectAll(".district")
+                        .attr("fill", function (d) {
+                            if (buttonValue === colorFunc(d)) {
+                                return buttonValue;
+                            }
+                            else {
+                                return "#E6E6E6";
+                            }
+                        });
+                }
+            });
+        }
+
+        function drawDistricts(id, topology, object) {
+            var colorFunc = getColorFunc();
+            g.append("g")
+                .selectAll("path")
+                .data(topojson.feature(topology, object).features)
+                .enter().append("path")
+                .attr("class", function(d) {
+                    return id + " district";
+                })
+                .attr("d", path)
+                .attr("stroke", "#fff")
+                .attr("stroke-opacity", .15)
+                .attr("stroke-linejoin", "round")
+                .attr("fill", colorFunc)
+                .on("mouseover", function (d) {
+                    createTooltip(this, d);
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("stroke", "#fff")
+                        .attr("stroke-opacity", .15);
+                    d3.select(this).classed("selected", false);
+                    tooltip.transition().duration(300).style("opacity", 0);
+                });
+        }
+
+        function drawStates(topology, object) {
+            g.append("g")
+                .attr("class", "states")
+                .selectAll("path")
+                .data(topojson.feature(topology, object).features)
+                .enter().append("path")
+                .attr("class", "state")
+                .attr("d", path);
+        }
+
+
+        function showLoader(fn) {
+            $('.loader').show();
+            setTimeout(function () {
+                fn();
+                $('.loader').hide();
+            }, 100);
+        }
+
+        function drawBase() {
+            $('#baseButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+            //$('#percentChangeButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+            $('.legend').hide();
+            showLoader(function () {
+                svg.selectAll('.district').attr('fill', colorByGroup);
+                $('.legend').show();
+                resizeLegend();
+            });
+        }
+
+        //function drawPercentChange() {
+        //    $('#baseButton').removeClass('selectedMapButton').addClass('deselectedMapButton');
+        //    $('#percentChangeButton').removeClass('deselectedMapButton').addClass('selectedMapButton');
+        //    $('.legend').hide();
+        //    showLoader(function () {
+        //        svg.selectAll('.district').attr('fill', colorByPercentChange);
+        //        $('.legend').show();
+        //        resizeLegend();
+        //    });
+        //}
+
+        function getMapMode() {
+            //if (d3.select('#baseButton').classed('selectedMapButton')) {
+                return 'percent';
+            //}
+            //else {
+            //    return 'percentChange';
+            //}
+        }
+
+        function getColorFunc() {
+            if (getMapMode() === 'percent') {
+                return colorByGroup;
+            }
+            else {
+                return colorByPercentChange;
+            }
+        }
+
+        function createTooltip(currentDistrict, d) {
+            d3.select(currentDistrict).attr("stroke", "#1A1C20")
+                    .attr("stroke-opacity", 1);
+            d3.select(currentDistrict).classed("selected", true);
+
+            tooltip.transition().duration(100)
+                    .style("opacity", 1)
+                    .style("top", (d3.event.pageY - 100) + "px");
+
+            var windowWidth = $(window).width();
+            if (windowWidth > 1024) {
+                if (d3.event.pageX > 1000) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
+                }
+            }
+            if (windowWidth < 1024 && windowWidth > 850) {
+                if (d3.event.pageX > 400) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 80) + "px");
+                }
+            }
+            if (windowWidth < 850) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 40) + "px");
+                }
+            }
+            if (windowWidth < 680) {
+                if (d3.event.pageX > 350) {
+                    tooltip.style("left", (d3.event.pageX - 320) + "px");
+                } else {
+                    tooltip.style("left", (d3.event.pageX + 20) + "px");
+                }
+            }
+
+            var state = d.properties['State'];
+            if (state === null) state = 'NO DATA';
+            var name = d.properties['District'];
+            if (name === null) name = "NO DATA";
+
+            if (getMapMode() === 'percent') {
+                var category = d.properties['Category'];
+                if (category === 100) {
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3>" +
+                        "<hr>" +
+                        "<h3>No Operating District</h3>"
+                    );
+                }
+                else {
+                    var numberOfELs = d.properties['Number of ELs'];
+                    numberOfELs = formatNumber(numberOfELs);
+                    var totalNumberOfStudents = d.properties['Total number of students'];
+                    totalNumberOfStudents = formatNumber(totalNumberOfStudents);
+                    var percentEL = d.properties['% of students who are English Learners'];
+                    percentEL = formatPercent(percentEL);
+
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div>Number of ELs: " + numberOfELs + "</div>" +
+                        "<div>Total number of students: " + totalNumberOfStudents + "</div>" +
+                        "<div>% of students who are English Learners: " + percentEL + "</div>"
+                    );
+                }
+            }
+            else {
+                var category = d.properties['Change as % of 2009-10, categorized'];
+
+                if(category === 100) {
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3>" +
+                        "<hr>" +
+                        "<h3>No Operating District</h3>"
+                    );
+                }
+                else {
+                    var liep09 = d.properties['LIEP09'];
+                    liep09 = formatNumber(liep09);
+                    var liep14 = d.properties['LIEP14'];
+                    liep14 = formatNumber(liep14);
+                    var change = d.properties['Change from 2009-10 to 2014-15'];
+                    var changePercent = d.properties['Change as % of 2009-10'];
+
+                    if (category === 101) {
+                        if(change === null) change = 'NO DATA';
+                        else change = formatNumber(change);
+
+                        if (changePercent === null) changePercent = 'NO DATA';
+                        else changePercent = changePercent + '%';
+                    }
+                    else if (category === 0) {
+                        if(change === null) change = 'Few or no ELs';
+                        else change = formatNumber(change);
+
+                        if (changePercent === null) changePercent = 'Few or no ELs';
+                        else changePercent = changePercent + '%';
+                    }
+                    else {
+						change = formatNumber(change);
+
+						if (category === 1) {
+							changePercent = changePercent + '%';
+						}
+						else {
+							changePercent = formatPercent(changePercent);
+						}
+					}
+
+                    tooltip.html(
+                        "<h3>" + state.toUpperCase() + "</h3><hr>" +
+                        "<h4>" + name + "</h4><hr>" +
+                        "<div>Number of ELs in LIEP, 2009–10: " + liep09 + "</div>" +
+                        "<div>Number of ELs in LIEP, 2014–15: " + liep14 + "</div>" +
+                        "<div>Change from 2009–10 to 2014–15: " + change + "</div>" +
+                        "<div>Change as % of 2009–10: " + changePercent + "</div>"
+                    );
+                }
+            }
+        }
+
+        function formatNumber(n) {
+            if (n === null) {
+                return 'NO DATA';
+            }
+            else {
+                return numberFormat(n);
+            }
+        }
+
+        function formatPercent(p) {
+            if (p === null) {
+                return 'NO DATA';
+            }
+
+            var rounded = Math.round(p * 10) / 10;
+            // JS rounds negative values that have the exact decimal of .5 up instead of down,
+            // i.e. -1.35 rounds to -1.3 instead of -1.4
+            if(p < 0) {
+                rounded = Math.round(Math.abs(p) * 10) / 10 * -1;
+            }
+
+            if(rounded === 0 && p < .1 && p > 0) {
+                return '<0.1%';
+            }
+            else if(rounded === 0 && p > -.1 && p < 0) {
+                return '>-0.1%';
+            }
+            else {
+                return rounded + '%';
+            }
+        }
+
+        function resizeLegend() {
+            var legend;
+            $('.legend').hide();
+            if (getMapMode() === 'percent') {
+                legend = $('#percentLegend');
+            }
+            else {
+                legend = $('#percentChangeLegend');
+            }
+            legend.show();
+            var totalDistricts = svg.selectAll('.district').size();
+            var nullDistricts = svg.selectAll('[fill="gray"]').size();
+            var noELDistricts = svg.selectAll('[fill="#404040"]').size();
+            totalDistricts -= nullDistricts + noELDistricts;
+            var legendButtons = legend.find('.legendButton');
+            legendButtons.each(function () {
+                var buttonValue = $(this).attr("data-value");
+                var valueSize = svg.selectAll('[fill="' + buttonValue + '"]').size();
+                var width = (valueSize / totalDistricts) * 100;
+                if (getMapMode() === 'percent' && $(this).hasClass("null")) {
+                    width = width * 6;
+                }
+                else if (getMapMode() === 'percentChange' && $(this).hasClass("null")) {
+                    width = valueSize / (nullDistricts + noELDistricts) * 100;
+                }
+                $(this).css("width", (width) + '%');
+            });
+        }
+
+        function colorByGroup(d) {
+            switch (d.properties['Category']) {
+                case 1: return '#9e9ac8';
+                case 2: return '#756bb1';
+                case 3: return '#54278f';
+                case 4: return '#340d67';
+                default: return 'gray';
+            }
+        }
+
+        function colorByPercentChange(d) {
+            var percentChange = d.properties['Change as % of 2009-10, categorized'];
+
+            switch (percentChange) {
+                case -4: return '#08519c';
+                case -3: return '#6baed6';
+                case -2: return '#c6dbef';
+                case 0: return '#404040';
+                case 1: return '#9e9ac8';
+                case 2: return '#756bb1';
+                case 3: return '#54278f';
+                case 4: return '#340d67';
+            }
+            return 'gray';
+        }
+
+        function interpolateZoom(translate, scale) {
+            var self = this;
+            return d3.transition().duration(350).tween("zoom", function () {
+                var iTranslate = d3.interpolate(zoom.translate(), translate),
+                        iScale = d3.interpolate(zoom.scale(), scale);
+                return function (t) {
+                    zoom
+                            .scale(iScale(t))
+                            .translate(iTranslate(t));
+                    move();
+                };
+            });
+        }
+
+        function zoomClick() {
+            var clicked = d3.event.target,
+                    direction = 1,
+                    factor = 0.2,
+                    target_zoom = 1,
+                    center = [width / 2, height / 2],
+                    extent = zoom.scaleExtent(),
+                    translate = zoom.translate(),
+                    translate0 = [],
+                    l = [],
+                    view = { x: translate[0], y: translate[1], k: zoom.scale() };
+            d3.event.preventDefault();
+            direction = this.getAttribute("data-zoom");
+            target_zoom = zoom.scale() * (1 + factor * direction);
+
+            if (target_zoom < extent[0] || target_zoom > extent[1]) {
+                return false;
+            }
+
+            translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+            view.k = target_zoom;
+            l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+            view.x += center[0] - l[0];
+            view.y += center[1] - l[1];
+
+            interpolateZoom([view.x, view.y], view.k);
+        }
+
+        function move() {
+            d3.selectAll(".state").attr("stroke-width", resizeStateBorder());
+            g.style("stroke-width", 1 / zoom.scale())
+                    .attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
+        }
+
+        function resizeStateBorder() {
+            var z = zoom.scale();
+            return (z > 7) ? .25 :
+                    (z > 4) ? .5 :
+                            1
+        }
+
+        d3.selectAll(".zoomButton[data-zoom]").on("click", zoomClick);
+        d3.select(self.frameElement).style("height", height + "px");
+
+    </script>
 
 </body>
 </html>
