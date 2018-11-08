@@ -27,28 +27,34 @@ UPDATE cpct_psenr_data SET pct_psenr = NULL WHERE btrim(pct_psenr) = '';
 UPDATE cpct_psenr_data SET cpct_psenr = NULL WHERE btrim(cpct_psenr) = '';
 
 --
--- TRUNCATE oela_data;
-UPDATE oela_data SET leaid = NULL WHERE btrim(leaid) = '';
-UPDATE oela_data SET el_cat = NULL WHERE btrim(el_cat) = '';
-UPDATE oela_data SET el_tot = NULL WHERE btrim(el_tot) = '';
-UPDATE oela_data SET student_tot = NULL WHERE btrim(student_tot) = '';
-UPDATE oela_data SET el_pct = NULL WHERE btrim(el_pct) = '';
+-- TRUNCATE public.chronabs_data;
+UPDATE public.chronabs_data SET leaid = NULL WHERE btrim(leaid) = '';
+UPDATE public.chronabs_data SET student_total = NULL WHERE btrim(student_total) = '';
+UPDATE public.chronabs_data SET chronabs_total = NULL WHERE btrim(chronabs_total) = '';
+UPDATE public.chronabs_data SET flag = NULL WHERE btrim(flag) = '';
+UPDATE public.chronabs_data SET chronabs_percent = NULL WHERE btrim(chronabs_percent) = '';
+UPDATE public.chronabs_data SET chronabs_map_category = NULL WHERE btrim(chronabs_map_category) = '';
+UPDATE public.chronabs_data SET chronabs_map_category_text = NULL WHERE btrim(chronabs_map_category_text) = '';
 
 
 LEAID,tot_psenr,G01_G02,st2,ps_grant,pct_psenr,cpct_psenr
 --TRUNCATE public.cpct_psenr_data;
 
-CREATE TABLE public.oela_data (
+CREATE TABLE public.chronabs_data (
 leaid TEXT,
-el_cat TEXT,
-el_tot TEXT,
-student_tot TEXT,
-el_pct TEXT
+student_total TEXT,
+chronabs_total TEXT,
+flag TEXT,
+chronabs_percent TEXT,
+chronabs_map_category TEXT,
+chronabs_map_category_text TEXT
 );
+-- LEAID,Total number of students,Number chronically absent,FLAG,Percent chronically absent,Map classification,Definition of map classification
 ALTER TABLE public.oela_data ADD PRIMARY KEY (leaid);
 
 CREATE TABLE public.oela (oela TEXT, label TEXT);
 ALTER TABLE public.oela ADD PRIMARY KEY (oela);
+
 
 UPDATE public.oela_data
 SET el_tot = replace(el_tot, ',', '')
@@ -97,3 +103,8 @@ INNER JOIN oos_data ON schooldistricts.leaid = oos_data.nces_leaid
 LEFT JOIN cpct_abs USING (cpct_abs)
 --LEFT JOIN coos_pct USING (coos_pct)
 WHERE mtfcc IN ('G5410');
+
+-- DUMMY DATA
+ALTER TABLE schooldistricts ADD COLUMN leaid TEXT;
+
+SELECT * FROM schooldistricts_2013 LIMIT 10;

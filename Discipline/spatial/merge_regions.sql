@@ -42,9 +42,16 @@ WHERE table_name ILIKE '%highest';
 -- WHERE st_area(geom::geography) * 0.000000386102 < 6;
 
 
-SELECT 'DROP TABLE ' || table_name || ' ;' FROM information_schema.tables WHERE table_name ILIKE '%_highest%';
+SELECT 'DROP TABLE ' || table_name || ' ;' FROM information_schema.tables WHERE table_name ILIKE '%_medium%';
+SELECT 'ALTER TABLE ' || table_name || ' RENAME TO ' || table_name || '_2013;' FROM information_schema.tables WHERE table_name ILIKE '%_st_union_stash%';
+
+SELECT * FROM regions ORDER BY region, statefp;
 
 
+SELECT table_name FROM information_schema.tables WHERE table_name ILIKE '%_st_union_stash';
+
+SELECT column_name FROM information_schema.columns WHERE table_name = 'schooldistricts' ORDER BY 1;
+SELECT column_name FROM information_schema.columns WHERE table_name = 'schooldistricts_2013' ORDER BY 1;
 
 SELECT sum(ST_NPoints(geom)) FROM schooldistricts_medium_with_features_b;
 SELECT sum(ST_NPoints(ST_SimplifyPreserveTopology(geom,0.0001))) FROM schooldistricts_medium_with_features_b;

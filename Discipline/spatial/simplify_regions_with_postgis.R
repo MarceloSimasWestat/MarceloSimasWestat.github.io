@@ -1,17 +1,18 @@
 library(RPostgreSQL)
 
-server <- "atl-pgsqltest.westat.com" # "atl-pgsqltest.westat.com" 10.146.0.47
+server <- "dzgis04.westat.com" 
 tolerance <- 0.01 #0.4  0.01  0.005  0.0005 (high medium low lower)
-tolerance_name <- "lowest"
+tolerance_name <- "medium"
 input_geom_table_name <- "schooldistricts"
-stash_union <- FALSE # TRUE for intial run
-load_stashed_union <- TRUE # TRUE for subsequent runs
+stash_union <- TRUE # TRUE for intial run
+load_stashed_union <- FALSE # TRUE for subsequent runs
 
-pg_con <- dbConnect(dbDriver("PostgreSQL"), host=server, user="postgres", password="postgres1", dbname="absenteeism")
+username_password <- readLines("C:/username-password.txt")
+pg_con <- dbConnect(dbDriver("PostgreSQL"), host=server, user=username_password[1], password=username_password[2], dbname="educ_map")
 
 regions <- dbGetQuery(pg_con, "SELECT DISTINCT region FROM regions ORDER BY region")
 
-for (region in  regions[, 1]) { # regions[c(9,10,11), ] # regions[, 1]
+for (region in regions[c(4,6), ]) { # regions[c(9,10,11), ] # regions[, 1]
 	
 	sql_string <- paste("
 		CREATE TABLE schooldistricts_", region, " AS (SELECT gid, geom FROM ", input_geom_table_name," INNER JOIN regions USING (statefp) WHERE region = ", region,");
@@ -25,7 +26,7 @@ for (region in  regions[, 1]) { # regions[c(9,10,11), ] # regions[, 1]
 		# We are sending multiple (presumably why you're here) sql commands via system psql calls to a server with the "wait" parameter set to FALSE. You could max out a client's connections doing this.
 		system(
 			command = paste(
-				"psql.exe -h ", server, " -d absenteeism -U postgres -t -c \"",	sql_string,	"\"",
+				"psql.exe -h ", server, " -d educ_map -U ", username_password[1]," -t -c \"",	sql_string,	"\"",
 				sep = ""),
 			wait = FALSE
 		)
