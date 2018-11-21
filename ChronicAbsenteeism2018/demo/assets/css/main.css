@@ -5084,3 +5084,393 @@ button:hover,
 	width: auto;
 	padding: 10px;
 }
+
+/*D3 Map styling*/
+
+.districtTooltip, .phaTooltip {
+    position: absolute;
+    text-align: left;
+    width: 285px;
+    padding: 10px;
+    font-size: 11px;
+    font-family: Karla;
+    background: #1A1C20;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 900;
+}
+
+    .districtTooltip h3, .phaTooltip h3 {
+        text-align: left;
+        font-size: 11px;
+        margin: 0;
+        line-height: 17px;
+    }
+
+    .districtTooltip h4, .phaTooltip h4 {
+        text-align: left;
+        font-size: 11px;
+        margin: 0;
+        line-height: 17px;
+    }
+
+    .districtTooltip div, .phaTooltip div {
+        text-align: right;
+        font-size: 11px;
+    }
+
+    .districtTooltip b, .phaTooltip b {
+        font-size: 11px;
+    }
+
+    .districtTooltip hr, .phaTooltip hr {
+        margin: 3px 0 3px 0;
+        color: #979797;
+    }
+
+/* Map Wrapper styleing */
+
+#mapWrapper {
+    height: 100%;
+    text-align: center;
+}
+
+    #mapWrapper h3 {
+        padding: 5px 0 20px 0
+    }
+
+
+    #mapWrapper .state {
+        fill: none;
+        stroke: #fff;
+        stroke-linejoin: round;
+    }
+
+    #mapWrapper .overlay {
+        fill: none;
+        pointer-events: all;
+    }
+
+    #mapWrapper h3.name, h3.stateName, h3#legend {
+        color: rgba(26,28,32,0.90);
+        font-family: Karla, Helvetica, sans-serif;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    #mapWrapper .legend {
+        margin: 0 auto 0 auto;
+        font-family: Helvetica, sans-serif;
+    }
+
+.legend ul {
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    margin-left: 0;
+    padding: 0;
+}
+
+.rttGrantToggle, .pdgGrantToggle, .allStatesToggle {
+    z-index: 999;
+    float: left;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 0;
+    color: black;
+    font-size: 15px;
+    width: auto;
+    height: 30px;
+    letter-spacing: 0;
+    line-height: 5px;
+    padding: 0 3px 0 3px;
+    position: relative;
+    top: 35px;
+    margin-right: 15px;
+}
+
+.zoomButton {
+    z-index: 999;
+    float: left;
+    background-color: black;
+    border: none;
+    border-radius: 0;
+    color: white;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    letter-spacing: 0;
+    line-height: 25px;
+    padding: 0;
+    position: relative;
+    top: 35px;
+}
+
+.highlightButton {
+    -webkit-box-shadow: inset 0 0 0 1px black;
+    -moz-box-shadow: inset 0 0 0 1px black;
+    box-shadow: inset 0 0 0 1px black;
+}
+
+#selectDistrictType {
+    width: 100%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.mapControlsParent {
+    float: left;
+    /* width: 100%; */
+    z-index: 10;
+    position: relative;
+}
+
+.mapControlsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*border: 1px dashed purple;*/
+    margin-bottom: 1px;
+	margin-top: 14px;
+}
+
+    .mapControlsContainer .zoomButton {
+        position: static;
+        top: auto;
+    }
+
+    .mapControlsContainer #selectDistrictType {
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+        .mapControlsContainer #selectDistrictType #selectSecondary {
+            margin: 0 0 0 15px;
+        }
+
+#mapWrapper #legend #selectDistrictType {
+    width: 310px;
+    float: left;
+    border-right: 1px solid #ccc;
+    margin-right: 15px;
+}
+
+#mapWrapper #legend .block-button {
+    width: 80px;
+    display: block;
+    float: left;
+    clear: both;
+}
+
+#mapWrapper #legend .selectDistrict {
+    color: rgba(26,28,32,0.90);
+    background: yellow;
+}
+
+#map {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 45%; /* aspect ratio (60% left too much padding below) */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.mapEnglishLearners #map {
+    padding-bottom: 50%;
+    z-index: 5;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+}
+
+.mapEnglishLearners .svg-content-responsive {
+    top: 50px;
+}
+
+.legendButtonWrapper {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.innerLegend {
+    text-align: center;
+    width: 30%;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 10px;
+    cursor: pointer;
+}
+
+div.legendButton {
+    text-align: left;
+    color: rgba(26,28,32,0.90);
+    float: left;
+    border-style: none;
+    border-radius: 0;
+    border-left: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.legendButtonColor {
+    width: 100%;
+    height: 15px;
+}
+
+#mapButtonWrapper {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.mapHeaderButton {
+    border: 1px solid #e0e0e0;
+}
+
+.mapButton {
+    font-family: Inconsolata;
+    list-style: none;
+    padding: 4px 0;
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #b1b1b1;
+}
+
+.selectedMapButton {
+    color: white;
+    background: #1A1C20;
+}
+
+.deselectedMapButton {
+	color: #1f1f1f;
+    background-color: rgba(255,255,255,0.85);
+}
+
+.districtButtonSelected {
+    background: #1A1C20;
+    color: white;
+}
+
+.legendText {
+    font-family: Inconsolata;
+    font-weight: normal;
+    font-size: 13px;
+    color: rgba(26,28,32,0.90);
+    letter-spacing: 0.53px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.verticalLine {
+    width: 1px;
+    height: 25px;
+    color: rgba(26,28,32,0.90);
+    background: #1A1C20;
+    border: 0;
+    margin: 0;
+    position: relative;
+    left: -1px;
+    display: inline-block;
+}
+
+div.disclaimer .legendExplain {
+    /*float: right;*/
+    display: table-cell;
+    width: 90%;
+    padding: 1.3em 1.5em 1.3em 1.5em;
+    background: #4E75B7;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.75;
+}
+
+div.disclaimer .legendPointer {
+    /*float: left;*/
+    width: 10%;
+    text-align: center;
+    color: #4E75B7;
+}
+
+.legendContainer {
+    display: flex;
+    flex-direction: row;
+    /*background-color: lightblue;*/
+}
+
+    .legendContainer .legendButtonWrapper {
+        width: 80%;
+        /*border: 1px dotted blue;*/
+    }
+
+    .legendContainer .innerLegend {
+        width: 20%;
+        margin-left: 15px;
+        /*border: 1px dashed orange;*/
+    }
+
+
+/* ************************** */
+/*       MEDIA QUERIES        */
+/* ************************** */
+
+@media screen and (max-width: 1260px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -10px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -15px;
+    }
+}
+
+@media screen and (max-width: 736px) {
+
+    #selectDistrictType {
+        align-items: center;
+    }
+
+    .dataLinksText {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -25px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+
+    .legendButtonWrapper div:nth-child(4) .legendText {
+        position: relative;
+        left: -30px;
+    }
+}
