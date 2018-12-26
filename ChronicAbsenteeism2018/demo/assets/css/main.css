@@ -5026,7 +5026,7 @@ button:hover,
 }
 
 .groupedBar .y.axis,
-.groupedBar .legend {
+.groupedBar .legendGB {
 	font: normal 13px Karla;
 	color: #1C1E21;
 }
