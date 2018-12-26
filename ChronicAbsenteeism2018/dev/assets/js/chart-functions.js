@@ -3144,11 +3144,11 @@ function groupedBar() {
 
 		// legend
 
-		var legend = svg.selectAll(".legend")
+		var legend = svg.selectAll(".legendGB")
 			.data(levels.concat(["Overall"]))
 			.enter()
 			.append("g")
-				.attr("class", "legend")
+				.attr("class", "legendGB")
 				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend.append("circle")
